@@ -1,0 +1,123 @@
+p.caption {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+/* added to improve contrast based on WAVE accessibility test */
+.book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active {
+    color: #0000e2;
+}
+
+.book .book-summary ul.summary li span {
+  cursor: default;
+}
+
+h3.subtitle {
+  margin-top: -20px !important;
+}
+
+h3.subtitle em {
+  font-style: normal !important;
+}
+
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+p.flushright {
+  text-align: right;
+}
+/* remove blockquote last-child right alignment */
+/* blockquote > p:last-child {
+  text-align: right;
+} */
+/* darken block quote text, but same light border */
+.book .book-body .page-wrapper .page-inner section.normal blockquote {
+    color: #4d4d4d;
+    border-left: 4px solid #e5e5e5;
+}
+blockquote > p:first-child {
+  text-align: inherit;
+}
+.h-icon-chevron-left {
+    background: white;
+        padding: 3px;
+        border: #eee 1px solid;
+        color: #666;
+      }
+
+.fa-rotate-315 {
+    -webkit-transform: rotate(315deg);
+    -moz-transform: rotate(315deg);
+    -ms-transform: rotate(315deg);
+    -o-transform: rotate(315deg);
+    transform: rotate(315deg);
+}
+
+.rmdreview {
+  padding: 1em 1em 1em 5em;
+  margin-bottom: 0px;
+  background: #f5f5f5 5px center/3em no-repeat;
+  position:relative;
+}
+
+.rmdreview:before {
+    content: "\f0e6";
+    font-family: FontAwesome;
+    left:10px;
+    position:absolute;
+    top:10px;
+    bottom: 0px;
+    font-size: 60px;
+ }
+ /* footnote counter to restart numbering for each chapter and subchapter
+  thanks @romles https://stackoverflow.com/questions/50616517/restart-endnote-numbering-after-each-gitbook-style-web-chapter-in-r-bookdown
+  thanks @ilyankou for update from footnote-ref to footnoteRef for bookdown 0.9, and .level1 to .page-inner for 0.15 */
+
+  /* don't show the wrong footnote calls */
+  .footnote-ref sup,
+  .footnoteRef sup {
+    display: none;
+  }
+
+  /* use a counter for footnote calls */
+  .page-inner {
+    counter-reset: fn-call;
+  }
+
+  .footnote-ref,
+  .footnoteRef {
+    counter-increment: fn-call;
+  }
+
+  /* generate new footnote calls */
+  .footnote-ref::after,
+  .footnoteRef::after {
+    content: counter(fn-call);
+    position: relative;
+    top: -.5em;
+    font-size: 85%;
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  /* use a counter for footnotes numbering */
+  .footnotes ol {
+    list-style: none;
+    counter-reset: fn-number;
+  }
+
+  .footnotes li {
+    counter-increment: fn-number;
+  }
+
+  .footnotes p::before {
+    content: counter(fn-number) '. ';
+  }
