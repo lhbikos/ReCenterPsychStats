@@ -135,7 +135,7 @@
 \chapter*{Preface}\label{preface}}
 \addcontentsline{toc}{chapter}{Preface}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts of the preface,introduction, and single chapter are released for the purpose of gaining formative feedback from a host of stakeholders. The document was last updated on 19 Jan 2021}
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts of the preface,introduction, and single chapter are released for the purpose of gaining formative feedback from a host of stakeholders. The document was last updated on 20 Jan 2021}
 
 To \emph{center} a variable in regression means to set its value at zero and interpret all other values in relation to this reference point. Regarding race and gender, researchers often center male and White at zero. Further, it is typical that research vignettes in statistics textbooks are similarly seated in a White, Western (frequently U.S.), heteronormative, framework. The purpose of this project is to create a set of open educational resources (OER) appropriate for doctoral and post-doctoral training that contribute to justice, equity, diversity, inclusion (JEDI), and social responsivity.
 
@@ -143,7 +143,7 @@ Statistics training in doctoral programs are frequently taught with fee-for-use 
 
 Training models for doctoral programs in HSP are commonly scholar-practitioner, scientist-practitioner, or clinical-scientist. An emerging model, the \emph{scientist-practitioner-advocacy} training model incorporates social justice advocacy so that graduates are equipped to recognize and address the sociocultural context of oppression and unjust distribution of resources and opportunities \citep{mallinckrodt_scientist-practitioner-advocate_2014}. In statistics textbooks, the use of research vignettes engages the learner around a tangible scenario for identifying independent variables, dependent variables, covariates, and potential mechanisms of change. Many students recall examples in Field's \citeyearpar{field_discovering_2012} popular statistics text: Viagra to teach one-way ANOVA, beer goggles for two-way ANOVA, and bushtucker for repeated measures. What if the research vignettes were investigations around JEDI/social responsivity and highlighted the scholarship of individuals whose identities are often marginalized?
 
-In this OER, research vignettes will be from recently published articles where: (a) the author's identity is BIPOC, LGBTQ+, or from a region of the globe where scholarship is often overlooked, (b) the research has a JEDI/social responsivity focus, (b) the lesson's statistic is used in the article, and (c) the data is shared publicly or there is sufficient information in the article to simulate the data for the chapter example(s) and practice problem(s).
+In this OER, research vignettes will be from recently published articles where: (a) the author's identity is from a group where scholarship is historically marginalized (e.g., BIPOC, LGBTQ+, emerging nations), (b) the research has a JEDI/social responsivity focus, (b) the lesson's statistic is used in the article, and (c) the data is shared publicly or there is sufficient information in the article to simulate the data for the chapter example(s) and practice problem(s).
 
 \hypertarget{copyright-with-open-access}{%
 \section*{Copyright with Open Access}\label{copyright-with-open-access}}
@@ -170,7 +170,7 @@ As with many statistics texts, each chapter includes a \emph{research vignette.}
 \item
   the statistic that is the focus of the chapter was properly used in the article,
 \item
-  the author's identity is from a group whose work has, historically been marginalized (e.g., BIPOC, LGBTQ+, or from a region of the globe where scholarship is often overlooked),
+  the author's identity is from a group where scholarship is historically marginalized (e.g., BIPOC, LGBTQ+, emerging nations),
 \item
   the research has a justice, equity, inclusion, diversity, and social responsivity focus and will contribute positively to a social justice pedagogy, and
 \item
@@ -220,7 +220,7 @@ In this section I will talk about the options for using and learning the materia
 
 \emph{This is a pilot, sample chapter for the proposed open educational resource titled, ``ReCentering Psych Stats.'' There is much left to do in this chapter, especially regarding formatting. Please keep this in mind when you review it.}
 
-This was the lecture from fall quarter 2020. It will be replaced, shortly to match the current text. \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=9d12a0fb-5046-4c13-8baf-ac4a016ef828}{Screencasted Lecture Link}
+This was the lecture from fall quarter 2020. It will be replaced, shortly to match the current text. \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=150b68bf-c880-4348-8114-acb7000b227e}{Screencasted Lecture Link}
 
 One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor. For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables: a factor and a dependent variable.
 
@@ -660,7 +660,7 @@ There are an number of ways that the \(H_{O}\) could be false. Here are a few:
 \[H_{a2}:  \mu _{1} =  \mu _{2} > \mu _{3}\]
 
 \[H_{a3}:  \mu _{1} >  \mu _{2} > \mu _{3}\]
-The bottom line is that if we have a statistically significant omnibus ANOVA (i.e., the test of the overall significance of the model) and the \(H_{O}\) is alse, somewhere between the three levels of the grouping factor, the means are statistically significantly different from each other.
+The bottom line is that if we have a statistically significant omnibus ANOVA (i.e., the test of the overall significance of the model) and the \(H_{O}\) is false, somewhere between the three levels of the grouping factor, the means are statistically significantly different from each other.
 
 In evaluating the differences between means, one-way ANOVA compares:
 
@@ -806,7 +806,7 @@ The \emph{model} generally represents the notion that the means are different th
 \hypertarget{sums-of-squares-for-the-model-or-between}{%
 \subsection{Sums of Squares for the Model (or Between)}\label{sums-of-squares-for-the-model-or-between}}
 
-We just determined that the total amount of variation within the data is 38.35 units. From this we can estimate how much of this variation our model can explain. \(SS_M\) tells us how muh of the total variation can be explained by the fact that different data points come from different groups.
+We just determined that the total amount of variation within the data is 38.35 units. From this we can estimate how much of this variation our model can explain. \(SS_M\) tells us how much of the total variation can be explained by the fact that different data points come from different groups.
 
 We see this reflected in the formula below, where
 
@@ -861,12 +861,12 @@ This formula occurs in three chunks, representing the control, low, and high rac
 ## [1] 5.17689
 \end{verbatim}
 
-This value, \(SS_M\) is the value accounted for by the model -- the proportion of variance accounted for by the grouping variable/factor, COND. Degrees of freom for \(SS_M\) is always one less than the number of elements (e.g., groups) used in its calculation (\(k-1\)). Because we have three groups, our degrees of freedom for the model is 2.
+This value, \(SS_M\) is the value accounted for by the model -- the proportion of variance accounted for by the grouping variable/factor, COND. Degrees of freedom for \(SS_M\) is always one less than the number of elements (e.g., groups) used in its calculation (\(k-1\)). Because we have three groups, our degrees of freedom for the model is 2.
 
 \hypertarget{sums-of-squares-residual-or-within}{%
 \subsection{Sums of Squares Residual (or within)}\label{sums-of-squares-residual-or-within}}
 
-To recap, we know there are 38.35 units of variation to be explained in our data. Our model explains 5.18 of these units. Sums of squares residual tells us how much of the variation cannot be explained by the model. This value is influened by extraneous factors; some will refer to it as ``noise.''
+To recap, we know there are 38.35 units of variation to be explained in our data. Our model explains 5.18 of these units. Sums of squares residual tells us how much of the variation cannot be explained by the model. This value is influenced by extraneous factors; some will refer to it as ``noise.''
 
 Looking at the formula can assist us in with a conceptual formula. In \(SS_R\) we subtract the group mean from each individual member of the group and then square it.
 
@@ -932,7 +932,7 @@ The value for our \(SS_R\) is 33.15. Degrees of freedom for the residual is \(df
 \begin{itemize}
 \tightlist
 \item
-  \(df_T\) was \(N-1\): 90 - 1 = 89.
+  \(df_T\) was \(N-1\): 90 - 1 = 89
 \item
   \(df_M\) was \(k - 1\): 3 - 1 = 2
 \item
@@ -990,7 +990,7 @@ Regarding the calculation of our model mean squares:
 ## [1] 2.588445
 \end{verbatim}
 
-\[MS_R = \frac{SS_{R}}{df^{_{R}}}\]
+\[MS_R = \frac{SS_{R}}{df{_{R}}}\]
 Regarding the calculation of our model residual squares:
 
 \begin{itemize}
@@ -1150,7 +1150,7 @@ All statistical tests have some assumptions about the data. The one-way ANOVA ha
 \hypertarget{is-the-dependent-variable-normally-distributed-across-levels-of-the-factor}{%
 \subsubsection{Is the dependent variable normally distributed across levels of the factor?}\label{is-the-dependent-variable-normally-distributed-across-levels-of-the-factor}}
 
-From the \emph{psych} package, the \emph{describe()} function can be used to provide descriptives of continuous scaled variables. (i.e., variables measured on the interval or ratio scale). In this simple example, we can specify the specific continuous, DV.
+From the \emph{psych} package, the \emph{describe()} function can be used to provide descriptives of continuously scaled variables (i.e., variables measured on the interval or ratio scale). In this simple example, we can specify the specific continuous, DV.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1219,7 +1219,7 @@ If we want descriptives for each level of the grouping variable (factor), we can
 
 Skew and kurtosis speaks to normal distributions. The skew and kurtosis indices in the \emph{psych} package are reported as \emph{z} scores. Regarding skew, values greater than 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued to be anywhere greater 8 to 20 \citep{kline_principles_2016}.
 
-The \emph{Shapiro-Wilk} test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (\emph{p} \textgreater.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (\emph{p} \textless{} .05) then the distribution in question is significantly different from a normal distribution.
+The \emph{Shapiro-Wilks} test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (\emph{p} \textgreater.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (\emph{p} \textless{} .05) then the distribution in question is significantly different from a normal distribution.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1237,14 +1237,14 @@ The \emph{Shapiro-Wilk} test evaluates the hypothesis that the distribution of t
 
 The \(p\) value (\(p\) = 0.069) is just barely above .05. This tells us that the Accurate variable does not deviate from a statistically significant distribution.
 
-There are limitations to the Shapiro-Wilk test. As the dataset being evaluated gets larger, the Shapiro-Wilk test becomes more sensitive to small deviations; this leads to a greater probability of rejecting the null hypothesis (null hypothesis being the values come from a normal distribution). Green and Salkind \citeyearpar{green_using_2014} advised that ANOVA is relatively robust to violations of normality if there are at least 15 cases per cell and the design is reasonably balanced (i.e., equal cell sizes).
+There are limitations to the Shapiro-Wilks test. As the dataset being evaluated gets larger, the Shapiro-Wilks test becomes more sensitive to small deviations; this leads to a greater probability of rejecting the null hypothesis (null hypothesis being the values come from a normal distribution). Green and Salkind \citeyearpar{green_using_2014} advised that ANOVA is relatively robust to violations of normality if there are at least 15 cases per cell and the design is reasonably balanced (i.e., equal cell sizes).
 
 So, is our dependent variable normally distributed at each of the levels of the factor? In statistics we generally provide cautious and tentative answers. My interpretation is that there is not evidence to suggest that we have violated this assumption.
 
 \hypertarget{are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor}{%
 \subsubsection{Are the variances of the dependent variable similar across the levels of the grouping factor?}\label{are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor}}
 
-The Levene's test evaluates the ANOVA assumption that variances of the dependent variable for each level of the independent variable are similarly distributed. We want this to be non-significant (\(p\) \textgreater{} .05). If violated, we need to use an ANOVA test that is "robust to the violation of the homogeneity of variance (e.g., Welch's oneway).
+The Levene's test evaluates the ANOVA assumption that variances of the dependent variable for each level of the independent variable are similarly distributed. We want this to be non-significant (\(p\) \textgreater{} .05). If violated, we need to use an ANOVA test that is ``robust to the violation of the homogeneity of variance'' (e.g., Welch's oneway).
 
 In R, Levene's test is found in the \emph{car} package.
 
@@ -1404,7 +1404,7 @@ When the dots of the Q-Q plot map onto the diagonal, we have some indication of 
 \hypertarget{effect-size-for-the-one-way-anova}{%
 \subsubsection{Effect size for the one-way ANOVA}\label{effect-size-for-the-one-way-anova}}
 
-\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the IV/predictor. Traditional interpretive values are similar to the Pearson's \emph{r}:
+\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson's \emph{r}:
 
 0 = no relationship
 .02 = small
@@ -1515,7 +1515,7 @@ The output only provides the \(p\) values associated with the mean differences i
 
 \textbf{Should we be concerned about Type I error?"}
 
-Recall that \emph{Type I error} is the the concern about false positive -- that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern increases when we have a large number of pairwise comparisons.
+Recall that \emph{Type I error} is the concern about false positives -- that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern increases when we have a large number of pairwise comparisons.
 
 Green and Salkind \citeyearpar{green_using_2014} review three options for managing Type I error.
 
@@ -1543,7 +1543,7 @@ Green and Salkind \citeyearpar{green_using_2014} review three options for managi
   \begin{itemize}
   \tightlist
   \item
-    Permitted when there are only three pairwise comparisons among three groups, researchers can leave the \emph{p} values as they are. Since this the Tran and Lee \citeyearpar{tran_you_2014} research vignette is one of those circumstances, I not make adjustments for Type I error. I would name claim the LSD. citing Green and Salkind, 2014 {[}green\_using\_2014{]}.
+    Permitted when there are only three pairwise comparisons among three groups, researchers can leave the \emph{p} values as they are. Since the Tran and Lee \citeyearpar{tran_you_2014} research vignette is one of those circumstances, I not make adjustments for Type I error. I would name claim the LSD and cite Green and Salkind {[}-green\_using\_2014{]} as justification for that decision.
   \end{itemize}
 \end{itemize}
 
@@ -1577,7 +1577,7 @@ Planned contrasts involve further considerations regarding the \emph{partitionin
   Each contrast must involve only two chunks of variance.
 \end{itemize}
 
-\emph{Orthogonal} contrasts are even more sophisticated. Essential to conducting an orthogonal contrast is the requirement thatif a group is singled out in one comparison it should be excluded from subsequent contrasts. The typical, orthogonal scenario with three groups has only two contrasts:
+\emph{Orthogonal} contrasts are even more sophisticated. Essential to conducting an orthogonal contrast is the requirement that if a group is singled out in one comparison it should be excluded from subsequent contrasts. The typical, orthogonal scenario with three groups has only two contrasts:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1647,7 +1647,7 @@ It's quite possible we want something different.
 \end{itemize}
 
 In \emph{contrast1} we compare the Control condition to the combined Low and High conditions.
-In \emph{contrast2}we discard the Control condition (it was already singled out) and we compare the Low and High conditions.
+In \emph{contrast2} we discard the Control condition (it was already singled out) and we compare the Low and High conditions.
 
 This is sensible because we likely hypothesize that any degree of racially loaded stereotypes may have a deleterious outcome, so we first compare Control to the two conditions with any degree of racial loading. Subsequently, we compare the Low and High levels of the factor.
 
@@ -1779,7 +1779,9 @@ In a polynomial analysis, the statistical analysis looks across the ordered mean
 ## F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776
 \end{verbatim}
 
-Results of our polynomial contrast suggested statistically significant results for both linear \(t(87) = -2.53, p = .013\) and quadratic \(t(87) = -2.69, p = .009\) trends. A quick peek back at an early plot shows illustrates the quadratic trend that was supported by the analysis.
+A quick peek back at an early plot shows illustrates the quadratic trend that was supported by the analysis.
+
+Results of our polynomial contrast suggested statistically significant results for both linear \(t(87) = -2.53, p = .013\) and quadratic \(t(87) = -2.69, p = .009\) trends.
 
 \hypertarget{which-set-of-follow-up-tests-do-we-report}{%
 \subsubsection{Which set of follow-up tests do we report?}\label{which-set-of-follow-up-tests-do-we-report}}
@@ -1855,7 +1857,7 @@ There are four interrelating elements of power:
   \begin{itemize}
   \tightlist
   \item
-    Recall that Type I error is the rejection of a true null hypothesis a false (a false positive).
+    Recall that Type I error is the rejection of a true null hypothesis (a false positive).
   \item
     Stated another way, Type I error is the probability of finding an effect that is not there.
   \end{itemize}
@@ -1873,7 +1875,7 @@ There are four interrelating elements of power:
 
 If we have any three of these values, we can calculate the fourth.
 
-In Champely's \emph{pwr} package, we can conduct a power analysis for a variety of designs, including that balanced one-way ANOVA (i.e., equal/roughly equal cell sizes) design that we have worked in this chapter.
+In Champely's \emph{pwr} package, we can conduct a power analysis for a variety of designs, including the balanced one-way ANOVA (i.e., roughly equal cell sizes) design that we worked in this chapter.
 
 The \emph{pwr.anova.test()} has five parameters:
 
@@ -1950,7 +1952,7 @@ This is a little curious. When I initially simulated the data, I used the \emph{
 \hypertarget{apa-style-results}{%
 \section{APA Style Results}\label{apa-style-results}}
 
-All that's left to do is \emph{write it up}! APA style results sections in empirical manuscriptsare typically accompanied by tables and figures. APA style discourages repeated material and encourages reducing the cognitive load of the reader. For this example, I suggest two tables -- one with means and standard deviations of the groups and a second that reports the output from the one-way ANOVA. In an article with multiple statistics, the authors might wish to combine or delete these.
+All that's left to do is \emph{write it up}! APA style results sections in empirical manuscripts are typically accompanied by tables and figures. APA style discourages repeated material and encourages reducing the cognitive load of the reader. For this example, I suggest two tables -- one with means and standard deviations of the groups and a second that reports the output from the one-way ANOVA. In an article with multiple statistics, the authors might wish to combine or delete these.
 
 The package \emph{apaTables} can produce journal-ready tables by using the object produced by the \emph{aov()} function. Deciding what to report in text and table is important.
 
@@ -2044,16 +2046,17 @@ Regarding figures, there are a number of options. I find the \emph{plotmeans()} 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotmeans}\NormalTok{ (}\DataTypeTok{formula =}\NormalTok{ Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30, }\DataTypeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Accuracy of Confederate's Impression"}\NormalTok{, }\DataTypeTok{n.label =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{plotmeans}\NormalTok{ (}\DataTypeTok{formula =}\NormalTok{ Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30, }\DataTypeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Accuracy of Confederate's Impression"}\NormalTok{, }\DataTypeTok{n.label =} \OtherTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-4-1.pdf}
+
 With table and figure at hand, here is how I would write up these results:
 
 A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate's impression of the Asian or Asian American participant. The independent variable, COND, included three levels: control/none, low, and high levels of racial loading. Results of Levene's homogeneity of variance test indicated no violation of the homogeneity of variance assumption (\(F\){[}(2,87{]} = 2.274, \(p\) = 0.109 ). Similarly, results of the Shapiro Wilks's test indicated no violation of the normality assumption \emph{W} = 0.97413, \emph{p} = 0.069.
 
-Results indicated a significant effect of COND on accuracy perception \$ F(2, 87) = 6.817, p = 0.002, \eta\^{}2 = .14\(. In a series of post-hoc comparisons, there were statistically significant differences between the control and high (\)M\_\{diff\}\$ = 0.41, \emph{p} = 0.013) and low and high (\(M_{diff}\) = 0.58, \emph{p} = 0.001) conditions, but not the control and low conditions (\(M_{diff}\) = -.17, \emph{p} = 0.290). A statistically significant polynomial contrast suggested a quadratic trend across the three, ordered, levels of the conditions (\(t[87] = -2.69, p = .009\)) such that perception of accuracy increased from the control to low conditions, but decreased from low to high. Consequently, it appeared that only the highest degree of racial loading (e.g., ``You speak English well for an Asian'') resulted in the decreased perceptions of accuracy of impressions from the confederate. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
+Results indicated a significant effect of COND on accuracy perception \(F\)(2, 87) = 6.817, \(p\) = 0.002, \(\eta^2\) = .14. In a series of post-hoc comparisons, there were statistically significant differences between the control and high (\(M_{diff}\) = 0.41, \emph{p} = 0.013) and low and high (\(M_{diff}\) = 0.58, \emph{p} = 0.001) conditions, but not the control and low conditions (\(M_{diff}\) = -.17, \emph{p} = 0.290). A statistically significant polynomial contrast suggested a quadratic trend across the three, ordered, levels of the conditions (\(t[87] = -2.69, p = .009\)) such that perception of accuracy increased from the control to low conditions, but decreased from low to high. Consequently, it appeared that only the highest degree of racial loading (e.g., ``You speak English well for an Asian'') resulted in the decreased perceptions of accuracy of impressions from the confederate. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
 
 \hypertarget{practice-problems}{%
 \section{Practice Problems}\label{practice-problems}}
@@ -2155,35 +2158,6 @@ Assignment Component & Points Possible & Points Earned\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-Element & Points Poss & Points Earned\tabularnewline
-\midrule
-\endhead
-1. Narrate the research vignette, & &\tabularnewline
-describing the IV and DV & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-2. Simulate, import, and format data & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-3. Evaluate statistical assumptions & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-4. Conduct omnibus ANOVA (w effect size) & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-5. Conduct one set of follow-up tests; & &\tabularnewline
-narrate your choice & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-6. Describe approach for managing & &\tabularnewline
-Type I error & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-7. APA style results w tables, fig & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-8. Explanation to grader & 5 &\tabularnewline
----------------------------------------- & ------------- & ---------------\tabularnewline
-\textbf{Totals} & 40 &\tabularnewline
----------------------------------------- & --------------- & ---------------\tabularnewline
-\bottomrule
-\end{longtable}
-
 \hypertarget{bonus-reel}{%
 \section{Bonus Reel:}\label{bonus-reel}}
 
@@ -2200,7 +2174,7 @@ Type I error & 5 &\tabularnewline
 \begin{itemize}
 \tightlist
 \item
-  Podcast-style conversation with Dr.~Alisia Tran and/or Dr.~Richard M. Lee about their study.
+  We're hoping to have a podcast-style conversation with Dr.~Alisia Tran and/or Dr.~Richard M. Lee about their study.
 \item
   Elaboration of how data can be simulated for one-way ANOVA
 \item
