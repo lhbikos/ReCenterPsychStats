@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 ONE-WAY ANOVA | DRAFT: ReCentering Psych Stats</title>
+  <title>Chapter 2 ONE-WAY ANOVA | ReCentering Psych Stats</title>
   <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 ONE-WAY ANOVA | DRAFT: ReCentering Psych Stats" />
+  <meta property="og:title" content="Chapter 2 ONE-WAY ANOVA | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 ONE-WAY ANOVA | DRAFT: ReCentering Psych Stats" />
+  <meta name="twitter:title" content="Chapter 2 ONE-WAY ANOVA | ReCentering Psych Stats" />
   
   <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
   
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="ReCintro.html"/>
 
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -63,18 +63,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -94,7 +94,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -143,33 +143,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./"><strong>ReCentering Psych Stats</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
-<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.2</b> If You are New to R</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.2.1</b> R Hygiene</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#maximizing-learning-by-accessing-all-the-resources"><i class="fa fa-check"></i><b>1.3</b> Maximizing Learning by Accessing all the Resources</a></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>2</b> ONE-WAY ANOVA</a><ul>
-<li class="chapter" data-level="2.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a><ul>
+</ul></li>
+<li class="chapter" data-level="2" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>2</b> ONE-WAY ANOVA</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="oneway.html"><a href="oneway.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="2.1.2" data-path="oneway.html"><a href="oneway.html#planning-for-practice"><i class="fa fa-check"></i><b>2.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="2.1.3" data-path="oneway.html"><a href="oneway.html#readings-resources"><i class="fa fa-check"></i><b>2.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="2.1.4" data-path="oneway.html"><a href="oneway.html#packages"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
+<li class="chapter" data-level="2.1.4" data-path="oneway.html"><a href="oneway.html#packages-1"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="oneway.html"><a href="oneway.html#workflow-for-one-way-anova"><i class="fa fa-check"></i><b>2.2</b> Workflow for One-Way ANOVA</a></li>
-<li class="chapter" data-level="2.3" data-path="oneway.html"><a href="oneway.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a><ul>
+<li class="chapter" data-level="2.3" data-path="oneway.html"><a href="oneway.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="oneway.html"><a href="oneway.html#data-simulation"><i class="fa fa-check"></i><b>2.3.1</b> Data Simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="oneway.html"><a href="oneway.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a><ul>
+<li class="chapter" data-level="2.4" data-path="oneway.html"><a href="oneway.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="oneway.html"><a href="oneway.html#preparing-and-uploading-data"><i class="fa fa-check"></i><b>2.4.1</b> Preparing and Uploading Data</a></li>
 <li class="chapter" data-level="2.4.2" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-numerically"><i class="fa fa-check"></i><b>2.4.2</b> Exploring the Distributional Characteristics Numerically</a></li>
 <li class="chapter" data-level="2.4.3" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-graphically"><i class="fa fa-check"></i><b>2.4.3</b> Exploring the Distributional Characteristics Graphically</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="oneway.html"><a href="oneway.html#understanding-anova-with-hand-calculations"><i class="fa fa-check"></i><b>2.5</b> Understanding ANOVA with <em>Hand Calculations</em></a><ul>
+<li class="chapter" data-level="2.5" data-path="oneway.html"><a href="oneway.html#understanding-anova-with-hand-calculations"><i class="fa fa-check"></i><b>2.5</b> Understanding ANOVA with <em>Hand Calculations</em></a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="oneway.html"><a href="oneway.html#sums-of-squares-total"><i class="fa fa-check"></i><b>2.5.1</b> Sums of Squares Total</a></li>
 <li class="chapter" data-level="2.5.2" data-path="oneway.html"><a href="oneway.html#sums-of-squares-for-the-model-or-between"><i class="fa fa-check"></i><b>2.5.2</b> Sums of Squares for the Model (or Between)</a></li>
 <li class="chapter" data-level="2.5.3" data-path="oneway.html"><a href="oneway.html#sums-of-squares-residual-or-within"><i class="fa fa-check"></i><b>2.5.3</b> Sums of Squares Residual (or within)</a></li>
@@ -178,17 +200,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.6" data-path="oneway.html"><a href="oneway.html#calculating-the-f-statistic"><i class="fa fa-check"></i><b>2.5.6</b> Calculating the <em>F</em>-Statistic</a></li>
 <li class="chapter" data-level="2.5.7" data-path="oneway.html"><a href="oneway.html#source-table-games"><i class="fa fa-check"></i><b>2.5.7</b> Source Table Games</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="oneway.html"><a href="oneway.html#working-the-one-way-anova-in-r"><i class="fa fa-check"></i><b>2.6</b> Working the One-Way ANOVA in R</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>2.6.1</b> Evaluating the Statistical Assumptions</a><ul>
+<li class="chapter" data-level="2.6" data-path="oneway.html"><a href="oneway.html#working-the-one-way-anova-in-r"><i class="fa fa-check"></i><b>2.6</b> Working the One-Way ANOVA in R</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>2.6.1</b> Evaluating the Statistical Assumptions</a>
+<ul>
 <li class="chapter" data-level="2.6.1.1" data-path="oneway.html"><a href="oneway.html#is-the-dependent-variable-normally-distributed-across-levels-of-the-factor"><i class="fa fa-check"></i><b>2.6.1.1</b> Is the dependent variable normally distributed across levels of the factor?</a></li>
 <li class="chapter" data-level="2.6.1.2" data-path="oneway.html"><a href="oneway.html#are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor"><i class="fa fa-check"></i><b>2.6.1.2</b> Are the variances of the dependent variable similar across the levels of the grouping factor?</a></li>
 <li class="chapter" data-level="2.6.1.3" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-analysis-of-assumptions"><i class="fa fa-check"></i><b>2.6.1.3</b> Summarizing results from the analysis of assumptions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>2.6.2</b> Computing the Omnibus ANOVA</a><ul>
+<li class="chapter" data-level="2.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>2.6.2</b> Computing the Omnibus ANOVA</a>
+<ul>
 <li class="chapter" data-level="2.6.2.1" data-path="oneway.html"><a href="oneway.html#effect-size-for-the-one-way-anova"><i class="fa fa-check"></i><b>2.6.2.1</b> Effect size for the one-way ANOVA</a></li>
 <li class="chapter" data-level="2.6.2.2" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-omnibus-anova"><i class="fa fa-check"></i><b>2.6.2.2</b> Summarizing results from the omnibus ANOVA</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>2.6.3</b> Follow-up to the Omnibus <em>F</em></a><ul>
+<li class="chapter" data-level="2.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>2.6.3</b> Follow-up to the Omnibus <em>F</em></a>
+<ul>
 <li class="chapter" data-level="2.6.3.1" data-path="oneway.html"><a href="oneway.html#option-1-post-hoc-pairwise-comparisons"><i class="fa fa-check"></i><b>2.6.3.1</b> OPTION 1: Post-hoc, pairwise, comparisons</a></li>
 <li class="chapter" data-level="2.6.3.2" data-path="oneway.html"><a href="oneway.html#option-2-planned-contrasts"><i class="fa fa-check"></i><b>2.6.3.2</b> OPTION 2: Planned contrasts</a></li>
 <li class="chapter" data-level="2.6.3.3" data-path="oneway.html"><a href="oneway.html#trend-polynomial-analysis"><i class="fa fa-check"></i><b>2.6.3.3</b> Trend (polynomial) analysis</a></li>
@@ -198,7 +224,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>2.7</b> Power Analysis</a></li>
 <li class="chapter" data-level="2.8" data-path="oneway.html"><a href="oneway.html#apa-style-results"><i class="fa fa-check"></i><b>2.8</b> APA Style Results</a></li>
-<li class="chapter" data-level="2.9" data-path="oneway.html"><a href="oneway.html#practice-problems"><i class="fa fa-check"></i><b>2.9</b> Practice Problems</a><ul>
+<li class="chapter" data-level="2.9" data-path="oneway.html"><a href="oneway.html#practice-problems"><i class="fa fa-check"></i><b>2.9</b> Practice Problems</a>
+<ul>
 <li class="chapter" data-level="2.9.1" data-path="oneway.html"><a href="oneway.html#problem-1-conduct-a-one-way-anova-with-moretalk-dependent-variable."><i class="fa fa-check"></i><b>2.9.1</b> Problem #1: Conduct a one-way ANOVA with <em>moreTalk</em> dependent variable.</a></li>
 <li class="chapter" data-level="2.9.2" data-path="oneway.html"><a href="oneway.html#problem-2-play-around-with-this-simulation."><i class="fa fa-check"></i><b>2.9.2</b> Problem #2: Play around with this simulation.</a></li>
 <li class="chapter" data-level="2.9.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>2.9.3</b> Problem #3: Try something entirely new.</a></li>
@@ -219,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DRAFT: ReCentering Psych Stats</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats</a>
           </h1>
         </div>
 
@@ -227,17 +254,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="oneway" class="section level1">
+<div id="oneway" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> ONE-WAY ANOVA</h1>
 <p><em>This is a pilot, sample chapter for the proposed open educational resource titled, “ReCentering Psych Stats.” There is much left to do in this chapter, especially regarding formatting. Please keep this in mind when you review it.</em></p>
 <p>This was the lecture from fall quarter 2020. It will be replaced, shortly to match the current text. <a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=150b68bf-c880-4348-8114-acb7000b227e">Screencasted Lecture Link</a></p>
 <p>One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor. For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables: a factor and a dependent variable.</p>
 <p>The factor must be categorical in nature, dividing the cases into two or more groups or levels. These levels could be ordered (e.g., placebo, low dose, high dose) or unordered (e.g., cognitive-behavioral, existential, psychodynamic). The dependent variable must be assessed on a quantitative, continuous dimension. The ANOVA F test evaluates whether population means on the dependent variable differ across the levels of the factor.</p>
 <p>One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter we will examine some some of the requirements (assumptions) of the statistic in greater detail.</p>
-<div id="navigating-this-lesson" class="section level2">
+<div id="navigating-this-lesson" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Navigating this Lesson</h2>
-<p>There is about 1 hour and 15 minutes of lecture. Add another 2ish hours to work through and digest the materials.</p>
-<div id="learning-objectives" class="section level3">
+<p>There is about 2 hours and 20 minutes of lecture. If you work through the materials with me it would be good to add another two hours.</p>
+<div id="learning-objectives" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Learning Objectives</h3>
 <p>Learning objectives from this lecture include the following:</p>
 <ul>
@@ -249,9 +276,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Produce an APA style results section.</li>
 </ul>
 </div>
-<div id="planning-for-practice" class="section level3">
+<div id="planning-for-practice" class="section level3" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Planning for Practice</h3>
-<p>The research vignette for this chapter <span class="citation">(Tran &amp; Lee, <a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (<em>Accurate</em>) in this lecture; the second is suggested as homework. For additional practice, you may wish to create a different set of simulated data by disabling the code that sets the random seed in the data simulation. This will allow reworking the same problem, but with slightly different results. As part of the practice you should:</p>
+<p>The research vignette for this chapter <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">Tran &amp; Lee, 2014</a>)</span> has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (<em>Accurate</em>) in this lecture; the second is suggested as homework. For additional practice, you may wish to create a different set of simulated data by disabling the code that sets the random seed in the data simulation. This will allow reworking the same problem, but with slightly different results. As part of the practice you should:</p>
 <ul>
 <li>test the statistical assumptions</li>
 <li>conduct a one-way ANOVA, including
@@ -262,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>write a results section to include a figure and tables</li>
 </ul>
 </div>
-<div id="readings-resources" class="section level3">
+<div id="readings-resources" class="section level3" number="2.1.3">
 <h3><span class="header-section-number">2.1.3</span> Readings &amp; Resources</h3>
 <p>In preparing this chapter, I drew heavily from the following resource(s) that are freely available on the internet. Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
 <ul>
@@ -270,19 +297,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Chapter 5.5.2, Simulating data for one-way between subjects design with 3 levels from Matthew J. C. Crump’s <a href="https://crumplab.github.io/programmingforpsych/simulating-and-analyzing-data-in-r.html#single-factor-anovas-data-simulation-and-analysis">Programming for Psychologists: Data Creation and Analysis</a></li>
 </ul>
 </div>
-<div id="packages" class="section level3">
+<div id="packages-1" class="section level3" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Packages</h3>
 <p>If hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="oneway.html#cb1-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb1-2"><a href="oneway.html#cb1-2"></a><span class="co">#if(!require(gplots)){install.packages(&quot;gplots&quot;)} #easy plotting for simple ANOVA</span></span>
-<span id="cb1-3"><a href="oneway.html#cb1-3"></a><span class="co">#if(!require(tidyverse)){install.packages(&quot;tidyverse&quot;)} #creating new variables and other handy functions</span></span>
-<span id="cb1-4"><a href="oneway.html#cb1-4"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)} #for descriptive statistics and writing them as csv files</span></span>
-<span id="cb1-5"><a href="oneway.html#cb1-5"></a><span class="co">#if(!require(lsr)){install.packages(&quot;lsr&quot;)} #produces effect sizes</span></span>
-<span id="cb1-6"><a href="oneway.html#cb1-6"></a><span class="co">#if(!require(pwr)){install.packages(&quot;pwr&quot;)} #estimating sample sizes and power analysis</span></span>
-<span id="cb1-7"><a href="oneway.html#cb1-7"></a><span class="co">#if(!require(apaTAbles)){install.packages(&quot;apaTables&quot;)} #produces an APA style table for ANOVAs and other models</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="oneway.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb6-2"><a href="oneway.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(gplots)){install.packages(&quot;gplots&quot;)} #easy plotting for simple ANOVA</span></span>
+<span id="cb6-3"><a href="oneway.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(tidyverse)){install.packages(&quot;tidyverse&quot;)} #creating new variables and other handy functions</span></span>
+<span id="cb6-4"><a href="oneway.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)} #for descriptive statistics and writing them as csv files</span></span>
+<span id="cb6-5"><a href="oneway.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(lsr)){install.packages(&quot;lsr&quot;)} #produces effect sizes</span></span>
+<span id="cb6-6"><a href="oneway.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(pwr)){install.packages(&quot;pwr&quot;)} #estimating sample sizes and power analysis</span></span>
+<span id="cb6-7"><a href="oneway.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(apaTAbles)){install.packages(&quot;apaTables&quot;)} #produces an APA style table for ANOVAs and other models</span></span></code></pre></div>
 </div>
 </div>
-<div id="workflow-for-one-way-anova" class="section level2">
+<div id="workflow-for-one-way-anova" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Workflow for One-Way ANOVA</h2>
 <p>The following is a proposed workflow for conducting a one-way ANOVA.</p>
 <!-- TODO: Figure out how to link this as a document that opens in a separate window For a separate document [See screenshot](images/OnewayWrkFlw.png) -->
@@ -308,9 +335,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Sample size/power analysis (which you should think about first – but in the context of teaching ANOVA, it’s more pedagogically sensible, here)</li>
 </ol>
 </div>
-<div id="research-vignette" class="section level2">
+<div id="research-vignette" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Research Vignette</h2>
-<p>The <em>exceptionalizing racial stereotype</em> is microaggression framed as interpersonally complimentary, but perpetuates negative stereotypical views of a racial/ethnic group. We are using data that is <em>simulated</em> from a random clinical trial (RCT) conducted by Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span>.</p>
+<p>The <em>exceptionalizing racial stereotype</em> is microaggression framed as interpersonally complimentary, but perpetuates negative stereotypical views of a racial/ethnic group. We are using data that is <em>simulated</em> from a random clinical trial (RCT) conducted by Tran and Lee <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p>The one-way ANOVA examples we are simulating represent the post-only design which investigated three levels of the exceptionalizing stereotype in a sample of Asian American participants. This experimental design involved a confederate (posing as a peer) whose parting comment fell into the low racial loading, high racial loading, or control conditions.</p>
 <table>
 <colgroup>
@@ -348,37 +375,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> reported results from two ANOVAs and 4 ANCOVAs, using a pre-test as a covariate. A preprint of their article is available <a href="https://pdfs.semanticscholar.org/4146/b528961c041de317c6a4c699f12fc5a4bc22.pdf?_ga=2.179078439.2028716028.1610939782-1660125104.1610939782">here</a>.</p>
+<p>Tran and Lee <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> reported results from two ANOVAs and 4 ANCOVAs, using a pre-test as a covariate. A preprint of their article is available <a href="https://pdfs.semanticscholar.org/4146/b528961c041de317c6a4c699f12fc5a4bc22.pdf?_ga=2.179078439.2028716028.1610939782-1660125104.1610939782">here</a>.</p>
 <ul>
 <li><strong>Accurate</strong> is the DV we will be exploring in class. Participants rated how <em>accurate</em> they believed their partner’s impression of them was (0 = <em>very inaccurate</em>, 3 = <em>very accurate</em>).</li>
 <li><strong>moreTalk</strong> is the DV assigned for homework. Participants rated how much longer they would continue the interaction with their partner compared to their interactions in general (-2 = <em>much less than average</em>, 0 = <em>average</em>, 2 = <em>much more than average</em>).</li>
 </ul>
-<div id="data-simulation" class="section level3">
+<div id="data-simulation" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Data Simulation</h3>
-<p>Here, we simulate the ANOVA data from the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> RCT. The data can be simulated for each, one-way ANOVA, separately, but because there is no correlation matrix (showing the relations between all the variables), it is impossible to recreate a single dataset with all the relations.</p>
-<p>Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean), and standard deviation (sd) for each of the groups <span class="citation">(Crump, <a href="#ref-crump_programming_2018" role="doc-biblioref">2018</a>)</span>. In creating this simulation, I used the data from Table 1 in the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> article. Having worked the problem several times, I made one change. The group sizes in the original study were 23, 22, and 23. To ensure that we would have statistically significant results in our worked example, I increased the sample sizes to 30 for each group. In this way we have a perfectly <em>balanced</em> (equal cell sizes) design.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="oneway.html#cb2-1"></a><span class="kw">set.seed</span>(<span class="dv">2021</span>) <span class="co">#sets a random seed so that we get the same results each time</span></span>
-<span id="cb2-2"><a href="oneway.html#cb2-2"></a>Accurate &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean=</span><span class="fl">1.18</span>, <span class="dt">sd=</span><span class="fl">0.80</span>), <span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean=</span><span class="fl">1.83</span>, <span class="dt">sd =</span> <span class="fl">0.58</span>), <span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean =</span> <span class="fl">1.76</span>, <span class="dt">sd =</span> <span class="fl">0.56</span>))<span class="co">#sample size, M and SD for each group</span></span>
-<span id="cb2-3"><a href="oneway.html#cb2-3"></a>Accurate[Accurate<span class="op">&gt;</span><span class="dv">3</span>]&lt;-<span class="dv">3</span> <span class="co">#set upper bound for DV</span></span>
-<span id="cb2-4"><a href="oneway.html#cb2-4"></a>Accurate[Accurate<span class="op">&lt;</span><span class="dv">0</span>]&lt;-<span class="dv">0</span> <span class="co">#set lower bound for DV</span></span>
-<span id="cb2-5"><a href="oneway.html#cb2-5"></a>ID&lt;-<span class="kw">factor</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">90</span>)) <span class="co">#IDs for participants</span></span>
-<span id="cb2-6"><a href="oneway.html#cb2-6"></a>COND&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>)) <span class="co">#name factors and identify how many in each group; should be in same order as first row of script</span></span>
-<span id="cb2-7"><a href="oneway.html#cb2-7"></a>Acc_sim30 &lt;-<span class="kw">data.frame</span>(ID, COND, Accurate) <span class="co">#groups the 3 variables into a single df:  ID#, DV, condition</span></span>
-<span id="cb2-8"><a href="oneway.html#cb2-8"></a></span>
-<span id="cb2-9"><a href="oneway.html#cb2-9"></a><span class="co">#to write it to an outfile</span></span>
-<span id="cb2-10"><a href="oneway.html#cb2-10"></a><span class="kw">write.table</span>(Acc_sim30, <span class="dt">file=</span><span class="st">&quot;newAcc30.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">col.names=</span><span class="ot">TRUE</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Here, we simulate the ANOVA data from the Tran and Lee <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> RCT. The data can be simulated for each, one-way ANOVA, separately, but because there is no correlation matrix (showing the relations between all the variables), it is impossible to recreate a single dataset with all the relations.</p>
+<p>Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean), and standard deviation (sd) for each of the groups <span class="citation">(<a href="oneway.html#ref-crump_programming_2018" role="doc-biblioref">Crump, 2018</a>)</span>. In creating this simulation, I used the data from Table 1 in the Tran and Lee <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> article. Having worked the problem several times, I made one change. The group sizes in the original study were 23, 22, and 23. To ensure that we would have statistically significant results in our worked example, I increased the sample sizes to 30 for each group. In this way we have a perfectly <em>balanced</em> (equal cell sizes) design.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="oneway.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>) <span class="co">#sets a random seed so that we get the same results each time</span></span>
+<span id="cb7-2"><a href="oneway.html#cb7-2" aria-hidden="true" tabindex="-1"></a>Accurate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="fl">1.18</span>, <span class="at">sd=</span><span class="fl">0.80</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="fl">1.83</span>, <span class="at">sd =</span> <span class="fl">0.58</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.76</span>, <span class="at">sd =</span> <span class="fl">0.56</span>))<span class="co">#sample size, M and SD for each group</span></span>
+<span id="cb7-3"><a href="oneway.html#cb7-3" aria-hidden="true" tabindex="-1"></a>Accurate[Accurate<span class="sc">&gt;</span><span class="dv">3</span>]<span class="ot">&lt;-</span><span class="dv">3</span> <span class="co">#set upper bound for DV</span></span>
+<span id="cb7-4"><a href="oneway.html#cb7-4" aria-hidden="true" tabindex="-1"></a>Accurate[Accurate<span class="sc">&lt;</span><span class="dv">0</span>]<span class="ot">&lt;-</span><span class="dv">0</span> <span class="co">#set lower bound for DV</span></span>
+<span id="cb7-5"><a href="oneway.html#cb7-5" aria-hidden="true" tabindex="-1"></a>ID<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">90</span>)) <span class="co">#IDs for participants</span></span>
+<span id="cb7-6"><a href="oneway.html#cb7-6" aria-hidden="true" tabindex="-1"></a>COND<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>)) <span class="co">#name factors and identify how many in each group; should be in same order as first row of script</span></span>
+<span id="cb7-7"><a href="oneway.html#cb7-7" aria-hidden="true" tabindex="-1"></a>Acc_sim30 <span class="ot">&lt;-</span><span class="fu">data.frame</span>(ID, COND, Accurate) <span class="co">#groups the 3 variables into a single df:  ID#, DV, condition</span></span>
+<span id="cb7-8"><a href="oneway.html#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="oneway.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#to write it to an outfile</span></span>
+<span id="cb7-10"><a href="oneway.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(Acc_sim30, <span class="at">file=</span><span class="st">&quot;newAcc30.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="working-the-problem" class="section level2">
+<div id="working-the-problem" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Working the Problem</h2>
-<div id="preparing-and-uploading-data" class="section level3">
+<div id="preparing-and-uploading-data" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Preparing and Uploading Data</h3>
 <p>If you are working this problem with me, you may use either the object we created from the simulation (i.e., Acc_sim30) or the upload and use the copy we saved to a .csv file. Because much of our data will come from an outside file, I will use that “downloaded-and-reuploaded” copy.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="oneway.html#cb3-1"></a><span class="co">#for a .csv file</span></span>
-<span id="cb3-2"><a href="oneway.html#cb3-2"></a>accSIM30 &lt;-<span class="st"> </span><span class="kw">read.csv</span> (<span class="st">&quot;Acc_sim30_df.csv&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
-<span id="cb3-3"><a href="oneway.html#cb3-3"></a></span>
-<span id="cb3-4"><a href="oneway.html#cb3-4"></a><span class="co"># head=TRUE yields column headings;</span></span>
-<span id="cb3-5"><a href="oneway.html#cb3-5"></a><span class="co"># sep = &quot;,&quot; tells R that we are using a .csv file (comma separated values)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="oneway.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#for a .csv file</span></span>
+<span id="cb8-2"><a href="oneway.html#cb8-2" aria-hidden="true" tabindex="-1"></a>accSIM30 <span class="ot">&lt;-</span> <span class="fu">read.csv</span> (<span class="st">&quot;Acc_sim30_df.csv&quot;</span>, <span class="at">head =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb8-3"><a href="oneway.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="oneway.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># head=TRUE yields column headings;</span></span>
+<span id="cb8-5"><a href="oneway.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># sep = &quot;,&quot; tells R that we are using a .csv file (comma separated values)</span></span></code></pre></div>
 <p>Examining the data is important for several reasons. First, we can begin to inspect for any anomalies. Second, if we are confused about what statistic we wish to apply, understanding the characteristics of the data can provide clues.</p>
 <p>In R markdown we can</p>
 <ul>
@@ -386,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>examine its structure with the <em>str()</em> function.</li>
 </ul>
 <p>Let’s do both.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="oneway.html#cb4-1"></a><span class="kw">str</span>(accSIM30)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="oneway.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(accSIM30)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    90 obs. of  3 variables:
 ##  $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ COND    : chr  &quot;High&quot; &quot;High&quot; &quot;High&quot; &quot;High&quot; ...
@@ -403,18 +430,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>There are many ways to convert variables to factors; here’s one of the simplest.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="oneway.html#cb6-1"></a>accSIM30<span class="op">$</span>COND &lt;-<span class="st"> </span><span class="kw">factor</span>(accSIM30<span class="op">$</span>COND)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="oneway.html#cb11-1" aria-hidden="true" tabindex="-1"></a>accSIM30<span class="sc">$</span>COND <span class="ot">&lt;-</span> <span class="fu">factor</span>(accSIM30<span class="sc">$</span>COND)</span></code></pre></div>
 <p>Let’s recheck the structure</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="oneway.html#cb7-1"></a><span class="kw">str</span>(accSIM30)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="oneway.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(accSIM30)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    90 obs. of  3 variables:
 ##  $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ COND    : Factor w/ 3 levels &quot;Control&quot;,&quot;High&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ Accurate: num  1.86 1.75 2.59 1.38 2.03 ...</code></pre>
 <p>By default, R orders factors alphabetically. This means, analysis will assume that “Control” (C) is the lowest condition, then “High,” then “Low.” Since these have theoretically ordered values, we want them in the order of “Control,” “Low,” “High.”</p>
 <p>Here is the script to create a an ordered factor.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="oneway.html#cb9-1"></a>accSIM30<span class="op">$</span>COND &lt;-<span class="st"> </span><span class="kw">factor</span>(accSIM30<span class="op">$</span>COND, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="oneway.html#cb14-1" aria-hidden="true" tabindex="-1"></a>accSIM30<span class="sc">$</span>COND <span class="ot">&lt;-</span> <span class="fu">factor</span>(accSIM30<span class="sc">$</span>COND, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>))</span></code></pre></div>
 <p>Again, we can check our work.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="oneway.html#cb10-1"></a><span class="kw">str</span>(accSIM30)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="oneway.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(accSIM30)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    90 obs. of  3 variables:
 ##  $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ COND    : Factor w/ 3 levels &quot;Control&quot;,&quot;Low&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
@@ -422,50 +449,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now our variables are suitable for analysis.</p>
 <p>R will always guess the variable format when importing a .csv and, in this case, it will always guess incorrectly. We need to write our script so that we are always checking and updating the structure of variables.</p>
 </div>
-<div id="exploring-the-distributional-characteristics-numerically" class="section level3">
+<div id="exploring-the-distributional-characteristics-numerically" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Exploring the Distributional Characteristics Numerically</h3>
 <p>Let’s continue data exploration. We will do this several ways so that you will have several tools for such exploration. In this first exploration, I will demonstrate how to grab a quick mean.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="oneway.html#cb12-1"></a><span class="kw">aggregate</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, accSIM30, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="oneway.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span> (Accurate <span class="sc">~</span> COND, accSIM30, mean)</span></code></pre></div>
 <pre><code>##      COND Accurate
 ## 1 Control 1.876882
 ## 2     Low 2.046506
 ## 3    High 1.473640</code></pre>
 <p>And now a standard deviation.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="oneway.html#cb14-1"></a><span class="kw">aggregate</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, accSIM30, sd)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="oneway.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span> (Accurate <span class="sc">~</span> COND, accSIM30, sd)</span></code></pre></div>
 <pre><code>##      COND  Accurate
 ## 1 Control 0.4791969
 ## 2     Low 0.5725299
 ## 3    High 0.7653157</code></pre>
 <p>Before looking at the graphs, we can see that racially loaded <em>high</em> condition has the lowest accuracy score and the largest variability. Let’s take a look at the graphs to “see” this.</p>
 </div>
-<div id="exploring-the-distributional-characteristics-graphically" class="section level3">
+<div id="exploring-the-distributional-characteristics-graphically" class="section level3" number="2.4.3">
 <h3><span class="header-section-number">2.4.3</span> Exploring the Distributional Characteristics Graphically</h3>
 <p>The package <em>gplots</em> produces a simple line graph and the script is fairly intuitive. The <em>plotmeans()</em> function plots the means with error bars (95% confidence intervals) around the mean. Regarding the confidence intervals, we can think, “How confident are we that the mean is this particular value?” Earlier we noted that the “high racial loading condition” had the lowest mean and the widest variability. Is this apparent from the graph?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="oneway.html#cb16-1"></a><span class="kw">library</span>(gplots)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="oneway.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;gplots&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:stats&#39;:
 ## 
 ##     lowess</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="oneway.html#cb19-1"></a><span class="kw">plotmeans</span> (<span class="dt">formula =</span> Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="co">#plots DV by IV</span></span>
-<span id="cb19-2"><a href="oneway.html#cb19-2"></a>           <span class="dt">data =</span> accSIM30, <span class="co">#identifies the data frame</span></span>
-<span id="cb19-3"><a href="oneway.html#cb19-3"></a>           <span class="dt">xlab =</span> <span class="st">&quot;Racial Loading Condition&quot;</span>, <span class="co">#let&#39;s us specify a label for the x-axis</span></span>
-<span id="cb19-4"><a href="oneway.html#cb19-4"></a>           <span class="dt">ylab =</span> <span class="st">&quot;Accuracy of Confederate&#39;s Impression&quot;</span>, <span class="co">#let&#39;s us specify a label for the y-axis</span></span>
-<span id="cb19-5"><a href="oneway.html#cb19-5"></a>           <span class="dt">n.label =</span> <span class="ot">TRUE</span>  <span class="co">#we can even specify the sample size for each level of the group</span></span>
-<span id="cb19-6"><a href="oneway.html#cb19-6"></a>           )</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="oneway.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotmeans</span> (<span class="at">formula =</span> Accurate <span class="sc">~</span> COND, <span class="co">#plots DV by IV</span></span>
+<span id="cb24-2"><a href="oneway.html#cb24-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> accSIM30, <span class="co">#identifies the data frame</span></span>
+<span id="cb24-3"><a href="oneway.html#cb24-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Racial Loading Condition&quot;</span>, <span class="co">#let&#39;s us specify a label for the x-axis</span></span>
+<span id="cb24-4"><a href="oneway.html#cb24-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&quot;Accuracy of Confederate&#39;s Impression&quot;</span>, <span class="co">#let&#39;s us specify a label for the y-axis</span></span>
+<span id="cb24-5"><a href="oneway.html#cb24-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">n.label =</span> <span class="cn">TRUE</span>  <span class="co">#we can even specify the sample size for each level of the group</span></span>
+<span id="cb24-6"><a href="oneway.html#cb24-6" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div>
 <p><img src="ReCenterPsychStats_files/figure-html/linegraph-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="oneway.html#cb20-1"></a><span class="co">#this code could be more elegantly written in one row</span></span>
-<span id="cb20-2"><a href="oneway.html#cb20-2"></a><span class="co">#plotmeans (formula = Accurate ~ COND, data = accSIM30, xlab = &quot;Racial Loading Condition&quot;, ylab = &quot;Accuracy of Confederate&#39;s Impression&quot;, n.label = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="oneway.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this code could be more elegantly written in one row</span></span>
+<span id="cb25-2"><a href="oneway.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plotmeans (formula = Accurate ~ COND, data = accSIM30, xlab = &quot;Racial Loading Condition&quot;, ylab = &quot;Accuracy of Confederate&#39;s Impression&quot;, n.label = TRUE)</span></span></code></pre></div>
 <p>Boxplots, with the <em>boxplot2()</em> function provide another view of our data. In boxplots the center value is the median. The box spans the <em>interquartile range</em> and ranges from the 25th to the 75th percentile. The whiskers cover 1.5 times the interquartile range. When this does not capture the entire range, outliers are represented with dots.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="oneway.html#cb21-1"></a><span class="kw">boxplot2</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="dt">data =</span> accSIM30, <span class="dt">xlab =</span> <span class="st">&quot;Racial Loading Condition&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Accuracy of Confederate&#39;s Impression&quot;</span>, <span class="dt">n.label =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="oneway.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot2</span> (Accurate <span class="sc">~</span> COND, <span class="at">data =</span> accSIM30, <span class="at">xlab =</span> <span class="st">&quot;Racial Loading Condition&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Accuracy of Confederate&#39;s Impression&quot;</span>, <span class="at">n.label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="ReCenterPsychStats_files/figure-html/boxplot-1.svg" width="672" /></p>
 <p>From both the boxplot and the linegraph with error bars, we can see that participants in the low racial loading condition have the highest accuracy ratings. This is followed by the control and then high racial loading conditions. Are these differences statistically significant? This is why we need the one-way ANOVA.</p>
 </div>
 </div>
-<div id="understanding-anova-with-hand-calculations" class="section level2">
+<div id="understanding-anova-with-hand-calculations" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Understanding ANOVA with <em>Hand Calculations</em></h2>
 <p>ANOVA was developed by Sir Ronald Fisher in the early 20th century. The name is a bit of a misnomer – rather than analyzing <em>variances</em>, we are investigating differences in <em>means</em> (but the formula does take variances into consideration…stay tuned).</p>
-<p>ANOVA falls squarely within the tradition of <strong>null hypothesis significance testing</strong> (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. <em>Note. Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> do not list such.</em></p>
+<p>ANOVA falls squarely within the tradition of <strong>null hypothesis significance testing</strong> (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. <em>Note. Tran and Lee <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> do not list such.</em></p>
 <p>In our example, we would hypothesize that the population means (i.e., Asian or Asian American individuals in the U.S.) are equal:</p>
 <p><span class="math display">\[H_{O}:  \mu _{1} = \mu _{2} = \mu _{3}\]</span></p>
 <p>There are an number of ways that the <span class="math inline">\(H_{O}\)</span> could be false. Here are a few:</p>
@@ -482,7 +509,7 @@ The bottom line is that if we have a statistically significant omnibus ANOVA (i.
 <li>between group variance to within group variance</li>
 </ul>
 <p>The ratio of these variances is the <strong>F-ratio</strong>.</p>
-<p>Navarro <span class="citation">(<a href="#ref-navarro_book_2020" role="doc-biblioref">2020</a><a href="#ref-navarro_book_2020" role="doc-biblioref">a</a>)</span> offers a set of useful figures to compare between- and within-group variation.</p>
+<p>Navarro <span class="citation">(<a href="oneway.html#ref-navarro_book_2020" role="doc-biblioref">2020a</a>)</span> offers a set of useful figures to compare between- and within-group variation.</p>
 <div class="figure"><span id="fig:anovavara"></span>
 <img src="ReCenterPsychStats_files/figure-html/anovavara-1.svg" alt="Graphical illustration of &quot;between groups&quot; variation" width="672" />
 <p class="caption">
@@ -497,7 +524,7 @@ Figure 2.2: Graphical illustration of “within groups” variation
 </div>
 <p>Perhaps an oversimplification, but to the degree that between-group variance (i.e,. model variance) is greater than within-group variance (i.e., residual variance) there may be support to suggest that there are statistically significant differences between groups.</p>
 <p>Let’s examine how variance is partitioned by hand-calculating sums of squares total, model, and residual.</p>
-<div id="sums-of-squares-total" class="section level3">
+<div id="sums-of-squares-total" class="section level3" number="2.5.1">
 <h3><span class="header-section-number">2.5.1</span> Sums of Squares Total</h3>
 <p>Sums of squares total represents the total amount of variance within our data. Examining the formula(s; there are several ways to consider it) can help us gain a conceptual understanding of this.</p>
 <p>In this first version of the formula we can see that the grand (or overall) mean is subtracted from each individual score, squared, and then summed. This makes sense: <em>sums of squares, total</em>.</p>
@@ -510,35 +537,37 @@ Finally, think of the sums of squares total as the grand variance multiplied by 
 <p><span class="math display">\[SS_{T}= s_{grand}^{2}(n-1)\]</span>
 Let’s take a moment to <em>hand-calculate</em> <span class="math inline">\(SS_{T}\)</span>. Not to worry! We’ll get R to do the math for us. This is just a conceptual tour of sums of squares total.</p>
 <p>Our grand (i.e., overall) mean is</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="oneway.html#cb22-1"></a><span class="kw">mean</span>(accSIM30<span class="op">$</span>Accurate)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="oneway.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(accSIM30<span class="sc">$</span>Accurate)</span></code></pre></div>
 <pre><code>## [1] 1.799009</code></pre>
 <p>Subtracting the grand mean from each Accurate score yields a mean difference.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="oneway.html#cb24-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="oneway.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
 <pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
 ## v tibble  3.0.4     v dplyr   1.0.2
 ## v tidyr   1.1.2     v stringr 1.4.0
 ## v readr   1.4.0     v forcats 0.5.0</code></pre>
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="oneway.html#cb28-1"></a>accSIM30 &lt;-<span class="st"> </span>accSIM30 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb28-2"><a href="oneway.html#cb28-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">m_dev =</span> Accurate<span class="op">-</span><span class="kw">mean</span>(Accurate))</span></code></pre></div>
+## x ggplot2::%+%()   masks psych::%+%()
+## x ggplot2::alpha() masks psych::alpha()
+## x dplyr::filter()  masks stats::filter()
+## x dplyr::lag()     masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="oneway.html#cb33-1" aria-hidden="true" tabindex="-1"></a>accSIM30 <span class="ot">&lt;-</span> accSIM30 <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="oneway.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m_dev =</span> Accurate<span class="sc">-</span><span class="fu">mean</span>(Accurate))</span></code></pre></div>
 <p>Pop quiz: What’s the sum of our new <em>m_dev</em> variable? Let’s check.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="oneway.html#cb29-1"></a><span class="kw">mean</span>(accSIM30<span class="op">$</span>m_dev)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="oneway.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(accSIM30<span class="sc">$</span>m_dev)</span></code></pre></div>
 <pre><code>## [1] -5.421372e-17</code></pre>
 <p>R uses <strong>scientific e notation</strong>. The proper value is one where the base number (before the “e”) is multiplied by 10, raised to the power shown: <span class="math inline">\(5.421372 * 10^{17}\)</span> Another way to think of it is to move the decimal 17 places to the left. In any case, this number is essentially zero.</p>
 <p>Back to the point of sums of squares total, the sum of deviations around the grand mean will always be zero. To make them useful, we must square them:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="oneway.html#cb31-1"></a>accSIM30 &lt;-<span class="st"> </span>accSIM30 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb31-2"><a href="oneway.html#cb31-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">m_devSQ =</span> m_dev<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="oneway.html#cb36-1" aria-hidden="true" tabindex="-1"></a>accSIM30 <span class="ot">&lt;-</span> accSIM30 <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="oneway.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m_devSQ =</span> m_dev<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <p>If we sum the squared mean deviations we will obtain the total variance (sums of squares total):</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="oneway.html#cb32-1"></a><span class="kw">sum</span>(accSIM30<span class="op">$</span>m_devSQ)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="oneway.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(accSIM30<span class="sc">$</span>m_devSQ)</span></code></pre></div>
 <pre><code>## [1] 38.34623</code></pre>
 <p>This value, the sum of squared deviations around the grand mean, is our <span class="math inline">\(SS_T\)</span>; the associated <em>degrees of freedom</em> is <span class="math inline">\(N - 1\)</span>; in our case this is 90-1 = 89.</p>
 <p>In one-way ANOVA, we divide <span class="math inline">\(SS_T\)</span> into <strong>model/between sums of squares</strong> and <strong>residual/within sums of squares</strong>.</p>
 <p>The <em>model</em> generally represents the notion that the means are different than each other. We want the variation between our means to be greater than the variation within each of the groups from which our means are calculated.</p>
 </div>
-<div id="sums-of-squares-for-the-model-or-between" class="section level3">
+<div id="sums-of-squares-for-the-model-or-between" class="section level3" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Sums of Squares for the Model (or Between)</h3>
 <p>We just determined that the total amount of variation within the data is 38.35 units. From this we can estimate how much of this variation our model can explain. <span class="math inline">\(SS_M\)</span> tells us how much of the total variation can be explained by the fact that different data points come from different groups.</p>
 <p>We see this reflected in the formula below, where</p>
@@ -549,20 +578,20 @@ Let’s take a moment to <em>hand-calculate</em> <span class="math inline">\(SS_
 </ul>
 <p><span class="math display">\[SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\]</span></p>
 <p>To calculate this, we start with the grand mean.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="oneway.html#cb34-1"></a><span class="kw">mean</span>(accSIM30<span class="op">$</span>Accurate)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="oneway.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(accSIM30<span class="sc">$</span>Accurate)</span></code></pre></div>
 <pre><code>## [1] 1.799009</code></pre>
 <p>We also estimate the group means.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="oneway.html#cb36-1"></a><span class="kw">aggregate</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, accSIM30, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="oneway.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span> (Accurate <span class="sc">~</span> COND, accSIM30, mean)</span></code></pre></div>
 <pre><code>##      COND Accurate
 ## 1 Control 1.876882
 ## 2     Low 2.046506
 ## 3    High 1.473640</code></pre>
 <p>This formula occurs in three chunks, representing the control, low, and high racial loading conditions. In each of the chunks we have the <span class="math inline">\(n\)</span>, group mean, and grand mean.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="oneway.html#cb38-1"></a><span class="dv">30</span><span class="op">*</span>(<span class="fl">1.876</span> <span class="op">-</span><span class="st"> </span><span class="fl">1.799</span>)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">30</span><span class="op">*</span>(<span class="fl">2.046</span> <span class="op">-</span><span class="st"> </span><span class="fl">1.799</span>)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">30</span><span class="op">*</span>(<span class="fl">1.474</span> <span class="op">-</span><span class="st"> </span><span class="fl">1.799</span>)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="oneway.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span><span class="sc">*</span>(<span class="fl">1.876</span> <span class="sc">-</span> <span class="fl">1.799</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">30</span><span class="sc">*</span>(<span class="fl">2.046</span> <span class="sc">-</span> <span class="fl">1.799</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">30</span><span class="sc">*</span>(<span class="fl">1.474</span> <span class="sc">-</span> <span class="fl">1.799</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 5.17689</code></pre>
 <p>This value, <span class="math inline">\(SS_M\)</span> is the value accounted for by the model – the proportion of variance accounted for by the grouping variable/factor, COND. Degrees of freedom for <span class="math inline">\(SS_M\)</span> is always one less than the number of elements (e.g., groups) used in its calculation (<span class="math inline">\(k-1\)</span>). Because we have three groups, our degrees of freedom for the model is 2.</p>
 </div>
-<div id="sums-of-squares-residual-or-within" class="section level3">
+<div id="sums-of-squares-residual-or-within" class="section level3" number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Sums of Squares Residual (or within)</h3>
 <p>To recap, we know there are 38.35 units of variation to be explained in our data. Our model explains 5.18 of these units. Sums of squares residual tells us how much of the variation cannot be explained by the model. This value is influenced by extraneous factors; some will refer to it as “noise.”</p>
 <p>Looking at the formula can assist us in with a conceptual formula. In <span class="math inline">\(SS_R\)</span> we subtract the group mean from each individual member of the group and then square it.</p>
@@ -570,22 +599,22 @@ Let’s take a moment to <em>hand-calculate</em> <span class="math inline">\(SS_
 Here’s another approach to calculating<span class="math inline">\(SS_R\)</span>. In this one the variance for each group is multiplied by its respective degrees of freedom, then summed.</p>
 <p><span class="math display">\[SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1))\]</span>
 Again, the formula is in three chunks – but this time the calculations are <em>within-group</em>. We need the variance (the standard deviation squared) for the calculation.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="oneway.html#cb40-1"></a><span class="kw">aggregate</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, accSIM30, sd)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="oneway.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span> (Accurate <span class="sc">~</span> COND, accSIM30, sd)</span></code></pre></div>
 <pre><code>##      COND  Accurate
 ## 1 Control 0.4791969
 ## 2     Low 0.5725299
 ## 3    High 0.7653157</code></pre>
 <p>A quick tangent – this calculation demonstrates the relationship between standard deviation and variance. Variance is the standard deviation, squared.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="oneway.html#cb42-1"></a><span class="co">#just showing you that the variance (next) is the standard deviation, squared</span></span>
-<span id="cb42-2"><a href="oneway.html#cb42-2"></a><span class="fl">.4791969</span><span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="oneway.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#just showing you that the variance (next) is the standard deviation, squared</span></span>
+<span id="cb47-2"><a href="oneway.html#cb47-2" aria-hidden="true" tabindex="-1"></a>.<span class="dv">4791969</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.2296297</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="oneway.html#cb44-1"></a><span class="kw">aggregate</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, accSIM30, var)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="oneway.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span> (Accurate <span class="sc">~</span> COND, accSIM30, var)</span></code></pre></div>
 <pre><code>##      COND  Accurate
 ## 1 Control 0.2296297
 ## 2     Low 0.3277905
 ## 3    High 0.5857082</code></pre>
 <p>We will use the second formula to calculate <span class="math inline">\(SS_R\)</span>. For each of the groups, we multiply the variance by the respective degrees of freedom for the group (<em>n</em> - 1).</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="oneway.html#cb46-1"></a><span class="fl">.2296</span><span class="op">*</span>(<span class="dv">30-1</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.3278</span><span class="op">*</span>(<span class="dv">30-1</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.5857</span><span class="op">*</span>(<span class="dv">30-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="oneway.html#cb51-1" aria-hidden="true" tabindex="-1"></a>.<span class="dv">2296</span><span class="sc">*</span>(<span class="dv">30-1</span>) <span class="sc">+</span> .<span class="dv">3278</span><span class="sc">*</span>(<span class="dv">30-1</span>) <span class="sc">+</span> .<span class="dv">5857</span><span class="sc">*</span>(<span class="dv">30-1</span>)</span></code></pre></div>
 <pre><code>## [1] 33.1499</code></pre>
 <p>The value for our <span class="math inline">\(SS_R\)</span> is 33.15. Degrees of freedom for the residual is <span class="math inline">\(df_T - df_M\)</span>.</p>
 <ul>
@@ -594,15 +623,15 @@ Again, the formula is in three chunks – but this time the calculations are <em
 <li>Therefore, <span class="math inline">\(df_R\)</span>: is 89 - 2 = 87</li>
 </ul>
 </div>
-<div id="relationship-between-ss_t-ss_m-and-ss_r." class="section level3">
+<div id="relationship-between-ss_t-ss_m-and-ss_r." class="section level3" number="2.5.4">
 <h3><span class="header-section-number">2.5.4</span> Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span>.</h3>
 <p>In case it’s not clear:</p>
 <p><span class="math inline">\(SS_T = SS_M + SS_R\)</span></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="oneway.html#cb48-1"></a><span class="fl">33.15</span> <span class="op">+</span><span class="st"> </span><span class="fl">5.18</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="oneway.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fl">33.15</span> <span class="sc">+</span> <span class="fl">5.18</span></span></code></pre></div>
 <pre><code>## [1] 38.33</code></pre>
 <p><em>The difference (38.35 vs. 38.33) is likely due to rounding error. Earlier estimates had multiple decimal points.</em></p>
 </div>
-<div id="mean-squares-model-residual" class="section level3">
+<div id="mean-squares-model-residual" class="section level3" number="2.5.5">
 <h3><span class="header-section-number">2.5.5</span> Mean Squares Model &amp; Residual</h3>
 <p>Our estimates of variation were <em>sums of squares</em> and are influenced by the number of scores that were summed. We can correct this bias by calculating their average – the <em>mean squares</em> or <span class="math inline">\(MS\)</span>. We will use these in the calculation of the <span class="math inline">\(F\)</span> statistic – the statistic that tests if there are significant differences between groups.</p>
 <p>Like the constellation of sums of squares, we calculate mean squares for the model (<span class="math inline">\(MS_M\)</span>) and residual(<span class="math inline">\(MS_R\)</span>). Each formula simply divides the corresponding sums of squares by their respective degrees of freedom.</p>
@@ -613,8 +642,8 @@ Again, the formula is in three chunks – but this time the calculations are <em
 <li><span class="math inline">\(df_M\)</span> was 2</li>
 <li>Therefore, <span class="math inline">\(MS_M=\)</span>is:</li>
 </ul>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="oneway.html#cb50-1"></a><span class="co"># mean squares for the model</span></span>
-<span id="cb50-2"><a href="oneway.html#cb50-2"></a><span class="fl">5.17689</span><span class="op">/</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="oneway.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squares for the model</span></span>
+<span id="cb55-2"><a href="oneway.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fl">5.17689</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 2.588445</code></pre>
 <p><span class="math display">\[MS_R = \frac{SS_{R}}{df{_{R}}}\]</span>
 Regarding the calculation of our model residual squares:</p>
@@ -623,13 +652,13 @@ Regarding the calculation of our model residual squares:</p>
 <li><span class="math inline">\(df_R\)</span> was 87</li>
 <li>Therefore, <span class="math inline">\(MS_R\)</span> is:</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="oneway.html#cb52-1"></a><span class="co"># mean squares for the residual</span></span>
-<span id="cb52-2"><a href="oneway.html#cb52-2"></a><span class="fl">33.1499</span> <span class="op">/</span><span class="st"> </span><span class="dv">87</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="oneway.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squares for the residual</span></span>
+<span id="cb57-2"><a href="oneway.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fl">33.1499</span> <span class="sc">/</span> <span class="dv">87</span></span></code></pre></div>
 <pre><code>## [1] 0.3810333</code></pre>
 </div>
-<div id="calculating-the-f-statistic" class="section level3">
+<div id="calculating-the-f-statistic" class="section level3" number="2.5.6">
 <h3><span class="header-section-number">2.5.6</span> Calculating the <em>F</em>-Statistic</h3>
-<p>The <em>F</em>-statistic (or <em>F</em>-ratio) is the assesses the ratio (as its name implies) of variation explained by the model to unsystematic factors (i.e., the residual). Earlier we used “between” and “within” language. Especially when we think of our example – where the model is composed of three groups, we can think of the <em>F</em> statistic as assessing the ratio of variation explained by between-subjects differences to within-subjects differences. Navarro’s <span class="citation">(Navarro, <a href="#ref-navarro_chapter_2020" role="doc-biblioref">2020</a><a href="#ref-navarro_chapter_2020" role="doc-biblioref">b</a>)</span> figures (earlier in the chapter) illustrate this well.</p>
+<p>The <em>F</em>-statistic (or <em>F</em>-ratio) is the assesses the ratio (as its name implies) of variation explained by the model to unsystematic factors (i.e., the residual). Earlier we used “between” and “within” language. Especially when we think of our example – where the model is composed of three groups, we can think of the <em>F</em> statistic as assessing the ratio of variation explained by between-subjects differences to within-subjects differences. Navarro’s <span class="citation">(<a href="oneway.html#ref-navarro_chapter_2020" role="doc-biblioref">Navarro, 2020b</a>)</span> figures (earlier in the chapter) illustrate this well.</p>
 <!-- TODO: Add a hyperlink back to the Navarro figures -->
 <p><span class="math display">\[F = \frac{MS_{M}}{MS_{R}}\]</span>
 Regarding the calculation of our <em>F</em>-ratio:</p>
@@ -638,10 +667,10 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 <li><span class="math inline">\(MS_R\)</span> was 0.3810333</li>
 <li>Therefore, <span class="math inline">\(F\)</span> is:</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="oneway.html#cb54-1"></a><span class="fl">2.588445</span> <span class="op">/</span><span class="st"> </span><span class="fl">0.3810333</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="oneway.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.588445</span> <span class="sc">/</span> <span class="fl">0.3810333</span></span></code></pre></div>
 <pre><code>## [1] 6.793225</code></pre>
 </div>
-<div id="source-table-games" class="section level3">
+<div id="source-table-games" class="section level3" number="2.5.7">
 <h3><span class="header-section-number">2.5.7</span> Source Table Games</h3>
 <p>These last few calculations are actually less complicated than this presentation makes them seem. To better understand the relation between sums of squares, degrees of freedom, and mean squares, let’s play a couple of rounds of <em>Source Table Games</em>!</p>
 <p>Rules of the game:</p>
@@ -702,18 +731,18 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 </tbody>
 </table>
 <p><span class="math inline">\(F = MS_{M}/MS_{R}\)</span> = 6.973</p>
-<p>To determine whether or not it is statistically significant, we can check a <a href="https://www.statology.org/how-to-read-the-f-distribution-table/">table of critical values</a> <span class="citation">(Zach, <a href="#ref-zach_how_2019" role="doc-biblioref">2019</a>)</span> for the <em>F</em> test.</p>
+<p>To determine whether or not it is statistically significant, we can check a <a href="https://www.statology.org/how-to-read-the-f-distribution-table/">table of critical values</a> <span class="citation">(<a href="oneway.html#ref-zach_how_2019" role="doc-biblioref">Zach, 2019</a>)</span> for the <em>F</em> test.</p>
 <p>Our example has 2 (numerator) and 87 (denominator) degrees of freedom. Rolling down to the table where <span class="math inline">\(\alpha = .05\)</span>, we can see that any <span class="math inline">\(F\)</span> value &gt; 3.11 (a value somewhere between 3.07 and 3.15) will be statistically significant. Our <span class="math inline">\(F\)</span> = 6.79, so we have clearly exceeded the threshold. This is our <em>omnibus F test</em>. Significance at this level lets us know that there is at least 1 statistically significant difference between our control, low, and high racially loaded conditions. While it is important to follow-up to see where these significant differences lie, we will not do these by hand. Rather, let’s rework the problem in R.</p>
 </div>
 </div>
-<div id="working-the-one-way-anova-in-r" class="section level2">
+<div id="working-the-one-way-anova-in-r" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> Working the One-Way ANOVA in R</h2>
 <p>Let’s rework the problem in R. We start at the top of the flowchart, evaluating the statistical assumptions.</p>
 <div class="figure">
 <img src="images/OnewayWrkFlw_Asmptns.jpg" alt="" />
 <p class="caption">An image of the workflow for one-way ANOVA, showing that we are at the beginning: evaluating the potential violation of the assumptions.</p>
 </div>
-<div id="evaluating-the-statistical-assumptions" class="section level3">
+<div id="evaluating-the-statistical-assumptions" class="section level3" number="2.6.1">
 <h3><span class="header-section-number">2.6.1</span> Evaluating the Statistical Assumptions</h3>
 <p>All statistical tests have some assumptions about the data. The one-way ANOVA has four assumptions:</p>
 <ul>
@@ -737,32 +766,27 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 <li>This is also a research design issue. If the dependent variable is categorical, another statistic (such as logistic regression) should be chosen.</li>
 </ul></li>
 </ul>
-<div id="is-the-dependent-variable-normally-distributed-across-levels-of-the-factor" class="section level4">
+<div id="is-the-dependent-variable-normally-distributed-across-levels-of-the-factor" class="section level4" number="2.6.1.1">
 <h4><span class="header-section-number">2.6.1.1</span> Is the dependent variable normally distributed across levels of the factor?</h4>
 <p>From the <em>psych</em> package, the <em>describe()</em> function can be used to provide descriptives of continuously scaled variables (i.e., variables measured on the interval or ratio scale). In this simple example, we can specify the specific continuous, DV.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="oneway.html#cb56-1"></a><span class="kw">library</span>(psych)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;psych&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     %+%, alpha</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="oneway.html#cb59-1"></a><span class="co">#we name the function</span></span>
-<span id="cb59-2"><a href="oneway.html#cb59-2"></a><span class="co">#in parentheses we list the object that is the dataframe</span></span>
-<span id="cb59-3"><a href="oneway.html#cb59-3"></a><span class="co">#the $ sign precedes the specific variable for which we want the information</span></span>
-<span id="cb59-4"><a href="oneway.html#cb59-4"></a><span class="kw">describe</span>(accSIM30<span class="op">$</span>Accurate)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="oneway.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb61-2"><a href="oneway.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we name the function</span></span>
+<span id="cb61-3"><a href="oneway.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co">#in parentheses we list the object that is the dataframe</span></span>
+<span id="cb61-4"><a href="oneway.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co">#the $ sign precedes the specific variable for which we want the information</span></span>
+<span id="cb61-5"><a href="oneway.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(accSIM30<span class="sc">$</span>Accurate)</span></code></pre></div>
 <pre><code>##    vars  n mean   sd median trimmed  mad  min max range  skew kurtosis   se
 ## X1    1 90  1.8 0.66    1.8    1.83 0.56 0.15   3  2.85 -0.33    -0.07 0.07</code></pre>
 <p>If we want descriptives for each level of the grouping variable (factor), we can use the <em>describeBy()</em> function of the <em>psych</em> package. The order of entry within the script is the DV followed by the grouping variable (IV).</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="oneway.html#cb61-1"></a><span class="co">#It is unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file and use that as a basis for APA style tables</span></span>
-<span id="cb61-2"><a href="oneway.html#cb61-2"></a><span class="co">#In this script we can think &quot;Accurate by COND&quot; meaning that the descriptives for accuracy will be grouped by COND which is a categorical variable</span></span>
-<span id="cb61-3"><a href="oneway.html#cb61-3"></a><span class="co">#mat = TRUE means we will get the output in matrix (table) form</span></span>
-<span id="cb61-4"><a href="oneway.html#cb61-4"></a><span class="co">#digits = 3 means output will be rounded to 3 decimal places</span></span>
-<span id="cb61-5"><a href="oneway.html#cb61-5"></a><span class="co">#data = accSIM30 is a different (I think easier) way to identify the object that holds the dataframe</span></span>
-<span id="cb61-6"><a href="oneway.html#cb61-6"></a>des.mat &lt;-<span class="st"> </span><span class="kw">describeBy</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="dt">mat=</span><span class="ot">TRUE</span>, <span class="dt">digits=</span><span class="dv">3</span>, <span class="dt">data=</span>accSIM30) </span>
-<span id="cb61-7"><a href="oneway.html#cb61-7"></a></span>
-<span id="cb61-8"><a href="oneway.html#cb61-8"></a><span class="co">#describeBy(accSIM30$Accurate, accSIM30$COND, mat=TRUE)</span></span>
-<span id="cb61-9"><a href="oneway.html#cb61-9"></a></span>
-<span id="cb61-10"><a href="oneway.html#cb61-10"></a>des.mat <span class="co">#let&#39;s you see the matrix object</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="oneway.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#It is unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file and use that as a basis for APA style tables</span></span>
+<span id="cb63-2"><a href="oneway.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co">#In this script we can think &quot;Accurate by COND&quot; meaning that the descriptives for accuracy will be grouped by COND which is a categorical variable</span></span>
+<span id="cb63-3"><a href="oneway.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">#mat = TRUE means we will get the output in matrix (table) form</span></span>
+<span id="cb63-4"><a href="oneway.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co">#digits = 3 means output will be rounded to 3 decimal places</span></span>
+<span id="cb63-5"><a href="oneway.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co">#data = accSIM30 is a different (I think easier) way to identify the object that holds the dataframe</span></span>
+<span id="cb63-6"><a href="oneway.html#cb63-6" aria-hidden="true" tabindex="-1"></a>des.mat <span class="ot">&lt;-</span> <span class="fu">describeBy</span> (Accurate <span class="sc">~</span> COND, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">data=</span>accSIM30) </span>
+<span id="cb63-7"><a href="oneway.html#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-8"><a href="oneway.html#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="co">#describeBy(accSIM30$Accurate, accSIM30$COND, mat=TRUE)</span></span>
+<span id="cb63-9"><a href="oneway.html#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="oneway.html#cb63-10" aria-hidden="true" tabindex="-1"></a>des.mat <span class="co">#let&#39;s you see the matrix object</span></span></code></pre></div>
 <pre><code>##     item  group1 vars  n  mean    sd median trimmed   mad   min   max range
 ## X11    1 Control    1 30 1.877 0.479  1.811   1.872 0.460 0.854 2.721 1.867
 ## X12    2     Low    1 30 2.047 0.573  2.049   2.053 0.534 0.922 3.000 2.078
@@ -771,38 +795,38 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 ## X11  0.134   -0.756 0.087
 ## X12  0.017   -0.872 0.105
 ## X13 -0.034   -0.789 0.140</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="oneway.html#cb63-1"></a><span class="kw">write.csv</span> (des.mat, <span class="dt">file=</span><span class="st">&quot;Table1.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
-<p>Skew and kurtosis speaks to normal distributions. The skew and kurtosis indices in the <em>psych</em> package are reported as <em>z</em> scores. Regarding skew, values greater than 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued to be anywhere greater 8 to 20 <span class="citation">(Kline, <a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="oneway.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (des.mat, <span class="at">file=</span><span class="st">&quot;Table1.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
+<p>Skew and kurtosis speaks to normal distributions. The skew and kurtosis indices in the <em>psych</em> package are reported as <em>z</em> scores. Regarding skew, values greater than 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued to be anywhere greater 8 to 20 <span class="citation">(<a href="oneway.html#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>.</p>
 <p>The <em>Shapiro-Wilks</em> test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (<em>p</em> &gt;.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (<em>p</em> &lt; .05) then the distribution in question is significantly different from a normal distribution.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="oneway.html#cb64-1"></a><span class="kw">shapiro.test</span>(accSIM30<span class="op">$</span>Accurate)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="oneway.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(accSIM30<span class="sc">$</span>Accurate)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  accSIM30$Accurate
 ## W = 0.97413, p-value = 0.06931</code></pre>
 <p>The <span class="math inline">\(p\)</span> value (<span class="math inline">\(p\)</span> = 0.069) is just barely above .05. This tells us that the Accurate variable does not deviate from a statistically significant distribution.</p>
-<p>There are limitations to the Shapiro-Wilks test. As the dataset being evaluated gets larger, the Shapiro-Wilks test becomes more sensitive to small deviations; this leads to a greater probability of rejecting the null hypothesis (null hypothesis being the values come from a normal distribution). Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014</a>)</span> advised that ANOVA is relatively robust to violations of normality if there are at least 15 cases per cell and the design is reasonably balanced (i.e., equal cell sizes).</p>
+<p>There are limitations to the Shapiro-Wilks test. As the dataset being evaluated gets larger, the Shapiro-Wilks test becomes more sensitive to small deviations; this leads to a greater probability of rejecting the null hypothesis (null hypothesis being the values come from a normal distribution). Green and Salkind <span class="citation">(<a href="oneway.html#ref-green_using_2014" role="doc-biblioref">2014</a>)</span> advised that ANOVA is relatively robust to violations of normality if there are at least 15 cases per cell and the design is reasonably balanced (i.e., equal cell sizes).</p>
 <p>So, is our dependent variable normally distributed at each of the levels of the factor? In statistics we generally provide cautious and tentative answers. My interpretation is that there is not evidence to suggest that we have violated this assumption.</p>
 </div>
-<div id="are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor" class="section level4">
+<div id="are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor" class="section level4" number="2.6.1.2">
 <h4><span class="header-section-number">2.6.1.2</span> Are the variances of the dependent variable similar across the levels of the grouping factor?</h4>
 <p>The Levene’s test evaluates the ANOVA assumption that variances of the dependent variable for each level of the independent variable are similarly distributed. We want this to be non-significant (<span class="math inline">\(p\)</span> &gt; .05). If violated, we need to use an ANOVA test that is “robust to the violation of the homogeneity of variance” (e.g., Welch’s oneway).</p>
 <p>In R, Levene’s test is found in the <em>car</em> package.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="oneway.html#cb66-1"></a><span class="kw">library</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="oneway.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
 <pre><code>## Loading required package: carData</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;car&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:psych&#39;:
-## 
-##     logit</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     recode</code></pre>
 <pre><code>## The following object is masked from &#39;package:purrr&#39;:
 ## 
 ##     some</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="oneway.html#cb72-1"></a><span class="co">#Our set up is similar:  Accurate by condition, followed by the object that holds the dataframe, followed by the instruction to center the analysis around the mean</span></span>
-<span id="cb72-2"><a href="oneway.html#cb72-2"></a><span class="kw">leveneTest</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, accSIM30, <span class="dt">center=</span>mean)</span></code></pre></div>
+<pre><code>## The following object is masked from &#39;package:psych&#39;:
+## 
+##     logit</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="oneway.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Our set up is similar:  Accurate by condition, followed by the object that holds the dataframe, followed by the instruction to center the analysis around the mean</span></span>
+<span id="cb74-2"><a href="oneway.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span> (Accurate <span class="sc">~</span> COND, accSIM30, <span class="at">center=</span>mean)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = mean)
 ##       Df F value Pr(&gt;F)
 ## group  2   2.274  0.109
@@ -810,14 +834,14 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 <p>We write the result of the Levene’s as <span class="math inline">\(F\)</span>(2,87) = 2.274, <span class="math inline">\(p\)</span> = 0.109 Because <span class="math inline">\(p\)</span> &gt; .05, we know that the result is nonsignficant – that the variances of the three groups are not statistically significantly different than each other.</p>
 <p>IF the results had been statistically significantly different, we would have needed to use a Welch’s <span class="math inline">\(F\)</span> or robust version of ANOVA.</p>
 </div>
-<div id="summarizing-results-from-the-analysis-of-assumptions" class="section level4">
+<div id="summarizing-results-from-the-analysis-of-assumptions" class="section level4" number="2.6.1.3">
 <h4><span class="header-section-number">2.6.1.3</span> Summarizing results from the analysis of assumptions</h4>
 <p>It is common for an APA style results section to begin with a review of the evaluation of the statistical assumptions. As we have just finished these analyses, I will document what we have learned so far:</p>
 <p>A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate’s impression of the Asian or Asian American participant. The independent variable, COND, included three levels: control/none, low, and high levels of racial loading. Results of Levene’s homogeneity of variance test indicated no violation of the homogeneity of variance assumption (<span class="math inline">\(F\)</span>[(2,87] = 2.274, <span class="math inline">\(p\)</span> = 0.109 ). Similarly, results of the Shapiro Wilk’s test indicated no violation of the normality assumption <em>W</em> = 0.97413, <em>p</em> = 0.069.</p>
-<p>Now we can move onto computing the omnibus ANOVA. <em>Omnibus</em> is the term applied to the first <em>F</em> test that evaluates if all groups have the same mean <span class="citation">(CHEN et al., <a href="#ref-chen_relationship_2018" role="doc-biblioref">2018</a>)</span>. If this test is not significance there is no evidence in the data to reject the null; that is, there is no evidence to suggest that group means are different. If it is significant – and there are 3 or more groups – follow-up testing will be needed to determine where the differences lie.</p>
+<p>Now we can move onto computing the omnibus ANOVA. <em>Omnibus</em> is the term applied to the first <em>F</em> test that evaluates if all groups have the same mean <span class="citation">(<a href="oneway.html#ref-chen_relationship_2018" role="doc-biblioref">CHEN et al., 2018</a>)</span>. If this test is not significance there is no evidence in the data to reject the null; that is, there is no evidence to suggest that group means are different. If it is significant – and there are 3 or more groups – follow-up testing will be needed to determine where the differences lie.</p>
 </div>
 </div>
-<div id="computing-the-omnibus-anova" class="section level3">
+<div id="computing-the-omnibus-anova" class="section level3" number="2.6.2">
 <h3><span class="header-section-number">2.6.2</span> Computing the Omnibus ANOVA</h3>
 <p>Having met all the assumptions, we are now ready to calculate the omnibus <span class="math inline">\(F\)</span> test.</p>
 <div class="figure">
@@ -827,9 +851,9 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 <p>ANOVA is a special case of the general linear model (regression is a “not so special case” of the general linear model), therefore we use the linear model function, <em>aov()</em> to run the analysis.</p>
 <p>In the code below, we predict Accuracy from COND (3 levels: control, low, high).</p>
 <p>By assigning the results of the <em>aov()</em> function to an object (accBYcond) we can then use that object (think <em>model</em>) in other functions to get details about our analysis.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="oneway.html#cb74-1"></a><span class="co">#the script looks familiar, &quot;Accurate by Condition&quot;</span></span>
-<span id="cb74-2"><a href="oneway.html#cb74-2"></a>accBYcond &lt;-<span class="st"> </span><span class="kw">aov</span>(Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="dt">data =</span> accSIM30) <span class="co">#DV ~ IV  I say, &quot;DV by IV&quot;</span></span>
-<span id="cb74-3"><a href="oneway.html#cb74-3"></a><span class="kw">summary</span> (accBYcond) <span class="co">#ANOVA output</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="oneway.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the script looks familiar, &quot;Accurate by Condition&quot;</span></span>
+<span id="cb76-2"><a href="oneway.html#cb76-2" aria-hidden="true" tabindex="-1"></a>accBYcond <span class="ot">&lt;-</span> <span class="fu">aov</span>(Accurate <span class="sc">~</span> COND, <span class="at">data =</span> accSIM30) <span class="co">#DV ~ IV  I say, &quot;DV by IV&quot;</span></span>
+<span id="cb76-3"><a href="oneway.html#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (accBYcond) <span class="co">#ANOVA output</span></span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## COND         2   5.20   2.598   6.817 0.00178 **
 ## Residuals   87  33.15   0.381                   
@@ -841,14 +865,14 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 <p>Then, dividing the <span class="math inline">\(MS_M\)</span> (COND) by <span class="math inline">\(MS_R\)</span> (2.598/-.381) provides the <em>F</em> value. By using a table of <em>F</em> critical values, we already knew that our <em>F</em> value exceeded the value in the table of critical values. Here we see that <em>p</em> = 0.00178.</p>
 <p>The “<em>F</em> string” for an APA style results section should be written like this: <em>F</em> (2, 87) = 6.817, <em>p</em> = 0.002.</p>
 <p>The object we created with the <em>aov()</em> function is capable of producing much information. Applying the <em>names()</em> function to the object can give us a list of values within it.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="oneway.html#cb76-1"></a><span class="kw">names</span>(accBYcond)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="oneway.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(accBYcond)</span></code></pre></div>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;contrasts&quot;     &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
 ## [13] &quot;model&quot;</code></pre>
 <p><em>summary()</em> is one of the most commonly used function applied to <em>aov()</em> objects, but it’s not the only one.
 Let’s try some other options.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="oneway.html#cb78-1"></a><span class="kw">model.tables</span> (accBYcond, <span class="st">&quot;means&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="oneway.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.tables</span> (accBYcond, <span class="st">&quot;means&quot;</span>)</span></code></pre></div>
 <pre><code>## Tables of means
 ## Grand mean
 ##          
@@ -859,11 +883,11 @@ Let’s try some other options.</p>
 ## Control     Low    High 
 ##  1.8769  2.0465  1.4736</code></pre>
 <p>Let’s graph some of the data.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="oneway.html#cb80-1"></a><span class="kw">plot</span>(accBYcond) </span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="oneway.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(accBYcond) </span></code></pre></div>
 <p><img src="ReCenterPsychStats_files/figure-html/plot%20function-1.svg" width="672" /><img src="ReCenterPsychStats_files/figure-html/plot%20function-2.svg" width="672" /><img src="ReCenterPsychStats_files/figure-html/plot%20function-3.svg" width="672" /><img src="ReCenterPsychStats_files/figure-html/plot%20function-4.svg" width="672" /></p>
 <p>The <em>aov()</em> command has a quickplot feature. The first of the four plots fits the residuals. We already know from Levene’s that we did not violate the homogeneity of variance test. With its straight line, this plot shows an equal spread across the three groups.</p>
 <p>When the dots of the Q-Q plot map onto the diagonal, we have some indication of normality of the residuals (we want residuals to be normally distributed).</p>
-<div id="effect-size-for-the-one-way-anova" class="section level4">
+<div id="effect-size-for-the-one-way-anova" class="section level4" number="2.6.2.1">
 <h4><span class="header-section-number">2.6.2.1</span> Effect size for the one-way ANOVA</h4>
 <p><strong>Eta squared</strong> is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson’s <em>r</em>:</p>
 <p>0 = no relationship
@@ -871,27 +895,27 @@ Let’s try some other options.</p>
 .13 = medium
 .26 = large
 1 = a perfect (one-to-one) correspondence</p>
-<p>A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(Watson, <a href="#ref-watson_rules_2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="oneway.html#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
 <p>The formula for <span class="math inline">\(\eta^2\)</span> is straightforward. If we think back to our hand-calculations of all the sums of squares, we can clearly see that this is the proportion of variance that is accounted for by the model.</p>
 <p><span class="math display">\[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]</span>
 Hand calculation, then, is straightforward.:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="oneway.html#cb81-1"></a><span class="fl">5.20</span> <span class="op">/</span><span class="st"> </span>(<span class="fl">5.20</span> <span class="op">+</span><span class="st"> </span><span class="fl">33.15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="oneway.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fl">5.20</span> <span class="sc">/</span> (<span class="fl">5.20</span> <span class="sc">+</span> <span class="fl">33.15</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1355932</code></pre>
 <p>The <em>lsr</em> package includes an eta-squared calculator. To use it, we simply insert the model/object we created with the <em>aov()</em> function to <em>lsr</em>’s <em>etaSquared()</em> function.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="oneway.html#cb83-1"></a><span class="kw">library</span>(lsr)</span>
-<span id="cb83-2"><a href="oneway.html#cb83-2"></a><span class="kw">etaSquared</span>(accBYcond)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="oneway.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lsr)</span>
+<span id="cb85-2"><a href="oneway.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">etaSquared</span>(accBYcond)</span></code></pre></div>
 <pre><code>##         eta.sq eta.sq.part
 ## COND 0.1354894   0.1354894</code></pre>
 <p>Notice that there are two effect sizes. We described eta-squared. Partial eta-squared is the effect size reported in SPSS. There’s a long history of debate about which to use. In certain circumstances (especially in more complicated analyses), partial-eta squared can be a bit more generous (i.e., larger than <span class="math inline">\(\eta^2\)</span>). Thus, many prefer the reporting of <span class="math inline">\(\eta^2\)</span>.</p>
 <p>In our case, we see no difference between the two values. Differences begin to appear in datasets that are more complicated, such as when sample sizes across the levels of a factor differ.</p>
 </div>
-<div id="summarizing-results-from-the-omnibus-anova" class="section level4">
+<div id="summarizing-results-from-the-omnibus-anova" class="section level4" number="2.6.2.2">
 <h4><span class="header-section-number">2.6.2.2</span> Summarizing results from the omnibus ANOVA</h4>
 <p>Presenting the APA style results of the omnibus test is very straightforward:</p>
 <p>Results indicated a significant effect of COND on accuracy perception $ F(2, 87) = 6.817, p = 0.002, ^2 = .14$.</p>
 </div>
 </div>
-<div id="follow-up-to-the-omnibus-f" class="section level3">
+<div id="follow-up-to-the-omnibus-f" class="section level3" number="2.6.3">
 <h3><span class="header-section-number">2.6.3</span> Follow-up to the Omnibus <em>F</em></h3>
 <p>The <em>F</em>-test associated with the one-way ANOVA is the <em>omnibus</em> – giving the result for the overall test. Looking at the workflow for the one-way ANOVA we see that if we had had we had a non-significant <span class="math inline">\(F\)</span>, we would have stopped our analysis.</p>
 <p>However, if the omnibus <span class="math inline">\(F\)</span> is significant, we know that there is at least one pair of cells where there is a statistically significant difference. We have several ways (each with its own strengths/limitations) to figure out where these differences lie.</p>
@@ -900,7 +924,7 @@ Hand calculation, then, is straightforward.:</p>
 <img src="images/OnewayWrkFlw_phoc.jpg" alt="" />
 <p class="caption">An image of the workflow for one-way ANOVA, showing that we are at the stage of following a statistically significant omnibus F test and are now conducting posthoc comparisons.</p>
 </div>
-<div id="option-1-post-hoc-pairwise-comparisons" class="section level4">
+<div id="option-1-post-hoc-pairwise-comparisons" class="section level4" number="2.6.3.1">
 <h4><span class="header-section-number">2.6.3.1</span> OPTION 1: Post-hoc, pairwise, comparisons</h4>
 <p>Post-hoc, pairwise comparisons are:</p>
 <ul>
@@ -908,8 +932,8 @@ Hand calculation, then, is straightforward.:</p>
 <li>used to compare the means of all combinations of pairs of an experimental condition,</li>
 <li>less powerful than planned comparisons b/c strict criterion for significance must be used.</li>
 </ul>
-<p>Helpful information about how to conduct post-hoc pairwise comparisons in R can be found at the <a href="https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/">UCLA Institute for Digital Research and Education site</a> <span class="citation">(“How Can I Do Post-Hoc Pairwise Comparisons in R? R FAQ,” <a href="#ref-noauthor_how_nodate" role="doc-biblioref">n.d.</a>)</span>.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="oneway.html#cb85-1"></a><span class="kw">pairwise.t.test</span>(accSIM30<span class="op">$</span>Accurate, accSIM30<span class="op">$</span>COND, <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p>Helpful information about how to conduct post-hoc pairwise comparisons in R can be found at the <a href="https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/">UCLA Institute for Digital Research and Education site</a> <span class="citation">(<a href="oneway.html#ref-noauthor_how_nodate" role="doc-biblioref"><span>“How Can <span>I</span> Do Post-Hoc Pairwise Comparisons in <span>R</span>? <span><span></span></span> <span>R</span> <span>FAQ</span>,”</span> n.d.</a>)</span>.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="oneway.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(accSIM30<span class="sc">$</span>Accurate, accSIM30<span class="sc">$</span>COND, <span class="at">p.adj =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -920,11 +944,11 @@ Hand calculation, then, is straightforward.:</p>
 ## High 0.01321 0.00054
 ## 
 ## P value adjustment method: none</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="oneway.html#cb87-1"></a><span class="co">#can swap &quot;bonf&quot; or &quot;holm&quot; for p.adj</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="oneway.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#can swap &quot;bonf&quot; or &quot;holm&quot; for p.adj</span></span></code></pre></div>
 <p>The output only provides the <span class="math inline">\(p\)</span> values associated with the mean differences in each of the conditions. We see that <span class="math inline">\(p &lt; .05\)</span> when control is compared to low. An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their <em>p</em> values.</p>
 <p><strong>Should we be concerned about Type I error?"</strong></p>
 <p>Recall that <em>Type I error</em> is the concern about false positives – that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern increases when we have a large number of pairwise comparisons.</p>
-<p>Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014</a>)</span> review three options for managing Type I error.</p>
+<p>Green and Salkind <span class="citation">(<a href="oneway.html#ref-green_using_2014" role="doc-biblioref">2014</a>)</span> review three options for managing Type I error.</p>
 <ul>
 <li>Traditional Bonferroni:
 <ul>
@@ -937,12 +961,12 @@ Hand calculation, then, is straightforward.:</p>
 </ul></li>
 <li>LSD method:
 <ul>
-<li>Permitted when there are only three pairwise comparisons among three groups, researchers can leave the <em>p</em> values as they are. Since the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> research vignette is one of those circumstances, I not make adjustments for Type I error. I would name claim the LSD and cite Green and Salkind [-green_using_2014] as justification for that decision.</li>
+<li>Permitted when there are only three pairwise comparisons among three groups, researchers can leave the <em>p</em> values as they are. Since the Tran and Lee <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> research vignette is one of those circumstances, I not make adjustments for Type I error. I would name claim the LSD and cite Green and Salkind [-green_using_2014] as justification for that decision.</li>
 </ul></li>
 </ul>
 <p>There is, though, an even more powerful approach…</p>
 </div>
-<div id="option-2-planned-contrasts" class="section level4">
+<div id="option-2-planned-contrasts" class="section level4" number="2.6.3.2">
 <h4><span class="header-section-number">2.6.3.2</span> OPTION 2: Planned contrasts</h4>
 <p>Another option is to evaluate planned comparisons.</p>
 <p><img src="images/OnewayWrkFlw_planned.jpg" alt="An image of the workflow for one-way ANOVA, showing that we are at the following up to a significant omnibus F by conducting planned comparisons" />
@@ -964,7 +988,7 @@ Planned comparisons are</p>
 </ol>
 <p>Underlying the <em>aov()</em> program is the linear model. We could have used it for the omnibus ANOVA, but it has clunky output.</p>
 <p>We use it now to retrieve some contrast information. The code below is a planned comparison that uses the coding in the database to compare the lowest coded group (Control was 1, Low was 2, High was 3) to the other two groups.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="oneway.html#cb88-1"></a><span class="kw">summary.lm</span>(accBYcond)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="oneway.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(accBYcond)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## aov(formula = Accurate ~ COND, data = accSIM30)
@@ -1001,15 +1025,15 @@ Planned comparisons are</p>
 In <em>contrast2</em> we discard the Control condition (it was already singled out) and we compare the Low and High conditions.</p>
 <p>This is sensible because we likely hypothesize that any degree of racially loaded stereotypes may have a deleterious outcome, so we first compare Control to the two conditions with any degree of racial loading. Subsequently, we compare the Low and High levels of the factor.</p>
 <p><strong>Step 2:</strong> Bind them together and check the output to ensure that we’ve mapped them correctly.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="oneway.html#cb90-1"></a><span class="co">#Contrast1  compares Control against the combined effects of Low and High.</span></span>
-<span id="cb90-2"><a href="oneway.html#cb90-2"></a>contrast1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb90-3"><a href="oneway.html#cb90-3"></a></span>
-<span id="cb90-4"><a href="oneway.html#cb90-4"></a><span class="co">#Contrast2 excludes Control; compares Low to High.</span></span>
-<span id="cb90-5"><a href="oneway.html#cb90-5"></a>contrast2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb90-6"><a href="oneway.html#cb90-6"></a></span>
-<span id="cb90-7"><a href="oneway.html#cb90-7"></a><span class="co">#binding the contrasts together</span></span>
-<span id="cb90-8"><a href="oneway.html#cb90-8"></a><span class="kw">contrasts</span>(accSIM30<span class="op">$</span>COND)&lt;-<span class="kw">cbind</span>(contrast1, contrast2)</span>
-<span id="cb90-9"><a href="oneway.html#cb90-9"></a>accSIM30<span class="op">$</span>COND</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="oneway.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Contrast1  compares Control against the combined effects of Low and High.</span></span>
+<span id="cb92-2"><a href="oneway.html#cb92-2" aria-hidden="true" tabindex="-1"></a>contrast1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb92-3"><a href="oneway.html#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="oneway.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Contrast2 excludes Control; compares Low to High.</span></span>
+<span id="cb92-5"><a href="oneway.html#cb92-5" aria-hidden="true" tabindex="-1"></a>contrast2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb92-6"><a href="oneway.html#cb92-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-7"><a href="oneway.html#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="co">#binding the contrasts together</span></span>
+<span id="cb92-8"><a href="oneway.html#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(accSIM30<span class="sc">$</span>COND)<span class="ot">&lt;-</span><span class="fu">cbind</span>(contrast1, contrast2)</span>
+<span id="cb92-9"><a href="oneway.html#cb92-9" aria-hidden="true" tabindex="-1"></a>accSIM30<span class="sc">$</span>COND</span></code></pre></div>
 <pre><code>##  [1] High    High    High    High    High    High    High    High    High   
 ## [10] High    High    High    High    High    High    High    High    High   
 ## [19] High    High    High    High    High    High    High    High    High   
@@ -1033,9 +1057,9 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 <li>Contrast 2 compares the Low and High loadings.</li>
 </ul>
 <p><strong>Step 3:</strong> Create a new <em>aov()</em> model</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="oneway.html#cb92-1"></a><span class="co">#create a new object, the ANOVA looks the same, but it will now consider the contrasts</span></span>
-<span id="cb92-2"><a href="oneway.html#cb92-2"></a>accPlanned &lt;-<span class="st"> </span><span class="kw">aov</span>(Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="dt">data =</span> accSIM30)</span>
-<span id="cb92-3"><a href="oneway.html#cb92-3"></a><span class="kw">summary.lm</span>(accPlanned)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="oneway.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a new object, the ANOVA looks the same, but it will now consider the contrasts</span></span>
+<span id="cb94-2"><a href="oneway.html#cb94-2" aria-hidden="true" tabindex="-1"></a>accPlanned <span class="ot">&lt;-</span> <span class="fu">aov</span>(Accurate <span class="sc">~</span> COND, <span class="at">data =</span> accSIM30)</span>
+<span id="cb94-3"><a href="oneway.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(accPlanned)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## aov(formula = Accurate ~ COND, data = accSIM30)
@@ -1055,10 +1079,10 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 ## Residual standard error: 0.6173 on 87 degrees of freedom
 ## Multiple R-squared:  0.1355, Adjusted R-squared:  0.1156 
 ## F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="oneway.html#cb94-1"></a><span class="kw">contrasts</span>(accSIM30<span class="op">$</span>COND)&lt;-<span class="kw">cbind</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="oneway.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(accSIM30<span class="sc">$</span>COND)<span class="ot">&lt;-</span><span class="fu">cbind</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <p>These planned contrasts show that when the control condition is compared to the combined low and high racial loading conditions, there is not a statistically significant difference, <em>t</em>(87) = -0.846, <em>p</em> = 0.400. However, when the low and high racial loading conditions are compared, there is a statistically significant difference, <em>t</em>(87) = -3.594, <em>p</em> = 0.001.</p>
 </div>
-<div id="trend-polynomial-analysis" class="section level4">
+<div id="trend-polynomial-analysis" class="section level4" number="2.6.3.3">
 <h4><span class="header-section-number">2.6.3.3</span> Trend (polynomial) analysis</h4>
 <div class="figure">
 <img src="images/OnewayWrkFlw_poly.jpg" alt="" />
@@ -1066,9 +1090,9 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 </div>
 <p>Polynomial contrasts let us see if there is a linear (or curvilinear) pattern to the data. To detect a trend, the data must be coded in an ascending order and it needs to be a sensible, theoretically defensible, comparison. Our data has a theoretically ordered effect (control, low racially loaded condition, high racially loaded condition). Recall that we created an ordered factor when we imported the data.</p>
 <p>In a polynomial analysis, the statistical analysis looks across the ordered means to see if they fit a linear or curvilinear shape that is one less than the number of levels. Our factor has three levels, therefore the polynomial contrast can check for a linear shape (.L) or a quadratic (one change in direction) shape (.Q). If we had four levels, the contr.poly could check for cubic change (two changes in direction). Conventionally, when more than one trend is significant, we intepret the most complex one (i.e., quadratic over linear).</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="oneway.html#cb95-1"></a><span class="kw">contrasts</span>(accSIM30<span class="op">$</span>COND)&lt;-<span class="kw">contr.poly</span>(<span class="dv">3</span>)</span>
-<span id="cb95-2"><a href="oneway.html#cb95-2"></a>accTrend&lt;-<span class="kw">aov</span>(Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="dt">data =</span> accSIM30)</span>
-<span id="cb95-3"><a href="oneway.html#cb95-3"></a><span class="kw">summary.lm</span>(accTrend)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="oneway.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(accSIM30<span class="sc">$</span>COND)<span class="ot">&lt;-</span><span class="fu">contr.poly</span>(<span class="dv">3</span>)</span>
+<span id="cb97-2"><a href="oneway.html#cb97-2" aria-hidden="true" tabindex="-1"></a>accTrend<span class="ot">&lt;-</span><span class="fu">aov</span>(Accurate <span class="sc">~</span> COND, <span class="at">data =</span> accSIM30)</span>
+<span id="cb97-3"><a href="oneway.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(accTrend)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## aov(formula = Accurate ~ COND, data = accSIM30)
@@ -1091,7 +1115,7 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 <p>A quick peek back at an early plot shows illustrates the quadratic trend that was supported by the analysis.</p>
 <p>Results of our polynomial contrast suggested statistically significant results for both linear <span class="math inline">\(t(87) = -2.53, p = .013\)</span> and quadratic <span class="math inline">\(t(87) = -2.69, p = .009\)</span> trends.</p>
 </div>
-<div id="which-set-of-follow-up-tests-do-we-report" class="section level4">
+<div id="which-set-of-follow-up-tests-do-we-report" class="section level4" number="2.6.3.4">
 <h4><span class="header-section-number">2.6.3.4</span> Which set of follow-up tests do we report?</h4>
 <p>It depends! What best tells the story of your data? Here are some things to consider.</p>
 <ul>
@@ -1106,12 +1130,12 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 <p>Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data.</p>
 </div>
 </div>
-<div id="what-if-we-violated-the-homogeneity-of-variance-test" class="section level3">
+<div id="what-if-we-violated-the-homogeneity-of-variance-test" class="section level3" number="2.6.4">
 <h3><span class="header-section-number">2.6.4</span> What if we Violated the Homogeneity of Variance test?</h3>
 <p>The <em>oneway.test</em> produces Welch’s <em>F</em> – a test more robust to violation of the homogeneity of variance assumption. The Welch’s approach to attenuating error or erroneous conclusions caused by violations of the homogeneity of variance assumption is to adjust the residual degrees of freedom used to produce the Welch’s <em>F</em>-ratio.</p>
 <p>Another common correction is the Brown and Forsythe <em>F</em>-ratio. At this time I have not located and tried an R package that produces this.</p>
 <!-- TODO: Locate and demonstrate the Brown & Forsythe F ratio -->
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="oneway.html#cb97-1"></a><span class="kw">oneway.test</span> (Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="dt">data =</span> accSIM30)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="oneway.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span> (Accurate <span class="sc">~</span> COND, <span class="at">data =</span> accSIM30)</span></code></pre></div>
 <pre><code>## 
 ##  One-way analysis of means (not assuming equal variances)
 ## 
@@ -1120,9 +1144,9 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 <p>Note that the denominator <em>df</em> is now 56.22 (not 87) and <em>p</em> value is bigger (it was .00178). With its design intended to avoid making a Type I error, the Welch’s <em>F</em> is more “conservative.” While it doesn’t matter in this case, if it were a study where the <em>p</em> value was closer to .05, it could make a difference. These are some of the tradeoffs made in order to have confidence in the results.</p>
 </div>
 </div>
-<div id="power-analysis" class="section level2">
+<div id="power-analysis" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> Power Analysis</h2>
-<p>Power analysis allows us to determine the sample size required to detect an effect of a given size with a given degree of confidence. Utilized another way, it allows us to determine the probability of detecting an effect of a given size with a given level of confidence. If the probability is unacceptably low, we may want to revise or stop. A helpful overview of power as well as guidelines for how to use the <em>pwr</em> package can be found at a <a href="https://www.statmethods.net/stats/power.html">Quick-R website</a> <span class="citation">(Kabacoff, <a href="#ref-kabacoff_power_2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>Power analysis allows us to determine the sample size required to detect an effect of a given size with a given degree of confidence. Utilized another way, it allows us to determine the probability of detecting an effect of a given size with a given level of confidence. If the probability is unacceptably low, we may want to revise or stop. A helpful overview of power as well as guidelines for how to use the <em>pwr</em> package can be found at a <a href="https://www.statmethods.net/stats/power.html">Quick-R website</a> <span class="citation">(<a href="oneway.html#ref-kabacoff_power_2017" role="doc-biblioref">Kabacoff, 2017</a>)</span>.</p>
 <p>There are four interrelating elements of power:</p>
 <ol style="list-style-type: decimal">
 <li>Sample size, <em>N</em></li>
@@ -1155,9 +1179,9 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 <li><em>power</em> = .80 is the standard value</li>
 </ul>
 <p>In the script below, we simply add our values. So long as we have four values, the fifth will be calculated for us.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="oneway.html#cb99-1"></a><span class="kw">library</span>(pwr)</span>
-<span id="cb99-2"><a href="oneway.html#cb99-2"></a></span>
-<span id="cb99-3"><a href="oneway.html#cb99-3"></a><span class="kw">pwr.anova.test</span> (<span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">f =</span> <span class="fl">.25</span>, <span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">power =</span> <span class="fl">.80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="oneway.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb101-2"><a href="oneway.html#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-3"><a href="oneway.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.anova.test</span> (<span class="at">k =</span> <span class="dv">3</span>, <span class="at">f =</span> .<span class="dv">25</span>, <span class="at">sig.level =</span> .<span class="dv">05</span>, <span class="at">power =</span> .<span class="dv">80</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Balanced one-way analysis of variance power calculation 
 ## 
@@ -1171,7 +1195,7 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 <p>This result suggested that we would need 52 people per group.</p>
 <p>The effect size from our one-way ANOVA was an <span class="math inline">\(\eta^2 = .13\)</span>. Using an effect size converter such as the one hosted at <a href="https://www.psychometrica.de/effect_size.html">Psychometrica.de</a>, we can learn that it is equivalent to an <em>f</em> of .386. To use the Psychometrica tool, use the option labeled, “Transformation of the effect sizes <em>d</em>, <em>r</em>, <em>f</em>, <em>Odds Ratio</em>, <span class="math inline">\(\eta^2\)</span>, and <em>Common Language Effect Size (CLES</em>).”</p>
 <p>We could actually re-run the power tool see how many fewer people we needed.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="oneway.html#cb101-1"></a><span class="kw">pwr.anova.test</span> (<span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">f =</span> <span class="fl">.386</span>, <span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">power =</span> <span class="fl">.80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="oneway.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.anova.test</span> (<span class="at">k =</span> <span class="dv">3</span>, <span class="at">f =</span> .<span class="dv">386</span>, <span class="at">sig.level =</span> .<span class="dv">05</span>, <span class="at">power =</span> .<span class="dv">80</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Balanced one-way analysis of variance power calculation 
 ## 
@@ -1182,17 +1206,17 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 ##           power = 0.8
 ## 
 ## NOTE: n is number in each group</code></pre>
-<p>This is a little curious. When I initially simulated the data, I used the <em>n</em> values for each group (i.e.,23, 22, 23) reported in the article <span class="citation">(Tran &amp; Lee, <a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> and did not obtain a (consistently) statistically significant result; statistical significance wavered based on the random seed value that I used. For the purpose of the chapter, I increased the sample size to be 30 across each group so that the significance was more consistent. This, in itself, is a useful demonstration of sample size at it relates to power.</p>
+<p>This is a little curious. When I initially simulated the data, I used the <em>n</em> values for each group (i.e.,23, 22, 23) reported in the article <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">Tran &amp; Lee, 2014</a>)</span> and did not obtain a (consistently) statistically significant result; statistical significance wavered based on the random seed value that I used. For the purpose of the chapter, I increased the sample size to be 30 across each group so that the significance was more consistent. This, in itself, is a useful demonstration of sample size at it relates to power.</p>
 </div>
-<div id="apa-style-results" class="section level2">
+<div id="apa-style-results" class="section level2" number="2.8">
 <h2><span class="header-section-number">2.8</span> APA Style Results</h2>
 <p>All that’s left to do is <em>write it up</em>! APA style results sections in empirical manuscripts are typically accompanied by tables and figures. APA style discourages repeated material and encourages reducing the cognitive load of the reader. For this example, I suggest two tables – one with means and standard deviations of the groups and a second that reports the output from the one-way ANOVA. In an article with multiple statistics, the authors might wish to combine or delete these.</p>
 <p>The package <em>apaTables</em> can produce journal-ready tables by using the object produced by the <em>aov()</em> function. Deciding what to report in text and table is important.</p>
 <p>Here I create Table 1 with means and standard deviations (plus a 95% confidence interval around each mean).</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="oneway.html#cb103-1"></a><span class="kw">library</span>(apaTables)</span>
-<span id="cb103-2"><a href="oneway.html#cb103-2"></a><span class="co"># table.number = 1 assigns a table number to the top of the table </span></span>
-<span id="cb103-3"><a href="oneway.html#cb103-3"></a><span class="co"># filename = &quot;Table1.doc&quot; writes the table to Microsoft Word and puts it in your project folder</span></span>
-<span id="cb103-4"><a href="oneway.html#cb103-4"></a><span class="kw">apa.1way.table</span>(<span class="dt">iv=</span>COND, <span class="dt">dv=</span>Accurate, <span class="dt">show.conf.interval =</span> <span class="ot">TRUE</span>, <span class="dt">data=</span>accSIM30, <span class="dt">table.number =</span> <span class="dv">1</span>, <span class="dt">filename =</span> <span class="st">&quot;Table1.doc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="oneway.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
+<span id="cb105-2"><a href="oneway.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="co"># table.number = 1 assigns a table number to the top of the table </span></span>
+<span id="cb105-3"><a href="oneway.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="co"># filename = &quot;Table1.doc&quot; writes the table to Microsoft Word and puts it in your project folder</span></span>
+<span id="cb105-4"><a href="oneway.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.1way.table</span>(<span class="at">iv=</span>COND, <span class="at">dv=</span>Accurate, <span class="at">show.conf.interval =</span> <span class="cn">TRUE</span>, <span class="at">data=</span>accSIM30, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">filename =</span> <span class="st">&quot;Table1.doc&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## 
 ## Table 1 
@@ -1210,14 +1234,14 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 ## The confidence interval is a plausible range of population means that could 
 ## have caused a sample mean (Cumming, 2014).</code></pre>
 <p>I will want to give the values of mean differences (<span class="math inline">\(M_{diff}\)</span>) in the results. I can quickly use R to calculate them here.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="oneway.html#cb105-1"></a><span class="fl">1.88</span> <span class="op">-</span><span class="st"> </span><span class="fl">1.47</span><span class="co">#calculating mean difference between control and high</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="oneway.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.88</span> <span class="sc">-</span> <span class="fl">1.47</span><span class="co">#calculating mean difference between control and high</span></span></code></pre></div>
 <pre><code>## [1] 0.41</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="oneway.html#cb107-1"></a><span class="fl">2.05</span> <span class="op">-</span><span class="st"> </span><span class="fl">1.47</span><span class="co">#calculating mean difference between low and high</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="oneway.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.05</span> <span class="sc">-</span> <span class="fl">1.47</span><span class="co">#calculating mean difference between low and high</span></span></code></pre></div>
 <pre><code>## [1] 0.58</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="oneway.html#cb109-1"></a><span class="fl">1.88</span> <span class="op">-</span><span class="st"> </span><span class="fl">2.05</span><span class="co">#calculating mean difference between  control and low</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="oneway.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.88</span> <span class="sc">-</span> <span class="fl">2.05</span><span class="co">#calculating mean difference between  control and low</span></span></code></pre></div>
 <pre><code>## [1] -0.17</code></pre>
 <p>Here I create Table 2 with results of the one-way ANOVA. The result in Microsoft Word can be edited (e.g., I would replace the partial-eta squared with <span class="math inline">\(\eta^2\)</span>) for the journal article.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="oneway.html#cb111-1"></a><span class="kw">apa.aov.table</span> (accBYcond, <span class="dt">table.number =</span> <span class="dv">2</span>, <span class="dt">filename =</span> <span class="st">&quot;Table2.doc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="oneway.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.aov.table</span> (accBYcond, <span class="at">table.number =</span> <span class="dv">2</span>, <span class="at">filename =</span> <span class="st">&quot;Table2.doc&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## 
 ## Table 2 
@@ -1232,18 +1256,18 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 ## 
 ## Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared</code></pre>
 <p>Regarding figures, there are a number of options. I find the <em>plotmeans()</em> function (used earlier) to be adequate for the purpose of one-way ANOVA. As we progress through this textbook, I will demonstrate a number of options that offer more and less complexity.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="oneway.html#cb113-1"></a><span class="kw">plotmeans</span> (<span class="dt">formula =</span> Accurate <span class="op">~</span><span class="st"> </span>COND, <span class="dt">data =</span> accSIM30, <span class="dt">xlab =</span> <span class="st">&quot;Racial Loading Condition&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Accuracy of Confederate&#39;s Impression&quot;</span>, <span class="dt">n.label =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="oneway.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotmeans</span> (<span class="at">formula =</span> Accurate <span class="sc">~</span> COND, <span class="at">data =</span> accSIM30, <span class="at">xlab =</span> <span class="st">&quot;Racial Loading Condition&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Accuracy of Confederate&#39;s Impression&quot;</span>, <span class="at">n.label =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-4-1.svg" width="672" /></p>
 <p>With table and figure at hand, here is how I would write up these results:</p>
 <p>A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate’s impression of the Asian or Asian American participant. The independent variable, COND, included three levels: control/none, low, and high levels of racial loading. Results of Levene’s homogeneity of variance test indicated no violation of the homogeneity of variance assumption (<span class="math inline">\(F\)</span>[(2,87] = 2.274, <span class="math inline">\(p\)</span> = 0.109 ). Similarly, results of the Shapiro Wilks’s test indicated no violation of the normality assumption <em>W</em> = 0.97413, <em>p</em> = 0.069.</p>
 <p>Results indicated a significant effect of COND on accuracy perception <span class="math inline">\(F\)</span>(2, 87) = 6.817, <span class="math inline">\(p\)</span> = 0.002, <span class="math inline">\(\eta^2\)</span> = .14. In a series of post-hoc comparisons, there were statistically significant differences between the control and high (<span class="math inline">\(M_{diff}\)</span> = 0.41, <em>p</em> = 0.013) and low and high (<span class="math inline">\(M_{diff}\)</span> = 0.58, <em>p</em> = 0.001) conditions, but not the control and low conditions (<span class="math inline">\(M_{diff}\)</span> = -.17, <em>p</em> = 0.290). A statistically significant polynomial contrast suggested a quadratic trend across the three, ordered, levels of the conditions (<span class="math inline">\(t[87] = -2.69, p = .009\)</span>) such that perception of accuracy increased from the control to low conditions, but decreased from low to high. Consequently, it appeared that only the highest degree of racial loading (e.g., “You speak English well for an Asian”) resulted in the decreased perceptions of accuracy of impressions from the confederate. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.</p>
 </div>
-<div id="practice-problems" class="section level2">
+<div id="practice-problems" class="section level2" number="2.9">
 <h2><span class="header-section-number">2.9</span> Practice Problems</h2>
 <p>Below are three problems with graded levels of complexity. Worked examples, following the first two suggestions will be provided in an Appendix.</p>
-<div id="problem-1-conduct-a-one-way-anova-with-moretalk-dependent-variable." class="section level3">
+<div id="problem-1-conduct-a-one-way-anova-with-moretalk-dependent-variable." class="section level3" number="2.9.1">
 <h3><span class="header-section-number">2.9.1</span> Problem #1: Conduct a one-way ANOVA with <em>moreTalk</em> dependent variable.</h3>
-<p>In their study, Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (<em>much less than average</em>) through 0 (<em>average</em>) to 2 (<em>much more than average</em>).</p>
+<p>In their study, Tran and Lee <span class="citation">(<a href="oneway.html#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (<em>much less than average</em>) through 0 (<em>average</em>) to 2 (<em>much more than average</em>).</p>
 <p>Code for simulated data with <em>moreTalk</em> as the dependent variable is below. Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.</p>
 <table>
 <thead>
@@ -1296,18 +1320,18 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="oneway.html#cb114-1"></a><span class="kw">set.seed</span>(<span class="dv">2021</span>) <span class="co">#sets a random seed so that we get the same results each time</span></span>
-<span id="cb114-2"><a href="oneway.html#cb114-2"></a>moreTalk &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean=</span><span class="op">-</span>.<span class="dv">82</span>, <span class="dt">sd=</span><span class="fl">0.91</span>), <span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean=</span><span class="op">-</span><span class="fl">0.39</span>, <span class="dt">sd =</span> <span class="fl">0.66</span>), <span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean =</span> <span class="fl">-0.04</span>, <span class="dt">sd =</span> <span class="fl">0.71</span>))<span class="co">#sample size, M and SD for each group</span></span>
-<span id="cb114-3"><a href="oneway.html#cb114-3"></a>moreTalk[moreTalk<span class="op">&gt;</span><span class="dv">2</span>]&lt;-<span class="dv">2</span> <span class="co">#set upper bound for DV</span></span>
-<span id="cb114-4"><a href="oneway.html#cb114-4"></a>moreTalk[moreTalk&lt;-<span class="dv">2</span>]&lt;-<span class="op">-</span><span class="dv">2</span> <span class="co">#set lower bound for DV</span></span>
-<span id="cb114-5"><a href="oneway.html#cb114-5"></a>ID&lt;-<span class="kw">factor</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">90</span>)) <span class="co">#IDs for participants</span></span>
-<span id="cb114-6"><a href="oneway.html#cb114-6"></a>COND&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>)) <span class="co">#name factors and identify how many in each group; should be in same order as first row of script</span></span>
-<span id="cb114-7"><a href="oneway.html#cb114-7"></a>mTalk_sim30 &lt;-<span class="kw">data.frame</span>(ID, COND, moreTalk) <span class="co">#groups the 3 variables into a single df:  ID#, DV, condition</span></span>
-<span id="cb114-8"><a href="oneway.html#cb114-8"></a></span>
-<span id="cb114-9"><a href="oneway.html#cb114-9"></a><span class="co">#to write it to an outfile</span></span>
-<span id="cb114-10"><a href="oneway.html#cb114-10"></a><span class="kw">write.table</span>(mTalk_sim30, <span class="dt">file=</span><span class="st">&quot;newmTalk30.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">col.names=</span><span class="ot">TRUE</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="oneway.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>) <span class="co">#sets a random seed so that we get the same results each time</span></span>
+<span id="cb116-2"><a href="oneway.html#cb116-2" aria-hidden="true" tabindex="-1"></a>moreTalk <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="sc">-</span>.<span class="dv">82</span>, <span class="at">sd=</span><span class="fl">0.91</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="sc">-</span><span class="fl">0.39</span>, <span class="at">sd =</span> <span class="fl">0.66</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="sc">-</span><span class="fl">0.04</span>, <span class="at">sd =</span> <span class="fl">0.71</span>))<span class="co">#sample size, M and SD for each group</span></span>
+<span id="cb116-3"><a href="oneway.html#cb116-3" aria-hidden="true" tabindex="-1"></a>moreTalk[moreTalk<span class="sc">&gt;</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="dv">2</span> <span class="co">#set upper bound for DV</span></span>
+<span id="cb116-4"><a href="oneway.html#cb116-4" aria-hidden="true" tabindex="-1"></a>moreTalk[moreTalk<span class="ot">&lt;-</span><span class="dv">2</span>]<span class="ot">&lt;-</span><span class="sc">-</span><span class="dv">2</span> <span class="co">#set lower bound for DV</span></span>
+<span id="cb116-5"><a href="oneway.html#cb116-5" aria-hidden="true" tabindex="-1"></a>ID<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">90</span>)) <span class="co">#IDs for participants</span></span>
+<span id="cb116-6"><a href="oneway.html#cb116-6" aria-hidden="true" tabindex="-1"></a>COND<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>)) <span class="co">#name factors and identify how many in each group; should be in same order as first row of script</span></span>
+<span id="cb116-7"><a href="oneway.html#cb116-7" aria-hidden="true" tabindex="-1"></a>mTalk_sim30 <span class="ot">&lt;-</span><span class="fu">data.frame</span>(ID, COND, moreTalk) <span class="co">#groups the 3 variables into a single df:  ID#, DV, condition</span></span>
+<span id="cb116-8"><a href="oneway.html#cb116-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-9"><a href="oneway.html#cb116-9" aria-hidden="true" tabindex="-1"></a><span class="co">#to write it to an outfile</span></span>
+<span id="cb116-10"><a href="oneway.html#cb116-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(mTalk_sim30, <span class="at">file=</span><span class="st">&quot;newmTalk30.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
-<div id="problem-2-play-around-with-this-simulation." class="section level3">
+<div id="problem-2-play-around-with-this-simulation." class="section level3" number="2.9.2">
 <h3><span class="header-section-number">2.9.2</span> Problem #2: Play around with this simulation.</h3>
 <p>Copy the script for the simulation and then change (at least) one thing in the simulation to see how it impacts the results.</p>
 <ul>
@@ -1368,7 +1392,7 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 </tbody>
 </table>
 </div>
-<div id="problem-3-try-something-entirely-new." class="section level3">
+<div id="problem-3-try-something-entirely-new." class="section level3" number="2.9.3">
 <h3><span class="header-section-number">2.9.3</span> Problem #3: Try something entirely new.</h3>
 <p>Either (a) find an article from which you can simulate data or (b) create a research vignette of your own. Specify group <em>n</em>, means, and standard deviations. Simulate the data with these. Be thinking about “what it takes” in terms of sample size, mean differences, and variability to get a statistically significant omnibus.</p>
 <p>Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.</p>
@@ -1430,7 +1454,7 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 </table>
 </div>
 </div>
-<div id="bonus-reel" class="section level2">
+<div id="bonus-reel" class="section level2" number="2.10">
 <h2><span class="header-section-number">2.10</span> Bonus Reel:</h2>
 <div class="figure">
 <img src="images/film-strip-1.jpg" id="id" class="class" width="620" height="211" alt="" />
@@ -1442,8 +1466,8 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 <li>Elaboration of how data can be simulated for one-way ANOVA</li>
 <li>Further demonstration of how sample size can effect results</li>
 </ul>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="oneway.html#cb115-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.0.3 (2020-10-10)
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="oneway.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.4 (2021-02-15)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 18362)
 ## 
@@ -1461,10 +1485,10 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 ## 
 ## other attached packages:
 ##  [1] apaTables_2.0.8 pwr_1.3-0       lsr_0.5         car_3.0-10     
-##  [5] carData_3.0-4   psych_2.0.12    forcats_0.5.0   stringr_1.4.0  
-##  [9] dplyr_1.0.2     purrr_0.3.4     readr_1.4.0     tidyr_1.1.2    
-## [13] tibble_3.0.4    ggplot2_3.3.3   tidyverse_1.3.0 gdtools_0.2.2  
-## [17] gplots_3.1.1   
+##  [5] carData_3.0-4   forcats_0.5.0   stringr_1.4.0   dplyr_1.0.2    
+##  [9] purrr_0.3.4     readr_1.4.0     tidyr_1.1.2     tibble_3.0.4   
+## [13] ggplot2_3.3.3   tidyverse_1.3.0 gdtools_0.2.2   gplots_3.1.1   
+## [17] psych_2.0.12   
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] httr_1.4.2         jsonlite_1.7.2     tmvnsim_1.0-2      modelr_0.1.8      
@@ -1476,93 +1500,66 @@ In <em>contrast2</em> we discard the Control condition (it was already singled o
 ## [25] rio_0.5.16         generics_0.1.0     ellipsis_0.3.1     withr_2.3.0       
 ## [29] cli_2.2.0          mnormt_2.0.2       magrittr_2.0.1     crayon_1.3.4      
 ## [33] readxl_1.3.1       evaluate_0.14      fs_1.5.0           fansi_0.4.1       
-## [37] nlme_3.1-151       foreign_0.8-81     xml2_1.3.2         MBESS_4.8.0       
-## [41] tools_4.0.2        data.table_1.13.4  hms_0.5.3          lifecycle_0.2.0   
-## [45] munsell_0.5.0      reprex_0.3.0       zip_2.1.1          compiler_4.0.2    
-## [49] caTools_1.18.0     systemfonts_0.3.2  rlang_0.4.9        grid_4.0.2        
+## [37] nlme_3.1-151       xml2_1.3.2         foreign_0.8-81     MBESS_4.8.0       
+## [41] tools_4.0.4        data.table_1.13.4  hms_0.5.3          lifecycle_0.2.0   
+## [45] munsell_0.5.0      reprex_0.3.0       zip_2.1.1          compiler_4.0.4    
+## [49] caTools_1.18.0     systemfonts_0.3.2  rlang_0.4.9        grid_4.0.4        
 ## [53] rstudioapi_0.13    bitops_1.0-6       rmarkdown_2.6      gtable_0.3.0      
 ## [57] abind_1.4-5        DBI_1.1.0          curl_4.3           R6_2.5.0          
 ## [61] lubridate_1.7.9.2  knitr_1.30         KernSmooth_2.23-18 stringi_1.5.3     
-## [65] parallel_4.0.2     Rcpp_1.0.5         vctrs_0.3.6        dbplyr_2.0.0      
+## [65] parallel_4.0.4     Rcpp_1.0.5         vctrs_0.3.6        dbplyr_2.0.0      
 ## [69] tidyselect_1.1.0   xfun_0.19</code></pre>
 
-<div id="refs" class="references">
-<div>
-<p>CHEN, T., XU, M., TU, J., WANG, H., &amp; NIU, X. (2018). Relationship between Omnibus and Post-hoc Tests: An Investigation of performance of the F test in ANOVA. <em>Shanghai Archives of Psychiatry</em>, <em>30</em>(1), 60–64. <a href="https://doi.org/10.11919/j.issn.1002-0829.218014">https://doi.org/10.11919/j.issn.1002-0829.218014</a></p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-byrne_structural_2016" class="csl-entry">
+Byrne, B. M. (2016). <em>Structural equation modeling with <span>AMOS</span>: <span>Basic</span> concepts, applications, and programming</em> (3rd ed.). Routledge. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523</a>
 </div>
-<div>
-<p>Crump, M. J. C. (2018). <em>Programming for Psychologists: Data Creation and Analysis</em>. <a href="https://crumplab.github.io/programmingforpsych/index.html">https://crumplab.github.io/programmingforpsych/index.html</a></p>
+<div id="ref-chen_relationship_2018" class="csl-entry">
+CHEN, T., XU, M., TU, J., WANG, H., &amp; NIU, X. (2018). Relationship between <span>Omnibus</span> and <span>Post</span>-hoc <span>Tests</span>: <span>An</span> <span>Investigation</span> of performance of the <span>F</span> test in <span>ANOVA</span>. <em>Shanghai Archives of Psychiatry</em>, <em>30</em>(1), 60–64. <a href="https://doi.org/10.11919/j.issn.1002-0829.218014">https://doi.org/10.11919/j.issn.1002-0829.218014</a>
 </div>
-<div>
-<p>Field, A. P. (2012). <em>Discovering statistics using R</em>. Sage.</p>
+<div id="ref-crump_programming_2018" class="csl-entry">
+Crump, M. J. C. (2018). <em>Programming for <span>Psychologists</span>: <span>Data</span> <span>Creation</span> and <span>Analysis</span></em>. <a href="https://crumplab.github.io/programmingforpsych/index.html">https://crumplab.github.io/programmingforpsych/index.html</a>
 </div>
-<div>
-<p>Green, S. B., &amp; Salkind, N. J. (2014). <em>Using SPSS for Windows and Macintosh: Analyzing and understanding data</em> (Seventh edition.). Pearson.</p>
+<div id="ref-field_discovering_2012" class="csl-entry">
+Field, A. P. (2012). <em>Discovering statistics using <span>R</span></em>. Sage.
 </div>
-<div>
-<p>How can I do post-hoc pairwise comparisons in R? R FAQ. (n.d.). In <em>UCLA Institute for Digital Research &amp; Educaton</em>. Retrieved January 19, 2021, from <a href="https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/">https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/</a></p>
+<div id="ref-gladwell_outliers_2008" class="csl-entry">
+Gladwell, M. (2008). <em>Outliers: The story of success</em> (First edition.). Little, Brown; Company.
 </div>
-<div>
-<p>Kabacoff, R. I. (2017). Power Analysis. In <em>Quick-R by datacamp</em>. <a href="https://www.statmethods.net/stats/power.html">https://www.statmethods.net/stats/power.html</a></p>
+<div id="ref-green_using_2014" class="csl-entry">
+Green, S. B., &amp; Salkind, N. J. (2014). <em>Using <span>SPSS</span> for <span>Windows</span> and <span>Macintosh</span>: Analyzing and understanding data</em> (Seventh edition.). Pearson.
 </div>
-<div>
-<p>Kline, R. B. (2016). <em>Principles and practice of structural equation modeling</em> (4th ed.). Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a></p>
+<div id="ref-noauthor_how_nodate" class="csl-entry">
+How can <span>I</span> do post-hoc pairwise comparisons in <span>R</span>? <span><span></span></span> <span>R</span> <span>FAQ</span>. (n.d.). In <em>UCLA Institute for Digital Research &amp; Educaton</em>. Retrieved January 19, 2021, from <a href="https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/">https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/</a>
 </div>
-<div>
-<p>Mallinckrodt, B., Miles, J. R., &amp; Levy, J. J. (2014). The scientist-practitioner-advocate model: Addressing contemporary training needs for social justice advocacy. <em>Training and Education in Professional Psychology</em>, <em>8</em>(4), 303–311. <a href="https://doi.org/10.1037/tep0000045">https://doi.org/10.1037/tep0000045</a></p>
+<div id="ref-jhangiani_research_2019" class="csl-entry">
+Jhangiani, R. S., Chiang, I.-C. A., Cuttler, C., &amp; Leighton, D. C. (2019). <em>Research <span>Methods</span> in <span>Psychology</span></em>. <a href="https://doi.org/10.17605/OSF.IO/HF7DQ">https://doi.org/10.17605/OSF.IO/HF7DQ</a>
 </div>
-<div>
-<p>Navarro, D. (2020a). <em>Book: Learning Statistics with R - A tutorial for Psychology Students and other Beginners</em>. Open Education Resource (OER) LibreTexts Project. <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)">https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)</a></p>
+<div id="ref-kabacoff_power_2017" class="csl-entry">
+Kabacoff, R. I. (2017). Power <span>Analysis</span>. In <em>Quick-R by datacamp</em>. <a href="https://www.statmethods.net/stats/power.html">https://www.statmethods.net/stats/power.html</a>
 </div>
-<div>
-<p>Navarro, D. (2020b). Chapter 14: Comparing Several Means (One-Way ANOVA). In <em>Book: Learning Statistics with R - A tutorial for Psychology Students and other Beginners</em>. Open Education Resource (OER) LibreTexts Project. <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)">https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)</a></p>
+<div id="ref-kline_principles_2016" class="csl-entry">
+Kline, R. B. (2016). <em>Principles and practice of structural equation modeling</em> (4th ed.). Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a>
 </div>
-<div>
-<p>Tran, A. G. T. T., &amp; Lee, R. M. (2014). You speak English well! Asian Americans’ reactions to an exceptionalizing stereotype. <em>Journal of Counseling Psychology</em>, <em>61</em>(3), 484–490. <a href="https://doi.org/10.1037/cou0000034">https://doi.org/10.1037/cou0000034</a></p>
+<div id="ref-mallinckrodt_scientist-practitioner-advocate_2014" class="csl-entry">
+Mallinckrodt, B., Miles, J. R., &amp; Levy, J. J. (2014). The scientist-practitioner-advocate model: <span>Addressing</span> contemporary training needs for social justice advocacy. <em>Training and Education in Professional Psychology</em>, <em>8</em>(4), 303–311. <a href="https://doi.org/10.1037/tep0000045">https://doi.org/10.1037/tep0000045</a>
 </div>
-<div>
-<p>Watson, P. (2020). Rules of thumb on magnitudes of effect sizes. In <em>MRC Cognition and Brain Sciences Unit, University of Cambridge</em>. <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a></p>
+<div id="ref-navarro_book_2020" class="csl-entry">
+Navarro, D. (2020a). <em>Book: <span>Learning</span> <span>Statistics</span> with <span>R</span> - <span>A</span> tutorial for <span>Psychology</span> <span>Students</span> and other <span>Beginners</span></em>. Open Education Resource (OER) LibreTexts Project. <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)">https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)</a>
 </div>
-<div>
-<p>Zach. (2019). How to Read the F-Distribution Table. In <em>Statology</em>. <a href="https://www.statology.org/how-to-read-the-f-distribution-table/">https://www.statology.org/how-to-read-the-f-distribution-table/</a></p>
+<div id="ref-navarro_chapter_2020" class="csl-entry">
+Navarro, D. (2020b). Chapter 14: <span>Comparing</span> <span>Several</span> <span>Means</span> (<span>One</span>-<span>Way</span> <span>ANOVA</span>). In <em>Book: <span>Learning</span> <span>Statistics</span> with <span>R</span> - <span>A</span> tutorial for <span>Psychology</span> <span>Students</span> and other <span>Beginners</span></em>. Open Education Resource (OER) LibreTexts Project. <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)">https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)</a>
+</div>
+<div id="ref-tran_you_2014" class="csl-entry">
+Tran, A. G. T. T., &amp; Lee, R. M. (2014). You speak <span>English</span> well! <span>Asian</span> <span>Americans</span>’ reactions to an exceptionalizing stereotype. <em>Journal of Counseling Psychology</em>, <em>61</em>(3), 484–490. <a href="https://doi.org/10.1037/cou0000034">https://doi.org/10.1037/cou0000034</a>
+</div>
+<div id="ref-watson_rules_2020" class="csl-entry">
+Watson, P. (2020). Rules of thumb on magnitudes of effect sizes. In <em>MRC Cognition and Brain Sciences Unit, University of Cambridge</em>. <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a>
+</div>
+<div id="ref-zach_how_2019" class="csl-entry">
+Zach. (2019). How to <span>Read</span> the <span>F</span>-<span>Distribution</span> <span>Table</span>. In <em>Statology</em>. <a href="https://www.statology.org/how-to-read-the-f-distribution-table/">https://www.statology.org/how-to-read-the-f-distribution-table/</a>
 </div>
 </div>
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-chen_relationship_2018">
-<p>CHEN, T., XU, M., TU, J., WANG, H., &amp; NIU, X. (2018). Relationship between Omnibus and Post-hoc Tests: An Investigation of performance of the F test in ANOVA. <em>Shanghai Archives of Psychiatry</em>, <em>30</em>(1), 60–64. <a href="https://doi.org/10.11919/j.issn.1002-0829.218014">https://doi.org/10.11919/j.issn.1002-0829.218014</a></p>
-</div>
-<div id="ref-crump_programming_2018">
-<p>Crump, M. J. C. (2018). <em>Programming for Psychologists: Data Creation and Analysis</em>. <a href="https://crumplab.github.io/programmingforpsych/index.html">https://crumplab.github.io/programmingforpsych/index.html</a></p>
-</div>
-<div id="ref-green_using_2014">
-<p>Green, S. B., &amp; Salkind, N. J. (2014). <em>Using SPSS for Windows and Macintosh: Analyzing and understanding data</em> (Seventh edition.). Pearson.</p>
-</div>
-<div id="ref-noauthor_how_nodate">
-<p>How can I do post-hoc pairwise comparisons in R? R FAQ. (n.d.). In <em>UCLA Institute for Digital Research &amp; Educaton</em>. Retrieved January 19, 2021, from <a href="https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/">https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/</a></p>
-</div>
-<div id="ref-kabacoff_power_2017">
-<p>Kabacoff, R. I. (2017). Power Analysis. In <em>Quick-R by datacamp</em>. <a href="https://www.statmethods.net/stats/power.html">https://www.statmethods.net/stats/power.html</a></p>
-</div>
-<div id="ref-kline_principles_2016">
-<p>Kline, R. B. (2016). <em>Principles and practice of structural equation modeling</em> (4th ed.). Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a></p>
-</div>
-<div id="ref-navarro_book_2020">
-<p>Navarro, D. (2020a). <em>Book: Learning Statistics with R - A tutorial for Psychology Students and other Beginners</em>. Open Education Resource (OER) LibreTexts Project. <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)">https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)</a></p>
-</div>
-<div id="ref-navarro_chapter_2020">
-<p>Navarro, D. (2020b). Chapter 14: Comparing Several Means (One-Way ANOVA). In <em>Book: Learning Statistics with R - A tutorial for Psychology Students and other Beginners</em>. Open Education Resource (OER) LibreTexts Project. <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)">https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)</a></p>
-</div>
-<div id="ref-tran_you_2014">
-<p>Tran, A. G. T. T., &amp; Lee, R. M. (2014). You speak English well! Asian Americans’ reactions to an exceptionalizing stereotype. <em>Journal of Counseling Psychology</em>, <em>61</em>(3), 484–490. <a href="https://doi.org/10.1037/cou0000034">https://doi.org/10.1037/cou0000034</a></p>
-</div>
-<div id="ref-watson_rules_2020">
-<p>Watson, P. (2020). Rules of thumb on magnitudes of effect sizes. In <em>MRC Cognition and Brain Sciences Unit, University of Cambridge</em>. <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a></p>
-</div>
-<div id="ref-zach_how_2019">
-<p>Zach. (2019). How to Read the F-Distribution Table. In <em>Statology</em>. <a href="https://www.statology.org/how-to-read-the-f-distribution-table/">https://www.statology.org/how-to-read-the-f-distribution-table/</a></p>
 </div>
 </div>
             </section>

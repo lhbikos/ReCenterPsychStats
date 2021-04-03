@@ -5,8 +5,8 @@
 \documentclass[
   english,
 ]{book}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
@@ -37,7 +37,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={DRAFT: ReCentering Psych Stats},
+  pdftitle={ReCentering Psych Stats},
   pdfauthor={Lynette H Bikos, PhD, ABPP},
   pdflang={en},
   hidelinks,
@@ -83,7 +83,8 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -92,7 +93,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -115,12 +116,18 @@
   \usepackage{polyglossia}
   \setmainlanguage[]{english}
 \else
-  \usepackage[shorthands=off,main=english]{babel}
+  \usepackage[main=english]{babel}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\fi
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
-\title{DRAFT: ReCentering Psych Stats}
+\title{ReCentering Psych Stats}
 \author{Lynette H Bikos, PhD, ABPP}
 \date{}
 
@@ -131,19 +138,45 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
+\hypertarget{book-cover}{%
+\chapter*{BOOK COVER}\label{book-cover}}
+\addcontentsline{toc}{chapter}{BOOK COVER}
+
+\begin{figure}
+\centering
+\includegraphics{images/ReC_ANOVA_bookcover.png}
+\caption{An image of the book cover. It includes four quadrants of non-normal distributions representing gender, race/ethnicty, sustainability/global concerns, and journal articles}
+\end{figure}
+
 \hypertarget{preface}{%
 \chapter*{Preface}\label{preface}}
 \addcontentsline{toc}{chapter}{Preface}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts of the preface,introduction, and single chapter are released for the purpose of gaining formative feedback from a host of stakeholders. The document was last updated on 20 Jan 2021}
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 03 Apr 2021}
 
-To \emph{center} a variable in regression means to set its value at zero and interpret all other values in relation to this reference point. Regarding race and gender, researchers often center male and White at zero. Further, it is typical that research vignettes in statistics textbooks are similarly seated in a White, Western (frequently U.S.), heteronormative, framework. The purpose of this project is to create a set of open educational resources (OER) appropriate for doctoral and post-doctoral training that contribute to justice, equity, diversity, inclusion (JEDI), and social responsivity.
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
-Statistics training in doctoral programs are frequently taught with fee-for-use programs (e.g., SPSS/AMOS, SAS, MPlus) that may not be readily available to the post-doctoral professional. In recent years, there has been an increase and improvement in R packages (e.g., \emph{psych}, \emph{lavaan}) used for in analyses common to psychological research. Correspondingly, many graduate programs are transitioning to statistics training in R (free and open source). This is a challenge for post-doctoral psychologists who were trained with other software. This OER will offer statistics training with R and be, freely available on open science platforms under a Creative Commons Attribution - Non Commercial - Share Alike license {[}CC BY-NC-SA 4.0{]}.
+To \emph{center} a variable in regression means to set its value at zero and interpret all other values in relation to this reference point. Regarding race and gender, researchers often center male and White at zero. Further, it is typical that research vignettes in statistics textbooks are similarly seated in a White, Western (frequently U.S.), heteronormative, framework. The purpose of this project is to create a set of open educational resources (OER) appropriate for doctoral and post-doctoral training that contribute to a socially responsive pedagogy -- that is, it contributes to justice, equity, diversity, and inclusion.
 
-Training models for doctoral programs in HSP are commonly scholar-practitioner, scientist-practitioner, or clinical-scientist. An emerging model, the \emph{scientist-practitioner-advocacy} training model incorporates social justice advocacy so that graduates are equipped to recognize and address the sociocultural context of oppression and unjust distribution of resources and opportunities \citep{mallinckrodt_scientist-practitioner-advocate_2014}. In statistics textbooks, the use of research vignettes engages the learner around a tangible scenario for identifying independent variables, dependent variables, covariates, and potential mechanisms of change. Many students recall examples in Field's \citeyearpar{field_discovering_2012} popular statistics text: Viagra to teach one-way ANOVA, beer goggles for two-way ANOVA, and bushtucker for repeated measures. What if the research vignettes were investigations around JEDI/social responsivity and highlighted the scholarship of individuals whose identities are often marginalized?
+Statistics training in doctoral programs are frequently taught with fee-for-use programs (e.g., SPSS/AMOS, SAS, MPlus) that may not be readily available to the post-doctoral professional. In recent years, there has been an increase and improvement in R packages (e.g., \emph{psych}, \emph{lavaan}) used for in analyses common to psychological research. Correspondingly, many graduate programs are transitioning to statistics training in R (free and open source). This is a challenge for post-doctoral psychologists who were trained with other software. This OER will offer statistics training with R and be freely available (specifically in a GitHub respository and posted through GitHub Pages) under a Creative Commons Attribution - Non Commercial - Share Alike license {[}CC BY-NC-SA 4.0{]}.
 
-In this OER, research vignettes will be from recently published articles where: (a) the author's identity is from a group where scholarship is historically marginalized (e.g., BIPOC, LGBTQ+, emerging nations), (b) the research has a JEDI/social responsivity focus, (b) the lesson's statistic is used in the article, and (c) the data is shared publicly or there is sufficient information in the article to simulate the data for the chapter example(s) and practice problem(s).
+Training models for doctoral programs in HSP are commonly scholar-practitioner, scientist-practitioner, or clinical-scientist. An emerging model, the \emph{scientist-practitioner-advocacy} training model incorporates social justice advocacy so that graduates are equipped to recognize and address the sociocultural context of oppression and unjust distribution of resources and opportunities \citep{mallinckrodt_scientist-practitioner-advocate_2014}. In statistics textbooks, the use of research vignettes engages the learner around a tangible scenario for identifying independent variables, dependent variables, covariates, and potential mechanisms of change. Many students recall examples in Field's \citeyearpar{field_discovering_2012} popular statistics text: Viagra to teach one-way ANOVA, beer goggles for two-way ANOVA, and bushtucker for repeated measures. What if the research vignettes were more socially responsive?
+
+In this OER, research vignettes will be from recently published articles where:
+
+\begin{itemize}
+\tightlist
+\item
+  the author's identity is from a group where scholarship is historically marginalized (e.g., BIPOC, LGBTQ+, LMIC{[}low-middle income countries{]}),
+\item
+  the research is responsive to issues of justice, equity, inclusion, diversity,
+\item
+  the lesson's statistic is used in the article, and
+\item
+  there is sufficient information in the article to simulate the data for the chapter example(s) and practice problem(s); or it is publicly available.
+\end{itemize}
+
+In training for multicultural competence, the saying, ``A fish doesn't know that it's wet'' is often used to convey the notion that we are often unaware of our own cultural characteristics. In recent months and years, there has been an increased awakening to the institutional and systemic racism that our systems are perpetuating. Queuing from the water metaphor, I am hopeful that a text that is recentered in the ways I have described can contribute to \emph{changing the water} in higher education and in the profession of psychology.
 
 \hypertarget{copyright-with-open-access}{%
 \section*{Copyright with Open Access}\label{copyright-with-open-access}}
@@ -151,17 +184,32 @@ In this OER, research vignettes will be from recently published articles where: 
 
 This book is published under a a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA.
 
-Our GitHub open-source repository contains all of the text and source code for the book, including data and images.
+A \href{https://github.com/lhbikos/ReCenterPsychStats}{GitHub open-source repository} contains all of the text and source code for the book, including data and images.
+
+\hypertarget{acknowledgements}{%
+\chapter*{ACKNOWLEDGEMENTS}\label{acknowledgements}}
+\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENTS}
+
+As a doctoral student at the University of Kansas (1992-2005), I learned that ``a foreign language'' was required for graduation. \emph{Please note that as one who studies the intersections of global, vocational, and sustainable psychology, I regret that I do not have language skills beyond English.} This could have been met with credit from high school my rural, mid-Missouri high school did not offer such classes. This requirement would have typically been met with courses taken during an undergraduate program -- but my non-teaching degree in the University of Missouri's School of Education was exempt from this. The requirement could have also been met with a computer language (fortran, C++) -- I did not have any of those either. There was a tiny footnote on my doctoral degree plan that indicated that a 2-credit course, ``SPSS for Windows'' would substitute for the language requirement. Given that it was taught by my one of my favorite professors, I readily signed up. As it turns out, Samuel B. Green, PhD, was using the course to draft chapters in the textbook \citep{green_using_2014} that has been so helpful for so many. Unfortunately, Drs. Green (1947 - 2018) and Salkind (2947 - 2017) are no longer with us. I have worn out numerous versions of their text. Another favorite text of mine was Dr.~Barbara Byrne's \citeyearpar{byrne_structural_2016}, ``Structural Equation Modeling with AMOS.'' I loved the way she worked through each problem and paired it with a published journal article, so that the user could see how the statistical evaluation fit within the larger project/article. I took my tea-stained text with me to a workshop she taught at APA and was proud of the signature she added to it (a little catfur might have fallen out). Dr.~Byrne created SEM texts for a number of statistical programs (e.g., LISREL, EQS, MPlus). As I was learning R, I wrote Dr.~Byrne, asking if she had an edition teaching SEM/CFA with R. She promptly wrote back, saying that she did not have the bandwidth to learn a new statistics package. We lost Dr.~Byrne in December 2020. I am so grateful to these role models for their contributions to my statistical training. I am also grateful for the doctoral students who have taken my courses and are continuing to provide input for how to improve the materials.
+
+The inspiration for training materials that re*center statistics and research methods came from the \href{https://www.academics4blacklives.com/}{Academics for Black Survival and Wellness Initiative}. This project, co-founded by Della V. Mosley, Ph.D., and Pearis L. Bellamy, M.S., made clear the necessity and urgency for change in higher education and the profession of psychology.
+
+At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department. Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics \& Illustrations, Dominic Wilkinson, designed the logo and bookcover. Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am alo indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr.~Jhangiani's text \citeyearpar{jhangiani_research_2019} was the first OER I ever used and I was grateful for his encouraging conversation.
+
+Financial support for this text has been provided from the \emph{Call to Action on Equity, Inclusion, Diversity, Justice, and Social Responsivity
+Request for Proposals} grant from the Association of Psychology Postdoctoral and Internship Centers (2021-2022).
 
 \hypertarget{ReCintro}{%
-\chapter{INTRODUCTION}\label{ReCintro}}
+\chapter{Introduction}\label{ReCintro}}
+
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=cc9b7c0d-e5c3-4e4e-a469-acf7013ee761}{Screencasted Lecture Link}
 
 \hypertarget{what-to-expect-in-each-chapter}{%
 \section{What to expect in each chapter}\label{what-to-expect-in-each-chapter}}
 
-This textbook is intended as \emph{applied,} in that a primary goal is to help the scientist-practitioner-advocate use the statistic in a research problem and \emph{write it up} for a program evaluation, dissertation, or journal article. In support of that goal, I try to provide \emph{just enough} conceptual information so that the researcher can select the appropriate statistic (i.e., distinguishing between when ANOVA is appropriate and when regression is appropriate) and assign variables to their proper role (e.g., covariate, moderator, mediator).
+This textbook is intended as \emph{applied,} in that a primary goal is to help the scientist-practitioner-advocate use a variety of statistics in research problems and \emph{writing them up} for a program evaluation, dissertation, or journal article. In support of that goal, I try to provide just enough conceptual information so that the researcher can select the appropriate statistic (i.e., distinguishing between when ANOVA is appropriate and when regression is appropriate) and assign variables to their proper role (e.g., covariate, moderator, mediator).
 
-This conceptual approach does include step-by-step \emph{hand-calculations} (only we calculate them arithmetically in R) to provide a \emph{visceral feeling} of what is happening within the statistical algorithm that may be invisible to the researcher. Additionally, the conceptual review includes a review of the assumptions about the characteristics of the data and research design that are required for the statistic. Statistics can be daunting, so I have worked hard to establish a \emph{workflow} through each analysis.When possible, I include a flowchart that is referenced frequently in each chapter. The flowchart is to help the researcher keep track of their place in the many steps and choices that accompany even the simplest of analyses.
+This conceptual approach does include occasional, step-by-step, \emph{hand-calculations} (only we calculate them arithmetically in R) to provide a \emph{visceral feeling} of what is happening within the statistical algorithm that may be invisible to the researcher. Additionally, the conceptual review includes a review of the assumptions about the characteristics of the data and research design that are required for the statistic. Statistics can be daunting, so I have worked hard to establish a \emph{workflow} through each analysis. When possible, I include a flowchart that is referenced frequently in each chapter and assists the the researcher keep track of their place in the many steps and choices that accompany even the simplest of analyses.
 
 As with many statistics texts, each chapter includes a \emph{research vignette.} Somewhat unique to this resource is that the vignettes are selected from recently published articles. Each vignette is chosen with the intent to meet as many of the following criteria as possible:
 
@@ -170,7 +218,7 @@ As with many statistics texts, each chapter includes a \emph{research vignette.}
 \item
   the statistic that is the focus of the chapter was properly used in the article,
 \item
-  the author's identity is from a group where scholarship is historically marginalized (e.g., BIPOC, LGBTQ+, emerging nations),
+  the author's identity is from a group where scholarship is historically marginalized (e.g., BIPOC, LGBTQ+, LMIC {[}low middle income countries{]}),
 \item
   the research has a justice, equity, inclusion, diversity, and social responsivity focus and will contribute positively to a social justice pedagogy, and
 \item
@@ -179,41 +227,298 @@ As with many statistics texts, each chapter includes a \emph{research vignette.}
 
 In each chapter we employ \emph{R} packages that will efficiently calculate the statistic and the dashboard of metrics (e.g., effect sizes, confidence intervals) that are typically reported in psychological science.
 
-\hypertarget{if-you-are-new-to-r}{%
-\section{If You are New to R}\label{if-you-are-new-to-r}}
+\hypertarget{strategies-for-accessing-and-using-this-oer}{%
+\section{Strategies for Accessing and Using this OER}\label{strategies-for-accessing-and-using-this-oer}}
 
-In this section I will provide some orientation to using R in psychological research. I don't intend this text to be ``R from the ground up,'' but I will provide enough guidance that the individual can start working the problems.
-
-I will also link to tutorials that help individuals get started in R.
-
-\hypertarget{r-hygiene}{%
-\subsection{R Hygiene}\label{r-hygiene}}
-
-Many problems in R can be resolved with good ``R hygiene.'' I will review those practices here. I will also review the conventions I will try to consistently use throughout the text.
-
-Everything in a folder
-
-Although it is often considered good R etiquette to load all packages at the beginning of the script, this is not my practice. Each chapter will include a script that lists all the packages used, but I will open each package as we use it. This will provide a greater sense of which packages are needed for what task.
-
-\hypertarget{maximizing-learning-by-accessing-all-the-resources}{%
-\section{Maximizing Learning by Accessing all the Resources}\label{maximizing-learning-by-accessing-all-the-resources}}
-
-In this section I will talk about the options for using and learning the materials. Primarily these are:
+There are a number of ways you can access this resource. You may wish to try several strategies and then select which works best for you. I demonstrate these in the screencast that accompanies this chapter.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Open a new document of R, copying the script over and running it in a fresh document.
+  Simply follow along in the .html formatted document that is available on via GitHug Pages, and then
+
+  \begin{itemize}
+  \tightlist
+  \item
+    open a fresh .rmd file of your own, copying (or retyping) the script and running it
+  \end{itemize}
 \item
-  Forking the entire suite of materials from GitHub and working directly in the original R markdown documents with the option to annotate the material directly.
+  Locate the original documents at the \href{https://github.com/lhbikos/ReCenterPsychStats}{GitHub repository} . You can
+
+  \begin{itemize}
+  \tightlist
+  \item
+    open them to simply take note of the ``behind the scenes'' script
+  \item
+    copy/download individual documents that are of interest to you
+  \item
+    fork a copy of the entire project to your own GitHub site and further download it (in its entirety) to your personal workspace. The \href{https://desktop.github.com/}{GitHub Desktop app} makes this easy!
+  \end{itemize}
 \item
-  Forking the materials to adopt and or adapt for teaching.
+  Listen to the accompanying lectures (I think sound best when the speed is 1.75). The lectures are being recorded in Panopto and should include the closed captioning.
 \item
-  Listening to the accompanying lectures (I sound best when the speed is 1.75). I intend to record the lectures in Panopto which provides some closed captioning options.
-\item
-  Making use of the practice problems.
+  Provide feedback to me! If you fork a copy to your own GitHub repository, you can
+
+  \begin{itemize}
+  \tightlist
+  \item
+    open up an editing tool and mark up the document with your edits,
+  \item
+    start a discussion by leaving comments/questions, and then
+  \item
+    sending them back to me by committing and saving. I get an e-mail notiying me of this action. I can then review (accepting or rejecting) them and, if a discussion is appropriate, reply back to you.
+  \end{itemize}
 \end{enumerate}
+
+\hypertarget{if-you-are-new-to-r}{%
+\section{If You are New to R}\label{if-you-are-new-to-r}}
+
+R can be oveRwhelming. Jumping right into advanced statistics might not be the easiest way to start. However, in these chapters, I provide complete code for every step of the process, starting with uploading the data. To help explain what R script is doing, I sometimes write it in the chapter text; sometimes leave hastagged-comments in the chunks; and, particularly in the accompanying screencasted lectures, try to take time to narrate what the R script is doing.
+
+I've found that, somewhere on the internet, there's almost always a solution to what I'm trying to do. I am frequently stuck and stumped and have spent hours searching the internet for even the tiniest of things. When you watch my videos, you may notice that in my R studio, there is a ``scRiptuRe'' file. I takes notes on the solutions and scripts here -- using keywords that are meaningful to me so that when I need to repeat the task, I can hopefully search my own prior solutions and find a fix or a hint.
+
+\hypertarget{base-r}{%
+\subsection{Base R}\label{base-r}}
+
+The base program is free and is available here: \url{https://www.r-project.org/}
+
+Because R is already on my machine (and because the instructions are sufficient), I will not walk through the instllation, but I will point out a few things.
+
+\begin{itemize}
+\tightlist
+\item
+  Follow the instructions for your operating system (Mac, Windows, Linux)
+\item
+  The ``cran'' (I think ``cranium'') is the \emph{Comprehensive R Archive Network.} In order for R to run on your computer, you have to choose a location. Because proximity is somewhat related to processing speed, select one that is geographically ``close to you.''
+\item
+  You will see the results of this download on your desktop (or elsewhere if you chose to not have it appear there) but you won't ever use R through this platform.
+\end{itemize}
+
+\hypertarget{r-studio}{%
+\subsection{R Studio}\label{r-studio}}
+
+\emph{R Studio} is the desktop application I work in R. It's a separate download. Choose the free, desktop, option that is appropriate for your operating system: \url{https://www.rstudio.com/products/RStudio/}
+
+\begin{itemize}
+\tightlist
+\item
+  Upper right window: Includes several tabs; we frequently monitor the
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Environment: it lists the \emph{objects} that are available to you (e.g., dataframes)
+  \end{itemize}
+\item
+  Lower right window: has a number of helpful tabs.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Files: Displays the file structure in your computer's environment. Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.
+  \item
+    Packages: Lists the packages that have been installed. If you navigate to it, you can see if it is ``on.'' You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu. This information opens in the Help window.
+  \item
+    Viewer and Plots are helpful, later, when we can simultaneously look at our output and still work on our script.
+  \end{itemize}
+\item
+  Primary window
+
+  \begin{itemize}
+  \tightlist
+  \item
+    R Studio runs in the background(in the console). Very occasionally, I can find useful troubleshooting information here.
+  \item
+    More commonly, I open my R Markdown document so that it takes the whole screen and I work directly, right here.
+  \end{itemize}
+\item
+  \emph{R Markdown} is the way that many analysts write \emph{script}, conduct analyses, and even write up results. These are saved as .rmd files.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In R Studio, open an R Markdown document through File/New File/R Markdown
+  \item
+    Specify the details of your document (title, author, desired ouput)
+  \item
+    In a separate step, SAVE this document (File/Save{]} into a NEW FILE FOLDER that will contain anything else you need for your project (e.g., the data).
+  \item
+    \emph{Packages} are at the heart of working in R. Installing and activating packages require writing script.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{r-hygiene}{%
+\subsection{R Hygiene}\label{r-hygiene}}
+
+Many initial problems in R can be solved with good R hygiene. Here are some suggestions for basic practices. It can be tempting to ``skip this.'' However, in the first few weeks of class, these are the solutions I am presenting to my students.
+
+\hypertarget{everything-is-documented-in-the-.rmd-file}{%
+\subsubsection{Everything is documented in the .rmd file}\label{everything-is-documented-in-the-.rmd-file}}
+
+Although others do it differently, everything is in my .rmd file. That is, for uploading data and opening packages I write the code in my .rmd file. Why? Because when I read about what I did hours or years later, I have a permanent record of very critical things like (a) where my data is located, (b) what version I was using, and (c) what package was associated with the functions.
+
+\hypertarget{file-organization}{%
+\subsubsection{File organization}\label{file-organization}}
+
+File organization is a critical key to this:
+
+\begin{itemize}
+\tightlist
+\item
+  Create a project file folder.
+\item
+  Put the data file in it.
+\item
+  Open an R Markdown file.
+\item
+  Save it in the same file folder.
+\item
+  When your data and .rmd files are in the same folder (not your desktop, but a shared folder), they can be connected.
+\end{itemize}
+
+\hypertarget{chunks}{%
+\subsubsection{Chunks}\label{chunks}}
+
+The R Markdown document is an incredible tool for integrating text, tables, and analyses. This entire OER is written in R Markdown. A central feature of this is ``chunks.''
+
+The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i
+
+``Chunks'' start and end with with those three tic marks and will show up in a shaded box, like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hashtags let me write comments to remind myself what I did}
+\CommentTok{\#here I am simply demonstrating arithmetic (but I would normally be running code)}
+\DecValTok{2021} \SpecialCharTok{{-}} \DecValTok{1966}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 55
+\end{verbatim}
+
+Each chunk must open and close. If one or more of your tic marks get deleted, your chunk won't be read as such and your script will not run. The only thing in the chunks should be script for running R; you can hashtag-out script so it won't run.
+
+Although unnecessary, you can add a brief title for the chunk in the opening row, after the ``r.'' These create something of a table of contents of all the chunks -- making it easier to find what you did. You can access them in the ``Chunks'' tab at the bottom left of R Studio. If you wish to knit a document, you cannot have identical chunk titles.
+
+You can put almost anything you want in the space outside of tics. Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold, etc.) is found here: \url{https://rmarkdown.rstudio.com/authoring_basics.html}
+
+\hypertarget{packages}{%
+\subsubsection{Packages}\label{packages}}
+
+As scientist-practitioners (and not coders), we will rely on \emph{packages} to do our work for us. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, lavaan, apaTables).
+
+Researchers treat packages differently. In these lectures, I list all the packages we will use in an opening chunk that asks R to check to see if the package is installed, and if not, installs it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(psych))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"psych"}\NormalTok{)\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: psych
+\end{verbatim}
+
+To make a package operable, you need to open it through the library. This process must be repeated each time you restart R. I don't open the package (through the ``library(package\_name)'') command until it is time to use it. Especially for new users, I think it's important to connect the functions with the specific packages.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages ("psych")}
+\FunctionTok{library}\NormalTok{ (psych)}
+\end{Highlighting}
+\end{Shaded}
+
+If you type in your own ``install.packages'' code, hashtag it out once it's been installed. It is problematic to continue to re-run this code .
+
+\hypertarget{knitting}{%
+\subsubsection{Knitting}\label{knitting}}
+
+An incredible feature of R Markdown is its capacity to \emph{knit} to HTML, powerpoint, or word. If you access the .rmd files for this OER, you can use annotate or revise them to suit your purposes. If you redistribute them, though, please honor the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License with a citation.
+
+\hypertarget{troubleshooting-in-r-markdown}{%
+\subsection{tRoubleshooting in R maRkdown}\label{troubleshooting-in-r-markdown}}
+
+Hiccups are normal. Here are some ideas that I have found useful in getting unstuck.
+
+\begin{itemize}
+\tightlist
+\item
+  In an R script, you must have everything in order -- Every. Single. Time.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All the packages have to be in your library and activated; if you restart R, you need to reload each package.
+  \item
+    If you open an .rmd file and want a boxplot, you cannot just scroll down to that script. You need to run any \emph{prerequisite} script (like loading the package, importing data, putting the data in the global environment, etc.)
+  \item
+    Do you feel lost? clear your global environment (broom) and start at the top of the R script. Frequent, fresh starts are good.
+  \end{itemize}
+\item
+  Your .rmd file and your data need to be stored in the same file folder. These should be separate for separate projects, no matter how small.
+\item
+  Type any warnings you get into a search engine. Odds are, you'll get some decent hints in a manner of seconds. Especially at first, these are common errors:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The package isn't loaded (if you restarted R, you need to reload your packages)
+  \item
+    The .rmd file has been saved yet, or isn't saved in the same folder as the data
+  \item
+    Errors of punctuation or spelling
+  \end{itemize}
+\item
+  Restart R (it's quick -- not like restarting your computer)
+\item
+  If you receive an error indicating that a function isn't working or recognized, and you have loaded the package, type the name of the package in front of the function with two colons (e.g., psych::describe(df). If multiple packages are loaded with functions that have the same name, R can get confused.
+\end{itemize}
+
+\hypertarget{strategies-for-success}{%
+\subsection{stRategies for success}\label{strategies-for-success}}
+
+\begin{itemize}
+\tightlist
+\item
+  Engage with R, but don't let it overwhelm you.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The \emph{mechanical is also the conceptual}. Especially when it is \emph{simpler}, do try to retype the script into your own .rmd file and run it. Track down the errors you are making and fix them.
+  \item
+    If this stresses you out, move to simply copying the code into the .rmd file and running it. If you continue to have errors, you may have violated one of the best practices above (Is the package loaded? Are the data and .rmd files in the same place? Is all the prerequisite script run?).
+  \item
+    Still overwhelmed? Keep moving forward by downloading a copy of the .rmd file that accompanies any given chapter and just ``run it along'' with the lecture. Spend your mental power trying to understand what each piece does. Then select a practice problem that is appropriate for your next level of growth.
+  \end{itemize}
+\item
+  Copy script that works elsewhere and replace it with your datafile, variables, etc.\\
+\item
+  The leaRning curve is steep, but not impossible. Gladwell\citeyearpar{gladwell_outliers_2008} reminds us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.
+\item
+  Updates to R, R Studio, and the packages are NECESSARY, but can also be problematic. It could very well be that updates cause programs/script to fail (e.g., ``X has been deprecated for version X.XX''). Moreover, this very well could have happened between my distribution of these resources and your attempt to use it. My personal practice is to update R, R Studio, and the packages a week or two before each academic term.
+\item
+  Embrace your downward dog. Also, walk away, then come back.
+\end{itemize}
+
+\hypertarget{resources-for-getting-started}{%
+\subsection{Resources for getting staRted}\label{resources-for-getting-started}}
+
+R for Data Science: \url{https://r4ds.had.co.nz/}
+
+R Cookbook: \url{http://shop.oreilly.com/product/9780596809164.do}
+
+R Markdown homepage with tutorials: \url{https://rmarkdown.rstudio.com/index.html}
+
+R has cheatsheets for everything, here's one for R Markdown: \url{https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf}
+
+R Markdown Reference guide: \url{https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}
+
+Using R Markdown for writing reproducible scientific papers: \url{https://libscie.github.io/rmarkdown-workshop/handout.html}
+
+LaTeX equation editor: \url{https://www.codecogs.com/latex/eqneditor.php}
 
 \hypertarget{oneway}{%
 \chapter{ONE-WAY ANOVA}\label{oneway}}
@@ -231,7 +536,7 @@ One-way ANOVA can be used in experimental, quasi-experimental, and field studies
 \hypertarget{navigating-this-lesson}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson}}
 
-There is about 1 hour and 15 minutes of lecture. Add another 2ish hours to work through and digest the materials.
+There is about 2 hours and 20 minutes of lecture. If you work through the materials with me it would be good to add another two hours.
 
 \hypertarget{learning-objectives}{%
 \subsection{Learning Objectives}\label{learning-objectives}}
@@ -290,20 +595,20 @@ In preparing this chapter, I drew heavily from the following resource(s) that ar
   Chapter 5.5.2, Simulating data for one-way between subjects design with 3 levels from Matthew J. C. Crump's \href{https://crumplab.github.io/programmingforpsych/simulating-and-analyzing-data-in-r.html\#single-factor-anovas-data-simulation-and-analysis}{Programming for Psychologists: Data Creation and Analysis}
 \end{itemize}
 
-\hypertarget{packages}{%
-\subsection{Packages}\label{packages}}
+\hypertarget{packages-1}{%
+\subsection{Packages}\label{packages-1}}
 
 If hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#will install the package if not already installed}
-\CommentTok{#if(!require(gplots))\{install.packages("gplots")\} #easy plotting for simple ANOVA}
-\CommentTok{#if(!require(tidyverse))\{install.packages("tidyverse")\} #creating new variables and other handy functions}
-\CommentTok{#if(!require(psych))\{install.packages("psych")\} #for descriptive statistics and writing them as csv files}
-\CommentTok{#if(!require(lsr))\{install.packages("lsr")\} #produces effect sizes}
-\CommentTok{#if(!require(pwr))\{install.packages("pwr")\} #estimating sample sizes and power analysis}
-\CommentTok{#if(!require(apaTAbles))\{install.packages("apaTables")\} #produces an APA style table for ANOVAs and other models}
+\CommentTok{\#will install the package if not already installed}
+\CommentTok{\#if(!require(gplots))\{install.packages("gplots")\} \#easy plotting for simple ANOVA}
+\CommentTok{\#if(!require(tidyverse))\{install.packages("tidyverse")\} \#creating new variables and other handy functions}
+\CommentTok{\#if(!require(psych))\{install.packages("psych")\} \#for descriptive statistics and writing them as csv files}
+\CommentTok{\#if(!require(lsr))\{install.packages("lsr")\} \#produces effect sizes}
+\CommentTok{\#if(!require(pwr))\{install.packages("pwr")\} \#estimating sample sizes and power analysis}
+\CommentTok{\#if(!require(apaTAbles))\{install.packages("apaTables")\} \#produces an APA style table for ANOVAs and other models}
 \end{Highlighting}
 \end{Shaded}
 
@@ -360,46 +665,18 @@ The \emph{exceptionalizing racial stereotype} is microaggression framed as inter
 
 The one-way ANOVA examples we are simulating represent the post-only design which investigated three levels of the exceptionalizing stereotype in a sample of Asian American participants. This experimental design involved a confederate (posing as a peer) whose parting comment fell into the low racial loading, high racial loading, or control conditions.
 
-\begin{longtable}[]{@{}llll@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.24}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.18}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.27}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.31}}@{}}
 \toprule
-\begin{minipage}[b]{0.21\columnwidth}\raggedright
-COND\strut
-\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
-Assignment\strut
-\end{minipage} & \begin{minipage}[b]{0.24\columnwidth}\raggedright
-Manipulation\strut
-\end{minipage} & \begin{minipage}[b]{0.28\columnwidth}\raggedright
-Post-test Observation\strut
-\end{minipage}\tabularnewline
+COND & Assignment & Manipulation & Post-test Observation \\
 \midrule
 \endhead
-\begin{minipage}[t]{0.21\columnwidth}\raggedright
-\textbf{Low} racial loading condition (\emph{n} = 22)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Random\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright
-Yes: ``Nice talking to you. You speak English well.''\strut
-\end{minipage} & \begin{minipage}[t]{0.28\columnwidth}\raggedright
-\textbf{Accurate}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.21\columnwidth}\raggedright
-\textbf{High} racial loading (\emph{n} = 23)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Random\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright
-Yes: ``Nice talking to you. You speak English well for an Asian.''\strut
-\end{minipage} & \begin{minipage}[t]{0.28\columnwidth}\raggedright
-\textbf{Accurate}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.21\columnwidth}\raggedright
-\textbf{Control} (\emph{n} = 23)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Random\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright
-No: ``Nice talking to you.''\strut
-\end{minipage} & \begin{minipage}[t]{0.28\columnwidth}\raggedright
-\textbf{Accurate}\strut
-\end{minipage}\tabularnewline
+\textbf{Low} racial loading condition (\emph{n} = 22) & Random & Yes: ``Nice talking to you. You speak English well.'' & \textbf{Accurate} \\
+\textbf{High} racial loading (\emph{n} = 23) & Random & Yes: ``Nice talking to you. You speak English well for an Asian.'' & \textbf{Accurate} \\
+\textbf{Control} (\emph{n} = 23) & Random & No: ``Nice talking to you.'' & \textbf{Accurate} \\
 \bottomrule
 \end{longtable}
 
@@ -422,16 +699,16 @@ Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2021}\NormalTok{) }\CommentTok{#sets a random seed so that we get the same results each time}
-\NormalTok{Accurate <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{1.18}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{0.80}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{1.83}\NormalTok{, }\DataTypeTok{sd =} \FloatTok{0.58}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{mean =} \FloatTok{1.76}\NormalTok{, }\DataTypeTok{sd =} \FloatTok{0.56}\NormalTok{))}\CommentTok{#sample size, M and SD for each group}
-\NormalTok{Accurate[Accurate}\OperatorTok{>}\DecValTok{3}\NormalTok{]<-}\DecValTok{3} \CommentTok{#set upper bound for DV}
-\NormalTok{Accurate[Accurate}\OperatorTok{<}\DecValTok{0}\NormalTok{]<-}\DecValTok{0} \CommentTok{#set lower bound for DV}
-\NormalTok{ID<-}\KeywordTok{factor}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{90}\NormalTok{)) }\CommentTok{#IDs for participants}
-\NormalTok{COND<-}\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{)) }\CommentTok{#name factors and identify how many in each group; should be in same order as first row of script}
-\NormalTok{Acc_sim30 <-}\KeywordTok{data.frame}\NormalTok{(ID, COND, Accurate) }\CommentTok{#groups the 3 variables into a single df:  ID#, DV, condition}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2021}\NormalTok{) }\CommentTok{\#sets a random seed so that we get the same results each time}
+\NormalTok{Accurate }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\FloatTok{1.18}\NormalTok{, }\AttributeTok{sd=}\FloatTok{0.80}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\FloatTok{1.83}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.58}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \FloatTok{1.76}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.56}\NormalTok{))}\CommentTok{\#sample size, M and SD for each group}
+\NormalTok{Accurate[Accurate}\SpecialCharTok{\textgreater{}}\DecValTok{3}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{3} \CommentTok{\#set upper bound for DV}
+\NormalTok{Accurate[Accurate}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{0} \CommentTok{\#set lower bound for DV}
+\NormalTok{ID}\OtherTok{\textless{}{-}}\FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{90}\NormalTok{)) }\CommentTok{\#IDs for participants}
+\NormalTok{COND}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{)) }\CommentTok{\#name factors and identify how many in each group; should be in same order as first row of script}
+\NormalTok{Acc\_sim30 }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(ID, COND, Accurate) }\CommentTok{\#groups the 3 variables into a single df:  ID\#, DV, condition}
 
-\CommentTok{#to write it to an outfile}
-\KeywordTok{write.table}\NormalTok{(Acc_sim30, }\DataTypeTok{file=}\StringTok{"newAcc30.csv"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{","}\NormalTok{, }\DataTypeTok{col.names=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{row.names=}\OtherTok{FALSE}\NormalTok{)}
+\CommentTok{\#to write it to an outfile}
+\FunctionTok{write.table}\NormalTok{(Acc\_sim30, }\AttributeTok{file=}\StringTok{"newAcc30.csv"}\NormalTok{, }\AttributeTok{sep=}\StringTok{","}\NormalTok{, }\AttributeTok{col.names=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{row.names=}\ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -445,11 +722,11 @@ If you are working this problem with me, you may use either the object we create
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#for a .csv file}
-\NormalTok{accSIM30 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{ (}\StringTok{"Acc_sim30_df.csv"}\NormalTok{, }\DataTypeTok{head =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{","}\NormalTok{)}
+\CommentTok{\#for a .csv file}
+\NormalTok{accSIM30 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{ (}\StringTok{"Acc\_sim30\_df.csv"}\NormalTok{, }\AttributeTok{head =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
 
-\CommentTok{# head=TRUE yields column headings;}
-\CommentTok{# sep = "," tells R that we are using a .csv file (comma separated values)}
+\CommentTok{\# head=TRUE yields column headings;}
+\CommentTok{\# sep = "," tells R that we are using a .csv file (comma separated values)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -469,7 +746,7 @@ Let's do both.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{str}\NormalTok{(accSIM30)}
+\FunctionTok{str}\NormalTok{(accSIM30)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -506,7 +783,7 @@ There are many ways to convert variables to factors; here's one of the simplest.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{accSIM30}\OperatorTok{$}\NormalTok{COND <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{COND)}
+\NormalTok{accSIM30}\SpecialCharTok{$}\NormalTok{COND }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{COND)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -514,7 +791,7 @@ Let's recheck the structure
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{str}\NormalTok{(accSIM30)}
+\FunctionTok{str}\NormalTok{(accSIM30)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -531,7 +808,7 @@ Here is the script to create a an ordered factor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{accSIM30}\OperatorTok{$}\NormalTok{COND <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{COND, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\StringTok{"Low"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
+\NormalTok{accSIM30}\SpecialCharTok{$}\NormalTok{COND }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{COND, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\StringTok{"Low"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -539,7 +816,7 @@ Again, we can check our work.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{str}\NormalTok{(accSIM30)}
+\FunctionTok{str}\NormalTok{(accSIM30)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -561,7 +838,7 @@ Let's continue data exploration. We will do this several ways so that you will h
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{aggregate}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, accSIM30, mean)}
+\FunctionTok{aggregate}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, mean)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -576,7 +853,7 @@ And now a standard deviation.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{aggregate}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, accSIM30, sd)}
+\FunctionTok{aggregate}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, sd)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -596,7 +873,7 @@ The package \emph{gplots} produces a simple line graph and the script is fairly 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(gplots)}
+\FunctionTok{library}\NormalTok{(gplots)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -613,11 +890,11 @@ The package \emph{gplots} produces a simple line graph and the script is fairly 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotmeans}\NormalTok{ (}\DataTypeTok{formula =}\NormalTok{ Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\CommentTok{#plots DV by IV}
-           \DataTypeTok{data =}\NormalTok{ accSIM30, }\CommentTok{#identifies the data frame}
-           \DataTypeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\CommentTok{#let's us specify a label for the x-axis}
-           \DataTypeTok{ylab =} \StringTok{"Accuracy of Confederate's Impression"}\NormalTok{, }\CommentTok{#let's us specify a label for the y-axis}
-           \DataTypeTok{n.label =} \OtherTok{TRUE}  \CommentTok{#we can even specify the sample size for each level of the group}
+\FunctionTok{plotmeans}\NormalTok{ (}\AttributeTok{formula =}\NormalTok{ Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\CommentTok{\#plots DV by IV}
+           \AttributeTok{data =}\NormalTok{ accSIM30, }\CommentTok{\#identifies the data frame}
+           \AttributeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\CommentTok{\#let\textquotesingle{}s us specify a label for the x{-}axis}
+           \AttributeTok{ylab =} \StringTok{"Accuracy of Confederate\textquotesingle{}s Impression"}\NormalTok{, }\CommentTok{\#let\textquotesingle{}s us specify a label for the y{-}axis}
+           \AttributeTok{n.label =} \ConstantTok{TRUE}  \CommentTok{\#we can even specify the sample size for each level of the group}
 \NormalTok{           )}
 \end{Highlighting}
 \end{Shaded}
@@ -626,8 +903,8 @@ The package \emph{gplots} produces a simple line graph and the script is fairly 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#this code could be more elegantly written in one row}
-\CommentTok{#plotmeans (formula = Accurate ~ COND, data = accSIM30, xlab = "Racial Loading Condition", ylab = "Accuracy of Confederate's Impression", n.label = TRUE)}
+\CommentTok{\#this code could be more elegantly written in one row}
+\CommentTok{\#plotmeans (formula = Accurate \textasciitilde{} COND, data = accSIM30, xlab = "Racial Loading Condition", ylab = "Accuracy of Confederate\textquotesingle{}s Impression", n.label = TRUE)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -635,7 +912,7 @@ Boxplots, with the \emph{boxplot2()} function provide another view of our data. 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{boxplot2}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30, }\DataTypeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Accuracy of Confederate's Impression"}\NormalTok{, }\DataTypeTok{n.label =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{boxplot2}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30, }\AttributeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Accuracy of Confederate\textquotesingle{}s Impression"}\NormalTok{, }\AttributeTok{n.label =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -722,7 +999,7 @@ Our grand (i.e., overall) mean is
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{Accurate)}
+\FunctionTok{mean}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{Accurate)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -734,7 +1011,7 @@ Subtracting the grand mean from each Accurate score yields a mean difference.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -751,14 +1028,16 @@ Subtracting the grand mean from each Accurate score yields a mean difference.
 
 \begin{verbatim}
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
+## x ggplot2::%+%()   masks psych::%+%()
+## x ggplot2::alpha() masks psych::alpha()
+## x dplyr::filter()  masks stats::filter()
+## x dplyr::lag()     masks stats::lag()
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{accSIM30 <-}\StringTok{ }\NormalTok{accSIM30 }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{m_dev =}\NormalTok{ Accurate}\OperatorTok{-}\KeywordTok{mean}\NormalTok{(Accurate))}
+\NormalTok{accSIM30 }\OtherTok{\textless{}{-}}\NormalTok{ accSIM30 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_dev =}\NormalTok{ Accurate}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(Accurate))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -766,7 +1045,7 @@ Pop quiz: What's the sum of our new \emph{m\_dev} variable? Let's check.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{m_dev)}
+\FunctionTok{mean}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{m\_dev)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -780,8 +1059,8 @@ Back to the point of sums of squares total, the sum of deviations around the gra
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{accSIM30 <-}\StringTok{ }\NormalTok{accSIM30 }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{m_devSQ =}\NormalTok{ m_dev}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{accSIM30 }\OtherTok{\textless{}{-}}\NormalTok{ accSIM30 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_devSQ =}\NormalTok{ m\_dev}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -789,7 +1068,7 @@ If we sum the squared mean deviations we will obtain the total variance (sums of
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{m_devSQ)}
+\FunctionTok{sum}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{m\_devSQ)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -826,7 +1105,7 @@ To calculate this, we start with the grand mean.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{Accurate)}
+\FunctionTok{mean}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{Accurate)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -838,7 +1117,7 @@ We also estimate the group means.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{aggregate}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, accSIM30, mean)}
+\FunctionTok{aggregate}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, mean)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -853,7 +1132,7 @@ This formula occurs in three chunks, representing the control, low, and high rac
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{30}\OperatorTok{*}\NormalTok{(}\FloatTok{1.876} \OperatorTok{-}\StringTok{ }\FloatTok{1.799}\NormalTok{)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{30}\OperatorTok{*}\NormalTok{(}\FloatTok{2.046} \OperatorTok{-}\StringTok{ }\FloatTok{1.799}\NormalTok{)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{30}\OperatorTok{*}\NormalTok{(}\FloatTok{1.474} \OperatorTok{-}\StringTok{ }\FloatTok{1.799}\NormalTok{)}\OperatorTok{^}\DecValTok{2}
+\DecValTok{30}\SpecialCharTok{*}\NormalTok{(}\FloatTok{1.876} \SpecialCharTok{{-}} \FloatTok{1.799}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{30}\SpecialCharTok{*}\NormalTok{(}\FloatTok{2.046} \SpecialCharTok{{-}} \FloatTok{1.799}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{30}\SpecialCharTok{*}\NormalTok{(}\FloatTok{1.474} \SpecialCharTok{{-}} \FloatTok{1.799}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -878,7 +1157,7 @@ Again, the formula is in three chunks -- but this time the calculations are \emp
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{aggregate}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, accSIM30, sd)}
+\FunctionTok{aggregate}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, sd)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -893,8 +1172,8 @@ A quick tangent -- this calculation demonstrates the relationship between standa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#just showing you that the variance (next) is the standard deviation, squared}
-\FloatTok{.4791969}\OperatorTok{^}\DecValTok{2}
+\CommentTok{\#just showing you that the variance (next) is the standard deviation, squared}
+\NormalTok{.}\DecValTok{4791969}\SpecialCharTok{\^{}}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -904,7 +1183,7 @@ A quick tangent -- this calculation demonstrates the relationship between standa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{aggregate}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, accSIM30, var)}
+\FunctionTok{aggregate}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, var)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -919,7 +1198,7 @@ We will use the second formula to calculate \(SS_R\). For each of the groups, we
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{.2296}\OperatorTok{*}\NormalTok{(}\DecValTok{30-1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\FloatTok{.3278}\OperatorTok{*}\NormalTok{(}\DecValTok{30-1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\FloatTok{.5857}\OperatorTok{*}\NormalTok{(}\DecValTok{30-1}\NormalTok{)}
+\NormalTok{.}\DecValTok{2296}\SpecialCharTok{*}\NormalTok{(}\DecValTok{30{-}1}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{3278}\SpecialCharTok{*}\NormalTok{(}\DecValTok{30{-}1}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{5857}\SpecialCharTok{*}\NormalTok{(}\DecValTok{30{-}1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -948,7 +1227,7 @@ In case it's not clear:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{33.15} \OperatorTok{+}\StringTok{ }\FloatTok{5.18}
+\FloatTok{33.15} \SpecialCharTok{+} \FloatTok{5.18}
 \end{Highlighting}
 \end{Shaded}
 
@@ -981,8 +1260,8 @@ Regarding the calculation of our model mean squares:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# mean squares for the model}
-\FloatTok{5.17689}\OperatorTok{/}\DecValTok{2}
+\CommentTok{\# mean squares for the model}
+\FloatTok{5.17689}\SpecialCharTok{/}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1005,8 +1284,8 @@ Regarding the calculation of our model residual squares:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# mean squares for the residual}
-\FloatTok{33.1499} \OperatorTok{/}\StringTok{ }\DecValTok{87}
+\CommentTok{\# mean squares for the residual}
+\FloatTok{33.1499} \SpecialCharTok{/} \DecValTok{87}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1034,7 +1313,7 @@ Regarding the calculation of our \emph{F}-ratio:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{2.588445} \OperatorTok{/}\StringTok{ }\FloatTok{0.3810333}
+\FloatTok{2.588445} \SpecialCharTok{/} \FloatTok{0.3810333}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1061,11 +1340,11 @@ Knowing only two of the values, challenge yourself to complete the rest of the t
 
 \begin{longtable}[]{@{}lrrr@{}}
 \toprule
-Game & Total (df, \emph{N} - 1) & Model (df, \emph{k} -1) & Residual (df, \(df_T - df_M\))\tabularnewline
+Game & Total (df, \emph{N} - 1) & Model (df, \emph{k} -1) & Residual (df, \(df_T - df_M\)) \\
 \midrule
 \endhead
-SS & 38.346(89) & 5.17689(2) & \_\_\_\_\_\_\tabularnewline
-MS & NA & \_\_\_\_\_\_ & \_\_\_\_\_\_\tabularnewline
+SS & 38.346(89) & 5.17689(2) & \_\_\_\_\_\_ \\
+MS & NA & \_\_\_\_\_\_ & \_\_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
 
@@ -1075,11 +1354,11 @@ MS & NA & \_\_\_\_\_\_ & \_\_\_\_\_\_\tabularnewline
 
 \begin{longtable}[]{@{}lrrr@{}}
 \toprule
-Answers & Total (df, \emph{N} - 1) & Model (df, \emph{k} -1) & Residual (df, \(df_T - df_M\))\tabularnewline
+Answers & Total (df, \emph{N} - 1) & Model (df, \emph{k} -1) & Residual (df, \(df_T - df_M\)) \\
 \midrule
 \endhead
-SS & 38.346(89) & 5.17689(2) & 33.1499(87)\tabularnewline
-MS & NA & 2.5885 & 0.38103\tabularnewline
+SS & 38.346(89) & 5.17689(2) & 33.1499(87) \\
+MS & NA & 2.5885 & 0.38103 \\
 \bottomrule
 \end{longtable}
 
@@ -1154,27 +1433,11 @@ From the \emph{psych} package, the \emph{describe()} function can be used to pro
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(psych)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'psych'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:ggplot2':
-## 
-##     %+%, alpha
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#we name the function}
-\CommentTok{#in parentheses we list the object that is the dataframe}
-\CommentTok{#the $ sign precedes the specific variable for which we want the information}
-\KeywordTok{describe}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{Accurate)}
+\FunctionTok{library}\NormalTok{(psych)}
+\CommentTok{\#we name the function}
+\CommentTok{\#in parentheses we list the object that is the dataframe}
+\CommentTok{\#the $ sign precedes the specific variable for which we want the information}
+\FunctionTok{describe}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{Accurate)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1187,16 +1450,16 @@ If we want descriptives for each level of the grouping variable (factor), we can
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#It is unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file and use that as a basis for APA style tables}
-\CommentTok{#In this script we can think "Accurate by COND" meaning that the descriptives for accuracy will be grouped by COND which is a categorical variable}
-\CommentTok{#mat = TRUE means we will get the output in matrix (table) form}
-\CommentTok{#digits = 3 means output will be rounded to 3 decimal places}
-\CommentTok{#data = accSIM30 is a different (I think easier) way to identify the object that holds the dataframe}
-\NormalTok{des.mat <-}\StringTok{ }\KeywordTok{describeBy}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{mat=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{digits=}\DecValTok{3}\NormalTok{, }\DataTypeTok{data=}\NormalTok{accSIM30) }
+\CommentTok{\#It is unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file and use that as a basis for APA style tables}
+\CommentTok{\#In this script we can think "Accurate by COND" meaning that the descriptives for accuracy will be grouped by COND which is a categorical variable}
+\CommentTok{\#mat = TRUE means we will get the output in matrix (table) form}
+\CommentTok{\#digits = 3 means output will be rounded to 3 decimal places}
+\CommentTok{\#data = accSIM30 is a different (I think easier) way to identify the object that holds the dataframe}
+\NormalTok{des.mat }\OtherTok{\textless{}{-}} \FunctionTok{describeBy}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits=}\DecValTok{3}\NormalTok{, }\AttributeTok{data=}\NormalTok{accSIM30) }
 
-\CommentTok{#describeBy(accSIM30$Accurate, accSIM30$COND, mat=TRUE)}
+\CommentTok{\#describeBy(accSIM30$Accurate, accSIM30$COND, mat=TRUE)}
 
-\NormalTok{des.mat }\CommentTok{#let's you see the matrix object}
+\NormalTok{des.mat }\CommentTok{\#let\textquotesingle{}s you see the matrix object}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1213,7 +1476,7 @@ If we want descriptives for each level of the grouping variable (factor), we can
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{write.csv}\NormalTok{ (des.mat, }\DataTypeTok{file=}\StringTok{"Table1.csv"}\NormalTok{) }\CommentTok{#optional to write it to a .csv file}
+\FunctionTok{write.csv}\NormalTok{ (des.mat, }\AttributeTok{file=}\StringTok{"Table1.csv"}\NormalTok{) }\CommentTok{\#optional to write it to a .csv file}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1223,7 +1486,7 @@ The \emph{Shapiro-Wilks} test evaluates the hypothesis that the distribution of 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{shapiro.test}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{Accurate)}
+\FunctionTok{shapiro.test}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{Accurate)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1250,7 +1513,7 @@ In R, Levene's test is found in the \emph{car} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(car)}
+\FunctionTok{library}\NormalTok{(car)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1261,12 +1524,6 @@ In R, Levene's test is found in the \emph{car} package.
 \begin{verbatim}
 ## 
 ## Attaching package: 'car'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:psych':
-## 
-##     logit
 \end{verbatim}
 
 \begin{verbatim}
@@ -1281,10 +1538,16 @@ In R, Levene's test is found in the \emph{car} package.
 ##     some
 \end{verbatim}
 
+\begin{verbatim}
+## The following object is masked from 'package:psych':
+## 
+##     logit
+\end{verbatim}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#Our set up is similar:  Accurate by condition, followed by the object that holds the dataframe, followed by the instruction to center the analysis around the mean}
-\KeywordTok{leveneTest}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, accSIM30, }\DataTypeTok{center=}\NormalTok{mean)}
+\CommentTok{\#Our set up is similar:  Accurate by condition, followed by the object that holds the dataframe, followed by the instruction to center the analysis around the mean}
+\FunctionTok{leveneTest}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, }\AttributeTok{center=}\NormalTok{mean)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1327,9 +1590,9 @@ By assigning the results of the \emph{aov()} function to an object (accBYcond) w
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#the script looks familiar, "Accurate by Condition"}
-\NormalTok{accBYcond <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30) }\CommentTok{#DV ~ IV  I say, "DV by IV"}
-\KeywordTok{summary}\NormalTok{ (accBYcond) }\CommentTok{#ANOVA output}
+\CommentTok{\#the script looks familiar, "Accurate by Condition"}
+\NormalTok{accBYcond }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30) }\CommentTok{\#DV \textasciitilde{} IV  I say, "DV by IV"}
+\FunctionTok{summary}\NormalTok{ (accBYcond) }\CommentTok{\#ANOVA output}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1355,7 +1618,7 @@ The object we created with the \emph{aov()} function is capable of producing muc
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{names}\NormalTok{(accBYcond)}
+\FunctionTok{names}\NormalTok{(accBYcond)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1371,7 +1634,7 @@ Let's try some other options.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{model.tables}\NormalTok{ (accBYcond, }\StringTok{"means"}\NormalTok{)}
+\FunctionTok{model.tables}\NormalTok{ (accBYcond, }\StringTok{"means"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1391,7 +1654,7 @@ Let's graph some of the data.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(accBYcond) }
+\FunctionTok{plot}\NormalTok{(accBYcond) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1421,7 +1684,7 @@ Hand calculation, then, is straightforward.:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{5.20} \OperatorTok{/}\StringTok{ }\NormalTok{(}\FloatTok{5.20} \OperatorTok{+}\StringTok{ }\FloatTok{33.15}\NormalTok{)}
+\FloatTok{5.20} \SpecialCharTok{/}\NormalTok{ (}\FloatTok{5.20} \SpecialCharTok{+} \FloatTok{33.15}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1433,8 +1696,8 @@ The \emph{lsr} package includes an eta-squared calculator. To use it, we simply 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(lsr)}
-\KeywordTok{etaSquared}\NormalTok{(accBYcond)}
+\FunctionTok{library}\NormalTok{(lsr)}
+\FunctionTok{etaSquared}\NormalTok{(accBYcond)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1488,7 +1751,7 @@ Helpful information about how to conduct post-hoc pairwise comparisons in R can 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pairwise.t.test}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{Accurate, accSIM30}\OperatorTok{$}\NormalTok{COND, }\DataTypeTok{p.adj =} \StringTok{"none"}\NormalTok{)}
+\FunctionTok{pairwise.t.test}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{Accurate, accSIM30}\SpecialCharTok{$}\NormalTok{COND, }\AttributeTok{p.adj =} \StringTok{"none"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1507,7 +1770,7 @@ Helpful information about how to conduct post-hoc pairwise comparisons in R can 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#can swap "bonf" or "holm" for p.adj}
+\CommentTok{\#can swap "bonf" or "holm" for p.adj}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1594,7 +1857,7 @@ We use it now to retrieve some contrast information. The code below is a planned
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary.lm}\NormalTok{(accBYcond)}
+\FunctionTok{summary.lm}\NormalTok{(accBYcond)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1655,15 +1918,15 @@ This is sensible because we likely hypothesize that any degree of racially loade
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#Contrast1  compares Control against the combined effects of Low and High.}
-\NormalTok{contrast1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\CommentTok{\#Contrast1  compares Control against the combined effects of Low and High.}
+\NormalTok{contrast1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 
-\CommentTok{#Contrast2 excludes Control; compares Low to High.}
-\NormalTok{contrast2 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\CommentTok{\#Contrast2 excludes Control; compares Low to High.}
+\NormalTok{contrast2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 
-\CommentTok{#binding the contrasts together}
-\KeywordTok{contrasts}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{COND)<-}\KeywordTok{cbind}\NormalTok{(contrast1, contrast2)}
-\NormalTok{accSIM30}\OperatorTok{$}\NormalTok{COND}
+\CommentTok{\#binding the contrasts together}
+\FunctionTok{contrasts}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{COND)}\OtherTok{\textless{}{-}}\FunctionTok{cbind}\NormalTok{(contrast1, contrast2)}
+\NormalTok{accSIM30}\SpecialCharTok{$}\NormalTok{COND}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1700,9 +1963,9 @@ Thinking back to the hand-calculations and contrast mapping, the table of weight
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#create a new object, the ANOVA looks the same, but it will now consider the contrasts}
-\NormalTok{accPlanned <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30)}
-\KeywordTok{summary.lm}\NormalTok{(accPlanned)}
+\CommentTok{\#create a new object, the ANOVA looks the same, but it will now consider the contrasts}
+\NormalTok{accPlanned }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30)}
+\FunctionTok{summary.lm}\NormalTok{(accPlanned)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1730,7 +1993,7 @@ Thinking back to the hand-calculations and contrast mapping, the table of weight
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{contrasts}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{COND)<-}\KeywordTok{cbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{contrasts}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{COND)}\OtherTok{\textless{}{-}}\FunctionTok{cbind}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1751,9 +2014,9 @@ In a polynomial analysis, the statistical analysis looks across the ordered mean
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{contrasts}\NormalTok{(accSIM30}\OperatorTok{$}\NormalTok{COND)<-}\KeywordTok{contr.poly}\NormalTok{(}\DecValTok{3}\NormalTok{)}
-\NormalTok{accTrend<-}\KeywordTok{aov}\NormalTok{(Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30)}
-\KeywordTok{summary.lm}\NormalTok{(accTrend)}
+\FunctionTok{contrasts}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{COND)}\OtherTok{\textless{}{-}}\FunctionTok{contr.poly}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\NormalTok{accTrend}\OtherTok{\textless{}{-}}\FunctionTok{aov}\NormalTok{(Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30)}
+\FunctionTok{summary.lm}\NormalTok{(accTrend)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1817,7 +2080,7 @@ Another common correction is the Brown and Forsythe \emph{F}-ratio. At this time
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{oneway.test}\NormalTok{ (Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30)}
+\FunctionTok{oneway.test}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1903,9 +2166,9 @@ In the script below, we simply add our values. So long as we have four values, t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(pwr)}
+\FunctionTok{library}\NormalTok{(pwr)}
 
-\KeywordTok{pwr.anova.test}\NormalTok{ (}\DataTypeTok{k =} \DecValTok{3}\NormalTok{, }\DataTypeTok{f =} \FloatTok{.25}\NormalTok{, }\DataTypeTok{sig.level =} \FloatTok{.05}\NormalTok{, }\DataTypeTok{power =} \FloatTok{.80}\NormalTok{)}
+\FunctionTok{pwr.anova.test}\NormalTok{ (}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{25}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1930,7 +2193,7 @@ We could actually re-run the power tool see how many fewer people we needed.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pwr.anova.test}\NormalTok{ (}\DataTypeTok{k =} \DecValTok{3}\NormalTok{, }\DataTypeTok{f =} \FloatTok{.386}\NormalTok{, }\DataTypeTok{sig.level =} \FloatTok{.05}\NormalTok{, }\DataTypeTok{power =} \FloatTok{.80}\NormalTok{)}
+\FunctionTok{pwr.anova.test}\NormalTok{ (}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{386}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1960,10 +2223,10 @@ Here I create Table 1 with means and standard deviations (plus a 95\% confidence
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(apaTables)}
-\CommentTok{# table.number = 1 assigns a table number to the top of the table }
-\CommentTok{# filename = "Table1.doc" writes the table to Microsoft Word and puts it in your project folder}
-\KeywordTok{apa.1way.table}\NormalTok{(}\DataTypeTok{iv=}\NormalTok{COND, }\DataTypeTok{dv=}\NormalTok{Accurate, }\DataTypeTok{show.conf.interval =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{data=}\NormalTok{accSIM30, }\DataTypeTok{table.number =} \DecValTok{1}\NormalTok{, }\DataTypeTok{filename =} \StringTok{"Table1.doc"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(apaTables)}
+\CommentTok{\# table.number = 1 assigns a table number to the top of the table }
+\CommentTok{\# filename = "Table1.doc" writes the table to Microsoft Word and puts it in your project folder}
+\FunctionTok{apa.1way.table}\NormalTok{(}\AttributeTok{iv=}\NormalTok{COND, }\AttributeTok{dv=}\NormalTok{Accurate, }\AttributeTok{show.conf.interval =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data=}\NormalTok{accSIM30, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1.doc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1990,7 +2253,7 @@ I will want to give the values of mean differences (\(M_{diff}\)) in the results
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{1.88} \OperatorTok{-}\StringTok{ }\FloatTok{1.47}\CommentTok{#calculating mean difference between control and high}
+\FloatTok{1.88} \SpecialCharTok{{-}} \FloatTok{1.47}\CommentTok{\#calculating mean difference between control and high}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2000,7 +2263,7 @@ I will want to give the values of mean differences (\(M_{diff}\)) in the results
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{2.05} \OperatorTok{-}\StringTok{ }\FloatTok{1.47}\CommentTok{#calculating mean difference between low and high}
+\FloatTok{2.05} \SpecialCharTok{{-}} \FloatTok{1.47}\CommentTok{\#calculating mean difference between low and high}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2010,7 +2273,7 @@ I will want to give the values of mean differences (\(M_{diff}\)) in the results
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{1.88} \OperatorTok{-}\StringTok{ }\FloatTok{2.05}\CommentTok{#calculating mean difference between  control and low}
+\FloatTok{1.88} \SpecialCharTok{{-}} \FloatTok{2.05}\CommentTok{\#calculating mean difference between  control and low}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2022,7 +2285,7 @@ Here I create Table 2 with results of the one-way ANOVA. The result in Microsoft
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{apa.aov.table}\NormalTok{ (accBYcond, }\DataTypeTok{table.number =} \DecValTok{2}\NormalTok{, }\DataTypeTok{filename =} \StringTok{"Table2.doc"}\NormalTok{)}
+\FunctionTok{apa.aov.table}\NormalTok{ (accBYcond, }\AttributeTok{table.number =} \DecValTok{2}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table2.doc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2046,7 +2309,7 @@ Regarding figures, there are a number of options. I find the \emph{plotmeans()} 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotmeans}\NormalTok{ (}\DataTypeTok{formula =}\NormalTok{ Accurate }\OperatorTok{~}\StringTok{ }\NormalTok{COND, }\DataTypeTok{data =}\NormalTok{ accSIM30, }\DataTypeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Accuracy of Confederate's Impression"}\NormalTok{, }\DataTypeTok{n.label =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{plotmeans}\NormalTok{ (}\AttributeTok{formula =}\NormalTok{ Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30, }\AttributeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Accuracy of Confederate\textquotesingle{}s Impression"}\NormalTok{, }\AttributeTok{n.label =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2072,32 +2335,32 @@ Code for simulated data with \emph{moreTalk} as the dependent variable is below.
 
 \begin{longtable}[]{@{}lcc@{}}
 \toprule
-Assignment Component & Points Possible & Points Earned\tabularnewline
+Assignment Component & Points Possible & Points Earned \\
 \midrule
 \endhead
-1. Simulate (or import) and format data & 5 & \_\_\_\_\_\tabularnewline
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_\tabularnewline
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_\tabularnewline
-4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_\tabularnewline
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_\tabularnewline
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_\tabularnewline
-7. Explanation to grader & 5 & \_\_\_\_\_\tabularnewline
-\textbf{Totals} & 35 & \_\_\_\_\_\tabularnewline
+1. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
+2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
+3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
+4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
+5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
+6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
+7. Explanation to grader & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 35 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2021}\NormalTok{) }\CommentTok{#sets a random seed so that we get the same results each time}
-\NormalTok{moreTalk <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{mean=}\OperatorTok{-}\NormalTok{.}\DecValTok{82}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{0.91}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{mean=}\OperatorTok{-}\FloatTok{0.39}\NormalTok{, }\DataTypeTok{sd =} \FloatTok{0.66}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{mean =} \FloatTok{-0.04}\NormalTok{, }\DataTypeTok{sd =} \FloatTok{0.71}\NormalTok{))}\CommentTok{#sample size, M and SD for each group}
-\NormalTok{moreTalk[moreTalk}\OperatorTok{>}\DecValTok{2}\NormalTok{]<-}\DecValTok{2} \CommentTok{#set upper bound for DV}
-\NormalTok{moreTalk[moreTalk<-}\DecValTok{2}\NormalTok{]<-}\OperatorTok{-}\DecValTok{2} \CommentTok{#set lower bound for DV}
-\NormalTok{ID<-}\KeywordTok{factor}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{90}\NormalTok{)) }\CommentTok{#IDs for participants}
-\NormalTok{COND<-}\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{)) }\CommentTok{#name factors and identify how many in each group; should be in same order as first row of script}
-\NormalTok{mTalk_sim30 <-}\KeywordTok{data.frame}\NormalTok{(ID, COND, moreTalk) }\CommentTok{#groups the 3 variables into a single df:  ID#, DV, condition}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2021}\NormalTok{) }\CommentTok{\#sets a random seed so that we get the same results each time}
+\NormalTok{moreTalk }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{82}\NormalTok{, }\AttributeTok{sd=}\FloatTok{0.91}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\SpecialCharTok{{-}}\FloatTok{0.39}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.66}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \SpecialCharTok{{-}}\FloatTok{0.04}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.71}\NormalTok{))}\CommentTok{\#sample size, M and SD for each group}
+\NormalTok{moreTalk[moreTalk}\SpecialCharTok{\textgreater{}}\DecValTok{2}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{2} \CommentTok{\#set upper bound for DV}
+\NormalTok{moreTalk[moreTalk}\OtherTok{\textless{}{-}}\DecValTok{2}\NormalTok{]}\OtherTok{\textless{}{-}}\SpecialCharTok{{-}}\DecValTok{2} \CommentTok{\#set lower bound for DV}
+\NormalTok{ID}\OtherTok{\textless{}{-}}\FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{90}\NormalTok{)) }\CommentTok{\#IDs for participants}
+\NormalTok{COND}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{)) }\CommentTok{\#name factors and identify how many in each group; should be in same order as first row of script}
+\NormalTok{mTalk\_sim30 }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(ID, COND, moreTalk) }\CommentTok{\#groups the 3 variables into a single df:  ID\#, DV, condition}
 
-\CommentTok{#to write it to an outfile}
-\KeywordTok{write.table}\NormalTok{(mTalk_sim30, }\DataTypeTok{file=}\StringTok{"newmTalk30.csv"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{","}\NormalTok{, }\DataTypeTok{col.names=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{row.names=}\OtherTok{FALSE}\NormalTok{)}
+\CommentTok{\#to write it to an outfile}
+\FunctionTok{write.table}\NormalTok{(mTalk\_sim30, }\AttributeTok{file=}\StringTok{"newmTalk30.csv"}\NormalTok{, }\AttributeTok{sep=}\StringTok{","}\NormalTok{, }\AttributeTok{col.names=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{row.names=}\ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2120,17 +2383,17 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 
 \begin{longtable}[]{@{}lcc@{}}
 \toprule
-Assignment Component & Points Possible & Points Earned\tabularnewline
+Assignment Component & Points Possible & Points Earned \\
 \midrule
 \endhead
-1. Simulate (or import) and format data & 5 & \_\_\_\_\_\tabularnewline
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_\tabularnewline
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_\tabularnewline
-4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_\tabularnewline
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_\tabularnewline
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_\tabularnewline
-7. Explanation to grader & 5 & \_\_\_\_\_\tabularnewline
-\textbf{Totals} & 35 & \_\_\_\_\_\tabularnewline
+1. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
+2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
+3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
+4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
+5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
+6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
+7. Explanation to grader & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 35 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
 
@@ -2143,18 +2406,18 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 
 \begin{longtable}[]{@{}lcc@{}}
 \toprule
-Assignment Component & Points Possible & Points Earned\tabularnewline
+Assignment Component & Points Possible & Points Earned \\
 \midrule
 \endhead
-1. Narrate the research vignette, describing the IV and DV & 5 & \_\_\_\_\_\tabularnewline
-2. Simulate (or import) and format data & 5 & \_\_\_\_\_\tabularnewline
-3. Evaluate statistical assumptions & 5 & \_\_\_\_\_\tabularnewline
-4. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_\tabularnewline
-5. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_\tabularnewline
-6. Describe approach for managing Type I error & 5 & \_\_\_\_\_\tabularnewline
-7. APA style results with table(s) and figure & 5 & \_\_\_\_\_\tabularnewline
-8 Explanation to grader & 5 & \_\_\_\_\_\tabularnewline
-\textbf{Totals} & 35 & \_\_\_\_\_\tabularnewline
+1. Narrate the research vignette, describing the IV and DV & 5 & \_\_\_\_\_ \\
+2. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
+3. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
+4. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
+5. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
+6. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
+7. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
+8 Explanation to grader & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 35 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
 
@@ -2183,12 +2446,12 @@ Assignment Component & Points Possible & Points Earned\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sessionInfo}\NormalTok{()}
+\FunctionTok{sessionInfo}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## R version 4.0.3 (2020-10-10)
+## R version 4.0.4 (2021-02-15)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 18362)
 ## 
@@ -2206,9 +2469,9 @@ Assignment Component & Points Possible & Points Earned\tabularnewline
 ## 
 ## other attached packages:
 ##  [1] apaTables_2.0.8 pwr_1.3-0       lsr_0.5         car_3.0-10     
-##  [5] carData_3.0-4   psych_2.0.12    forcats_0.5.0   stringr_1.4.0  
-##  [9] dplyr_1.0.2     purrr_0.3.4     readr_1.4.0     tidyr_1.1.2    
-## [13] tibble_3.0.4    ggplot2_3.3.3   tidyverse_1.3.0 gplots_3.1.1   
+##  [5] carData_3.0-4   forcats_0.5.0   stringr_1.4.0   dplyr_1.0.2    
+##  [9] purrr_0.3.4     readr_1.4.0     tidyr_1.1.2     tibble_3.0.4   
+## [13] ggplot2_3.3.3   tidyverse_1.3.0 gplots_3.1.1    psych_2.0.12   
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] httr_1.4.2         jsonlite_1.7.2     tmvnsim_1.0-2      modelr_0.1.8      
@@ -2220,13 +2483,13 @@ Assignment Component & Points Possible & Points Earned\tabularnewline
 ## [25] generics_0.1.0     ellipsis_0.3.1     withr_2.3.0        cli_2.2.0         
 ## [29] mnormt_2.0.2       magrittr_2.0.1     crayon_1.3.4       readxl_1.3.1      
 ## [33] evaluate_0.14      fs_1.5.0           fansi_0.4.1        nlme_3.1-151      
-## [37] xml2_1.3.2         foreign_0.8-81     MBESS_4.8.0        tools_4.0.2       
+## [37] xml2_1.3.2         foreign_0.8-81     MBESS_4.8.0        tools_4.0.4       
 ## [41] data.table_1.13.4  hms_0.5.3          lifecycle_0.2.0    munsell_0.5.0     
-## [45] reprex_0.3.0       zip_2.1.1          compiler_4.0.2     caTools_1.18.0    
-## [49] rlang_0.4.9        grid_4.0.2         rstudioapi_0.13    bitops_1.0-6      
+## [45] reprex_0.3.0       zip_2.1.1          compiler_4.0.4     caTools_1.18.0    
+## [49] rlang_0.4.9        grid_4.0.4         rstudioapi_0.13    bitops_1.0-6      
 ## [53] rmarkdown_2.6      gtable_0.3.0       abind_1.4-5        DBI_1.1.0         
 ## [57] curl_4.3           R6_2.5.0           lubridate_1.7.9.2  knitr_1.30        
-## [61] KernSmooth_2.23-18 stringi_1.5.3      parallel_4.0.2     Rcpp_1.0.5        
+## [61] KernSmooth_2.23-18 stringi_1.5.3      parallel_4.0.4     Rcpp_1.0.5        
 ## [65] vctrs_0.3.6        dbplyr_2.0.0       tidyselect_1.1.0   xfun_0.19
 \end{verbatim}
 
