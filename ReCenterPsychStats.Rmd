@@ -1,6 +1,6 @@
 --- 
 lang: "en"
-title: "ReCentering Psych Stats"
+title: "ReCentering Psych Stats:  Analysis of Variance"
 author: "Lynette H Bikos, PhD, ABPP"
 knit: "bookdown::render_book"
 site:  bookdown::bookdown_site
@@ -31,7 +31,7 @@ output:
         scroll_highlight: yes
         collapse: section
         before: |
-          <li><a href="./"><strong>ReCentering Psych Stats</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+          <li><a href="./"><strong>ReCentering Psych Stats:  Analysis of Variance</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
         after: |
           #<li><a href="https:link" target="_blank">Open access book-in-progress</br>
           <li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
@@ -281,11 +281,592 @@ LaTeX equation editor:  https://www.codecogs.com/latex/eqneditor.php
 
 <!--chapter:end:01-Introduction.Rmd-->
 
+
+# Ready_Set_R {#Ready}
+
+[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d080e0bb-e52e-4f38-9965-aa67010b3567 ) 
+ 
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+```{r include=FALSE}
+options(scipen=999)#eliminates scientific notation
+```
+
+With the goal of creating a common, system-wide approach to using the platorm, this lesson is primarily created for CPY and I/O doctoral students who are entering the "stats sequence."I hope it will also be useful for others (including faculty) who are also making the transition to R. 
+ 
+## Navigating this Lesson
+
+There is about 45 minutes of lecture.  
+
+### Learning Objectives
+
+Learning objectives from this lecture include the following:
+
+* Downloading/installing R's parts and pieces.
+* Using R-Markdown as the interface for running R analyses and saving the script.
+* Recognizing and adopting best practices for "R hygiene."
+* Identifying effective strategies for troubleshooting R hiccups.
+
+##  downloading and installing R
+
+### So many paRts and pieces
+
+Before we download, it may be helpful to understand some of R's many parts and pieces.
+
+The base software is free and is available [here](https://www.r-project.org/)  
+
+Because R is already on my machine (and because the instructions are sufficient), I will not walk through the demo, but I will point out a few things.
+
+* The "cran" (I think "cranium") is the *Comprehensive R Archive Network.*  In order for R to run on your computer, you have to choose a location -- and it should be geographically "close to you." 
+  + Follow the instructions for your operating system (Mac, Windows, Linux)
+  + You will see the results of this download on your desktop (or elsewhere if you chose to not have it appear there) but you won't ever use R through this platform.
+* [R Studio](https://www.rstudio.com/products/RStudio/) is the way in which we operate R.  It's a separate download. Choose the free, desktop, option that is appropriate for your operating system:   
+* *R Markdown* is the way that many analysts write *script*, conduct analyses, and even write up results.  These are saved as .rmd files.
+  + In R Studio, open an R Markdown document through File/New File/R Markdown
+  + Specify the details of your document (title, author, desired ouput)
+  + In a separate step, SAVE this document (File/Save] into a NEW FILE FOLDER that will contain anything else you need for your project (e.g., the data).
+  + *Packages* are at the heart of working in R.  Installing and activating packages require writing script.
+  
+**Note** If you have an enterprise-owned machine (e.g,. in my specific context, if you are a faculty/staff or have a lab with an SPU-issued laptops) there are complications caused by how documents are stored. You will likely need to consult with your computer and technology support office.
+  
+### oRienting to R Studio (focusing only on the things we will be using first and most often)
+
+* Upper right window
+  + Environment:  lists the *objects* that are available to you (e.g., dataframes)
+* Lower right window
+  + Files:  Mimics your computer's environment.  Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.
+  + Packages:  Lists the packages that have been installed.  If you navigate to it, you can see if it is "on."  You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu.  This information actually opens in the Help window.
+  + Viewer and Plots are helpful, later, when we can simultaneously look at our output and still work on our script.
+* Primary window
+  + R Studio runs in the background.  Very occasionally, I can find useful troubleshooting information here.
+  + More commonly, I open my R Markdown document so that it takes the whole screen and I work directly, right here.
+  
+## best pRactices
+
+### Setting up the file
+
+* Create a project file folder.
+* Put the data file in it.
+* Open an R Markdown file.
+* Save it in the same file folder.
+
+### Script in chunks and everything else in the "inline text" sections
+
+The only thing in the chunks should be script for running R cide.  You can also hashtag-out script so it won't run.
+
+You can put almost anything you want in the "inline text with simple formatting."  Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold, etc.) is found here:  https://rmarkdown.rstudio.com/authoring_basics.html
+
+"Chunks" start and end with with those three little tic marks and will show up in a shaded box.  Chunks have three symbols in their upper right.  Those controls will DISAPPEAR (if there are "```" )and your script wont run) if those tic marks are missing or showing up in the wrong place.
+
+The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box.  You can also insert a chunk with the keyboard shortcut:  CTRL/ALT/i
+
+### Managing packages
+
+Note that I have hashtags in front my "install.packages" commands.  This is because I have already installed them.  
+
+* You can run the script by temporarily removing the hashtag and running each command individually by placing your cursor at the end of the line of code and entering CNTRL/ENTER as a keyboard shortcut.  
+* You can run the entire chunk by selecting the green arrow in the upper right of the chunk.
+* You can run all the script prior to any chunk by clicking the middle symbol (grey down arrow)
+
+ONCE A PACKAGE HAS BEEN INSTALLED, replace the hashtag.  It makes a mess to continue to re-run this code for installing packages (after they have already been installed).  
+
+To make a package operable, you need to open it through the library.  This process must be repeated EACH TIME YOU RESTART R.
+
+```{r message=FALSE, warning=FALSE}
+#install.packages ("foreign")
+#install.packages ("psych")
+library (psych)
+```
+
+It takes awhile to learn which package is used for which task. A complete analysis (e.g., preliminary statistics, primary statistics, creating tables and figures) will require a number of packages. Many researchers like to list them all at in a complete section near the top of an .rmd file. In my lessons, I will include an "install-if-needed" section at the top that (hopefully) includes all the packages we use. My personal practice is to open the package (using the "library(package)" command) as I need it.  For me this serves two purposes:
+
+* It helps me remember (and continue to learn) which package is used for which task, and
+* (Possibly) helps prevent packages who share function names to not get confused with each other.
+  - Another best practice for avoiding this problem is to name the package with two colons in front of the function (psych::describe)
+
+Below is an example of the script that will appear near the beginning of each lesson. When the hashtags are removed, it checks to see if these packages are available to the user.
+
+```{r }
+#will install the package if not already installed
+#if(!require(foreign)){install.packages("foreign")} #makes it possible to import data from packages, especially SPSS
+#if(!require(psych)){install.packages("psych")} #psych package is useful for a variety of things we do
+```
+
+### Upload the data 
+
+When conducted properly, the data will appear as an object in the global environment.  
+
+In the context of this OER, I will be simulating data right in each lesson for use in the lesson. This makes the web-based platform more *portable.* This means that when working the problems in the chapter we do not (a) write the data to a file and (b) import data from files. Because these are essential skills, I will demonstrate this process here -- starting with simulating data.
+
+At this point, simulating data is beyond the learning goals I have established for the chapter.  I do need to include the code so that we get some data. The data I am simulating is used in the [one-way ANOVA lesson](#oneway). The data is from the Tran and Lee [-@tran_you_2014] random clinical trial. 
+
+In this simulation, I am simply creating an ID number, a condition (High, Low, Control), and a scoree on the dependent variable, "Accurate." More information about this study is included in the [one-way ANOVA chapter](#oneway). 
+
+```{r }
+set.seed(2021) #sets a random seed so that we get the same results each time
+Accurate <- c(rnorm(30, mean=1.18, sd=0.80), rnorm(30, mean=1.83, sd = 0.58), rnorm(30, mean = 1.76, sd = 0.56))#sample size, M and SD for each group
+Accurate[Accurate>3]<-3 #set upper bound for DV
+Accurate[Accurate<0]<-0 #set lower bound for DV
+ID<-factor(seq(1,90)) #IDs for participants
+COND<-c(rep("High", 30), rep("Low", 30), rep("Control", 30)) #name factors and identify how many in each group; should be in same order as first row of script
+Acc_sim30 <-data.frame(ID, COND, Accurate) #groups the 3 variables into a single df:  ID#, DV, condition
+```
+
+At this point, this data lives only in this .rmd file after the above code is run. Although there are numerous ways to export and import data, I have a preference for two.  
+
+#### To and from .csv files
+
+The first is to write the data to a .csv file. In your computer's environment (outside of R), these files are easily manipulated in Excel. I think of them as being "Excel lite" because although Excel can operate them, they lack some of the more advanced features of an Excel spreadsheet.
+
+In the code below, I identify the R object "Acc_sim30" and give it a filename, "to_CSV.csv".  This filename must have the .csv extension.  I also indicate that it should preserve the column names (but ignore row names; since we don't have row names).
+
+This file will save in the same folder as wherever you are using this .rmd file.
+
+```{r}
+#to write it to an outfile as a .csv
+write.table(Acc_sim30, file="to_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+Importing this object back into the R environment can be accomplished with some simple code. For the sake of demonstration, 
+
+```{r}
+#to save the df as an .csv (think "Excel lite") file on your computer; it should save in the same file as the .rmd file you are working with
+from_CSV <- read.csv ("to_CSV.csv", header = TRUE)
+```
+
+The advantage of working with .csv files is that it is then easy to inspect and manipulate them without R.  The disadvantage of .csv files is that each time they are imported they lose any formatting you may have meticulously assigned to them. 
+
+
+#### To and from .rds files
+
+While it is easy enough to rerun the code (or copy it from data prep .rmd and paste it into an .rmd you are using for advanced analysis), there is an easier way!  This is to save the data as an R object.  This preserves all the characteristics of the data.
+
+```{r}
+#to save the df as an .rds file on your computer; it should save in the same file as the .rmd file you are working with
+saveRDS(Acc_sim30, "to_Robject.rds")
+```
+
+This file will save to your computer (and you can send it to colleagues). However, it is not easy to "just open it" in Excel. To open an .rds file and use it (whether you created it or it is sent to you by a colleague), use the following code:
+
+```{r}
+from_rds <- readRDS("to_Robject.rds")
+```
+
+#### From SPSS files
+
+Your data may come to you in a variety of ways. One of the most common is SPSS. The *foreign* package is popular for importing SPSS data.  Below is code which would import an SPSS file *if I had created one*.  You'll see that this script is hashtagged out because I do not have an SPSS file.  
+
+```{r}
+#opening an SPSS file requires the foreign package which I opened earlier
+#from_SPSS <- foreign::read.spss ("SPSSdata.sav", use.value.labels = TRUE, to.data.frame = TRUE)
+```
+
+## quick demonstRation
+
+Let's run some simple descriptives. In the script below, I am using the *psych* package. Descriptive statistics will appear for all the data in the dataframe and the output will be rounded to three spaces.
+
+```{r}
+library(psych)
+round(psych::describe(Acc_sim30),3)
+```
+Because "ID" is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is "Accurate."  None-the-less, this provides an example of how to apply a package's function to a dataset.  As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.
+
+## the knitted file
+One of the coolest things about R Markdown is its capacity to *knit* to HTML, PPT, or WORD.  
+
+* In this OER, I am writing the lessons in R markdown (.rmd files), with the package *bookdown* as a helper, and knitting the files to the .html format. In prior years, I knitted these documents to .doc formats.  There are numerous possibilities!
+* The package *papaja* is designed to prepare APA manuscripts where the writing, statistics, and references are all accomplished in a single file. This process contributes to replicability and reproducibility.
+
+## tRoubleshooting in R maRkdown
+
+* In a given set of operations, you must run/execute each piece of code in order: every, single, time. That is, all the packages have to be in your library and activated.
+  + If you open an .rmd file, you cannot just scroll down to make a boxplot.  You need to run any *prerequisite* script (like loading files, putting the data in the global environment, etc.)
+  + Lost?  clear your global environment (broom icon in the upper right) and start over. Fresh starts are good.
+* Your .rmd file and your data need to be stored in the same file folder.  These should be separate for separate projects, no matter how small.
+* Type any warnings you get into a search engine.  Odds are, you'll get some decent hints in a manner of seconds.  Especially at first, these are common errors:
+  + The package isn't loaded
+  + The .rmd file has been saved yet, or isn't saved in the same folder as the data
+  + Errors of punctuation or spelling
+* Restart R (it's quick -- not like restarting your computer)
+
+## just *why* are we tRansitioning to R?
+
+* It (or at least it appears to be) is the futuRe.
+* SPSS site (and individual) license are increasingly expensive and limited (e.g,. we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to "do just about anything."
+* Most graduate psychology programs are scientist/practitionerin nature and include training in "high end" statistics.  Yet, many of your employing organizations will not have SPSS.  R is a free, universally accessible program, that our graduates can use anywhere.
+
+## stRategies for success
+
+* Engage with R, but don't let it overwhelm you.
+  + The *mechanical is also the conceptual*. Especially while it's *simpler*, do try to retype the script into your own .rmd file and run it. Track down the errors you are making and fix them.
+  + If this stresses you out, move to simply copying the code into the .rmd file and running it.  If you continue to have errors, you may have violated one of the best practices above (ask, "Is the package activated?" "Are the data and .rmd files in the same place?" "Is all the prerequisite script run?").
+  + Still overwhelmed?  Keep moving forward by (retrieving the original.rmd file from the GitHub repository) opening a copy of the .rmd file and just "run it along" with the lecture. Spend your mental power trying to understand what each piece does so you can translate it for any homework assignments. My suggestions for practice aspire to be parallel to the lecture with no sneaky trix.
+* Copy script that works elsewhere and replace it with your datafile, variables, etc.  
+* The leaRning curve is steep, but not impossible.  Gladwell [-@gladwell_outliers_2008] reminds us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.
+* Updates to R, R Studio, and the packages are NECESSARY, but can also be problematic.  It could very well be that updates cause programs/script to fail (e.g., "X has been deprecated for version X.XX").  Moreover, this very well could have happened between our distribution of the lecture and your attempt to use it days later. My practice is to update R, R Studio, and my packages about two weeks prior to the start of each academic term.
+* Embrace your downward dog.  Also, walk away, go for a bicycle ride, then come back.
+  
+
+## Resources for getting staRted
+
+R for Data Science:  https://r4ds.had.co.nz/
+
+R Cookbook:  http://shop.oreilly.com/product/9780596809164.do
+
+R Markdown homepage with tutorials:  https://rmarkdown.rstudio.com/index.html
+
+R has cheatsheets for everything, here's the one for R Markdown:  https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf 
+
+R Markdown Reference guide:  https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
+
+Using R Markdown for writing reproducible scientific papers:  https://libscie.github.io/rmarkdown-workshop/handout.html 
+
+Script for all of Field's text:  https://studysites.uk.sagepub.com/dsur/study/scriptfi.htm
+
+LaTeX equation editor:  https://www.codecogs.com/latex/eqneditor.php
+
+
+```{r include=FALSE}
+sessionInfo()
+```
+
+
+
+<!--chapter:end:02-ReadySetR.Rmd-->
+
+
+# waRming up {#waRmups}
+
+[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=fd132ba0-4bdc-47d4-94cd-ac40004a134b) 
+ 
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+```{r include=FALSE}
+options(scipen=999)#eliminates scientific notation
+```
+
+The beginning of any data analysis means familiarizing yourself with the data, that is, its distributional characteristics as well as its relations. 
+ 
+
+## Navigating this Lesson
+
+There is about 30 minutes of lecture.  
+
+The R markdown file used to create this lecture as well as all of the figures are available at the [OER's GitHub site](https://github.com/lhbikos/ReC_Topics).
+
+### Learning Objectives
+
+Learning objectives from this lecture include the following:
+
+* Produce descriptive statistics (means, standard deviations, skew, kurtosis), and correlation matrix, with the *psych* package
+* Produce plots of data
+* Interpret skew, kurtosis, correlations
+* Create an APA Style table and results section that includes means, standard deviations, and correlations
+
+### Planning for Practice
+
+This is designed as a "get (back) into it" assignment.  You will essentially work through this very same lecture, using the same dataframe -- just a different set of continuous variables.
+
+### Readings & Resources
+
+In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
+
+* Revelle, W. (2020). An introduction to the psych package: Part I: data entry and data description.
+  - Revelle is the author/creator of the *psych* package. His tutorial provides both technical and interpretive information. Read pages 1-17.
+* Lui, P. P. (2020). Racial Microaggression, Overt Discrimination, and Distress: (In)Direct Associations With Psychological Adjustment. *The Counseling Psychologist, 32*.
+  - We continue with the worked example from Lui; using simulated data for the lecture and homework assignment.
+ 
+```{r  include=FALSE}
+#will install the package if not already installed
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(psych)){install.packages("psych")}
+if(!require(apaTables)){install.packages("apaTables")}
+``` 
+
+We will use simulated data from Lui [-@lui_racial_2020] for simple data screening. Controlling for overt discrimination and neuroticism, Lui examined the degree to which racial microaggression contributed to negative affect, alcohol consumption, and drinking problems in African American, Asian American, and Latinx American college students (*N* = 713).
+
+Using the means, standard deviations, correlation matrix, and group sizes (*n*) I simulated the data. While the process of simulation is beyond the learning goals of this lesson (you can skip that part), I include it here so that it is easy to work the rest of the script.
+
+```{r}
+set.seed(210807)#sets the random seed so that we consistently get the same results
+#for practice, you could change (or remove) the random seed and try to interpret the results (they should be quite similar)
+#There are probe more efficient ways to simulate data.
+#Given the information available in the manuscript, my approach was to first create the datasets for each of the racial ethnic groups that were provided and then binding them together.
+
+#First, the data for the students who identified as Asian American
+Asian_mu <- c(1.52, 1.72, 2.69, 1.71, 2.14, 2.35, 2.42)
+Asian_stddev <- c(2.52, 2.04, 0.47, 0.70, 0.80, 2.41, 3.36)
+Asian_corMat <- matrix(c(1.00,  0.69,  0.19,  0.28,  0.32,  0.08,  0.23,
+                          0.69,  1.00,  0.20,  0.29,  0.33,  0.13,  0.25,
+                          0.19,  0.20,  1.00,  0.50,  0.50, -0.04,  0.09,
+                          0.28,  0.29,  0.50,  1.00,  0.76,  0.04,  0.18,
+                          0.32,  0.33,  0.50,  0.76,  1.00,  0.10,  0.21,
+                          0.08,  0.13, -0.04,  0.04,  0.10,  1.00,  0.42,
+                          0.23,  0.25,  0.09,  0.18,  0.21,  0.42,  1.00),
+                        ncol=7)
+Asian_covMat <- Asian_stddev %*% t(Asian_stddev) * Asian_corMat
+
+library(MASS)
+Asian_dat <- mvrnorm(n = 398, mu = Asian_mu, Sigma = Asian_covMat, empirical = TRUE)
+Asian_df <- as.data.frame(Asian_dat)
+
+library(tidyverse)
+Asian_df <- rename(Asian_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7)
+Asian_df$RacEth <- "Asian"
+
+#Second, the data for the students who identified as Black/African American
+Black_mu <- c(4.45, 3.84, 2.60, 1.84, 2.10, 2.81, 2.14)
+Black_stddev <- c(4.22, 3.08, 0.89, 0.80, 0.81, 2.49, 3.24)
+Black_corMat <- matrix(c( 1.00,  0.81,  0.17,  0.15,  0.09,  0.05, -0.16,
+              0.81,  1.00,  0.17,  0.21,  0.11,  0.09, -0.01,
+              0.17,  0.17,  1.00,  0.59,  0.54,  0.05,  0.24,
+              0.15,  0.21,  0.59,  1.00,  0.72,  0.12,  0.22,
+              0.09,  0.11,  0.54,  0.72,  1.00,  0.21,  0.40,
+              0.05,  0.09,  0.05,  0.12,  0.21,  1.00,  0.65,
+              -0.16,-0.01,  0.24,  0.22,  0.40,  0.65,  1.00),
+           ncol = 7)
+Black_covMat <- Black_stddev %*% t(Black_stddev) * Black_corMat
+Black_dat <- mvrnorm(n = 133, mu = Black_mu, Sigma = Black_covMat, empirical = TRUE)
+Black_df <- as.data.frame(Black_dat)
+Black_df <- rename(Black_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7)
+Black_df$RacEth <- "Black"
+
+#Third, the data for the students who identified as Latinx American
+Latinx_mu <- c(1.56, 2.34, 2.69, 1.81, 2.17, 3.47, 2.69)
+Latinx_stddev <- c(2.46, 2.49, 0.86, 0.71, 0.78, 2.59, 3.76)
+Latinx_corMat <- matrix(c( 1.00,  0.78,  0.27,  0.36,  0.42, -0.06,  0.08,
+                           0.78,  1.00,  0.33,  0.26,  0.35, -0.11, -0.02,
+                           0.27,  0.33,  1.00,  0.62,  0.64, -0.04,  0.15,
+                           0.36,  0.26,  0.62,  1.00,  0.81, -0.08,  0.17,
+                           0.42,  0.35,  0.64,  0.81,  1.00, -0.06,  0.15,
+                           -0.06,-0.11, -0.04, -0.08, -0.06,  1.00,  0.60,
+                           0.08, -0.02,  0.15,  0.17,  0.15,  0.60,  1.00),
+                        ncol = 7)
+Latinx_covMat <- Latinx_stddev %*% t(Latinx_stddev) * Latinx_corMat
+Latinx_dat <- mvrnorm(n = 182, mu = Latinx_mu, Sigma = Latinx_covMat, empirical = TRUE)
+Latinx_df <- as.data.frame(Latinx_dat)
+Latinx_df <- rename(Latinx_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7)
+Latinx_df$RacEth <- "Latinx"
+
+Lui_sim_df <-bind_rows (Asian_df, Black_df, Latinx_df)
+```
+If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created.  In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R.
+
+```{r}
+#write the simulated data  as a .csv
+#write.table(Lui_sim_df, file="Lui_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#df <- read.csv ("Lui_CSV.csv", header = TRUE)
+```
+
+```{r}
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(Lui_sim_df, "Lui_RDS.rds")
+#bring back the simulated dat from an .rds file
+#df <- readRDS("Lui_RDS.rds")
+```
+
+You may have noticed a couple of things in each of these operations
+
+* First, I named the data object that global environment "df" (i.e., dataframe). 
+  - It is a common (but not required) practice for researchers to simply use "df" or "dat" for their R script, no matter the type or source of the data. This practice has advantages (makes reusing code easy) and disadvantages (it's easy to get confused about what data is what).
+* Second, if you run the code, the updating *replaces* the prior code. 
+  - While this is irrelevant today (we are saving the same data in different ways), it points out the importance of creating a sensible and systematic *order of operations* in your .rmd files and then knowing where you are in the process.
+  
+Because the data is simulated, I can simply use the data I created in the simulation, however, I will go ahead and use the convention of renaming it, "df."
+
+```{r}
+df <- Lui_sim_df
+```
+
+Is this R session reading our variables correctly?  Check it with the "structure" command.
+
+```{r}
+str (df)
+```
+
+Looking back at the Lui [-@lui_racial_2020] article we can presume the following variables (variable/variable name) to have the following structure (scaling/R scaling):
+
+* Discrimination/OvDis:interval/num
+  - theoretically someone could experience no discrimination, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never or not at all) for all the options.
+* Microaggressions/mAggr: interval/num
+ - theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never; and then not at all [stressful]) for all the options.
+* Neuroticism/Neuro: interval/num
+* Negative affect/nAff:interval/num
+* Psychological distress/psyDist:interval/num
+* Hazardous alcohol use/Alcohol:  interval/num
+* Drinking problems/drProb:  interval/num
+* Race Ethnicity/RacEth:  nominal/chr
+
+Everything is fine except Race Ethnicity which needs to be a factor.  Let's change it and check again.
+
+At this point I need to use the tidyverse package so that I can *mutate()* the RacEth variable to be a factor.
+
+```{r }
+# A .csv file is uninformed -- it just holds data (and R guesses what it is); respecifying the type of variable will likely need to be completed each time the file is used.
+
+library(tidyverse)
+df <- df %>%
+    mutate(
+        RacEth = as.factor(RacEth))
+```
+
+```{r }
+#checking the structure of the data
+str(df)
+```
+
+Manipulating the dat is an important skill. I can use the *select()* function to obtain  certain variable.  I want to select three variables that are continuous and then disaggregate them by race/ethnicity. 
+
+```{r}
+library(tidyverse)
+#This was struggling to run because there are multiple packages open with a "select" function
+#I solved the problem by indicating that I wanted to use the select function from the "dplyr" package
+#dplyr is part of the tidyverse package
+tiny_df <- df%>%
+  dplyr::select(mAggr, nAff, psyDist)
+```
+
+We can start with simple descriptives. Revelle's [-@revelle_introduction_2020] *psych* package was made specifically for much of the type of work we do.
+
+```{r }
+library(psych)
+describe(tiny_df)
+```
+
+One of the easiest way to get "counts" of categorical variables is to use them in the *psych* package's *describeBy()* function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth.
+```{r}
+describeBy (df, df$RacEth, mat=TRUE)
+```
+
+### Determining Skew and Kurtosis
+
+To understand whether our data are normally distributed, we can look at skew and kurtosis.  The skew and kurtosis indices in the *psych* package are reported as *z* scores.  Regarding skew, values > 3.0 are generally considered "severely skewed."  Regarding kurtosis, "severely kurtotic" is argued anywhere > 8 to 20 [@kline_principles_2016].
+
+### SPLOM 
+
+SPLOM (scatterplot matrix) is a graphical tool that uses multiple scatterplots to deterine the correlation (if any) between a set of variables.  These plots are organized into a matrix, making it easy to see them all at once.
+
+In the *psych* package, the *pairs.panels()* produces these. 
+
+**On diagonal** we see:  
+
+ * histogram of each variable
+ * superimposed with a normal curve
+
+**Below diagonal** we see: 
+
+* xy scatter plot (not useful for our categorical RacEth row)
+* the *lowess* locally fit regression line
+* the X axis represents the column variable; the Y axis, the row variable
+
+**Above diagonal** we see:
+
+* Pearson correlation
+
+```{r }
+# the pch = "." command produces a cleaner graphic and is especially useful when there are lots of variables
+pairs.panels(tiny_df, pch=".")
+```
+
+What do we observe?
+
+* All 3 variables look normally distributed
+* relationship between mAggr with nAff and psyDist is quite comparable
+* relationship between nAff and psyDist is very strong
+* are these correlations significant?  Revelle [-@revelle_introduction_2020] is not a fan of the associated *p* value, but we can get it several ways (hang tight).
+
+Writing up an APA style results section usually involves some sort of table.  A super helpful package for doing this is *apaTables*.  Really cool is the instructional article (pubbed in a peer reviewed journal) that also talks about the contributions of tools like this contributing to the *reproducibility* of science by reducing errors and, if the R script/data are shared how the evaluation process is standardized and therefore reproducible [@stanley_reproducible_2018].
+
+```{r }
+library(apaTables)
+```
+
+```{r}
+# unlike the psych package, this function removes any categorical variables
+Table1_Cor <- apa.cor.table(tiny_df, filename = "Table1_Cor.doc", table.number = 1, show.conf.interval = FALSE, landscape = TRUE)
+
+#swap in this command to see it in the console
+print(Table1_Cor) 
+```
+## Results
+
+Our sample included Asian American (*n* = 398), Latinx (*n* = 182), and Black (*n* = 133) participants. Visual inspection of the three variables of interest (negative affect, psychological distress, microaggressions) combined with formal evaluation of skewness and kurtosis suggested univariate normality.  Correlations between negative affect and psychological distress were quite strong; correlations with each of these variables and microaggressions were moderate.  Results are presented in Table 1.
+
+
+## Practice Problems
+
+The three exercises described below are designed to "meet you where you are" and allow you to challenge your skills depending on your comfort with statistics and R.
+
+Regardless which you choose, you should:
+
+* Create a tiny_df from a larger df
+* Calculateand interpret descriptives for the continuously scaled variables
+* Create the SPLOM (pairs.panels) of the continuously scaled variables
+* Use the *apaTables* package to make an APA style table with means, standard deviations, and correlations
+* Write up a mini-results section (APA style)
+
+### Problem #1: Change the Random Seed
+
+If this topic feels a bit overwhelming, simply change the random seed in the data simulation (at the very top), then rework the lesson exactly as written. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
+
+|Element                                  | Points Poss   | Points Earned
+|:----------------------------------------|:-------------:|:--------------|
+|1. Create the tiny_df                    |      3        |               | 
+|2. Descriptives of tiny_df               |      3        |               |
+|3. SPLOM/pairs.panels                    |      3        |               |
+|4. apaTables matrix                      |      3        |               |
+|5. Mini-results                          |      5        |               |
+|6. Explanation/discussion with a grader  |      5        |               |
+|**Totals                                 |     22        |               |   
+
+
+### Problem #2: 
+
+Use the simulated data from the Lui [-@lui_racial_2020] study. However, select three continuous variables (2 must be different from mine) and then conduct the analyses.
+
+|Element                                  | Points Poss   | Points Earned
+|:----------------------------------------|:-------------:|:--------------|
+|1. Create the tiny_df                    |      3        |               | 
+|2. Descriptives of tiny_df               |      3        |               |
+|3. SPLOM/pairs.panels                    |      3        |               |
+|4. apaTables matrix                      |      3        |               |
+|5. Mini-results                          |      5        |               |
+|6. Explanation/discussion with a grader  |      5        |               |
+|**Totals                                 |     22        |               |   
+
+
+### Problem #3: 
+
+Use data for which you have permission and access. This could be IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; or data from other chapters in this OER.
+
+|Element                                  | Points Poss   | Points Earned
+|:----------------------------------------|:-------------:|:--------------|
+|1. Create the tiny_df                    |      3        |               | 
+|2. Descriptives of tiny_df               |      3        |               |
+|3. SPLOM/pairs.panels                    |      3        |               |
+|4. apaTables matrix                      |      3        |               |
+|5. Mini-results                          |      5        |               |
+|6. Explanation/discussion with a grader  |      5        |               |
+|**Totals                                 |     22        |               |   
+
+```{r include=FALSE}
+sessionInfo()
+```
+
+
+
+<!--chapter:end:03-waRmup.Rmd-->
+
 # ONE-WAY ANOVA {#oneway}
 
-*This is a pilot, sample chapter for the proposed open educational resource titled, "ReCentering Psych Stats."  There is much left to do in this chapter, especially regarding formatting. Please keep this in mind when you review it.*
-
-This was the lecture from fall quarter 2020.  It will be replaced, shortly to match the current text. [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=150b68bf-c880-4348-8114-acb7000b227e) 
+[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=150b68bf-c880-4348-8114-acb7000b227e) 
 
 One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor.  For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables:  a factor and a dependent variable.
 
@@ -295,8 +876,7 @@ One-way ANOVA can be used in experimental, quasi-experimental, and field studies
 
 ## Navigating this Lesson
 
-There is about 2 hours and 20 minutes of lecture.  If you work through the materials with me it would be good to add another two hours.
-
+There is about 2 hours and 20 minutes of lecture.  If you work through the materials with me plan for another two hours of study.
 
 ### Learning Objectives
 
@@ -533,7 +1113,7 @@ The ratio of these variances is the **F-ratio**.
 Navarro [-@navarro_book_2020] offers a set of useful figures to compare between- and within-group variation.
 
 
-```{r anovavara, fig.cap="Graphical illustration of \"between groups\" variation", echo=FALSE}
+```{r  fig.cap="Graphical illustration of \"between groups\" variation", echo=FALSE}
 	width <- 7
 	height <- 4
 	# params
@@ -590,7 +1170,7 @@ Navarro [-@navarro_book_2020] offers a set of useful figures to compare between-
 	      font.main = 1)
 ```
 
-```{r anovavarb, fig.cap="Graphical illustration of  \"within groups\" variation", echo=FALSE}
+```{r fig.cap="Graphical illustration of  \"within groups\" variation", echo=FALSE}
 width <- 7
 	height <- 4
 
@@ -1299,41 +1879,33 @@ Results indicated a significant effect of COND on accuracy perception $F$(2, 87)
 
 Below are three problems with graded levels of complexity.  Worked examples, following the first two suggestions will be provided in an Appendix.
 
-### Problem #1:  Conduct a one-way ANOVA with *moreTalk* dependent variable.
-
-In their study, Tran and Lee [-@tran_you_2014] included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (*much less than average*) through 0 (*average*) to 2 (*much more than average*).
-
-Code for simulated data with *moreTalk* as the dependent variable is below.  Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
-
-
-|Assignment Component                    | Points Possible   | Points Earned|
-|:-------------------------------------- |:----------------: |:------------:|
-|1. Simulate (or import) and format data |      5            |_____  |           
-|2. Evaluate statistical assumptions     |      5            |_____  |
-|3. Conduct omnibus ANOVA (w effect size)|      5           | _____  |  
-|4. Conduct one set of follow-up tests; narrate your choice| 5 |_____  |               
-|5. Describe approach for managing Type I error |    5        |_____  |   
-|6. APA style results with table(s) and figure  |    5        |_____  |       
-|7. Explanation to grader                 |      5        |_____  |
-|**Totals**                               |      35       |_____  |             
-
-
+If it is helpful for you to export and/or import the data as a .csv (think "Excel lite") or .rde (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so.  The data should save in the same folder as the .rmd file you are working on:
 
 ```{r}
-set.seed(2021) #sets a random seed so that we get the same results each time
-moreTalk <- c(rnorm(30, mean=-.82, sd=0.91), rnorm(30, mean=-0.39, sd = 0.66), rnorm(30, mean = -0.04, sd = 0.71))#sample size, M and SD for each group
-moreTalk[moreTalk>2]<-2 #set upper bound for DV
-moreTalk[moreTalk<-2]<--2 #set lower bound for DV
-ID<-factor(seq(1,90)) #IDs for participants
-COND<-c(rep("High", 30), rep("Low", 30), rep("Control", 30)) #name factors and identify how many in each group; should be in same order as first row of script
-mTalk_sim30 <-data.frame(ID, COND, moreTalk) #groups the 3 variables into a single df:  ID#, DV, condition
-
-#to write it to an outfile
-write.table(mTalk_sim30, file="newmTalk30.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#write the simulated data  as a .csv
+#write.table(accSIM30, file="accSIM.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#acc_csv <- read.csv ("accSIM.csv", header = TRUE)
 ```
 
+```{r}
+#a quick demo to show that the .csv format loses the variable formatting
+#str(acc_csv)
+```
 
-### Problem #2:  Play around with this simulation.
+```{r}
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(accSIM30, "accSIM.rds")
+#bring back the simulated dat from an .rds file
+#acc_RDS <- readRDS("accSIM.rds")
+```
+
+```{r}
+#a quick demo to show that the .rds format preserves the variable formatting
+#str(acc_RDS)
+```
+
+### Problem #1:  Play around with this simulation.
 
 Copy the script for the simulation and then change (at least) one thing in the simulation to see how it impacts the results.  
 
@@ -1355,6 +1927,39 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 |**Totals**                               |      35       |_____  |          
 
 
+### Problem #2:  Conduct a one-way ANOVA with the *moreTalk* dependent variable.
+
+In their study, Tran and Lee [-@tran_you_2014] included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (*much less than average*) through 0 (*average*) to 2 (*much more than average*).
+
+Code for simulated data with *moreTalk* as the dependent variable is below.  Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+
+
+|Assignment Component                    | Points Possible   | Points Earned|
+|:-------------------------------------- |:----------------: |:------------:|
+|1. Simulate (or import) and format data |      5            |_____  |           
+|2. Evaluate statistical assumptions     |      5            |_____  |
+|3. Conduct omnibus ANOVA (w effect size)|      5           | _____  |  
+|4. Conduct one set of follow-up tests; narrate your choice| 5 |_____  |               
+|5. Describe approach for managing Type I error |    5        |_____  |   
+|6. APA style results with table(s) and figure  |    5        |_____  |       
+|7. Explanation to grader                 |      5        |_____  |
+|**Totals**                               |      35       |_____  |             
+
+
+```{r}
+set.seed(2021) #sets a random seed so that we get the same results each time
+moreTalk <- c(rnorm(30, mean=-.82, sd=0.91), rnorm(30, mean=-0.39, sd = 0.66), rnorm(30, mean = -0.04, sd = 0.71))#sample size, M and SD for each group
+moreTalk[moreTalk>2]<-2 #set upper bound for DV
+moreTalk[moreTalk<-2]<--2 #set lower bound for DV
+ID<-factor(seq(1,90)) #IDs for participants
+COND<-c(rep("High", 30), rep("Low", 30), rep("Control", 30)) #name factors and identify how many in each group; should be in same order as first row of script
+mTalk_sim30 <-data.frame(ID, COND, moreTalk) #groups the 3 variables into a single df:  ID#, DV, condition
+
+#to write it to an outfile
+write.table(mTalk_sim30, file="newmTalk30.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+
 ### Problem #3:  Try something entirely new.
 
 Either (a) find an article from which you can simulate data or (b) create a research vignette of your own.  Specify group *n*,  means, and standard deviations.  Simulate the data with these.  Be thinking about "what it takes" in terms of sample size, mean differences, and variability to get a statistically significant omnibus.  
@@ -1374,7 +1979,6 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 |**Totals**                               |      35       |_____  |          
 
 
-
 ## Bonus Reel: 
 
 ![Image of a filmstrip signifying that the what follows is considered to be supplemental](images/film-strip-1.jpg){#id .class width=620 height=211} 
@@ -1391,5 +1995,5 @@ sessionInfo()
 ```
 
 
-<!--chapter:end:02-OnewayANOVA.Rmd-->
+<!--chapter:end:04-OnewayANOVA.Rmd-->
 

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 waRming up | ReCentering Psych Stats: Analysis of Variance</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 waRming up | ReCentering Psych Stats: Analysis of Variance" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 waRming up | ReCentering Psych Stats: Analysis of Variance" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="Ready.html"/>
+<link rel="next" href="oneway.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5488840-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats:  Analysis of Variance</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Ready.html"><a href="Ready.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="Ready.html"><a href="Ready.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="Ready.html"><a href="Ready.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.2</b> downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="Ready.html"><a href="Ready.html#so-many-parts-and-pieces"><i class="fa fa-check"></i><b>2.2.1</b> So many paRts and pieces</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Ready.html"><a href="Ready.html#orienting-to-r-studio-focusing-only-on-the-things-we-will-be-using-first-and-most-often"><i class="fa fa-check"></i><b>2.2.2</b> oRienting to R Studio (focusing only on the things we will be using first and most often)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Ready.html"><a href="Ready.html#best-practices"><i class="fa fa-check"></i><b>2.3</b> best pRactices</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.1</b> Setting up the file</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.2</b> Script in chunks and everything else in the “inline text” sections</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.3</b> Managing packages</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.4</b> Upload the data</a>
+<ul>
+<li class="chapter" data-level="2.3.4.1" data-path="Ready.html"><a href="Ready.html#to-and-from-.csv-files"><i class="fa fa-check"></i><b>2.3.4.1</b> To and from .csv files</a></li>
+<li class="chapter" data-level="2.3.4.2" data-path="Ready.html"><a href="Ready.html#to-and-from-.rds-files"><i class="fa fa-check"></i><b>2.3.4.2</b> To and from .rds files</a></li>
+<li class="chapter" data-level="2.3.4.3" data-path="Ready.html"><a href="Ready.html#from-spss-files"><i class="fa fa-check"></i><b>2.3.4.3</b> From SPSS files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="Ready.html"><a href="Ready.html#quick-demonstration"><i class="fa fa-check"></i><b>2.4</b> quick demonstRation</a></li>
+<li class="chapter" data-level="2.5" data-path="Ready.html"><a href="Ready.html#the-knitted-file"><i class="fa fa-check"></i><b>2.5</b> the knitted file</a></li>
+<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown-1"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-are-we-transitioning-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> are we tRansitioning to R?</a></li>
+<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success-1"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
+<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started-1"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="waRmups.html"><a href="waRmups.html"><i class="fa fa-check"></i><b>3</b> waRming up</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="waRmups.html"><a href="waRmups.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="waRmups.html"><a href="waRmups.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="waRmups.html"><a href="waRmups.html#planning-for-practice"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="waRmups.html"><a href="waRmups.html#readings-resources"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="waRmups.html"><a href="waRmups.html#determining-skew-and-kurtosis"><i class="fa fa-check"></i><b>3.1.4</b> Determining Skew and Kurtosis</a></li>
+<li class="chapter" data-level="3.1.5" data-path="waRmups.html"><a href="waRmups.html#splom"><i class="fa fa-check"></i><b>3.1.5</b> SPLOM</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="waRmups.html"><a href="waRmups.html#results"><i class="fa fa-check"></i><b>3.2</b> Results</a></li>
+<li class="chapter" data-level="3.3" data-path="waRmups.html"><a href="waRmups.html#practice-problems"><i class="fa fa-check"></i><b>3.3</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="waRmups.html"><a href="waRmups.html#problem-1-change-the-random-seed"><i class="fa fa-check"></i><b>3.3.1</b> Problem #1: Change the Random Seed</a></li>
+<li class="chapter" data-level="3.3.2" data-path="waRmups.html"><a href="waRmups.html#problem-2"><i class="fa fa-check"></i><b>3.3.2</b> Problem #2:</a></li>
+<li class="chapter" data-level="3.3.3" data-path="waRmups.html"><a href="waRmups.html#problem-3"><i class="fa fa-check"></i><b>3.3.3</b> Problem #3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>4</b> ONE-WAY ANOVA</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="oneway.html"><a href="oneway.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="oneway.html"><a href="oneway.html#planning-for-practice-1"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="oneway.html"><a href="oneway.html#readings-resources-1"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="oneway.html"><a href="oneway.html#packages-1"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="oneway.html"><a href="oneway.html#workflow-for-one-way-anova"><i class="fa fa-check"></i><b>4.2</b> Workflow for One-Way ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="oneway.html"><a href="oneway.html#research-vignette"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="oneway.html"><a href="oneway.html#data-simulation"><i class="fa fa-check"></i><b>4.3.1</b> Data Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="oneway.html"><a href="oneway.html#working-the-problem"><i class="fa fa-check"></i><b>4.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="oneway.html"><a href="oneway.html#preparing-and-uploading-data"><i class="fa fa-check"></i><b>4.4.1</b> Preparing and Uploading Data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-numerically"><i class="fa fa-check"></i><b>4.4.2</b> Exploring the Distributional Characteristics Numerically</a></li>
+<li class="chapter" data-level="4.4.3" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-graphically"><i class="fa fa-check"></i><b>4.4.3</b> Exploring the Distributional Characteristics Graphically</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="oneway.html"><a href="oneway.html#understanding-anova-with-hand-calculations"><i class="fa fa-check"></i><b>4.5</b> Understanding ANOVA with <em>Hand Calculations</em></a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="oneway.html"><a href="oneway.html#sums-of-squares-total"><i class="fa fa-check"></i><b>4.5.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="4.5.2" data-path="oneway.html"><a href="oneway.html#sums-of-squares-for-the-model-or-between"><i class="fa fa-check"></i><b>4.5.2</b> Sums of Squares for the Model (or Between)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="oneway.html"><a href="oneway.html#sums-of-squares-residual-or-within"><i class="fa fa-check"></i><b>4.5.3</b> Sums of Squares Residual (or within)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="oneway.html"><a href="oneway.html#relationship-between-ss_t-ss_m-and-ss_r."><i class="fa fa-check"></i><b>4.5.4</b> Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span>.</a></li>
+<li class="chapter" data-level="4.5.5" data-path="oneway.html"><a href="oneway.html#mean-squares-model-residual"><i class="fa fa-check"></i><b>4.5.5</b> Mean Squares Model &amp; Residual</a></li>
+<li class="chapter" data-level="4.5.6" data-path="oneway.html"><a href="oneway.html#calculating-the-f-statistic"><i class="fa fa-check"></i><b>4.5.6</b> Calculating the <em>F</em>-Statistic</a></li>
+<li class="chapter" data-level="4.5.7" data-path="oneway.html"><a href="oneway.html#source-table-games"><i class="fa fa-check"></i><b>4.5.7</b> Source Table Games</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="oneway.html"><a href="oneway.html#working-the-one-way-anova-in-r"><i class="fa fa-check"></i><b>4.6</b> Working the One-Way ANOVA in R</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>4.6.1</b> Evaluating the Statistical Assumptions</a>
+<ul>
+<li class="chapter" data-level="4.6.1.1" data-path="oneway.html"><a href="oneway.html#is-the-dependent-variable-normally-distributed-across-levels-of-the-factor"><i class="fa fa-check"></i><b>4.6.1.1</b> Is the dependent variable normally distributed across levels of the factor?</a></li>
+<li class="chapter" data-level="4.6.1.2" data-path="oneway.html"><a href="oneway.html#are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor"><i class="fa fa-check"></i><b>4.6.1.2</b> Are the variances of the dependent variable similar across the levels of the grouping factor?</a></li>
+<li class="chapter" data-level="4.6.1.3" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-analysis-of-assumptions"><i class="fa fa-check"></i><b>4.6.1.3</b> Summarizing results from the analysis of assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>4.6.2</b> Computing the Omnibus ANOVA</a>
+<ul>
+<li class="chapter" data-level="4.6.2.1" data-path="oneway.html"><a href="oneway.html#effect-size-for-the-one-way-anova"><i class="fa fa-check"></i><b>4.6.2.1</b> Effect size for the one-way ANOVA</a></li>
+<li class="chapter" data-level="4.6.2.2" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-omnibus-anova"><i class="fa fa-check"></i><b>4.6.2.2</b> Summarizing results from the omnibus ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>4.6.3</b> Follow-up to the Omnibus <em>F</em></a>
+<ul>
+<li class="chapter" data-level="4.6.3.1" data-path="oneway.html"><a href="oneway.html#option-1-post-hoc-pairwise-comparisons"><i class="fa fa-check"></i><b>4.6.3.1</b> OPTION 1: Post-hoc, pairwise, comparisons</a></li>
+<li class="chapter" data-level="4.6.3.2" data-path="oneway.html"><a href="oneway.html#option-2-planned-contrasts"><i class="fa fa-check"></i><b>4.6.3.2</b> OPTION 2: Planned contrasts</a></li>
+<li class="chapter" data-level="4.6.3.3" data-path="oneway.html"><a href="oneway.html#trend-polynomial-analysis"><i class="fa fa-check"></i><b>4.6.3.3</b> Trend (polynomial) analysis</a></li>
+<li class="chapter" data-level="4.6.3.4" data-path="oneway.html"><a href="oneway.html#which-set-of-follow-up-tests-do-we-report"><i class="fa fa-check"></i><b>4.6.3.4</b> Which set of follow-up tests do we report?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6.4" data-path="oneway.html"><a href="oneway.html#what-if-we-violated-the-homogeneity-of-variance-test"><i class="fa fa-check"></i><b>4.6.4</b> What if we Violated the Homogeneity of Variance test?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>4.7</b> Power Analysis</a></li>
+<li class="chapter" data-level="4.8" data-path="oneway.html"><a href="oneway.html#apa-style-results"><i class="fa fa-check"></i><b>4.8</b> APA Style Results</a></li>
+<li class="chapter" data-level="4.9" data-path="oneway.html"><a href="oneway.html#practice-problems-1"><i class="fa fa-check"></i><b>4.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>4.9.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="4.9.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>4.9.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
+<li class="chapter" data-level="4.9.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>4.9.3</b> Problem #3: Try something entirely new.</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>4.10</b> Bonus Reel:</a></li>
+</ul></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Analysis of Variance</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="waRmups" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> waRming up</h1>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=fd132ba0-4bdc-47d4-94cd-ac40004a134b">Screencasted Lecture Link</a></p>
+<p>The beginning of any data analysis means familiarizing yourself with the data, that is, its distributional characteristics as well as its relations.</p>
+<div id="navigating-this-lesson-1" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Navigating this Lesson</h2>
+<p>There is about 30 minutes of lecture.</p>
+<p>The R markdown file used to create this lecture as well as all of the figures are available at the <a href="https://github.com/lhbikos/ReC_Topics">OER’s GitHub site</a>.</p>
+<div id="learning-objectives-1" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Learning Objectives</h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Produce descriptive statistics (means, standard deviations, skew, kurtosis), and correlation matrix, with the <em>psych</em> package</li>
+<li>Produce plots of data</li>
+<li>Interpret skew, kurtosis, correlations</li>
+<li>Create an APA Style table and results section that includes means, standard deviations, and correlations</li>
+</ul>
+</div>
+<div id="planning-for-practice" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Planning for Practice</h3>
+<p>This is designed as a “get (back) into it” assignment. You will essentially work through this very same lecture, using the same dataframe – just a different set of continuous variables.</p>
+</div>
+<div id="readings-resources" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Readings &amp; Resources</h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<ul>
+<li>Revelle, W. (2020). An introduction to the psych package: Part I: data entry and data description.
+<ul>
+<li>Revelle is the author/creator of the <em>psych</em> package. His tutorial provides both technical and interpretive information. Read pages 1-17.</li>
+</ul></li>
+<li>Lui, P. P. (2020). Racial Microaggression, Overt Discrimination, and Distress: (In)Direct Associations With Psychological Adjustment. <em>The Counseling Psychologist, 32</em>.
+<ul>
+<li>We continue with the worked example from Lui; using simulated data for the lecture and homework assignment.</li>
+</ul></li>
+</ul>
+<p>We will use simulated data from Lui <span class="citation">(<a href="#ref-lui_racial_2020" role="doc-biblioref">2020</a>)</span> for simple data screening. Controlling for overt discrimination and neuroticism, Lui examined the degree to which racial microaggression contributed to negative affect, alcohol consumption, and drinking problems in African American, Asian American, and Latinx American college students (<em>N</em> = 713).</p>
+<p>Using the means, standard deviations, correlation matrix, and group sizes (<em>n</em>) I simulated the data. While the process of simulation is beyond the learning goals of this lesson (you can skip that part), I include it here so that it is easy to work the rest of the script.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="waRmups.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210807</span>)<span class="co">#sets the random seed so that we consistently get the same results</span></span>
+<span id="cb17-2"><a href="waRmups.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#for practice, you could change (or remove) the random seed and try to interpret the results (they should be quite similar)</span></span>
+<span id="cb17-3"><a href="waRmups.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#There are probe more efficient ways to simulate data.</span></span>
+<span id="cb17-4"><a href="waRmups.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Given the information available in the manuscript, my approach was to first create the datasets for each of the racial ethnic groups that were provided and then binding them together.</span></span>
+<span id="cb17-5"><a href="waRmups.html#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="waRmups.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#First, the data for the students who identified as Asian American</span></span>
+<span id="cb17-7"><a href="waRmups.html#cb17-7" aria-hidden="true" tabindex="-1"></a>Asian_mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.52</span>, <span class="fl">1.72</span>, <span class="fl">2.69</span>, <span class="fl">1.71</span>, <span class="fl">2.14</span>, <span class="fl">2.35</span>, <span class="fl">2.42</span>)</span>
+<span id="cb17-8"><a href="waRmups.html#cb17-8" aria-hidden="true" tabindex="-1"></a>Asian_stddev <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.52</span>, <span class="fl">2.04</span>, <span class="fl">0.47</span>, <span class="fl">0.70</span>, <span class="fl">0.80</span>, <span class="fl">2.41</span>, <span class="fl">3.36</span>)</span>
+<span id="cb17-9"><a href="waRmups.html#cb17-9" aria-hidden="true" tabindex="-1"></a>Asian_corMat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.00</span>,  <span class="fl">0.69</span>,  <span class="fl">0.19</span>,  <span class="fl">0.28</span>,  <span class="fl">0.32</span>,  <span class="fl">0.08</span>,  <span class="fl">0.23</span>,</span>
+<span id="cb17-10"><a href="waRmups.html#cb17-10" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.69</span>,  <span class="fl">1.00</span>,  <span class="fl">0.20</span>,  <span class="fl">0.29</span>,  <span class="fl">0.33</span>,  <span class="fl">0.13</span>,  <span class="fl">0.25</span>,</span>
+<span id="cb17-11"><a href="waRmups.html#cb17-11" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.19</span>,  <span class="fl">0.20</span>,  <span class="fl">1.00</span>,  <span class="fl">0.50</span>,  <span class="fl">0.50</span>, <span class="sc">-</span><span class="fl">0.04</span>,  <span class="fl">0.09</span>,</span>
+<span id="cb17-12"><a href="waRmups.html#cb17-12" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.28</span>,  <span class="fl">0.29</span>,  <span class="fl">0.50</span>,  <span class="fl">1.00</span>,  <span class="fl">0.76</span>,  <span class="fl">0.04</span>,  <span class="fl">0.18</span>,</span>
+<span id="cb17-13"><a href="waRmups.html#cb17-13" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.32</span>,  <span class="fl">0.33</span>,  <span class="fl">0.50</span>,  <span class="fl">0.76</span>,  <span class="fl">1.00</span>,  <span class="fl">0.10</span>,  <span class="fl">0.21</span>,</span>
+<span id="cb17-14"><a href="waRmups.html#cb17-14" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.08</span>,  <span class="fl">0.13</span>, <span class="sc">-</span><span class="fl">0.04</span>,  <span class="fl">0.04</span>,  <span class="fl">0.10</span>,  <span class="fl">1.00</span>,  <span class="fl">0.42</span>,</span>
+<span id="cb17-15"><a href="waRmups.html#cb17-15" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.23</span>,  <span class="fl">0.25</span>,  <span class="fl">0.09</span>,  <span class="fl">0.18</span>,  <span class="fl">0.21</span>,  <span class="fl">0.42</span>,  <span class="fl">1.00</span>),</span>
+<span id="cb17-16"><a href="waRmups.html#cb17-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ncol=</span><span class="dv">7</span>)</span>
+<span id="cb17-17"><a href="waRmups.html#cb17-17" aria-hidden="true" tabindex="-1"></a>Asian_covMat <span class="ot">&lt;-</span> Asian_stddev <span class="sc">%*%</span> <span class="fu">t</span>(Asian_stddev) <span class="sc">*</span> Asian_corMat</span>
+<span id="cb17-18"><a href="waRmups.html#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="waRmups.html#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>Warning: package &#39;MASS&#39; was built under R version 4.0.5</code></pre>
+<pre><code>
+Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:dplyr&#39;:
+
+    select</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="waRmups.html#cb21-1" aria-hidden="true" tabindex="-1"></a>Asian_dat <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">398</span>, <span class="at">mu =</span> Asian_mu, <span class="at">Sigma =</span> Asian_covMat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-2"><a href="waRmups.html#cb21-2" aria-hidden="true" tabindex="-1"></a>Asian_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(Asian_dat)</span>
+<span id="cb21-3"><a href="waRmups.html#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="waRmups.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb21-5"><a href="waRmups.html#cb21-5" aria-hidden="true" tabindex="-1"></a>Asian_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(Asian_df, <span class="at">OvDisc =</span> V1, <span class="at">mAggr =</span> V2, <span class="at">Neuro =</span> V3, <span class="at">nAff =</span> V4, <span class="at">psyDist =</span> V5, <span class="at">Alcohol =</span> V6, <span class="at">drProb =</span> V7)</span>
+<span id="cb21-6"><a href="waRmups.html#cb21-6" aria-hidden="true" tabindex="-1"></a>Asian_df<span class="sc">$</span>RacEth <span class="ot">&lt;-</span> <span class="st">&quot;Asian&quot;</span></span>
+<span id="cb21-7"><a href="waRmups.html#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="waRmups.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Second, the data for the students who identified as Black/African American</span></span>
+<span id="cb21-9"><a href="waRmups.html#cb21-9" aria-hidden="true" tabindex="-1"></a>Black_mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.45</span>, <span class="fl">3.84</span>, <span class="fl">2.60</span>, <span class="fl">1.84</span>, <span class="fl">2.10</span>, <span class="fl">2.81</span>, <span class="fl">2.14</span>)</span>
+<span id="cb21-10"><a href="waRmups.html#cb21-10" aria-hidden="true" tabindex="-1"></a>Black_stddev <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.22</span>, <span class="fl">3.08</span>, <span class="fl">0.89</span>, <span class="fl">0.80</span>, <span class="fl">0.81</span>, <span class="fl">2.49</span>, <span class="fl">3.24</span>)</span>
+<span id="cb21-11"><a href="waRmups.html#cb21-11" aria-hidden="true" tabindex="-1"></a>Black_corMat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>( <span class="fl">1.00</span>,  <span class="fl">0.81</span>,  <span class="fl">0.17</span>,  <span class="fl">0.15</span>,  <span class="fl">0.09</span>,  <span class="fl">0.05</span>, <span class="sc">-</span><span class="fl">0.16</span>,</span>
+<span id="cb21-12"><a href="waRmups.html#cb21-12" aria-hidden="true" tabindex="-1"></a>              <span class="fl">0.81</span>,  <span class="fl">1.00</span>,  <span class="fl">0.17</span>,  <span class="fl">0.21</span>,  <span class="fl">0.11</span>,  <span class="fl">0.09</span>, <span class="sc">-</span><span class="fl">0.01</span>,</span>
+<span id="cb21-13"><a href="waRmups.html#cb21-13" aria-hidden="true" tabindex="-1"></a>              <span class="fl">0.17</span>,  <span class="fl">0.17</span>,  <span class="fl">1.00</span>,  <span class="fl">0.59</span>,  <span class="fl">0.54</span>,  <span class="fl">0.05</span>,  <span class="fl">0.24</span>,</span>
+<span id="cb21-14"><a href="waRmups.html#cb21-14" aria-hidden="true" tabindex="-1"></a>              <span class="fl">0.15</span>,  <span class="fl">0.21</span>,  <span class="fl">0.59</span>,  <span class="fl">1.00</span>,  <span class="fl">0.72</span>,  <span class="fl">0.12</span>,  <span class="fl">0.22</span>,</span>
+<span id="cb21-15"><a href="waRmups.html#cb21-15" aria-hidden="true" tabindex="-1"></a>              <span class="fl">0.09</span>,  <span class="fl">0.11</span>,  <span class="fl">0.54</span>,  <span class="fl">0.72</span>,  <span class="fl">1.00</span>,  <span class="fl">0.21</span>,  <span class="fl">0.40</span>,</span>
+<span id="cb21-16"><a href="waRmups.html#cb21-16" aria-hidden="true" tabindex="-1"></a>              <span class="fl">0.05</span>,  <span class="fl">0.09</span>,  <span class="fl">0.05</span>,  <span class="fl">0.12</span>,  <span class="fl">0.21</span>,  <span class="fl">1.00</span>,  <span class="fl">0.65</span>,</span>
+<span id="cb21-17"><a href="waRmups.html#cb21-17" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="fl">0.16</span>,<span class="sc">-</span><span class="fl">0.01</span>,  <span class="fl">0.24</span>,  <span class="fl">0.22</span>,  <span class="fl">0.40</span>,  <span class="fl">0.65</span>,  <span class="fl">1.00</span>),</span>
+<span id="cb21-18"><a href="waRmups.html#cb21-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncol =</span> <span class="dv">7</span>)</span>
+<span id="cb21-19"><a href="waRmups.html#cb21-19" aria-hidden="true" tabindex="-1"></a>Black_covMat <span class="ot">&lt;-</span> Black_stddev <span class="sc">%*%</span> <span class="fu">t</span>(Black_stddev) <span class="sc">*</span> Black_corMat</span>
+<span id="cb21-20"><a href="waRmups.html#cb21-20" aria-hidden="true" tabindex="-1"></a>Black_dat <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">133</span>, <span class="at">mu =</span> Black_mu, <span class="at">Sigma =</span> Black_covMat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-21"><a href="waRmups.html#cb21-21" aria-hidden="true" tabindex="-1"></a>Black_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(Black_dat)</span>
+<span id="cb21-22"><a href="waRmups.html#cb21-22" aria-hidden="true" tabindex="-1"></a>Black_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(Black_df, <span class="at">OvDisc =</span> V1, <span class="at">mAggr =</span> V2, <span class="at">Neuro =</span> V3, <span class="at">nAff =</span> V4, <span class="at">psyDist =</span> V5, <span class="at">Alcohol =</span> V6, <span class="at">drProb =</span> V7)</span>
+<span id="cb21-23"><a href="waRmups.html#cb21-23" aria-hidden="true" tabindex="-1"></a>Black_df<span class="sc">$</span>RacEth <span class="ot">&lt;-</span> <span class="st">&quot;Black&quot;</span></span>
+<span id="cb21-24"><a href="waRmups.html#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-25"><a href="waRmups.html#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co">#Third, the data for the students who identified as Latinx American</span></span>
+<span id="cb21-26"><a href="waRmups.html#cb21-26" aria-hidden="true" tabindex="-1"></a>Latinx_mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.56</span>, <span class="fl">2.34</span>, <span class="fl">2.69</span>, <span class="fl">1.81</span>, <span class="fl">2.17</span>, <span class="fl">3.47</span>, <span class="fl">2.69</span>)</span>
+<span id="cb21-27"><a href="waRmups.html#cb21-27" aria-hidden="true" tabindex="-1"></a>Latinx_stddev <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.46</span>, <span class="fl">2.49</span>, <span class="fl">0.86</span>, <span class="fl">0.71</span>, <span class="fl">0.78</span>, <span class="fl">2.59</span>, <span class="fl">3.76</span>)</span>
+<span id="cb21-28"><a href="waRmups.html#cb21-28" aria-hidden="true" tabindex="-1"></a>Latinx_corMat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>( <span class="fl">1.00</span>,  <span class="fl">0.78</span>,  <span class="fl">0.27</span>,  <span class="fl">0.36</span>,  <span class="fl">0.42</span>, <span class="sc">-</span><span class="fl">0.06</span>,  <span class="fl">0.08</span>,</span>
+<span id="cb21-29"><a href="waRmups.html#cb21-29" aria-hidden="true" tabindex="-1"></a>                           <span class="fl">0.78</span>,  <span class="fl">1.00</span>,  <span class="fl">0.33</span>,  <span class="fl">0.26</span>,  <span class="fl">0.35</span>, <span class="sc">-</span><span class="fl">0.11</span>, <span class="sc">-</span><span class="fl">0.02</span>,</span>
+<span id="cb21-30"><a href="waRmups.html#cb21-30" aria-hidden="true" tabindex="-1"></a>                           <span class="fl">0.27</span>,  <span class="fl">0.33</span>,  <span class="fl">1.00</span>,  <span class="fl">0.62</span>,  <span class="fl">0.64</span>, <span class="sc">-</span><span class="fl">0.04</span>,  <span class="fl">0.15</span>,</span>
+<span id="cb21-31"><a href="waRmups.html#cb21-31" aria-hidden="true" tabindex="-1"></a>                           <span class="fl">0.36</span>,  <span class="fl">0.26</span>,  <span class="fl">0.62</span>,  <span class="fl">1.00</span>,  <span class="fl">0.81</span>, <span class="sc">-</span><span class="fl">0.08</span>,  <span class="fl">0.17</span>,</span>
+<span id="cb21-32"><a href="waRmups.html#cb21-32" aria-hidden="true" tabindex="-1"></a>                           <span class="fl">0.42</span>,  <span class="fl">0.35</span>,  <span class="fl">0.64</span>,  <span class="fl">0.81</span>,  <span class="fl">1.00</span>, <span class="sc">-</span><span class="fl">0.06</span>,  <span class="fl">0.15</span>,</span>
+<span id="cb21-33"><a href="waRmups.html#cb21-33" aria-hidden="true" tabindex="-1"></a>                           <span class="sc">-</span><span class="fl">0.06</span>,<span class="sc">-</span><span class="fl">0.11</span>, <span class="sc">-</span><span class="fl">0.04</span>, <span class="sc">-</span><span class="fl">0.08</span>, <span class="sc">-</span><span class="fl">0.06</span>,  <span class="fl">1.00</span>,  <span class="fl">0.60</span>,</span>
+<span id="cb21-34"><a href="waRmups.html#cb21-34" aria-hidden="true" tabindex="-1"></a>                           <span class="fl">0.08</span>, <span class="sc">-</span><span class="fl">0.02</span>,  <span class="fl">0.15</span>,  <span class="fl">0.17</span>,  <span class="fl">0.15</span>,  <span class="fl">0.60</span>,  <span class="fl">1.00</span>),</span>
+<span id="cb21-35"><a href="waRmups.html#cb21-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ncol =</span> <span class="dv">7</span>)</span>
+<span id="cb21-36"><a href="waRmups.html#cb21-36" aria-hidden="true" tabindex="-1"></a>Latinx_covMat <span class="ot">&lt;-</span> Latinx_stddev <span class="sc">%*%</span> <span class="fu">t</span>(Latinx_stddev) <span class="sc">*</span> Latinx_corMat</span>
+<span id="cb21-37"><a href="waRmups.html#cb21-37" aria-hidden="true" tabindex="-1"></a>Latinx_dat <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">182</span>, <span class="at">mu =</span> Latinx_mu, <span class="at">Sigma =</span> Latinx_covMat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-38"><a href="waRmups.html#cb21-38" aria-hidden="true" tabindex="-1"></a>Latinx_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(Latinx_dat)</span>
+<span id="cb21-39"><a href="waRmups.html#cb21-39" aria-hidden="true" tabindex="-1"></a>Latinx_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(Latinx_df, <span class="at">OvDisc =</span> V1, <span class="at">mAggr =</span> V2, <span class="at">Neuro =</span> V3, <span class="at">nAff =</span> V4, <span class="at">psyDist =</span> V5, <span class="at">Alcohol =</span> V6, <span class="at">drProb =</span> V7)</span>
+<span id="cb21-40"><a href="waRmups.html#cb21-40" aria-hidden="true" tabindex="-1"></a>Latinx_df<span class="sc">$</span>RacEth <span class="ot">&lt;-</span> <span class="st">&quot;Latinx&quot;</span></span>
+<span id="cb21-41"><a href="waRmups.html#cb21-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-42"><a href="waRmups.html#cb21-42" aria-hidden="true" tabindex="-1"></a>Lui_sim_df <span class="ot">&lt;-</span><span class="fu">bind_rows</span> (Asian_df, Black_df, Latinx_df)</span></code></pre></div>
+<p>If you have simulated the data, you can continue using the the “Lui_sim_df” object that we created. In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think “Excel lite”) and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="waRmups.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<span id="cb22-2"><a href="waRmups.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Lui_sim_df, file=&quot;Lui_CSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
+<span id="cb22-3"><a href="waRmups.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
+<span id="cb22-4"><a href="waRmups.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- read.csv (&quot;Lui_CSV.csv&quot;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="waRmups.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to save the df as an .rds (think &quot;R object&quot;) file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
+<span id="cb23-2"><a href="waRmups.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#saveRDS(Lui_sim_df, &quot;Lui_RDS.rds&quot;)</span></span>
+<span id="cb23-3"><a href="waRmups.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from an .rds file</span></span>
+<span id="cb23-4"><a href="waRmups.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- readRDS(&quot;Lui_RDS.rds&quot;)</span></span></code></pre></div>
+<p>You may have noticed a couple of things in each of these operations</p>
+<ul>
+<li>First, I named the data object that global environment “df” (i.e., dataframe).
+<ul>
+<li>It is a common (but not required) practice for researchers to simply use “df” or “dat” for their R script, no matter the type or source of the data. This practice has advantages (makes reusing code easy) and disadvantages (it’s easy to get confused about what data is what).</li>
+</ul></li>
+<li>Second, if you run the code, the updating <em>replaces</em> the prior code.
+<ul>
+<li>While this is irrelevant today (we are saving the same data in different ways), it points out the importance of creating a sensible and systematic <em>order of operations</em> in your .rmd files and then knowing where you are in the process.</li>
+</ul></li>
+</ul>
+<p>Because the data is simulated, I can simply use the data I created in the simulation, however, I will go ahead and use the convention of renaming it, “df.”</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="waRmups.html#cb24-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> Lui_sim_df</span></code></pre></div>
+<p>Is this R session reading our variables correctly? Check it with the “structure” command.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="waRmups.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span> (df)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   713 obs. of  8 variables:
+ $ OvDisc : num  1.45 4.9 0.45 2.85 2.09 ...
+ $ mAggr  : num  0.682 4.383 0.225 2.235 1.977 ...
+ $ Neuro  : num  3.11 3.69 3.5 2.68 2.08 ...
+ $ nAff   : num  2.32 2.59 2.27 2.28 2.01 ...
+ $ psyDist: num  1.83 3.41 2.75 2.11 3.12 ...
+ $ Alcohol: num  3.125 4.388 0.999 0.137 -0.575 ...
+ $ drProb : num  2.499 -3.23 3.035 -0.858 -1.467 ...
+ $ RacEth : chr  &quot;Asian&quot; &quot;Asian&quot; &quot;Asian&quot; &quot;Asian&quot; ...</code></pre>
+<p>Looking back at the Lui <span class="citation">(<a href="#ref-lui_racial_2020" role="doc-biblioref">2020</a>)</span> article we can presume the following variables (variable/variable name) to have the following structure (scaling/R scaling):</p>
+<ul>
+<li>Discrimination/OvDis:interval/num
+<ul>
+<li>theoretically someone could experience no discrimination, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never or not at all) for all the options.</li>
+</ul></li>
+<li>Microaggressions/mAggr: interval/num</li>
+<li>theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never; and then not at all [stressful]) for all the options.</li>
+<li>Neuroticism/Neuro: interval/num</li>
+<li>Negative affect/nAff:interval/num</li>
+<li>Psychological distress/psyDist:interval/num</li>
+<li>Hazardous alcohol use/Alcohol: interval/num</li>
+<li>Drinking problems/drProb: interval/num</li>
+<li>Race Ethnicity/RacEth: nominal/chr</li>
+</ul>
+<p>Everything is fine except Race Ethnicity which needs to be a factor. Let’s change it and check again.</p>
+<p>At this point I need to use the tidyverse package so that I can <em>mutate()</em> the RacEth variable to be a factor.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="waRmups.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A .csv file is uninformed -- it just holds data (and R guesses what it is); respecifying the type of variable will likely need to be completed each time the file is used.</span></span>
+<span id="cb27-2"><a href="waRmups.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="waRmups.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb27-4"><a href="waRmups.html#cb27-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="waRmups.html#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb27-6"><a href="waRmups.html#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">RacEth =</span> <span class="fu">as.factor</span>(RacEth))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="waRmups.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#checking the structure of the data</span></span>
+<span id="cb28-2"><a href="waRmups.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   713 obs. of  8 variables:
+ $ OvDisc : num  1.45 4.9 0.45 2.85 2.09 ...
+ $ mAggr  : num  0.682 4.383 0.225 2.235 1.977 ...
+ $ Neuro  : num  3.11 3.69 3.5 2.68 2.08 ...
+ $ nAff   : num  2.32 2.59 2.27 2.28 2.01 ...
+ $ psyDist: num  1.83 3.41 2.75 2.11 3.12 ...
+ $ Alcohol: num  3.125 4.388 0.999 0.137 -0.575 ...
+ $ drProb : num  2.499 -3.23 3.035 -0.858 -1.467 ...
+ $ RacEth : Factor w/ 3 levels &quot;Asian&quot;,&quot;Black&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<p>Manipulating the dat is an important skill. I can use the <em>select()</em> function to obtain certain variable. I want to select three variables that are continuous and then disaggregate them by race/ethnicity.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="waRmups.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-2"><a href="waRmups.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This was struggling to run because there are multiple packages open with a &quot;select&quot; function</span></span>
+<span id="cb30-3"><a href="waRmups.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#I solved the problem by indicating that I wanted to use the select function from the &quot;dplyr&quot; package</span></span>
+<span id="cb30-4"><a href="waRmups.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#dplyr is part of the tidyverse package</span></span>
+<span id="cb30-5"><a href="waRmups.html#cb30-5" aria-hidden="true" tabindex="-1"></a>tiny_df <span class="ot">&lt;-</span> df<span class="sc">%&gt;%</span></span>
+<span id="cb30-6"><a href="waRmups.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(mAggr, nAff, psyDist)</span></code></pre></div>
+<p>We can start with simple descriptives. Revelle’s <span class="citation">(<a href="#ref-revelle_introduction_2020" role="doc-biblioref">2020</a>)</span> <em>psych</em> package was made specifically for much of the type of work we do.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="waRmups.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb31-2"><a href="waRmups.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(tiny_df)</span></code></pre></div>
+<pre><code>        vars   n mean   sd median trimmed  mad   min   max range skew kurtosis
+mAggr      1 713 2.27 2.51   2.17    2.19 2.42 -4.42 10.42 14.85 0.35     0.32
+nAff       2 713 1.76 0.72   1.75    1.76 0.71 -0.56  4.19  4.75 0.01     0.15
+psyDist    3 713 2.14 0.80   2.11    2.13 0.79 -0.10  4.73  4.84 0.12     0.08
+          se
+mAggr   0.09
+nAff    0.03
+psyDist 0.03</code></pre>
+<p>One of the easiest way to get “counts” of categorical variables is to use them in the <em>psych</em> package’s <em>describeBy()</em> function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="waRmups.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span> (df, df<span class="sc">$</span>RacEth, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>         item group1 vars   n mean   sd   median  trimmed       mad
+OvDisc1     1  Asian    1 398 1.52 2.52 1.671877 1.536984 2.5083543
+OvDisc2     2  Black    1 133 4.45 4.22 4.101902 4.459685 3.7911955
+OvDisc3     3 Latinx    1 182 1.56 2.46 1.622515 1.592317 2.1839022
+mAggr1      4  Asian    2 398 1.72 2.04 1.629094 1.712366 2.0479218
+mAggr2      5  Black    2 133 3.84 3.08 3.560519 3.844107 2.8031478
+mAggr3      6 Latinx    2 182 2.34 2.49 2.366613 2.343589 2.5832009
+Neuro1      7  Asian    3 398 2.69 0.47 2.664432 2.688114 0.4913231
+Neuro2      8  Black    3 133 2.60 0.89 2.691292 2.616584 0.8381441
+Neuro3      9 Latinx    3 182 2.69 0.86 2.719094 2.697182 0.8817373
+nAff1      10  Asian    4 398 1.71 0.70 1.724998 1.709749 0.6808739
+nAff2      11  Black    4 133 1.84 0.80 1.779947 1.837073 0.8226934
+nAff3      12 Latinx    4 182 1.81 0.71 1.799092 1.811002 0.6725811
+psyDist1   13  Asian    5 398 2.14 0.80 2.117524 2.136579 0.8011511
+psyDist2   14  Black    5 133 2.10 0.81 2.001099 2.084985 0.8371713
+psyDist3   15 Latinx    5 182 2.17 0.78 2.142896 2.159840 0.7579508
+Alcohol1   16  Asian    6 398 2.35 2.41 2.299663 2.324671 2.4620921
+Alcohol2   17  Black    6 133 2.81 2.49 2.760749 2.822602 2.1592551
+Alcohol3   18 Latinx    6 182 3.47 2.59 3.353811 3.479536 2.7406457
+drProb1    19  Asian    7 398 2.42 3.36 2.409912 2.418404 3.5040063
+drProb2    20  Black    7 133 2.14 3.24 2.254354 2.158361 3.5583579
+drProb3    21 Latinx    7 182 2.69 3.76 2.528477 2.658522 3.5799107
+RacEth*1   22  Asian    8 398 1.00 0.00 1.000000 1.000000 0.0000000
+RacEth*2   23  Black    8 133 2.00 0.00 2.000000 2.000000 0.0000000
+RacEth*3   24 Latinx    8 182 3.00 0.00 3.000000 3.000000 0.0000000
+                  min       max     range         skew    kurtosis         se
+OvDisc1   -5.83902804  8.421599 14.260627 -0.078189651 -0.13080404 0.12631619
+OvDisc2  -10.31638613 16.388836 26.705222 -0.125879064  0.57600168 0.36592041
+OvDisc3   -6.57126805  7.625248 14.196516 -0.142542665  0.35807531 0.18234733
+mAggr1    -3.63155800  8.682565 12.314123  0.091336696 -0.18297749 0.10225596
+mAggr2    -4.09305401 10.424468 14.517522 -0.017884129 -0.31873937 0.26706987
+mAggr3    -4.42196168  9.237781 13.659743 -0.025230120 -0.03996127 0.18457108
+Neuro1     1.45287258  3.988193  2.535321  0.070330835 -0.35836361 0.02355897
+Neuro2    -0.28319065  4.738701  5.021892 -0.259085030  0.08300312 0.07717279
+Neuro3     0.01432133  5.263965  5.249644 -0.102274817  0.54931296 0.06374744
+nAff1     -0.29889116  3.613959  3.912850 -0.039998756 -0.12116003 0.03508783
+nAff2     -0.29056580  4.042763  4.333328  0.034482279 -0.25309219 0.06936880
+nAff3     -0.56044730  4.186554  4.747001  0.002283094  0.92439559 0.05262870
+psyDist1  -0.08596817  4.514520  4.600488  0.071251904 -0.12020053 0.04010038
+psyDist2  -0.10126503  4.402106  4.503371  0.151367949 -0.01156587 0.07023591
+psyDist3  -0.07657607  4.734104  4.810680  0.205329737  0.54580657 0.05781745
+Alcohol1  -3.07666900  9.204501 12.281170  0.143207169 -0.37141988 0.12080238
+Alcohol2  -5.55081496  9.730453 15.281268 -0.169805727  0.69454596 0.21591038
+Alcohol3  -3.64260294 10.765453 14.408056 -0.014397205 -0.23205639 0.19198357
+drProb1   -7.97853725 11.688962 19.667499 -0.006618251 -0.07367148 0.16842158
+drProb2   -5.64470469  9.939996 15.584701 -0.063644276 -0.38485480 0.28094363
+drProb3   -7.28910040 10.657865 17.946965  0.028417092 -0.36766984 0.27870974
+RacEth*1   1.00000000  1.000000  0.000000          NaN         NaN 0.00000000
+RacEth*2   2.00000000  2.000000  0.000000          NaN         NaN 0.00000000
+RacEth*3   3.00000000  3.000000  0.000000          NaN         NaN 0.00000000</code></pre>
+</div>
+<div id="determining-skew-and-kurtosis" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Determining Skew and Kurtosis</h3>
+<p>To understand whether our data are normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the <em>psych</em> package are reported as <em>z</em> scores. Regarding skew, values &gt; 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued anywhere &gt; 8 to 20 <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>.</p>
+</div>
+<div id="splom" class="section level3" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> SPLOM</h3>
+<p>SPLOM (scatterplot matrix) is a graphical tool that uses multiple scatterplots to deterine the correlation (if any) between a set of variables. These plots are organized into a matrix, making it easy to see them all at once.</p>
+<p>In the <em>psych</em> package, the <em>pairs.panels()</em> produces these.</p>
+<p><strong>On diagonal</strong> we see:</p>
+<ul>
+<li>histogram of each variable</li>
+<li>superimposed with a normal curve</li>
+</ul>
+<p><strong>Below diagonal</strong> we see:</p>
+<ul>
+<li>xy scatter plot (not useful for our categorical RacEth row)</li>
+<li>the <em>lowess</em> locally fit regression line</li>
+<li>the X axis represents the column variable; the Y axis, the row variable</li>
+</ul>
+<p><strong>Above diagonal</strong> we see:</p>
+<ul>
+<li>Pearson correlation</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="waRmups.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the pch = &quot;.&quot; command produces a cleaner graphic and is especially useful when there are lots of variables</span></span>
+<span id="cb35-2"><a href="waRmups.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(tiny_df, <span class="at">pch=</span><span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-26-1.svg" width="672" /></p>
+<p>What do we observe?</p>
+<ul>
+<li>All 3 variables look normally distributed</li>
+<li>relationship between mAggr with nAff and psyDist is quite comparable</li>
+<li>relationship between nAff and psyDist is very strong</li>
+<li>are these correlations significant? Revelle <span class="citation">(<a href="#ref-revelle_introduction_2020" role="doc-biblioref">2020</a>)</span> is not a fan of the associated <em>p</em> value, but we can get it several ways (hang tight).</li>
+</ul>
+<p>Writing up an APA style results section usually involves some sort of table. A super helpful package for doing this is <em>apaTables</em>. Really cool is the instructional article (pubbed in a peer reviewed journal) that also talks about the contributions of tools like this contributing to the <em>reproducibility</em> of science by reducing errors and, if the R script/data are shared how the evaluation process is standardized and therefore reproducible <span class="citation">(<a href="#ref-stanley_reproducible_2018" role="doc-biblioref">Stanley &amp; Spence, 2018</a>)</span>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="waRmups.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="waRmups.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unlike the psych package, this function removes any categorical variables</span></span>
+<span id="cb37-2"><a href="waRmups.html#cb37-2" aria-hidden="true" tabindex="-1"></a>Table1_Cor <span class="ot">&lt;-</span> <span class="fu">apa.cor.table</span>(tiny_df, <span class="at">filename =</span> <span class="st">&quot;Table1_Cor.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.conf.interval =</span> <span class="cn">FALSE</span>, <span class="at">landscape =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>The ability to suppress reporting of reporting confidence intervals has been deprecated in this version.
+The function argument show.conf.interval will be removed in a later version.</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="waRmups.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#swap in this command to see it in the console</span></span>
+<span id="cb39-2"><a href="waRmups.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Table1_Cor) </span></code></pre></div>
+<pre><code>
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable   M    SD   1          2         
+  1. mAggr   2.27 2.51                      
+                                            
+  2. nAff    1.76 0.72 .27**                
+                       [.20, .33]           
+                                            
+  3. psyDist 2.14 0.80 .26**      .76**     
+                       [.19, .32] [.73, .79]
+                                            
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p &lt; .05. ** indicates p &lt; .01.
+ </code></pre>
+</div>
+</div>
+<div id="results" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Results</h2>
+<p>Our sample included Asian American (<em>n</em> = 398), Latinx (<em>n</em> = 182), and Black (<em>n</em> = 133) participants. Visual inspection of the three variables of interest (negative affect, psychological distress, microaggressions) combined with formal evaluation of skewness and kurtosis suggested univariate normality. Correlations between negative affect and psychological distress were quite strong; correlations with each of these variables and microaggressions were moderate. Results are presented in Table 1.</p>
+</div>
+<div id="practice-problems" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Practice Problems</h2>
+<p>The three exercises described below are designed to “meet you where you are” and allow you to challenge your skills depending on your comfort with statistics and R.</p>
+<p>Regardless which you choose, you should:</p>
+<ul>
+<li>Create a tiny_df from a larger df</li>
+<li>Calculateand interpret descriptives for the continuously scaled variables</li>
+<li>Create the SPLOM (pairs.panels) of the continuously scaled variables</li>
+<li>Use the <em>apaTables</em> package to make an APA style table with means, standard deviations, and correlations</li>
+<li>Write up a mini-results section (APA style)</li>
+</ul>
+<div id="problem-1-change-the-random-seed" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Problem #1: Change the Random Seed</h3>
+<p>If this topic feels a bit overwhelming, simply change the random seed in the data simulation (at the very top), then rework the lesson exactly as written. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Element</th>
+<th align="center">Points Poss</th>
+<th align="left">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Create the tiny_df</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">2. Descriptives of tiny_df</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3. SPLOM/pairs.panels</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4. apaTables matrix</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5. Mini-results</td>
+<td align="center">5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation/discussion with a grader</td>
+<td align="center">5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">**Totals</td>
+<td align="center">22</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Problem #2:</h3>
+<p>Use the simulated data from the Lui <span class="citation">(<a href="#ref-lui_racial_2020" role="doc-biblioref">2020</a>)</span> study. However, select three continuous variables (2 must be different from mine) and then conduct the analyses.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Element</th>
+<th align="center">Points Poss</th>
+<th align="left">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Create the tiny_df</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">2. Descriptives of tiny_df</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3. SPLOM/pairs.panels</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4. apaTables matrix</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5. Mini-results</td>
+<td align="center">5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation/discussion with a grader</td>
+<td align="center">5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">**Totals</td>
+<td align="center">22</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-3" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Problem #3:</h3>
+<p>Use data for which you have permission and access. This could be IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; or data from other chapters in this OER.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Element</th>
+<th align="center">Points Poss</th>
+<th align="left">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Create the tiny_df</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">2. Descriptives of tiny_df</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3. SPLOM/pairs.panels</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4. apaTables matrix</td>
+<td align="center">3</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5. Mini-results</td>
+<td align="center">5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation/discussion with a grader</td>
+<td align="center">5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">**Totals</td>
+<td align="center">22</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-kline_principles_2016" class="csl-entry">
+Kline, R. B. (2016). <em>Principles and practice of structural equation modeling</em> (4th ed.). Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a>
+</div>
+<div id="ref-lui_racial_2020" class="csl-entry">
+Lui, P. P. (2020). Racial <span>Microaggression</span>, <span>Overt</span> <span>Discrimination</span>, and <span>Distress</span>: (<span>In</span>)<span>Direct</span> <span>Associations</span> <span>With</span> <span>Psychological</span> <span>Adjustment</span>. <em>The Counseling Psychologist</em>, 32.
+</div>
+<div id="ref-revelle_introduction_2020" class="csl-entry">
+Revelle, W. (2020). <em>An introduction to the psych package: <span>Part</span> <span>I</span>: Data entry and data description</em>. <a href="http://personality-project.org/r/psych/intro.pdf">http://personality-project.org/r/psych/intro.pdf</a>
+</div>
+<div id="ref-stanley_reproducible_2018" class="csl-entry">
+Stanley, D. J., &amp; Spence, J. R. (2018). Reproducible <span>Tables</span> in <span>Psychology</span> <span>Using</span> the <span class="nocase">apaTables</span> <span>Package</span>. <em>Advances in Methods and Practices in Psychological Science</em>, <em>1</em>(3), 415–431. <a href="https://doi.org/10.1177/2515245918773743">https://doi.org/10.1177/2515245918773743</a>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Ready.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="oneway.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/03-waRmup.Rmd",
+"text": null
+},
+"download": ["ReCenterPsychStats.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

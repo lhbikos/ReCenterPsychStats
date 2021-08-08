@@ -37,7 +37,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={ReCentering Psych Stats},
+  pdftitle={ReCentering Psych Stats: Analysis of Variance},
   pdfauthor={Lynette H Bikos, PhD, ABPP},
   pdflang={en},
   hidelinks,
@@ -127,7 +127,7 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
-\title{ReCentering Psych Stats}
+\title{ReCentering Psych Stats: Analysis of Variance}
 \author{Lynette H Bikos, PhD, ABPP}
 \date{}
 
@@ -152,7 +152,7 @@
 \chapter*{Preface}\label{preface}}
 \addcontentsline{toc}{chapter}{Preface}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 03 Apr 2021}
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 07 Aug 2021}
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -421,6 +421,10 @@ Researchers treat packages differently. In these lectures, I list all the packag
 ## Loading required package: psych
 \end{verbatim}
 
+\begin{verbatim}
+## Warning: package 'psych' was built under R version 4.0.5
+\end{verbatim}
+
 To make a package operable, you need to open it through the library. This process must be repeated each time you restart R. I don't open the package (through the ``library(package\_name)'') command until it is time to use it. Especially for new users, I think it's important to connect the functions with the specific packages.
 
 \begin{Shaded}
@@ -520,12 +524,997 @@ Using R Markdown for writing reproducible scientific papers: \url{https://libsci
 
 LaTeX equation editor: \url{https://www.codecogs.com/latex/eqneditor.php}
 
+\hypertarget{Ready}{%
+\chapter{Ready\_Set\_R}\label{Ready}}
+
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d080e0bb-e52e-4f38-9965-aa67010b3567}{Screencasted Lecture Link}
+
+With the goal of creating a common, system-wide approach to using the platorm, this lesson is primarily created for CPY and I/O doctoral students who are entering the ``stats sequence.''I hope it will also be useful for others (including faculty) who are also making the transition to R.
+
+\hypertarget{navigating-this-lesson}{%
+\section{Navigating this Lesson}\label{navigating-this-lesson}}
+
+There is about 45 minutes of lecture.
+
+\hypertarget{learning-objectives}{%
+\subsection{Learning Objectives}\label{learning-objectives}}
+
+Learning objectives from this lecture include the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Downloading/installing R's parts and pieces.
+\item
+  Using R-Markdown as the interface for running R analyses and saving the script.
+\item
+  Recognizing and adopting best practices for ``R hygiene.''
+\item
+  Identifying effective strategies for troubleshooting R hiccups.
+\end{itemize}
+
+\hypertarget{downloading-and-installing-r}{%
+\section{downloading and installing R}\label{downloading-and-installing-r}}
+
+\hypertarget{so-many-parts-and-pieces}{%
+\subsection{So many paRts and pieces}\label{so-many-parts-and-pieces}}
+
+Before we download, it may be helpful to understand some of R's many parts and pieces.
+
+The base software is free and is available \href{https://www.r-project.org/}{here}
+
+Because R is already on my machine (and because the instructions are sufficient), I will not walk through the demo, but I will point out a few things.
+
+\begin{itemize}
+\tightlist
+\item
+  The ``cran'' (I think ``cranium'') is the \emph{Comprehensive R Archive Network.} In order for R to run on your computer, you have to choose a location -- and it should be geographically ``close to you.''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Follow the instructions for your operating system (Mac, Windows, Linux)
+  \item
+    You will see the results of this download on your desktop (or elsewhere if you chose to not have it appear there) but you won't ever use R through this platform.
+  \end{itemize}
+\item
+  \href{https://www.rstudio.com/products/RStudio/}{R Studio} is the way in which we operate R. It's a separate download. Choose the free, desktop, option that is appropriate for your operating system:\\
+\item
+  \emph{R Markdown} is the way that many analysts write \emph{script}, conduct analyses, and even write up results. These are saved as .rmd files.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In R Studio, open an R Markdown document through File/New File/R Markdown
+  \item
+    Specify the details of your document (title, author, desired ouput)
+  \item
+    In a separate step, SAVE this document (File/Save{]} into a NEW FILE FOLDER that will contain anything else you need for your project (e.g., the data).
+  \item
+    \emph{Packages} are at the heart of working in R. Installing and activating packages require writing script.
+  \end{itemize}
+\end{itemize}
+
+\textbf{Note} If you have an enterprise-owned machine (e.g,. in my specific context, if you are a faculty/staff or have a lab with an SPU-issued laptops) there are complications caused by how documents are stored. You will likely need to consult with your computer and technology support office.
+
+\hypertarget{orienting-to-r-studio-focusing-only-on-the-things-we-will-be-using-first-and-most-often}{%
+\subsection{oRienting to R Studio (focusing only on the things we will be using first and most often)}\label{orienting-to-r-studio-focusing-only-on-the-things-we-will-be-using-first-and-most-often}}
+
+\begin{itemize}
+\tightlist
+\item
+  Upper right window
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Environment: lists the \emph{objects} that are available to you (e.g., dataframes)
+  \end{itemize}
+\item
+  Lower right window
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Files: Mimics your computer's environment. Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.
+  \item
+    Packages: Lists the packages that have been installed. If you navigate to it, you can see if it is ``on.'' You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu. This information actually opens in the Help window.
+  \item
+    Viewer and Plots are helpful, later, when we can simultaneously look at our output and still work on our script.
+  \end{itemize}
+\item
+  Primary window
+
+  \begin{itemize}
+  \tightlist
+  \item
+    R Studio runs in the background. Very occasionally, I can find useful troubleshooting information here.
+  \item
+    More commonly, I open my R Markdown document so that it takes the whole screen and I work directly, right here.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{best-practices}{%
+\section{best pRactices}\label{best-practices}}
+
+\hypertarget{setting-up-the-file}{%
+\subsection{Setting up the file}\label{setting-up-the-file}}
+
+\begin{itemize}
+\tightlist
+\item
+  Create a project file folder.
+\item
+  Put the data file in it.
+\item
+  Open an R Markdown file.
+\item
+  Save it in the same file folder.
+\end{itemize}
+
+\hypertarget{script-in-chunks-and-everything-else-in-the-inline-text-sections}{%
+\subsection{Script in chunks and everything else in the ``inline text'' sections}\label{script-in-chunks-and-everything-else-in-the-inline-text-sections}}
+
+The only thing in the chunks should be script for running R cide. You can also hashtag-out script so it won't run.
+
+You can put almost anything you want in the ``inline text with simple formatting.'' Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold, etc.) is found here: \url{https://rmarkdown.rstudio.com/authoring_basics.html}
+
+``Chunks'' start and end with with those three little tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will DISAPPEAR (if there are `````'' )and your script wont run) if those tic marks are missing or showing up in the wrong place.
+
+The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i
+
+\hypertarget{managing-packages}{%
+\subsection{Managing packages}\label{managing-packages}}
+
+Note that I have hashtags in front my ``install.packages'' commands. This is because I have already installed them.
+
+\begin{itemize}
+\tightlist
+\item
+  You can run the script by temporarily removing the hashtag and running each command individually by placing your cursor at the end of the line of code and entering CNTRL/ENTER as a keyboard shortcut.\\
+\item
+  You can run the entire chunk by selecting the green arrow in the upper right of the chunk.
+\item
+  You can run all the script prior to any chunk by clicking the middle symbol (grey down arrow)
+\end{itemize}
+
+ONCE A PACKAGE HAS BEEN INSTALLED, replace the hashtag. It makes a mess to continue to re-run this code for installing packages (after they have already been installed).
+
+To make a package operable, you need to open it through the library. This process must be repeated EACH TIME YOU RESTART R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages ("foreign")}
+\CommentTok{\#install.packages ("psych")}
+\FunctionTok{library}\NormalTok{ (psych)}
+\end{Highlighting}
+\end{Shaded}
+
+It takes awhile to learn which package is used for which task. A complete analysis (e.g., preliminary statistics, primary statistics, creating tables and figures) will require a number of packages. Many researchers like to list them all at in a complete section near the top of an .rmd file. In my lessons, I will include an ``install-if-needed'' section at the top that (hopefully) includes all the packages we use. My personal practice is to open the package (using the ``library(package)'' command) as I need it. For me this serves two purposes:
+
+\begin{itemize}
+\tightlist
+\item
+  It helps me remember (and continue to learn) which package is used for which task, and
+\item
+  (Possibly) helps prevent packages who share function names to not get confused with each other.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Another best practice for avoiding this problem is to name the package with two colons in front of the function (psych::describe)
+  \end{itemize}
+\end{itemize}
+
+Below is an example of the script that will appear near the beginning of each lesson. When the hashtags are removed, it checks to see if these packages are available to the user.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#will install the package if not already installed}
+\CommentTok{\#if(!require(foreign))\{install.packages("foreign")\} \#makes it possible to import data from packages, especially SPSS}
+\CommentTok{\#if(!require(psych))\{install.packages("psych")\} \#psych package is useful for a variety of things we do}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{upload-the-data}{%
+\subsection{Upload the data}\label{upload-the-data}}
+
+When conducted properly, the data will appear as an object in the global environment.
+
+In the context of this OER, I will be simulating data right in each lesson for use in the lesson. This makes the web-based platform more \emph{portable.} This means that when working the problems in the chapter we do not (a) write the data to a file and (b) import data from files. Because these are essential skills, I will demonstrate this process here -- starting with simulating data.
+
+At this point, simulating data is beyond the learning goals I have established for the chapter. I do need to include the code so that we get some data. The data I am simulating is used in the \protect\hyperlink{oneway}{one-way ANOVA lesson}. The data is from the Tran and Lee \citeyearpar{tran_you_2014} random clinical trial.
+
+In this simulation, I am simply creating an ID number, a condition (High, Low, Control), and a scoree on the dependent variable, ``Accurate.'' More information about this study is included in the \protect\hyperlink{oneway}{one-way ANOVA chapter}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2021}\NormalTok{) }\CommentTok{\#sets a random seed so that we get the same results each time}
+\NormalTok{Accurate }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\FloatTok{1.18}\NormalTok{, }\AttributeTok{sd=}\FloatTok{0.80}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\FloatTok{1.83}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.58}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \FloatTok{1.76}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.56}\NormalTok{))}\CommentTok{\#sample size, M and SD for each group}
+\NormalTok{Accurate[Accurate}\SpecialCharTok{\textgreater{}}\DecValTok{3}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{3} \CommentTok{\#set upper bound for DV}
+\NormalTok{Accurate[Accurate}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{0} \CommentTok{\#set lower bound for DV}
+\NormalTok{ID}\OtherTok{\textless{}{-}}\FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{90}\NormalTok{)) }\CommentTok{\#IDs for participants}
+\NormalTok{COND}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{)) }\CommentTok{\#name factors and identify how many in each group; should be in same order as first row of script}
+\NormalTok{Acc\_sim30 }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(ID, COND, Accurate) }\CommentTok{\#groups the 3 variables into a single df:  ID\#, DV, condition}
+\end{Highlighting}
+\end{Shaded}
+
+At this point, this data lives only in this .rmd file after the above code is run. Although there are numerous ways to export and import data, I have a preference for two.
+
+\hypertarget{to-and-from-.csv-files}{%
+\subsubsection{To and from .csv files}\label{to-and-from-.csv-files}}
+
+The first is to write the data to a .csv file. In your computer's environment (outside of R), these files are easily manipulated in Excel. I think of them as being ``Excel lite'' because although Excel can operate them, they lack some of the more advanced features of an Excel spreadsheet.
+
+In the code below, I identify the R object ``Acc\_sim30'' and give it a filename, ``to\_CSV.csv''. This filename must have the .csv extension. I also indicate that it should preserve the column names (but ignore row names; since we don't have row names).
+
+This file will save in the same folder as wherever you are using this .rmd file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#to write it to an outfile as a .csv}
+\FunctionTok{write.table}\NormalTok{(Acc\_sim30, }\AttributeTok{file=}\StringTok{"to\_CSV.csv"}\NormalTok{, }\AttributeTok{sep=}\StringTok{","}\NormalTok{, }\AttributeTok{col.names=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{row.names=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Importing this object back into the R environment can be accomplished with some simple code. For the sake of demonstration,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#to save the df as an .csv (think "Excel lite") file on your computer; it should save in the same file as the .rmd file you are working with}
+\NormalTok{from\_CSV }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{ (}\StringTok{"to\_CSV.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The advantage of working with .csv files is that it is then easy to inspect and manipulate them without R. The disadvantage of .csv files is that each time they are imported they lose any formatting you may have meticulously assigned to them.
+
+\hypertarget{to-and-from-.rds-files}{%
+\subsubsection{To and from .rds files}\label{to-and-from-.rds-files}}
+
+While it is easy enough to rerun the code (or copy it from data prep .rmd and paste it into an .rmd you are using for advanced analysis), there is an easier way! This is to save the data as an R object. This preserves all the characteristics of the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#to save the df as an .rds file on your computer; it should save in the same file as the .rmd file you are working with}
+\FunctionTok{saveRDS}\NormalTok{(Acc\_sim30, }\StringTok{"to\_Robject.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This file will save to your computer (and you can send it to colleagues). However, it is not easy to ``just open it'' in Excel. To open an .rds file and use it (whether you created it or it is sent to you by a colleague), use the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{from\_rds }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"to\_Robject.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{from-spss-files}{%
+\subsubsection{From SPSS files}\label{from-spss-files}}
+
+Your data may come to you in a variety of ways. One of the most common is SPSS. The \emph{foreign} package is popular for importing SPSS data. Below is code which would import an SPSS file \emph{if I had created one}. You'll see that this script is hashtagged out because I do not have an SPSS file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#opening an SPSS file requires the foreign package which I opened earlier}
+\CommentTok{\#from\_SPSS \textless{}{-} foreign::read.spss ("SPSSdata.sav", use.value.labels = TRUE, to.data.frame = TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{quick-demonstration}{%
+\section{quick demonstRation}\label{quick-demonstration}}
+
+Let's run some simple descriptives. In the script below, I am using the \emph{psych} package. Descriptive statistics will appear for all the data in the dataframe and the output will be rounded to three spaces.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(psych)}
+\FunctionTok{round}\NormalTok{(psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(Acc\_sim30),}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
+ID*         1 90 45.50 26.12  45.50   45.50 33.36   1  90    89  0.00    -1.24
+COND*       2 90  2.00  0.82   2.00    2.00  1.48   1   3     2  0.00    -1.53
+Accurate    3 90  1.52  0.68   1.55    1.54  0.70   0   3     3 -0.19    -0.34
+           se
+ID*      2.75
+COND*    0.09
+Accurate 0.07
+\end{verbatim}
+
+Because ``ID'' is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is ``Accurate.'' None-the-less, this provides an example of how to apply a package's function to a dataset. As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.
+
+\hypertarget{the-knitted-file}{%
+\section{the knitted file}\label{the-knitted-file}}
+
+One of the coolest things about R Markdown is its capacity to \emph{knit} to HTML, PPT, or WORD.
+
+\begin{itemize}
+\tightlist
+\item
+  In this OER, I am writing the lessons in R markdown (.rmd files), with the package \emph{bookdown} as a helper, and knitting the files to the .html format. In prior years, I knitted these documents to .doc formats. There are numerous possibilities!
+\item
+  The package \emph{papaja} is designed to prepare APA manuscripts where the writing, statistics, and references are all accomplished in a single file. This process contributes to replicability and reproducibility.
+\end{itemize}
+
+\hypertarget{troubleshooting-in-r-markdown-1}{%
+\section{tRoubleshooting in R maRkdown}\label{troubleshooting-in-r-markdown-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  In a given set of operations, you must run/execute each piece of code in order: every, single, time. That is, all the packages have to be in your library and activated.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If you open an .rmd file, you cannot just scroll down to make a boxplot. You need to run any \emph{prerequisite} script (like loading files, putting the data in the global environment, etc.)
+  \item
+    Lost? clear your global environment (broom icon in the upper right) and start over. Fresh starts are good.
+  \end{itemize}
+\item
+  Your .rmd file and your data need to be stored in the same file folder. These should be separate for separate projects, no matter how small.
+\item
+  Type any warnings you get into a search engine. Odds are, you'll get some decent hints in a manner of seconds. Especially at first, these are common errors:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The package isn't loaded
+  \item
+    The .rmd file has been saved yet, or isn't saved in the same folder as the data
+  \item
+    Errors of punctuation or spelling
+  \end{itemize}
+\item
+  Restart R (it's quick -- not like restarting your computer)
+\end{itemize}
+
+\hypertarget{just-why-are-we-transitioning-to-r}{%
+\section{\texorpdfstring{just \emph{why} are we tRansitioning to R?}{just why are we tRansitioning to R?}}\label{just-why-are-we-transitioning-to-r}}
+
+\begin{itemize}
+\tightlist
+\item
+  It (or at least it appears to be) is the futuRe.
+\item
+  SPSS site (and individual) license are increasingly expensive and limited (e.g,. we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to ``do just about anything.''
+\item
+  Most graduate psychology programs are scientist/practitionerin nature and include training in ``high end'' statistics. Yet, many of your employing organizations will not have SPSS. R is a free, universally accessible program, that our graduates can use anywhere.
+\end{itemize}
+
+\hypertarget{strategies-for-success-1}{%
+\section{stRategies for success}\label{strategies-for-success-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Engage with R, but don't let it overwhelm you.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The \emph{mechanical is also the conceptual}. Especially while it's \emph{simpler}, do try to retype the script into your own .rmd file and run it. Track down the errors you are making and fix them.
+  \item
+    If this stresses you out, move to simply copying the code into the .rmd file and running it. If you continue to have errors, you may have violated one of the best practices above (ask, ``Is the package activated?'' ``Are the data and .rmd files in the same place?'' ``Is all the prerequisite script run?'').
+  \item
+    Still overwhelmed? Keep moving forward by (retrieving the original.rmd file from the GitHub repository) opening a copy of the .rmd file and just ``run it along'' with the lecture. Spend your mental power trying to understand what each piece does so you can translate it for any homework assignments. My suggestions for practice aspire to be parallel to the lecture with no sneaky trix.
+  \end{itemize}
+\item
+  Copy script that works elsewhere and replace it with your datafile, variables, etc.\\
+\item
+  The leaRning curve is steep, but not impossible. Gladwell \citeyearpar{gladwell_outliers_2008} reminds us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.
+\item
+  Updates to R, R Studio, and the packages are NECESSARY, but can also be problematic. It could very well be that updates cause programs/script to fail (e.g., ``X has been deprecated for version X.XX''). Moreover, this very well could have happened between our distribution of the lecture and your attempt to use it days later. My practice is to update R, R Studio, and my packages about two weeks prior to the start of each academic term.
+\item
+  Embrace your downward dog. Also, walk away, go for a bicycle ride, then come back.
+\end{itemize}
+
+\hypertarget{resources-for-getting-started-1}{%
+\section{Resources for getting staRted}\label{resources-for-getting-started-1}}
+
+R for Data Science: \url{https://r4ds.had.co.nz/}
+
+R Cookbook: \url{http://shop.oreilly.com/product/9780596809164.do}
+
+R Markdown homepage with tutorials: \url{https://rmarkdown.rstudio.com/index.html}
+
+R has cheatsheets for everything, here's the one for R Markdown: \url{https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf}
+
+R Markdown Reference guide: \url{https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}
+
+Using R Markdown for writing reproducible scientific papers: \url{https://libscie.github.io/rmarkdown-workshop/handout.html}
+
+Script for all of Field's text: \url{https://studysites.uk.sagepub.com/dsur/study/scriptfi.htm}
+
+LaTeX equation editor: \url{https://www.codecogs.com/latex/eqneditor.php}
+
+\hypertarget{waRmups}{%
+\chapter{waRming up}\label{waRmups}}
+
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=fd132ba0-4bdc-47d4-94cd-ac40004a134b}{Screencasted Lecture Link}
+
+The beginning of any data analysis means familiarizing yourself with the data, that is, its distributional characteristics as well as its relations.
+
+\hypertarget{navigating-this-lesson-1}{%
+\section{Navigating this Lesson}\label{navigating-this-lesson-1}}
+
+There is about 30 minutes of lecture.
+
+The R markdown file used to create this lecture as well as all of the figures are available at the \href{https://github.com/lhbikos/ReC_Topics}{OER's GitHub site}.
+
+\hypertarget{learning-objectives-1}{%
+\subsection{Learning Objectives}\label{learning-objectives-1}}
+
+Learning objectives from this lecture include the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Produce descriptive statistics (means, standard deviations, skew, kurtosis), and correlation matrix, with the \emph{psych} package
+\item
+  Produce plots of data
+\item
+  Interpret skew, kurtosis, correlations
+\item
+  Create an APA Style table and results section that includes means, standard deviations, and correlations
+\end{itemize}
+
+\hypertarget{planning-for-practice}{%
+\subsection{Planning for Practice}\label{planning-for-practice}}
+
+This is designed as a ``get (back) into it'' assignment. You will essentially work through this very same lecture, using the same dataframe -- just a different set of continuous variables.
+
+\hypertarget{readings-resources}{%
+\subsection{Readings \& Resources}\label{readings-resources}}
+
+In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
+
+\begin{itemize}
+\tightlist
+\item
+  Revelle, W. (2020). An introduction to the psych package: Part I: data entry and data description.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Revelle is the author/creator of the \emph{psych} package. His tutorial provides both technical and interpretive information. Read pages 1-17.
+  \end{itemize}
+\item
+  Lui, P. P. (2020). Racial Microaggression, Overt Discrimination, and Distress: (In)Direct Associations With Psychological Adjustment. \emph{The Counseling Psychologist, 32}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We continue with the worked example from Lui; using simulated data for the lecture and homework assignment.
+  \end{itemize}
+\end{itemize}
+
+We will use simulated data from Lui \citeyearpar{lui_racial_2020} for simple data screening. Controlling for overt discrimination and neuroticism, Lui examined the degree to which racial microaggression contributed to negative affect, alcohol consumption, and drinking problems in African American, Asian American, and Latinx American college students (\emph{N} = 713).
+
+Using the means, standard deviations, correlation matrix, and group sizes (\emph{n}) I simulated the data. While the process of simulation is beyond the learning goals of this lesson (you can skip that part), I include it here so that it is easy to work the rest of the script.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{210807}\NormalTok{)}\CommentTok{\#sets the random seed so that we consistently get the same results}
+\CommentTok{\#for practice, you could change (or remove) the random seed and try to interpret the results (they should be quite similar)}
+\CommentTok{\#There are probe more efficient ways to simulate data.}
+\CommentTok{\#Given the information available in the manuscript, my approach was to first create the datasets for each of the racial ethnic groups that were provided and then binding them together.}
+
+\CommentTok{\#First, the data for the students who identified as Asian American}
+\NormalTok{Asian\_mu }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.52}\NormalTok{, }\FloatTok{1.72}\NormalTok{, }\FloatTok{2.69}\NormalTok{, }\FloatTok{1.71}\NormalTok{, }\FloatTok{2.14}\NormalTok{, }\FloatTok{2.35}\NormalTok{, }\FloatTok{2.42}\NormalTok{)}
+\NormalTok{Asian\_stddev }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{2.52}\NormalTok{, }\FloatTok{2.04}\NormalTok{, }\FloatTok{0.47}\NormalTok{, }\FloatTok{0.70}\NormalTok{, }\FloatTok{0.80}\NormalTok{, }\FloatTok{2.41}\NormalTok{, }\FloatTok{3.36}\NormalTok{)}
+\NormalTok{Asian\_corMat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.69}\NormalTok{,  }\FloatTok{0.19}\NormalTok{,  }\FloatTok{0.28}\NormalTok{,  }\FloatTok{0.32}\NormalTok{,  }\FloatTok{0.08}\NormalTok{,  }\FloatTok{0.23}\NormalTok{,}
+                          \FloatTok{0.69}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.20}\NormalTok{,  }\FloatTok{0.29}\NormalTok{,  }\FloatTok{0.33}\NormalTok{,  }\FloatTok{0.13}\NormalTok{,  }\FloatTok{0.25}\NormalTok{,}
+                          \FloatTok{0.19}\NormalTok{,  }\FloatTok{0.20}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.50}\NormalTok{,  }\FloatTok{0.50}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.04}\NormalTok{,  }\FloatTok{0.09}\NormalTok{,}
+                          \FloatTok{0.28}\NormalTok{,  }\FloatTok{0.29}\NormalTok{,  }\FloatTok{0.50}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.76}\NormalTok{,  }\FloatTok{0.04}\NormalTok{,  }\FloatTok{0.18}\NormalTok{,}
+                          \FloatTok{0.32}\NormalTok{,  }\FloatTok{0.33}\NormalTok{,  }\FloatTok{0.50}\NormalTok{,  }\FloatTok{0.76}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.10}\NormalTok{,  }\FloatTok{0.21}\NormalTok{,}
+                          \FloatTok{0.08}\NormalTok{,  }\FloatTok{0.13}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.04}\NormalTok{,  }\FloatTok{0.04}\NormalTok{,  }\FloatTok{0.10}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.42}\NormalTok{,}
+                          \FloatTok{0.23}\NormalTok{,  }\FloatTok{0.25}\NormalTok{,  }\FloatTok{0.09}\NormalTok{,  }\FloatTok{0.18}\NormalTok{,  }\FloatTok{0.21}\NormalTok{,  }\FloatTok{0.42}\NormalTok{,  }\FloatTok{1.00}\NormalTok{),}
+                        \AttributeTok{ncol=}\DecValTok{7}\NormalTok{)}
+\NormalTok{Asian\_covMat }\OtherTok{\textless{}{-}}\NormalTok{ Asian\_stddev }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(Asian\_stddev) }\SpecialCharTok{*}\NormalTok{ Asian\_corMat}
+
+\FunctionTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning: package 'MASS' was built under R version 4.0.5
+\end{verbatim}
+
+\begin{verbatim}
+Attaching package: 'MASS'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:dplyr':
+
+    select
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Asian\_dat }\OtherTok{\textless{}{-}} \FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =} \DecValTok{398}\NormalTok{, }\AttributeTok{mu =}\NormalTok{ Asian\_mu, }\AttributeTok{Sigma =}\NormalTok{ Asian\_covMat, }\AttributeTok{empirical =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{Asian\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(Asian\_dat)}
+
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{Asian\_df }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Asian\_df, }\AttributeTok{OvDisc =}\NormalTok{ V1, }\AttributeTok{mAggr =}\NormalTok{ V2, }\AttributeTok{Neuro =}\NormalTok{ V3, }\AttributeTok{nAff =}\NormalTok{ V4, }\AttributeTok{psyDist =}\NormalTok{ V5, }\AttributeTok{Alcohol =}\NormalTok{ V6, }\AttributeTok{drProb =}\NormalTok{ V7)}
+\NormalTok{Asian\_df}\SpecialCharTok{$}\NormalTok{RacEth }\OtherTok{\textless{}{-}} \StringTok{"Asian"}
+
+\CommentTok{\#Second, the data for the students who identified as Black/African American}
+\NormalTok{Black\_mu }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{4.45}\NormalTok{, }\FloatTok{3.84}\NormalTok{, }\FloatTok{2.60}\NormalTok{, }\FloatTok{1.84}\NormalTok{, }\FloatTok{2.10}\NormalTok{, }\FloatTok{2.81}\NormalTok{, }\FloatTok{2.14}\NormalTok{)}
+\NormalTok{Black\_stddev }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{4.22}\NormalTok{, }\FloatTok{3.08}\NormalTok{, }\FloatTok{0.89}\NormalTok{, }\FloatTok{0.80}\NormalTok{, }\FloatTok{0.81}\NormalTok{, }\FloatTok{2.49}\NormalTok{, }\FloatTok{3.24}\NormalTok{)}
+\NormalTok{Black\_corMat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{( }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.81}\NormalTok{,  }\FloatTok{0.17}\NormalTok{,  }\FloatTok{0.15}\NormalTok{,  }\FloatTok{0.09}\NormalTok{,  }\FloatTok{0.05}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.16}\NormalTok{,}
+              \FloatTok{0.81}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.17}\NormalTok{,  }\FloatTok{0.21}\NormalTok{,  }\FloatTok{0.11}\NormalTok{,  }\FloatTok{0.09}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{,}
+              \FloatTok{0.17}\NormalTok{,  }\FloatTok{0.17}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.59}\NormalTok{,  }\FloatTok{0.54}\NormalTok{,  }\FloatTok{0.05}\NormalTok{,  }\FloatTok{0.24}\NormalTok{,}
+              \FloatTok{0.15}\NormalTok{,  }\FloatTok{0.21}\NormalTok{,  }\FloatTok{0.59}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.72}\NormalTok{,  }\FloatTok{0.12}\NormalTok{,  }\FloatTok{0.22}\NormalTok{,}
+              \FloatTok{0.09}\NormalTok{,  }\FloatTok{0.11}\NormalTok{,  }\FloatTok{0.54}\NormalTok{,  }\FloatTok{0.72}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.21}\NormalTok{,  }\FloatTok{0.40}\NormalTok{,}
+              \FloatTok{0.05}\NormalTok{,  }\FloatTok{0.09}\NormalTok{,  }\FloatTok{0.05}\NormalTok{,  }\FloatTok{0.12}\NormalTok{,  }\FloatTok{0.21}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.65}\NormalTok{,}
+              \SpecialCharTok{{-}}\FloatTok{0.16}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{,  }\FloatTok{0.24}\NormalTok{,  }\FloatTok{0.22}\NormalTok{,  }\FloatTok{0.40}\NormalTok{,  }\FloatTok{0.65}\NormalTok{,  }\FloatTok{1.00}\NormalTok{),}
+           \AttributeTok{ncol =} \DecValTok{7}\NormalTok{)}
+\NormalTok{Black\_covMat }\OtherTok{\textless{}{-}}\NormalTok{ Black\_stddev }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(Black\_stddev) }\SpecialCharTok{*}\NormalTok{ Black\_corMat}
+\NormalTok{Black\_dat }\OtherTok{\textless{}{-}} \FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =} \DecValTok{133}\NormalTok{, }\AttributeTok{mu =}\NormalTok{ Black\_mu, }\AttributeTok{Sigma =}\NormalTok{ Black\_covMat, }\AttributeTok{empirical =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{Black\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(Black\_dat)}
+\NormalTok{Black\_df }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Black\_df, }\AttributeTok{OvDisc =}\NormalTok{ V1, }\AttributeTok{mAggr =}\NormalTok{ V2, }\AttributeTok{Neuro =}\NormalTok{ V3, }\AttributeTok{nAff =}\NormalTok{ V4, }\AttributeTok{psyDist =}\NormalTok{ V5, }\AttributeTok{Alcohol =}\NormalTok{ V6, }\AttributeTok{drProb =}\NormalTok{ V7)}
+\NormalTok{Black\_df}\SpecialCharTok{$}\NormalTok{RacEth }\OtherTok{\textless{}{-}} \StringTok{"Black"}
+
+\CommentTok{\#Third, the data for the students who identified as Latinx American}
+\NormalTok{Latinx\_mu }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.56}\NormalTok{, }\FloatTok{2.34}\NormalTok{, }\FloatTok{2.69}\NormalTok{, }\FloatTok{1.81}\NormalTok{, }\FloatTok{2.17}\NormalTok{, }\FloatTok{3.47}\NormalTok{, }\FloatTok{2.69}\NormalTok{)}
+\NormalTok{Latinx\_stddev }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{2.46}\NormalTok{, }\FloatTok{2.49}\NormalTok{, }\FloatTok{0.86}\NormalTok{, }\FloatTok{0.71}\NormalTok{, }\FloatTok{0.78}\NormalTok{, }\FloatTok{2.59}\NormalTok{, }\FloatTok{3.76}\NormalTok{)}
+\NormalTok{Latinx\_corMat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{( }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.78}\NormalTok{,  }\FloatTok{0.27}\NormalTok{,  }\FloatTok{0.36}\NormalTok{,  }\FloatTok{0.42}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.06}\NormalTok{,  }\FloatTok{0.08}\NormalTok{,}
+                           \FloatTok{0.78}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.33}\NormalTok{,  }\FloatTok{0.26}\NormalTok{,  }\FloatTok{0.35}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.11}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.02}\NormalTok{,}
+                           \FloatTok{0.27}\NormalTok{,  }\FloatTok{0.33}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.62}\NormalTok{,  }\FloatTok{0.64}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.04}\NormalTok{,  }\FloatTok{0.15}\NormalTok{,}
+                           \FloatTok{0.36}\NormalTok{,  }\FloatTok{0.26}\NormalTok{,  }\FloatTok{0.62}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.81}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.08}\NormalTok{,  }\FloatTok{0.17}\NormalTok{,}
+                           \FloatTok{0.42}\NormalTok{,  }\FloatTok{0.35}\NormalTok{,  }\FloatTok{0.64}\NormalTok{,  }\FloatTok{0.81}\NormalTok{,  }\FloatTok{1.00}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.06}\NormalTok{,  }\FloatTok{0.15}\NormalTok{,}
+                           \SpecialCharTok{{-}}\FloatTok{0.06}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.11}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.04}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.08}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.06}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.60}\NormalTok{,}
+                           \FloatTok{0.08}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.02}\NormalTok{,  }\FloatTok{0.15}\NormalTok{,  }\FloatTok{0.17}\NormalTok{,  }\FloatTok{0.15}\NormalTok{,  }\FloatTok{0.60}\NormalTok{,  }\FloatTok{1.00}\NormalTok{),}
+                        \AttributeTok{ncol =} \DecValTok{7}\NormalTok{)}
+\NormalTok{Latinx\_covMat }\OtherTok{\textless{}{-}}\NormalTok{ Latinx\_stddev }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(Latinx\_stddev) }\SpecialCharTok{*}\NormalTok{ Latinx\_corMat}
+\NormalTok{Latinx\_dat }\OtherTok{\textless{}{-}} \FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =} \DecValTok{182}\NormalTok{, }\AttributeTok{mu =}\NormalTok{ Latinx\_mu, }\AttributeTok{Sigma =}\NormalTok{ Latinx\_covMat, }\AttributeTok{empirical =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{Latinx\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(Latinx\_dat)}
+\NormalTok{Latinx\_df }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Latinx\_df, }\AttributeTok{OvDisc =}\NormalTok{ V1, }\AttributeTok{mAggr =}\NormalTok{ V2, }\AttributeTok{Neuro =}\NormalTok{ V3, }\AttributeTok{nAff =}\NormalTok{ V4, }\AttributeTok{psyDist =}\NormalTok{ V5, }\AttributeTok{Alcohol =}\NormalTok{ V6, }\AttributeTok{drProb =}\NormalTok{ V7)}
+\NormalTok{Latinx\_df}\SpecialCharTok{$}\NormalTok{RacEth }\OtherTok{\textless{}{-}} \StringTok{"Latinx"}
+
+\NormalTok{Lui\_sim\_df }\OtherTok{\textless{}{-}}\FunctionTok{bind\_rows}\NormalTok{ (Asian\_df, Black\_df, Latinx\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+If you have simulated the data, you can continue using the the ``Lui\_sim\_df'' object that we created. In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think ``Excel lite'') and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write.table(Lui\_sim\_df, file="Lui\_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
+\CommentTok{\#bring back the simulated dat from a .csv file}
+\CommentTok{\#df \textless{}{-} read.csv ("Lui\_CSV.csv", header = TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with}
+\CommentTok{\#saveRDS(Lui\_sim\_df, "Lui\_RDS.rds")}
+\CommentTok{\#bring back the simulated dat from an .rds file}
+\CommentTok{\#df \textless{}{-} readRDS("Lui\_RDS.rds")}
+\end{Highlighting}
+\end{Shaded}
+
+You may have noticed a couple of things in each of these operations
+
+\begin{itemize}
+\tightlist
+\item
+  First, I named the data object that global environment ``df'' (i.e., dataframe).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    It is a common (but not required) practice for researchers to simply use ``df'' or ``dat'' for their R script, no matter the type or source of the data. This practice has advantages (makes reusing code easy) and disadvantages (it's easy to get confused about what data is what).
+  \end{itemize}
+\item
+  Second, if you run the code, the updating \emph{replaces} the prior code.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    While this is irrelevant today (we are saving the same data in different ways), it points out the importance of creating a sensible and systematic \emph{order of operations} in your .rmd files and then knowing where you are in the process.
+  \end{itemize}
+\end{itemize}
+
+Because the data is simulated, I can simply use the data I created in the simulation, however, I will go ahead and use the convention of renaming it, ``df.''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ Lui\_sim\_df}
+\end{Highlighting}
+\end{Shaded}
+
+Is this R session reading our variables correctly? Check it with the ``structure'' command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{ (df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+'data.frame':   713 obs. of  8 variables:
+ $ OvDisc : num  1.45 4.9 0.45 2.85 2.09 ...
+ $ mAggr  : num  0.682 4.383 0.225 2.235 1.977 ...
+ $ Neuro  : num  3.11 3.69 3.5 2.68 2.08 ...
+ $ nAff   : num  2.32 2.59 2.27 2.28 2.01 ...
+ $ psyDist: num  1.83 3.41 2.75 2.11 3.12 ...
+ $ Alcohol: num  3.125 4.388 0.999 0.137 -0.575 ...
+ $ drProb : num  2.499 -3.23 3.035 -0.858 -1.467 ...
+ $ RacEth : chr  "Asian" "Asian" "Asian" "Asian" ...
+\end{verbatim}
+
+Looking back at the Lui \citeyearpar{lui_racial_2020} article we can presume the following variables (variable/variable name) to have the following structure (scaling/R scaling):
+
+\begin{itemize}
+\tightlist
+\item
+  Discrimination/OvDis:interval/num
+
+  \begin{itemize}
+  \tightlist
+  \item
+    theoretically someone could experience no discrimination, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never or not at all) for all the options.
+  \end{itemize}
+\item
+  Microaggressions/mAggr: interval/num
+\item
+  theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never; and then not at all {[}stressful{]}) for all the options.
+\item
+  Neuroticism/Neuro: interval/num
+\item
+  Negative affect/nAff:interval/num
+\item
+  Psychological distress/psyDist:interval/num
+\item
+  Hazardous alcohol use/Alcohol: interval/num
+\item
+  Drinking problems/drProb: interval/num
+\item
+  Race Ethnicity/RacEth: nominal/chr
+\end{itemize}
+
+Everything is fine except Race Ethnicity which needs to be a factor. Let's change it and check again.
+
+At this point I need to use the tidyverse package so that I can \emph{mutate()} the RacEth variable to be a factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# A .csv file is uninformed {-}{-} it just holds data (and R guesses what it is); respecifying the type of variable will likely need to be completed each time the file is used.}
+
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}
+        \AttributeTok{RacEth =} \FunctionTok{as.factor}\NormalTok{(RacEth))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#checking the structure of the data}
+\FunctionTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+'data.frame':   713 obs. of  8 variables:
+ $ OvDisc : num  1.45 4.9 0.45 2.85 2.09 ...
+ $ mAggr  : num  0.682 4.383 0.225 2.235 1.977 ...
+ $ Neuro  : num  3.11 3.69 3.5 2.68 2.08 ...
+ $ nAff   : num  2.32 2.59 2.27 2.28 2.01 ...
+ $ psyDist: num  1.83 3.41 2.75 2.11 3.12 ...
+ $ Alcohol: num  3.125 4.388 0.999 0.137 -0.575 ...
+ $ drProb : num  2.499 -3.23 3.035 -0.858 -1.467 ...
+ $ RacEth : Factor w/ 3 levels "Asian","Black",..: 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+Manipulating the dat is an important skill. I can use the \emph{select()} function to obtain certain variable. I want to select three variables that are continuous and then disaggregate them by race/ethnicity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#This was struggling to run because there are multiple packages open with a "select" function}
+\CommentTok{\#I solved the problem by indicating that I wanted to use the select function from the "dplyr" package}
+\CommentTok{\#dplyr is part of the tidyverse package}
+\NormalTok{tiny\_df }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(mAggr, nAff, psyDist)}
+\end{Highlighting}
+\end{Shaded}
+
+We can start with simple descriptives. Revelle's \citeyearpar{revelle_introduction_2020} \emph{psych} package was made specifically for much of the type of work we do.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(psych)}
+\FunctionTok{describe}\NormalTok{(tiny\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        vars   n mean   sd median trimmed  mad   min   max range skew kurtosis
+mAggr      1 713 2.27 2.51   2.17    2.19 2.42 -4.42 10.42 14.85 0.35     0.32
+nAff       2 713 1.76 0.72   1.75    1.76 0.71 -0.56  4.19  4.75 0.01     0.15
+psyDist    3 713 2.14 0.80   2.11    2.13 0.79 -0.10  4.73  4.84 0.12     0.08
+          se
+mAggr   0.09
+nAff    0.03
+psyDist 0.03
+\end{verbatim}
+
+One of the easiest way to get ``counts'' of categorical variables is to use them in the \emph{psych} package's \emph{describeBy()} function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{describeBy}\NormalTok{ (df, df}\SpecialCharTok{$}\NormalTok{RacEth, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         item group1 vars   n mean   sd   median  trimmed       mad
+OvDisc1     1  Asian    1 398 1.52 2.52 1.671877 1.536984 2.5083543
+OvDisc2     2  Black    1 133 4.45 4.22 4.101902 4.459685 3.7911955
+OvDisc3     3 Latinx    1 182 1.56 2.46 1.622515 1.592317 2.1839022
+mAggr1      4  Asian    2 398 1.72 2.04 1.629094 1.712366 2.0479218
+mAggr2      5  Black    2 133 3.84 3.08 3.560519 3.844107 2.8031478
+mAggr3      6 Latinx    2 182 2.34 2.49 2.366613 2.343589 2.5832009
+Neuro1      7  Asian    3 398 2.69 0.47 2.664432 2.688114 0.4913231
+Neuro2      8  Black    3 133 2.60 0.89 2.691292 2.616584 0.8381441
+Neuro3      9 Latinx    3 182 2.69 0.86 2.719094 2.697182 0.8817373
+nAff1      10  Asian    4 398 1.71 0.70 1.724998 1.709749 0.6808739
+nAff2      11  Black    4 133 1.84 0.80 1.779947 1.837073 0.8226934
+nAff3      12 Latinx    4 182 1.81 0.71 1.799092 1.811002 0.6725811
+psyDist1   13  Asian    5 398 2.14 0.80 2.117524 2.136579 0.8011511
+psyDist2   14  Black    5 133 2.10 0.81 2.001099 2.084985 0.8371713
+psyDist3   15 Latinx    5 182 2.17 0.78 2.142896 2.159840 0.7579508
+Alcohol1   16  Asian    6 398 2.35 2.41 2.299663 2.324671 2.4620921
+Alcohol2   17  Black    6 133 2.81 2.49 2.760749 2.822602 2.1592551
+Alcohol3   18 Latinx    6 182 3.47 2.59 3.353811 3.479536 2.7406457
+drProb1    19  Asian    7 398 2.42 3.36 2.409912 2.418404 3.5040063
+drProb2    20  Black    7 133 2.14 3.24 2.254354 2.158361 3.5583579
+drProb3    21 Latinx    7 182 2.69 3.76 2.528477 2.658522 3.5799107
+RacEth*1   22  Asian    8 398 1.00 0.00 1.000000 1.000000 0.0000000
+RacEth*2   23  Black    8 133 2.00 0.00 2.000000 2.000000 0.0000000
+RacEth*3   24 Latinx    8 182 3.00 0.00 3.000000 3.000000 0.0000000
+                  min       max     range         skew    kurtosis         se
+OvDisc1   -5.83902804  8.421599 14.260627 -0.078189651 -0.13080404 0.12631619
+OvDisc2  -10.31638613 16.388836 26.705222 -0.125879064  0.57600168 0.36592041
+OvDisc3   -6.57126805  7.625248 14.196516 -0.142542665  0.35807531 0.18234733
+mAggr1    -3.63155800  8.682565 12.314123  0.091336696 -0.18297749 0.10225596
+mAggr2    -4.09305401 10.424468 14.517522 -0.017884129 -0.31873937 0.26706987
+mAggr3    -4.42196168  9.237781 13.659743 -0.025230120 -0.03996127 0.18457108
+Neuro1     1.45287258  3.988193  2.535321  0.070330835 -0.35836361 0.02355897
+Neuro2    -0.28319065  4.738701  5.021892 -0.259085030  0.08300312 0.07717279
+Neuro3     0.01432133  5.263965  5.249644 -0.102274817  0.54931296 0.06374744
+nAff1     -0.29889116  3.613959  3.912850 -0.039998756 -0.12116003 0.03508783
+nAff2     -0.29056580  4.042763  4.333328  0.034482279 -0.25309219 0.06936880
+nAff3     -0.56044730  4.186554  4.747001  0.002283094  0.92439559 0.05262870
+psyDist1  -0.08596817  4.514520  4.600488  0.071251904 -0.12020053 0.04010038
+psyDist2  -0.10126503  4.402106  4.503371  0.151367949 -0.01156587 0.07023591
+psyDist3  -0.07657607  4.734104  4.810680  0.205329737  0.54580657 0.05781745
+Alcohol1  -3.07666900  9.204501 12.281170  0.143207169 -0.37141988 0.12080238
+Alcohol2  -5.55081496  9.730453 15.281268 -0.169805727  0.69454596 0.21591038
+Alcohol3  -3.64260294 10.765453 14.408056 -0.014397205 -0.23205639 0.19198357
+drProb1   -7.97853725 11.688962 19.667499 -0.006618251 -0.07367148 0.16842158
+drProb2   -5.64470469  9.939996 15.584701 -0.063644276 -0.38485480 0.28094363
+drProb3   -7.28910040 10.657865 17.946965  0.028417092 -0.36766984 0.27870974
+RacEth*1   1.00000000  1.000000  0.000000          NaN         NaN 0.00000000
+RacEth*2   2.00000000  2.000000  0.000000          NaN         NaN 0.00000000
+RacEth*3   3.00000000  3.000000  0.000000          NaN         NaN 0.00000000
+\end{verbatim}
+
+\hypertarget{determining-skew-and-kurtosis}{%
+\subsection{Determining Skew and Kurtosis}\label{determining-skew-and-kurtosis}}
+
+To understand whether our data are normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the \emph{psych} package are reported as \emph{z} scores. Regarding skew, values \textgreater{} 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued anywhere \textgreater{} 8 to 20 \citep{kline_principles_2016}.
+
+\hypertarget{splom}{%
+\subsection{SPLOM}\label{splom}}
+
+SPLOM (scatterplot matrix) is a graphical tool that uses multiple scatterplots to deterine the correlation (if any) between a set of variables. These plots are organized into a matrix, making it easy to see them all at once.
+
+In the \emph{psych} package, the \emph{pairs.panels()} produces these.
+
+\textbf{On diagonal} we see:
+
+\begin{itemize}
+\tightlist
+\item
+  histogram of each variable
+\item
+  superimposed with a normal curve
+\end{itemize}
+
+\textbf{Below diagonal} we see:
+
+\begin{itemize}
+\tightlist
+\item
+  xy scatter plot (not useful for our categorical RacEth row)
+\item
+  the \emph{lowess} locally fit regression line
+\item
+  the X axis represents the column variable; the Y axis, the row variable
+\end{itemize}
+
+\textbf{Above diagonal} we see:
+
+\begin{itemize}
+\tightlist
+\item
+  Pearson correlation
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# the pch = "." command produces a cleaner graphic and is especially useful when there are lots of variables}
+\FunctionTok{pairs.panels}\NormalTok{(tiny\_df, }\AttributeTok{pch=}\StringTok{"."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+What do we observe?
+
+\begin{itemize}
+\tightlist
+\item
+  All 3 variables look normally distributed
+\item
+  relationship between mAggr with nAff and psyDist is quite comparable
+\item
+  relationship between nAff and psyDist is very strong
+\item
+  are these correlations significant? Revelle \citeyearpar{revelle_introduction_2020} is not a fan of the associated \emph{p} value, but we can get it several ways (hang tight).
+\end{itemize}
+
+Writing up an APA style results section usually involves some sort of table. A super helpful package for doing this is \emph{apaTables}. Really cool is the instructional article (pubbed in a peer reviewed journal) that also talks about the contributions of tools like this contributing to the \emph{reproducibility} of science by reducing errors and, if the R script/data are shared how the evaluation process is standardized and therefore reproducible \citep{stanley_reproducible_2018}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(apaTables)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# unlike the psych package, this function removes any categorical variables}
+\NormalTok{Table1\_Cor }\OtherTok{\textless{}{-}} \FunctionTok{apa.cor.table}\NormalTok{(tiny\_df, }\AttributeTok{filename =} \StringTok{"Table1\_Cor.doc"}\NormalTok{, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.conf.interval =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{landscape =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+The ability to suppress reporting of reporting confidence intervals has been deprecated in this version.
+The function argument show.conf.interval will be removed in a later version.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#swap in this command to see it in the console}
+\FunctionTok{print}\NormalTok{(Table1\_Cor) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable   M    SD   1          2         
+  1. mAggr   2.27 2.51                      
+                                            
+  2. nAff    1.76 0.72 .27**                
+                       [.20, .33]           
+                                            
+  3. psyDist 2.14 0.80 .26**      .76**     
+                       [.19, .32] [.73, .79]
+                                            
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
+\end{verbatim}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+Our sample included Asian American (\emph{n} = 398), Latinx (\emph{n} = 182), and Black (\emph{n} = 133) participants. Visual inspection of the three variables of interest (negative affect, psychological distress, microaggressions) combined with formal evaluation of skewness and kurtosis suggested univariate normality. Correlations between negative affect and psychological distress were quite strong; correlations with each of these variables and microaggressions were moderate. Results are presented in Table 1.
+
+\hypertarget{practice-problems}{%
+\section{Practice Problems}\label{practice-problems}}
+
+The three exercises described below are designed to ``meet you where you are'' and allow you to challenge your skills depending on your comfort with statistics and R.
+
+Regardless which you choose, you should:
+
+\begin{itemize}
+\tightlist
+\item
+  Create a tiny\_df from a larger df
+\item
+  Calculateand interpret descriptives for the continuously scaled variables
+\item
+  Create the SPLOM (pairs.panels) of the continuously scaled variables
+\item
+  Use the \emph{apaTables} package to make an APA style table with means, standard deviations, and correlations
+\item
+  Write up a mini-results section (APA style)
+\end{itemize}
+
+\hypertarget{problem-1-change-the-random-seed}{%
+\subsection{Problem \#1: Change the Random Seed}\label{problem-1-change-the-random-seed}}
+
+If this topic feels a bit overwhelming, simply change the random seed in the data simulation (at the very top), then rework the lesson exactly as written. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
+
+\begin{longtable}[]{@{}lcl@{}}
+\toprule
+Element & Points Poss & Points Earned \\
+\midrule
+\endhead
+1. Create the tiny\_df & 3 & \\
+2. Descriptives of tiny\_df & 3 & \\
+3. SPLOM/pairs.panels & 3 & \\
+4. apaTables matrix & 3 & \\
+5. Mini-results & 5 & \\
+6. Explanation/discussion with a grader & 5 & \\
+**Totals & 22 & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{problem-2}{%
+\subsection{Problem \#2:}\label{problem-2}}
+
+Use the simulated data from the Lui \citeyearpar{lui_racial_2020} study. However, select three continuous variables (2 must be different from mine) and then conduct the analyses.
+
+\begin{longtable}[]{@{}lcl@{}}
+\toprule
+Element & Points Poss & Points Earned \\
+\midrule
+\endhead
+1. Create the tiny\_df & 3 & \\
+2. Descriptives of tiny\_df & 3 & \\
+3. SPLOM/pairs.panels & 3 & \\
+4. apaTables matrix & 3 & \\
+5. Mini-results & 5 & \\
+6. Explanation/discussion with a grader & 5 & \\
+**Totals & 22 & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{problem-3}{%
+\subsection{Problem \#3:}\label{problem-3}}
+
+Use data for which you have permission and access. This could be IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; or data from other chapters in this OER.
+
+\begin{longtable}[]{@{}lcl@{}}
+\toprule
+Element & Points Poss & Points Earned \\
+\midrule
+\endhead
+1. Create the tiny\_df & 3 & \\
+2. Descriptives of tiny\_df & 3 & \\
+3. SPLOM/pairs.panels & 3 & \\
+4. apaTables matrix & 3 & \\
+5. Mini-results & 5 & \\
+6. Explanation/discussion with a grader & 5 & \\
+**Totals & 22 & \\
+\bottomrule
+\end{longtable}
+
 \hypertarget{oneway}{%
 \chapter{ONE-WAY ANOVA}\label{oneway}}
 
-\emph{This is a pilot, sample chapter for the proposed open educational resource titled, ``ReCentering Psych Stats.'' There is much left to do in this chapter, especially regarding formatting. Please keep this in mind when you review it.}
-
-This was the lecture from fall quarter 2020. It will be replaced, shortly to match the current text. \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=150b68bf-c880-4348-8114-acb7000b227e}{Screencasted Lecture Link}
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=150b68bf-c880-4348-8114-acb7000b227e}{Screencasted Lecture Link}
 
 One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor. For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables: a factor and a dependent variable.
 
@@ -533,13 +1522,13 @@ The factor must be categorical in nature, dividing the cases into two or more gr
 
 One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter we will examine some some of the requirements (assumptions) of the statistic in greater detail.
 
-\hypertarget{navigating-this-lesson}{%
-\section{Navigating this Lesson}\label{navigating-this-lesson}}
+\hypertarget{navigating-this-lesson-2}{%
+\section{Navigating this Lesson}\label{navigating-this-lesson-2}}
 
-There is about 2 hours and 20 minutes of lecture. If you work through the materials with me it would be good to add another two hours.
+There is about 2 hours and 20 minutes of lecture. If you work through the materials with me plan for another two hours of study.
 
-\hypertarget{learning-objectives}{%
-\subsection{Learning Objectives}\label{learning-objectives}}
+\hypertarget{learning-objectives-2}{%
+\subsection{Learning Objectives}\label{learning-objectives-2}}
 
 Learning objectives from this lecture include the following:
 
@@ -559,8 +1548,8 @@ Learning objectives from this lecture include the following:
   Produce an APA style results section.
 \end{itemize}
 
-\hypertarget{planning-for-practice}{%
-\subsection{Planning for Practice}\label{planning-for-practice}}
+\hypertarget{planning-for-practice-1}{%
+\subsection{Planning for Practice}\label{planning-for-practice-1}}
 
 The research vignette for this chapter \citep{tran_you_2014} has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (\emph{Accurate}) in this lecture; the second is suggested as homework. For additional practice, you may wish to create a different set of simulated data by disabling the code that sets the random seed in the data simulation. This will allow reworking the same problem, but with slightly different results. As part of the practice you should:
 
@@ -582,8 +1571,8 @@ The research vignette for this chapter \citep{tran_you_2014} has two variables w
   write a results section to include a figure and tables
 \end{itemize}
 
-\hypertarget{readings-resources}{%
-\subsection{Readings \& Resources}\label{readings-resources}}
+\hypertarget{readings-resources-1}{%
+\subsection{Readings \& Resources}\label{readings-resources-1}}
 
 In preparing this chapter, I drew heavily from the following resource(s) that are freely available on the internet. Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
@@ -751,10 +1740,10 @@ Let's do both.
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    90 obs. of  3 variables:
-##  $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ COND    : chr  "High" "High" "High" "High" ...
-##  $ Accurate: num  1.86 1.75 2.59 1.38 2.03 ...
+'data.frame':   90 obs. of  3 variables:
+ $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ COND    : chr  "High" "High" "High" "High" ...
+ $ Accurate: num  1.86 1.75 2.59 1.38 2.03 ...
 \end{verbatim}
 
 If we look at this simple dataset, we see that we see that
@@ -796,10 +1785,10 @@ Let's recheck the structure
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    90 obs. of  3 variables:
-##  $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ COND    : Factor w/ 3 levels "Control","High",..: 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Accurate: num  1.86 1.75 2.59 1.38 2.03 ...
+'data.frame':   90 obs. of  3 variables:
+ $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ COND    : Factor w/ 3 levels "Control","High",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ Accurate: num  1.86 1.75 2.59 1.38 2.03 ...
 \end{verbatim}
 
 By default, R orders factors alphabetically. This means, analysis will assume that ``Control'' (C) is the lowest condition, then ``High,'' then ``Low.'' Since these have theoretically ordered values, we want them in the order of ``Control,'' ``Low,'' ``High.''
@@ -821,10 +1810,10 @@ Again, we can check our work.
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    90 obs. of  3 variables:
-##  $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ COND    : Factor w/ 3 levels "Control","Low",..: 3 3 3 3 3 3 3 3 3 3 ...
-##  $ Accurate: num  1.86 1.75 2.59 1.38 2.03 ...
+'data.frame':   90 obs. of  3 variables:
+ $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ COND    : Factor w/ 3 levels "Control","Low",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ Accurate: num  1.86 1.75 2.59 1.38 2.03 ...
 \end{verbatim}
 
 Now our variables are suitable for analysis.
@@ -843,10 +1832,10 @@ Let's continue data exploration. We will do this several ways so that you will h
 \end{Shaded}
 
 \begin{verbatim}
-##      COND Accurate
-## 1 Control 1.876882
-## 2     Low 2.046506
-## 3    High 1.473640
+     COND Accurate
+1 Control 1.876882
+2     Low 2.046506
+3    High 1.473640
 \end{verbatim}
 
 And now a standard deviation.
@@ -858,10 +1847,10 @@ And now a standard deviation.
 \end{Shaded}
 
 \begin{verbatim}
-##      COND  Accurate
-## 1 Control 0.4791969
-## 2     Low 0.5725299
-## 3    High 0.7653157
+     COND  Accurate
+1 Control 0.4791969
+2     Low 0.5725299
+3    High 0.7653157
 \end{verbatim}
 
 Before looking at the graphs, we can see that racially loaded \emph{high} condition has the lowest accuracy score and the largest variability. Let's take a look at the graphs to ``see'' this.
@@ -878,14 +1867,13 @@ The package \emph{gplots} produces a simple line graph and the script is fairly 
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Attaching package: 'gplots'
+Attaching package: 'gplots'
 \end{verbatim}
 
 \begin{verbatim}
-## The following object is masked from 'package:stats':
-## 
-##     lowess
+The following object is masked from 'package:stats':
+
+    lowess
 \end{verbatim}
 
 \begin{Shaded}
@@ -961,14 +1949,14 @@ Navarro \citeyearpar{navarro_book_2020} offers a set of useful figures to compar
 
 \begin{figure}
 \centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/anovavara-1.pdf}
-\caption{\label{fig:anovavara}Graphical illustration of ``between groups'' variation}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-30-1.pdf}
+\caption{\label{fig:unnamed-chunk-30}Graphical illustration of ``between groups'' variation}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/anovavarb-1.pdf}
-\caption{\label{fig:anovavarb}Graphical illustration of ``within groups'' variation}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-31-1.pdf}
+\caption{\label{fig:unnamed-chunk-31}Graphical illustration of ``within groups'' variation}
 \end{figure}
 
 Perhaps an oversimplification, but to the degree that between-group variance (i.e,. model variance) is greater than within-group variance (i.e., residual variance) there may be support to suggest that there are statistically significant differences between groups.
@@ -1004,7 +1992,7 @@ Our grand (i.e., overall) mean is
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.799009
+[1] 1.799009
 \end{verbatim}
 
 Subtracting the grand mean from each Accurate score yields a mean difference.
@@ -1012,30 +2000,7 @@ Subtracting the grand mean from each Accurate score yields a mean difference.
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
-\end{verbatim}
-
-\begin{verbatim}
-## v ggplot2 3.3.3     v purrr   0.3.4
-## v tibble  3.0.4     v dplyr   1.0.2
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.0
-\end{verbatim}
-
-\begin{verbatim}
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x ggplot2::%+%()   masks psych::%+%()
-## x ggplot2::alpha() masks psych::alpha()
-## x dplyr::filter()  masks stats::filter()
-## x dplyr::lag()     masks stats::lag()
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{accSIM30 }\OtherTok{\textless{}{-}}\NormalTok{ accSIM30 }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_dev =}\NormalTok{ Accurate}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(Accurate))}
 \end{Highlighting}
@@ -1050,7 +2015,7 @@ Pop quiz: What's the sum of our new \emph{m\_dev} variable? Let's check.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -5.421372e-17
+[1] -0.00000000000000005421372
 \end{verbatim}
 
 R uses \textbf{scientific e notation}. The proper value is one where the base number (before the ``e'') is multiplied by 10, raised to the power shown: \(5.421372 * 10^{17}\) Another way to think of it is to move the decimal 17 places to the left. In any case, this number is essentially zero.
@@ -1073,7 +2038,7 @@ If we sum the squared mean deviations we will obtain the total variance (sums of
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 38.34623
+[1] 38.34623
 \end{verbatim}
 
 This value, the sum of squared deviations around the grand mean, is our \(SS_T\); the associated \emph{degrees of freedom} is \(N - 1\); in our case this is 90-1 = 89.
@@ -1110,7 +2075,7 @@ To calculate this, we start with the grand mean.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.799009
+[1] 1.799009
 \end{verbatim}
 
 We also estimate the group means.
@@ -1122,10 +2087,10 @@ We also estimate the group means.
 \end{Shaded}
 
 \begin{verbatim}
-##      COND Accurate
-## 1 Control 1.876882
-## 2     Low 2.046506
-## 3    High 1.473640
+     COND Accurate
+1 Control 1.876882
+2     Low 2.046506
+3    High 1.473640
 \end{verbatim}
 
 This formula occurs in three chunks, representing the control, low, and high racial loading conditions. In each of the chunks we have the \(n\), group mean, and grand mean.
@@ -1137,7 +2102,7 @@ This formula occurs in three chunks, representing the control, low, and high rac
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.17689
+[1] 5.17689
 \end{verbatim}
 
 This value, \(SS_M\) is the value accounted for by the model -- the proportion of variance accounted for by the grouping variable/factor, COND. Degrees of freedom for \(SS_M\) is always one less than the number of elements (e.g., groups) used in its calculation (\(k-1\)). Because we have three groups, our degrees of freedom for the model is 2.
@@ -1162,10 +2127,10 @@ Again, the formula is in three chunks -- but this time the calculations are \emp
 \end{Shaded}
 
 \begin{verbatim}
-##      COND  Accurate
-## 1 Control 0.4791969
-## 2     Low 0.5725299
-## 3    High 0.7653157
+     COND  Accurate
+1 Control 0.4791969
+2     Low 0.5725299
+3    High 0.7653157
 \end{verbatim}
 
 A quick tangent -- this calculation demonstrates the relationship between standard deviation and variance. Variance is the standard deviation, squared.
@@ -1178,7 +2143,7 @@ A quick tangent -- this calculation demonstrates the relationship between standa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2296297
+[1] 0.2296297
 \end{verbatim}
 
 \begin{Shaded}
@@ -1188,10 +2153,10 @@ A quick tangent -- this calculation demonstrates the relationship between standa
 \end{Shaded}
 
 \begin{verbatim}
-##      COND  Accurate
-## 1 Control 0.2296297
-## 2     Low 0.3277905
-## 3    High 0.5857082
+     COND  Accurate
+1 Control 0.2296297
+2     Low 0.3277905
+3    High 0.5857082
 \end{verbatim}
 
 We will use the second formula to calculate \(SS_R\). For each of the groups, we multiply the variance by the respective degrees of freedom for the group (\emph{n} - 1).
@@ -1203,7 +2168,7 @@ We will use the second formula to calculate \(SS_R\). For each of the groups, we
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 33.1499
+[1] 33.1499
 \end{verbatim}
 
 The value for our \(SS_R\) is 33.15. Degrees of freedom for the residual is \(df_T - df_M\).
@@ -1232,7 +2197,7 @@ In case it's not clear:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 38.33
+[1] 38.33
 \end{verbatim}
 
 \emph{The difference (38.35 vs.~38.33) is likely due to rounding error. Earlier estimates had multiple decimal points.}
@@ -1266,7 +2231,7 @@ Regarding the calculation of our model mean squares:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.588445
+[1] 2.588445
 \end{verbatim}
 
 \[MS_R = \frac{SS_{R}}{df{_{R}}}\]
@@ -1290,7 +2255,7 @@ Regarding the calculation of our model residual squares:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3810333
+[1] 0.3810333
 \end{verbatim}
 
 \hypertarget{calculating-the-f-statistic}{%
@@ -1318,7 +2283,7 @@ Regarding the calculation of our \emph{F}-ratio:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 6.793225
+[1] 6.793225
 \end{verbatim}
 
 \hypertarget{source-table-games}{%
@@ -1442,8 +2407,8 @@ From the \emph{psych} package, the \emph{describe()} function can be used to pro
 \end{Shaded}
 
 \begin{verbatim}
-##    vars  n mean   sd median trimmed  mad  min max range  skew kurtosis   se
-## X1    1 90  1.8 0.66    1.8    1.83 0.56 0.15   3  2.85 -0.33    -0.07 0.07
+   vars  n mean   sd median trimmed  mad  min max range  skew kurtosis   se
+X1    1 90  1.8 0.66    1.8    1.83 0.56 0.15   3  2.85 -0.33    -0.07 0.07
 \end{verbatim}
 
 If we want descriptives for each level of the grouping variable (factor), we can use the \emph{describeBy()} function of the \emph{psych} package. The order of entry within the script is the DV followed by the grouping variable (IV).
@@ -1464,14 +2429,14 @@ If we want descriptives for each level of the grouping variable (factor), we can
 \end{Shaded}
 
 \begin{verbatim}
-##     item  group1 vars  n  mean    sd median trimmed   mad   min   max range
-## X11    1 Control    1 30 1.877 0.479  1.811   1.872 0.460 0.854 2.721 1.867
-## X12    2     Low    1 30 2.047 0.573  2.049   2.053 0.534 0.922 3.000 2.078
-## X13    3    High    1 30 1.474 0.765  1.498   1.469 0.646 0.153 2.935 2.782
-##       skew kurtosis    se
-## X11  0.134   -0.756 0.087
-## X12  0.017   -0.872 0.105
-## X13 -0.034   -0.789 0.140
+    item  group1 vars  n  mean    sd median trimmed   mad   min   max range
+X11    1 Control    1 30 1.877 0.479  1.811   1.872 0.460 0.854 2.721 1.867
+X12    2     Low    1 30 2.047 0.573  2.049   2.053 0.534 0.922 3.000 2.078
+X13    3    High    1 30 1.474 0.765  1.498   1.469 0.646 0.153 2.935 2.782
+      skew kurtosis    se
+X11  0.134   -0.756 0.087
+X12  0.017   -0.872 0.105
+X13 -0.034   -0.789 0.140
 \end{verbatim}
 
 \begin{Shaded}
@@ -1491,11 +2456,10 @@ The \emph{Shapiro-Wilks} test evaluates the hypothesis that the distribution of 
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  accSIM30$Accurate
-## W = 0.97413, p-value = 0.06931
+    Shapiro-Wilk normality test
+
+data:  accSIM30$Accurate
+W = 0.97413, p-value = 0.06931
 \end{verbatim}
 
 The \(p\) value (\(p\) = 0.069) is just barely above .05. This tells us that the Accurate variable does not deviate from a statistically significant distribution.
@@ -1518,30 +2482,29 @@ In R, Levene's test is found in the \emph{car} package.
 \end{Shaded}
 
 \begin{verbatim}
-## Loading required package: carData
+Loading required package: carData
 \end{verbatim}
 
 \begin{verbatim}
-## 
-## Attaching package: 'car'
+Attaching package: 'car'
 \end{verbatim}
 
 \begin{verbatim}
-## The following object is masked from 'package:dplyr':
-## 
-##     recode
+The following object is masked from 'package:dplyr':
+
+    recode
 \end{verbatim}
 
 \begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     some
+The following object is masked from 'package:purrr':
+
+    some
 \end{verbatim}
 
 \begin{verbatim}
-## The following object is masked from 'package:psych':
-## 
-##     logit
+The following object is masked from 'package:psych':
+
+    logit
 \end{verbatim}
 
 \begin{Shaded}
@@ -1552,10 +2515,10 @@ In R, Levene's test is found in the \emph{car} package.
 \end{Shaded}
 
 \begin{verbatim}
-## Levene's Test for Homogeneity of Variance (center = mean)
-##       Df F value Pr(>F)
-## group  2   2.274  0.109
-##       87
+Levene's Test for Homogeneity of Variance (center = mean)
+      Df F value Pr(>F)
+group  2   2.274  0.109
+      87               
 \end{verbatim}
 
 We write the result of the Levene's as \(F\)(2,87) = 2.274, \(p\) = 0.109 Because \(p\) \textgreater{} .05, we know that the result is nonsignficant -- that the variances of the three groups are not statistically significantly different than each other.
@@ -1597,11 +2560,11 @@ By assigning the results of the \emph{aov()} function to an object (accBYcond) w
 \end{Shaded}
 
 \begin{verbatim}
-##             Df Sum Sq Mean Sq F value  Pr(>F)   
-## COND         2   5.20   2.598   6.817 0.00178 **
-## Residuals   87  33.15   0.381                   
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+            Df Sum Sq Mean Sq F value  Pr(>F)   
+COND         2   5.20   2.598   6.817 0.00178 **
+Residuals   87  33.15   0.381                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 Inserting the \emph{aov()} object (accBYcond) into the summary command produces the ANOVA Source Table that we manually created above.
@@ -1623,10 +2586,10 @@ The object we created with the \emph{aov()} function is capable of producing muc
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "coefficients"  "residuals"     "effects"       "rank"         
-##  [5] "fitted.values" "assign"        "qr"            "df.residual"  
-##  [9] "contrasts"     "xlevels"       "call"          "terms"        
-## [13] "model"
+ [1] "coefficients"  "residuals"     "effects"       "rank"         
+ [5] "fitted.values" "assign"        "qr"            "df.residual"  
+ [9] "contrasts"     "xlevels"       "call"          "terms"        
+[13] "model"        
 \end{verbatim}
 
 \emph{summary()} is one of the most commonly used function applied to \emph{aov()} objects, but it's not the only one.
@@ -1639,15 +2602,15 @@ Let's try some other options.
 \end{Shaded}
 
 \begin{verbatim}
-## Tables of means
-## Grand mean
-##          
-## 1.799009 
-## 
-##  COND 
-## COND
-## Control     Low    High 
-##  1.8769  2.0465  1.4736
+Tables of means
+Grand mean
+         
+1.799009 
+
+ COND 
+COND
+Control     Low    High 
+ 1.8769  2.0465  1.4736 
 \end{verbatim}
 
 Let's graph some of the data.
@@ -1689,7 +2652,7 @@ Hand calculation, then, is straightforward.:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.1355932
+[1] 0.1355932
 \end{verbatim}
 
 The \emph{lsr} package includes an eta-squared calculator. To use it, we simply insert the model/object we created with the \emph{aov()} function to \emph{lsr}'s \emph{etaSquared()} function.
@@ -1702,8 +2665,8 @@ The \emph{lsr} package includes an eta-squared calculator. To use it, we simply 
 \end{Shaded}
 
 \begin{verbatim}
-##         eta.sq eta.sq.part
-## COND 0.1354894   0.1354894
+        eta.sq eta.sq.part
+COND 0.1354894   0.1354894
 \end{verbatim}
 
 Notice that there are two effect sizes. We described eta-squared. Partial eta-squared is the effect size reported in SPSS. There's a long history of debate about which to use. In certain circumstances (especially in more complicated analyses), partial-eta squared can be a bit more generous (i.e., larger than \(\eta^2\)). Thus, many prefer the reporting of \(\eta^2\).
@@ -1756,16 +2719,15 @@ Helpful information about how to conduct post-hoc pairwise comparisons in R can 
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Pairwise comparisons using t tests with pooled SD 
-## 
-## data:  accSIM30$Accurate and accSIM30$COND 
-## 
-##      Control Low    
-## Low  0.29016 -      
-## High 0.01321 0.00054
-## 
-## P value adjustment method: none
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  accSIM30$Accurate and accSIM30$COND 
+
+     Control Low    
+Low  0.29016 -      
+High 0.01321 0.00054
+
+P value adjustment method: none 
 \end{verbatim}
 
 \begin{Shaded}
@@ -1862,25 +2824,24 @@ We use it now to retrieve some contrast information. The code below is a planned
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## aov(formula = Accurate ~ COND, data = accSIM30)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.32063 -0.36424 -0.01944  0.33736  1.46146 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   1.8769     0.1127  16.654   <2e-16 ***
-## CONDLow       0.1696     0.1594   1.064   0.2902    
-## CONDHigh     -0.4032     0.1594  -2.530   0.0132 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.6173 on 87 degrees of freedom
-## Multiple R-squared:  0.1355, Adjusted R-squared:  0.1156 
-## F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776
+Call:
+aov(formula = Accurate ~ COND, data = accSIM30)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.32063 -0.36424 -0.01944  0.33736  1.46146 
+
+Coefficients:
+            Estimate Std. Error t value            Pr(>|t|)    
+(Intercept)   1.8769     0.1127  16.654 <0.0000000000000002 ***
+CONDLow       0.1696     0.1594   1.064              0.2902    
+CONDHigh     -0.4032     0.1594  -2.530              0.0132 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6173 on 87 degrees of freedom
+Multiple R-squared:  0.1355,    Adjusted R-squared:  0.1156 
+F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776
 \end{verbatim}
 
 From the above, regression output, we see that there was not a statistically significant difference between COND\_Control COND\_Low (\emph{p} = 0.2902). There was a statistically significant difference between COND\_High and COND\_Low.
@@ -1931,22 +2892,22 @@ This is sensible because we likely hypothesize that any degree of racially loade
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] High    High    High    High    High    High    High    High    High   
-## [10] High    High    High    High    High    High    High    High    High   
-## [19] High    High    High    High    High    High    High    High    High   
-## [28] High    High    High    Low     Low     Low     Low     Low     Low    
-## [37] Low     Low     Low     Low     Low     Low     Low     Low     Low    
-## [46] Low     Low     Low     Low     Low     Low     Low     Low     Low    
-## [55] Low     Low     Low     Low     Low     Low     Control Control Control
-## [64] Control Control Control Control Control Control Control Control Control
-## [73] Control Control Control Control Control Control Control Control Control
-## [82] Control Control Control Control Control Control Control Control Control
-## attr(,"contrasts")
-##         contrast1 contrast2
-## Control        -2         0
-## Low             1        -1
-## High            1         1
-## Levels: Control Low High
+ [1] High    High    High    High    High    High    High    High    High   
+[10] High    High    High    High    High    High    High    High    High   
+[19] High    High    High    High    High    High    High    High    High   
+[28] High    High    High    Low     Low     Low     Low     Low     Low    
+[37] Low     Low     Low     Low     Low     Low     Low     Low     Low    
+[46] Low     Low     Low     Low     Low     Low     Low     Low     Low    
+[55] Low     Low     Low     Low     Low     Low     Control Control Control
+[64] Control Control Control Control Control Control Control Control Control
+[73] Control Control Control Control Control Control Control Control Control
+[82] Control Control Control Control Control Control Control Control Control
+attr(,"contrasts")
+        contrast1 contrast2
+Control        -2         0
+Low             1        -1
+High            1         1
+Levels: Control Low High
 \end{verbatim}
 
 Thinking back to the hand-calculations and contrast mapping, the table of weights that R just produced confirms that
@@ -1970,25 +2931,24 @@ Thinking back to the hand-calculations and contrast mapping, the table of weight
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## aov(formula = Accurate ~ COND, data = accSIM30)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.32063 -0.36424 -0.01944  0.33736  1.46146 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)    1.79901    0.06507  27.648  < 2e-16 ***
-## CONDcontrast1 -0.03894    0.04601  -0.846 0.399727    
-## CONDcontrast2 -0.28643    0.07969  -3.594 0.000539 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.6173 on 87 degrees of freedom
-## Multiple R-squared:  0.1355, Adjusted R-squared:  0.1156 
-## F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776
+Call:
+aov(formula = Accurate ~ COND, data = accSIM30)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.32063 -0.36424 -0.01944  0.33736  1.46146 
+
+Coefficients:
+              Estimate Std. Error t value             Pr(>|t|)    
+(Intercept)    1.79901    0.06507  27.648 < 0.0000000000000002 ***
+CONDcontrast1 -0.03894    0.04601  -0.846             0.399727    
+CONDcontrast2 -0.28643    0.07969  -3.594             0.000539 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6173 on 87 degrees of freedom
+Multiple R-squared:  0.1355,    Adjusted R-squared:  0.1156 
+F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776
 \end{verbatim}
 
 \begin{Shaded}
@@ -2021,25 +2981,24 @@ In a polynomial analysis, the statistical analysis looks across the ordered mean
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## aov(formula = Accurate ~ COND, data = accSIM30)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.32063 -0.36424 -0.01944  0.33736  1.46146 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.79901    0.06507   27.65  < 2e-16 ***
-## COND.L      -0.28514    0.11270   -2.53  0.01321 *  
-## COND.Q      -0.30312    0.11270   -2.69  0.00857 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.6173 on 87 degrees of freedom
-## Multiple R-squared:  0.1355, Adjusted R-squared:  0.1156 
-## F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776
+Call:
+aov(formula = Accurate ~ COND, data = accSIM30)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.32063 -0.36424 -0.01944  0.33736  1.46146 
+
+Coefficients:
+            Estimate Std. Error t value             Pr(>|t|)    
+(Intercept)  1.79901    0.06507   27.65 < 0.0000000000000002 ***
+COND.L      -0.28514    0.11270   -2.53              0.01321 *  
+COND.Q      -0.30312    0.11270   -2.69              0.00857 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6173 on 87 degrees of freedom
+Multiple R-squared:  0.1355,    Adjusted R-squared:  0.1156 
+F-statistic: 6.817 on 2 and 87 DF,  p-value: 0.001776
 \end{verbatim}
 
 A quick peek back at an early plot shows illustrates the quadratic trend that was supported by the analysis.
@@ -2085,11 +3044,10 @@ Another common correction is the Brown and Forsythe \emph{F}-ratio. At this time
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  One-way analysis of means (not assuming equal variances)
-## 
-## data:  Accurate and COND
-## F = 5.3691, num df = 2.00, denom df = 56.22, p-value = 0.007346
+    One-way analysis of means (not assuming equal variances)
+
+data:  Accurate and COND
+F = 5.3691, num df = 2.00, denom df = 56.22, p-value = 0.007346
 \end{verbatim}
 
 Note that the denominator \emph{df} is now 56.22 (not 87) and \emph{p} value is bigger (it was .00178). With its design intended to avoid making a Type I error, the Welch's \emph{F} is more ``conservative.'' While it doesn't matter in this case, if it were a study where the \emph{p} value was closer to .05, it could make a difference. These are some of the tradeoffs made in order to have confidence in the results.
@@ -2173,16 +3131,15 @@ In the script below, we simply add our values. So long as we have four values, t
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##      Balanced one-way analysis of variance power calculation 
-## 
-##               k = 3
-##               n = 52.3966
-##               f = 0.25
-##       sig.level = 0.05
-##           power = 0.8
-## 
-## NOTE: n is number in each group
+     Balanced one-way analysis of variance power calculation 
+
+              k = 3
+              n = 52.3966
+              f = 0.25
+      sig.level = 0.05
+          power = 0.8
+
+NOTE: n is number in each group
 \end{verbatim}
 
 This result suggested that we would need 52 people per group.
@@ -2198,16 +3155,15 @@ We could actually re-run the power tool see how many fewer people we needed.
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##      Balanced one-way analysis of variance power calculation 
-## 
-##               k = 3
-##               n = 22.58384
-##               f = 0.386
-##       sig.level = 0.05
-##           power = 0.8
-## 
-## NOTE: n is number in each group
+     Balanced one-way analysis of variance power calculation 
+
+              k = 3
+              n = 22.58384
+              f = 0.386
+      sig.level = 0.05
+          power = 0.8
+
+NOTE: n is number in each group
 \end{verbatim}
 
 This is a little curious. When I initially simulated the data, I used the \emph{n} values for each group (i.e.,23, 22, 23) reported in the article \citep{tran_you_2014} and did not obtain a (consistently) statistically significant result; statistical significance wavered based on the random seed value that I used. For the purpose of the chapter, I increased the sample size to be 30 across each group so that the significance was more consistent. This, in itself, is a useful demonstration of sample size at it relates to power.
@@ -2231,22 +3187,21 @@ Here I create Table 1 with means and standard deviations (plus a 95\% confidence
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## 
-## Table 1 
-## 
-## Descriptive statistics for Accurate as a function of COND.  
-## 
-##     COND    M     M_95%_CI   SD
-##  Control 1.88 [1.70, 2.06] 0.48
-##      Low 2.05 [1.83, 2.26] 0.57
-##     High 1.47 [1.19, 1.76] 0.77
-## 
-## Note. M and SD represent mean and standard deviation, respectively.
-## LL and UL indicate the lower and upper limits of the 95% confidence interval 
-## for the mean, respectively. 
-## The confidence interval is a plausible range of population means that could 
-## have caused a sample mean (Cumming, 2014).
+
+Table 1 
+
+Descriptive statistics for Accurate as a function of COND.  
+
+    COND    M     M_95%_CI   SD
+ Control 1.88 [1.70, 2.06] 0.48
+     Low 2.05 [1.83, 2.26] 0.57
+    High 1.47 [1.19, 1.76] 0.77
+
+Note. M and SD represent mean and standard deviation, respectively.
+LL and UL indicate the lower and upper limits of the 95% confidence interval 
+for the mean, respectively. 
+The confidence interval is a plausible range of population means that could 
+have caused a sample mean (Cumming, 2014). 
 \end{verbatim}
 
 I will want to give the values of mean differences (\(M_{diff}\)) in the results. I can quickly use R to calculate them here.
@@ -2258,7 +3213,7 @@ I will want to give the values of mean differences (\(M_{diff}\)) in the results
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.41
+[1] 0.41
 \end{verbatim}
 
 \begin{Shaded}
@@ -2268,7 +3223,7 @@ I will want to give the values of mean differences (\(M_{diff}\)) in the results
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.58
+[1] 0.58
 \end{verbatim}
 
 \begin{Shaded}
@@ -2278,7 +3233,7 @@ I will want to give the values of mean differences (\(M_{diff}\)) in the results
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -0.17
+[1] -0.17
 \end{verbatim}
 
 Here I create Table 2 with results of the one-way ANOVA. The result in Microsoft Word can be edited (e.g., I would replace the partial-eta squared with \(\eta^2\)) for the journal article.
@@ -2290,19 +3245,18 @@ Here I create Table 2 with results of the one-way ANOVA. The result in Microsoft
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## 
-## Table 2 
-## 
-## ANOVA results using Accurate as the dependent variable
-##  
-## 
-##    Predictor     SS df     MS      F    p partial_eta2 CI_90_partial_eta2
-##  (Intercept) 105.68  1 105.68 277.35 .000                                
-##         COND   5.20  2   2.60   6.82 .002          .14         [.03, .24]
-##        Error  33.15 87   0.38                                            
-## 
-## Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared
+
+Table 2 
+
+ANOVA results using Accurate as the dependent variable
+ 
+
+   Predictor     SS df     MS      F    p partial_eta2 CI_90_partial_eta2
+ (Intercept) 105.68  1 105.68 277.35 .000                                
+        COND   5.20  2   2.60   6.82 .002          .14         [.03, .24]
+       Error  33.15 87   0.38                                            
+
+Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared 
 \end{verbatim}
 
 Regarding figures, there are a number of options. I find the \emph{plotmeans()} function (used earlier) to be adequate for the purpose of one-way ANOVA. As we progress through this textbook, I will demonstrate a number of options that offer more and less complexity.
@@ -2313,7 +3267,7 @@ Regarding figures, there are a number of options. I find the \emph{plotmeans()} 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-4-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 With table and figure at hand, here is how I would write up these results:
 
@@ -2321,13 +3275,80 @@ A one-way analysis of variance was conducted to evaluate the relationship betwee
 
 Results indicated a significant effect of COND on accuracy perception \(F\)(2, 87) = 6.817, \(p\) = 0.002, \(\eta^2\) = .14. In a series of post-hoc comparisons, there were statistically significant differences between the control and high (\(M_{diff}\) = 0.41, \emph{p} = 0.013) and low and high (\(M_{diff}\) = 0.58, \emph{p} = 0.001) conditions, but not the control and low conditions (\(M_{diff}\) = -.17, \emph{p} = 0.290). A statistically significant polynomial contrast suggested a quadratic trend across the three, ordered, levels of the conditions (\(t[87] = -2.69, p = .009\)) such that perception of accuracy increased from the control to low conditions, but decreased from low to high. Consequently, it appeared that only the highest degree of racial loading (e.g., ``You speak English well for an Asian'') resulted in the decreased perceptions of accuracy of impressions from the confederate. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
 
-\hypertarget{practice-problems}{%
-\section{Practice Problems}\label{practice-problems}}
+\hypertarget{practice-problems-1}{%
+\section{Practice Problems}\label{practice-problems-1}}
 
 Below are three problems with graded levels of complexity. Worked examples, following the first two suggestions will be provided in an Appendix.
 
-\hypertarget{problem-1-conduct-a-one-way-anova-with-moretalk-dependent-variable.}{%
-\subsection{\texorpdfstring{Problem \#1: Conduct a one-way ANOVA with \emph{moreTalk} dependent variable.}{Problem \#1: Conduct a one-way ANOVA with moreTalk dependent variable.}}\label{problem-1-conduct-a-one-way-anova-with-moretalk-dependent-variable.}}
+If it is helpful for you to export and/or import the data as a .csv (think ``Excel lite'') or .rde (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so. The data should save in the same folder as the .rmd file you are working on:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write.table(accSIM30, file="accSIM.csv", sep=",", col.names=TRUE, row.names=FALSE)}
+\CommentTok{\#bring back the simulated dat from a .csv file}
+\CommentTok{\#acc\_csv \textless{}{-} read.csv ("accSIM.csv", header = TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#a quick demo to show that the .csv format loses the variable formatting}
+\CommentTok{\#str(acc\_csv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with}
+\CommentTok{\#saveRDS(accSIM30, "accSIM.rds")}
+\CommentTok{\#bring back the simulated dat from an .rds file}
+\CommentTok{\#acc\_RDS \textless{}{-} readRDS("accSIM.rds")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#a quick demo to show that the .rds format preserves the variable formatting}
+\CommentTok{\#str(acc\_RDS)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{problem-1-play-around-with-this-simulation.}{%
+\subsection{Problem \#1: Play around with this simulation.}\label{problem-1-play-around-with-this-simulation.}}
+
+Copy the script for the simulation and then change (at least) one thing in the simulation to see how it impacts the results.
+
+\begin{itemize}
+\tightlist
+\item
+  If one-way ANOVA is new to you, perhaps you just change the number in ``set.seed(2021)'' from 2021 to something else. Your results should parallel those obtained in the lecture, making it easier for you to check your work as you go.
+\item
+  If you are interested in power, change the sample size to something larger or smaller.
+\item
+  If you are interested in variability (i.e., the homogeneity of variance assumption), perhaps you change the standard deviations in a way that violates the assumption.
+\end{itemize}
+
+Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+
+\begin{longtable}[]{@{}lcc@{}}
+\toprule
+Assignment Component & Points Possible & Points Earned \\
+\midrule
+\endhead
+1. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
+2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
+3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
+4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
+5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
+6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
+7. Explanation to grader & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 35 & \_\_\_\_\_ \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable.}{%
+\subsection{\texorpdfstring{Problem \#2: Conduct a one-way ANOVA with the \emph{moreTalk} dependent variable.}{Problem \#2: Conduct a one-way ANOVA with the moreTalk dependent variable.}}\label{problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable.}}
 
 In their study, Tran and Lee \citeyearpar{tran_you_2014} included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (\emph{much less than average}) through 0 (\emph{average}) to 2 (\emph{much more than average}).
 
@@ -2363,39 +3384,6 @@ Assignment Component & Points Possible & Points Earned \\
 \FunctionTok{write.table}\NormalTok{(mTalk\_sim30, }\AttributeTok{file=}\StringTok{"newmTalk30.csv"}\NormalTok{, }\AttributeTok{sep=}\StringTok{","}\NormalTok{, }\AttributeTok{col.names=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{row.names=}\ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\hypertarget{problem-2-play-around-with-this-simulation.}{%
-\subsection{Problem \#2: Play around with this simulation.}\label{problem-2-play-around-with-this-simulation.}}
-
-Copy the script for the simulation and then change (at least) one thing in the simulation to see how it impacts the results.
-
-\begin{itemize}
-\tightlist
-\item
-  If one-way ANOVA is new to you, perhaps you just change the number in ``set.seed(2021)'' from 2021 to something else. Your results should parallel those obtained in the lecture, making it easier for you to check your work as you go.
-\item
-  If you are interested in power, change the sample size to something larger or smaller.
-\item
-  If you are interested in variability (i.e., the homogeneity of variance assumption), perhaps you change the standard deviations in a way that violates the assumption.
-\end{itemize}
-
-Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
-
-\begin{longtable}[]{@{}lcc@{}}
-\toprule
-Assignment Component & Points Possible & Points Earned \\
-\midrule
-\endhead
-1. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-7. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
-\bottomrule
-\end{longtable}
 
 \hypertarget{problem-3-try-something-entirely-new.}{%
 \subsection{Problem \#3: Try something entirely new.}\label{problem-3-try-something-entirely-new.}}
@@ -2451,46 +3439,48 @@ Assignment Component & Points Possible & Points Earned \\
 \end{Shaded}
 
 \begin{verbatim}
-## R version 4.0.4 (2021-02-15)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18362)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] apaTables_2.0.8 pwr_1.3-0       lsr_0.5         car_3.0-10     
-##  [5] carData_3.0-4   forcats_0.5.0   stringr_1.4.0   dplyr_1.0.2    
-##  [9] purrr_0.3.4     readr_1.4.0     tidyr_1.1.2     tibble_3.0.4   
-## [13] ggplot2_3.3.3   tidyverse_1.3.0 gplots_3.1.1    psych_2.0.12   
-## 
-## loaded via a namespace (and not attached):
-##  [1] httr_1.4.2         jsonlite_1.7.2     tmvnsim_1.0-2      modelr_0.1.8      
-##  [5] gtools_3.8.2       assertthat_0.2.1   highr_0.8          cellranger_1.1.0  
-##  [9] yaml_2.2.1         pillar_1.4.7       backports_1.2.0    lattice_0.20-41   
-## [13] glue_1.4.2         digest_0.6.27      rvest_0.3.6        colorspace_2.0-0  
-## [17] htmltools_0.5.0    pkgconfig_2.0.3    broom_0.7.3        haven_2.3.1       
-## [21] bookdown_0.21      scales_1.1.1       openxlsx_4.2.3     rio_0.5.16        
-## [25] generics_0.1.0     ellipsis_0.3.1     withr_2.3.0        cli_2.2.0         
-## [29] mnormt_2.0.2       magrittr_2.0.1     crayon_1.3.4       readxl_1.3.1      
-## [33] evaluate_0.14      fs_1.5.0           fansi_0.4.1        nlme_3.1-151      
-## [37] xml2_1.3.2         foreign_0.8-81     MBESS_4.8.0        tools_4.0.4       
-## [41] data.table_1.13.4  hms_0.5.3          lifecycle_0.2.0    munsell_0.5.0     
-## [45] reprex_0.3.0       zip_2.1.1          compiler_4.0.4     caTools_1.18.0    
-## [49] rlang_0.4.9        grid_4.0.4         rstudioapi_0.13    bitops_1.0-6      
-## [53] rmarkdown_2.6      gtable_0.3.0       abind_1.4-5        DBI_1.1.0         
-## [57] curl_4.3           R6_2.5.0           lubridate_1.7.9.2  knitr_1.30        
-## [61] KernSmooth_2.23-18 stringi_1.5.3      parallel_4.0.4     Rcpp_1.0.5        
-## [65] vctrs_0.3.6        dbplyr_2.0.0       tidyselect_1.1.0   xfun_0.19
+R version 4.0.4 (2021-02-15)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 18362)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] pwr_1.3-0       lsr_0.5         car_3.0-10      carData_3.0-4  
+ [5] gplots_3.1.1    MASS_7.3-53.1   apaTables_2.0.8 forcats_0.5.1  
+ [9] stringr_1.4.0   dplyr_1.0.5     purrr_0.3.4     readr_1.4.0    
+[13] tidyr_1.1.3     tibble_3.1.1    ggplot2_3.3.3   tidyverse_1.3.1
+[17] psych_2.1.3    
+
+loaded via a namespace (and not attached):
+ [1] httr_1.4.2         jsonlite_1.7.2     tmvnsim_1.0-2      modelr_0.1.8      
+ [5] gtools_3.8.2       assertthat_0.2.1   highr_0.9          cellranger_1.1.0  
+ [9] yaml_2.2.1         pillar_1.6.1       backports_1.2.1    lattice_0.20-41   
+[13] glue_1.4.2         digest_0.6.27      rvest_1.0.0        colorspace_2.0-0  
+[17] htmltools_0.5.1.1  pkgconfig_2.0.3    broom_0.7.6        haven_2.4.1       
+[21] bookdown_0.22      scales_1.1.1       openxlsx_4.2.3     rio_0.5.26        
+[25] generics_0.1.0     ellipsis_0.3.2     withr_2.4.2        cli_2.5.0         
+[29] mnormt_2.0.2       magrittr_2.0.1     crayon_1.4.1       readxl_1.3.1      
+[33] evaluate_0.14      fs_1.5.0           fansi_0.4.2        nlme_3.1-151      
+[37] foreign_0.8-81     xml2_1.3.2         MBESS_4.8.0        tools_4.0.4       
+[41] data.table_1.14.0  hms_1.0.0          lifecycle_1.0.0    munsell_0.5.0     
+[45] reprex_2.0.0       zip_2.1.1          compiler_4.0.4     caTools_1.18.2    
+[49] rlang_0.4.11       grid_4.0.4         rstudioapi_0.13    bitops_1.0-7      
+[53] rmarkdown_2.7      gtable_0.3.0       abind_1.4-5        DBI_1.1.1         
+[57] curl_4.3.1         R6_2.5.0           lubridate_1.7.10   knitr_1.33        
+[61] utf8_1.2.1         KernSmooth_2.23-18 stringi_1.5.3      parallel_4.0.4    
+[65] Rcpp_1.0.6         vctrs_0.3.8        dbplyr_2.1.1       tidyselect_1.1.1  
+[69] xfun_0.22         
 \end{verbatim}
 
   \bibliography{STATSnMETH.bib}
