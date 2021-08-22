@@ -1,0 +1,12 @@
+"0","SimpleWave <- Murrar_df %>% #crate an object to hold the output"
+"0","  group_by(Wave) %>% #this group_by function is what results in three, one-way ANOVAs for each of the waves, separately"
+"0","  anova_test(dv = Diff, wid = caseID, between = COND) %>% #the between = Cond means that each level of cond will be compared"
+"0","  get_anova_table() %>%"
+"0","  adjust_pvalue(method = ""bonferroni"") #we will get both the standard and adjusted p values"
+"2","Coefficient covariances computed by hccm()
+"
+"2","Coefficient covariances computed by hccm()
+"
+"2","Coefficient covariances computed by hccm()
+"
+"0","SimpleWave"

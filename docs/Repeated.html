@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 One-Way Repeated Measures ANOVA | ReCentering Psych Stats: Analysis of Variance</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 One-Way Repeated Measures ANOVA | ReCentering Psych Stats: Analysis of Variance" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 One-Way Repeated Measures ANOVA | ReCentering Psych Stats: Analysis of Variance" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="between.html"/>
+<link rel="next" href="Mixed.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5488840-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats:  Analysis of Variance</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Ready.html"><a href="Ready.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="Ready.html"><a href="Ready.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="Ready.html"><a href="Ready.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.2</b> downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="Ready.html"><a href="Ready.html#so-many-parts-and-pieces"><i class="fa fa-check"></i><b>2.2.1</b> So many paRts and pieces</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Ready.html"><a href="Ready.html#orienting-to-r-studio-focusing-only-on-the-things-we-will-be-using-first-and-most-often"><i class="fa fa-check"></i><b>2.2.2</b> oRienting to R Studio (focusing only on the things we will be using first and most often)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Ready.html"><a href="Ready.html#best-practices"><i class="fa fa-check"></i><b>2.3</b> best pRactices</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.1</b> Setting up the file</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.2</b> Script in chunks and everything else in the “inline text” sections</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.3</b> Managing packages</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.4</b> Upload the data</a>
+<ul>
+<li class="chapter" data-level="2.3.4.1" data-path="Ready.html"><a href="Ready.html#to-and-from-.csv-files"><i class="fa fa-check"></i><b>2.3.4.1</b> To and from .csv files</a></li>
+<li class="chapter" data-level="2.3.4.2" data-path="Ready.html"><a href="Ready.html#to-and-from-.rds-files"><i class="fa fa-check"></i><b>2.3.4.2</b> To and from .rds files</a></li>
+<li class="chapter" data-level="2.3.4.3" data-path="Ready.html"><a href="Ready.html#from-spss-files"><i class="fa fa-check"></i><b>2.3.4.3</b> From SPSS files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="Ready.html"><a href="Ready.html#quick-demonstration"><i class="fa fa-check"></i><b>2.4</b> quick demonstRation</a></li>
+<li class="chapter" data-level="2.5" data-path="Ready.html"><a href="Ready.html#the-knitted-file"><i class="fa fa-check"></i><b>2.5</b> the knitted file</a></li>
+<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown-1"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-are-we-transitioning-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> are we tRansitioning to R?</a></li>
+<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success-1"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
+<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started-1"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="waRmups.html"><a href="waRmups.html"><i class="fa fa-check"></i><b>3</b> waRming up</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="waRmups.html"><a href="waRmups.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="waRmups.html"><a href="waRmups.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="waRmups.html"><a href="waRmups.html#planning-for-practice"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="waRmups.html"><a href="waRmups.html#readings-resources"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="waRmups.html"><a href="waRmups.html#research-vignette"><i class="fa fa-check"></i><b>3.2</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="waRmups.html"><a href="waRmups.html#determining-skew-and-kurtosis"><i class="fa fa-check"></i><b>3.2.1</b> Determining Skew and Kurtosis</a></li>
+<li class="chapter" data-level="3.2.2" data-path="waRmups.html"><a href="waRmups.html#splom"><i class="fa fa-check"></i><b>3.2.2</b> SPLOM</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="waRmups.html"><a href="waRmups.html#results"><i class="fa fa-check"></i><b>3.3</b> Results</a></li>
+<li class="chapter" data-level="3.4" data-path="waRmups.html"><a href="waRmups.html#practice-problems"><i class="fa fa-check"></i><b>3.4</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="waRmups.html"><a href="waRmups.html#problem-1-change-the-random-seed"><i class="fa fa-check"></i><b>3.4.1</b> Problem #1: Change the Random Seed</a></li>
+<li class="chapter" data-level="3.4.2" data-path="waRmups.html"><a href="waRmups.html#problem-2"><i class="fa fa-check"></i><b>3.4.2</b> Problem #2:</a></li>
+<li class="chapter" data-level="3.4.3" data-path="waRmups.html"><a href="waRmups.html#problem-3"><i class="fa fa-check"></i><b>3.4.3</b> Problem #3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>4</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="oneway.html"><a href="oneway.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="oneway.html"><a href="oneway.html#planning-for-practice-1"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="oneway.html"><a href="oneway.html#readings-resources-1"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="oneway.html"><a href="oneway.html#packages-1"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="oneway.html"><a href="oneway.html#workflow-for-one-way-anova"><i class="fa fa-check"></i><b>4.2</b> Workflow for One-Way ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="oneway.html"><a href="oneway.html#research-vignette-1"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="oneway.html"><a href="oneway.html#data-simulation"><i class="fa fa-check"></i><b>4.3.1</b> Data Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="oneway.html"><a href="oneway.html#working-the-problem"><i class="fa fa-check"></i><b>4.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="oneway.html"><a href="oneway.html#preparing-the-data"><i class="fa fa-check"></i><b>4.4.1</b> Preparing the Data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-numerically"><i class="fa fa-check"></i><b>4.4.2</b> Exploring the Distributional Characteristics Numerically</a></li>
+<li class="chapter" data-level="4.4.3" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-graphically"><i class="fa fa-check"></i><b>4.4.3</b> Exploring the Distributional Characteristics Graphically</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="oneway.html"><a href="oneway.html#understanding-anova-with-hand-calculations"><i class="fa fa-check"></i><b>4.5</b> Understanding ANOVA with <em>Hand Calculations</em></a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="oneway.html"><a href="oneway.html#sums-of-squares-total"><i class="fa fa-check"></i><b>4.5.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="4.5.2" data-path="oneway.html"><a href="oneway.html#sums-of-squares-for-the-model-or-between"><i class="fa fa-check"></i><b>4.5.2</b> Sums of Squares for the Model (or Between)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="oneway.html"><a href="oneway.html#sums-of-squares-residual-or-within"><i class="fa fa-check"></i><b>4.5.3</b> Sums of Squares Residual (or within)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="oneway.html"><a href="oneway.html#relationship-between-ss_t-ss_m-and-ss_r."><i class="fa fa-check"></i><b>4.5.4</b> Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span>.</a></li>
+<li class="chapter" data-level="4.5.5" data-path="oneway.html"><a href="oneway.html#mean-squares-model-residual"><i class="fa fa-check"></i><b>4.5.5</b> Mean Squares Model &amp; Residual</a></li>
+<li class="chapter" data-level="4.5.6" data-path="oneway.html"><a href="oneway.html#calculating-the-f-statistic"><i class="fa fa-check"></i><b>4.5.6</b> Calculating the <em>F</em>-Statistic</a></li>
+<li class="chapter" data-level="4.5.7" data-path="oneway.html"><a href="oneway.html#source-table-games"><i class="fa fa-check"></i><b>4.5.7</b> Source Table Games</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="oneway.html"><a href="oneway.html#working-the-one-way-anova-in-r"><i class="fa fa-check"></i><b>4.6</b> Working the One-Way ANOVA in R</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>4.6.1</b> Evaluating the Statistical Assumptions</a>
+<ul>
+<li class="chapter" data-level="4.6.1.1" data-path="oneway.html"><a href="oneway.html#is-the-dependent-variable-normally-distributed-across-levels-of-the-factor"><i class="fa fa-check"></i><b>4.6.1.1</b> Is the dependent variable normally distributed across levels of the factor?</a></li>
+<li class="chapter" data-level="4.6.1.2" data-path="oneway.html"><a href="oneway.html#are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor"><i class="fa fa-check"></i><b>4.6.1.2</b> Are the variances of the dependent variable similar across the levels of the grouping factor?</a></li>
+<li class="chapter" data-level="4.6.1.3" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-analysis-of-assumptions"><i class="fa fa-check"></i><b>4.6.1.3</b> Summarizing results from the analysis of assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>4.6.2</b> Computing the Omnibus ANOVA</a>
+<ul>
+<li class="chapter" data-level="4.6.2.1" data-path="oneway.html"><a href="oneway.html#effect-size-for-the-one-way-anova"><i class="fa fa-check"></i><b>4.6.2.1</b> Effect size for the one-way ANOVA</a></li>
+<li class="chapter" data-level="4.6.2.2" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-omnibus-anova"><i class="fa fa-check"></i><b>4.6.2.2</b> Summarizing results from the omnibus ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>4.6.3</b> Follow-up to the Omnibus <em>F</em></a>
+<ul>
+<li class="chapter" data-level="4.6.3.1" data-path="oneway.html"><a href="oneway.html#option-1-post-hoc-pairwise-comparisons"><i class="fa fa-check"></i><b>4.6.3.1</b> OPTION 1: Post-hoc, pairwise, comparisons</a></li>
+<li class="chapter" data-level="4.6.3.2" data-path="oneway.html"><a href="oneway.html#option-2-planned-contrasts"><i class="fa fa-check"></i><b>4.6.3.2</b> OPTION 2: Planned contrasts</a></li>
+<li class="chapter" data-level="4.6.3.3" data-path="oneway.html"><a href="oneway.html#trend-polynomial-analysis"><i class="fa fa-check"></i><b>4.6.3.3</b> Trend (polynomial) analysis</a></li>
+<li class="chapter" data-level="4.6.3.4" data-path="oneway.html"><a href="oneway.html#which-set-of-follow-up-tests-do-we-report"><i class="fa fa-check"></i><b>4.6.3.4</b> Which set of follow-up tests do we report?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6.4" data-path="oneway.html"><a href="oneway.html#what-if-we-violated-the-homogeneity-of-variance-test"><i class="fa fa-check"></i><b>4.6.4</b> What if we Violated the Homogeneity of Variance test?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>4.7</b> Power Analysis</a></li>
+<li class="chapter" data-level="4.8" data-path="oneway.html"><a href="oneway.html#apa-style-results"><i class="fa fa-check"></i><b>4.8</b> APA Style Results</a></li>
+<li class="chapter" data-level="4.9" data-path="oneway.html"><a href="oneway.html#practice-problems-1"><i class="fa fa-check"></i><b>4.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>4.9.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="4.9.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>4.9.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
+<li class="chapter" data-level="4.9.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>4.9.3</b> Problem #3: Try something entirely new.</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>4.10</b> Bonus Reel:</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="oneway.html"><a href="oneway.html#coming-soon"><i class="fa fa-check"></i><b>4.10.1</b> Coming soon!</a></li>
+<li class="chapter" data-level="4.10.2" data-path="oneway.html"><a href="oneway.html#whats-with-the-inline-code"><i class="fa fa-check"></i><b>4.10.2</b> What’s with the inline code?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="between.html"><a href="between.html"><i class="fa fa-check"></i><b>5</b> Factorial (Between-Subjects) ANOVA</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="between.html"><a href="between.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="between.html"><a href="between.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="between.html"><a href="between.html#planning-for-practice-2"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="between.html"><a href="between.html#readings-resources-2"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="between.html"><a href="between.html#packages-2"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="between.html"><a href="between.html#introducing-factorial-anova"><i class="fa fa-check"></i><b>5.2</b> Introducing Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="between.html"><a href="between.html#workflow-for-two-way-anova"><i class="fa fa-check"></i><b>5.2.1</b> Workflow for Two-Way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="between.html"><a href="between.html#research-vignette-2"><i class="fa fa-check"></i><b>5.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="between.html"><a href="between.html#preliminary-exploration-of-our-research-vignette"><i class="fa fa-check"></i><b>5.3.1</b> Preliminary exploration of our research vignette</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="between.html"><a href="between.html#working-the-factorial-anova-by-hand"><i class="fa fa-check"></i><b>5.4</b> Working the Factorial ANOVA (by hand)</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="between.html"><a href="between.html#sums-of-squares-total-1"><i class="fa fa-check"></i><b>5.4.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="5.4.2" data-path="between.html"><a href="between.html#sums-of-squares-for-the-model"><i class="fa fa-check"></i><b>5.4.2</b> Sums of Squares for the Model</a></li>
+<li class="chapter" data-level="5.4.3" data-path="between.html"><a href="between.html#sums-of-squares-residual-or-within-1"><i class="fa fa-check"></i><b>5.4.3</b> Sums of Squares Residual (or within)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="between.html"><a href="between.html#relationship-between-ss_t-ss_m-and-ss_r.-in-case-its-not-clear"><i class="fa fa-check"></i><b>5.4.4</b> Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span>. In case it’s not clear:</a></li>
+<li class="chapter" data-level="5.4.5" data-path="between.html"><a href="between.html#but-we-need-to-understand-the-ss-for-each-of-the-factors-and-their-product."><i class="fa fa-check"></i><b>5.4.5</b> But we need to understand the SS for each of the factors and their product.</a>
+<ul>
+<li class="chapter" data-level="5.4.5.1" data-path="between.html"><a href="between.html#rater-main-effect"><i class="fa fa-check"></i><b>5.4.5.1</b> Rater Main Effect</a></li>
+<li class="chapter" data-level="5.4.5.2" data-path="between.html"><a href="between.html#photo-main-effect"><i class="fa fa-check"></i><b>5.4.5.2</b> Photo Main Effect</a></li>
+<li class="chapter" data-level="5.4.5.3" data-path="between.html"><a href="between.html#interaction-effect"><i class="fa fa-check"></i><b>5.4.5.3</b> Interaction effect</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4.6" data-path="between.html"><a href="between.html#source-table-games-1"><i class="fa fa-check"></i><b>5.4.6</b> Source Table Games!</a></li>
+<li class="chapter" data-level="5.4.7" data-path="between.html"><a href="between.html#interpreting-the-results"><i class="fa fa-check"></i><b>5.4.7</b> Interpreting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="between.html"><a href="between.html#working-the-factorial-anova-with-r-packages"><i class="fa fa-check"></i><b>5.5</b> Working the Factorial ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="between.html"><a href="between.html#evaluating-the-statistical-assumptions-1"><i class="fa fa-check"></i><b>5.5.1</b> Evaluating the statistical assumptions</a>
+<ul>
+<li class="chapter" data-level="5.5.1.1" data-path="between.html"><a href="between.html#dv-is-normally-distributed"><i class="fa fa-check"></i><b>5.5.1.1</b> DV is normally distributed</a></li>
+<li class="chapter" data-level="5.5.1.2" data-path="between.html"><a href="between.html#homogeneity-of-variance"><i class="fa fa-check"></i><b>5.5.1.2</b> Homogeneity of variance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5.2" data-path="between.html"><a href="between.html#evaluating-the-omnibus-anova"><i class="fa fa-check"></i><b>5.5.2</b> Evaluating the Omnibus ANOVA</a>
+<ul>
+<li class="chapter" data-level="5.5.2.1" data-path="between.html"><a href="between.html#effect-sizes"><i class="fa fa-check"></i><b>5.5.2.1</b> Effect sizes</a></li>
+<li class="chapter" data-level="5.5.2.2" data-path="between.html"><a href="between.html#apa-write-up-of-the-omnibus-results"><i class="fa fa-check"></i><b>5.5.2.2</b> APA Write-up of the omnibus results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5.3" data-path="between.html"><a href="between.html#follow-up-a-significant-interaction-effect"><i class="fa fa-check"></i><b>5.5.3</b> Follow-up a significant interaction effect</a>
+<ul>
+<li class="chapter" data-level="5.5.3.1" data-path="between.html"><a href="between.html#option-1-the-simple-main-effect-of-photo-stimulus-within-ethnicity-of-the-rater"><i class="fa fa-check"></i><b>5.5.3.1</b> Option #1 the simple main effect of photo stimulus within ethnicity of the rater</a></li>
+<li class="chapter" data-level="5.5.3.2" data-path="between.html"><a href="between.html#option-2-the-simple-main-effect-of-ethnicity-of-rater-within-photo-stimulus."><i class="fa fa-check"></i><b>5.5.3.2</b> Option #2 the simple main effect of ethnicity of rater within photo stimulus.</a></li>
+<li class="chapter" data-level="5.5.3.3" data-path="between.html"><a href="between.html#post-hoc-comparisons"><i class="fa fa-check"></i><b>5.5.3.3</b> Post hoc comparisons</a></li>
+<li class="chapter" data-level="5.5.3.4" data-path="between.html"><a href="between.html#polynomial-trends"><i class="fa fa-check"></i><b>5.5.3.4</b> Polynomial Trends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="between.html"><a href="between.html#in-the-event-of-a-non-significant-interaction-but-one-or-more-significant-main-effects"><i class="fa fa-check"></i><b>5.6</b> In the event of a non-significant interaction, but one or more significant main effects</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="between.html"><a href="between.html#follow-up-with-all-post-hocs"><i class="fa fa-check"></i><b>5.6.1</b> Follow-up with all post-hocs</a></li>
+<li class="chapter" data-level="5.6.2" data-path="between.html"><a href="between.html#follow-up-with-planned-contrasts"><i class="fa fa-check"></i><b>5.6.2</b> Follow-up with planned contrasts</a></li>
+<li class="chapter" data-level="5.6.3" data-path="between.html"><a href="between.html#polynomial-trends-1"><i class="fa fa-check"></i><b>5.6.3</b> Polynomial Trends</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="between.html"><a href="between.html#my-final-apa-style-results-section"><i class="fa fa-check"></i><b>5.7</b> My <em>final</em> APA Style Results Section</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="between.html"><a href="between.html#comparing-our-results-to-rhamdani-et-al.--ramdhani_affective_2018"><i class="fa fa-check"></i><b>5.7.1</b> Comparing Our Results to Rhamdani et al. <span class="citation">(<span>2018</span>)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="between.html"><a href="between.html#options-for-assumption-violations"><i class="fa fa-check"></i><b>5.8</b> Options for Assumption Violations</a></li>
+<li class="chapter" data-level="5.9" data-path="between.html"><a href="between.html#power"><i class="fa fa-check"></i><b>5.9</b> Power</a></li>
+<li class="chapter" data-level="5.10" data-path="between.html"><a href="between.html#practice-problems-2"><i class="fa fa-check"></i><b>5.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="between.html"><a href="between.html#problem-1-play-around-with-this-simulation.-1"><i class="fa fa-check"></i><b>5.10.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="5.10.2" data-path="between.html"><a href="between.html#problem-2-conduct-a-one-way-anova-with-the-positive-evaluation-dependent-variable."><i class="fa fa-check"></i><b>5.10.2</b> Problem #2: Conduct a one-way ANOVA with the <em>positive evaluation</em> dependent variable.</a></li>
+<li class="chapter" data-level="5.10.3" data-path="between.html"><a href="between.html#problem-3-try-something-entirely-new.-1"><i class="fa fa-check"></i><b>5.10.3</b> Problem #3: Try something entirely new.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="Repeated.html"><a href="Repeated.html"><i class="fa fa-check"></i><b>6</b> One-Way Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="Repeated.html"><a href="Repeated.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="Repeated.html"><a href="Repeated.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="Repeated.html"><a href="Repeated.html#planning-for-practice-3"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="Repeated.html"><a href="Repeated.html#readings-resources-3"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="Repeated.html"><a href="Repeated.html#packages-3"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="Repeated.html"><a href="Repeated.html#introducing-one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>6.2</b> Introducing One-way Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="Repeated.html"><a href="Repeated.html#workflow-for-oneway-repeated-measures-anova"><i class="fa fa-check"></i><b>6.2.1</b> Workflow for Oneway Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="Repeated.html"><a href="Repeated.html#research-vignette-3"><i class="fa fa-check"></i><b>6.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="Repeated.html"><a href="Repeated.html#code-for-simulating-the-data-used-today."><i class="fa fa-check"></i><b>6.3.1</b> Code for simulating the data used today.</a></li>
+<li class="chapter" data-level="6.3.2" data-path="Repeated.html"><a href="Repeated.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>6.3.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="Repeated.html"><a href="Repeated.html#working-the-one-way-repeated-measures-anova-by-hand"><i class="fa fa-check"></i><b>6.4</b> Working the One-Way Repeated Measures ANOVA (by hand)</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-total-2"><i class="fa fa-check"></i><b>6.4.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="6.4.2" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-within-for-repated-measures-anova"><i class="fa fa-check"></i><b>6.4.2</b> Sums of Squares Within for Repated Measures ANOVA</a></li>
+<li class="chapter" data-level="6.4.3" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-model-effect-of-time"><i class="fa fa-check"></i><b>6.4.3</b> Sums of Squares Model – Effect of Time</a></li>
+<li class="chapter" data-level="6.4.4" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-residual"><i class="fa fa-check"></i><b>6.4.4</b> Sums of Squares Residual</a></li>
+<li class="chapter" data-level="6.4.5" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-between"><i class="fa fa-check"></i><b>6.4.5</b> Sums of Squares Between</a></li>
+<li class="chapter" data-level="6.4.6" data-path="Repeated.html"><a href="Repeated.html#mean-squares-model-residual-1"><i class="fa fa-check"></i><b>6.4.6</b> Mean Squares Model &amp; Residual</a></li>
+<li class="chapter" data-level="6.4.7" data-path="Repeated.html"><a href="Repeated.html#f-ratio"><i class="fa fa-check"></i><b>6.4.7</b> <em>F</em> ratio</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="Repeated.html"><a href="Repeated.html#working-the-one-way-anova-with-r-packages"><i class="fa fa-check"></i><b>6.5</b> Working the One-Way ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="Repeated.html"><a href="Repeated.html#testing-the-assumptions"><i class="fa fa-check"></i><b>6.5.1</b> Testing the assumptions</a>
+<ul>
+<li class="chapter" data-level="6.5.1.1" data-path="Repeated.html"><a href="Repeated.html#univariate-assumptions-for-repeated-measures-anova"><i class="fa fa-check"></i><b>6.5.1.1</b> Univariate assumptions for repeated measures ANOVA</a></li>
+<li class="chapter" data-level="6.5.1.2" data-path="Repeated.html"><a href="Repeated.html#any-outliers"><i class="fa fa-check"></i><b>6.5.1.2</b> Any outliers?</a></li>
+<li class="chapter" data-level="6.5.1.3" data-path="Repeated.html"><a href="Repeated.html#assessing-normality"><i class="fa fa-check"></i><b>6.5.1.3</b> Assessing normality</a></li>
+<li class="chapter" data-level="6.5.1.4" data-path="Repeated.html"><a href="Repeated.html#assumption-of-sphericity"><i class="fa fa-check"></i><b>6.5.1.4</b> Assumption of Sphericity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5.2" data-path="Repeated.html"><a href="Repeated.html#omnibus-anova"><i class="fa fa-check"></i><b>6.5.2</b> Omnibus ANOVA</a></li>
+<li class="chapter" data-level="6.5.3" data-path="Repeated.html"><a href="Repeated.html#follow-up"><i class="fa fa-check"></i><b>6.5.3</b> Follow-up</a></li>
+<li class="chapter" data-level="6.5.4" data-path="Repeated.html"><a href="Repeated.html#results-section"><i class="fa fa-check"></i><b>6.5.4</b> Results Section</a>
+<ul>
+<li class="chapter" data-level="6.5.4.1" data-path="Repeated.html"><a href="Repeated.html#creating-an-apa-style-table"><i class="fa fa-check"></i><b>6.5.4.1</b> Creating an APA Style Table**</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="Repeated.html"><a href="Repeated.html#power-in-repeated-measures-anova"><i class="fa fa-check"></i><b>6.6</b> Power in Repeated Measures ANOVA</a></li>
+<li class="chapter" data-level="6.7" data-path="Repeated.html"><a href="Repeated.html#practice-problems-3"><i class="fa fa-check"></i><b>6.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="Repeated.html"><a href="Repeated.html#problem-2-change-the-random-seed"><i class="fa fa-check"></i><b>6.7.1</b> Problem #2: Change the Random Seed</a></li>
+<li class="chapter" data-level="6.7.2" data-path="Repeated.html"><a href="Repeated.html#problem-2-increase-n"><i class="fa fa-check"></i><b>6.7.2</b> Problem #2: Increase <em>N</em></a></li>
+<li class="chapter" data-level="6.7.3" data-path="Repeated.html"><a href="Repeated.html#problem-2-try-something-entirely-new"><i class="fa fa-check"></i><b>6.7.3</b> Problem #2: Try Something Entirely New</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="Repeated.html"><a href="Repeated.html#bonus-reel-1"><i class="fa fa-check"></i><b>6.8</b> Bonus Reel:</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Mixed.html"><a href="Mixed.html"><i class="fa fa-check"></i><b>7</b> Mixed Design ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="Mixed.html"><a href="Mixed.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="Mixed.html"><a href="Mixed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="Mixed.html"><a href="Mixed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="Mixed.html"><a href="Mixed.html#readings-resources-4"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="Mixed.html"><a href="Mixed.html#packages-4"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="Mixed.html"><a href="Mixed.html#introducing-mixed-design-anova"><i class="fa fa-check"></i><b>7.2</b> Introducing Mixed Design ANOVA</a></li>
+<li class="chapter" data-level="7.3" data-path="Mixed.html"><a href="Mixed.html#research-vignette-4"><i class="fa fa-check"></i><b>7.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="Mixed.html"><a href="Mixed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>7.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="Mixed.html"><a href="Mixed.html#working-the-mixed-design-anova-with-r-packages"><i class="fa fa-check"></i><b>7.4</b> Working the Mixed Design ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="Mixed.html"><a href="Mixed.html#exploring-data-and-testing-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Exploring data and testing assumptions</a>
+<ul>
+<li class="chapter" data-level="7.4.1.1" data-path="Mixed.html"><a href="Mixed.html#assumption-of-normality"><i class="fa fa-check"></i><b>7.4.1.1</b> Assumption of Normality</a></li>
+<li class="chapter" data-level="7.4.1.2" data-path="Mixed.html"><a href="Mixed.html#assumption-of-homogeneity-of-covariance-matrices"><i class="fa fa-check"></i><b>7.4.1.2</b> Assumption of homogeneity of covariance matrices</a></li>
+<li class="chapter" data-level="7.4.1.3" data-path="Mixed.html"><a href="Mixed.html#apa-style-writeup-of-assumptions"><i class="fa fa-check"></i><b>7.4.1.3</b> APA style writeup of assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4.2" data-path="Mixed.html"><a href="Mixed.html#omnibus-anova-1"><i class="fa fa-check"></i><b>7.4.2</b> Omnibus ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.4.2.1" data-path="Mixed.html"><a href="Mixed.html#checking-the-sphericity-assumption"><i class="fa fa-check"></i><b>7.4.2.1</b> Checking the sphericity assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4.3" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-condition-within-wave"><i class="fa fa-check"></i><b>7.4.3</b> Simple main effect of condition within wave</a></li>
+<li class="chapter" data-level="7.4.4" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-wave-within-condition"><i class="fa fa-check"></i><b>7.4.4</b> Simple main effect of wave within condition</a></li>
+<li class="chapter" data-level="7.4.5" data-path="Mixed.html"><a href="Mixed.html#if-we-only-had-a-main-effect"><i class="fa fa-check"></i><b>7.4.5</b> If we only had a main effect</a></li>
+<li class="chapter" data-level="7.4.6" data-path="Mixed.html"><a href="Mixed.html#apa-style-write-up-of-the-results"><i class="fa fa-check"></i><b>7.4.6</b> APA Style Write-up of the Results</a>
+<ul>
+<li class="chapter" data-level="7.4.6.1" data-path="Mixed.html"><a href="Mixed.html#results-1"><i class="fa fa-check"></i><b>7.4.6.1</b> Results</a></li>
+<li class="chapter" data-level="7.4.6.2" data-path="Mixed.html"><a href="Mixed.html#comparing-our-findings-to-murrar-and-brauer--murrar_entertainment-education_2018"><i class="fa fa-check"></i><b>7.4.6.2</b> Comparing our findings to Murrar and Brauer <span class="citation">(<span>2018</span>)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="Mixed.html"><a href="Mixed.html#power-in-mixed-design-anova"><i class="fa fa-check"></i><b>7.5</b> Power in Mixed Design ANOVA</a></li>
+<li class="chapter" data-level="7.6" data-path="Mixed.html"><a href="Mixed.html#practice-problems-4"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="Mixed.html"><a href="Mixed.html#problem-1-play-around-with-this-simulation.-2"><i class="fa fa-check"></i><b>7.6.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="7.6.2" data-path="Mixed.html"><a href="Mixed.html#problem-2-conduct-a-one-way-anova-with-a-different-dependent-variable."><i class="fa fa-check"></i><b>7.6.2</b> Problem #2: Conduct a one-way ANOVA with a different dependent variable.</a></li>
+<li class="chapter" data-level="7.6.3" data-path="Mixed.html"><a href="Mixed.html#problem-3-try-something-entirely-new.-2"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Try something entirely new.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ANCOVA.html"><a href="ANCOVA.html"><i class="fa fa-check"></i><b>8</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ANCOVA.html"><a href="ANCOVA.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ANCOVA.html"><a href="ANCOVA.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ANCOVA.html"><a href="ANCOVA.html#planning-for-practice-5"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ANCOVA.html"><a href="ANCOVA.html#readings-resources-5"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ANCOVA.html"><a href="ANCOVA.html#packages-5"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ANCOVA.html"><a href="ANCOVA.html#introducing-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>8.2</b> Introducing Analysis of Covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.3" data-path="ANCOVA.html"><a href="ANCOVA.html#research-vignette-5"><i class="fa fa-check"></i><b>8.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="ANCOVA.html"><a href="ANCOVA.html#simulating-the-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>8.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-1-controlling-for-the-pretest"><i class="fa fa-check"></i><b>8.4</b> Scenario #1: Controlling for the pretest</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-1"><i class="fa fa-check"></i><b>8.4.1</b> Preparing the data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions"><i class="fa fa-check"></i><b>8.4.2</b> Checking the assumptions</a>
+<ul>
+<li class="chapter" data-level="8.4.2.1" data-path="ANCOVA.html"><a href="ANCOVA.html#linearity-assumption"><i class="fa fa-check"></i><b>8.4.2.1</b> Linearity assumption</a></li>
+<li class="chapter" data-level="8.4.2.2" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-regression-slopes"><i class="fa fa-check"></i><b>8.4.2.2</b> Homogeneity of regression slopes</a></li>
+<li class="chapter" data-level="8.4.2.3" data-path="ANCOVA.html"><a href="ANCOVA.html#normality-of-residuals"><i class="fa fa-check"></i><b>8.4.2.3</b> Normality of residuals</a></li>
+<li class="chapter" data-level="8.4.2.4" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>8.4.2.4</b> Homogeneity of variances</a></li>
+<li class="chapter" data-level="8.4.2.5" data-path="ANCOVA.html"><a href="ANCOVA.html#outliers"><i class="fa fa-check"></i><b>8.4.2.5</b> Outliers</a></li>
+<li class="chapter" data-level="8.4.2.6" data-path="ANCOVA.html"><a href="ANCOVA.html#write-up-of-assumptions"><i class="fa fa-check"></i><b>8.4.2.6</b> Write-up of Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova"><i class="fa fa-check"></i><b>8.4.3</b> Calculating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="8.4.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate"><i class="fa fa-check"></i><b>8.4.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section"><i class="fa fa-check"></i><b>8.4.5</b> Toward an APA style results section</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-2-controlling-for-a-confounding-or-covarying-variable"><i class="fa fa-check"></i><b>8.5</b> Scenario #2: Controlling for a confounding or covarying variable</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-2"><i class="fa fa-check"></i><b>8.5.1</b> Preparing the data</a></li>
+<li class="chapter" data-level="8.5.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions-1"><i class="fa fa-check"></i><b>8.5.2</b> Checking the assumptions</a>
+<ul>
+<li class="chapter" data-level="8.5.2.1" data-path="ANCOVA.html"><a href="ANCOVA.html#linearity-assumption-1"><i class="fa fa-check"></i><b>8.5.2.1</b> Linearity assumption</a></li>
+<li class="chapter" data-level="8.5.2.2" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-regression-slopes-1"><i class="fa fa-check"></i><b>8.5.2.2</b> Homogeneity of regression slopes</a></li>
+<li class="chapter" data-level="8.5.2.3" data-path="ANCOVA.html"><a href="ANCOVA.html#normality-of-residuals-1"><i class="fa fa-check"></i><b>8.5.2.3</b> Normality of residuals</a></li>
+<li class="chapter" data-level="8.5.2.4" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-variances-1"><i class="fa fa-check"></i><b>8.5.2.4</b> Homogeneity of variances</a></li>
+<li class="chapter" data-level="8.5.2.5" data-path="ANCOVA.html"><a href="ANCOVA.html#outliers-1"><i class="fa fa-check"></i><b>8.5.2.5</b> Outliers</a></li>
+<li class="chapter" data-level="8.5.2.6" data-path="ANCOVA.html"><a href="ANCOVA.html#write-up-of-assumptions-1"><i class="fa fa-check"></i><b>8.5.2.6</b> Write-up of Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova-1"><i class="fa fa-check"></i><b>8.5.3</b> Calculating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="8.5.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate-1"><i class="fa fa-check"></i><b>8.5.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
+<li class="chapter" data-level="8.5.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section-1"><i class="fa fa-check"></i><b>8.5.5</b> Toward an APA style results section</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ANCOVA.html"><a href="ANCOVA.html#more-and-a-recap-on-covariates"><i class="fa fa-check"></i><b>8.6</b> More (and a recap) on covariates</a></li>
+<li class="chapter" data-level="8.7" data-path="ANCOVA.html"><a href="ANCOVA.html#practice-problems-5"><i class="fa fa-check"></i><b>8.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-1-play-around-with-this-simulation.-3"><i class="fa fa-check"></i><b>8.7.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="8.7.2" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-2-conduct-a-one-way-anova-with-the-dv-and-covariate-at-post2."><i class="fa fa-check"></i><b>8.7.2</b> Problem #2: Conduct a one-way ANOVA with the DV and covariate at post2.</a></li>
+<li class="chapter" data-level="8.7.3" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-3-try-something-entirely-new.-3"><i class="fa fa-check"></i><b>8.7.3</b> Problem #3: Try something entirely new.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Analysis of Variance</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Repeated" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> One-Way Repeated Measures ANOVA</h1>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c8f5737f-d00d-4fa4-ba3c-ad8b01762258">Screencasted Lecture Link</a></p>
+<p>In the prior lessons, a critical assumption is that the observations must be “independent.” That is, related people (partners, parent/child, manager/employee) cannot comprise the data and there cannot be multiple waves of data for the same person. Repeated measures ANOVA is created specifically for this <em>dependent</em> purpose. This lessons focuses on the one-way repeated measures ANOVA, where we measure changes across time.</p>
+<div id="navigating-this-lesson-4" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Navigating this Lesson</h2>
+<p>There is just over one hour of lecture. If you work through the materials with me it would be plan for an additional two hours</p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReCenterPsychStats">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
+<div id="learning-objectives-4" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Learning Objectives</h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Evaluate the suitability of a research design/question and dataset for conducting a one-way repeated measures ANOVA; identify alternatives if the data is not suitable.</li>
+<li>Hand-calculate a one-way repeated measures NOVA
+<ul>
+<li>describing the partitioning of variance as it relates to model/residual; within/between</li>
+</ul></li>
+<li>Test the assumptions for one-way repeated measures ANOVA.</li>
+<li>Conduct a one-way repeated measures ANOVA (omnibus and follow-up) in R.</li>
+<li>Interpret output from the one-way repeated measures ANOVA (and follow-up).</li>
+<li>Prepare an APA style results section of the one-way repeated measures ANOVA output.</li>
+<li>Demonstrate how an increased sample size increases the power of a statistical test.</li>
+</ul>
+</div>
+<div id="planning-for-practice-3" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Planning for Practice</h3>
+<p>The suggestions for homework are graded in complexity with more complete descriptions at the end of the chapter follow these suggestions.</p>
+<ul>
+<li>Rework the problem in the chapter by changing the random seed in the code that simulates the data. This should provide minor changes to the data, but the results will likely be very similar.</li>
+<li>There were no additional variables in this example. However, you’ll see we do have an issue with statistical power. Perhaps change the sample size to see if it changes (maybe stabilizes?) the results.</li>
+<li>Conduct a one-way repeated measures ANOVA with data to which you have access. This could include data you simulate on your own or from a published article.</li>
+</ul>
+</div>
+<div id="readings-resources-3" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Readings &amp; Resources</h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<ul>
+<li>Repeated Measures ANOVA in R: The Ultimate Guide. (n.d.). Datanovia. Retrieved October 19, 2020, from <a href="https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r" class="uri">https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r</a>
+<ul>
+<li>This website is an excellent guide for both one-way repeated measures and mixed design ANOVA. A great resource for both the conceptual and procedural. This is the guide I have used for the basis of the lecture. Working through their example would be great additional practice.</li>
+</ul></li>
+<li>Green, S. B., &amp; Salkind, N. J. (2014). One-Way Repeated Measures Analysis of Variance (Lesson 29). In Using SPSS for Windows and Macintosh: Analyzing and understanding data (Seventh edition., pp. 209–217). Pearson.
+<ul>
+<li>For years I taught from the Green and Salkind text. Even though it was written for SPSS, the authors do a terrific job of walking the reader through the one-way repeated measures logic and process.</li>
+</ul></li>
+<li>Amodeo, A. L., Picariello, S., Valerio, P., &amp; Scandurra, C. (2018). Empowering transgender youths: Promoting resilience through a group training program. Journal of Gay &amp; Lesbian Mental Health, 22(1), 3–19.
+<ul>
+<li>This mixed methods (qualitative and quantitative) includes a one-way repeated measures example. While the entire article is a good read, if you are short on time, focus your reading on the portions that address relevant to the use of the one-way repeated measures ANOVA: research design, procedure, results.</li>
+</ul></li>
+</ul>
+</div>
+<div id="packages-3" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Packages</h3>
+<p>The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="Repeated.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb389-2"><a href="Repeated.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(tidyverse)){install.packages(&quot;tidyverse&quot;)} #manipulate data</span></span>
+<span id="cb389-3"><a href="Repeated.html#cb389-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)} </span></span>
+<span id="cb389-4"><a href="Repeated.html#cb389-4" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(ggpubr)){install.packages(&quot;ggpubr&quot;)} #easy plots</span></span>
+<span id="cb389-5"><a href="Repeated.html#cb389-5" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(rstatix)){install.packages(&quot;rstatix&quot;)} #pipe-friendly R functions</span></span>
+<span id="cb389-6"><a href="Repeated.html#cb389-6" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(data.table)){install.packages(&quot;data.table&quot;)} #pipe-friendly R functions</span></span>
+<span id="cb389-7"><a href="Repeated.html#cb389-7" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(reshape2)){install.packages(&quot;reshape2&quot;)} #pipe-friendly R functions</span></span>
+<span id="cb389-8"><a href="Repeated.html#cb389-8" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(WebPower)){install.packages(&quot;WebPower&quot;)} #power analysis tools for repeated measures</span></span>
+<span id="cb389-9"><a href="Repeated.html#cb389-9" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(MASS)){install.packages(&quot;MASS&quot;)} #power analysis tools for repeated measures</span></span></code></pre></div>
+</div>
+</div>
+<div id="introducing-one-way-repeated-measures-anova" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Introducing One-way Repeated Measures ANOVA</h2>
+<p>There are a couple of typical use cases for one-way repeated measures ANOVA. In the first, the research participant is assessed in multiple conditions – with no interested in change-over-time.</p>
+<p>In the Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014b</a>)</span> statistics text, the one-way repeated measures example used in the lesson compared a teachers’ perception of stress when responding to parents, teachers, and school administrators.</p>
+<div class="figure">
+<img src="images/oneway_repeated/repeated_conditions.jpg" alt="" />
+<p class="caption">Illustration of a research design appropriate for one-way repeated measures ANOVA</p>
+</div>
+<p>Another common use case is about time, with the classic design being a pre-test, an intervention, a post-test and a follow up. In this we likely hope that there is a positive change from pre-to-post and that that change either stays constant (from post-to-follow-up) or, perhaps, increases even further. Our research vignette is interested in change-over-time.</p>
+<div class="figure">
+<img src="images/oneway_repeated/repeated_design.jpg" id="id" class="class" width="1000" height="100" alt="" />
+<p class="caption">Illustration of a research design appropriate for one-way repeated measures ANOVA</p>
+</div>
+<div id="workflow-for-oneway-repeated-measures-anova" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Workflow for Oneway Repeated Measures ANOVA</h3>
+<p>The following is a proposed workflow for conducting a one-way repeated measures ANOVA.</p>
+<div class="figure">
+<img src="images/oneway_repeated/wf_repeated.jpg" alt="" />
+<p class="caption">Image of a workflow for the one-way repeated measures ANOVA</p>
+</div>
+<p>Steps involved in analyzing the data include:</p>
+<ol style="list-style-type: decimal">
+<li>Prepare (upload) data.</li>
+<li>Explore data
+<ul>
+<li>graphs</li>
+<li>descriptive statistics</li>
+</ul></li>
+<li>Checking distributional assumptions
+<ul>
+<li>assessing normality via skew, kurtosis, Shapiro Wilks</li>
+<li>checking or violation of the <em>sphericity</em> assumption with Mauchly’s test; if violated interpret the corrected output or use a multivariate approach for the analysis</li>
+</ul></li>
+<li>Compute the omnibus ANOVA</li>
+<li>Compute post-hoc comparisons, planned contrasts, or polynomial trends</li>
+<li>Managing Type I error</li>
+<li>Sample size/power analysis (which you should think about first – but in the context of teaching ANOVA, it’s more pedagogically sensible, here)</li>
+</ol>
+</div>
+</div>
+<div id="research-vignette-3" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Research Vignette</h2>
+<p>Amodeo <span class="citation">(<a href="#ref-amodeo_empowering_2018" role="doc-biblioref">Amodeo et al., 2018</a>)</span> and colleagues conducted a mixed methods study (qualitative and quantitative) to evaluate the effectiveness of an empowerment, peer-group-based, intervention with participants (<em>N</em> = 8) who experienced transphobic episodes. Focus groups used qualitative methods to summarize emergent themes from the program (identity affirmation, self-acceptance, group as support) and a one-way, repeated measures ANOVA provided evidence of increased resilience from pre to three-month followup.</p>
+<p>Eight participants (seven transgender women and one genderqueer person) participated in the intervention. The mean age was 28.5 (<em>SD</em> = 5.85). All participants were Italian.</p>
+<p>The within-subjects condition was wave:</p>
+<ul>
+<li>T1, beginning of training</li>
+<li>Training, three 8-hour days,
+<ul>
+<li>content included identity and heterosexism, sociopolitical issues and minority stress, resilience and empowerment</li>
+</ul></li>
+<li>T2, at the conclusion of the 3-day training</li>
+<li>Follow-up session 3 months later</li>
+<li>T3, at the conclusion of the +3 month follow-up session</li>
+</ul>
+<p>The dependent variable (assessed at each wave) was a 14-item resilience scale <span class="citation">(<a href="#ref-wagnild_development_1993" role="doc-biblioref">Wagnild &amp; Young, 1993</a>)</span>. Items were assessed on a 7-point scale ranting from <em>Strongly disagree</em> to <em>Strongly agree</em> with higher scores indicating higher levels of resilience. An example items was, “I usually manage one way or another.”</p>
+<div class="figure">
+<img src="images/oneway_repeated/Amodio_design.jpg" id="id" class="class" width="1000" height="100" alt="" />
+<p class="caption">Diagram of the research design for the Amodeo et al study</p>
+</div>
+<div id="code-for-simulating-the-data-used-today." class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Code for simulating the data used today.</h3>
+<p>Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup).</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="Repeated.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
+<span id="cb390-2"><a href="Repeated.html#cb390-2" aria-hidden="true" tabindex="-1"></a>ID<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="at">each=</span><span class="dv">3</span>)))<span class="co">#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence</span></span>
+<span id="cb390-3"><a href="Repeated.html#cb390-3" aria-hidden="true" tabindex="-1"></a>Resilience<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">24</span>,<span class="at">mean=</span><span class="fu">c</span>(<span class="fl">5.7</span>,<span class="fl">6.21</span>,<span class="fl">6.26</span>),<span class="at">sd=</span><span class="fu">c</span>(.<span class="dv">88</span>,.<span class="dv">79</span>,.<span class="dv">37</span>)) <span class="co">#gives me a column of 24 numbers with the specified Ms and SD</span></span>
+<span id="cb390-4"><a href="Repeated.html#cb390-4" aria-hidden="true" tabindex="-1"></a>Wave<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>,<span class="st">&quot;Post&quot;</span>, <span class="st">&quot;FollowUp&quot;</span>),<span class="at">each=</span><span class="dv">1</span>,<span class="dv">8</span>) <span class="co">#repeats pre, post, follow-up once each, 8 times</span></span>
+<span id="cb390-5"><a href="Repeated.html#cb390-5" aria-hidden="true" tabindex="-1"></a>Amodeo_long<span class="ot">&lt;-</span><span class="fu">data.frame</span>(ID, Wave, Resilience)</span>
+<span id="cb390-6"><a href="Repeated.html#cb390-6" aria-hidden="true" tabindex="-1"></a><span class="co">#OneWay_mod&lt;-aov(Resilience~Wave + Error(ID/(Wave)), AmodeoSIM)</span></span>
+<span id="cb390-7"><a href="Repeated.html#cb390-7" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(OneWay_mod)</span></span>
+<span id="cb390-8"><a href="Repeated.html#cb390-8" aria-hidden="true" tabindex="-1"></a><span class="co">#model.tables(OneWay_mod,&quot;means&quot;)</span></span></code></pre></div>
+<p>Let’s take a look at the structure of our variables. We want ID to be a factor, Resilience to be numeric, and Wave to be an ordered factor (Pre, Post, FollowUp).</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="Repeated.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Amodeo_long)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   24 obs. of  3 variables:
+ $ ID        : Factor w/ 8 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 2 3 3 3 4 ...
+ $ Wave      : chr  &quot;Pre&quot; &quot;Post&quot; &quot;FollowUp&quot; &quot;Pre&quot; ...
+ $ Resilience: num  6.49 5.28 5.93 4.43 5.95 ...</code></pre>
+<p>We just need to change Wave to be an ordered factor.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="Repeated.html#cb393-1" aria-hidden="true" tabindex="-1"></a>Amodeo_long<span class="sc">$</span>Wave <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_long<span class="sc">$</span>Wave, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>, <span class="st">&quot;FollowUp&quot;</span>))</span></code></pre></div>
+<p>And we check the structure again.</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="Repeated.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Amodeo_long)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   24 obs. of  3 variables:
+ $ ID        : Factor w/ 8 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 2 3 3 3 4 ...
+ $ Wave      : Factor w/ 3 levels &quot;Pre&quot;,&quot;Post&quot;,&quot;FollowUp&quot;: 1 2 3 1 2 3 1 2 3 1 ...
+ $ Resilience: num  6.49 5.28 5.93 4.43 5.95 ...</code></pre>
+<p><strong>Shape Shifters</strong></p>
+<p>The form of our data matters. The simulation created a <em>long</em> form (formally called the <em>person-period</em> form) of data. That is, each observation for each person is listed in its own row. In this dataset where we have 8 people with 3 observation (pre, post, follow-up) each, we have 24 rows. This is convenient, because this is the form we need for repeated measures ANOVA.</p>
+<p>However, for some of the calculations (particularly those we will do by hand), we need the data to be in its typical wide form (formally called the <em>person level</em> form). We can do this with the <em>data.table</em> and <em>reshape2</em>()* packages.</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="Repeated.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span></code></pre></div>
+<pre><code>
+Attaching package: &#39;reshape2&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:tidyr&#39;:
+
+    smiths</code></pre>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="Repeated.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new df (Amodeo_wide)</span></span>
+<span id="cb399-2"><a href="Repeated.html#cb399-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the original df</span></span>
+<span id="cb399-3"><a href="Repeated.html#cb399-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We are telling it to connect the values of the Resilience variable its respective Wave designation</span></span>
+<span id="cb399-4"><a href="Repeated.html#cb399-4" aria-hidden="true" tabindex="-1"></a>Amodeo_wide <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Amodeo_long, <span class="at">formula =</span>ID<span class="sc">~</span>Wave, <span class="at">value.var =</span> <span class="st">&quot;Resilience&quot;</span>)</span>
+<span id="cb399-5"><a href="Repeated.html#cb399-5" aria-hidden="true" tabindex="-1"></a><span class="co">#doublecheck to see if they did what you think</span></span>
+<span id="cb399-6"><a href="Repeated.html#cb399-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Amodeo_wide)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   8 obs. of  4 variables:
+ $ ID      : Factor w/ 8 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8
+ $ Pre     : num  6.49 4.43 4.77 5.91 4.84 ...
+ $ Post    : num  5.28 5.95 6.43 7 6.28 ...
+ $ FollowUp: num  5.93 5.19 6.54 6.19 6.24 ...</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="Repeated.html#cb401-1" aria-hidden="true" tabindex="-1"></a>Amodeo_wide<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_wide<span class="sc">$</span>ID)</span></code></pre></div>
+<p>In this reshape script, I asked for a quick structure check. The format of the variables looks good.</p>
+<p>If you want to export these data as files to your computer, remove the hashtags to save (and re-import) them as .csv (“Excel lite”) or .rds (R object) files. This is not a necessary step.</p>
+<p>The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. I would choose this option.</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="Repeated.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to save the df as an .rds (think &quot;R object&quot;) file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
+<span id="cb402-2"><a href="Repeated.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="co">#saveRDS(Amodeo_long, &quot;Amodeo_longRDS.rds&quot;)</span></span>
+<span id="cb402-3"><a href="Repeated.html#cb402-3" aria-hidden="true" tabindex="-1"></a><span class="co">#saveRDS(Amodeo_wide, &quot;Amodeo_wideRDS.rds&quot;)</span></span>
+<span id="cb402-4"><a href="Repeated.html#cb402-4" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from an .rds file</span></span>
+<span id="cb402-5"><a href="Repeated.html#cb402-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Amodeo_long &lt;- readRDS(&quot;Amodeo_longRDS.rds&quot;)</span></span>
+<span id="cb402-6"><a href="Repeated.html#cb402-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Amodeo_wide &lt;- readRDS(&quot;Amodeo_wideRDS.rds&quot;)</span></span></code></pre></div>
+<p>An option is to write them as .csv files. The code for .csv will likely lose any variable formatting, but they is easy to view and manipulate in Excel. If you choose this option, you will probably need to re-run the code to reformat the Wave variable as an ordered factor</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="Repeated.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<span id="cb403-2"><a href="Repeated.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Amodeo_long, file=&quot;Amodeo_longCSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
+<span id="cb403-3"><a href="Repeated.html#cb403-3" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Amodeo_wide, file=&quot;Amodeo_wideCSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
+<span id="cb403-4"><a href="Repeated.html#cb403-4" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
+<span id="cb403-5"><a href="Repeated.html#cb403-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Amodeo_long &lt;- read.csv (&quot;Amodeo_longCSV.csv&quot;, header = TRUE)</span></span>
+<span id="cb403-6"><a href="Repeated.html#cb403-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Amodeo_wide &lt;- read.csv (&quot;Amodeo_wideCSV.csv&quot;, header = TRUE)</span></span></code></pre></div>
+</div>
+<div id="quick-peek-at-the-data" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Quick peek at the data</h3>
+<p>Before we get into the statistic let’s look at our data.</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="Repeated.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Amodeo_long)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   24 obs. of  3 variables:
+ $ ID        : Factor w/ 8 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 2 3 3 3 4 ...
+ $ Wave      : Factor w/ 3 levels &quot;Pre&quot;,&quot;Post&quot;,&quot;FollowUp&quot;: 1 2 3 1 2 3 1 2 3 1 ...
+ $ Resilience: num  6.49 5.28 5.93 4.43 5.95 ...</code></pre>
+<p>In the following output, see the order of presentation on the first screen of output. Even though we have ordered our factor so that “Pre” is first, the <em>describeBy()</em> function seems to be ordering them alphabetically.</p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="Repeated.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb406-2"><a href="Repeated.html#cb406-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Amodeo_long<span class="sc">$</span>Resilience, Wave, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> Amodeo_long)</span></code></pre></div>
+<pre><code>    item   group1 vars n     mean        sd   median  trimmed       mad
+X11    1 FollowUp    1 8 6.136916 0.4729432 6.215983 6.136916 0.4416578
+X12    2     Post    1 8 6.327615 0.6550520 6.356491 6.327615 0.8751431
+X13    3      Pre    1 8 5.587693 0.8217561 5.770952 5.587693 1.1471137
+         min      max    range       skew   kurtosis        se
+X11 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107
+X12 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
+X13 4.428839 6.597214 2.168376 -0.1437061 -1.8118551 0.2905347</code></pre>
+<p>Another view (if we use the wide file)</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="Repeated.html#cb408-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Amodeo_wide)</span></code></pre></div>
+<pre><code>         vars n mean   sd median trimmed  mad  min  max range  skew kurtosis
+ID*         1 8 4.50 2.45   4.50    4.50 2.97 1.00 8.00  7.00  0.00    -1.65
+Pre         2 8 5.59 0.82   5.77    5.59 1.15 4.43 6.60  2.17 -0.14    -1.81
+Post        3 8 6.33 0.66   6.36    6.33 0.88 5.28 7.09  1.81 -0.23    -1.63
+FollowUp    4 8 6.14 0.47   6.22    6.14 0.44 5.19 6.71  1.52 -0.72    -0.61
+           se
+ID*      0.87
+Pre      0.29
+Post     0.23
+FollowUp 0.17</code></pre>
+<p>Our means suggest that resilience increases from pre to post, then declines a bit. We use one-way repeated measures ANOVA to learn if there are statistically significant differences between the pairs of means and over time.</p>
+<p>Let’s also take a quick look at a boxplot of our data.</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="Repeated.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span> (Resilience <span class="sc">~</span> Wave, <span class="at">data =</span> Amodeo_long, <span class="at">xlab =</span> <span class="st">&quot;Wave&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Resilience&quot;</span>, <span class="at">n.label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-196-1.svg" width="672" /></p>
+</div>
+</div>
+<div id="working-the-one-way-repeated-measures-anova-by-hand" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Working the One-Way Repeated Measures ANOVA (by hand)</h2>
+<p>Before working our problem in R, let’s gain a conceptual understanding by partitioning the variance by hand.</p>
+<p>In repeated measures ANOVA: <span class="math inline">\(SS_T = SS_B + SS_W\)</span>, where</p>
+<ul>
+<li>B = between-subjects variance</li>
+<li>W = within-subjects variance
+<ul>
+<li><span class="math inline">\(SS_W = SS_M + SS_R\)</span></li>
+</ul></li>
+</ul>
+<p>What differs is that <span class="math inline">\(SS_M\)</span> and <span class="math inline">\(SS_R\)</span> (model and residual, are found in <span class="math inline">\(SS_W\)</span>)</p>
+<ul>
+<li><span class="math inline">\(SS_T = SS_B + (SS_M + SS_R)\)</span></li>
+</ul>
+<div class="figure">
+<img src="images/oneway_repeated/SourceTable.jpg" id="id" class="class" width="500" height="250" alt="" />
+<p class="caption">Demonstration of partitioning variance</p>
+</div>
+<div id="sums-of-squares-total-2" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Sums of Squares Total</h3>
+<p><span class="math display">\[SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}\]</span>
+<span class="math display">\[SS_{T}= s_{grand}^{2}(n-1)\]</span>
+Degrees of freedom for <span class="math inline">\(SS_T\)</span> is <em>N</em> - 1, where <em>N</em> is the total number of cells.</p>
+<p>Let’s take a moment to <em>hand-calculate</em> <span class="math inline">\(SS_{T}\)</span> (but in R).</p>
+<p>Our grand (i.e., overall) mean is</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="Repeated.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Amodeo_long<span class="sc">$</span>Resilience)</span></code></pre></div>
+<pre><code>[1] 6.017408</code></pre>
+<p>Subtracting the grand mean from each resilience score yields a mean difference.</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="Repeated.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb413-2"><a href="Repeated.html#cb413-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-3"><a href="Repeated.html#cb413-3" aria-hidden="true" tabindex="-1"></a>Amodeo_long <span class="ot">&lt;-</span> Amodeo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb413-4"><a href="Repeated.html#cb413-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m_dev =</span> Resilience<span class="sc">-</span><span class="fu">mean</span>(Resilience))</span></code></pre></div>
+<p>Pop quiz: What’s the sum of our new <em>m_dev</em> variable?</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="Repeated.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Amodeo_long<span class="sc">$</span>m_dev)</span></code></pre></div>
+<pre><code>[1] 0.000000000000007993606</code></pre>
+<p>If we square those mean deviations:</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="Repeated.html#cb416-1" aria-hidden="true" tabindex="-1"></a>Amodeo_long <span class="ot">&lt;-</span> Amodeo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb416-2"><a href="Repeated.html#cb416-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m_devSQ =</span> m_dev<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<p>If we sum the squared mean deviations:</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="Repeated.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Amodeo_long<span class="sc">$</span>m_devSQ)</span></code></pre></div>
+<pre><code>[1] 11.65769</code></pre>
+<p>This value, the sum of squared deviations around the grand mean, is our <span class="math inline">\(SS_T\)</span>; the associated <em>degrees of freedom</em> is 23 (24 - 1; <em>N</em> - 1).</p>
+</div>
+<div id="sums-of-squares-within-for-repated-measures-anova" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Sums of Squares Within for Repated Measures ANOVA</h3>
+<p><span class="math display">\[SS_W = s_{person1}^{2}(n_{1}-1)+s_{person2}^{2}(n_{2}-1)+s_{person3}^{2}(n_{3}-1)+...+s_{personk}^{2}(n_{k}-1)\]</span>
+Degrees of freedom (df) within is <em>N - k</em>; or the summation of the df for each of the persons.</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="Repeated.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb419-2"><a href="Repeated.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span>(Resilience <span class="sc">~</span> ID, <span class="at">data =</span> Amodeo_long, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>    item group1 vars n  mean    sd median trimmed   mad   min   max range
+X11    1      1    1 3 5.901 0.605  5.928   5.901 0.836 5.283 6.492 1.209
+X12    2      2    1 3 5.188 0.760  5.187   5.188 1.124 4.429 5.948 1.520
+X13    3      3    1 3 5.912 0.992  6.430   5.912 0.160 4.768 6.537 1.769
+X14    4      4    1 3 6.370 0.568  6.191   6.370 0.414 5.913 7.005 1.092
+X15    5      5    1 3 5.787 0.824  6.240   5.787 0.064 4.836 6.283 1.447
+X16    6      6    1 3 5.744 0.146  5.693   5.744 0.095 5.629 5.908 0.279
+X17    7      7    1 3 6.627 0.248  6.597   6.627 0.300 6.395 6.889 0.494
+X18    8      8    1 3 6.612 0.533  6.708   6.612 0.565 6.038 7.090 1.052
+      skew kurtosis    se
+X11 -0.044   -2.333 0.349
+X12  0.002   -2.333 0.439
+X13 -0.380   -2.333 0.573
+X14  0.283   -2.333 0.328
+X15 -0.384   -2.333 0.475
+X16  0.304   -2.333 0.084
+X17  0.118   -2.333 0.143
+X18 -0.175   -2.333 0.307</code></pre>
+<p>With 8 people, there will be 8 chunks of the analysis, in each:</p>
+<ul>
+<li>SD squared (to get the variance)</li>
+<li>multiplied by #observations less 1</li>
+</ul>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="Repeated.html#cb421-1" aria-hidden="true" tabindex="-1"></a>(.<span class="dv">605</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>)) <span class="sc">+</span> (.<span class="dv">760</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>)) <span class="sc">+</span> (.<span class="dv">992</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>))<span class="sc">+</span> (.<span class="dv">568</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>))<span class="sc">+</span> (.<span class="dv">824</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>))<span class="sc">+</span> (.<span class="dv">146</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>))<span class="sc">+</span> (.<span class="dv">248</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>)) <span class="sc">+</span> (.<span class="dv">553</span><span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">3-1</span>))</span></code></pre></div>
+<pre><code>[1] 6.635836</code></pre>
+</div>
+<div id="sums-of-squares-model-effect-of-time" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Sums of Squares Model – Effect of Time</h3>
+<p><span class="math display">\[SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\]</span>
+Degrees of freedom will be k - 1 (number of levels, minus one).</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="Repeated.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb423-2"><a href="Repeated.html#cb423-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Amodeo_wide)</span></code></pre></div>
+<pre><code>         vars n mean   sd median trimmed  mad  min  max range  skew kurtosis
+ID*         1 8 4.50 2.45   4.50    4.50 2.97 1.00 8.00  7.00  0.00    -1.65
+Pre         2 8 5.59 0.82   5.77    5.59 1.15 4.43 6.60  2.17 -0.14    -1.81
+Post        3 8 6.33 0.66   6.36    6.33 0.88 5.28 7.09  1.81 -0.23    -1.63
+FollowUp    4 8 6.14 0.47   6.22    6.14 0.44 5.19 6.71  1.52 -0.72    -0.61
+           se
+ID*      0.87
+Pre      0.29
+Post     0.23
+FollowUp 0.17</code></pre>
+<p>In this case, we are interested in change in resilience over time. Hence, <em>time</em> is our mode. In our equation, we have three chunks representing the pre, post, and follow-up <em>conditions</em> (waves). From each, we subtract the grand mean, square it, and multiply by the <em>n</em> observed in each wave.</p>
+<p>Degrees of freedom (df) for <span class="math inline">\(SS_M\)</span> is <em>k</em> - 1</p>
+<p>Let’s calculate grand mean; that is the resilience score for all participants across all waves.</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="Repeated.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Amodeo_long<span class="sc">$</span>Resilience)</span></code></pre></div>
+<pre><code>[1] 6.017408</code></pre>
+<p>Now we can calculate the <span class="math inline">\(SS_M\)</span>.</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="Repeated.html#cb427-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span><span class="sc">*</span>(<span class="fl">6.14</span> <span class="sc">-</span> <span class="fl">6.017</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (<span class="dv">8</span><span class="sc">*</span>(<span class="fl">6.33</span> <span class="sc">-</span> <span class="fl">6.017</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (<span class="dv">8</span><span class="sc">*</span>(<span class="fl">5.59</span> <span class="sc">-</span> <span class="fl">6.017</span>)<span class="sc">^</span><span class="dv">2</span>) </span></code></pre></div>
+<pre><code>[1] 2.363416</code></pre>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="Repeated.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df is 3-1 = 2</span></span></code></pre></div>
+</div>
+<div id="sums-of-squares-residual" class="section level3" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> Sums of Squares Residual</h3>
+<p>Let’s take the easy way out, given that <span class="math inline">\(SS_W = SS_M + SS_R\)</span>:</p>
+<p><span class="math inline">\(SS_w\)</span> = 6.636
+<span class="math inline">\(SS_M\)</span> = 2.363</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="Repeated.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fl">6.636</span> <span class="sc">-</span> <span class="fl">2.363</span></span></code></pre></div>
+<pre><code>[1] 4.273</code></pre>
+<p>Degrees of freedom (also taking the easy way out) is calculated by subtracting the <span class="math inline">\(SS_M\)</span> from <span class="math inline">\(SS_W\)</span>.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="Repeated.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="dv">16-2</span></span></code></pre></div>
+<pre><code>[1] 14</code></pre>
+</div>
+<div id="sums-of-squares-between" class="section level3" number="6.4.5">
+<h3><span class="header-section-number">6.4.5</span> Sums of Squares Between</h3>
+<p>Not used in our calculations today, but also calculated easily. Given that <span class="math inline">\(SS_T\)</span> = <span class="math inline">\(SS_W\)</span> + <span class="math inline">\(SS_B\)</span>:</p>
+<p><span class="math inline">\(SS_T\)</span> = 11.66; <em>df</em> = 23
+<span class="math inline">\(SS_W\)</span> = 6.64; <em>df</em> = 16</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="Repeated.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fl">11.66</span> <span class="sc">-</span> <span class="fl">6.64</span></span></code></pre></div>
+<pre><code>[1] 5.02</code></pre>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="Repeated.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="dv">23-16</span></span></code></pre></div>
+<pre><code>[1] 7</code></pre>
+<p><span class="math inline">\(SS_B\)</span> = 5.02, <em>df</em> = 7</p>
+<p><img src="images/oneway_repeated/SourceTable.jpg" alt="Screenshot of the ANOVA source Table" />
+Looking again at our sourcetable, we can move through the steps to calculate our <em>F</em> statistic.</p>
+</div>
+<div id="mean-squares-model-residual-1" class="section level3" number="6.4.6">
+<h3><span class="header-section-number">6.4.6</span> Mean Squares Model &amp; Residual</h3>
+<p>Now that we have the Sums of Squares, we can calculate the mean squares (we need these for our <span class="math inline">\(F\)</span> statistic).</p>
+<p><span class="math display">\[MS_M = \frac{SS_{M}}{df^{_{M}}}\]</span></p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="Repeated.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squares for the model</span></span>
+<span id="cb438-2"><a href="Repeated.html#cb438-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2.36</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>[1] 1.18</code></pre>
+<p>And <span class="math inline">\(MS_R=\)</span>
+<span class="math display">\[MS_R = \frac{SS_{R}}{df^{_{R}}}\]</span>
+Recall, df for the residual is N - k
+(in our case that’s 90 - 3)</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="Repeated.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squares for the residual</span></span>
+<span id="cb440-2"><a href="Repeated.html#cb440-2" aria-hidden="true" tabindex="-1"></a><span class="fl">4.27</span> <span class="sc">/</span> <span class="dv">14</span></span></code></pre></div>
+<pre><code>[1] 0.305</code></pre>
+</div>
+<div id="f-ratio" class="section level3" number="6.4.7">
+<h3><span class="header-section-number">6.4.7</span> <em>F</em> ratio</h3>
+<p><span class="math display">\[F = \frac{MS_{M}}{MS_{R}}\]</span></p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="Repeated.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.18</span> <span class="sc">/</span> .<span class="dv">305</span></span></code></pre></div>
+<pre><code>[1] 3.868852</code></pre>
+<p>To find the <span class="math inline">\(F_{CV}\)</span> we can use an <a href="https://www.statology.org/f-distribution-table/">F distribution table</a>.</p>
+<p>Or use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="Repeated.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="co">#looking up the F critical values</span></span>
+<span id="cb444-2"><a href="Repeated.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(.<span class="dv">05</span>, <span class="dv">2</span>, <span class="dv">14</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="co">#Model F critical value</span></span></code></pre></div>
+<pre><code>[1] 3.738892</code></pre>
+<p>Our example has 2 (numerator) and 14 (denominator) degrees of freedom. Rolling down to the table where <span class="math inline">\(\alpha = .05\)</span>, we can see that any <span class="math inline">\(F\)</span> value &gt; 3.73 will be statistically significant. Our <span class="math inline">\(F\)</span> = 3.87, so we have (just barely) exceeded the thresshhold. This is our <em>omnibus F</em>. We know there is at least 1 statistically significant difference between our pre, post, and follow-up conditions.</p>
+</div>
+</div>
+<div id="working-the-one-way-anova-with-r-packages" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Working the One-Way ANOVA with R packages</h2>
+<div id="testing-the-assumptions" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Testing the assumptions</h3>
+<p>Well start by testing the assumptions. Here is our place in the one-way ANOVA decision tree:</p>
+<div class="figure">
+<img src="images/oneway_repeated/wf_rptd_assumptions.jpg" alt="" />
+<p class="caption">Image of our position in the workflow for the one-way repeated measures ANOVA</p>
+</div>
+<p>There are several different ways to conduct a repeated measures ANOVA. Each has different assumptions/requirements. These include:</p>
+<ul>
+<li>univariate statistics
+<ul>
+<li>this is what we will use today</li>
+</ul></li>
+<li>multivariate statistics
+<ul>
+<li>same as univariate, except it does not require the sphericity assumption</li>
+</ul></li>
+<li>multi-level modeling/hierarchical linear modeling
+<ul>
+<li>a different statistic altogether; stay tuned</li>
+</ul></li>
+</ul>
+<div id="univariate-assumptions-for-repeated-measures-anova" class="section level4" number="6.5.1.1">
+<h4><span class="header-section-number">6.5.1.1</span> Univariate assumptions for repeated measures ANOVA</h4>
+<ul>
+<li>The cases represent a random sample from the population, and there is no dependency in the scores between participants.</li>
+<li>There are no significant outliers in any cell of the design
+<ul>
+<li>Check by visualizing the data using box plots and the function <em>identify_outliers()</em> [rstatix]</li>
+<li>Conduct a Shapiro-Wilk test of normality for each of the levels of the DV</li>
+<li>Visually examine qq plots</li>
+</ul></li>
+<li>The dependent variable is normally distributed in the population for each level of the within-subjects factor.</li>
+<li>The population variance of difference scores computed between any two levels of a within-subjects factor is the same value regardless of which two levels are chosen; termed the <strong>sphericity assumption</strong>.
+<ul>
+<li>Akin to compound symmetry (both variances across conditions are equal).</li>
+<li>Akin to the homogeneity of variance assumption in between-group designs.</li>
+<li>Sometimes called the homogeneity-of-variance-of-differences assumption.</li>
+<li>Statistically evaluated with <em>Mauchly’s test.</em> If Mauchly’s <em>p</em> &lt; .05, there are statistically significant differences. The <em>anova_test()</em> function in the <em>rstatix</em> package reports Mauchly’s and two alternatives to the traditional <em>F</em> that correct the values by the degree to which the sphericity assumption is violated.</li>
+</ul></li>
+</ul>
+<p>Demonstrating sphericity:</p>
+<p>Using the data from our motivating example, I calculated differences for each of the time variables. When we get into the analysis, we will use <em>Mauchly’s test</em> in hopes that there are non-significant differences in variances between all three of the comparisons.</p>
+<p>We are only concerned with the sphericity assumption if there are three or more groups.</p>
+<p><span class="math display">\[variance_{A-B} \approx variance_{A-C}\approx variance_{B-C}\]</span></p>
+<div class="figure">
+<img src="images/oneway_repeated/mauchly.jpg" id="id" class="class" width="500" height="250" alt="" />
+<p class="caption">Demonstration of unequal variances</p>
+</div>
+</div>
+<div id="any-outliers" class="section level4" number="6.5.1.2">
+<h4><span class="header-section-number">6.5.1.2</span> Any outliers?</h4>
+<p>The boxplot is one common way for identifying outliers. The boxplot uses the median and the lower (25th percentile) and upper (75th percentile) quartiles. The difference bewteen Q3 and Q1 is the <em>interquartile range</em> (IQR). Outliers are generally identified when values fall outside these lower and upper boundaries:</p>
+<ul>
+<li>Q1 - 1.5xIQR</li>
+<li>Q3 + 1.5xIQR</li>
+</ul>
+<p>Extreme values occur when values fall outside these boundaries:</p>
+<ul>
+<li>Q1 - 3xIQR</li>
+<li>Q3 + 3xIQR</li>
+</ul>
+<p>Let’s take a look at a boxplot.</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="Repeated.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb446-2"><a href="Repeated.html#cb446-2" aria-hidden="true" tabindex="-1"></a>bxp <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(Amodeo_long, <span class="at">x =</span> <span class="st">&quot;Wave&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Resilience&quot;</span>, <span class="at">add =</span> <span class="st">&quot;point&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Assessment Wave&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Self-Perception of Resilience&quot;</span>)</span>
+<span id="cb446-3"><a href="Repeated.html#cb446-3" aria-hidden="true" tabindex="-1"></a>bxp</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-214-1.svg" width="672" />
+The package <em>rstatix</em> has features that allow us to identify outliers.</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="Repeated.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb447-2"><a href="Repeated.html#cb447-2" aria-hidden="true" tabindex="-1"></a>Amodeo_long <span class="sc">%&gt;%</span></span>
+<span id="cb447-3"><a href="Repeated.html#cb447-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Wave)<span class="sc">%&gt;%</span></span>
+<span id="cb447-4"><a href="Repeated.html#cb447-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Resilience)</span></code></pre></div>
+<pre><code>[1] Wave       ID         Resilience m_dev      m_devSQ    is.outlier is.extreme
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="Repeated.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="co">#?identify_outliers</span></span></code></pre></div>
+<p>No outliers are identified. Visual inspection of boxplots, assisted by the <em>identify_outliers()</em> function in the <em>rstatix</em> package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers.</p>
+</div>
+<div id="assessing-normality" class="section level4" number="6.5.1.3">
+<h4><span class="header-section-number">6.5.1.3</span> Assessing normality</h4>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="Repeated.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb450-2"><a href="Repeated.html#cb450-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Resilience <span class="sc">~</span> Wave, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">data =</span> Amodeo_long)</span></code></pre></div>
+<pre><code>    item   group1 vars n     mean        sd   median  trimmed       mad
+X11    1      Pre    1 8 5.587693 0.8217561 5.770952 5.587693 1.1471137
+X12    2     Post    1 8 6.327615 0.6550520 6.356491 6.327615 0.8751431
+X13    3 FollowUp    1 8 6.136916 0.4729432 6.215983 6.136916 0.4416578
+         min      max    range       skew   kurtosis        se
+X11 4.428839 6.597214 2.168376 -0.1437061 -1.8118551 0.2905347
+X12 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
+X13 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107</code></pre>
+<p>Our skew and kurtosis values fall below the thresshholds of concern <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>:</p>
+<ul>
+<li>&lt; 3 for skew</li>
+<li>8 - 20 indicates extreme skew for kurtosis</li>
+</ul>
+<p>We can use the Shapiro-Wilk test for a formal detection of normality. When <em>p</em> &lt; .05, it indicates that the distribution is statistically significantly different than a normal one. Therefore, <em>p</em> &gt; .05 indicates we did not violate the normal distribution assumption.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="Repeated.html#cb452-1" aria-hidden="true" tabindex="-1"></a>Amodeo_long <span class="sc">%&gt;%</span></span>
+<span id="cb452-2"><a href="Repeated.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Wave) <span class="sc">%&gt;%</span></span>
+<span id="cb452-3"><a href="Repeated.html#cb452-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(Resilience)</span></code></pre></div>
+<pre><code># A tibble: 3 x 4
+  Wave     variable   statistic     p
+  &lt;fct&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;
+1 Pre      Resilience     0.919 0.419
+2 Post     Resilience     0.941 0.617
+3 FollowUp Resilience     0.926 0.480</code></pre>
+<p>Great! The <em>p</em> value is &gt; .05 for each of the cells.</p>
+<p>The Shapiro-Wilk test is sensitive to sample size <span class="citation">(<a href="#ref-noauthor_repeated_nodate" role="doc-biblioref"><span>“Repeated <span>Measures</span> <span>ANOVA</span> in <span>R</span>,”</span> n.d.</a>)</span>. Samples &gt; 50 may lead to <em>p</em> values that are &lt; .05, even when non-normality is not problematic. Therefore a second check with a QQ plot can be helpful.</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="Repeated.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggqqplot</span>(Amodeo_long, <span class="st">&quot;Resilience&quot;</span>, <span class="at">facet.by =</span> <span class="st">&quot;Wave&quot;</span>)</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-218-1.svg" width="672" /></p>
+<p>We already have a non-significant <em>p</em> from the Shapiro-Wilk; and these dots stay pretty well on the prediction line.</p>
+<p><strong>APA Assumption Write-up So Far</strong></p>
+<p>Repeated measures ANOVA has several assumptions regarding outliers, normality, and sphericity. Visual inspection of boxplots for each wave of the design, assisted by the <em>identify_outliers()</em> function in the <em>rstatix</em> package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>. Additionally, the Shapiro-Wilk tests applied at each wave of the design were non-significant.</p>
+</div>
+<div id="assumption-of-sphericity" class="section level4" number="6.5.1.4">
+<h4><span class="header-section-number">6.5.1.4</span> Assumption of Sphericity</h4>
+<p>The sphericity assumption is automatically checked with Mauchley’s test during the computation of the ANOVA when the <em>anova_test()</em> [rstatix package] is used. When the <em>get_anova_table()</em> [rstatix] function is used, the Greenhouse-Geisser sphericity correction is automatically applied to factors violating the sphericity assumption.</p>
+<p>The effect size, <span class="math inline">\(\eta^2\)</span> is reported in the ges column.</p>
+</div>
+</div>
+<div id="omnibus-anova" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Omnibus ANOVA</h3>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="Repeated.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Amodeo_long)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   24 obs. of  5 variables:
+ $ ID        : Factor w/ 8 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 2 3 3 3 4 ...
+ $ Wave      : Factor w/ 3 levels &quot;Pre&quot;,&quot;Post&quot;,&quot;FollowUp&quot;: 1 2 3 1 2 3 1 2 3 1 ...
+ $ Resilience: num  6.49 5.28 5.93 4.43 5.95 ...
+ $ m_dev     : num  0.4747 -0.7344 -0.0895 -1.5886 -0.0689 ...
+ $ m_devSQ   : num  0.22536 0.53927 0.00801 2.52355 0.00475 ...</code></pre>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="Repeated.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb457-2"><a href="Repeated.html#cb457-2" aria-hidden="true" tabindex="-1"></a>RM_AOV <span class="ot">&lt;-</span> <span class="fu">anova_test</span>(<span class="at">data =</span> Amodeo_long, <span class="at">dv =</span> Resilience, <span class="at">wid =</span> ID, <span class="at">within =</span> Wave)</span>
+<span id="cb457-3"><a href="Repeated.html#cb457-3" aria-hidden="true" tabindex="-1"></a>RM_AOV</span></code></pre></div>
+<pre><code>ANOVA Table (type III tests)
+
+$ANOVA
+  Effect DFn DFd    F     p p&lt;.05   ges
+1   Wave   2  14 3.91 0.045     * 0.203
+
+$`Mauchly&#39;s Test for Sphericity`
+  Effect     W     p p&lt;.05
+1   Wave 0.566 0.182      
+
+$`Sphericity Corrections`
+  Effect   GGe    DF[GG] p[GG] p[GG]&lt;.05   HFe      DF[HF] p[HF] p[HF]&lt;.05
+1   Wave 0.698 1.4, 9.77 0.068           0.817 1.63, 11.44 0.057          </code></pre>
+<p>From the ANOVA object: <span class="math inline">\(F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203\)</span></p>
+<p>From the Mauchly’s Test for Sphericity object we learn that we did not violate the sphericity assumption: <span class="math inline">\(W = 0.566, p = .182\)</span></p>
+<p>From the Sphericity Corrections object are output for two alternative corrections to the <em>F</em> statistic, the Greenhouse-Geiser epsilon (GGe) and Huynh-Feldt epsilon (HFe). Because we did not violate the sphericity assumption we do not need to use it. Notice that these two tests adjust our df (both numerator and denominator) to have a more conservative p value.</p>
+<p>If we needed to write it up, the <em>F</em> string might look like this:</p>
+<p>The Greenhouse Geiser estimate was 0.698 the correct omnibus was <em>F</em>(1.4, 9.77) = 3.91, <em>p</em> = .068.
+The Huyhn Feldt estimate was 0.817 and the corrected omnibus was <em>F</em> (1.63, 11.44) = 3.91 <em>p</em> = .057.</p>
+<p>You might be surprised that we are at follow-up already. The test of the sphericity assumption occured at the same time we evaluated the omnibus ANOVA.</p>
+<div class="figure">
+<img src="images/oneway_repeated/wf_rptd_omnibus.jpg" alt="" />
+<p class="caption">Image of our position in the workflow for the one-way repeated measures ANOVA</p>
+</div>
+</div>
+<div id="follow-up" class="section level3" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Follow-up</h3>
+<p>Note that when I am calculating these pairwise <em>t</em> tests, I am creating an object (named “pwc”). The object will be a helpful tool in creating a Figure and an APA Style table.</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="Repeated.html#cb459-1" aria-hidden="true" tabindex="-1"></a>pwc <span class="ot">&lt;-</span> Amodeo_long <span class="sc">%&gt;%</span></span>
+<span id="cb459-2"><a href="Repeated.html#cb459-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pairwise_t_test</span>(Resilience<span class="sc">~</span>Wave, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb459-3"><a href="Repeated.html#cb459-3" aria-hidden="true" tabindex="-1"></a>pwc</span></code></pre></div>
+<pre><code># A tibble: 3 x 10
+  .y.        group1 group2     n1    n2 statistic    df     p p.adj p.adj.signif
+* &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+1 Resilience Pre    Post        8     8     -2.15     7 0.069 0.206 ns          
+2 Resilience Pre    Follow~     8     8     -2.00     7 0.086 0.257 ns          
+3 Resilience Post   Follow~     8     8      1.06     7 0.325 0.975 ns          </code></pre>
+<p>So why didn’t we get significance in the follow-up?</p>
+<ul>
+<li>Our omnibus <em>F</em> was right at the margins
+<ul>
+<li>a larger sample size (assuming that the effects would hold) would be really useful.</li>
+<li>there could be significance if we compared pre to the combined effects of post and follow-up.</li>
+</ul></li>
+</ul>
+<p>What about Type I error? With only three possible post-omnibus comparisons, I will claim the Tukey LSD approach and not adjust the alpha to a more conservative level <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">Green &amp; Salkind, 2014b</a>)</span>.</p>
+<p>Coolest boxplots ever</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="Repeated.html#cb461-1" aria-hidden="true" tabindex="-1"></a>pwc <span class="ot">&lt;-</span> pwc <span class="sc">%&gt;%</span> <span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Wave&quot;</span>)</span>
+<span id="cb461-2"><a href="Repeated.html#cb461-2" aria-hidden="true" tabindex="-1"></a>bxp <span class="sc">+</span> </span>
+<span id="cb461-3"><a href="Repeated.html#cb461-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_pvalue_manual</span>(pwc) <span class="sc">+</span></span>
+<span id="cb461-4"><a href="Repeated.html#cb461-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb461-5"><a href="Repeated.html#cb461-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">get_test_label</span>(RM_AOV, <span class="at">detailed =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb461-6"><a href="Repeated.html#cb461-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">get_pwc_label</span>(pwc)</span>
+<span id="cb461-7"><a href="Repeated.html#cb461-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-222-1.svg" width="672" />
+Unfortunately, the <em>apaTables</em> package does not work with the <em>rstatix</em> package, so a table would need to be crafted by hand.</p>
+</div>
+<div id="results-section" class="section level3" number="6.5.4">
+<h3><span class="header-section-number">6.5.4</span> Results Section</h3>
+<p>Repeated measures ANOVA has several assumptions regarding outliers, normality, and sphericity. Visual inspection of boxplots for each wave of the design, assisted by the <em>identify_outliers()</em> function in the <em>rstatix</em> package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>. Additionally, the Shapiro-Wilk tests applied at each wave of the design were non-significant. A non-significant Mauchley’s test (<span class="math inline">\(W = 0.566, p = .182\)</span>) indicated that the sphericity assumption was not violated.</p>
+<p>The omnibus ANOVA was significant: <span class="math inline">\(F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203\)</span>. We followed up with all pairwise comparisons. Curiously, and in spite of a significant omnibus test, there were not statistically significant differences between any of the pairs. Regarding pre versus post, <em>t</em> = -2.15, <em>p</em>= .069. Regarding pre versus follow-up, <em>t</em> = -2.00, <em>p</em> = .068. Regarding post versus follow-up, <em>t</em> = 1.059, <em>p</em>= .325. Because there were only three pairwise comparisons subsequent to the omnibus test, alpha was retained at .05 <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">Green &amp; Salkind, 2014b</a>)</span>. While the trajectories from pre-to-post and pre-to-follow-up were in the expected direction, the small sample size likely contributed to a Type II error. Descriptive statistics are reported in Table 1 and the differences are illustrated in Figure 1.</p>
+<div id="creating-an-apa-style-table" class="section level4" number="6.5.4.1">
+<h4><span class="header-section-number">6.5.4.1</span> Creating an APA Style Table**</h4>
+<p>While I have not located a package that will take <em>rstatix</em> output to make an APA style table, we can use the <em>MASS</em> package to write the pwc object to a .csv file, then manually make our own table.</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="Repeated.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb462-2"><a href="Repeated.html#cb462-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.matrix</span>(pwc, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;PWC.csv&quot;</span>)</span></code></pre></div>
+<p><strong>Let’s compare this to the write-up in the Amodeo et al.<span class="citation">(<a href="#ref-amodeo_empowering_2018" role="doc-biblioref">2018</a>)</span>article.</strong></p>
+<ul>
+<li>The <em>F</em> string is presented in the Table 1 note (<em>F</em>[1.612, 11.283]) = 6.390, <em>p</em> = 0.18, <span class="math inline">\(\eta _{p}^{2}\)</span>)
+<ul>
+<li>we can tell from the df that the <em>p</em> value has been had a correction for violation of the sphericity assumption</li>
+</ul></li>
+<li>Table 1 also reports all of the post-hoc, pairwise comparisons. There is no mention of control for Type I error. Had they used a traditional Bonferroni, they would have needed to reduce the alpha to (k*(k-1)/2) and then divide .05 by that number.</li>
+</ul>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="Repeated.html#cb463-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">*</span> (<span class="dv">3-1</span>))<span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>[1] 3</code></pre>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="Repeated.html#cb465-1" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span><span class="sc">/</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>[1] 0.01666667</code></pre>
+<p>Although they report 6 comparisons; 3 are repeated because they are merely in reverse. Yet, the revised alpha would be .016 and the one, lone, comparison would not have been statistically significant. That said, we can invoke the Tukey LSD because there are only 3 comparisons and holding alpha at .05 can be defended <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">Green &amp; Salkind, 2014b</a>)</span>.
+* Regarding the presentation of the results
+- there is no figure
+- there is no data presented in the text; all data is presented in Table 1
+* Regarding the research design and its limitations
+- the authors note that a control condition would have better supported the conclusions
+- the authors note the limited sample size and argue that this is a difficult group to recruit for intervention and evaluation
+- the article is centered around the qualitative aspect of the design; the quantitative portion is secondary</p>
+<div class="figure">
+<img src="images/oneway_repeated/Amodio_design.jpg" id="id" class="class" width="1000" height="100" alt="" />
+<p class="caption">Another peek at the research design for the Amodeo et al study</p>
+</div>
+</div>
+</div>
+</div>
+<div id="power-in-repeated-measures-anova" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> Power in Repeated Measures ANOVA</h2>
+<p>The package <em>wp.rmanova</em> was designed for power analysis in repeated measures ANOVA.</p>
+<p>Power analysis allows us to determine the probability of detecting an effect of a given size with a given level of confidence. Especially when we don’t achieve significance, we may want to stop.</p>
+<p>In the <em>WebPower</em> package, we specify 6 of 7 interrelated elements; the package computes the missing one.</p>
+<p>n = sample size (number of individuals in the whole study)
+ng = number of groups
+nm = number of measurements/conditions/waves
+f = Cohen’s <em>f</em> (an effect size; we can use a conversion calculator)
+nscor = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package’s default; &lt; 1 means some correction was applied.
+alpha = is the probability of Type I error; we traditionally set this at .05
+power = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)
+type = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect.</p>
+<p>I used <em>effectsize</em> packages converter to transform our <span class="math inline">\(\eta^2\)</span> to Cohen’s <em>f</em>.</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="Repeated.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effectsize)</span>
+<span id="cb467-2"><a href="Repeated.html#cb467-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eta2_to_f</span>(.<span class="dv">203</span>) </span></code></pre></div>
+<pre><code>[1] 0.5046832</code></pre>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="Repeated.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(WebPower)</span></code></pre></div>
+<pre><code>Loading required package: lme4</code></pre>
+<pre><code>Loading required package: Matrix</code></pre>
+<pre><code>
+Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:tidyr&#39;:
+
+    expand, pack, unpack</code></pre>
+<pre><code>Registered S3 methods overwritten by &#39;lme4&#39;:
+  method                          from
+  cooks.distance.influence.merMod car 
+  influence.merMod                car 
+  dfbeta.influence.merMod         car 
+  dfbetas.influence.merMod        car </code></pre>
+<pre><code>Loading required package: lavaan</code></pre>
+<pre><code>Warning: package &#39;lavaan&#39; was built under R version 4.0.5</code></pre>
+<pre><code>This is lavaan 0.6-8
+lavaan is FREE software! Please report any bugs.</code></pre>
+<pre><code>
+Attaching package: &#39;lavaan&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:psych&#39;:
+
+    cor2cov</code></pre>
+<pre><code>Loading required package: parallel</code></pre>
+<pre><code>Loading required package: PearsonDS</code></pre>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="Repeated.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wp.rmanova</span>(<span class="at">n=</span><span class="dv">8</span>, <span class="at">ng=</span><span class="dv">1</span>, <span class="at">nm=</span><span class="dv">3</span>, <span class="at">f =</span> .<span class="dv">5047</span>, <span class="at">nscor =</span> .<span class="dv">689</span>, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>Repeated-measures ANOVA analysis
+
+    n      f ng nm nscor alpha     power
+    8 0.5047  1  3 0.689  0.05 0.1619613
+
+NOTE: Power analysis for within-effect test
+URL: http://psychstat.org/rmanova</code></pre>
+<p>In reverse, setting <em>power</em> at .80 (the traditional value) and changing <em>n</em> to <em>NULL</em> yields a recommended sample size.</p>
+<p>In many cases we won’t know some of the values in advance. We can make best guesses based on our review of the literature. In the script below:</p>
+<ul>
+<li>nscor is the degree of violation of the sphericity assumption. If we think we won’t violate it, we can enter 1.0 or leave it out (the wp.rmanova default is 1.0)</li>
+<li>f is the effect size estimate; Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively.</li>
+</ul>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="Repeated.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wp.rmanova</span>(<span class="at">n=</span><span class="cn">NULL</span>, <span class="at">ng=</span><span class="dv">1</span>, <span class="at">nm=</span><span class="dv">3</span>, <span class="at">f =</span> .<span class="dv">5047</span>, <span class="at">nscor =</span> .<span class="dv">689</span>, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">power =</span> .<span class="dv">80</span>, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>Repeated-measures ANOVA analysis
+
+           n      f ng nm nscor alpha power
+    50.87736 0.5047  1  3 0.689  0.05   0.8
+
+NOTE: Power analysis for within-effect test
+URL: http://psychstat.org/rmanova</code></pre>
+</div>
+<div id="practice-problems-3" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> Practice Problems</h2>
+<p>In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty. In any case, you will be expected to:</p>
+<ul>
+<li>test the statistical assumptions</li>
+<li>conduct a one-way, including
+<ul>
+<li>omnibus test and effect size</li>
+<li>conduct follow-up testing</li>
+</ul></li>
+<li>write a results section to include a figure and tables</li>
+</ul>
+<div id="problem-2-change-the-random-seed" class="section level3" number="6.7.1">
+<h3><span class="header-section-number">6.7.1</span> Problem #2: Change the Random Seed</h3>
+<p>If repeated measures ANOVA is new to you, perhaps change the random seed and follow-along with the lesson.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Check and, if needed, format data</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Evaluate statistical assumptions</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Conduct omnibus ANOVA (w effect size)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Conduct all possible pairwise comparisons (like in the lecture)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Describe approach for managing Type I error</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. APA style results with table(s) and figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2-increase-n" class="section level3" number="6.7.2">
+<h3><span class="header-section-number">6.7.2</span> Problem #2: Increase <em>N</em></h3>
+<p>Our analysis of the Amodio et al. <span class="citation">(<a href="#ref-amodio_empowering_2018" role="doc-biblioref"><strong>amodio_empowering_2018?</strong></a>)</span> data failed to find significant increases in resilience from pre-to-post through follow-up. Our power analysis suggested that a sample size of 50 would be sufficient to garner statistical significance. The new dataset has been resimulated with this new sample size.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Check and, if needed, format data</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Evaluate statistical assumptions</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Conduct omnibus ANOVA (w effect size)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Conduct all possible pairwise comparisons (like in the lecture)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Describe approach for managing Type I error</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. APA style results with table(s) and figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2-try-something-entirely-new" class="section level3" number="6.7.3">
+<h3><span class="header-section-number">6.7.3</span> Problem #2: Try Something Entirely New</h3>
+<p>Using data for which you have permission and access (e.g., IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a one-way repeated measures ANOVA. Please have at least 3 levels for the predictor variable.</p>
+<p>Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Check and, if needed, format data</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Evaluate statistical assumptions</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Conduct omnibus ANOVA (w effect size)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Conduct all possible pairwise comparisons (like in the lecture)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Describe approach for managing Type I error</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. APA style results with table(s) and figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="bonus-reel-1" class="section level2" number="6.8">
+<h2><span class="header-section-number">6.8</span> Bonus Reel:</h2>
+<div class="figure">
+<img src="images/film-strip-1.jpg" id="id" class="class" width="620" height="211" alt="" />
+<p class="caption">Image of a filmstrip</p>
+</div>
+<p>Without the <em>rstatix</em> helper package, here is how the analysis would be run in the package, <em>car.</em> Note that this package results in the multivariate output. The <em>p</em> value of the omnibus <em>F</em> was non-significant from the start (<em>p</em> = .213).</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="Repeated.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb486-2"><a href="Repeated.html#cb486-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-3"><a href="Repeated.html#cb486-3" aria-hidden="true" tabindex="-1"></a>waveLevels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb486-4"><a href="Repeated.html#cb486-4" aria-hidden="true" tabindex="-1"></a>waveFactor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(waveLevels)</span>
+<span id="cb486-5"><a href="Repeated.html#cb486-5" aria-hidden="true" tabindex="-1"></a>waveFrame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(waveFactor)</span>
+<span id="cb486-6"><a href="Repeated.html#cb486-6" aria-hidden="true" tabindex="-1"></a>waveBind <span class="ot">&lt;-</span><span class="fu">cbind</span>(Amodeo_wide<span class="sc">$</span>Pre, Amodeo_wide<span class="sc">$</span>Post, Amodeo_wide<span class="sc">$</span>FollowUp)</span>
+<span id="cb486-7"><a href="Repeated.html#cb486-7" aria-hidden="true" tabindex="-1"></a>waveModel<span class="ot">&lt;-</span> <span class="fu">lm</span>(waveBind<span class="sc">~</span><span class="dv">1</span>)</span>
+<span id="cb486-8"><a href="Repeated.html#cb486-8" aria-hidden="true" tabindex="-1"></a>analysis <span class="ot">&lt;-</span><span class="fu">Anova</span>(waveModel, <span class="at">idata=</span>waveFrame, <span class="at">idesign=</span><span class="sc">~</span>waveFactor)</span></code></pre></div>
+<pre><code>Note: model has only an intercept; equivalent type-III tests substituted.</code></pre>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="Repeated.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(analysis)</span></code></pre></div>
+<pre><code>
+Type III Repeated Measures MANOVA Tests:
+
+------------------------------------------
+ 
+Term: (Intercept) 
+
+ Response transformation matrix:
+     (Intercept)
+[1,]           1
+[2,]           1
+[3,]           1
+
+Sum of squares and products for the hypothesis:
+            (Intercept)
+(Intercept)    2607.062
+
+Multivariate Tests: (Intercept)
+                 Df test stat approx F num Df den Df          Pr(&gt;F)    
+Pillai            1    0.9942 1200.028      1      7 0.0000000043326 ***
+Wilks             1    0.0058 1200.028      1      7 0.0000000043326 ***
+Hotelling-Lawley  1  171.4325 1200.028      1      7 0.0000000043326 ***
+Roy               1  171.4325 1200.028      1      7 0.0000000043326 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+------------------------------------------
+ 
+Term: waveFactor 
+
+ Response transformation matrix:
+     waveFactor1 waveFactor2
+[1,]           1           0
+[2,]           0           1
+[3,]          -1          -1
+
+Sum of squares and products for the hypothesis:
+            waveFactor1 waveFactor2
+waveFactor1   2.4131705  -0.8378898
+waveFactor2  -0.8378898   0.2909282
+
+Multivariate Tests: waveFactor
+                 Df test stat approx F num Df den Df  Pr(&gt;F)
+Pillai            1 0.4026101 2.021846      2      6 0.21319
+Wilks             1 0.5973899 2.021846      2      6 0.21319
+Hotelling-Lawley  1 0.6739486 2.021846      2      6 0.21319
+Roy               1 0.6739486 2.021846      2      6 0.21319
+
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+            Sum Sq num Df Error SS den Df   F value         Pr(&gt;F)    
+(Intercept) 869.02      1   5.0692      7 1200.0279 0.000000004333 ***
+waveFactor    2.36      2   4.2272     14    3.9102        0.04476 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+
+Mauchly Tests for Sphericity
+
+           Test statistic p-value
+waveFactor        0.56648 0.18179
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+            GG eps Pr(&gt;F[GG])  
+waveFactor 0.69759    0.06754 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+              HF eps Pr(&gt;F[HF])
+waveFactor 0.8172743 0.05734876</code></pre>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-amodeo_empowering_2018" class="csl-entry">
+Amodeo, A. L., Picariello, S., Valerio, P., &amp; Scandurra, C. (2018). Empowering transgender youths: <span>Promoting</span> resilience through a group training program. <em>Journal of Gay &amp; Lesbian Mental Health</em>, <em>22</em>(1), 3–19. <a href="https://alliance-primo.hosted.exlibrisgroup.com">https://alliance-primo.hosted.exlibrisgroup.com</a>
+</div>
+<div id="ref-green_using_2014" class="csl-entry">
+Green, S. B., &amp; Salkind, N. J. (2014b). <em>Using <span>SPSS</span> for <span>Windows</span> and <span>Macintosh</span>: Analyzing and understanding data</em> (Seventh edition.). Pearson.
+</div>
+<div id="ref-kline_principles_2016" class="csl-entry">
+Kline, R. B. (2016). <em>Principles and practice of structural equation modeling</em> (4th ed.). Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a>
+</div>
+<div id="ref-noauthor_repeated_nodate" class="csl-entry">
+Repeated <span>Measures</span> <span>ANOVA</span> in <span>R</span>: <span>The</span> <span>Ultimate</span> <span>Guide</span>. (n.d.). In <em>Datanovia</em>. Retrieved October 19, 2020, from <a href="https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/">https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/</a>
+</div>
+<div id="ref-wagnild_development_1993" class="csl-entry">
+Wagnild, G. M., &amp; Young, H. M. (1993). Development and psychometric evaluation of the <span>Resilience</span> <span>Scale</span>. <em>Journal of Nursing Measurement</em>, <em>1</em>(2), 165–178. <a href="https://ezproxy.spu.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip&amp;db=psyh&amp;AN=1996-05738-006&amp;site=ehost-live">https://ezproxy.spu.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip&amp;db=psyh&amp;AN=1996-05738-006&amp;site=ehost-live</a>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="between.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Mixed.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/06-OneWayRepeated.Rmd",
+"text": null
+},
+"download": ["ReCenterPsychStats.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

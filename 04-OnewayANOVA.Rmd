@@ -1,6 +1,17 @@
-# ONE-WAY ANOVA {#oneway}
+---
+output:
+  word_document: default
+  html_document: default
+---
+# One-way ANOVA {#oneway}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=150b68bf-c880-4348-8114-acb7000b227e) 
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+options(scipen=999)#eliminates scientific notation
+```
+
+[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c88f8492-0599-462d-a471-ad8a01702156) 
 
 One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor.  For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables:  a factor and a dependent variable.
 
@@ -10,7 +21,7 @@ One-way ANOVA can be used in experimental, quasi-experimental, and field studies
 
 ## Navigating this Lesson
 
-There is about 2 hours and 20 minutes of lecture.  If you work through the materials with me plan for another two hours of study.
+There is about 2 hours of lecture.  If you work through the materials with me plan for another two hours of study.
 
 ### Learning Objectives
 
@@ -26,7 +37,11 @@ Learning objectives from this lecture include the following:
 
 ### Planning for Practice
 
-The research vignette for this chapter [@tran_you_2014] has two variables where the authors have conducted one-way ANOVAs.  I will demonstrate one (*Accurate*) in this lecture; the second is suggested as homework. For additional practice, you may wish to create a different set of simulated data by disabling the code that sets the random seed in the data simulation. This will allow reworking the same problem, but with slightly different results. As part of the practice you should:
+In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results *should* map onto the ones obtained in the lecture. 
+
+The second option comes from the research vignette. The Tran et al. [@tran_you_2014] has two variables where the authors have conducted one-way ANOVAs.  I will demonstrate one (*Accurate*) in this lecture; the second is suggested as homework. 
+
+As a third option, you are welcome to use data to which you have access and is suitable for two-way ANOVA. In either case, you will be expected to:
 
 * test the statistical assumptions
 * conduct a one-way ANOVA, including
@@ -44,16 +59,18 @@ In preparing this chapter, I drew heavily from the following resource(s) that ar
 
 ### Packages
 
-If hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
-
-```{r package installation}
+The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
+```{r }
 #will install the package if not already installed
 #if(!require(gplots)){install.packages("gplots")} #easy plotting for simple ANOVA
 #if(!require(tidyverse)){install.packages("tidyverse")} #creating new variables and other handy functions
 #if(!require(psych)){install.packages("psych")} #for descriptive statistics and writing them as csv files
+#if(!require(rstatix)){install.packages("rstatix")} #a number of wrappers for ANOVA models; today for evaluating the Shapiro
 #if(!require(lsr)){install.packages("lsr")} #produces effect sizes
 #if(!require(pwr)){install.packages("pwr")} #estimating sample sizes and power analysis
 #if(!require(apaTAbles)){install.packages("apaTables")} #produces an APA style table for ANOVAs and other models
+#if(!require(formattable)){install.packages("formattable")} #produces an APA style table for ANOVAs and other models
+#if(!require(effectsize)){install.packages("effectsize")} #produces an APA style table for ANOVAs and other models
 ```
 
 
@@ -61,10 +78,7 @@ If hashtags are removed, the script below will (a) check to see if the following
 
 The following is a proposed workflow for conducting a one-way ANOVA. 
 
-<!-- TODO: Figure out how to link this as a document that opens in a separate window For a separate document [See screenshot](images/OnewayWrkFlw.png) -->
-
-![An image of a workflow for the one-way ANOVA](images/OnewayWrkFlw.jpg) 
-
+![An image of a workflow for the one-way ANOVA](images/oneway/OnewayWrkFlw.jpg) 
 
 1. Prepare (upload) data.
 2. Explore data
@@ -98,36 +112,25 @@ Tran and Lee [-@tran_you_2014] reported results from two ANOVAs and 4 ANCOVAs, u
 
 ### Data Simulation
 
-Here, we simulate the ANOVA data from the Tran and Lee [-@tran_you_2014] RCT. The data can be simulated for each, one-way ANOVA, separately, but because there is no correlation matrix (showing the relations between all the variables), it is impossible to recreate a single dataset with all the relations.
+Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean), and standard deviation (sd) for each of the groups [@crump_simulating_2018]. In creating this simulation, I used the data from Table 1 in the Tran and Lee [-@tran_you_2014] article. Having worked the problem several times, I made one change. The group sizes in the original study were 23, 22, and 23. To ensure that we would have statistically significant results in our worked example, I increased the sample sizes to 30 for each group.  In this way we have a perfectly *balanced* (equal cell sizes) design. 
 
-Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean), and standard deviation (sd) for each of the groups [@crump_programming_2018]. In creating this simulation, I used the data from Table 1 in the Tran and Lee [-@tran_you_2014] article. Having worked the problem several times, I made one change. The group sizes in the original study were 23, 22, and 23. To ensure that we would have statistically significant results in our worked example, I increased the sample sizes to 30 for each group.  In this way we have a perfectly *balanced* (equal cell sizes) design. 
-
-```{r simulate accurate}
-set.seed(2021) #sets a random seed so that we get the same results each time
+```{r }
+#Note, this script results in a different simulation than is in the ReadySetR lesson
+set.seed(210820) #sets a random seed so that we get the same results each time
 Accurate <- c(rnorm(30, mean=1.18, sd=0.80), rnorm(30, mean=1.83, sd = 0.58), rnorm(30, mean = 1.76, sd = 0.56))#sample size, M and SD for each group
 Accurate[Accurate>3]<-3 #set upper bound for DV
 Accurate[Accurate<0]<-0 #set lower bound for DV
+moreTalk <- c(rnorm(30, mean=-.82, sd=0.91), rnorm(30, mean=-0.39, sd = 0.66), rnorm(30, mean = -0.04, sd = 0.71))#sample size, M and SD for each group
+moreTalk[moreTalk>2]<-2 #set upper bound for DV
+moreTalk[moreTalk<-2]<--2 #set lower bound for DV
 ID<-factor(seq(1,90)) #IDs for participants
 COND<-c(rep("High", 30), rep("Low", 30), rep("Control", 30)) #name factors and identify how many in each group; should be in same order as first row of script
-Acc_sim30 <-data.frame(ID, COND, Accurate) #groups the 3 variables into a single df:  ID#, DV, condition
-
-#to write it to an outfile
-write.table(Acc_sim30, file="newAcc30.csv", sep=",", col.names=TRUE, row.names=FALSE)
+accSIM30 <-data.frame(ID, COND, Accurate, moreTalk) #groups the 3 variables into a single df:  ID#, DV, condition
 ```
 
 ## Working the Problem
 
-### Preparing and Uploading Data
-
-If you are working this problem with me, you may use either the object we created from the simulation (i.e., Acc_sim30) or the upload and use the copy we saved to a .csv file.  Because much of our data will come from an outside file, I will use that "downloaded-and-reuploaded" copy.
-
-```{r read in df}
-#for a .csv file
-accSIM30 <- read.csv ("Acc_sim30_df.csv", head = TRUE, sep = ",")
-
-# head=TRUE yields column headings;
-# sep = "," tells R that we are using a .csv file (comma separated values)
-```
+### Preparing the Data
 
 Examining the data is important for several reasons. First, we can begin to inspect for any anomalies. Second, if we are confused about what statistic we wish to apply, understanding the characteristics of the data can provide clues.  
 
@@ -138,7 +141,7 @@ In R markdown we can
 
 Let's do both.
 
-```{r examine structure of df}
+```{r }
 str(accSIM30)
 ```
 If we look at this simple dataset, we see that we see that
@@ -146,46 +149,85 @@ If we look at this simple dataset, we see that we see that
 *  **COND** is a grouping variable) with 3 levels (high, low, control)
    - it is presently in "chr" (character) format, it needs to be changed to be a factor.
 *  **Accurate** is a continuous variable
+   - it is presently in "num" (numerical) format, this is satisfactory. 
+*  **moreTalk** is a continuous variable
    - it is presently in "num" (numerical) format, this is satisfactory.
 
 There are many ways to convert variables to factors; here's one of the simplest.
 
-```{r convert variable  to factor}
+```{r }
+#convert variable  to factor
 accSIM30$COND <- factor(accSIM30$COND)
 ```
 
 Let's recheck the structure
 
-```{r recheck structure}
+```{r }
 str(accSIM30)
 ```
 By default, R orders factors alphabetically.  This means, analysis will assume that "Control" (C) is the lowest condition, then "High," then "Low."  Since these have theoretically ordered values, we want them in the order of "Control," "Low," "High."
 
 Here is the script to create a an ordered factor.
 
-```{r ordering the factor}
+```{r }
+#ordering the factor
 accSIM30$COND <- factor(accSIM30$COND, levels = c("Control", "Low", "High"))
 ```
 
 Again, we can check our work.
-```{r another structure check}
+```{r }
+#another structure check
 str(accSIM30)
 ```
 Now our variables are suitable for analysis.
 
-R will always guess the variable format when importing a .csv and, in this case, it will always guess incorrectly. We need to write our script so that we are always checking and updating the structure of variables.
+At this point, you may wish to export and/or import the data as a .csv (think "Excel lite") or .rds (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so.  The data should save in the same folder as the .rmd file. Therefore, it is really important (think good R hygiene) have organized your folders so that your .rmd and datafiles are co-located.
+
+I have hashtagged out the code. If you wish to use it, delete the hashtags. Although I show the .csv code first, my personal preference is to save R data as .rds files.  While they aren't easy to "see" as an independent file, they retain the formatting of the variables. For a demonstration, refer back to the [Ready_Set_R](#Ready) lesson.
+
+```{r}
+#write the simulated data  as a .csv
+#write.table(accSIM30, file="accSIM.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#acc_csv <- read.csv ("accSIM.csv", header = TRUE)
+```
+
+```{r}
+#a quick demo to show that the .csv format loses the variable formatting
+#str(acc_csv)
+```
+
+```{r}
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(accSIM30, "accSIM.rds")
+#bring back the simulated dat from an .rds file
+#acc_RDS <- readRDS("accSIM.rds")
+```
+
+```{r}
+#a quick demo to show that the .rds format preserves the variable formatting
+#str(acc_RDS)
+```
+
+Note that I renamed each of these data objects to reflect the form in whic I saved them (i.e., "acc_csv", "acc_RDS"). If you have followed this step, you will want to rename the file before continuing with the rest of the chapter. Alternatively, you can start from scratch, re-run the code to simulate the data, and skip this portion on importing/exporting data.
+
+```{r}
+#accSIM30 <- acc_RDS
+#or
+#accSIM30 <- acc_csv
+```
+
 
 ### Exploring the Distributional Characteristics Numerically
 
 Let's continue data exploration. We will do this several ways so that you will have several tools for such exploration.  In this first exploration, I will demonstrate how to grab a quick mean.
 
-```{r peek at means}
+```{r }
 aggregate (Accurate ~ COND, accSIM30, mean)
 ```
 
-
 And now a standard deviation.
-```{r peek at SDs}
+```{r }
 aggregate (Accurate ~ COND, accSIM30, sd)
 ```
 
@@ -195,7 +237,7 @@ Before looking at the graphs, we can see that racially loaded *high* condition h
 
 The package *gplots* produces a simple line graph and the script is fairly intuitive.  The *plotmeans()* function plots the means with error bars (95% confidence intervals) around the mean.  Regarding the confidence intervals, we can think, "How confident are we that the mean is this particular value?"  Earlier we noted that the "high racial loading condition" had the lowest mean and the widest variability.  Is this apparent from the graph?
 
-```{r linegraph}
+```{r }
 library(gplots)
 plotmeans (formula = Accurate ~ COND, #plots DV by IV
            data = accSIM30, #identifies the data frame
@@ -210,7 +252,7 @@ plotmeans (formula = Accurate ~ COND, #plots DV by IV
 
 Boxplots, with the *boxplot2()* function provide another view of our data.  In boxplots the center value is the median.  The box spans the *interquartile range* and ranges from the 25th to the 75th percentile. The whiskers cover 1.5 times the interquartile range. When this does not capture the entire range, outliers are represented with dots.
 
-```{r boxplot}
+```{r }
 boxplot2 (Accurate ~ COND, data = accSIM30, xlab = "Racial Loading Condition", ylab = "Accuracy of Confederate's Impression", n.label = TRUE)
 ```
 
@@ -220,7 +262,7 @@ From both the boxplot and the linegraph with error bars, we can see that partici
 
 ANOVA was developed by Sir Ronald Fisher in the early 20th century.  The name is a bit of a misnomer -- rather than analyzing *variances*, we are investigating differences in *means* (but the formula does take variances into consideration...stay tuned).
 
-ANOVA falls squarely within the tradition of **null hypothesis significance testing** (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. *Note.  Tran and Lee [-@tran_you_2014] do not list such.*
+ANOVA falls squarely within the tradition of **null hypothesis significance testing** (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. *Note. Tran and Lee [-@tran_you_2014] do not list such.*
 
 In our example, we would hypothesize that the population means (i.e., Asian or Asian American individuals in the U.S.) are equal:
 
@@ -373,36 +415,56 @@ Let's take a moment to *hand-calculate* $SS_{T}$. Not to worry!  We'll get R to 
 
 Our grand (i.e., overall) mean is 
 
-```{r calc mean}
-mean(accSIM30$Accurate)
+```{r }
+GrandMean <- mean(accSIM30$Accurate)
+GrandMean
+```
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+library(formattable)
+GrandMean <- digits(GrandMean, 3) 
+GrandMean
+
 ```
 
+
 Subtracting the grand mean from each Accurate score yields a mean difference.
-```{r create mean deviation}
+```{r }
 library(tidyverse)
 
 accSIM30 <- accSIM30 %>% 
   mutate(m_dev = Accurate-mean(Accurate))
+
+head(accSIM30)
 ```
 Pop quiz:  What's the sum of our new *m_dev* variable?  Let's check.
 
-```{r calculate sum of mean deviations}
+```{r }
 mean(accSIM30$m_dev)
 ```
-R uses **scientific e notation**. The proper value is one where the base number (before the "e") is multiplied by 10, raised to the power shown: $5.421372 * 10^{17}$ Another way to think of it is to move the decimal 17 places to the left.  In any case, this number is essentially zero.
+Unless you run the script at the top of this document ("options(scipen=999)") R will (seemingly selectively) use **scientific e notation** to report your results. The proper value is one where the base number (before the "e") is multiplied by 10, raised to the power shown: $3.830065 * 10^{17}$ Another way to think of it is to move the decimal 17 places to the left.  In any case, this number is essentially zero.
 
 Back to the point of sums of squares total, the sum of deviations around the grand mean will always be zero.  To make them useful, we must square them:
 
-```{r mean dev squared}
+```{r }
 accSIM30 <- accSIM30 %>% 
-  mutate(m_devSQ = m_dev^2)
+  dplyr::mutate(m_devSQ = m_dev^2)
+
+head(accSIM30)
 ```
 
 If we sum the squared mean deviations we will obtain the total variance (sums of squares total):
 
-```{r sum of m_devSQ}
-sum(accSIM30$m_devSQ)
+```{r }
+SST <- sum(accSIM30$m_devSQ)
+SST
 ```
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+SST <- digits(SST,3)
+SST
+```
+
 This value, the sum of squared deviations around the grand mean, is our $SS_T$; the associated *degrees of freedom* is $N - 1$; in our case this is 90-1 = 89.
 
 In one-way ANOVA, we divide $SS_T$ into **model/between sums of squares** and **residual/within sums of squares**.
@@ -411,7 +473,7 @@ The *model* generally represents the notion that the means are different than ea
 
 ### Sums of Squares for the Model (or Between)
 
-We just determined that the total amount of variation within the data is 38.35 units.  From this we can estimate how much of this variation our model can explain.  $SS_M$ tells us how much of the total variation can be explained by the fact that different data points come from different groups.
+We just determined that the total amount of variation within the data is `r SST` units.  From this we can estimate how much of this variation our model can explain.  $SS_M$ tells us how much of the total variation can be explained by the fact that different data points come from different groups.
 
 We see this reflected in the formula below, where 
 
@@ -421,24 +483,55 @@ We see this reflected in the formula below, where
 
 $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
 
-To calculate this, we start with the grand mean.
-```{r peek mean}
-mean(accSIM30$Accurate)
-```
+To calculate this, we start with the grand mean (previously calculated): `r GrandMean`.
+
 We also estimate the group means.
-```{r mean by COND}
-aggregate (Accurate ~ COND, accSIM30, mean)
+```{r }
+GroupMeans <- aggregate (Accurate ~ COND, accSIM30, mean)
+GroupMeans
+
+```
+```{r  echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+
+ControlMean <- digits(GroupMeans$Accurate[1],3)
+ControlMean
+LowMean <- digits(GroupMeans$Accurate[2],3)
+LowMean
+HighMean <- digits(GroupMeans$Accurate[3],3)
+HighMean
+
+nGroup <- accSIM30 %>% count(COND)
+nGroup
+nControl <- nGroup$n[1]
+nControl
+nLow <- nGroup$n[2]
+nLow
+nHigh<- nGroup$n[3]
+nHigh
 ```
 
 This formula occurs in three chunks, representing the control, low, and high racial loading conditions.  In each of the chunks we have the $n$, group mean, and grand mean.
-```{r calc SS total}
-30*(1.876 - 1.799)^2 + 30*(2.046 - 1.799)^2 + 30*(1.474 - 1.799)^2
+```{r }
+#Calculated by using object names from our calculations
+SSM <- nControl*(ControlMean - GrandMean)^2 + nLow*(LowMean - GrandMean)^2 + nHigh*(HighMean - GrandMean)^2
+SSM
+#calculated by specifying the actual values from our calculations
+30*(1.756 - 1.603)^2 + 30*(1.900 - 1.603)^2 + 30*(1.153 - 1.603)^2
+#Both result in the same
 ```
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+SSM <- digits (SSM,3)
+SSM
+```
+
+
 This value, $SS_M$ is the value accounted for by the model -- the proportion of variance accounted for by the grouping variable/factor, COND.  Degrees of freedom for $SS_M$ is always one less than the number of elements (e.g., groups) used in its calculation ($k-1$). Because we have three groups, our degrees of freedom for the model is 2.
 
 ### Sums of Squares Residual (or within)
 
-To recap, we know there are 38.35 units of variation to be explained in our data.  Our model explains 5.18 of these units. Sums of squares residual tells us how much of the variation cannot be explained by the model.  This value is influenced by extraneous factors; some will refer to it as "noise."
+To recap, we know there are `r SST` units of variation to be explained in our data.  Our model explains `r SSM` of these units. Sums of squares residual tells us how much of the variation cannot be explained by the model.  This value is influenced by extraneous factors; some will refer to it as "noise."
 
 Looking at the formula can assist us in with a conceptual formula. In $SS_R$ we subtract the group mean from each individual member of the group and then square it.
 
@@ -447,90 +540,138 @@ Here's another approach to calculating$SS_R$. In this one the variance for each 
 
 $$SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1))$$
 Again, the formula is in three chunks -- but this time the calculations are *within-group*.  We need the variance (the standard deviation squared) for the calculation.
-```{r SD by COND}
-aggregate (Accurate ~ COND, accSIM30, sd)
+```{r }
+SDs <- aggregate (Accurate ~ COND, accSIM30, sd)
+SDs
+```
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+sdControl <- digits(SDs$Accurate[1],3)
+sdControl
+sdLow <- digits(SDs$Accurate[2],3)
+sdLow
+sdHigh <- digits(SDs$Accurate[3],3)
+sdHigh
 ```
 
 A quick tangent -- this calculation demonstrates the relationship between standard deviation and variance.  Variance is the standard deviation, squared.
-```{r SD and variance demo}
+```{r }
 #just showing you that the variance (next) is the standard deviation, squared
-.4791969^2
+sdControl^2#the standard deviation of the control group, when squared should equal the variance reported in the next chunk
 ```
 
-```{r var by COND}
-aggregate (Accurate ~ COND, accSIM30, var)
+```{r }
+VARs <- aggregate (Accurate ~ COND, accSIM30, var)
+VARs
+```
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+varControl <- digits(VARs$Accurate[1],3)
+varControl
+varLow <- digits(VARs$Accurate[2],3)
+varLow
+varHigh <- digits(VARs$Accurate[3],3)
+varHigh
 ```
 
 We will use the second formula to calculate $SS_R$. For each of the groups, we multiply the variance by the respective degrees of freedom for the group (*n* - 1).
 
-```{r calc SS residual}
-.2296*(30-1) + .3278*(30-1) + .5857*(30-1)
+```{r }
+#Calculated by using object names from our calculations
+SSR <- varControl*(nControl-1) + varLow*(nLow-1) + varHigh*(nHigh-1)
+#calculated by specifying the actual values from our calculations
+SSR
+0.212*(30-1) + 0.397*(30-1) + 0.434*(30-1)
+#Both result in the same
 ```
-The value for our $SS_R$ is 33.15.  Degrees of freedom for the residual is $df_T - df_M$. 
+The value for our $SS_R$ is `r SSR`.  Degrees of freedom for the residual is $df_T - df_M$. 
 
 * $df_T$ was $N-1$: 90 - 1 = 89 
 * $df_M$ was $k - 1$:  3 - 1 = 2
 * Therefore, $df_R$: is 89 - 2 = 87
 
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+dfT <- 89
+dfM <- 2
+dfR <- 87
+```
+
 ### Relationship between $SS_T$, $SS_M$, and $SS_R$.  
 
 In case it's not clear:
 
-$SS_T = SS_M + SS_R$
+$SS_T$ = `r SSM` + `r SSR`
 
-```{r SST SSM SSR}
-33.15 + 5.18
+```{r }
+#Calculated by using object names from our calculations
+SSM + SSR
+#calculated by specifying the actual values from our calculations
+9.432 + 30.247
+#Both result in the same
 ```
-*The difference (38.35 vs. 38.33) is likely due to rounding error. Earlier estimates had multiple decimal points.*
-
+Our SST, calculated from above was `r SST`.
 
 ### Mean Squares Model & Residual
 
-Our estimates of variation were *sums of squares* and are influenced by the number of scores that were summed.  We can correct this bias by calculating their average -- the *mean squares* or $MS$. We will use these in the calculation of the $F$ statistic -- the statistic that tests if there are significant differences between groups.
+Our estimates of variation were *sums of squares* and are influenced by the number of scores that were summed.  We can correct this bias by calculating their average -- the *mean squares* or $MS$. We will use these in the calculation of the $F$ ratio -- the statistic that tests if there are significant differences between groups.
 
 Like the constellation of sums of squares, we calculate mean squares for the model ($MS_M$) and residual($MS_R$).  Each formula simply divides the corresponding sums of squares by their respective degrees of freedom.
 
 $$MS_M = \frac{SS_{M}}{df{_{M}}}$$
-
 Regarding the calculation of our model mean squares: 
 
-* $SS_M$ was 5.17689
-* $df_M$ was 2
+* $SS_M$ was `r SSM`
+* $df_M$ was `r dfM`
 * Therefore, $MS_M=$is:
 
-```{r MS model}
+```{r }
 # mean squares for the model
-5.17689/2
+#Calculated by using object names from our calculations
+MSM <- SSM/dfM
+MSM
+#calculated by specifying the actual values from our calculations
+9.432/2
+#Both result in the same
 ```
 
 
 $$MS_R = \frac{SS_{R}}{df{_{R}}}$$
 Regarding the calculation of our model residual squares:
 
-* $SS_R$ was 33.1499
-* $df_R$ was 87
+* $SS_R$ was `r SSR`
+* $df_R$ was `r dfR`
 * Therefore, $MS_R$ is:
 
-```{r MS resid}
+```{r }
 # mean squares for the residual
-33.1499 / 87
+#Calculated by using object names from our calculations
+MSR <- SSR/ dfR
+MSR
+#calculated by specifying the actual values from our calculations
+30.247/87
+#Both result in the same
 ```
 
 ### Calculating the *F*-Statistic
 
 The *F*-statistic (or *F*-ratio) is the assesses the ratio (as its name implies) of variation explained by the model to  unsystematic factors (i.e., the residual). Earlier we used "between" and "within" language. Especially when we think of our example -- where the model is composed of three groups, we can think of the *F* statistic as assessing the ratio of variation explained by between-subjects differences to within-subjects differences. Navarro's [@navarro_chapter_2020] figures (earlier in the chapter) illustrate this well.
 
-<!-- TODO: Add a hyperlink back to the Navarro figures -->
 
 $$F = \frac{MS_{M}}{MS_{R}}$$
 Regarding the calculation of our *F*-ratio:
 
-* $MS_M$ was 2.588445
-* $MS_R$ was 0.3810333
+* $MS_M$ was `r MSM`
+* $MS_R$ was `r MSR`
 * Therefore, $F$ is:
 
-```{r F ratio}
-2.588445 / 0.3810333
+```{r }
+#Calculated by using object names from our calculations
+Fratio <- MSM / MSR
+Fratio
+#calculated by specifying the actual values from our calculations
+4.716/0.348
+#Both result in the same
 ```
 
 ### Source Table Games
@@ -544,11 +685,9 @@ Rules of the game:
 
 Knowing only two of the values, challenge yourself to complete the rest of the table. Before looking at the answers (below), try to the fill in the blanks based in the table based on what we have learned so far.
 
-<!-- TODO: Is it possible to add an interactive, game-like aspect to these? -->
-
 | Game    |Total (df, *N* - 1) |Model (df, *k* -1) |Residual (df, $df_T - df_M$)|
 |:--------|-------------------:|------------------:|---------------------------:|
-|SS       |38.346(89)          |5.17689(2)         |______                      |
+|SS       |`r SST`(`r dfT`)    |`r SSM`(`r dfM`)   |______                      |
 |MS       |NA                  |______             |______                      |
 
 $F = MS_{M}/MS_{R}$ =  ______     
@@ -559,25 +698,29 @@ $F = MS_{M}/MS_{R}$ =  ______
 
 | Answers |Total (df, *N* - 1) |Model (df, *k* -1) |Residual (df, $df_T - df_M$)|
 |:--------|-------------------:|------------------:|---------------------------:|
-|SS       |38.346(89)          |5.17689(2)         |33.1499(87)                 |
-|MS       |NA                  |2.5885             |0.38103                     |
+|SS       |`r SST`(`r dfT`)    |`r SSM`(`r dfM`)   |`r SSR`(`r dfR`)           |
+|MS       |NA                  |`r MSM`            |`r MSR`                     |
 
-$F = MS_{M}/MS_{R}$ = 6.973                      
+$F = MS_{M}/MS_{R}$ = `r Fratio`                      
 
 
 
 To determine whether or not it is statistically significant, we can check a [table of critical values](https://www.statology.org/how-to-read-the-f-distribution-table/) [@zach_how_2019] for the *F* test.   
 
 
-Our example has 2 (numerator) and 87 (denominator) degrees of freedom.  Rolling down to the table where $\alpha  = .05$, we can see that any $F$ value > 3.11 (a value somewhere between 3.07 and 3.15) will be statistically significant.  Our $F$ = 6.79, so we have clearly exceeded the threshold.  This is our *omnibus F test*.  Significance at this level lets us know that there is at least 1 statistically significant difference between our control, low, and high racially loaded conditions. While it is important to follow-up to see where these significant differences lie, we will not do these by hand.  Rather, let's rework the problem in R.
+Our example has `r dfM` (numerator) and `r dfR` (denominator) degrees of freedom.  Rolling down to the table where $\alpha  = .05$, we can see that any $F$ value > 3.11 (a value somewhere between 3.07 and 3.15) will be statistically significant.  Our $F$ = `r Fratio`, so we have clearly exceeded the threshold.  This is our *omnibus F test*.  Significance at this level lets us know that there is at least 1 statistically significant difference between our control, low, and high racially loaded conditions. While it is important to follow-up to see where these significant differences lie, we will not do these by hand.  Rather, let's rework the problem in R.
+
+We can also use a look-up function, which follows this general form:  qf(p, df1, df2. lower.tail=FALSE)
+```{r}
+#looking up the F critical values
+qf(.05, 2, 87, lower.tail=FALSE)#Model F critical value
+```
 
 ## Working the One-Way ANOVA in R
 
 Let's rework the problem in R. We start at the top of the flowchart, evaluating the statistical assumptions.
 
-![An image of the workflow for one-way ANOVA, showing that we are at the beginning:  evaluating the potential violation of the assumptions.](images/OnewayWrkFlw_Asmptns.jpg) 
-
-
+![An image of the workflow for one-way ANOVA, showing that we are at the beginning:  evaluating the potential violation of the assumptions.](images/oneway/OnewayWrkFlw_Asmptns.jpg) 
 
 
 ### Evaluating the Statistical Assumptions
@@ -600,23 +743,23 @@ All statistical tests have some assumptions about the data. The one-way ANOVA ha
 
 From the *psych* package, the *describe()* function can be used to provide descriptives of continuously scaled variables (i.e., variables measured on the interval or ratio scale).  In this simple example, we can specify the specific continuous, DV.
 
-```{r descriptives of DV}
+```{r }
 library(psych)
 #we name the function
 #in parentheses we list the object that is the dataframe
 #the $ sign precedes the specific variable for which we want the information
-describe(accSIM30$Accurate)
+psych::describe(accSIM30$Accurate)
 ```
 
 If we want descriptives for each level of the grouping variable (factor), we can use the *describeBy()* function of the *psych* package. The order of entry within the script is the DV followed by the grouping variable (IV).
 
-```{r descriptives by factor}
+```{r }
 #It is unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file and use that as a basis for APA style tables
 #In this script we can think "Accurate by COND" meaning that the descriptives for accuracy will be grouped by COND which is a categorical variable
 #mat = TRUE means we will get the output in matrix (table) form
 #digits = 3 means output will be rounded to 3 decimal places
 #data = accSIM30 is a different (I think easier) way to identify the object that holds the dataframe
-des.mat <- describeBy (Accurate ~ COND, mat=TRUE, digits=3, data=accSIM30) 
+des.mat <- psych::describeBy (Accurate ~ COND, mat=TRUE, digits=3, data=accSIM30) 
 
 #describeBy(accSIM30$Accurate, accSIM30$COND, mat=TRUE)
 
@@ -626,16 +769,35 @@ write.csv (des.mat, file="Table1.csv") #optional to write it to a .csv file
 
 Skew and kurtosis speaks to normal distributions.  The skew and kurtosis indices in the *psych* package are reported as *z* scores.  Regarding skew, values greater than 3.0 are generally considered "severely skewed."  Regarding kurtosis, "severely kurtotic" is argued to be anywhere greater 8 to 20 [@kline_principles_2016].
 
-The *Shapiro-Wilks* test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (*p* >.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (*p* < .05) then the distribution in question is significantly different from a normal distribution.
+The *Shapiro-Wilks* test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (*p* >.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (*p* < .05) then the distribution in question is significantly different from a normal distribution. The *rstatix* package has a wrapper that can conduct the Shapiro-Wilks test for us.
 
-```{r Shapiro test}
-shapiro.test(accSIM30$Accurate)
+```{r }
+library(rstatix)
+shapiro <- accSIM30 %>%
+  group_by(COND) %>%
+  shapiro_test(Accurate)
+shapiro
 ```
-The $p$ value  ($p$ = 0.069) is just barely above .05. This tells us that the Accurate variable does not deviate from a statistically significant distribution.
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+swControl <- digits(shapiro$statistic[1],3)
+swControl
+swLow <- digits(shapiro$statistic[2],3)
+swLow
+swHigh <- digits(shapiro$statistic[3],3)
+swHigh
+
+swControlp <- digits(shapiro$p[1],3)
+swControlp
+swLowp <- digits(shapiro$p[2],3)
+swLowp
+swHighp <- digits(shapiro$p[3],3)
+swHighp
+```
+
+The $p$ values for the distributions of the dependent variable (accurate) in each of the three conditions are all well above .05. This tells us that the Accurate variable does not deviate from a statistically significant distribution (Control, *W* = `r swControl`, *p* = `r swControlp`; Low, *W* = `r swLow`, *p* = `r swLowp`; High, *W* = `r swHigh`, *p* = `r swHighp`).
 
 There are limitations to the Shapiro-Wilks test. As the dataset being evaluated gets larger, the Shapiro-Wilks test becomes more sensitive to small deviations; this leads to a greater probability of rejecting the null hypothesis (null hypothesis being the values come from a normal distribution).  Green and Salkind [-@green_using_2014] advised that ANOVA is relatively robust to violations of normality if there are at least 15 cases per cell and the design is reasonably balanced (i.e., equal cell sizes).
-
-So, is our dependent variable normally distributed at each of the levels of the factor? In statistics we generally provide cautious and tentative answers. My interpretation is that there is not evidence to suggest that we have violated this assumption.
 
 #### Are the variances of the dependent variable similar across the levels of the grouping factor?
 
@@ -643,13 +805,25 @@ The Levene's test evaluates the ANOVA assumption  that variances of the dependen
 
 In R, Levene's test is found in the  _car_ package.
 
-```{r Levene test}
+```{r }
 library(car)
 #Our set up is similar:  Accurate by condition, followed by the object that holds the dataframe, followed by the instruction to center the analysis around the mean
-leveneTest (Accurate ~ COND, accSIM30, center=mean)
+levene <- leveneTest (Accurate ~ COND, accSIM30, center=mean)
+levene
+```
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+df1levene<- digits(levene$Df[1],0)
+df1levene
+df2levene<- digits(levene$Df[2],0)
+df2levene
+Flevene <- digits(levene$"F value"[1],3)
+Flevene
+plevene <- digits(levene$"Pr(>F)"[1],3)
+plevene
 ```
 
-We write the result of the Levene's as $F$(2,87) = 2.274, $p$ = 0.109  Because $p$ > .05, we know that the result is nonsignficant -- that the variances of the three groups are not statistically significantly different than each other.
+We write the result of the Levene's as $F$(`r df1levene`,`r df2levene`) = `r Flevene`, $p$ = `r plevene`  Because $p$ > .05, we know that the result is nonsignficant -- that the variances of the three groups are not statistically significantly different than each other.
 
 IF the results had been statistically significantly different, we would have needed to use a Welch's $F$ or robust version of ANOVA.
 
@@ -657,7 +831,7 @@ IF the results had been statistically significantly different, we would have nee
 
 It is common for an APA style results section to begin with a review of the evaluation of the statistical assumptions.  As we have just finished these analyses, I will document what we have learned so far:
 
-A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate's impression of the Asian or Asian American participant.  The independent variable, COND, included three levels:  control/none, low, and high levels of racial loading.  Results of Levene's homogeneity of variance test indicated no violation of the homogeneity of variance assumption ($F$[(2,87] = 2.274, $p$ = 0.109 ). Similarly, results of the Shapiro Wilk's test indicated no violation of the normality assumption *W* = 0.97413, *p* = 0.069.
+A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate's impression of the Asian or Asian American participant.  The independent variable, condition, included three levels:  control/none, low, and high levels of racial loading.  Results of Levene's homogeneity of variance test indicated no violation of the homogeneity of variance assumption ($F$[`r df1levene`,`r df2levene`] = `r Flevene`, $p$ = `r plevene`). Similarly, results of the Shapiro Wilk's test indicated no violation of the normality assumption in each of the cells (Control, *W* = `r swControl`, *p* = `r swControlp`; Low, *W* = `r swLow`, *p* = `r swLowp`; High, *W* = `r swHigh`, *p* = `r swHighp`).
 
 Now we can move onto computing the omnibus ANOVA. *Omnibus* is the term applied to the first *F* test that evaluates if all groups have the same mean [@chen_relationship_2018].  If this test is not significance there is no evidence in the data to reject the null; that is, there is no evidence to suggest that group means are different.  If it is significant -- and there are 3 or more groups -- follow-up testing will be needed to determine where the differences lie.
 
@@ -665,47 +839,68 @@ Now we can move onto computing the omnibus ANOVA. *Omnibus* is the term applied 
 
 Having met all the assumptions, we are now ready to calculate the omnibus $F$ test.
 
-![An image of the workflow for one-way ANOVA, showing that we are at the stage of computing the omnibus ANOVA.](images/OnewayWrkFlw_omnibus.jpg) 
+![An image of the workflow for one-way ANOVA, showing that we are at the stage of computing the omnibus ANOVA.](images/oneway/OnewayWrkFlw_omnibus.jpg) 
 
 
 ANOVA is a special case of the general linear model (regression is a "not so special case" of the general linear model), therefore we use the linear model function, *aov()* to run the analysis.  
 
 In the code below, we predict Accuracy from COND (3 levels: control, low, high).
 
-By assigning the results of the *aov()* function to an object (accBYcond) we can then use that object (think *model*) in other functions to get details about our analysis.
+By assigning the results of the *aov()* function to an object (omnibus) we can then use that object (think *model*) in other functions to get details about our analysis.
 
-```{r aov}
+```{r }
 #the script looks familiar, "Accurate by Condition"
-accBYcond <- aov(Accurate ~ COND, data = accSIM30) #DV ~ IV  I say, "DV by IV"
-summary (accBYcond) #ANOVA output
-
+omnibus <- aov(Accurate ~ COND, data = accSIM30) #DV ~ IV  I say, "DV by IV"
+summary (omnibus) #ANOVA output
 ```
 
-Inserting the *aov()* object (accBYcond) into the summary command produces the ANOVA Source Table that we manually created above.
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+df1omnibus<- digits(summary(omnibus)[[1]][1, "Df"],0)
+df1omnibus
+df2omnibus<- digits(summary(omnibus)[[1]][2, "Df"],0)
+df2omnibus
+SSMomnibus<- digits(summary(omnibus)[[1]][1, "Sum Sq"],3)
+SSMomnibus
+SSRomnibus<- digits(summary(omnibus)[[1]][2, "Sum Sq"],3)
+SSRomnibus
+SSTomnibus <- digits((SSMomnibus + SSRomnibus),3)
+SSTomnibus
+MSMomnibus<- digits(summary(omnibus)[[1]][1, "Mean Sq"],3)
+MSMomnibus
+MSRomnibus<- digits(summary(omnibus)[[1]][2, "Mean Sq"],3)
+MSRomnibus
+Fomnibus<- digits(summary(omnibus)[[1]][1, "F value"],3)
+Fomnibus
+pomnibus<- digits(summary(omnibus)[[1]][1, "Pr(>F)"],3)
+pomnibus
+```
 
-The values we see map onto those we calculated by hand.  Our $SS_M$ (5.20) plus $SS_R$ (33.15) add to the $SS_T$ (38.35) we calculated by hand.
+
+Inserting the *aov()* object (omnibus) into the summary command produces the ANOVA Source Table that we manually created above.
+
+The values we see map onto those we calculated by hand.  Our $SS_M$ (`r SSMomnibus`) plus $SS_R$ (`r SSRomnibus`) sum to equal the $SS_T$ (`r SST`) we calculated by hand.
 
 Dividing the two sums of squares by their respective degrees of freedom produces the sums of means squared.  
 
-Then, dividing the $MS_M$ (COND) by $MS_R$ (2.598/-.381) provides the *F* value.  By using a table of *F* critical values, we already knew that our *F* value exceeded the value in the table of critical values.  Here we see that *p* = 0.00178. 
+Then, dividing the $MS_M$ (COND) by $MS_R$ (`r MSMomnibus`/`r MSRomnibus`) provides the *F* value.  By using a table of *F* critical values, we already knew that our *F* value exceeded the value in the table of critical values.  Here we see that *p* = `r pomnibus`. 
 
-The "*F* string" for an APA style results section should be written like this: *F* (2, 87) = 6.817, *p* = 0.002.
+The "*F* string" for an APA style results section should be written like this: *F* (`r df1omnibus`, `r df2omnibus`) = `r Fomnibus`, *p* < .001.
 
 The object we created with the *aov()* function is capable of producing much information.  Applying the *names()* function to the object can give us a list of values within it. 
 
-```{r names function}
-names(accBYcond)
+```{r }
+names(omnibus)
 ```
  *summary()* is one of the most commonly used function applied to *aov()* objects, but it's not the only one.
 Let's try some other options.
 
-```{r model tables function}
-model.tables (accBYcond, "means")
-
+```{r }
+model.tables (omnibus, "means")
 ```
 Let's graph some of the data.
-```{r plot function}
-plot(accBYcond) 
+```{r }
+plot(omnibus) 
 ```
 
 The *aov()* command has a quickplot feature.  The first of the four plots fits the residuals.  We already know from Levene's that we did not violate the homogeneity of variance test.  With its straight line, this plot shows an equal spread across the three groups.  
@@ -729,14 +924,24 @@ The formula  for $\eta^2$ is straightforward.  If we think back to our hand-calc
 $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 Hand calculation, then, is straightforward.:
 
-```{r eta sq}
-5.20 / (5.20 + 33.15)
+```{r }
+#Calculated using the object names
+SSMomnibus / (SSMomnibus + 30.246)
+#Calculated by using the numeric values
+9.432/(9.432 + 30.246)
+#Optiosn should produce the same result
 ```
 The *lsr* package includes an eta-squared calculator. To use it, we simply insert the model/object we created with the *aov()* function to *lsr*'s *etaSquared()* function.  
 
-```{r lsr eta sq}
+```{r }
 library(lsr)
-etaSquared(accBYcond)
+etaSquared(omnibus)
+```
+```{r echo = FALSE, results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+etaSQomni <- digits(etaSquared(omnibus)[1, "eta.sq"],3)
+etaSQomni
+
 ```
 
 Notice that there are two effect sizes.  We described eta-squared.  Partial eta-squared is the effect size reported in SPSS.  There's a long history of debate about which to use.  In certain circumstances (especially in more complicated analyses), partial-eta squared can be a bit more generous (i.e., larger than $\eta^2$). Thus, many prefer the reporting of $\eta^2$.
@@ -747,7 +952,7 @@ In our case, we see no difference between the two values. Differences begin to a
 
 Presenting the APA style results of the omnibus test is very straightforward:
 
-Results indicated a significant effect of COND on accuracy perception $ F(2, 87) = 6.817, p = 0.002, \eta^2 = .14$. 
+Results indicated a significant effect of COND on accuracy perception *F* (`r df1omnibus`, `r df2omnibus`) = `r Fomnibus`, *p* < .001, $\eta^2$ = `r etaSQomni`.
 
 
 ### Follow-up to the Omnibus *F*
@@ -758,7 +963,7 @@ However, if the omnibus $F$ is significant, we know that there is at least one p
 
 We have several options for following up; a very common option is to conduct post-hoc, pairwise comparisons.
 
-![An image of the workflow for one-way ANOVA, showing that we are at the stage of following a statistically significant omnibus F test and are now conducting posthoc comparisons.](images/OnewayWrkFlw_phoc.jpg) 
+![An image of the workflow for one-way ANOVA, showing that we are at the stage of following a statistically significant omnibus F test and are now conducting posthoc comparisons.](images/oneway/OnewayWrkFlw_phoc.jpg) 
 
 #### OPTION 1:  Post-hoc, pairwise, comparisons 
 
@@ -770,12 +975,12 @@ Post-hoc, pairwise comparisons are:
 
 Helpful information about how to conduct post-hoc pairwise comparisons in R can be found at the [UCLA Institute for Digital Research and Education site](https://stats.idre.ucla.edu/r/faq/how-can-i-do-post-hoc-pairwise-comparisons-in-r/) [@noauthor_how_nodate].
 
-```{r posthocs}
+```{r }
 pairwise.t.test(accSIM30$Accurate, accSIM30$COND, p.adj = "none")
 #can swap "bonf" or "holm" for p.adj
 ```
 
-The output only provides the $p$ values associated with the mean differences in each of the conditions. We see that $p < .05$ when control is compared to low.  An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their *p* values.  
+The output only provides the $p$ values associated with the mean differences in each of the conditions. We see that $p < .05$ when high is compared to control and high is compared to low.  An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their *p* values.  
 
 **Should we be concerned about Type I error?"**
 
@@ -797,7 +1002,7 @@ There is, though, an even more powerful approach...
 
 Another option is to evaluate planned comparisons.
 
-![An image of the workflow for one-way ANOVA, showing that we are at the following up to a significant omnibus F by conducting planned comparisons](images/OnewayWrkFlw_planned.jpg) 
+![An image of the workflow for one-way ANOVA, showing that we are at the following up to a significant omnibus F by conducting planned comparisons](images/oneway/OnewayWrkFlw_planned.jpg) 
 Planned comparisons are 
 
 * theory-driven comparisons constructed prior to data collection,
@@ -818,11 +1023,11 @@ Underlying the *aov()* program is the linear model.  We could have used it for t
 
 We use it now to retrieve some contrast information.  The code below is a planned comparison that uses the coding in the database to compare the lowest coded group (Control was 1, Low was 2, High was 3) to the other two groups.
 
-```{r planned contrasts}
-summary.lm(accBYcond)
+```{r }
+summary.lm(omnibus)
 ```
 
-From the above, regression output, we see that there was not a statistically significant difference between COND_Control COND_Low (*p* = 0.2902). There was a statistically significant difference between COND_High and COND_Low.
+From the above, regression output, we see that there was not a statistically significant difference between COND_Control and  COND_Low (*p* = 0.347). There were statistically significant difference when CONDControl (the intercept) was compared to CONDHigh (*p* < .001).
 
 Note that these tests are conducted as  *t* tests.  Why?  We are comparing only two groups and can use the *t*. distribution.
 
@@ -842,7 +1047,7 @@ In *contrast2* we discard the Control condition (it was already singled out) and
 This is sensible because we likely hypothesize that any degree of racially loaded stereotypes may have a deleterious outcome, so we first compare Control to the two conditions with any degree of racial loading. Subsequently, we compare the Low and High levels of the factor. 
 
 **Step 2:**  Bind them together and check the output to ensure that we've mapped them correctly. 
-```{r Specify an orthogonal contrast}
+```{r }
 #Contrast1  compares Control against the combined effects of Low and High.
 contrast1 <- c(-2,1,1)
 
@@ -861,31 +1066,31 @@ Thinking back to the hand-calculations and contrast mapping, the table of weight
 
 **Step 3:**  Create a new _aov()_ model
 
-```{r run contrasts}
+```{r }
 #create a new object, the ANOVA looks the same, but it will now consider the contrasts
 accPlanned <- aov(Accurate ~ COND, data = accSIM30)
 summary.lm(accPlanned)
 contrasts(accSIM30$COND)<-cbind(c(-2,1,1), c(0,-1,1))
 ```
 
-These planned contrasts show that when the control condition is compared to the combined low and high racial loading conditions, there is not a statistically significant difference, *t*(87) = -0.846, *p* = 0.400.  However, when the low and high racial loading conditions are compared, there is a statistically significant difference, *t*(87) = -3.594, *p* = 0.001. 
+These planned contrasts show that when the control condition is compared to the combined low and high racial loading conditions, there is not a statistically significant difference, *t*(87) = -0.077, *p* = 0.085.  However, when the low and high racial loading conditions are compared, there is a statistically significant difference, *t*(87) = -4.909, *p* < 0.001. 
 
 #### Trend (polynomial) analysis
 
-![An image of the workflow for one-way ANOVA, showing that we are at the following up to a significant omnibus F by assessing for a polynomial trend](images/OnewayWrkFlw_poly.jpg) 
+![An image of the workflow for one-way ANOVA, showing that we are at the following up to a significant omnibus F by assessing for a polynomial trend](images/oneway/OnewayWrkFlw_poly.jpg) 
 
 Polynomial contrasts let us see if there is a linear (or curvilinear) pattern to the data.  To detect a trend, the data must be coded in an ascending order and it needs to be a sensible, theoretically defensible, comparison.  Our data has a theoretically ordered effect (control, low racially loaded condition, high racially loaded condition).  Recall that we created an ordered factor when we imported the data.
 
 In a polynomial analysis, the statistical analysis looks across the ordered means to see if they fit a linear or curvilinear shape that is one less than the number of levels.  Our factor has three levels, therefore the polynomial contrast can check for a linear shape (.L) or a quadratic (one change in direction) shape (.Q).  If we had four levels, the contr.poly could check for cubic change (two changes in direction). Conventionally, when more than one trend is significant, we intepret the most complex one (i.e., quadratic over linear).
 
-```{r polynomial contrast}
+```{r }
 contrasts(accSIM30$COND)<-contr.poly(3)
 accTrend<-aov(Accurate ~ COND, data = accSIM30)
 summary.lm(accTrend)
 ```
 A quick peek back at an early plot shows illustrates the quadratic trend that was supported by the analysis.
 
-Results of our polynomial contrast suggested statistically significant results for both linear $t(87) = -2.53, p = .013$ and quadratic $t(87) = -2.69, p = .009$ trends. 
+Results of our polynomial contrast suggested statistically significant results for both linear $t(87) = -3.963 , p < .001$ and quadratic $t(87) = -3.380, p = .001$ trends. 
 
 
 #### Which set of follow-up tests do we report?
@@ -907,14 +1112,11 @@ The *oneway.test* produces Welch's *F* -- a  test more robust to violation of th
 
 Another common correction is the Brown and Forsythe *F*-ratio. At this time I have not located and tried an R package that produces this.
 
-<!-- TODO: Locate and demonstrate the Brown & Forsythe F ratio -->
-
 ```{r}
 oneway.test (Accurate ~ COND, data = accSIM30)
-
 ```
 
-Note that the denominator *df* is now 56.22 (not 87) and *p* value is bigger (it was .00178). With its design intended to avoid making a Type I error, the Welch's *F* is more "conservative."  While it doesn't matter in this case, if it were a study where the *p* value was closer to .05, it could make a difference. These are some of the tradeoffs made in order to have confidence in the results.  
+Note that the denominator *df* is now 56.34 (not 87) and *p* value is a little larger (it was 0.00000745). With its design intended to avoid making a Type I error, the Welch's *F* is more "conservative."  While it doesn't matter in this case, if it were a study where the *p* value was closer to .05, it could make a difference. These are some of the tradeoffs made in order to have confidence in the results.  
 
 
 ## Power Analysis
@@ -948,25 +1150,30 @@ The *pwr.anova.test()* has five parameters:
 
 In the script below, we simply add our values. So long as we have four values, the fifth will be calculated for us.
 
+Because this calculator requires the effect size in the metric of Cohen's *f* (this is not the same as the *F* ratio), we need to convert it. The *effectsize* package has a series of converters.  We can use the *eta2_to_f()* function. 
+
+```{r}
+library(effectsize)
+eta2_to_f(.238) 
+```
+We simply plug this value into the "f =".
+
 ```{r}
 library(pwr)
 
-pwr.anova.test (k = 3, f = .25, sig.level = .05, power = .80)
+pwr.anova.test (k = 3, f = .5589, sig.level = .05, power = .80)
 ```
 
-This result suggested that we would need 52 people per group.
+This result suggested that we would need 11 people per group.
 
-
-The effect size from our one-way ANOVA was an $\eta^2 = .13$.  Using an effect size converter such as the one hosted at [Psychometrica.de](https://www.psychometrica.de/effect_size.html), we can learn that it is  equivalent to an *f* of .386. To use the Psychometrica tool, use the option labeled, "Transformation of the effect sizes *d*, *r*, *f*, *Odds Ratio*, $\eta^2$, and *Common Language Effect Size (CLES*)."
-
-We could actually re-run the power tool see how many fewer people we needed.
+If we were unsure about what to expect in a sample size, we could take a guess.  I like to be on the safe(r) side and go with a smaller  effect. What would happen if we had a Cohen's *f* that represented a small effect?
 
 ```{r}
-
-pwr.anova.test (k = 3, f = .386, sig.level = .05, power = .80)
+pwr.anova.test (k = 3, f = .1, sig.level = .05, power = .80)
 ```
+Yikes!  We would need over 300 per group!
 
-This is a little curious. When I initially simulated the data, I used the *n* values for each group (i.e.,23, 22, 23) reported in the article [@tran_you_2014] and did not obtain a (consistently) statistically significant result; statistical significance wavered based on the random seed value that I used. For the purpose of the chapter, I increased the sample size to be 30 across each group so that the significance was more consistent. This, in itself, is a useful demonstration of sample size at it relates to power. 
+If effect sizes are new to you, play around with this effect size converter hosted at [Psychometrica.de](https://www.psychometrica.de/effect_size.html). For examples like this one, use the option labeled, "Transformation of the effect sizes *d*, *r*, *f*, *Odds Ratio*, $\eta^2$, and *Common Language Effect Size (CLES*)."
 
 ## APA Style Results
 
@@ -976,24 +1183,23 @@ The package *apaTables* can produce journal-ready tables by using the object pro
 
 Here I create Table 1 with means and standard deviations (plus a 95% confidence interval around each mean).
 
-```{r apaTables descriptives}
+```{r }
 library(apaTables)
 # table.number = 1 assigns a table number to the top of the table 
 # filename = "Table1.doc" writes the table to Microsoft Word and puts it in your project folder
 apa.1way.table(iv=COND, dv=Accurate, show.conf.interval = TRUE, data=accSIM30, table.number = 1, filename = "Table1.doc")
 ```
 I will want to give the values of mean differences ($M_{diff}$) in the results.  I can quickly use R to calculate them here.
-```{r handcalc of Mdiffs}
-1.88 - 1.47#calculating mean difference between control and high
-2.05 - 1.47#calculating mean difference between low and high
-1.88 - 2.05#calculating mean difference between  control and low
+```{r }
+1.76 - 1.15#calculating mean difference between control and high
+1.90 - 1.15#calculating mean difference between low and high
+1.76 - 1.90#calculating mean difference between  control and low
 ```
-
 
 Here I create Table 2 with results of the one-way ANOVA.  The result in Microsoft Word can be edited (e.g., I would replace the partial-eta squared with $\eta^2$) for the journal article.
 
-```{r apaTables aov output}
-apa.aov.table (accBYcond, table.number = 2, filename = "Table2.doc")
+```{r }
+apaTables::apa.aov.table (omnibus, table.number = 2, filename = "Table2.doc")
 ```
 Regarding figures, there are a number of options. I find the *plotmeans()* function (used earlier) to be adequate for the purpose of one-way ANOVA.  As we progress through this textbook, I will demonstrate a number of options that offer more and less complexity.
 
@@ -1004,44 +1210,23 @@ plotmeans (formula = Accurate ~ COND, data = accSIM30, xlab = "Racial Loading Co
 
 With table and figure at hand, here is how I would write up these results:
 
-A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate's impression of the Asian or Asian American participant.  The independent variable, COND, included three levels:  control/none, low, and high levels of racial loading.  Results of Levene's homogeneity of variance test indicated no violation of the homogeneity of variance assumption ($F$[(2,87] = 2.274, $p$ = 0.109 ). Similarly, results of the Shapiro Wilks's test indicated no violation of the normality assumption *W* = 0.97413, *p* = 0.069.
+A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate's impression of the Asian or Asian American participant.  The independent variable, COND, included three levels:  control/none, low, and high levels of racial loading.  Results of Levene's homogeneity of variance test indicated no violation of the homogeneity of variance assumption ($F$[`r df1levene`,`r df2levene`] = `r Flevene`, $p$ = `r plevene`). Similarly, results of the Shapiro Wilk's test indicated no violation of the normality assumption in each of the cells (Control, *W* = `r swControl`, *p* = `r swControlp`; Low, *W* = `r swLow`, *p* = `r swLowp`; High, *W* = `r swHigh`, *p* = `r swHighp`).
 
-Results indicated a significant effect of COND on accuracy perception $F$(2, 87) = 6.817, $p$ = 0.002, $\eta^2$ = .14. In a series of post-hoc comparisons, there were statistically significant differences between the control and high ($M_{diff}$ = 0.41, *p* = 0.013) and low and high ($M_{diff}$ = 0.58, *p* = 0.001) conditions, but not the control and low conditions ($M_{diff}$ = -.17, *p* = 0.290). A statistically significant polynomial contrast suggested a quadratic trend across the three, ordered, levels of the conditions ($t[87] = -2.69, p = .009$) such that perception of accuracy increased from the control to low conditions, but decreased from low to high. Consequently, it appeared that only the highest degree of racial loading (e.g., "You speak English well for an Asian") resulted in the decreased perceptions of accuracy of impressions from the confederate.   Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2.  Figure 1 provides an illustration of the results.
+Results indicated a significant effect of COND on accuracy perception *F* (`r df1omnibus`, `r df2omnibus`) = `r Fomnibus`, *p* < .001, $\eta^2$ = `r etaSQomni`. In a series of post-hoc comparisons, there were statistically significant differences between the control and high ($M_{diff}$ = 0.61, *p* < .001) and low and high ($M_{diff}$ = 0.75, *p* < 0.001) conditions, but not the control and low conditions ($M_{diff}$ = -.14, *p* = 0.347). A statistically significant polynomial contrast suggested a quadratic trend across the three, ordered, levels of the conditions ($t[87] = -0.364, p = .001$) such that perception of accuracy increased slighty from the control to low conditions, but decreased more dramatically from low to high. Consequently, it appeared that only the highest degree of racial loading (e.g., "You speak English well for an Asian") resulted in the decreased perceptions of accuracy of impressions from the confederate.   Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2.  Figure 1 provides an illustration of the results.
 
 
 ## Practice Problems
 
-Below are three problems with graded levels of complexity.  Worked examples, following the first two suggestions will be provided in an Appendix.
+In each of these lessons I provide suggestions for practice that allow you to select one or more problems that offer differing levels of difficulty. Whichever you choose, you will focus on these larger steps in one-way ANOVA, inluding:
 
-If it is helpful for you to export and/or import the data as a .csv (think "Excel lite") or .rde (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so.  The data should save in the same folder as the .rmd file you are working on:
+* test the statistical assumptions
+* conduct a one-way ANOVA, including
+  - omnibus test and effect size
+  - follow-up (pairwise, planned comparisons, polynomial trends)
+* write a results section to include a figure and tables
 
-```{r}
-#write the simulated data  as a .csv
-#write.table(accSIM30, file="accSIM.csv", sep=",", col.names=TRUE, row.names=FALSE)
-#bring back the simulated dat from a .csv file
-#acc_csv <- read.csv ("accSIM.csv", header = TRUE)
-```
-
-```{r}
-#a quick demo to show that the .csv format loses the variable formatting
-#str(acc_csv)
-```
-
-```{r}
-#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
-#saveRDS(accSIM30, "accSIM.rds")
-#bring back the simulated dat from an .rds file
-#acc_RDS <- readRDS("accSIM.rds")
-```
-
-```{r}
-#a quick demo to show that the .rds format preserves the variable formatting
-#str(acc_RDS)
-```
 
 ### Problem #1:  Play around with this simulation.
-
-Copy the script for the simulation and then change (at least) one thing in the simulation to see how it impacts the results.  
 
 * If one-way ANOVA is new to you, perhaps you just change the number in "set.seed(2021)" from 2021 to something else. Your results should parallel those obtained in the lecture, making it easier for you to check your work as you go.
 * If you are interested in power, change the sample size to something larger or smaller.
@@ -1051,7 +1236,7 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 
 |Assignment Component                    | Points Possible   | Points Earned|
 |:-------------------------------------- |:----------------: |:------------:|
-|1. Simulate (or import) and format data |      5            |_____  |           
+|1. Check and, if needed, format data |      5            |_____  |           
 |2. Evaluate statistical assumptions     |      5            |_____  |
 |3. Conduct omnibus ANOVA (w effect size)|      5           | _____  |  
 |4. Conduct one set of follow-up tests; narrate your choice| 5 |_____  |               
@@ -1063,14 +1248,14 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 
 ### Problem #2:  Conduct a one-way ANOVA with the *moreTalk* dependent variable.
 
-In their study, Tran and Lee [-@tran_you_2014] included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (*much less than average*) through 0 (*average*) to 2 (*much more than average*).
+In their study, Tran and Lee [-@tran_you_2014] included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (*much less than average*) through 0 (*average*) to 2 (*much more than average*). This variable is available in the original simulation. 
 
-Code for simulated data with *moreTalk* as the dependent variable is below.  Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
 
 
 |Assignment Component                    | Points Possible   | Points Earned|
 |:-------------------------------------- |:----------------: |:------------:|
-|1. Simulate (or import) and format data |      5            |_____  |           
+|1. Check and, if needed, format data |      5            |_____  |           
 |2. Evaluate statistical assumptions     |      5            |_____  |
 |3. Conduct omnibus ANOVA (w effect size)|      5           | _____  |  
 |4. Conduct one set of follow-up tests; narrate your choice| 5 |_____  |               
@@ -1080,23 +1265,9 @@ Code for simulated data with *moreTalk* as the dependent variable is below.  Usi
 |**Totals**                               |      35       |_____  |             
 
 
-```{r}
-set.seed(2021) #sets a random seed so that we get the same results each time
-moreTalk <- c(rnorm(30, mean=-.82, sd=0.91), rnorm(30, mean=-0.39, sd = 0.66), rnorm(30, mean = -0.04, sd = 0.71))#sample size, M and SD for each group
-moreTalk[moreTalk>2]<-2 #set upper bound for DV
-moreTalk[moreTalk<-2]<--2 #set lower bound for DV
-ID<-factor(seq(1,90)) #IDs for participants
-COND<-c(rep("High", 30), rep("Low", 30), rep("Control", 30)) #name factors and identify how many in each group; should be in same order as first row of script
-mTalk_sim30 <-data.frame(ID, COND, moreTalk) #groups the 3 variables into a single df:  ID#, DV, condition
-
-#to write it to an outfile
-write.table(mTalk_sim30, file="newmTalk30.csv", sep=",", col.names=TRUE, row.names=FALSE)
-```
-
-
 ### Problem #3:  Try something entirely new.
 
-Either (a) find an article from which you can simulate data or (b) create a research vignette of your own.  Specify group *n*,  means, and standard deviations.  Simulate the data with these.  Be thinking about "what it takes" in terms of sample size, mean differences, and variability to get a statistically significant omnibus.  
+Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a one-way ANOVA. Please have at least 3 levels for the predictor variable. 
 
 Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
 
@@ -1117,11 +1288,39 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 
 ![Image of a filmstrip signifying that the what follows is considered to be supplemental](images/film-strip-1.jpg){#id .class width=620 height=211} 
 
-**Coming soon!**
+### Coming soon!
 
 * We're hoping to have a podcast-style conversation with Dr. Alisia Tran and/or Dr. Richard M. Lee about their study.
 * Elaboration of how data can be simulated for one-way ANOVA
 * Further demonstration of how sample size can effect results
+
+### What's with the inline code?
+
+If you are working in the .rmd file you may notice sections that look like this:
+
+```{r results ='hide'}
+#this script is used for the inline coding in the lesson and, although you will want to run it so you can "feed" the objects into later script, there is no "lesson" relative to this lecture 
+df1omnibus<- digits(summary(omnibus)[[1]][1, "Df"],0)
+df1omnibus
+df2omnibus<- digits(summary(omnibus)[[1]][2, "Df"],0)
+df2omnibus
+SSMomnibus<- digits(summary(omnibus)[[1]][1, "Sum Sq"],3)
+SSMomnibus
+SSRomnibus<- digits(summary(omnibus)[[1]][2, "Sum Sq"],3)
+SSRomnibus
+SSTomnibus <- digits((SSMomnibus + SSRomnibus),3)
+SSTomnibus
+MSMomnibus<- digits(summary(omnibus)[[1]][1, "Mean Sq"],3)
+MSMomnibus
+MSRomnibus<- digits(summary(omnibus)[[1]][2, "Mean Sq"],3)
+MSRomnibus
+Fomnibus<- digits(summary(omnibus)[[1]][1, "F value"],3)
+Fomnibus
+pomnibus<- digits(summary(omnibus)[[1]][1, "Pr(>F)"],3)
+pomnibus
+```
+
+I'm still learning about this and am using the lessons to practice. In these hidden (from the rendered view) boxes of script, I am capturing the output values as R objects. Later I can use inline code (the object's name, preceded with an "r", surrounded by tics [unfortunately, I cannot demo it in the .rmd file without getting an error]) to insert the value into the lecture notes and results.  I'm working up to writing an entire journal article in R. This way, if something changes (e.g., more participants in the Qualtrics survey, a different approach to cleaning data) when I re-run the script everything auto-updates and I'm at less of a risk (or maybe a different kind of risk) for making typographical errors.
 
 
 ```{r include=FALSE}
