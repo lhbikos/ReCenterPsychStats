@@ -1,0 +1,327 @@
+
+# Chapter Title {#UniqueAbbrev}
+
+ [Screencasted Lecture Link](link here) 
+ 
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+```{r }
+options(scipen=999)#eliminates scientific notation
+```
+
+The focus of this lecture is ....  2-3 sentence overview.
+
+Any other info -- like reliance on a particular text (e.g., Hayes) and how it is similar/different.
+
+## Navigating this Lesson
+
+There is about # hour and ## minutes of lecture.  If you work through the materials with me it would be plan for an additional TIME.
+
+While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_CPA) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+
+### Learning Objectives
+
+Learning objectives from this lecture include the following:
+
+* one
+* two
+* three
+  * three.1
+  * three.2
+  * three.3
+
+### Planning for Practice
+
+The suggestions for homework are graded in complexity ... The more complete descriptions at the end of the chapter follow these suggestions.
+
+* Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar. SINCE I'M NOT CONVINCED THAT CHANGING THE RANDOM SEED DOES MUCH, I MAY CHANGE THIS ONE TO AN EXAMPLE I WORK WITH ANSWERS AT THE END.
+* There are a number of variables in the dataset.  Swap out one or more variables in the NAME THE STATISTIC and compare your solution to the one in the chapter (and/or oNe you mimicked in the journal article).
+* Conduct a NAME THE STATISTIC with data to which you have access. This could include data you simulate on your own or from a published article.
+
+### Readings & Resources
+
+In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
+
+* TEXT
+* WEB SOURCES
+* JOURNAL ARTICLE VIGNETTE
+
+### Packages
+
+The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
+```{r  include=FALSE}
+#will install the package if not already installed
+if(!require(lavaan)){install.packages("lavaan")}
+if(!require(semPlot)){install.packages("semPlot")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(psych)){install.packages("psych")}
+if(!require(jtools)){install.packages("jtools")}
+```
+
+## MAIN TOPIC
+
+### The definitional and conceptual
+
+#### Subheadings
+
+**Further subheadings**
+
+![Sript for image that should provide a textual explanation of what is in the image](images/subfolder/filename.jpg)
+
+
+## Workflow for NAME OF STATISTIC
+
+Include some guidance on how to approach the problem.  Ideally a flowchart, but maybe also a simple narration.
+
+## Research Vignette
+
+Brief description
+
+Variables used in the study included:
+
+* **MEASURE1**:  Description
+
+* **MEASURE2**:  Description
+
+* **MEASURE3**:  Description
+
+
+### Simulating the data from the journal article
+
+If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv ("Excel lite") or .rds (R object) file. This is not a necessary step.
+
+The code for .csv will likely lose the formatting (i.e., making the Rater and Photo variables factors), but it is easy to view in Excel.
+```{r}
+#write the simulated data  as a .csv
+#write.table(Ramdhani_df, file="RamdhaniCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#Ramdhani_df <- read.csv ("RamdhaniCSV.csv", header = TRUE)
+```
+
+The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R.
+```{r}
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(Ramdhani_df, "Ramdhani_RDS.rds")
+#bring back the simulated dat from an .rds file
+#Ramdhani_RDS <- readRDS("Ramdhani_RDS.rds")
+```
+
+
+### Quick peek at the data
+
+Descriptives
+R matrix
+Consider pairpanels
+Consider the M, SD, r matrix from apaTables
+
+
+## Working the NAME OF STATISTIC
+
+Method/Analytic Strategy APA style description of the hypotheses and how they will be analyzed.
+
+![relevant conceptual or statistical figure of the planned analysis](images/subfolder/filename.jpg)
+
+Relevant formulas
+
+$$M = i_{M}+a_{1}X + a_{2}W + a_{3}XW + e_{M}$$
+
+$$Y = i_{Y}+c_{1}^{'}X+ c_{2}^{'}W+c_{3}^{'}XW+ bM+e_{Y}$$
+
+### Analysis
+
+If possible, work in smaller sections.  Provide APA style results after each meaningful chunk (that will be assembled into the formal results, later).
+
+
+```{r Placeholder to write objects to an outfile}
+#write.csv (objectname, file="filename.csv") #optional to write it to a .csv file
+```
+
+```{r  echo = FALSE, results ='hide'}
+library(formattable) #to use the digits function
+# Values for the intercept of the IV
+#Yicpt <- digits(cParamEsts$est[9], 3) #B weight for the intercept
+##Yicpt 
+#Yicpt_SE <- digits(cParamEsts$se[9], 3)#p value for the intercept
+#Yicpt_SE
+#Yicpt_p <- digits(cParamEsts$pvalue[9], 3)#p value for the intercept
+#Yicpt_p
+
+# Proportion of variance accounted for
+#Rsq_Y <- percent(cFITsum$PE$est[30])
+#Rsq_Y
+#Rsq_M <- percent(cFITsum$PE$est[29])
+#Rsq_M
+```
+
+### Beginning the interpretation
+
+Placeholder for formula
+
+$$\hat{M} = i_{M}+a_{1}X + a_{2}W + a_{3}XW + e_{M}$$
+
+
+$$\hat{Y} = i_{Y}+c_{1}^{'}X+ c_{2}^{'}W+c_{3}^{'}XW+ bM+e_{Y}$$
+
+And substitute in our values
+
+$$\hat{M} = 1.417 + 0.212X + (-0.027) W + 0.006XW$$
+$$\hat{Y} = 31.703 + (-1.4115)X + (-0.556)W + 0.164XW + (-3.567)M$$
+
+### Tabling the data
+
+Table 1  
+
+|Placeholder for table
+|:----------------------------------------------------------------------------------------------------------------------------|
+
+|                         
+|:------------------|:--------------------------------------------------:|:--------------------------------------------------:|
+|                   |Disengagement Coping (M)                            |Mental Health (Y)                                   |
+
+|
+|:------------------|:-----:|:-----------:|:-------------:|:------------:|:-----:|:----------:|:-------------:|:-------------:|
+|Antecedent         |path   |$B$          |$SE$           |$p$           |path   |$B$         |$SE$           |$p$            |
+|constant           |$i_{M}$|`r MM_Micpt` |`r MM_Micpt_SE`|`r MM_Micpt_p`|$i_{Y}$|`r MM_Yicpt`|`r MM_Yicpt_SE`|`r MM_Yicpt_p` |
+|GRMS (X)           |$a_{1}$|`r MMa1`     |`r MMa1_SE`    |`r MMa1_p`    |$c_{1}$|`r MMc_p1`  |`r MMc_p1_SE`  |`r MMc_p1_p`   |
+|GRIcntrlty (W)     |$a_{2}$|`r MMa2`     |`r MMa2_SE`    |`r MMa2_p`    |$c_{2}$|`r MMc_p2`  |`r MMc_p2_SE`  |`r MMc_p2_p`   |
+|GRMS*GRIcntrlty(XW)|$a_{3}$|`r MMa3`     |`r MMa3_SE`    |`r MMa3_p`    |$c_{3}$|`r MMc_p3`  |`r MMc_p3_SE`  |`r MMc_p3_p`   |
+|DisEngmt (M)       |       |             |               |              |$b$    |`r MMb`     |`r MMb_SE`     |`r MMb_p`      |
+
+|
+|:------------------|:--------------------------------------------------:|:--------------------------------------------------:|
+|                   |$R^2$ = `r MM_Rsq_M`                                |$R^2$ = `r MM_Rsq_Y`                                |
+
+|                         
+|:---------------------------------------------------------------------------------------------------------------------------:|
+|Conditional Indirect, Direct, and Total Effects at Gendered Racial Identity Centrality Values                                |       
+
+|                         
+|:----------------------------|:--------------:|:-----------:|:--------------:|:---------------------------------------------:|
+|                             |Boot effect     |Boot SE      |Boot CI95 lower |Boot CI95 upper                                |
+|Index of moderated mediation |`r MMimm`       |`r MMimm_SE` |`r MMimm_CIloL` |`r MMimm_CIhiL`                                |
+|Indirect                     |                |             |                |                                               |
+|-1 *SD*                      |`r MMindL`      |`r MMind_seL`|`r MMind_CIloL` |`r MMind_CIhiL`                                |
+|Mean                         |`r MMindM`      |`r MMind_seM`|`r MMind_CIloM` |`r MMind_CIhiM`                                |
+|+1 *SD*                      |`r MMindH`      |`r MMind_seH`|`r MMind_CIloH` |`r MMind_CIhiH`                                |
+|Direct                       |                |             |                |                                               |
+|-1 *SD*                      |`r MMdirL`      |`r MMdir_seL`|`r MMdir_CIloL` |`r MMdir_CIhiL`                                |
+|Mean                         |`r MMdirM`      |`r MMdir_seM`|`r MMdir_CIloM` |`r MMdir_CIhiM`                                |
+|+1 *SD*                      |`r MMdirH`      |`r MMdir_seH`|`r MMdir_CIloH` |`r MMdir_CIhiH`                                |
+|Total                        |                |             |                |                                               |
+|-1 *SD*                      |`r MMtotL`      |`r MMtotL_se`|`r MMtot_CIloL` |`r MMtot_CIhiL`                                |
+|Mean                         |`r MMtotM`      |`r MMtotM_se`|`r MMtot_CIloM` |`r MMtot_CIhiM`                                |
+|+1 *SD*                      |`r MMtotH`      |`r MMtotH_se`|`r MMtot_CIloH` |`r MMtot_CIhiH`                                |
+
+|
+|-----------------------------------------------------------------------------------------------------------------------------|
+*Note*. .
+
+
+### APA Style Writeup
+
+**Method/Analytic Strategy**
+
+
+**Results**
+
+**Preliminary Analyses**
+
+*  Missing data anlaysis and managing missing data
+*  Bivariate correlations, means, SDs
+*  Distributional characteristics, assumptions, etc.
+*  Address limitations and concerns
+
+**Primary Analyses**
+
+
+## Residual and Related Questions...
+
+..that you might have; or at least I had, but if had answered them earlier it would have disrupt the flow.
+
+   
+## Practice Problems
+
+The suggested practice problem for this chapter is to conduct a simple mediation.
+
+
+### Problem #1: Rework the research vignette as demonstrated, but change the random seed
+
+If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
+
+|Assignment Component  
+|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Assign each variable to the X, Y, M, or W roles (ok but not required  to include a cov)    |      5         |    _____     |      
+|2. Specify and run the lavaan model                                                           |      5         |    _____     |
+|3. Use semPlot to create a figure                                                             |      5         |    _____     |
+|4. Create a table that includes regression output for the M and Y variables and the moderated effects| 5       |    _____     |  
+|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
+|6. Explanation to grader                                                                      |      5         |    _____     |   
+|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
+|**Totals**                                                                                    |      35        |    _____     |
+
+### Problem #2:  Rework the research vignette, but swap one or more variables
+
+Use the simulated data, but select one of the other models that was evaluated in the Lewis et al. [@lewis_applying_2017] study.  Compare your results to those reported in the mansucript.
+
+|Assignment Component  
+|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Assign each variable to the X, Y, M, or W roles (ok but not required  to include a cov)    |      5         |    _____     |      
+|2. Specify and run the lavaan model                                                           |      5         |    _____     |
+|3. Use semPlot to create a figure                                                             |      5         |    _____     |
+|4. Create a table that includes regression output for the M and Y variables and the moderated effects|      5  |    _____     |  
+|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
+|6. Explanation to grader                                                                      |      5         |    _____     |   
+|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
+|**Totals**                                                                                    |      35        |    _____     |
+             
+                                                                 
+
+### Problem #3:  Use other data that is available to you
+
+Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a simple mediation.
+
+|Assignment Component  
+|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Assign each variable to the X, Y, M, or W roles (ok but not required  to include a cov)   |      5          |    _____     |      
+|2. Specify and run the lavaan model                                                           |      5         |    _____     |
+|3. Use semPlot to create a figure                                                             |      5         |    _____     |
+|4. Create a table that includes regression output for the M and Y variables and the moderated effects |5       |    _____     |  
+|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
+|6. Explanation to grader                                                                      |      5         |    _____     |   
+|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
+|**Totals**                                                                                    |      35        |    _____     |
+   
+
+## Bonus Track: 
+
+![Image of a filmstrip](images/film-strip-1.jpg){#id .class width=620 height=211}
+
+
+```{r }
+sessionInfo()
+```
+
+# References {-#refs}
+
+
+
+| Game    |Total (df, *N* - 1) |Model (df, *k* -1) |Residual (df, $df_T - df_M$)|
+|:--------|-------------------:|------------------:|---------------------------:|
+|SS       |`r SST`(`r dfT`)    |`r SSM`(`r dfM`)   |______                      |
+|MS       |NA                  |______             |______                      |
+
+$F = MS_{M}/MS_{R}$ =  ______     
+
+
+
+**DON'T PEEK!  TRY TO DO THE CALCULATIONS IN THE "SOURCE TABLE GAMES" EXERCISE BEFORE LOOKING AT THESE ANSWERS**
+
+| Answers |Total (df, *N* - 1) |Model (df, *k* -1) |Residual (df, $df_T - df_M$)|
+|:--------|-------------------:|------------------:|---------------------------:|
+|SS       |`r SST`(`r dfT`)    |`r SSM`(`r dfM`)   |`r SSR`(`r dfR`)           |
+|MS       |NA                  |`r MSM`            |`r MSR`                     |
+
+$F = MS_{M}/MS_{R}$ = `r Fratio`           
