@@ -8,7 +8,7 @@ knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
 options(scipen=999)#eliminates scientific notation
 ```
 
-With the goal of creating a common, system-wide approach to using the platform, this lesson is primarily created for CPY and I/O doctoral students who are entering the "stats sequence."I hope it will also be useful for others (including faculty) who are also making the transition to R. 
+With the goal of creating a common, system-wide approach to using the platform, this lesson is primarily created for CPY and I/O doctoral students who are entering the "stats sequence." I hope it will also be useful for others (including faculty) who are also making the transition to R. 
  
 ## Navigating this Lesson
 
@@ -72,7 +72,7 @@ Because R is already on my machine (and because the instructions are sufficient)
 
 The only thing in the chunks should be script for running R.  You can also hashtag-out script so it won't run.
 
-You can put almost anything you want in the "inline text with simple formatting."  Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold, etc.) is found here:  https://rmarkdown.rstudio.com/authoring_basics.html
+You can put almost anything you want in the "inline text with simple formatting."  Syntax for simple formatting in the text areas (e.g., using italics, making headings, bold, etc.) is found here:  https://rmarkdown.rstudio.com/authoring_basics.html
 
 "Chunks" start and end with with those three little tic marks and will show up in a shaded box.  Chunks have three symbols in their upper right.  Those controls will DISAPPEAR (if there are "```" )and your script wont run) if those tic marks are missing or showing up in the wrong place.
 
@@ -188,7 +188,7 @@ Let's run some simple descriptives. In the script below, I am using the *psych* 
 library(psych)
 round(psych::describe(Acc_sim30),3)
 ```
-Because "ID" is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is "Accurate."  None-the-less, this provides an example of how to apply a package's function to a dataset.  As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.
+Because "ID" is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is "Accurate."  Nonetheless, this provides an example of how to apply a package's function to a dataset.  As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.
 
 ## the knitted file
 One of the coolest things about R Markdown is its capacity to *knit* to HTML, PPT, or WORD.  
@@ -211,7 +211,7 @@ One of the coolest things about R Markdown is its capacity to *knit* to HTML, PP
 ## just *why* are we tRansitioning to R?
 
 * It (or at least it appears to be) is the futuRe.
-* SPSS site (and individual) license are increasingly expensive and limited (e.g., we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to "do just about anything."
+* SPSS site (and individual) licenses are increasingly expensive and limited (e.g., we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to "do just about anything."
 * Most graduate psychology programs are scientist/practitioner in nature and include training in "high end" statistics.  Yet, many of your employing organizations will not have SPSS.  R is a free, universally accessible program, that our graduates can use anywhere.
 
 ## stRategies for success
