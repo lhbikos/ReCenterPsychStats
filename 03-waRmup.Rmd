@@ -120,7 +120,7 @@ Latinx_df$RacEth <- "Latinx"
 Lui_sim_df <-bind_rows (Asian_df, Black_df, Latinx_df)
 ```
 
-If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created.  In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R. For more complete instructions see the [Ready_Set_R](#Ready) lesson.
+If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created.  In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R. For more complete instructions, see the [Ready_Set_R](#Ready) lesson.
 
 ```{r}
 #write the simulated data  as a .csv
@@ -138,7 +138,7 @@ If you have simulated the data, you can continue using the the "Lui_sim_df" obje
 
 You may have noticed a couple of things in each of these operations
 
-* First, I named the data object that global environment "df" (i.e., dataframe). 
+* First, I named the data object that global environment "df" (i.e., dataframe). This sentence could be rewritten for clarity; a word may be missing?
   - It is a common (but not required) practice for researchers to simply use "df" or "dat" for their R script, no matter the type or source of the data. This practice has advantages (makes reusing code easy) and disadvantages (it's easy to get confused about what data is what).
 * Second, if you run the code, the updating *replaces* the prior code. 
   - While this is irrelevant today (we are saving the same data in different ways), it points out the importance of creating a sensible and systematic *order of operations* in your .rmd files and then knowing where you are in the process.
@@ -157,18 +157,18 @@ str (df)
 
 Looking back at the Lui [-@lui_racial_2020] article we can presume the following variables (variable/variable name) to have the following structure (scaling/R scaling):
 
-* Discrimination/OvDis:interval/num
+* Discrimination/OvDis: interval/num
   - theoretically someone could experience no discrimination, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never or not at all) for all the options.
 * Microaggressions/mAggr: interval/num
  - theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (never; and then not at all [stressful]) for all the options.
 * Neuroticism/Neuro: interval/num
-* Negative affect/nAff:interval/num
-* Psychological distress/psyDist:interval/num
-* Hazardous alcohol use/Alcohol:  interval/num
-* Drinking problems/drProb:  interval/num
-* Race Ethnicity/RacEth:  nominal/chr
+* Negative affect/nAff: interval/num
+* Psychological distress/psyDist: interval/num
+* Hazardous alcohol use/Alcohol: interval/num
+* Drinking problems/drProb: interval/num
+* Race Ethnicity/RacEth: nominal/chr
 
-Everything is fine except Race Ethnicity which needs to be a factor.  Let's change it and check again.
+Everything is fine except Race Ethnicity, which needs to be a factor. Let's change it and check again.
 
 At this point I need to use the tidyverse package so that I can *mutate()* the RacEth variable to be a factor.
 
@@ -186,7 +186,7 @@ df <- df %>%
 str(df)
 ```
 
-Manipulating the dats is an important skill. I can use the *select()* function to obtain certain variable.  I want to select three variables that are continuous and then disaggregate them by race/ethnicity. 
+Manipulating the data is an important skill. I can use the *select()* function to obtain certain variable.  I want to select three variables that are continuous and then disaggregate them by race/ethnicity. 
 
 ```{r}
 library(tidyverse)
@@ -206,12 +206,12 @@ describe(tiny_df)
 
 One of the easiest way to get "counts" of categorical variables is to use them in the *psych* package's *describeBy()* function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth.
 ```{r}
-describeBy (df, df$RacEth, mat=TRUE)
+describeBy (df, df$RacEth, mat=TRUE) it may be helpful to specify what "mat=TRUE' means above; is it necessary? why?
 ```
 
 ### Determining Skew and Kurtosis
 
-To understand whether our data are normally distributed, we can look at skew and kurtosis.  The skew and kurtosis indices in the *psych* package are reported as *z* scores.  Regarding skew, values > 3.0 are generally considered "severely skewed."  Regarding kurtosis, "severely kurtotic" is argued anywhere > 8 to 20 [@kline_principles_2016].
+To understand whether our data is normally distributed, we can look at skew and kurtosis.  The skew and kurtosis indices in the *psych* package are reported as *z* scores.  Regarding skew, values > 3.0 are generally considered "severely skewed."  Regarding kurtosis, "severely kurtotic" is argued anywhere > 8 to 20 [@kline_principles_2016].
 
 ### SPLOM 
 
@@ -246,7 +246,7 @@ What do we observe?
 * relationship between nAff and psyDist is very strong
 * are these correlations significant?  Revelle [-@revelle_introduction_2020] is not a fan of the associated *p* value, but we can get it several ways (hang tight).
 
-Writing up an APA style results section usually involves some sort of table.  A super helpful package for doing this is *apaTables*.  Really cool is the instructional article (pubbed in a peer reviewed journal) that also talks about the contributions of tools like this contributing to the *reproducibility* of science by reducing errors and, if the R script/data are shared how the evaluation process is standardized and therefore reproducible. [@stanley_reproducible_2018].
+Writing up an APA style results section usually involves some sort of table.  A super helpful package for doing this is *apaTables*.  Really cool is the instructional article (pubbed in a peer reviewed journal) that also talks about the contributions of tools like this contributing to the *reproducibility* of science by reducing errors and, if the R script/data are shared, how the evaluation process is standardized and therefore reproducible. [@stanley_reproducible_2018].
 
 ```{r }
 library(apaTables)
