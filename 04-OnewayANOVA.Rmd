@@ -13,15 +13,15 @@ options(scipen=999)#eliminates scientific notation
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c88f8492-0599-462d-a471-ad8a01702156) 
 
-One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor.  For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables:  a factor and a dependent variable.
+One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor. For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables: a factor and a dependent variable.
 
-The factor must be categorical in nature, dividing the cases into two or more groups or levels.  These levels could be ordered (e.g., placebo, low dose, high dose) or unordered (e.g., cognitive-behavioral, existential, psychodynamic).  The dependent variable must be assessed on a quantitative, continuous dimension.  The ANOVA F test evaluates whether population means on the dependent variable differ across the levels of the factor.
+The factor must be categorical in nature, dividing the cases into two or more groups or levels. These levels could be ordered (e.g., placebo, low dose, high dose) or unordered (e.g., cognitive-behavioral, existential, psychodynamic). The dependent variable must be assessed on a quantitative, continuous dimension. The ANOVA F test evaluates whether population means on the dependent variable differ across the levels of the factor.
 
-One-way ANOVA can be used in experimental, quasi-experimental, and field studies.  As we work through the chapter we will examine some some of the requirements (assumptions) of the statistic in greater detail.
+One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter, we will examine some some of the requirements (assumptions) of the statistic in greater detail.
 
 ## Navigating this Lesson
 
-There is about 2 hours of lecture.  If you work through the materials with me plan for another two hours of study.
+There is about 2 hours of lecture. If you work through the materials with me, plan for another two hours of study.
 
 ### Learning Objectives
 
@@ -37,9 +37,9 @@ Learning objectives from this lecture include the following:
 
 ### Planning for Practice
 
-In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results *should* map onto the ones obtained in the lecture. 
+In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty. The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results *should* map onto the ones obtained in the lecture. 
 
-The second option comes from the research vignette. The Tran et al. [@tran_you_2014] has two variables where the authors have conducted one-way ANOVAs.  I will demonstrate one (*Accurate*) in this lecture; the second is suggested as homework. 
+The second option comes from the research vignette. The Tran et al. [@tran_you_2014] has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (*Accurate*) in this lecture; the second is suggested as homework. 
 
 As a third option, you are welcome to use data to which you have access and is suitable for two-way ANOVA. In either case, you will be expected to:
 
@@ -184,7 +184,7 @@ str(accSIM30)
 ```
 Now our variables are suitable for analysis.
 
-At this point, you may wish to export and/or import the data as a .csv (think "Excel lite") or .rds (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so.  The data should save in the same folder as the .rmd file. Therefore, it is really important (think good R hygiene) have organized your folders so that your .rmd and datafiles are co-located.
+At this point, you may wish to export and/or import the data as a .csv (think "Excel lite") or .rds (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so.  The data should save in the same folder as the .rmd file. Therefore, it is really important (think good R hygiene) to have organized your folders so that your .rmd and datafiles are co-located.
 
 I have hashtagged out the code. If you wish to use it, delete the hashtags. Although I show the .csv code first, my personal preference is to save R data as .rds files.  While they aren't easy to "see" as an independent file, they retain the formatting of the variables. For a demonstration, refer back to the [Ready_Set_R](#Ready) lesson.
 
@@ -392,7 +392,7 @@ width <- 7
 	  )  }
 ```
 
-Perhaps an oversimplification, but to the degree that between-group variance (i.e,. model variance) is greater than within-group variance (i.e., residual variance) there may be support to suggest that there are statistically significant differences between groups.
+Perhaps an oversimplification, but to the degree that between-group variance (i.e,. model variance) is greater than within-group variance (i.e., residual variance), there may be support to suggest that there are statistically significant differences between groups.
 
 Let's examine how variance is partitioned by hand-calculating sums of squares total, model, and residual.  
 
@@ -445,7 +445,7 @@ Pop quiz:  What's the sum of our new *m_dev* variable?  Let's check.
 ```{r }
 mean(accSIM30$m_dev)
 ```
-Unless you run the script at the top of this document ("options(scipen=999)") R will (seemingly selectively) use **scientific e notation** to report your results. The proper value is one where the base number (before the "e") is multiplied by 10, raised to the power shown: $3.830065 * 10^{17}$ Another way to think of it is to move the decimal 17 places to the left.  In any case, this number is essentially zero.
+Unless you run the script at the top of this document ("options(scipen=999)"), R will (seemingly selectively) use **scientific e notation** to report your results. The proper value is one where the base number (before the "e") is multiplied by 10, raised to the power shown: $3.830065 * 10^{17}$ Another way to think of it is to move the decimal 17 places to the left.  In any case, this number is essentially zero.
 
 Back to the point of sums of squares total, the sum of deviations around the grand mean will always be zero.  To make them useful, we must square them:
 
@@ -658,7 +658,7 @@ MSR
 
 ### Calculating the *F*-Statistic
 
-The *F*-statistic (or *F*-ratio) is the assesses the ratio (as its name implies) of variation explained by the model to  unsystematic factors (i.e., the residual). Earlier we used "between" and "within" language. Especially when we think of our example -- where the model is composed of three groups, we can think of the *F* statistic as assessing the ratio of variation explained by between-subjects differences to within-subjects differences. Navarro's [@navarro_chapter_2020] figures (earlier in the chapter) illustrate this well.
+The *F*-statistic (or *F*-ratio) assesses the ratio (as its name implies) of variation explained by the model to unsystematic factors (i.e., the residual). Earlier we used "between" and "within" language. Especially when we think of our example -- where the model is composed of three groups, we can think of the *F* statistic as assessing the ratio of variation explained by between-subjects differences to within-subjects differences. Navarro's [@navarro_chapter_2020] figures (earlier in the chapter) illustrate this well.
 
 
 $$F = \frac{MS_{M}}{MS_{R}}$$
@@ -738,7 +738,7 @@ All statistical tests have some assumptions about the data. The one-way ANOVA ha
 * The variances of the dependent variable are the same for all populations.  This is often termed the *homogeneity of variance* assumption.  We will examine this with
   - Levene's Test
 * The cases represent *random* samples from the populations and scores on the test variable are independent of each other. That is, comparing related cases (e.g., parent/child, manager/employee, time1/time2) must be completed by another statistic such as repeated measures ANOVA or dyadic data analysis.
-  - *Independence* in observations is a research design issue. ANOVA not robust to violating this assumption. When observations are correlated/dependent there is a dramatic increase in Type I error.
+  - *Independence* in observations is a research design issue. ANOVA is not robust to violating this assumption. When observations are correlated/dependent there is a dramatic increase in Type I error.
 * The dependent variable is measured on an interval scale.
   - This is also a research design issue.  If the dependent variable is categorical, another statistic (such as logistic regression) should be chosen.
 
@@ -772,7 +772,7 @@ write.csv (des.mat, file="Table1.csv") #optional to write it to a .csv file
 
 Skew and kurtosis speaks to normal distributions.  The skew and kurtosis indices in the *psych* package are reported as *z* scores.  Regarding skew, values greater than 3.0 are generally considered "severely skewed."  Regarding kurtosis, "severely kurtotic" is argued to be anywhere greater 8 to 20 [@kline_principles_2016].
 
-The *Shapiro-Wilks* test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (*p* >.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (*p* < .05) then the distribution in question is significantly different from a normal distribution. The *rstatix* package has a wrapper that can conduct the Shapiro-Wilks test for us.
+The *Shapiro-Wilks* test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (*p* >.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (*p* < .05), then the distribution in question is significantly different from a normal distribution. The *rstatix* package has a wrapper that can conduct the Shapiro-Wilks test for us.
 
 ```{r }
 library(rstatix)
@@ -826,7 +826,7 @@ plevene <- digits(levene$"Pr(>F)"[1],3)
 plevene
 ```
 
-We write the result of the Levene's as $F$(`r df1levene`,`r df2levene`) = `r Flevene`, $p$ = `r plevene`  Because $p$ > .05, we know that the result is nonsignficant -- that the variances of the three groups are not statistically significantly different than each other.
+We write the result of the Levene's as $F$(`r df1levene`,`r df2levene`) = `r Flevene`, $p$ = `r plevene`.  Because $p$ > .05, we know that the result is nonsignficant -- that the variances of the three groups are not statistically significantly different than each other.
 
 IF the results had been statistically significantly different, we would have needed to use a Welch's $F$ or robust version of ANOVA.
 
@@ -895,7 +895,7 @@ The object we created with the *aov()* function is capable of producing much inf
 ```{r }
 names(omnibus)
 ```
- *summary()* is one of the most commonly used function applied to *aov()* objects, but it's not the only one.
+ *summary()* is one of the most commonly used functions applied to *aov()* objects, but it's not the only one.
 Let's try some other options.
 
 ```{r }
@@ -914,11 +914,11 @@ When the dots of the Q-Q plot map onto the diagonal, we have some indication of 
 
 **Eta squared** is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor.  Traditional interpretive values are similar to the Pearson's *r*:
 
-0 = no relationship
-.02 = small
-.13 = medium
-.26 = large
-1 = a perfect (one-to-one) correspondence
+0 = no relationship, 
+.02 = small, 
+.13 = medium, 
+.26 = large, 
+1 = a perfect (one-to-one) correspondence  The formatting is easy to understand here, however in the book these values are not formatted this way, so I added commas to make it easier to distinguish each value from one another. If the formatting can be translated though, I do not think there would be a need for the commas!
 
 A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found [here](https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize) [@watson_rules_2020].
 
@@ -947,7 +947,7 @@ etaSQomni
 
 ```
 
-Notice that there are two effect sizes.  We described eta-squared.  Partial eta-squared is the effect size reported in SPSS.  There's a long history of debate about which to use.  In certain circumstances (especially in more complicated analyses), partial-eta squared can be a bit more generous (i.e., larger than $\eta^2$). Thus, many prefer the reporting of $\eta^2$.
+Notice that there are two effect sizes. We described eta-squared. Partial eta-squared is the effect size reported in SPSS.  There's a long history of debate about which to use. In certain circumstances (especially in more complicated analyses), partial-eta squared can be a bit more generous (i.e., larger than $\eta^2$). Thus, many prefer the reporting of $\eta^2$.
 
 In our case, we see no difference between the two values. Differences begin to appear in datasets that are more complicated, such as when sample sizes across the levels of a factor differ.
 
@@ -955,7 +955,7 @@ In our case, we see no difference between the two values. Differences begin to a
 
 Presenting the APA style results of the omnibus test is very straightforward:
 
-Results indicated a significant effect of COND on accuracy perception *F* (`r df1omnibus`, `r df2omnibus`) = `r Fomnibus`, *p* < .001, $\eta^2$ = `r etaSQomni`.
+Results indicated a significant effect of COND on accuracy perception, *F* (`r df1omnibus`, `r df2omnibus`) = `r Fomnibus`, *p* < .001, $\eta^2$ = `r etaSQomni`.
 
 
 ### Follow-up to the Omnibus *F*
@@ -985,7 +985,7 @@ pairwise.t.test(accSIM30$Accurate, accSIM30$COND, p.adj = "none")
 
 The output only provides the $p$ values associated with the mean differences in each of the conditions. We see that $p < .05$ when high is compared to control and high is compared to low.  An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their *p* values.  
 
-**Should we be concerned about Type I error?"**
+**Should we be concerned about Type I error?**
 
 Recall that *Type I error* is the concern about false positives -- that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one).  This concern increases when we have a large number of pairwise comparisons.
 
@@ -996,7 +996,7 @@ Green and Salkind [-@green_using_2014] review three options for managing Type I 
 * Holms Sequential Bonferroni:
   - We'll describe this in more detail later. Briefly, it allows us to rank order the comparisons by their *p* value (smallest to largest). We determine the significance of each *p* value *sequentially.*  
 * LSD method:
-  - Permitted when there are only three pairwise comparisons among three groups, researchers can leave the *p* values as they are.  Since the Tran and Lee [-@tran_you_2014] research vignette is one of those circumstances, I not make adjustments for Type I error. I would name claim the LSD and cite Green and Salkind [-green_using_2014] as justification for that decision.
+  - Permitted when there are only three pairwise comparisons among three groups, researchers can leave the *p* values as they are.  Since the Tran and Lee [-@tran_you_2014] research vignette is one of those circumstances, I will not make adjustments for Type I error. I would name claim the LSD and cite Green and Salkind [-green_using_2014] (this code did not link an article as intended, it shows up in the book exactly as it is written here [in code format]) as justification for that decision.
  
 There is, though, an even more powerful approach...
 
@@ -1030,9 +1030,9 @@ We use it now to retrieve some contrast information.  The code below is a planne
 summary.lm(omnibus)
 ```
 
-From the above, regression output, we see that there was not a statistically significant difference between COND_Control and  COND_Low (*p* = 0.347). There were statistically significant difference when CONDControl (the intercept) was compared to CONDHigh (*p* < .001).
+From the above, regression output, we see that there was not a statistically significant difference between CONDControl and  CONDLow (*p* = 0.347) I got rid of the underscores because there was no underscores in the regression output above. There were statistically significant difference when CONDControl (the intercept) was compared to CONDHigh (*p* < .001).
 
-Note that these tests are conducted as  *t* tests.  Why?  We are comparing only two groups and can use the *t*. distribution.
+Note that these tests are conducted as  *t* tests.  Why?  We are comparing only two groups and can use the *t* distribution.
 
 It's quite possible we want something different. 
 
@@ -1049,9 +1049,9 @@ In *contrast2* we discard the Control condition (it was already singled out) and
 
 This is sensible because we likely hypothesize that any degree of racially loaded stereotypes may have a deleterious outcome, so we first compare Control to the two conditions with any degree of racial loading. Subsequently, we compare the Low and High levels of the factor. 
 
-**Step 2:**  Bind them together and check the output to ensure that we've mapped them correctly. 
+**Step 2:** Bind them together and check the output to ensure that we've mapped them correctly. 
 ```{r }
-#Contrast1  compares Control against the combined effects of Low and High.
+#Contrast1 compares Control against the combined effects of Low and High.
 contrast1 <- c(-2,1,1)
 
 #Contrast2 excludes Control; compares Low to High.
@@ -1098,15 +1098,15 @@ Results of our polynomial contrast suggested statistically significant results f
 
 #### Which set of follow-up tests do we report?
 
-It depends!  What best tells the story of your data?  Here are some things to consider.
+It depends! What best tells the story of your data?  Here are some things to consider.
 
-*  If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would learn toward report those.
+*  If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would lean toward reporting those.
 *  If *p* values are hovering around 0.05, an orthogonal contrast will offer more power because 
    - a *k* - 1 comparison will be more powerful
    - a priori theory is compelling
 *  The polynomial can be a nice addition if there is a linear or quadratic relationship that is sensible or interesting.  
 
-Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data.
+Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data).
 
 
 ### What if we Violated the Homogeneity of Variance test?
@@ -1134,7 +1134,7 @@ There are four interrelating elements of power:
 3. Significance level = P(Type I error),
    - Recall that Type I error is the rejection of a true null hypothesis (a false positive).
    - Stated another way, Type I error is the probability of finding an effect that is not there.
-4. power = 1 - P(Type II error),
+4. Power = 1 - P(Type II error),
    - Recall that Type II error is the non-rejection of a false null hypothesis (a false negative).
    - Power is the probability of finding an effect that is there.
   
