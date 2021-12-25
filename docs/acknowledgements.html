@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>ACKNOWLEDGEMENTS | ReCentering Psych Stats: Analysis of Variance</title>
-  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="description" content="“Analysis of Variance” is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="ACKNOWLEDGEMENTS | ReCentering Psych Stats: Analysis of Variance" />
   <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta property="og:url" content="https://lhbikos.github.io/ReCenterPsychStats/" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReC_ANOVA_bookcover.png" />
+  <meta property="og:description" content="“Analysis of Variance” is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner." />
+  <meta name="github-repo" content="lhbikos/ReCenterPsychStats" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="ACKNOWLEDGEMENTS | ReCentering Psych Stats: Analysis of Variance" />
   
-  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta name="twitter:description" content="“Analysis of Variance” is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReC_ANOVA_bookcover.png" />
 
-<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
+<meta name="date" content="2021-12-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +33,9 @@
   
 <link rel="prev" href="preface.html"/>
 <link rel="next" href="ReCintro.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,19 +51,8 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-5488840-4', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
 
 <style type="text/css">
@@ -152,7 +143,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -165,11 +156,11 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><strong>ReCentering Psych Stats:  Analysis of Variance</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+<li><a href="./">ReCentering Psych Stats: Analysis of Variance</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
 <ul>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
 </ul></li>
@@ -182,14 +173,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
 <li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
-<ul>
-<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
-<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
-<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
-<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
-<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
 <li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
 <li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
 <li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
@@ -211,12 +195,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.1</b> Setting up the file</a></li>
 <li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.2</b> Script in chunks and everything else in the “inline text” sections</a></li>
 <li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.3</b> Managing packages</a></li>
-<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.4</b> Upload the data</a>
-<ul>
-<li class="chapter" data-level="2.3.4.1" data-path="Ready.html"><a href="Ready.html#to-and-from-.csv-files"><i class="fa fa-check"></i><b>2.3.4.1</b> To and from .csv files</a></li>
-<li class="chapter" data-level="2.3.4.2" data-path="Ready.html"><a href="Ready.html#to-and-from-.rds-files"><i class="fa fa-check"></i><b>2.3.4.2</b> To and from .rds files</a></li>
-<li class="chapter" data-level="2.3.4.3" data-path="Ready.html"><a href="Ready.html#from-spss-files"><i class="fa fa-check"></i><b>2.3.4.3</b> From SPSS files</a></li>
-</ul></li>
+<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.4</b> Upload the data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="Ready.html"><a href="Ready.html#quick-demonstration"><i class="fa fa-check"></i><b>2.4</b> quick demonstRation</a></li>
 <li class="chapter" data-level="2.5" data-path="Ready.html"><a href="Ready.html#the-knitted-file"><i class="fa fa-check"></i><b>2.5</b> the knitted file</a></li>
@@ -278,24 +257,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="oneway.html"><a href="oneway.html#working-the-one-way-anova-in-r"><i class="fa fa-check"></i><b>4.6</b> Working the One-Way ANOVA in R</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>4.6.1</b> Evaluating the Statistical Assumptions</a>
-<ul>
-<li class="chapter" data-level="4.6.1.1" data-path="oneway.html"><a href="oneway.html#is-the-dependent-variable-normally-distributed-across-levels-of-the-factor"><i class="fa fa-check"></i><b>4.6.1.1</b> Is the dependent variable normally distributed across levels of the factor?</a></li>
-<li class="chapter" data-level="4.6.1.2" data-path="oneway.html"><a href="oneway.html#are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor"><i class="fa fa-check"></i><b>4.6.1.2</b> Are the variances of the dependent variable similar across the levels of the grouping factor?</a></li>
-<li class="chapter" data-level="4.6.1.3" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-analysis-of-assumptions"><i class="fa fa-check"></i><b>4.6.1.3</b> Summarizing results from the analysis of assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>4.6.2</b> Computing the Omnibus ANOVA</a>
-<ul>
-<li class="chapter" data-level="4.6.2.1" data-path="oneway.html"><a href="oneway.html#effect-size-for-the-one-way-anova"><i class="fa fa-check"></i><b>4.6.2.1</b> Effect size for the one-way ANOVA</a></li>
-<li class="chapter" data-level="4.6.2.2" data-path="oneway.html"><a href="oneway.html#summarizing-results-from-the-omnibus-anova"><i class="fa fa-check"></i><b>4.6.2.2</b> Summarizing results from the omnibus ANOVA</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>4.6.3</b> Follow-up to the Omnibus <em>F</em></a>
-<ul>
-<li class="chapter" data-level="4.6.3.1" data-path="oneway.html"><a href="oneway.html#option-1-post-hoc-pairwise-comparisons"><i class="fa fa-check"></i><b>4.6.3.1</b> OPTION 1: Post-hoc, pairwise, comparisons</a></li>
-<li class="chapter" data-level="4.6.3.2" data-path="oneway.html"><a href="oneway.html#option-2-planned-contrasts"><i class="fa fa-check"></i><b>4.6.3.2</b> OPTION 2: Planned contrasts</a></li>
-<li class="chapter" data-level="4.6.3.3" data-path="oneway.html"><a href="oneway.html#trend-polynomial-analysis"><i class="fa fa-check"></i><b>4.6.3.3</b> Trend (polynomial) analysis</a></li>
-<li class="chapter" data-level="4.6.3.4" data-path="oneway.html"><a href="oneway.html#which-set-of-follow-up-tests-do-we-report"><i class="fa fa-check"></i><b>4.6.3.4</b> Which set of follow-up tests do we report?</a></li>
-</ul></li>
+<li class="chapter" data-level="4.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>4.6.1</b> Evaluating the Statistical Assumptions</a></li>
+<li class="chapter" data-level="4.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>4.6.2</b> Computing the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="4.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>4.6.3</b> Follow-up to the Omnibus <em>F</em></a></li>
 <li class="chapter" data-level="4.6.4" data-path="oneway.html"><a href="oneway.html#what-if-we-violated-the-homogeneity-of-variance-test"><i class="fa fa-check"></i><b>4.6.4</b> What if we Violated the Homogeneity of Variance test?</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>4.7</b> Power Analysis</a></li>
@@ -335,34 +299,15 @@ div.csl-indent {
 <li class="chapter" data-level="5.4.2" data-path="between.html"><a href="between.html#sums-of-squares-for-the-model"><i class="fa fa-check"></i><b>5.4.2</b> Sums of Squares for the Model</a></li>
 <li class="chapter" data-level="5.4.3" data-path="between.html"><a href="between.html#sums-of-squares-residual-or-within-1"><i class="fa fa-check"></i><b>5.4.3</b> Sums of Squares Residual (or within)</a></li>
 <li class="chapter" data-level="5.4.4" data-path="between.html"><a href="between.html#relationship-between-ss_t-ss_m-and-ss_r.-in-case-its-not-clear"><i class="fa fa-check"></i><b>5.4.4</b> Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span>. In case it’s not clear:</a></li>
-<li class="chapter" data-level="5.4.5" data-path="between.html"><a href="between.html#but-we-need-to-understand-the-ss-for-each-of-the-factors-and-their-product."><i class="fa fa-check"></i><b>5.4.5</b> But we need to understand the SS for each of the factors and their product.</a>
-<ul>
-<li class="chapter" data-level="5.4.5.1" data-path="between.html"><a href="between.html#rater-main-effect"><i class="fa fa-check"></i><b>5.4.5.1</b> Rater Main Effect</a></li>
-<li class="chapter" data-level="5.4.5.2" data-path="between.html"><a href="between.html#photo-main-effect"><i class="fa fa-check"></i><b>5.4.5.2</b> Photo Main Effect</a></li>
-<li class="chapter" data-level="5.4.5.3" data-path="between.html"><a href="between.html#interaction-effect"><i class="fa fa-check"></i><b>5.4.5.3</b> Interaction effect</a></li>
-</ul></li>
+<li class="chapter" data-level="5.4.5" data-path="between.html"><a href="between.html#but-we-need-to-understand-the-ss-for-each-of-the-factors-and-their-product."><i class="fa fa-check"></i><b>5.4.5</b> But we need to understand the SS for each of the factors and their product.</a></li>
 <li class="chapter" data-level="5.4.6" data-path="between.html"><a href="between.html#source-table-games-1"><i class="fa fa-check"></i><b>5.4.6</b> Source Table Games!</a></li>
 <li class="chapter" data-level="5.4.7" data-path="between.html"><a href="between.html#interpreting-the-results"><i class="fa fa-check"></i><b>5.4.7</b> Interpreting the results</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="between.html"><a href="between.html#working-the-factorial-anova-with-r-packages"><i class="fa fa-check"></i><b>5.5</b> Working the Factorial ANOVA with R packages</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="between.html"><a href="between.html#evaluating-the-statistical-assumptions-1"><i class="fa fa-check"></i><b>5.5.1</b> Evaluating the statistical assumptions</a>
-<ul>
-<li class="chapter" data-level="5.5.1.1" data-path="between.html"><a href="between.html#dv-is-normally-distributed"><i class="fa fa-check"></i><b>5.5.1.1</b> DV is normally distributed</a></li>
-<li class="chapter" data-level="5.5.1.2" data-path="between.html"><a href="between.html#homogeneity-of-variance"><i class="fa fa-check"></i><b>5.5.1.2</b> Homogeneity of variance</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5.2" data-path="between.html"><a href="between.html#evaluating-the-omnibus-anova"><i class="fa fa-check"></i><b>5.5.2</b> Evaluating the Omnibus ANOVA</a>
-<ul>
-<li class="chapter" data-level="5.5.2.1" data-path="between.html"><a href="between.html#effect-sizes"><i class="fa fa-check"></i><b>5.5.2.1</b> Effect sizes</a></li>
-<li class="chapter" data-level="5.5.2.2" data-path="between.html"><a href="between.html#apa-write-up-of-the-omnibus-results"><i class="fa fa-check"></i><b>5.5.2.2</b> APA Write-up of the omnibus results</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5.3" data-path="between.html"><a href="between.html#follow-up-a-significant-interaction-effect"><i class="fa fa-check"></i><b>5.5.3</b> Follow-up a significant interaction effect</a>
-<ul>
-<li class="chapter" data-level="5.5.3.1" data-path="between.html"><a href="between.html#option-1-the-simple-main-effect-of-photo-stimulus-within-ethnicity-of-the-rater"><i class="fa fa-check"></i><b>5.5.3.1</b> Option #1 the simple main effect of photo stimulus within ethnicity of the rater</a></li>
-<li class="chapter" data-level="5.5.3.2" data-path="between.html"><a href="between.html#option-2-the-simple-main-effect-of-ethnicity-of-rater-within-photo-stimulus."><i class="fa fa-check"></i><b>5.5.3.2</b> Option #2 the simple main effect of ethnicity of rater within photo stimulus.</a></li>
-<li class="chapter" data-level="5.5.3.3" data-path="between.html"><a href="between.html#post-hoc-comparisons"><i class="fa fa-check"></i><b>5.5.3.3</b> Post hoc comparisons</a></li>
-<li class="chapter" data-level="5.5.3.4" data-path="between.html"><a href="between.html#polynomial-trends"><i class="fa fa-check"></i><b>5.5.3.4</b> Polynomial Trends</a></li>
-</ul></li>
+<li class="chapter" data-level="5.5.1" data-path="between.html"><a href="between.html#evaluating-the-statistical-assumptions-1"><i class="fa fa-check"></i><b>5.5.1</b> Evaluating the statistical assumptions</a></li>
+<li class="chapter" data-level="5.5.2" data-path="between.html"><a href="between.html#evaluating-the-omnibus-anova"><i class="fa fa-check"></i><b>5.5.2</b> Evaluating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="5.5.3" data-path="between.html"><a href="between.html#follow-up-a-significant-interaction-effect"><i class="fa fa-check"></i><b>5.5.3</b> Follow-up a significant interaction effect</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="between.html"><a href="between.html#in-the-event-of-a-non-significant-interaction-but-one-or-more-significant-main-effects"><i class="fa fa-check"></i><b>5.6</b> In the event of a non-significant interaction, but one or more significant main effects</a>
 <ul>
@@ -413,19 +358,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="Repeated.html"><a href="Repeated.html#working-the-one-way-anova-with-r-packages"><i class="fa fa-check"></i><b>6.5</b> Working the One-Way ANOVA with R packages</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="Repeated.html"><a href="Repeated.html#testing-the-assumptions"><i class="fa fa-check"></i><b>6.5.1</b> Testing the assumptions</a>
-<ul>
-<li class="chapter" data-level="6.5.1.1" data-path="Repeated.html"><a href="Repeated.html#univariate-assumptions-for-repeated-measures-anova"><i class="fa fa-check"></i><b>6.5.1.1</b> Univariate assumptions for repeated measures ANOVA</a></li>
-<li class="chapter" data-level="6.5.1.2" data-path="Repeated.html"><a href="Repeated.html#any-outliers"><i class="fa fa-check"></i><b>6.5.1.2</b> Any outliers?</a></li>
-<li class="chapter" data-level="6.5.1.3" data-path="Repeated.html"><a href="Repeated.html#assessing-normality"><i class="fa fa-check"></i><b>6.5.1.3</b> Assessing normality</a></li>
-<li class="chapter" data-level="6.5.1.4" data-path="Repeated.html"><a href="Repeated.html#assumption-of-sphericity"><i class="fa fa-check"></i><b>6.5.1.4</b> Assumption of Sphericity</a></li>
-</ul></li>
+<li class="chapter" data-level="6.5.1" data-path="Repeated.html"><a href="Repeated.html#testing-the-assumptions"><i class="fa fa-check"></i><b>6.5.1</b> Testing the assumptions</a></li>
 <li class="chapter" data-level="6.5.2" data-path="Repeated.html"><a href="Repeated.html#omnibus-anova"><i class="fa fa-check"></i><b>6.5.2</b> Omnibus ANOVA</a></li>
 <li class="chapter" data-level="6.5.3" data-path="Repeated.html"><a href="Repeated.html#follow-up"><i class="fa fa-check"></i><b>6.5.3</b> Follow-up</a></li>
-<li class="chapter" data-level="6.5.4" data-path="Repeated.html"><a href="Repeated.html#results-section"><i class="fa fa-check"></i><b>6.5.4</b> Results Section</a>
-<ul>
-<li class="chapter" data-level="6.5.4.1" data-path="Repeated.html"><a href="Repeated.html#creating-an-apa-style-table"><i class="fa fa-check"></i><b>6.5.4.1</b> Creating an APA Style Table**</a></li>
-</ul></li>
+<li class="chapter" data-level="6.5.4" data-path="Repeated.html"><a href="Repeated.html#results-section"><i class="fa fa-check"></i><b>6.5.4</b> Results Section</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="Repeated.html"><a href="Repeated.html#power-in-repeated-measures-anova"><i class="fa fa-check"></i><b>6.6</b> Power in Repeated Measures ANOVA</a></li>
 <li class="chapter" data-level="6.7" data-path="Repeated.html"><a href="Repeated.html#practice-problems-3"><i class="fa fa-check"></i><b>6.7</b> Practice Problems</a>
@@ -452,24 +388,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="Mixed.html"><a href="Mixed.html#working-the-mixed-design-anova-with-r-packages"><i class="fa fa-check"></i><b>7.4</b> Working the Mixed Design ANOVA with R packages</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="Mixed.html"><a href="Mixed.html#exploring-data-and-testing-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Exploring data and testing assumptions</a>
-<ul>
-<li class="chapter" data-level="7.4.1.1" data-path="Mixed.html"><a href="Mixed.html#assumption-of-normality"><i class="fa fa-check"></i><b>7.4.1.1</b> Assumption of Normality</a></li>
-<li class="chapter" data-level="7.4.1.2" data-path="Mixed.html"><a href="Mixed.html#assumption-of-homogeneity-of-covariance-matrices"><i class="fa fa-check"></i><b>7.4.1.2</b> Assumption of homogeneity of covariance matrices</a></li>
-<li class="chapter" data-level="7.4.1.3" data-path="Mixed.html"><a href="Mixed.html#apa-style-writeup-of-assumptions"><i class="fa fa-check"></i><b>7.4.1.3</b> APA style writeup of assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4.2" data-path="Mixed.html"><a href="Mixed.html#omnibus-anova-1"><i class="fa fa-check"></i><b>7.4.2</b> Omnibus ANOVA</a>
-<ul>
-<li class="chapter" data-level="7.4.2.1" data-path="Mixed.html"><a href="Mixed.html#checking-the-sphericity-assumption"><i class="fa fa-check"></i><b>7.4.2.1</b> Checking the sphericity assumption</a></li>
-</ul></li>
+<li class="chapter" data-level="7.4.1" data-path="Mixed.html"><a href="Mixed.html#exploring-data-and-testing-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Exploring data and testing assumptions</a></li>
+<li class="chapter" data-level="7.4.2" data-path="Mixed.html"><a href="Mixed.html#omnibus-anova-1"><i class="fa fa-check"></i><b>7.4.2</b> Omnibus ANOVA</a></li>
 <li class="chapter" data-level="7.4.3" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-condition-within-wave"><i class="fa fa-check"></i><b>7.4.3</b> Simple main effect of condition within wave</a></li>
 <li class="chapter" data-level="7.4.4" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-wave-within-condition"><i class="fa fa-check"></i><b>7.4.4</b> Simple main effect of wave within condition</a></li>
 <li class="chapter" data-level="7.4.5" data-path="Mixed.html"><a href="Mixed.html#if-we-only-had-a-main-effect"><i class="fa fa-check"></i><b>7.4.5</b> If we only had a main effect</a></li>
-<li class="chapter" data-level="7.4.6" data-path="Mixed.html"><a href="Mixed.html#apa-style-write-up-of-the-results"><i class="fa fa-check"></i><b>7.4.6</b> APA Style Write-up of the Results</a>
-<ul>
-<li class="chapter" data-level="7.4.6.1" data-path="Mixed.html"><a href="Mixed.html#results-1"><i class="fa fa-check"></i><b>7.4.6.1</b> Results</a></li>
-<li class="chapter" data-level="7.4.6.2" data-path="Mixed.html"><a href="Mixed.html#comparing-our-findings-to-murrar-and-brauer--murrar_entertainment-education_2018"><i class="fa fa-check"></i><b>7.4.6.2</b> Comparing our findings to Murrar and Brauer <span class="citation">(<span>2018</span>)</span></a></li>
-</ul></li>
+<li class="chapter" data-level="7.4.6" data-path="Mixed.html"><a href="Mixed.html#apa-style-write-up-of-the-results"><i class="fa fa-check"></i><b>7.4.6</b> APA Style Write-up of the Results</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="Mixed.html"><a href="Mixed.html#power-in-mixed-design-anova"><i class="fa fa-check"></i><b>7.5</b> Power in Mixed Design ANOVA</a></li>
 <li class="chapter" data-level="7.6" data-path="Mixed.html"><a href="Mixed.html#practice-problems-4"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
@@ -496,15 +420,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.4" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-1-controlling-for-the-pretest"><i class="fa fa-check"></i><b>8.4</b> Scenario #1: Controlling for the pretest</a>
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-1"><i class="fa fa-check"></i><b>8.4.1</b> Preparing the data</a></li>
-<li class="chapter" data-level="8.4.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions"><i class="fa fa-check"></i><b>8.4.2</b> Checking the assumptions</a>
-<ul>
-<li class="chapter" data-level="8.4.2.1" data-path="ANCOVA.html"><a href="ANCOVA.html#linearity-assumption"><i class="fa fa-check"></i><b>8.4.2.1</b> Linearity assumption</a></li>
-<li class="chapter" data-level="8.4.2.2" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-regression-slopes"><i class="fa fa-check"></i><b>8.4.2.2</b> Homogeneity of regression slopes</a></li>
-<li class="chapter" data-level="8.4.2.3" data-path="ANCOVA.html"><a href="ANCOVA.html#normality-of-residuals"><i class="fa fa-check"></i><b>8.4.2.3</b> Normality of residuals</a></li>
-<li class="chapter" data-level="8.4.2.4" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>8.4.2.4</b> Homogeneity of variances</a></li>
-<li class="chapter" data-level="8.4.2.5" data-path="ANCOVA.html"><a href="ANCOVA.html#outliers"><i class="fa fa-check"></i><b>8.4.2.5</b> Outliers</a></li>
-<li class="chapter" data-level="8.4.2.6" data-path="ANCOVA.html"><a href="ANCOVA.html#write-up-of-assumptions"><i class="fa fa-check"></i><b>8.4.2.6</b> Write-up of Assumptions</a></li>
-</ul></li>
+<li class="chapter" data-level="8.4.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions"><i class="fa fa-check"></i><b>8.4.2</b> Checking the assumptions</a></li>
 <li class="chapter" data-level="8.4.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova"><i class="fa fa-check"></i><b>8.4.3</b> Calculating the Omnibus ANOVA</a></li>
 <li class="chapter" data-level="8.4.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate"><i class="fa fa-check"></i><b>8.4.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
 <li class="chapter" data-level="8.4.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section"><i class="fa fa-check"></i><b>8.4.5</b> Toward an APA style results section</a></li>
@@ -512,15 +428,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.5" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-2-controlling-for-a-confounding-or-covarying-variable"><i class="fa fa-check"></i><b>8.5</b> Scenario #2: Controlling for a confounding or covarying variable</a>
 <ul>
 <li class="chapter" data-level="8.5.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-2"><i class="fa fa-check"></i><b>8.5.1</b> Preparing the data</a></li>
-<li class="chapter" data-level="8.5.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions-1"><i class="fa fa-check"></i><b>8.5.2</b> Checking the assumptions</a>
-<ul>
-<li class="chapter" data-level="8.5.2.1" data-path="ANCOVA.html"><a href="ANCOVA.html#linearity-assumption-1"><i class="fa fa-check"></i><b>8.5.2.1</b> Linearity assumption</a></li>
-<li class="chapter" data-level="8.5.2.2" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-regression-slopes-1"><i class="fa fa-check"></i><b>8.5.2.2</b> Homogeneity of regression slopes</a></li>
-<li class="chapter" data-level="8.5.2.3" data-path="ANCOVA.html"><a href="ANCOVA.html#normality-of-residuals-1"><i class="fa fa-check"></i><b>8.5.2.3</b> Normality of residuals</a></li>
-<li class="chapter" data-level="8.5.2.4" data-path="ANCOVA.html"><a href="ANCOVA.html#homogeneity-of-variances-1"><i class="fa fa-check"></i><b>8.5.2.4</b> Homogeneity of variances</a></li>
-<li class="chapter" data-level="8.5.2.5" data-path="ANCOVA.html"><a href="ANCOVA.html#outliers-1"><i class="fa fa-check"></i><b>8.5.2.5</b> Outliers</a></li>
-<li class="chapter" data-level="8.5.2.6" data-path="ANCOVA.html"><a href="ANCOVA.html#write-up-of-assumptions-1"><i class="fa fa-check"></i><b>8.5.2.6</b> Write-up of Assumptions</a></li>
-</ul></li>
+<li class="chapter" data-level="8.5.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions-1"><i class="fa fa-check"></i><b>8.5.2</b> Checking the assumptions</a></li>
 <li class="chapter" data-level="8.5.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova-1"><i class="fa fa-check"></i><b>8.5.3</b> Calculating the Omnibus ANOVA</a></li>
 <li class="chapter" data-level="8.5.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate-1"><i class="fa fa-check"></i><b>8.5.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
 <li class="chapter" data-level="8.5.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section-1"><i class="fa fa-check"></i><b>8.5.5</b> Toward an APA style results section</a></li>
@@ -535,9 +443,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
-<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
-  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -558,17 +464,21 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="acknowledgements" class="section level1 unnumbered">
 <h1>ACKNOWLEDGEMENTS</h1>
-<p>As a doctoral student at the University of Kansas (1992-2005), I learned that “a foreign language” was required for graduation. <em>Please note that as one who studies the intersections of global, vocational, and sustainable psychology, I regret that I do not have language skills beyond English.</em> This could have been met with credit from high school my rural, mid-Missouri high school did not offer such classes. This requirement would have typically been met with courses taken during an undergraduate program – but my non-teaching degree in the University of Missouri’s School of Education was exempt from this. The requirement could have also been met with a computer language (fortran, C++) – I did not have any of those either. There was a tiny footnote on my doctoral degree plan that indicated that a 2-credit course, “SPSS for Windows” would substitute for the language requirement. Given that it was taught by my one of my favorite professors, I readily signed up. As it turns out, Samuel B. Green, PhD, was using the course to draft chapters in the textbook <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">Green &amp; Salkind, 2014b</a>)</span> that has been so helpful for so many. Unfortunately, Drs. Green (1947 - 2018) and Salkind (2947 - 2017) are no longer with us. I have worn out numerous versions of their text. Another favorite text of mine was Dr. Barbara Byrne’s <span class="citation">(<a href="#ref-byrne_structural_2016" role="doc-biblioref">2016</a>)</span>, “Structural Equation Modeling with AMOS.” I loved the way she worked through each problem and paired it with a published journal article, so that the user could see how the statistical evaluation fit within the larger project/article. I took my tea-stained text with me to a workshop she taught at APA and was proud of the signature she added to it (a little catfur might have fallen out). Dr. Byrne created SEM texts for a number of statistical programs (e.g., LISREL, EQS, MPlus). As I was learning R, I wrote Dr. Byrne, asking if she had an edition teaching SEM/CFA with R. She promptly wrote back, saying that she did not have the bandwidth to learn a new statistics package. We lost Dr. Byrne in December 2020. I am so grateful to these role models for their contributions to my statistical training. I am also grateful for the doctoral students who have taken my courses and are continuing to provide input for how to improve the materials.</p>
+<p>As a doctoral student at the University of Kansas (1992-2005), I learned that “a foreign language” was a graduation requirement. <em>Please note that as one who studies the intersections of global, vocational, and sustainable psychology, I regret that I do not have language skills beyond English.</em> This could have been met with credit from high school my rural, mid-Missouri high school did not offer such classes. This requirement would have typically been met with courses taken during an undergraduate program – but my non-teaching degree in the University of Missouri’s School of Education was exempt from this. The requirement could have also been met with a computer language (fortran, C++) – I did not have any of those either. There was a tiny footnote on my doctoral degree plan that indicated that a 2-credit course, “SPSS for Windows” would substitute for the language requirement. Given that it was taught by my one of my favorite professors, I readily signed up. As it turns out, Samuel B. Green, PhD, was using the course to draft chapters in the textbook <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">Green &amp; Salkind, 2014b</a>)</span> that has been so helpful for so many. Unfortunately, Drs. Green (1947 - 2018) and Salkind (2947 - 2017) are no longer with us. I have worn out numerous versions of their text. Another favorite text of mine was Dr. Barbara Byrne’s <span class="citation">(<a href="#ref-byrne_structural_2016" role="doc-biblioref">2016</a>)</span>, “Structural Equation Modeling with AMOS.” I loved the way she worked through each problem and paired it with a published journal article, so that the user could see how the statistical evaluation fit within the larger project/article. I took my tea-stained text with me to a workshop she taught at APA and was proud of the signature she added to it (a little catfur might have fallen out). Dr. Byrne created SEM texts for a number of statistical programs (e.g., LISREL, EQS, MPlus). As I was learning R, I wrote Dr. Byrne, asking if she had an edition teaching SEM/CFA with R. She promptly wrote back, saying that she did not have the bandwidth to learn a new statistics package. We lost Dr. Byrne in December 2020. I am so grateful to these role models for their contributions to my statistical training. I am also grateful for the doctoral students who have taken my courses and are continuing to provide input for how to improve the materials.</p>
 <p>The inspiration for training materials that re*center statistics and research methods came from the <a href="https://www.academics4blacklives.com/">Academics for Black Survival and Wellness Initiative</a>. This project, co-founded by Della V. Mosley, Ph.D., and Pearis L. Bellamy, M.S., made clear the necessity and urgency for change in higher education and the profession of psychology.</p>
 <p>At very practical levels, I am indebted to SPU’s Library, and more specifically, SPU’s Education, Technology, and Media Department. Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics &amp; Illustrations, Dominic Wilkinson, designed the logo and bookcover. Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am alo indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr. Jhangiani’s text <span class="citation">(<a href="#ref-jhangiani_research_2019" role="doc-biblioref">2019</a>)</span> was the first OER I ever used and I was grateful for his encouraging conversation.</p>
-<p>Financial support for this text has been provided from the <em>Call to Action on Equity, Inclusion, Diversity, Justice, and Social Responsivity
-Request for Proposals</em> grant from the Association of Psychology Postdoctoral and Internship Centers (2021-2022).</p>
+<p>Financial support for this project has been provided the following:</p>
+<ul>
+<li><em>Call to Action on Equity, Inclusion, Diversity, Justice, and Social Responsivity Request for Proposals</em> grant from the Association of Psychology Postdoctoral and Internship Centers (2021-2022).</li>
+<li><em>Diversity Seed Grant</em>, Office of Inclusive Excellence and Advisory Council for Diversity and Reconciliation (ACDR), Seattle Pacific University.</li>
+<li><em>ETM Open Textbook &amp; OER Development Funding</em>, Office of Education, Technology, &amp; Media, Seattle Pacific University.</li>
+</ul>
 
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-byrne_structural_2016" class="csl-entry">
-Byrne, B. M. (2016). <em>Structural equation modeling with <span>AMOS</span>: <span>Basic</span> concepts, applications, and programming</em> (3rd ed.). Routledge. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523</a>
+Byrne, B. M. (2016). Structural <span>Equation</span> <span>Modeling</span>: <span>The</span> basics (<span>Chapter</span> 1). In <em>Structural <span>Equation</span> <span>Modeling</span> with <span>AMOS</span>: <span>Basic</span> <span>Concepts</span>, <span>Applications</span>, and <span>Programming</span>, <span>Third</span> <span>Edition</span></em>. Taylor &amp; Francis Group. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523</a>
 </div>
 <div id="ref-green_using_2014" class="csl-entry">
 Green, S. B., &amp; Salkind, N. J. (2014b). <em>Using <span>SPSS</span> for <span>Windows</span> and <span>Macintosh</span>: Analyzing and understanding data</em> (Seventh edition.). Pearson.
@@ -587,7 +497,6 @@ Jhangiani, R. S., Chiang, I.-C. A., Cuttler, C., &amp; Leighton, D. C. (2019). <
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -599,7 +508,7 @@ Jhangiani, R. S., Chiang, I.-C. A., Cuttler, C., &amp; Leighton, D. C. (2019). <
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -615,23 +524,25 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/lhbikos/ReCenterPsychStats/edit/BRANCH/index.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
 "view": {
-"link": "https://github.com/ontheline/otl-bookdown/blob/master/index.Rmd",
+"link": null,
 "text": null
 },
-"download": ["ReCenterPsychStats.pdf"],
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
+"download": ["ReCenterPsychStats.pdf", "ReCenterPsychStats.epub"],
+"search": {
+"engine": "fuse",
+"options": null
 },
-"search": true
+"toc": {
+"collapse": "subsection"
+}
 });
 });
 </script>
