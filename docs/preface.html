@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2021-12-24" />
+<meta name="date" content="2022-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -221,8 +221,9 @@ div.csl-indent {
 <li class="chapter" data-level="3.4" data-path="waRmups.html"><a href="waRmups.html#practice-problems"><i class="fa fa-check"></i><b>3.4</b> Practice Problems</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="waRmups.html"><a href="waRmups.html#problem-1-change-the-random-seed"><i class="fa fa-check"></i><b>3.4.1</b> Problem #1: Change the Random Seed</a></li>
-<li class="chapter" data-level="3.4.2" data-path="waRmups.html"><a href="waRmups.html#problem-2"><i class="fa fa-check"></i><b>3.4.2</b> Problem #2:</a></li>
-<li class="chapter" data-level="3.4.3" data-path="waRmups.html"><a href="waRmups.html#problem-3"><i class="fa fa-check"></i><b>3.4.3</b> Problem #3:</a></li>
+<li class="chapter" data-level="3.4.2" data-path="waRmups.html"><a href="waRmups.html#problem-2-swap-variables-in-the-simulation"><i class="fa fa-check"></i><b>3.4.2</b> Problem #2: Swap Variables in the Simulation</a></li>
+<li class="chapter" data-level="3.4.3" data-path="waRmups.html"><a href="waRmups.html#problem-3-use-or-simulate-your-own-data"><i class="fa fa-check"></i><b>3.4.3</b> Problem #3: Use (or Simulate) Your Own Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="waRmups.html"><a href="waRmups.html#grading-rubric"><i class="fa fa-check"></i><b>3.4.4</b> Grading Rubric</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>4</b> One-way ANOVA</a>
@@ -464,11 +465,11 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="preface" class="section level1 unnumbered">
 <h1>PREFACE</h1>
-<p><strong>If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 24 Dec 2021</strong>. Emerging volumes on other statistics are posted on the <a href="https://lhbikos.github.io/BikosRVT/ReCenter.html">ReCentering Psych Stats</a> page at my research team’s website.</p>
+<p><strong>If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 02 Feb 2022</strong>. Emerging volumes on other statistics are posted on the <a href="https://lhbikos.github.io/BikosRVT/ReCenter.html">ReCentering Psych Stats</a> page at my research team’s website.</p>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a">Screencasted Lecture Link</a></p>
 <p>To <em>center</em> a variable in regression means to set its value at zero and interpret all other values in relation to this reference point. Regarding race and gender, researchers often center male and White at zero. Further, it is typical that research vignettes in statistics textbooks are similarly seated in a White, Western (frequently U.S.), heteronormative, framework. The purpose of this project is to create a set of open educational resources (OER) appropriate for doctoral and post-doctoral training that contribute to a socially responsive pedagogy – that is, it contributes to justice, equity, diversity, and inclusion.</p>
 <p>Statistics training in doctoral programs are frequently taught with fee-for-use programs (e.g., SPSS/AMOS, SAS, MPlus) that may not be readily available to the post-doctoral professional. In recent years, there has been an increase and improvement in R packages (e.g., <em>psych</em>, <em>lavaan</em>) used for in analyses common to psychological research. Correspondingly, many graduate programs are transitioning to statistics training in R (free and open source). This is a challenge for post-doctoral psychologists who were trained with other software. This OER will offer statistics training with R and be freely available (specifically in a GitHub respository and posted through GitHub Pages) under a Creative Commons Attribution - Non Commercial - Share Alike license [CC BY-NC-SA 4.0].</p>
-<p>Training models for doctoral programs in HSP are commonly scholar-practitioner, scientist-practitioner, or clinical-scientist. An emerging model, the <em>scientist-practitioner-advocacy</em> training model incorporates social justice advocacy so that graduates are equipped to recognize and address the sociocultural context of oppression and unjust distribution of resources and opportunities <span class="citation">(<a href="#ref-mallinckrodt_scientist-practitioner-advocate_2014" role="doc-biblioref">Mallinckrodt et al., 2014</a>)</span>. In statistics textbooks, the use of research vignettes engages the learner around a tangible scenario for identifying independent variables, dependent variables, covariates, and potential mechanisms of change. Many students recall examples in Field’s <span class="citation">(<a href="#ref-field_discovering_2012" role="doc-biblioref">2012</a>)</span> popular statistics text: Viagra to teach one-way ANOVA, beer goggles for two-way ANOVA, and bushtucker for repeated measures. What if the research vignettes were more socially responsive?</p>
+<p>Training models for doctoral programs in health service psychology are commonly scholar-practitioner, scientist-practitioner, or clinical-scientist. An emerging model, the <em>scientist-practitioner-advocacy</em> training model, incorporates social justice advocacy so that graduates are equipped to recognize and address the sociocultural context of oppression and unjust distribution of resources and opportunities <span class="citation">(<a href="#ref-mallinckrodt_scientist-practitioner-advocate_2014" role="doc-biblioref">Mallinckrodt et al., 2014</a>)</span>. In statistics textbooks, the use of research vignettes engages the learner around a tangible scenario for identifying independent variables, dependent variables, covariates, and potential mechanisms of change. Many students recall examples in Field’s <span class="citation">(<a href="#ref-field_discovering_2012" role="doc-biblioref">2012</a>)</span> popular statistics text: Viagra to teach one-way ANOVA, beer goggles for two-way ANOVA, and bushtucker for repeated measures. What if the research vignettes were more socially responsive?</p>
 <p>In this OER, research vignettes will be from recently published articles where:</p>
 <ul>
 <li>the author’s identity is from a group where scholarship is historically marginalized (e.g., BIPOC, LGBTQ+, LMIC[low-middle income countries]),</li>
@@ -480,7 +481,7 @@ div.csl-indent {
 <div id="copyright-with-open-access" class="section level2 unnumbered">
 <h2>Copyright with Open Access</h2>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></p>
-<p>This book is published under a a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA.</p>
+<p>This book is published under a a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license: CC BY-SA 4.0.</p>
 <p>A <a href="https://github.com/lhbikos/ReC_Psychometrics">GitHub open-source repository</a> contains all of the text and source code for the book, including data and images.</p>
 </div>
 </div>

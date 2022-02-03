@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2021-12-24" />
+<meta name="date" content="2022-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -221,8 +221,9 @@ div.csl-indent {
 <li class="chapter" data-level="3.4" data-path="waRmups.html"><a href="waRmups.html#practice-problems"><i class="fa fa-check"></i><b>3.4</b> Practice Problems</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="waRmups.html"><a href="waRmups.html#problem-1-change-the-random-seed"><i class="fa fa-check"></i><b>3.4.1</b> Problem #1: Change the Random Seed</a></li>
-<li class="chapter" data-level="3.4.2" data-path="waRmups.html"><a href="waRmups.html#problem-2"><i class="fa fa-check"></i><b>3.4.2</b> Problem #2:</a></li>
-<li class="chapter" data-level="3.4.3" data-path="waRmups.html"><a href="waRmups.html#problem-3"><i class="fa fa-check"></i><b>3.4.3</b> Problem #3:</a></li>
+<li class="chapter" data-level="3.4.2" data-path="waRmups.html"><a href="waRmups.html#problem-2-swap-variables-in-the-simulation"><i class="fa fa-check"></i><b>3.4.2</b> Problem #2: Swap Variables in the Simulation</a></li>
+<li class="chapter" data-level="3.4.3" data-path="waRmups.html"><a href="waRmups.html#problem-3-use-or-simulate-your-own-data"><i class="fa fa-check"></i><b>3.4.3</b> Problem #3: Use (or Simulate) Your Own Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="waRmups.html"><a href="waRmups.html#grading-rubric"><i class="fa fa-check"></i><b>3.4.4</b> Grading Rubric</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>4</b> One-way ANOVA</a>
@@ -465,7 +466,7 @@ div.csl-indent {
 <div id="Ready" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Ready_Set_R</h1>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=6b27a60c-edcb-4565-aaf1-ad890174586e">Screencasted Lecture Link</a></p>
-<p>With the goal of creating a common, system-wide approach to using the platform, this lesson is primarily created for CPY and I/O doctoral students who are entering the “stats sequence.”I hope it will also be useful for others (including faculty) who are also making the transition to R.</p>
+<p>With the goal of creating a common, system-wide approach to using the platform, this lesson was originally created for Clinical and Industrial-Organizational doctoral students who are entering the “stats sequence.” I hope it will also be useful for others (including faculty) who are also making the transition to R.</p>
 <div id="navigating-this-lesson" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Navigating this Lesson</h2>
 <p>There is about 45 minutes of lecture.</p>
@@ -504,7 +505,7 @@ div.csl-indent {
 <li><em>Packages</em> are at the heart of working in R. Installing and activating packages require writing script.</li>
 </ul></li>
 </ul>
-<p><strong>Note</strong> If you have an enterprise-owned machine (e.g,. in my specific context, if you are a faculty/staff or have a lab with an SPU-issued laptops) there are complications caused by how documents are stored. You will likely need to consult with your computer and technology support office.</p>
+<p><strong>Note</strong> If you have an enterprise-owned machine (e.g,. in my specific context, if you are a faculty/staff or have a lab with institution-issued laptops) there can be complications caused by how documents are stored. In recent years we have found that letting the computer choose where to load base R, R Studio, and the packages generally works. The trick, though, is to save R projects (i.e., folder with .rmd files and data) into the OneDrive folder that syncs to your computer. If you have difficulty knitting that is unrelated to code (verified by getting a classmates or colleague to successfully knit it), it is likely because you have saved the files to the local hard drive and not OneDrive. If you continue to have problems I recommend consulting with your computer and technology support office.</p>
 </div>
 <div id="orienting-to-r-studio-focusing-only-on-the-things-we-will-be-using-first-and-most-often" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> oRienting to R Studio (focusing only on the things we will be using first and most often)</h3>
@@ -513,16 +514,14 @@ div.csl-indent {
 <ul>
 <li>Environment: lists the <em>objects</em> that are available to you (e.g., dataframes)</li>
 </ul></li>
-<li>Lower right window
-<ul>
-<li>Files: Mimics your computer’s environment. Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.</li>
-<li>Packages: Lists the packages that have been installed. If you navigate to it, you can see if it is “on.” You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu. This information actually opens in the Help window.</li>
-<li>Viewer and Plots are helpful, later, when we can simultaneously look at our output and still work on our script.</li>
-</ul></li>
+<li>Lower right window</li>
+<li><em>Files</em>: Displays the file structure in your computer’s environment. Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.</li>
+<li><em>Packages</em>: Lists the packages that have been installed. If you navigate to it, you can see if it is “on.” You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu. This information opens in the Help window.</li>
+<li>The <em>Viewer</em> and <em>Plots</em> tabs will be useful, later, in some advanced statistics when we can simultaneously examine output and script in windows that are side-by-side.</li>
 <li>Primary window
 <ul>
 <li>R Studio runs in the background. Very occasionally, I can find useful troubleshooting information here.</li>
-<li>More commonly, I open my R Markdown document so that it takes the whole screen and I work directly, right here.</li>
+<li>More commonly, I open my R Markdown document so that it takes the whole screen.</li>
 </ul></li>
 </ul>
 </div>
@@ -540,9 +539,9 @@ div.csl-indent {
 </div>
 <div id="script-in-chunks-and-everything-else-in-the-inline-text-sections" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Script in chunks and everything else in the “inline text” sections</h3>
-<p>The only thing in the chunks should be script for running R. You can also hashtag-out script so it won’t run.</p>
-<p>You can put almost anything you want in the “inline text with simple formatting.” Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold, etc.) is found here: <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="uri">https://rmarkdown.rstudio.com/authoring_basics.html</a></p>
-<p>“Chunks” start and end with with those three little tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will DISAPPEAR (if there are “```” )and your script wont run) if those tic marks are missing or showing up in the wrong place.</p>
+<p>The only thing in the chunks should be script for running R. You can also hashtag-out comments so they won’t run.</p>
+<p>You can put almost anything you want in the “inline text with simple formatting.” Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold) is found here: <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="uri">https://rmarkdown.rstudio.com/authoring_basics.html</a></p>
+<p>“Chunks” start and end with with three little tics and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.</p>
 <p>The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i</p>
 </div>
 <div id="managing-packages" class="section level3" number="2.3.3">
@@ -554,27 +553,22 @@ div.csl-indent {
 <li>You can run the entire chunk by selecting the green arrow in the upper right of the chunk.</li>
 <li>You can run all the script prior to any chunk by clicking the middle symbol (grey down arrow)</li>
 </ul>
-<p>ONCE A PACKAGE HAS BEEN INSTALLED, replace the hashtag. It makes a mess to continue to re-run this code for installing packages (after they have already been installed).</p>
-<p>To make a package operable, you need to open it through the library. This process must be repeated EACH TIME YOU RESTART R.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Ready.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages (&quot;foreign&quot;)</span></span>
-<span id="cb6-2"><a href="Ready.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages (&quot;psych&quot;)</span></span>
-<span id="cb6-3"><a href="Ready.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (psych)</span></code></pre></div>
-<p>It takes awhile to learn which package is used for which task. A complete analysis (e.g., preliminary statistics, primary statistics, creating tables and figures) will require a number of packages. Many researchers like to list them all at in a complete section near the top of an .rmd file. In my lessons, I will include an “install-if-needed” section at the top that (hopefully) includes all the packages we use. My personal practice is to open the package (using the “library(package)” command) as I need it. For me this serves two purposes:</p>
+<p>Once a package has been installed, replace the hashtag. It can be problematic to continue to re-run this code for installing packages (after they have already been installed).</p>
+<p>To make a package operable, you need to open it through the library. This process must be repeated each time you restart R.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Ready.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages (&quot;psych&quot;)</span></span>
+<span id="cb6-2"><a href="Ready.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (psych)</span></code></pre></div>
+<p>It takes awhile to learn which package is used for which task. A complete analysis (e.g., preliminary statistics, primary statistics, creating tables and figures) will require a number of packages. Many researchers like to list them all at in a complete section near the top of an .rmd file. In my lessons, I will include an “install-if-needed” section at the top that (hopefully) includes all the packages we use. My personal practice is to open the package by using double colons between the package name and function with each function that requires a package. For me this serves two purposes:</p>
 <ul>
 <li>It helps me remember (and continue to learn) which package is used for which task, and</li>
-<li>(Possibly) helps prevent packages who share function names to not get confused with each other.
-<ul>
-<li>Another best practice for avoiding this problem is to name the package with two colons in front of the function (psych::describe)</li>
-</ul></li>
+<li>(Possibly) helps prevent packages who share function names to not get confused with each other.</li>
 </ul>
 <p>Below is an example of the script that will appear near the beginning of each lesson. When the hashtags are removed, it checks to see if these packages are available to the user.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Ready.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb7-2"><a href="Ready.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(foreign)){install.packages(&quot;foreign&quot;)} #makes it possible to import data from packages, especially SPSS</span></span>
-<span id="cb7-3"><a href="Ready.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)} #psych package is useful for a variety of things we do</span></span></code></pre></div>
+<span id="cb7-2"><a href="Ready.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)} #psych package is useful for a variety of things we do</span></span></code></pre></div>
 </div>
 <div id="upload-the-data" class="section level3" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> Upload the data</h3>
-<p>When conducted properly, the data will appear as an object in the global environment.</p>
+<p>When imported (or simulated) properly, data will appear as an object in the global environment.</p>
 <p>In the context of this OER, I will be simulating data right in each lesson for use in the lesson. This makes the web-based platform more <em>portable.</em> This means that when working the problems in the chapter we do not (a) write the data to a file and (b) import data from files. Because these are essential skills, I will demonstrate this process here – starting with simulating data.</p>
 <p>At this point, simulating data is beyond the learning goals I have established for the chapter. I do need to include the code so that we get some data. The data I am simulating is used in the <a href="oneway.html#oneway">one-way ANOVA lesson</a>. The data is from the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> random clinical trial.</p>
 <p>In this simulation, I am simply creating an ID number, a condition (High, Low, Control), and a score on the dependent variable, “Accurate.” More information about this study is included in the <a href="oneway.html#oneway">one-way ANOVA chapter</a>.</p>
@@ -597,19 +591,20 @@ div.csl-indent {
 <p>Importing this object back into the R environment can be accomplished with some simple code. For the sake of demonstration,</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Ready.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to save the df as an .csv (think &quot;Excel lite&quot;) file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
 <span id="cb10-2"><a href="Ready.html#cb10-2" aria-hidden="true" tabindex="-1"></a>from_CSV <span class="ot">&lt;-</span> <span class="fu">read.csv</span> (<span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>The advantage of working with .csv files is that it is then easy to inspect and manipulate them without R. The disadvantage of .csv files is that each time they are imported they lose any formatting you may have meticulously assigned to them.</p>
+<p>The advantage of working with .csv files is that it is then easy to inspect and manipulate them outside of the R environment. The disadvantage of .csv files is that each time they are imported they lose any formatting you may have meticulously assigned to them.</p>
 </div>
 <div id="to-and-from-.rds-files" class="section level4" number="2.3.4.2">
 <h4><span class="header-section-number">2.3.4.2</span> To and from .rds files</h4>
-<p>While it is easy enough to rerun the code (or copy it from data prep .rmd and paste it into an .rmd you are using for advanced analysis), there is an easier way! This is to save the data as an R object. This preserves all the characteristics of the data.</p>
+<p>While it is easy enough to rerun the code (or copy it from data prep .rmd and paste it into an .rmd you are using for advanced analysis), there is a better way! Saving the data as an R object preserves all the of its characteristics.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Ready.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to save the df as an .rds file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
 <span id="cb11-2"><a href="Ready.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(Acc_sim30, <span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
 <p>This file will save to your computer (and you can send it to colleagues). However, it is not easy to “just open it” in Excel. To open an .rds file and use it (whether you created it or it is sent to you by a colleague), use the following code:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Ready.html#cb12-1" aria-hidden="true" tabindex="-1"></a>from_rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
+<p>If you are the recipient of an R object, but want to view it as a .csv, simply import the .rds then use the above code to export it as a .csv.</p>
 </div>
 <div id="from-spss-files" class="section level4" number="2.3.4.3">
 <h4><span class="header-section-number">2.3.4.3</span> From SPSS files</h4>
-<p>Your data may come to you in a variety of ways. One of the most common is SPSS. The <em>foreign</em> package is popular for importing SPSS data. Below is code which would import an SPSS file <em>if I had created one</em>. You’ll see that this script is hashtagged out because I do not have an SPSS file.</p>
+<p>Your data may come to you in a variety of ways. One of the most common is SPSS. The <em>foreign</em> package is popular for importing SPSS data. Below is code which would import an SPSS file <em>if I had created one</em>. You’ll see that this script is hashtagged out because I rarely use SPSS and do not have a handy file to demo.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Ready.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#opening an SPSS file requires the foreign package which I opened earlier</span></span>
 <span id="cb13-2"><a href="Ready.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#from_SPSS &lt;- foreign::read.spss (&quot;SPSSdata.sav&quot;, use.value.labels = TRUE, to.data.frame = TRUE)</span></span></code></pre></div>
 </div>
@@ -617,9 +612,8 @@ div.csl-indent {
 </div>
 <div id="quick-demonstration" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> quick demonstRation</h2>
-<p>Let’s run some simple descriptives. In the script below, I am using the <em>psych</em> package. Descriptive statistics will appear for all the data in the dataframe and the output will be rounded to three spaces.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Ready.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb14-2"><a href="Ready.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(psych<span class="sc">::</span><span class="fu">describe</span>(Acc_sim30),<span class="dv">3</span>)</span></code></pre></div>
+<p>Let’s run some simple descriptives. In the script below, I am using the <em>psych</em> package. Descriptive statistics will appear for all the data in the dataframe and the output will be rounded to three spaces. Note that rather than opening the psych package with the library function, I have used the double colon convention.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Ready.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(psych<span class="sc">::</span><span class="fu">describe</span>(Acc_sim30),<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
 ID*         1 90 45.50 26.12  45.50   45.50 33.36   1  90    89  0.00    -1.24
 COND*       2 90  2.00  0.82   2.00    2.00  1.48   1   3     2  0.00    -1.53
@@ -636,6 +630,7 @@ Accurate 0.07</code></pre>
 <ul>
 <li>In this OER, I am writing the lessons in R markdown (.rmd files), with the package <em>bookdown</em> as a helper, and knitting the files to the .html format. In prior years, I knitted these documents to .doc formats. There are numerous possibilities!</li>
 <li>The package <em>papaja</em> is designed to prepare APA manuscripts where the writing, statistics, and references are all accomplished in a single file. This process contributes to replicability and reproducibility.</li>
+<li>If you are using the PDF or ebook version of this OER you will realize that it is also possible to render to these formats. Albeit slighy more complicated, this is possible, too! MOre detailed instructions for this are provided in the <a href="https://lhbikos.github.io/extRas/">extRas</a> mini-volume of <a href="https://lhbikos.github.io/BikosRVT/ReCenter.html">ReCentering Psych Stats</a>.</li>
 </ul>
 </div>
 <div id="troubleshooting-in-r-markdown-1" class="section level2" number="2.6">
@@ -644,16 +639,16 @@ Accurate 0.07</code></pre>
 <li>In a given set of operations, you must run/execute each piece of code in order: every, single, time. That is, all the packages have to be in your library and activated.
 <ul>
 <li>If you open an .rmd file, you cannot just scroll down to make a boxplot. You need to run any <em>prerequisite</em> script (like loading files, putting the data in the global environment, etc.)</li>
-<li>Lost? clear your global environment (broom icon in the upper right) and start over. Fresh starts are good.</li>
+<li>Lost? Clear your global environment (broom icon in the upper right) and start over. Fresh starts are good.</li>
 </ul></li>
-<li>Your .rmd file and your data need to be stored in the same file folder. These should be separate for separate projects, no matter how small.</li>
-<li>Type any warnings you get into a search engine. Odds are, you’ll get some decent hints in a manner of seconds. Especially at first, these are common errors:
+<li>Your .rmd file and your data need to be stored in the same file folder. Make unique folders for each project (even if each contains only a few files).</li>
+<li>If you have tried what seems apparent to you and cannot solve your challenge, do not wait long before typing warnings into a search engine. Odds are, you’ll get some useful hints in a manner of seconds. Especially at first, these are common errors:
 <ul>
-<li>The package isn’t loaded</li>
-<li>The .rmd file hasn’t been saved yet, or isn’t saved in the same folder as the data</li>
-<li>Errors of punctuation or spelling</li>
+<li>The package isn’t loaded.</li>
+<li>The .rmd file hasn’t been saved yet, or isn’t saved in the same folder as the data.</li>
+<li>There are errors in punctuation or spelling.</li>
 </ul></li>
-<li>Restart R (it’s quick – not like restarting your computer)</li>
+<li>Restart R (it’s quick – not like restarting your computer). I like to restart and clear my output and environment so that I can better track my order of operations.</li>
 </ul>
 </div>
 <div id="just-why-are-we-transitioning-to-r" class="section level2" number="2.7">
@@ -673,11 +668,11 @@ Accurate 0.07</code></pre>
 <li>If this stresses you out, move to simply copying the code into the .rmd file and running it. If you continue to have errors, you may have violated one of the best practices above (ask, “Is the package activated?” “Are the data and .rmd files in the same place?” “Is all the prerequisite script run?”).</li>
 <li>Still overwhelmed? Keep moving forward by (retrieving the original.rmd file from the GitHub repository) opening a copy of the .rmd file and just “run it along” with the lecture. Spend your mental power trying to understand what each piece does so you can translate it for any homework assignments. My suggestions for practice aspire to be parallel to the lecture with no sneaky trix.</li>
 </ul></li>
-<li>Copy script that works elsewhere and replace it with your datafile, variables, etc.<br />
+<li>Copy script that works elsewhere and replace it with your datafile, variables, and so forth.<br />
 </li>
-<li>The leaRning curve is steep, but not impossible. Gladwell <span class="citation">(<a href="#ref-gladwell_outliers_2008" role="doc-biblioref">2008</a>)</span> reminds us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.</li>
-<li>Updates to R, R Studio, and the packages are NECESSARY, but can also be temporarily problematic. It could very well be that updates cause programs/script to fail (e.g., “X has been deprecated for version X.XX”). Moreover, this very well could have happened between our distribution of the lecture and your attempt to use it days later. My practice is to update R, R Studio, and my packages about two weeks prior to the start of each academic term.</li>
-<li>Embrace your downward dog. Also, walk away, go for a bicycle ride, then come back.</li>
+<li>The leaRning curve is steep, but not impossible. Gladwell <span class="citation">(<a href="#ref-gladwell_outliers_2008" role="doc-biblioref">2008</a>)</span> taught us that it takes about 10,000 hours to get great at something (2,000 to get reasonably competent). Practice. Practice. Practice.</li>
+<li>Updates to R, R Studio, and the packages are necessary, but can also be problematic. Sometimes updates cause programs/script to fail (e.g., “X has been deprecated for version X.XX”). My personal practice is to update R, R Studio, and the packages a week or two before each academic term. I expect that prior scripts may need to be updated or revised with package updates and incongruencies between base R, R Studio, and the packages.</li>
+<li>Embrace your downward dog. And square breathing. Also, walk away, then come back.</li>
 </ul>
 </div>
 <div id="resources-for-getting-started-1" class="section level2" number="2.9">

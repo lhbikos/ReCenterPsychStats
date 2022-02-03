@@ -44,13 +44,13 @@ There are a number of ways you can access this resource. You may wish to try sev
 
 R can be oveRwhelming. Jumping right into advanced statistics might not be the easiest way to start. However, in these chapters, I provide complete code for every step of the process, starting with uploading the data. To help explain what R script is doing, I sometimes write it in the chapter text; sometimes leave hastagged-comments in the chunks; and, particularly in the accompanying screencasted lectures, try to take time to narrate what the R script is doing.  
 
-I've found that, somewhere on the internet, there's almost always a solution to what I'm trying to do. I am frequently stuck and stumped and have spent hours searching the internet for even the tiniest of things.  When you watch my videos, you may notice that in my R studio, there is a "scRiptuRe" file. I takes notes on the solutions and scripts here -- using keywords that are meaningful to me so that when I need to repeat the task, I can hopefully search my own prior solutions and find a fix or a hint.
+I've found that, somewhere on the internet, there's almost always a solution to what I'm trying to do. I am frequently stuck and stumped and have spent hours searching the internet for even the tiniest of tasks. When you watch my videos, you may notice that in my R studio, there is a "scRiptuRe" file. I takes notes on the solutions and scripts here -- using keywords that are meaningful to me so that when I need to repeat the task, I can hopefully search my own prior solutions and find a fix or a hint.
 
 ### Base R
 
 The base program is free and is available here:  https://www.r-project.org/  
 
-Because R is already on my machine (and because the instructions are sufficient), I will not walk through the instllation, but I will point out a few things.
+Because R is already on my machine (and because the instructions are sufficient), I will not walk through the installation, but I will point out a few things.
 
 * Follow the instructions for your operating system (Mac, Windows, Linux)
 * The "cran" (I think "cranium") is the *Comprehensive R Archive Network.*  In order for R to run on your computer, you have to choose a location.  Because proximity is somewhat related to processing speed, select one that is geographically "close to you." 
@@ -58,17 +58,17 @@ Because R is already on my machine (and because the instructions are sufficient)
 
 ### R Studio
 
-*R Studio* is the desktop application I work in R.  It's a separate download. Choose the free, desktop, option that is appropriate for your operating system:   https://www.rstudio.com/products/RStudio/
+*R Studio* is the desktop application I use for R.  It's a separate download. Choose the free, desktop, option that is appropriate for your operating system:   https://www.rstudio.com/products/RStudio/
 
 * Upper right window:  Includes several tabs; we frequently monitor the
   + Environment: it lists the *objects* that are available to you (e.g., dataframes)
 * Lower right window: has a number of helpful tabs.
-  + Files:  Displays the file structure in your computer's environment.  Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.
-  + Packages:  Lists the packages that have been installed.  If you navigate to it, you can see if it is "on."  You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu.  This information opens in the Help window.
-  + Viewer and Plots are helpful, later, when we can simultaneously look at our output and still work on our script.
+  + *Files*:  Displays the file structure in your computer's environment.  Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.
+  + *Packages*:  Lists the packages that have been installed.  If you navigate to it, you can see if it is "on."  You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu.  This information opens in the Help window.
+  + The *Viewer* and *Plots* tabs will be useful, later, in some advanced statistics when we can simultaneously examine output and still work on script.
 * Primary window
-  + R Studio runs in the background(in the console).  Very occasionally, I can find useful troubleshooting information here.
-  + More commonly, I open my R Markdown document so that it takes the whole screen and I work directly, right here.
+  + R Studio runs in the background (in the *Console*). Very occasionally, I find useful troubleshooting information in the Console.
+  + More commonly, I open my R Markdown document so that it takes the whole screen.
 * *R Markdown* is the way that many analysts write *script*, conduct analyses, and even write up results.  These are saved as .rmd files.
   + In R Studio, open an R Markdown document through File/New File/R Markdown
   + Specify the details of your document (title, author, desired ouput)
@@ -77,7 +77,7 @@ Because R is already on my machine (and because the instructions are sufficient)
 
 ### R Hygiene
 
-Many initial problems in R can be solved with good R hygiene. Here are some suggestions for basic practices.  It can be tempting to "skip this."  However, in the first few weeks of class, these are the solutions I am presenting to my students.
+Many initial problems in R can be solved with good R hygiene. Here are some suggestions for basic practices.  It can be tempting to "skip this."  However, in the first few weeks of class, these are the solutions I am presenting (and repeating, ad nauseum) to my students.
 
 #### Everything is documented in the .rmd file
 
@@ -107,7 +107,7 @@ The easiest way to insert a chunk is to use the INSERT/R command at the top of t
 2021 - 1966
 ```
 
-Each chunk must open and close.  If one or more of your tic marks get deleted, your chunk won't be read as such and your script will not run.  The only thing in the chunks should be script for running R; you can hashtag-out script so it won't run.
+Each chunk must open and close with a series of three tics.  If one or more of the tics is missing, the chunk won't be read as such and the script will not run.  The only thing in the chunks should be script for running R; you can hashtag-out comments to preserve annotations.
 
 Although unnecessary, you can add a brief title for the chunk in the opening row, after the "r."  These create something of a table of contents of all the chunks -- making it easier to find what you did.  You can access them in the "Chunks" tab at the bottom left of R Studio. If you wish to knit a document, you cannot have identical chunk titles.
 
@@ -116,42 +116,49 @@ You can put almost anything you want in the space outside of tics.  Syntax for s
 
 #### Packages
 
-As scientist-practitioners (and not coders), we will rely on *packages* to do our work for us. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, lavaan, apaTables).
+As scientist-practitioners (and not coders), we will rely on *packages* to do much of the work. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, lavaan, apaTables).
 
-Researchers treat packages differently. In these lectures, I list all the packages we will use in an opening chunk that asks R to check to see if the package is installed, and if not, installs it.  
-
-```{r checking for packages}
-if(!require(psych)){install.packages("psych")}
+Researchers treat packages differently. In these lectures, I list the packages we will use in an opening chunk that asks R to check to see if the package is installed, and if not, installs it. In this textbook form I have hashtagged out the command. Simply remove the hashtag to run it.
+```{r }
+#if(!require(psych)){install.packages("psych")}
 ```
 
-To make a package operable, you need to open it through the library.  This process must be repeated each time you restart R. I don't open the package (through the "library(package_name)") command until it is time to use it.  Especially for new users, I think it's important to connect the functions with the specific packages.
+To make a package operable, you need to open it. There are two primary ways to do this. The first is to use the library function.
 
 ```{r opening psych, package, message=FALSE, warning=FALSE}
-#install.packages ("psych")
-library (psych)
+#install.packages ("tidyverse")
+library (tidyverse)
 ```
 
-If you type in your own "install.packages" code, hashtag it out once it's been installed.  It is problematic to continue to re-run this code .
+The second way is to place a double colon between the package and function. This second method has become my preferred practice because it helps me remember what package goes with each function. It can also prevent R hiccups when there are identical function names and R does not know which package to use. Below is an example where I might ask for descriptives from the psych package. Because I have not yet uploaded data, I have hashtagged it out, making the command inoperable.
+
+```{r}
+#psych::describe(mydata)
+```
+
+There are exceptions. One is the *tidyverse* package. Some of my script uses pipes (%>%) and they require tidyverse to be activated this is why you will often see me call the tidyverse package with the *library()* function (as demonstrated above.)
+
+If you type in your own "install.packages" code, hashtag it out once it's been installed.  It can be problematic to re-run this code.
 
 #### Knitting
 
-An incredible feature of R Markdown is its capacity to *knit* to HTML, powerpoint, or word. If you access the .rmd files for this OER, you can use annotate or revise them to suit your purposes.  If you redistribute them, though, please honor the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License with a citation.
+An incredible feature of R Markdown is its capacity to *knit* to HTML, PowerPoint, or Word. If you access the .rmd files for this OER, you can annotate, revise, or remix them to suit your purposes.  If you redistribute them, though, please honor the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License with a citation.
 
 ### tRoubleshooting in R maRkdown
 
 Hiccups are normal.  Here are some ideas that I have found useful in getting unstuck.
 
-* In an R script, you must have everything in order -- Every. Single. Time. 
+* In an R script, you must have everything in order: Every. Single. Time. 
   + All the packages have to be in your library and activated; if you restart R, you need to reload each package.
   + If you open an .rmd file and want a boxplot, you cannot just scroll down to that script.  You need to run any *prerequisite* script (like loading the package, importing data, putting the data in the global environment, etc.)
-  + Do you feel lost?  clear your global environment (broom) and start at the top of the R script. Frequent, fresh starts are good.
+  + If you get lost, clear your global environment with the broom icon, then start at the top of the R script. Frequent, fresh starts are a best practice.
 * Your .rmd file and your data need to be stored in the same file folder.  These should be separate for separate projects, no matter how small.
 * Type any warnings you get into a search engine.  Odds are, you'll get some decent hints in a manner of seconds.  Especially at first, these are common errors:
-  + The package isn't loaded (if you restarted R, you need to reload your packages)
-  + The .rmd file has been saved yet, or isn't saved in the same folder as the data
-  + Errors of punctuation or spelling
+  + The package isn't loaded (if you restarted R, you need to reload your packages). Using the double colon procedure to open a package (i.e., *package::function()*) can mitigate this problem.
+  + The .rmd file has been saved yet, or isn't saved in the same folder as the data.
+  + There are errors in punctuation or spelling.
 * Restart R (it's quick -- not like restarting your computer)
-* If you receive an error indicating that a function isn't working or recognized, and you have loaded the package, type the name of the package in front of the function with two colons (e.g., psych::describe(df). If multiple packages are loaded with functions that have the same name, R can get confused.
+* If you receive an error indicating that a function isn't working or recognized, and you have loaded the package, type the name of the package in front of the function with two colons (e.g., psych::describe(df)). If multiple packages are loaded with functions that have the same name, R can get confused.
 
 ### stRategies for success
 
@@ -159,10 +166,10 @@ Hiccups are normal.  Here are some ideas that I have found useful in getting uns
   + The *mechanical is also the conceptual*. Especially when it is *simpler*, do try to retype the script into your own .rmd file and run it. Track down the errors you are making and fix them.
   + If this stresses you out, move to simply copying the code into the .rmd file and running it.  If you continue to have errors, you may have violated one of the best practices above (Is the package loaded? Are the data and .rmd files in the same place? Is all the prerequisite script run?).
   + Still overwhelmed?  Keep moving forward by downloading a copy of the .rmd file that accompanies any given chapter and just "run it along" with the lecture. Spend your mental power trying to understand what each piece does. Then select a practice problem that is appropriate for your next level of growth. 
-* Copy script that works elsewhere and replace it with your datafile, variables, etc.  
-* The leaRning curve is steep, but not impossible.  Gladwell[-@gladwell_outliers_2008] reminds us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.
-* Updates to R, R Studio, and the packages are NECESSARY, but can also be problematic.  It could very well be that updates cause programs/script to fail (e.g., "X has been deprecated for version X.XX").  Moreover, this very well could have happened between my distribution of these resources and your attempt to use it.  My personal practice is to update R, R Studio, and the packages a week or two before each academic term.
-* Embrace your downward dog.  Also, walk away, then come back.
+* Copy script that works elsewhere and replace it with your datafile, variables, and so forth.  
+* The leaRning curve is steep, but not impossible.  Gladwell [-@gladwell_outliers_2008] taught us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.
+* Updates to R, R Studio, and the packages are necessary, but can also be problematic. Sometimes updates cause programs/script to fail (e.g., "X has been deprecated for version X.XX"). My personal practice is to update R, R Studio, and the packages a week or two before each academic term. I expect that prior scripts may need to be updated or revised with package updates and incongruencies between base R, R Studio, and the packages.
+* Embrace your downward dog. And square breathing.  Also, walk away, then come back.
   
 
 ### Resources for getting staRted
