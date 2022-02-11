@@ -8,7 +8,7 @@
 ]{book}
 \title{ReCentering Psych Stats: Analysis of Variance}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{02 Feb 2022}
+\date{10 Feb 2022}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -157,7 +157,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 02 Feb 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 10 Feb 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -1363,7 +1363,7 @@ In the \emph{psych} package, the \emph{pairs.panels()} produces these.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 What do we observe?
 
@@ -1497,7 +1497,7 @@ Element & Points Poss & Points Earned \\
 
 One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor. For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables: a factor and a dependent variable.
 
-The factor must be categorical in nature, dividing the cases into two or more groups or levels. These levels could be ordered (e.g., placebo, low dose, high dose) or unordered (e.g., cognitive-behavioral, existential, psychodynamic). The dependent variable must be assessed on a quantitative, continuous dimension. The ANOVA F test evaluates whether population means on the dependent variable differ across the levels of the factor.
+The factor must be categorical in nature, dividing the cases into two or more groups or levels. These levels could be ordered (e.g., placebo, low dose, high dose) or unordered (e.g., cognitive-behavioral, existential, psychodynamic). The dependent variable must be assessed on a quantitative, continuous dimension. The ANOVA \emph{F} test evaluates whether population means on the dependent variable differ across the levels of the factor.
 
 One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter we will examine some some of the requirements (assumptions) of the statistic in greater detail.
 
@@ -1532,7 +1532,7 @@ Learning objectives from this lecture include the following:
 
 In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results \emph{should} map onto the ones obtained in the lecture.
 
-The second option comes from the research vignette. The Tran et al. \citep{tran_you_2014} has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (\emph{Accurate}) in this lecture; the second is suggested as homework.
+The second option comes from the research vignette. The Tran et al. \citeyearpar{tran_you_2014} vignette has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (\emph{Accurate}) in this lecture; the second is available as one of the homework options.
 
 As a third option, you are welcome to use data to which you have access and is suitable for two-way ANOVA. In either case, you will be expected to:
 
@@ -1562,9 +1562,21 @@ In preparing this chapter, I drew heavily from the following resource(s) that ar
 \begin{itemize}
 \tightlist
 \item
-  Chapter 14, Comparing Several Means (one-Way ANOVA) From Danielle Navarro's \href{https://learningstatisticswithr.com/}{Learning Statistics with R}
+  Navarro, D. (2020). Chapter 14: Comparing Several Means (one-Way ANOVA). In \href{https://learningstatisticswithr.com/}{Learning Statistics with R - A tutorial for Psychology Students and other Beginners}. Retrieved from \url{https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book\%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Navarro's OER includes a good mix of conceptual information about one-way ANOVA as well as R code. My code/approach is a mix of Green and Salkind's \citeyearpar{green_using_2014}, Field's \citeyearpar{field_discovering_2012}, Navarro's \citeyearpar{navarro_chapter_2020}, and other techniques I have found on the internet and learned from my students.
+  \end{itemize}
 \item
-  Chapter 5.5.2, Simulating data for one-way between subjects design with 3 levels from Matthew J. C. Crump's \href{https://crumplab.github.io/programmingforpsych/simulating-and-analyzing-data-in-r.html\#single-factor-anovas-data-simulation-and-analysis}{Programming for Psychologists: Data Creation and Analysis}
+  Crump, M. J. C. (2018). Chapter 5.5.2, Simulating data for one-way between subjects design with 3 levels. In \href{https://crumplab.github.io/programmingforpsych/simulating-and-analyzing-data-in-r.html\#single-factor-anovas-data-simulation-and-analysis}{Programming for Psychologists: Data Creation and Analysis}. Retrieved from \url{https://crumplab.github.io/programmingforpsych/simulating-and-analyzing-data-in-r.html\#single-factor-anovas-data-simulation-and-analysis}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Although this reference is on simulating data, the process of simulation can provide another perspective on one-way ANOVA.
+  \end{itemize}
 \item
   Tran, A. G. T. T., \& Lee, R. M. (2014). You speak English well! Asian Americans' reactions to an exceptionalizing stereotype. \emph{Journal of Counseling Psychology, 61}(3), 484--490. \url{https://doi.org/10.1037/cou0000034}
 
@@ -1603,7 +1615,7 @@ The following is a proposed workflow for conducting a one-way ANOVA.
 \begin{figure}
 \centering
 \includegraphics{images/oneway/OnewayWrkFlw.jpg}
-\caption{An image of a workflow for the one-way ANOVA}
+\caption{A colorful image of a workflow for the one-way ANOVA}
 \end{figure}
 
 \begin{enumerate}
@@ -1676,15 +1688,15 @@ Tran and Lee \citeyearpar{tran_you_2014} reported results from two ANOVAs and 4 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Accurate} is the DV we will be exploring in class. Participants rated how \emph{accurate} they believed their partner's impression of them was (0 = \emph{very inaccurate}, 3 = \emph{very accurate}).
+  \textbf{Accurate} is the DV we will be exploring in this lesson. Participants rated how \emph{accurate} they believed their partner's impression of them was (0 = \emph{very inaccurate}, 3 = \emph{very accurate}).
 \item
-  \textbf{moreTalk} is the DV assigned for homework. Participants rated how much longer they would continue the interaction with their partner compared to their interactions in general (-2 = \emph{much less than average}, 0 = \emph{average}, 2 = \emph{much more than average}).
+  \textbf{moreTalk} is the DV suggested as a practice problem. Participants rated how much longer they would continue the interaction with their partner compared to their interactions in general (-2 = \emph{much less than average}, 0 = \emph{average}, 2 = \emph{much more than average}).
 \end{itemize}
 
 \hypertarget{data-simulation}{%
 \subsection{Data Simulation}\label{data-simulation}}
 
-Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean), and standard deviation (sd) for each of the groups \citep{crump_simulating_2018}. In creating this simulation, I used the data from Table 1 in the Tran and Lee \citeyearpar{tran_you_2014} article. Having worked the problem several times, I made one change. The group sizes in the original study were 23, 22, and 23. To ensure that we would have statistically significant results in our worked example, I increased the sample sizes to 30 for each group. In this way we have a perfectly \emph{balanced} (equal cell sizes) design.
+Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean), and standard deviation (sd) for each of the groups \citep{crump_simulating_2018}. In creating this simulation, I used the data from Table 1 in the Tran and Lee \citeyearpar{tran_you_2014} article. Having worked the problem several times, I made one change. The group sizes in the original study were 23, 22, and 23. To increase the probability that we would have statistically significant results in our worked example, I increased the sample sizes to 30 for each group. In this way we have a perfectly \emph{balanced} (equal cell sizes) design.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1694,8 +1706,8 @@ Simulating data for a one-way ANOVA requires the sample size (rnorm), mean (mean
 \NormalTok{Accurate[Accurate}\SpecialCharTok{\textgreater{}}\DecValTok{3}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{3} \CommentTok{\#set upper bound for DV}
 \NormalTok{Accurate[Accurate}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{0} \CommentTok{\#set lower bound for DV}
 \NormalTok{moreTalk }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{82}\NormalTok{, }\AttributeTok{sd=}\FloatTok{0.91}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean=}\SpecialCharTok{{-}}\FloatTok{0.39}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.66}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \SpecialCharTok{{-}}\FloatTok{0.04}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.71}\NormalTok{))}\CommentTok{\#sample size, M and SD for each group}
-\NormalTok{moreTalk[moreTalk}\SpecialCharTok{\textgreater{}}\DecValTok{2}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{2} \CommentTok{\#set upper bound for DV}
-\NormalTok{moreTalk[moreTalk}\OtherTok{\textless{}{-}}\DecValTok{2}\NormalTok{]}\OtherTok{\textless{}{-}}\SpecialCharTok{{-}}\DecValTok{2} \CommentTok{\#set lower bound for DV}
+\NormalTok{moreTalk[moreTalk}\SpecialCharTok{\textgreater{}}\DecValTok{2}\NormalTok{]}\OtherTok{\textless{}{-}} \DecValTok{2} \CommentTok{\#set upper bound for DV}
+\NormalTok{moreTalk[moreTalk}\OtherTok{\textless{}{-}}\DecValTok{2}\NormalTok{]}\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\DecValTok{2} \CommentTok{\#set lower bound for DV}
 \NormalTok{ID}\OtherTok{\textless{}{-}}\FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{90}\NormalTok{)) }\CommentTok{\#IDs for participants}
 \NormalTok{COND}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{)) }\CommentTok{\#name factors and identify how many in each group; should be in same order as first row of script}
 \NormalTok{accSIM30 }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(ID, COND, Accurate, moreTalk) }\CommentTok{\#groups the 3 variables into a single df:  ID\#, DV, condition}
@@ -1754,7 +1766,7 @@ If we look at this simple dataset, we see that we see that
   \begin{itemize}
   \tightlist
   \item
-    it is presently in ``num'' (numerical) format, this is satisfactory.
+    it is presently in ``num'' (numerical) format, this is an appropriate format.
   \end{itemize}
 \item
   \textbf{moreTalk} is a continuous variable
@@ -1762,11 +1774,11 @@ If we look at this simple dataset, we see that we see that
   \begin{itemize}
   \tightlist
   \item
-    it is presently in ``num'' (numerical) format, this is satisfactory.
+    it is presently in ``num'' (numerical) format, this is an appropriate format
   \end{itemize}
 \end{itemize}
 
-There are many ways to convert variables to factors; here's one of the simplest.
+There are many ways to convert variables to factors; here is one of the simplest.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1791,9 +1803,9 @@ Let's recheck the structure
  $ moreTalk: num  -0.64 -2 -0.25 0.146 -0.996 ...
 \end{verbatim}
 
-By default, R orders factors alphabetically. This means, analysis will assume that ``Control'' (C) is the lowest condition, then ``High,'' then ``Low.'' Since these have theoretically ordered values, we want them in the order of ``Control,'' ``Low,'' ``High.''
+By default, R orders factors alphabetically. This means, analyses will assume that ``Control'' (C) is the lowest condition, then ``High,'' then ``Low.'' Since these have theoretically ordered values, we want them in the order of ``Control,'' ``Low,'' ``High.''
 
-Here is the script to create a an ordered factor.
+Here is the script to create an ordered factor. The order in which the variables are entered in the concatenated list (``c'') establishes the order (e.g., levels).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1821,7 +1833,7 @@ Again, we can check our work.
 
 Now our variables are suitable for analysis.
 
-At this point, you may wish to export and/or import the data as a .csv (think ``Excel lite'') or .rds (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so. The data should save in the same folder as the .rmd file. Therefore, it is really important (think good R hygiene) have organized your folders so that your .rmd and datafiles are co-located.
+At this point, you may wish to export and/or import the data as a .csv (think ``Excel lite'') or .rds (R object that preserves the information about the variables -- such changing COND to an ordered factor), here is the code to do so. The data should save in the same folder as the .rmd file. Therefore, it is really important (think, ``good R hygiene'') to have organized your folders so that your .rmd and data files are co-located.
 
 I have hashtagged out the code. If you wish to use it, delete the hashtags. Although I show the .csv code first, my personal preference is to save R data as .rds files. While they aren't easy to ``see'' as an independent file, they retain the formatting of the variables. For a demonstration, refer back to the \protect\hyperlink{Ready}{Ready\_Set\_R} lesson.
 
@@ -1870,11 +1882,13 @@ Note that I renamed each of these data objects to reflect the form in whic I sav
 \hypertarget{exploring-the-distributional-characteristics-numerically}{%
 \subsection{Exploring the Distributional Characteristics Numerically}\label{exploring-the-distributional-characteristics-numerically}}
 
-Let's continue data exploration. We will do this several ways so that you will have several tools for such exploration. In this first exploration, I will demonstrate how to grab a quick mean.
+We will explore the data such that you will have several tools for future exploration. In this first demonstration I will quickly produce a mean and standard deviation.
+
+These functions are in base R. The \emph{aggregate()} function lets R know we want output by a grouping variable. We then list the variable of interest, a tilda (I think of the word ``by''), and then the grouping variable (I think ``Accurate by COND''). Finally we list the dataframe and the statistic (e.g., mean or standard deviation). R is case sensitive to check your capitalization if your code fails to execute.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{aggregate}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, mean)}
+\FunctionTok{aggregate}\NormalTok{(Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, mean)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1885,11 +1899,9 @@ Let's continue data exploration. We will do this several ways so that you will h
 3    High 1.152815
 \end{verbatim}
 
-And now a standard deviation.
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{aggregate}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, sd)}
+\FunctionTok{aggregate}\NormalTok{(Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, sd)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1900,7 +1912,7 @@ And now a standard deviation.
 3    High 0.6587486
 \end{verbatim}
 
-Before looking at the graphs, we can see that racially loaded \emph{high} condition has the lowest accuracy score and the largest variability. Let's take a look at the graphs to ``see'' this.
+Before looking at graphs, we can see that racially loaded \emph{high} condition has the lowest accuracy score and the largest variability. Let's produce some helpful figures so that we can visualize this.
 
 \hypertarget{exploring-the-distributional-characteristics-graphically}{%
 \subsection{Exploring the Distributional Characteristics Graphically}\label{exploring-the-distributional-characteristics-graphically}}
@@ -1927,14 +1939,14 @@ The following object is masked from 'package:stats':
 \begin{Highlighting}[]
 \FunctionTok{plotmeans}\NormalTok{ (}\AttributeTok{formula =}\NormalTok{ Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\CommentTok{\#plots DV by IV}
            \AttributeTok{data =}\NormalTok{ accSIM30, }\CommentTok{\#identifies the data frame}
-           \AttributeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\CommentTok{\#let\textquotesingle{}s us specify a label for the x{-}axis}
-           \AttributeTok{ylab =} \StringTok{"Accuracy of Confederate\textquotesingle{}s Impression"}\NormalTok{, }\CommentTok{\#let\textquotesingle{}s us specify a label for the y{-}axis}
-           \AttributeTok{n.label =} \ConstantTok{TRUE}  \CommentTok{\#we can even specify the sample size for each level of the group}
+           \AttributeTok{xlab =} \StringTok{"Racial Loading Condition"}\NormalTok{, }\CommentTok{\#custom label for the x{-}axis}
+           \AttributeTok{ylab =} \StringTok{"Accuracy of Confederate\textquotesingle{}s Impression"}\NormalTok{, }\CommentTok{\#custom label for the y{-}axis}
+           \AttributeTok{n.label =} \ConstantTok{TRUE}  \CommentTok{\#lists the sample size for each level of the group}
 \NormalTok{           )}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-46-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-44-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1951,7 +1963,7 @@ Boxplots, with the \emph{boxplot2()} function provide another view of our data. 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-45-1.pdf}
 
 From both the boxplot and the linegraph with error bars, we can see that participants in the low racial loading condition have the highest accuracy ratings. This is followed by the control and then high racial loading conditions. Are these differences statistically significant? This is why we need the one-way ANOVA.
 
@@ -1960,17 +1972,13 @@ From both the boxplot and the linegraph with error bars, we can see that partici
 
 ANOVA was developed by Sir Ronald Fisher in the early 20th century. The name is a bit of a misnomer -- rather than analyzing \emph{variances}, we are investigating differences in \emph{means} (but the formula does take variances into consideration\ldots stay tuned).
 
-ANOVA falls squarely within the tradition of \textbf{null hypothesis significance testing} (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. \emph{Note. Tran and Lee \citeyearpar{tran_you_2014} do not list such.}
+ANOVA falls squarely within the tradition of \textbf{null hypothesis significance testing} (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. \emph{Note. In their article, Tran and Lee \citeyearpar{tran_you_2014} do not list such.}
 
 In our example, we would hypothesize that the population means (i.e., Asian or Asian American individuals in the U.S.) are equal:
-
 \[H_{O}:  \mu _{1} = \mu _{2} = \mu _{3}\]
-
 There are an number of ways that the \(H_{O}\) could be false. Here are a few:
-
 \[H_{a1}:  \mu _{1} \neq \mu _{2} \neq \mu _{3}\]
 \[H_{a2}:  \mu _{1} =  \mu _{2} > \mu _{3}\]
-
 \[H_{a3}:  \mu _{1} >  \mu _{2} > \mu _{3}\]
 The bottom line is that if we have a statistically significant omnibus ANOVA (i.e., the test of the overall significance of the model) and the \(H_{O}\) is false, somewhere between the three levels of the grouping factor, the means are statistically significantly different from each other.
 
@@ -1990,30 +1998,30 @@ In evaluating the differences between means, one-way ANOVA compares:
   between group variance to within group variance
 \end{itemize}
 
-The ratio of these variances is the \textbf{F-ratio}.
+The ratio of these variances is the \emph{F}-ratio.
 
 Navarro \citeyearpar{navarro_book_2020} offers a set of useful figures to compare between- and within-group variation.
 
 \begin{figure}
 \centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-48-1.pdf}
-\caption{\label{fig:unnamed-chunk-48}Graphical illustration of ``between groups'' variation}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-46-1.pdf}
+\caption{\label{fig:unnamed-chunk-46}Graphical illustration of ``between groups'' variation}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-49-1.pdf}
-\caption{\label{fig:unnamed-chunk-49}Graphical illustration of ``within groups'' variation}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-47-1.pdf}
+\caption{\label{fig:unnamed-chunk-47}Graphical illustration of ``within groups'' variation}
 \end{figure}
 
-Perhaps an oversimplification, but to the degree that between-group variance (i.e,. model variance) is greater than within-group variance (i.e., residual variance) there may be support to suggest that there are statistically significant differences between groups.
+When between-group variance (i.e,. model variance) is greater than within-group variance (i.e., residual variance) there may be support to suggest that there are statistically significant differences between groups.
 
-Let's examine how variance is partitioned by hand-calculating sums of squares total, model, and residual.
+Let's examine how variance is partitioned by hand-calculating sums of squares total, model, and residual. Along the way we will use some basic R skills to manipulate the data.
 
 \hypertarget{sums-of-squares-total}{%
 \subsection{Sums of Squares Total}\label{sums-of-squares-total}}
 
-Sums of squares total represents the total amount of variance within our data. Examining the formula(s; there are several ways to consider it) can help us gain a conceptual understanding of this.
+Sums of squares total represents the total amount of variance within our data. Examining the formula(s; there are variants of each) can help us gain a conceptual understanding of this.
 
 In this first version of the formula we can see that the grand (or overall) mean is subtracted from each individual score, squared, and then summed. This makes sense: \emph{sums of squares, total}.
 
@@ -2028,7 +2036,7 @@ In the next version of the formula we see that the sums of square total is the a
 Finally, think of the sums of squares total as the grand variance multiplied by the overall degrees of freedom (\emph{N} - 1).
 
 \[SS_{T}= s_{grand}^{2}(n-1)\]
-Let's take a moment to \emph{hand-calculate} \(SS_{T}\). Not to worry! We'll get R to do the math for us. This is just a conceptual tour of sums of squares total.
+Let's take a moment to \emph{hand-calculate} \(SS_{T}\). Not to worry -- we'll get R to do the math for us!
 
 Our grand (i.e., overall) mean is
 
@@ -2043,24 +2051,14 @@ Our grand (i.e., overall) mean is
 [1] 1.603042
 \end{verbatim}
 
-\begin{verbatim}
-Attaching package: 'formattable'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:MASS':
-
-    area
-\end{verbatim}
-
-Subtracting the grand mean from each Accurate score yields a mean difference.
+Subtracting the grand mean from each Accurate score yields a mean difference. In the script below I have used the \emph{mutate()} function from the \emph{dplyr} package (a part of the \emph{tidyverse}) to created a new variable ('' m\_dev'') in the dataframe. The \emph{tidyverse} package is one of the few exceptions that I will open via the library. This is because we need it if we are going to use the pipe (\%\textgreater\%) to string parts of our script together.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
 
 \NormalTok{accSIM30 }\OtherTok{\textless{}{-}}\NormalTok{ accSIM30 }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_dev =}\NormalTok{ Accurate}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(Accurate))}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_dev =}\NormalTok{ Accurate}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(Accurate))}
 
 \FunctionTok{head}\NormalTok{(accSIM30)}
 \end{Highlighting}
@@ -2124,7 +2122,7 @@ If we sum the squared mean deviations we will obtain the total variance (sums of
 [1] 39.67818
 \end{verbatim}
 
-This value, the sum of squared deviations around the grand mean, is our \(SS_T\); the associated \emph{degrees of freedom} is \(N - 1\); in our case this is 90-1 = 89.
+This value, the sum of squared deviations around the grand mean, is our \(SS_T\). The associated \emph{degrees of freedom} is \(N - 1\); in our case this is 90-1 = 89.
 
 In one-way ANOVA, we divide \(SS_T\) into \textbf{model/between sums of squares} and \textbf{residual/within sums of squares}.
 
@@ -2198,7 +2196,7 @@ This formula occurs in three chunks, representing the control, low, and high rac
 \end{Highlighting}
 \end{Shaded}
 
-This value, \(SS_M\) is the value accounted for by the model -- the proportion of variance accounted for by the grouping variable/factor, COND. Degrees of freedom for \(SS_M\) is always one less than the number of elements (e.g., groups) used in its calculation (\(k-1\)). Because we have three groups, our degrees of freedom for the model is 2.
+This value, \(SS_M\) is the amount of variance accounted for by the model; that is, the the amount of variance accounted for by the grouping variable/factor, COND. Degrees of freedom for \(SS_M\) is always one less than the number of elements (e.g., groups) used in its calculation (\(k-1\)). Because we have three groups, our degrees of freedom for the model is two.
 
 \hypertarget{sums-of-squares-residual-or-within}{%
 \subsection{Sums of Squares Residual (or within)}\label{sums-of-squares-residual-or-within}}
@@ -2208,7 +2206,7 @@ To recap, we know there are 39.678 units of variation to be explained in our dat
 Looking at the formula can assist us in with a conceptual formula. In \(SS_R\) we subtract the group mean from each individual member of the group and then square it.
 
 \[SS_{R}= \sum(x_{ik}-\bar{x}_{k})^{^{2}}\]
-Here's another approach to calculating\(SS_R\). In this one the variance for each group is multiplied by its respective degrees of freedom, then summed.
+Below is another approach to calculating\(SS_R\). In this one the variance for each group is multiplied by its respective degrees of freedom, then summed.
 
 \[SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1))\]
 Again, the formula is in three chunks -- but this time the calculations are \emph{within-group}. We need the variance (the standard deviation squared) for the calculation.
@@ -2227,12 +2225,15 @@ Again, the formula is in three chunks -- but this time the calculations are \emp
 3    High 0.6587486
 \end{verbatim}
 
-A quick tangent -- this calculation demonstrates the relationship between standard deviation and variance. Variance is the standard deviation, squared.
+\hypertarget{on-the-relationship-between-standard-deviation-and-variance}{%
+\subsubsection{On the relationship between standard deviation and variance}\label{on-the-relationship-between-standard-deviation-and-variance}}
+
+Early in statistics training the difference between standard deviation (\emph{s} or \(\sigma_{n-1}\)) and variance(\(s^{2}\) or \(\sigma^{2}\)) can be confusing. This calculation demonstrates the relationship between standard deviation and variance. Variance is the standard deviation, squared.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#just showing you that the variance (next) is the standard deviation, squared}
-\NormalTok{sdControl}\SpecialCharTok{\^{}}\DecValTok{2}\CommentTok{\#the standard deviation of the control group, when squared should equal the variance reported in the next chunk}
+\CommentTok{\#the standard deviation of the control group, when squared should equal the variance reported in the next chunk}
+\NormalTok{sdControl}\SpecialCharTok{\^{}}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2260,7 +2261,12 @@ We will use the second formula to calculate \(SS_R\). For each of the groups, we
 \begin{Highlighting}[]
 \CommentTok{\#Calculated by using object names from our calculations}
 \NormalTok{SSR }\OtherTok{\textless{}{-}}\NormalTok{ varControl}\SpecialCharTok{*}\NormalTok{(nControl}\DecValTok{{-}1}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ varLow}\SpecialCharTok{*}\NormalTok{(nLow}\DecValTok{{-}1}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ varHigh}\SpecialCharTok{*}\NormalTok{(nHigh}\DecValTok{{-}1}\NormalTok{)}
-\CommentTok{\#calculated by specifying the actual values from our calculations}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Re{-}calculated by specifying the actual values from our calculations}
 \NormalTok{SSR}
 \end{Highlighting}
 \end{Shaded}
@@ -2300,7 +2306,7 @@ The value for our \(SS_R\) is 30.246. Degrees of freedom for the residual is \(d
 \hypertarget{relationship-between-ss_t-ss_m-and-ss_r.}{%
 \subsection{\texorpdfstring{Relationship between \(SS_T\), \(SS_M\), and \(SS_R\).}{Relationship between SS\_T, SS\_M, and SS\_R.}}\label{relationship-between-ss_t-ss_m-and-ss_r.}}
 
-In case it's not clear:
+In case it is not clear:
 
 \(SS_T\) = 9.432 + 30.246
 
@@ -2317,7 +2323,7 @@ In case it's not clear:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#calculated by specifying the actual values from our calculations}
+\CommentTok{\#Re{-}calculated by specifying the actual values from our calculations}
 \FloatTok{9.432} \SpecialCharTok{+} \FloatTok{30.247}
 \end{Highlighting}
 \end{Shaded}
@@ -2369,7 +2375,7 @@ Regarding the calculation of our model mean squares:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#calculated by specifying the actual values from our calculations}
+\CommentTok{\#Re{-}calculated by specifying the actual values from our calculations}
 \FloatTok{9.432}\SpecialCharTok{/}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
@@ -2428,9 +2434,9 @@ Regarding the calculation of our model residual squares:
 \end{Shaded}
 
 \hypertarget{calculating-the-f-statistic}{%
-\subsection{\texorpdfstring{Calculating the \emph{F}-Statistic}{Calculating the F-Statistic}}\label{calculating-the-f-statistic}}
+\subsection{\texorpdfstring{Calculating the \emph{F} Statistic}{Calculating the F Statistic}}\label{calculating-the-f-statistic}}
 
-The \emph{F}-statistic (or \emph{F}-ratio) is the assesses the ratio (as its name implies) of variation explained by the model to unsystematic factors (i.e., the residual). Earlier we used ``between'' and ``within'' language. Especially when we think of our example -- where the model is composed of three groups, we can think of the \emph{F} statistic as assessing the ratio of variation explained by between-subjects differences to within-subjects differences. Navarro's \citep{navarro_chapter_2020} figures (earlier in the chapter) illustrate this well.
+The \emph{F} statistic (or \emph{F} ratio) assesses the ratio (as its name implies) of variation explained by the model to unsystematic factors (i.e., the residual). Earlier we used ``between'' and ``within'' language. Especially when we think of our example -- where the model is composed of three groups, we can think of the \emph{F} statistic as assessing the ratio of variation explained by between-subjects differences to within-subjects differences. Navarro's \citeyearpar{navarro_chapter_2020} figures (earlier in the chapter) illustrate this well.
 
 \[F = \frac{MS_{M}}{MS_{R}}\]
 Regarding the calculation of our \emph{F}-ratio:
@@ -2486,7 +2492,7 @@ Rules of the game:
 \item
   In each case, mean squares are determined by dividing the sums of squares by its respective degrees of freedom.
 \item
-  The F statistic is determined by dividing \(MS_M\) by \(MS_R\)
+  The \emph{F} statistic is determined by dividing \(MS_M\) by \(MS_R\)
 \end{itemize}
 
 Knowing only two of the values, challenge yourself to complete the rest of the table. Before looking at the answers (below), try to the fill in the blanks based in the table based on what we have learned so far.
@@ -2519,7 +2525,7 @@ MS & NA & 4.716 & 0.348 \\
 
 To determine whether or not it is statistically significant, we can check a \href{https://www.statology.org/how-to-read-the-f-distribution-table/}{table of critical values} \citep{zach_how_2019} for the \emph{F} test.
 
-Our example has 2 (numerator) and 87 (denominator) degrees of freedom. Rolling down to the table where \(\alpha = .05\), we can see that any \(F\) value \textgreater{} 3.11 (a value somewhere between 3.07 and 3.15) will be statistically significant. Our \(F\) = 13.566, so we have clearly exceeded the threshold. This is our \emph{omnibus F test}. Significance at this level lets us know that there is at least 1 statistically significant difference between our control, low, and high racially loaded conditions. While it is important to follow-up to see where these significant differences lie, we will not do these by hand. Rather, let's rework the problem in R.
+Our example has 2 (numerator) and 87 (denominator) degrees of freedom. Rolling down to the table where \(\alpha = .05\), we can see that any \(F\) value \textgreater{} 3.11 (a value somewhere between 3.07 and 3.15) will be statistically significant. Our \(F\) = 13.566, so we have clearly exceeded the threshold. This is our \emph{omnibus F test}.
 
 We can also use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 
@@ -2533,6 +2539,8 @@ We can also use a look-up function, which follows this general form: qf(p, df1, 
 \begin{verbatim}
 [1] 3.101296
 \end{verbatim}
+
+Significance at this level lets us know that there is at least 1 statistically significant difference between our control, low, and high racially loaded conditions. While it is important to follow-up to see where these significant differences lie, we will not do these by hand. Rather, let's rework the problem in R.
 
 \hypertarget{working-the-one-way-anova-in-r}{%
 \section{Working the One-Way ANOVA in R}\label{working-the-one-way-anova-in-r}}
@@ -2575,7 +2583,7 @@ All statistical tests have some assumptions about the data. The one-way ANOVA ha
     Levene's Test
   \end{itemize}
 \item
-  The cases represent \emph{random} samples from the populations and scores on the test variable are independent of each other. That is, comparing related cases (e.g., parent/child, manager/employee, time1/time2) must be completed by another statistic such as repeated measures ANOVA or dyadic data analysis.
+  The cases represent \emph{random} samples from the populations and scores on the test variable are \emph{independent} of each other. That is, comparing related cases (e.g., parent/child, manager/employee, time1/time2) violates this assumption and this question would need to be evaluated by a different statistic such as repeated measures ANOVA or dyadic data analysis.
 
   \begin{itemize}
   \tightlist
@@ -2588,18 +2596,17 @@ All statistical tests have some assumptions about the data. The one-way ANOVA ha
   \begin{itemize}
   \tightlist
   \item
-    This is also a research design issue. If the dependent variable is categorical, another statistic (such as logistic regression) should be chosen.
+    If the dependent variable is categorical, another statistic (such as logistic regression) should be chosen.
   \end{itemize}
 \end{itemize}
 
 \hypertarget{is-the-dependent-variable-normally-distributed-across-levels-of-the-factor}{%
 \subsubsection{Is the dependent variable normally distributed across levels of the factor?}\label{is-the-dependent-variable-normally-distributed-across-levels-of-the-factor}}
 
-From the \emph{psych} package, the \emph{describe()} function can be used to provide descriptives of continuously scaled variables (i.e., variables measured on the interval or ratio scale). In this simple example, we can specify the specific continuous, DV.
+From the \emph{psych} package, the \emph{describe()} function can be used to provide descriptive statistics (or, ``descriptives'') of continuously scaled variables (i.e., variables measured on the interval or ratio scale). In this simple example, we can specify the specific continuous, DV.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(psych)}
 \CommentTok{\#we name the function}
 \CommentTok{\#in parentheses we list the object that is the dataframe}
 \CommentTok{\#the $ sign precedes the specific variable for which we want the information}
@@ -2618,14 +2625,12 @@ If we want descriptives for each level of the grouping variable (factor), we can
 \begin{Highlighting}[]
 \CommentTok{\#It is unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file and use that as a basis for APA style tables}
 \CommentTok{\#In this script we can think "Accurate by COND" meaning that the descriptives for accuracy will be grouped by COND which is a categorical variable}
-\CommentTok{\#mat = TRUE means we will get the output in matrix (table) form}
-\CommentTok{\#digits = 3 means output will be rounded to 3 decimal places}
+\CommentTok{\#mat = TRUE presents the output in matrix (table) form}
+\CommentTok{\#digits = 3 rounds the output to 3 decimal places}
 \CommentTok{\#data = accSIM30 is a different (I think easier) way to identify the object that holds the dataframe}
 \NormalTok{des.mat }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits=}\DecValTok{3}\NormalTok{, }\AttributeTok{data=}\NormalTok{accSIM30) }
 
-\CommentTok{\#describeBy(accSIM30$Accurate, accSIM30$COND, mat=TRUE)}
-
-\NormalTok{des.mat }\CommentTok{\#let\textquotesingle{}s you see the matrix object}
+\NormalTok{des.mat }\CommentTok{\#displays the matrix object that we just created}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2648,35 +2653,13 @@ X13  0.208   -0.690 0.120
 
 Skew and kurtosis speaks to normal distributions. The skew and kurtosis indices in the \emph{psych} package are reported as \emph{z} scores. Regarding skew, values greater than 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued to be anywhere greater 8 to 20 \citep{kline_principles_2016}.
 
-The \emph{Shapiro-Wilks} test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (\emph{p} \textgreater.05) it tells us that the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (\emph{p} \textless{} .05) then the distribution in question is significantly different from a normal distribution. The \emph{rstatix} package has a wrapper that can conduct the Shapiro-Wilks test for us.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(rstatix)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Attaching package: 'rstatix'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:MASS':
-
-    select
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:stats':
-
-    filter
-\end{verbatim}
+The \emph{Shapiro-Wilks} test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (\emph{p} \textgreater.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (\emph{p} \textless{} .05) then the sample distribution is significantly different from a normal distribution. The \emph{rstatix} package has a wrapper that can conduct the Shapiro-Wilks test for us.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{shapiro }\OtherTok{\textless{}{-}}\NormalTok{ accSIM30 }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(COND) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{shapiro\_test}\NormalTok{(Accurate)}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{shapiro\_test}\NormalTok{(Accurate)}
 \NormalTok{shapiro}
 \end{Highlighting}
 \end{Shaded}
@@ -2703,40 +2686,8 @@ In R, Levene's test is found in the \emph{car} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(car)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Loading required package: carData
-\end{verbatim}
-
-\begin{verbatim}
-Attaching package: 'car'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:psych':
-
-    logit
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:dplyr':
-
-    recode
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:purrr':
-
-    some
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\#Our set up is similar:  Accurate by condition, followed by the object that holds the dataframe, followed by the instruction to center the analysis around the mean}
-\NormalTok{levene }\OtherTok{\textless{}{-}} \FunctionTok{leveneTest}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, }\AttributeTok{center=}\NormalTok{mean)}
+\NormalTok{levene }\OtherTok{\textless{}{-}}\NormalTok{ car}\SpecialCharTok{::}\FunctionTok{leveneTest}\NormalTok{ (Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, accSIM30, }\AttributeTok{center=}\NormalTok{mean)}
 \NormalTok{levene}
 \end{Highlighting}
 \end{Shaded}
@@ -2748,18 +2699,18 @@ group  2  1.5315  0.222
       87               
 \end{verbatim}
 
-We write the result of the Levene's as \(F\)(2,87) = 1.532, \(p\) = 0.222 Because \(p\) \textgreater{} .05, we know that the result is nonsignficant -- that the variances of the three groups are not statistically significantly different than each other.
+We write the result of the Levene's as \(F\)(2,87) = 1.532, \(p\) = 0.222. Because \(p\) \textgreater{} .05, we know that the result is nonsignficant -- that the variances of the three groups are not statistically significantly different than each other.
 
-IF the results had been statistically significantly different, we would have needed to use a Welch's \(F\) or robust version of ANOVA.
+If the results had been statistically significantly different, we would have needed to use a Welch's \(F\) or robust version of ANOVA.
 
 \hypertarget{summarizing-results-from-the-analysis-of-assumptions}{%
 \subsubsection{Summarizing results from the analysis of assumptions}\label{summarizing-results-from-the-analysis-of-assumptions}}
 
 It is common for an APA style results section to begin with a review of the evaluation of the statistical assumptions. As we have just finished these analyses, I will document what we have learned so far:
 
-A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate's impression of the Asian or Asian American participant. The independent variable, condition, included three levels: control/none, low, and high levels of racial loading. Results of Levene's homogeneity of variance test indicated no violation of the homogeneity of variance assumption (\(F\){[}2,87{]} = 1.532, \(p\) = 0.222). Similarly, results of the Shapiro Wilk's test indicated no violation of the normality assumption in each of the cells (Control, \emph{W} = 0.954, \emph{p} = 0.215; Low, \emph{W} = 0.944, \emph{p} = 0.115; High, \emph{W} = 0.980, \emph{p} = 0.831).
+A one-way analysis of variance was conducted to evaluate the relationship between degree of racial loading of an exceptionalizing microaggression and the perceived accuracy of a research confederate's impression of the Asian or Asian American participant. The independent variable, condition, included three levels: control/none, low, and high levels of racial loading. Results of Levene's homogeneity of variance test indicated no violation of the homogeneity of variance assumption (\(F\){[}2,87{]} = 1.532, \(p\) = 0.222). Similarly, results of the Shapiro Wilk's test indicated no violation of the normality assumption in each of the cells (control, \emph{W} = 0.954, \emph{p} = 0.215; low, \emph{W} = 0.944, \emph{p} = 0.115; high, \emph{W} = 0.980, \emph{p} = 0.831).
 
-Now we can move onto computing the omnibus ANOVA. \emph{Omnibus} is the term applied to the first \emph{F} test that evaluates if all groups have the same mean \citep{chen_relationship_2018}. If this test is not significance there is no evidence in the data to reject the null; that is, there is no evidence to suggest that group means are different. If it is significant -- and there are 3 or more groups -- follow-up testing will be needed to determine where the differences lie.
+Now we can move onto computing the omnibus ANOVA. \emph{Omnibus} is the term applied to the first \emph{F} test that evaluates if all groups have the same mean \citep{chen_relationship_2018}. If this test is not significant there is no evidence in the data to reject the null; that is, there is no evidence to suggest that group means are different. If it is significant -- and there are three or more groups -- follow-up testing will be needed to determine where the differences lie.
 
 \hypertarget{computing-the-omnibus-anova}{%
 \subsection{Computing the Omnibus ANOVA}\label{computing-the-omnibus-anova}}
@@ -2782,7 +2733,7 @@ By assigning the results of the \emph{aov()} function to an object (omnibus) we 
 \begin{Highlighting}[]
 \CommentTok{\#the script looks familiar, "Accurate by Condition"}
 \NormalTok{omnibus }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30) }\CommentTok{\#DV \textasciitilde{} IV  I say, "DV by IV"}
-\FunctionTok{summary}\NormalTok{ (omnibus) }\CommentTok{\#ANOVA output}
+\FunctionTok{summary}\NormalTok{ (omnibus) }\CommentTok{\#prints the ANOVA output}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2796,11 +2747,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Inserting the \emph{aov()} object (omnibus) into the summary command produces the ANOVA Source Table that we manually created above.
 
-The values we see map onto those we calculated by hand. Our \(SS_M\) (9.432) plus \(SS_R\) (30.246) sum to equal the \(SS_T\) (39.678) we calculated by hand.
+The values we see map onto those we calculated by hand. Our \(SS_M\) (9.432) plus \(SS_R\) (30.246) sum to equal the \(SS_T\) (39.678).
 
-Dividing the two sums of squares by their respective degrees of freedom produces the sums of means squared.
+Dividing the two sums of squares by their respective degrees of freedom produces the means squared.
 
-Then, dividing the \(MS_M\) (COND) by \(MS_R\) (4.716/0.348) provides the \emph{F} value. By using a table of \emph{F} critical values, we already knew that our \emph{F} value exceeded the value in the table of critical values. Here we see that \emph{p} = 0.000.
+Then, dividing the \(MS_M\) (COND) by \(MS_R\) (4.716/0.348) provides the \emph{F} ratio. By using a table of \emph{F} critical values, we already knew that our \emph{F} value exceeded the value in the table of critical values. Here we see that \emph{p} = 0.000.
 
 The ``\emph{F} string'' for an APA style results section should be written like this: \emph{F} (2, 87) = 13.566, \emph{p} \textless{} .001.
 
@@ -2819,8 +2770,7 @@ The object we created with the \emph{aov()} function is capable of producing muc
 [13] "model"        
 \end{verbatim}
 
-\emph{summary()} is one of the most commonly used function applied to \emph{aov()} objects, but it's not the only one.
-Let's try some other options.
+One of the most commonly used functions to be applied to the \emph{aov()} objects is \emph{summary()}; but it's not the only one. Let's try some other options.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2840,7 +2790,7 @@ Control     Low    High
  1.7562  1.9001  1.1528 
 \end{verbatim}
 
-Let's graph some of the data.
+The \emph{aov()} command has a quickplot feature.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2848,9 +2798,8 @@ Let's graph some of the data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-83-1.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-83-2.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-83-3.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-83-4.pdf}
-
-The \emph{aov()} command has a quickplot feature. The first of the four plots fits the residuals. We already know from Levene's that we did not violate the homogeneity of variance test. With its straight line, this plot shows an equal spread across the three groups.
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-1.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-2.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-3.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-4.pdf}
+The first of the four plots fits the residuals. We already know from Levene's that we did not violate the homogeneity of variance test. With its straight line, this plot shows an equal spread across the three groups.
 
 When the dots of the Q-Q plot map onto the diagonal, we have some indication of normality of the residuals (we want residuals to be normally distributed).
 
@@ -2867,7 +2816,7 @@ When the dots of the Q-Q plot map onto the diagonal, we have some indication of 
 
 A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
 
-The formula for \(\eta^2\) is straightforward. If we think back to our hand-calculations of all the sums of squares, we can clearly see that this is the proportion of variance that is accounted for by the model.
+The formula for \(\eta^2\) is straightforward. If we think back to our hand-calculations of all the sums of squares, we can see that this is the proportion of variance that is accounted for by the model.
 
 \[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]
 Hand calculation, then, is straightforward.:
@@ -2875,7 +2824,7 @@ Hand calculation, then, is straightforward.:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#Calculated using the object names}
-\NormalTok{SSMomnibus }\SpecialCharTok{/}\NormalTok{ (SSMomnibus }\SpecialCharTok{+} \FloatTok{30.246}\NormalTok{)}
+\NormalTok{SSMomnibus }\SpecialCharTok{/}\NormalTok{ (SSMomnibus }\SpecialCharTok{+}\NormalTok{ SSRomnibus)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2885,7 +2834,7 @@ Hand calculation, then, is straightforward.:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Calculated by using the numeric values}
+\CommentTok{\#Re{-}calculated by using the numeric values}
 \FloatTok{9.432}\SpecialCharTok{/}\NormalTok{(}\FloatTok{9.432} \SpecialCharTok{+} \FloatTok{30.246}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2896,7 +2845,7 @@ Hand calculation, then, is straightforward.:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Optiosn should produce the same result}
+\CommentTok{\#Both options should produce the same result}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2904,8 +2853,7 @@ The \emph{lsr} package includes an eta-squared calculator. To use it, we simply 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(lsr)}
-\FunctionTok{etaSquared}\NormalTok{(omnibus)}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(omnibus)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2914,7 +2862,7 @@ The \emph{lsr} package includes an eta-squared calculator. To use it, we simply 
 COND 0.2377226   0.2377226
 \end{verbatim}
 
-Notice that there are two effect sizes. We described eta-squared. Partial eta-squared is the effect size reported in SPSS. There's a long history of debate about which to use. In certain circumstances (especially in more complicated analyses), partial-eta squared can be a bit more generous (i.e., larger than \(\eta^2\)). Thus, many prefer the reporting of \(\eta^2\).
+Notice that there are two effect sizes. We described eta-squared. Partial eta-squared is the default effect size reported in SPSS. There is a long history of debate about which to use. In certain circumstances (especially in more complicated analyses), partial-eta squared can be a bit more generous (i.e., larger than \(\eta^2\)). Thus, many prefer the reporting of the more cautious \(\eta^2\).
 
 In our case, we see no difference between the two values. Differences begin to appear in datasets that are more complicated, such as when sample sizes across the levels of a factor differ.
 
@@ -2932,7 +2880,7 @@ The \emph{F}-test associated with the one-way ANOVA is the \emph{omnibus} -- giv
 
 However, if the omnibus \(F\) is significant, we know that there is at least one pair of cells where there is a statistically significant difference. We have several ways (each with its own strengths/limitations) to figure out where these differences lie.
 
-We have several options for following up; a very common option is to conduct post-hoc, pairwise comparisons.
+A very common option is to conduct post-hoc, pairwise comparisons.
 
 \begin{figure}
 \centering
@@ -2981,13 +2929,13 @@ P value adjustment method: none
 \end{Highlighting}
 \end{Shaded}
 
-The output only provides the \(p\) values associated with the mean differences in each of the conditions. We see that \(p < .05\) when high is compared to control and high is compared to low. An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their \emph{p} values.
+The output only provides the \(p\) values associated with the mean differences in each of the conditions. We see that \(p < .05\) when high is compared to control (0.00015) and high is compared to low (0.0000042). An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their \emph{p} values.
 
 \textbf{Should we be concerned about Type I error?{}``}
 
 Recall that \emph{Type I error} is the concern about false positives -- that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern increases when we have a large number of pairwise comparisons.
 
-Green and Salkind \citeyearpar{green_using_2014} review three options for managing Type I error.
+Green and Salkind \citeyearpar{green_using_2014} reviewed three options for managing Type I error.
 
 \begin{itemize}
 \tightlist
@@ -3005,7 +2953,7 @@ Green and Salkind \citeyearpar{green_using_2014} review three options for managi
   \begin{itemize}
   \tightlist
   \item
-    We'll describe this in more detail later. Briefly, it allows us to rank order the comparisons by their \emph{p} value (smallest to largest). We determine the significance of each \emph{p} value \emph{sequentially.}\\
+    We'll describe this in more detail later. Briefly, it allows us to rank order the comparisons by their \emph{p} value (smallest to largest). We determine the significance of each \emph{p} value \emph{sequentially} where the criteria for significance is incrementally relaxed.
   \end{itemize}
 \item
   LSD method:
@@ -3013,18 +2961,23 @@ Green and Salkind \citeyearpar{green_using_2014} review three options for managi
   \begin{itemize}
   \tightlist
   \item
-    Permitted when there are only three pairwise comparisons among three groups, researchers can leave the \emph{p} values as they are. Since the Tran and Lee \citeyearpar{tran_you_2014} research vignette is one of those circumstances, I not make adjustments for Type I error. I would name claim the LSD and cite Green and Salkind {[}-green\_using\_2014{]} as justification for that decision.
+    Permitted when there are only three pairwise comparisons among three groups, researchers can leave the \emph{p} values as they are. Since the Tran and Lee \citeyearpar{tran_you_2014} research vignette is one of those circumstances, I not make adjustments for Type I error. That is, I would claim the LSD and cite Green and Salkind \citeyearpar{green_using_2014} as justification for that decision.
   \end{itemize}
 \end{itemize}
 
 There is, though, an even more powerful approach\ldots{}
 
-\hypertarget{option-2-planned-contrasts}{%
-\subsubsection{OPTION 2: Planned contrasts}\label{option-2-planned-contrasts}}
+\hypertarget{option-2-planned-contrasts-non-orthogonal}{%
+\subsubsection{OPTION 2: Planned contrasts (non-orthogonal)}\label{option-2-planned-contrasts-non-orthogonal}}
 
 Another option is to evaluate planned comparisons.
 
+\begin{figure}
+\centering
 \includegraphics{images/oneway/OnewayWrkFlw_planned.jpg}
+\caption{An image of the workflow for one-way ANOVA, showing that we are at the following up to a significant omnibus F by conducting planned comparisons}
+\end{figure}
+
 Planned comparisons are
 
 \begin{itemize}
@@ -3032,7 +2985,7 @@ Planned comparisons are
 \item
   theory-driven comparisons constructed prior to data collection,
 \item
-  based on the idea of partitioning the variance created by the overall effect of group differences into gradually smaller portions of variance.
+  based on the idea of partitioning the variance created by the overall effect of group differences into gradually smaller portions of variance, and
 \item
   more powerful than post-hoc tests.
 \end{itemize}
@@ -3047,20 +3000,20 @@ Planned contrasts involve further considerations regarding the \emph{partitionin
   Each contrast must involve only two chunks of variance.
 \end{itemize}
 
-\emph{Orthogonal} contrasts are even more sophisticated. Essential to conducting an orthogonal contrast is the requirement that if a group is singled out in one comparison it should be excluded from subsequent contrasts. The typical, orthogonal scenario with three groups has only two contrasts:
+\emph{Orthogonal} contrasts are even more sophisticated. Essential to conducting an orthogonal contrast is the requirement that if a group is singled out in one comparison it should be excluded from subsequent contrasts. The typical, orthogonal scenario with three ordered groups has only two contrasts:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Control versus Low and High (because control was excluded, it should not reappear)
+  Control versus low and high (because control was excluded, it should not reappear in the next contrast)
 \item
-  Low versus High
+  Low versus high
 \end{enumerate}
 
-Underlying the \emph{aov()} program is the linear model. We could have used it for the omnibus ANOVA, but it has clunky output.
+Underlying the \emph{aov()} program is the linear model (``lm''). We could have used it to calculate the omnibus ANOVA, but it has clunky output.
 
-We use it now to retrieve some contrast information. The code below is a planned comparison that uses the coding in the database to compare the lowest coded group (Control was 1, Low was 2, High was 3) to the other two groups.
+We use it now to retrieve some contrast information. The code below is a planned comparison that uses the coding in the database (created when we formatted COND as an ordered factor) to compare the lowest coded group (control was 1, low was 2, high was 3) to the other two groups.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3093,7 +3046,10 @@ From the above, regression output, we see that there was not a statistically sig
 
 Note that these tests are conducted as \emph{t} tests. Why? We are comparing only two groups and can use the \emph{t}. distribution.
 
-It's quite possible we want something different.
+Also note that these involved the comparison of the control group to low; then the control to high. This is consistent with an orthogonal contrast in that there are \emph{k} - 1 contrasts (two contrasts with three original groups). However it is inconsistent with the requriement that once a group is singled out, it should not be used in a subsequent contrast. Therefore, it is quite possible we want something different.
+
+\hypertarget{option-3-planned-contrasts-orthogonal}{%
+\subsubsection{OPTION 3: Planned contrasts (orthogonal)}\label{option-3-planned-contrasts-orthogonal}}
 
 \textbf{Step 1: } Specify our contrasts
 
@@ -3109,16 +3065,16 @@ It's quite possible we want something different.
   \begin{itemize}
   \tightlist
   \item
-    \emph{k} - 1 contrasts; we will have 2
+    \emph{k} - 1 contrasts; with three groups we will have two contrasts
   \item
     once we single out a condition for comparison, we cannot use it again.
   \end{itemize}
 \end{itemize}
 
-In \emph{contrast1} we compare the Control condition to the combined Low and High conditions.
-In \emph{contrast2} we discard the Control condition (it was already singled out) and we compare the Low and High conditions.
+In \emph{contrast1} we compare the control condition to the combined low and high conditions.
+In \emph{contrast2} we discard the control condition (it was already singled out) and we compare the low and high conditions.
 
-This is sensible because we likely hypothesize that any degree of racially loaded stereotypes may have a deleterious outcome, so we first compare Control to the two conditions with any degree of racial loading. Subsequently, we compare the Low and High levels of the factor.
+This is sensible because we likely hypothesize that any degree of racially loaded stereotypes may have a deleterious outcome, so we first compare control to the two conditions with any degree of racial loading. Subsequently, we compare the low and high levels of the factor.
 
 \textbf{Step 2:} Bind them together and check the output to ensure that we've mapped them correctly.
 
@@ -3160,16 +3116,16 @@ Thinking back to the hand-calculations and contrast mapping, the table of weight
 \begin{itemize}
 \tightlist
 \item
-  Contrast 1 compares the Control condition against the levels with any racial loading.\\
+  Contrast 1 compares the control condition against the levels with any racial loading.\\
 \item
-  Contrast 2 compares the Low and High loadings.
+  Contrast 2 compares the low and high loadings.
 \end{itemize}
 
 \textbf{Step 3:} Create a new \emph{aov()} model
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#create a new object, the ANOVA looks the same, but it will now consider the contrasts}
+\CommentTok{\#create a new object, the ANOVA looks the same, but it will now consider the contrasts (this is where order{-}of{-}operations matters)}
 \NormalTok{accPlanned }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(Accurate }\SpecialCharTok{\textasciitilde{}}\NormalTok{ COND, }\AttributeTok{data =}\NormalTok{ accSIM30)}
 \FunctionTok{summary.lm}\NormalTok{(accPlanned)}
 \end{Highlighting}
@@ -3202,10 +3158,10 @@ F-statistic: 13.57 on 2 and 87 DF,  p-value: 0.000007446
 \end{Highlighting}
 \end{Shaded}
 
-These planned contrasts show that when the control condition is compared to the combined low and high racial loading conditions, there is not a statistically significant difference, \emph{t}(87) = -0.077, \emph{p} = 0.085. However, when the low and high racial loading conditions are compared, there is a statistically significant difference, \emph{t}(87) = -4.909, \emph{p} \textless{} 0.001.
+These planned contrasts show that when the control condition is compared to the combined low and high racial loading conditions, there is not a statistically significant difference, \emph{t}(87) = -1.742, \emph{p} = 0.085. However, when the low and high racial loading conditions are compared, there is a statistically significant difference, \emph{t}(87) = -4.909, \emph{p} \textless{} 0.001.
 
-\hypertarget{trend-polynomial-analysis}{%
-\subsubsection{Trend (polynomial) analysis}\label{trend-polynomial-analysis}}
+\hypertarget{option-4-trend-polynomial-analysis}{%
+\subsubsection{OPTION 4: Trend (polynomial) analysis}\label{option-4-trend-polynomial-analysis}}
 
 \begin{figure}
 \centering
@@ -3213,7 +3169,7 @@ These planned contrasts show that when the control condition is compared to the 
 \caption{An image of the workflow for one-way ANOVA, showing that we are at the following up to a significant omnibus F by assessing for a polynomial trend}
 \end{figure}
 
-Polynomial contrasts let us see if there is a linear (or curvilinear) pattern to the data. To detect a trend, the data must be coded in an ascending order and it needs to be a sensible, theoretically defensible, comparison. Our data has a theoretically ordered effect (control, low racially loaded condition, high racially loaded condition). Recall that we created an ordered factor when we imported the data.
+Polynomial contrasts evaluate for the presence of a linear (or curvilinear) pattern in the data. To detect a trend, the data must be coded in an ascending order and it needs to be a sensible, theoretically defensible, comparison. Our data has a theoretically ordered effect (control, low racially loaded condition, high racially loaded condition). Recall that we created an ordered factor when we imported the data.
 
 In a polynomial analysis, the statistical analysis looks across the ordered means to see if they fit a linear or curvilinear shape that is one less than the number of levels. Our factor has three levels, therefore the polynomial contrast can check for a linear shape (.L) or a quadratic (one change in direction) shape (.Q). If we had four levels, the contr.poly could check for cubic change (two changes in direction). Conventionally, when more than one trend is significant, we intepret the most complex one (i.e., quadratic over linear).
 
@@ -3258,7 +3214,7 @@ It depends! What best tells the story of your data? Here are some things to cons
 \begin{itemize}
 \tightlist
 \item
-  If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would learn toward report those.
+  If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would learn toward reporting those.
 \item
   If \emph{p} values are hovering around 0.05, an orthogonal contrast will offer more power because
 
@@ -3270,7 +3226,7 @@ It depends! What best tells the story of your data? Here are some things to cons
     a priori theory is compelling
   \end{itemize}
 \item
-  The polynomial can be a nice addition if there is a linear or quadratic relationship that is sensible or interesting.
+  The polynomial can be a useful descriptive addition if there is a linear or quadratic relationship that is sensible or interesting.
 \end{itemize}
 
 Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data.
@@ -3371,7 +3327,7 @@ Because this calculator requires the effect size in the metric of Cohen's \emph{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(effectsize)}
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(.}\DecValTok{238}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -3392,34 +3348,6 @@ Registered S3 methods overwritten by 'parameters':
 \end{verbatim}
 
 \begin{verbatim}
-Attaching package: 'effectsize'
-\end{verbatim}
-
-\begin{verbatim}
-The following objects are masked from 'package:rstatix':
-
-    cohens_d, eta_squared
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:formattable':
-
-    normalize
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:psych':
-
-    phi
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{eta2\_to\_f}\NormalTok{(.}\DecValTok{238}\NormalTok{) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
 [1] 0.5588703
 \end{verbatim}
 
@@ -3427,9 +3355,7 @@ We simply plug this value into the ``f =''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(pwr)}
-
-\FunctionTok{pwr.anova.test}\NormalTok{ (}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{5589}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{)}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.anova.test}\NormalTok{ (}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{5589}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3447,11 +3373,11 @@ NOTE: n is number in each group
 
 This result suggested that we would need 11 people per group.
 
-If we were unsure about what to expect in a sample size, we could take a guess. I like to be on the safe(r) side and go with a smaller effect. What would happen if we had a Cohen's \emph{f} that represented a small effect?
+If we were unsure about what to expect in terms of our results, we could take a guess. I like to be on the safe(r) side and go with a smaller effect. What would happen if we had a Cohen's \emph{f} that represented a small effect?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{pwr.anova.test}\NormalTok{ (}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{1}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{)}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.anova.test}\NormalTok{ (}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{1}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3482,10 +3408,9 @@ Here I create Table 1 with means and standard deviations (plus a 95\% confidence
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(apaTables)}
 \CommentTok{\# table.number = 1 assigns a table number to the top of the table }
 \CommentTok{\# filename = "Table1.doc" writes the table to Microsoft Word and puts it in your project folder}
-\FunctionTok{apa.1way.table}\NormalTok{(}\AttributeTok{iv=}\NormalTok{COND, }\AttributeTok{dv=}\NormalTok{Accurate, }\AttributeTok{show.conf.interval =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data=}\NormalTok{accSIM30, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1.doc"}\NormalTok{)}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.1way.table}\NormalTok{(}\AttributeTok{iv=}\NormalTok{COND, }\AttributeTok{dv=}\NormalTok{Accurate, }\AttributeTok{show.conf.interval =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data=}\NormalTok{accSIM30, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1.doc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3562,7 +3487,7 @@ ANOVA results using Accurate as the dependent variable
 Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared 
 \end{verbatim}
 
-Regarding figures, there are a number of options. I find the \emph{plotmeans()} function (used earlier) to be adequate for the purpose of one-way ANOVA. As we progress through this textbook, I will demonstrate a number of options that offer more and less complexity.
+Regarding figures, there are a number of options. I find the \emph{plotmeans()} function (used earlier) to be adequate for the purpose of one-way ANOVA. As we progress through this textbook, I will demonstrate options that offer more and less complexity.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3570,7 +3495,7 @@ Regarding figures, there are a number of options. I find the \emph{plotmeans()} 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-102-1.pdf}
 
 With table and figure at hand, here is how I would write up these results:
 
@@ -3586,9 +3511,9 @@ In each of these lessons I provide suggestions for practice that allow you to se
 \begin{itemize}
 \tightlist
 \item
-  test the statistical assumptions
+  testing the statistical assumptions
 \item
-  conduct a one-way ANOVA, including
+  conducting a one-way ANOVA, including
 
   \begin{itemize}
   \tightlist
@@ -3598,69 +3523,30 @@ In each of these lessons I provide suggestions for practice that allow you to se
     follow-up (pairwise, planned comparisons, polynomial trends)
   \end{itemize}
 \item
-  write a results section to include a figure and tables
+  writing a results section to include a figure and tables
 \end{itemize}
 
 \hypertarget{problem-1-play-around-with-this-simulation.}{%
 \subsection{Problem \#1: Play around with this simulation.}\label{problem-1-play-around-with-this-simulation.}}
 
-\begin{itemize}
-\tightlist
-\item
-  If one-way ANOVA is new to you, perhaps you just change the number in ``set.seed(2021)'' from 2021 to something else. Your results should parallel those obtained in the lecture, making it easier for you to check your work as you go.
-\item
-  If you are interested in power, change the sample size to something larger or smaller.
-\item
-  If you are interested in variability (i.e., the homogeneity of variance assumption), perhaps you change the standard deviations in a way that violates the assumption.
-\end{itemize}
+If one-way ANOVA is new to you, perhaps you just change the number in ``set.seed(2021)'' from 2021 to something else. Your results should parallel those obtained in the lecture, making it easier for you to check your work as you go.
 
-Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
-
-\begin{longtable}[]{@{}lcc@{}}
-\toprule
-Assignment Component & Points Possible & Points Earned \\
-\midrule
-\endhead
-1. Check and, if needed, format data & 5 & \_\_\_\_\_ \\
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-7. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
-\bottomrule
-\end{longtable}
+There are other ways to change the dataset. For example, if you are interested in power, change the sample size to something larger or smaller. If you are interested in variability (i.e., the homogeneity of variance assumption), perhaps you change the standard deviations in a way that violates the assumption.
 
 \hypertarget{problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable.}{%
 \subsection{\texorpdfstring{Problem \#2: Conduct a one-way ANOVA with the \emph{moreTalk} dependent variable.}{Problem \#2: Conduct a one-way ANOVA with the moreTalk dependent variable.}}\label{problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable.}}
 
-In their study, Tran and Lee \citeyearpar{tran_you_2014} included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (\emph{much less than average}) through 0 (\emph{average}) to 2 (\emph{much more than average}). This variable is available in the original simulation.
-
-Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
-
-\begin{longtable}[]{@{}lcc@{}}
-\toprule
-Assignment Component & Points Possible & Points Earned \\
-\midrule
-\endhead
-1. Check and, if needed, format data & 5 & \_\_\_\_\_ \\
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-7. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
-\bottomrule
-\end{longtable}
+In their study, Tran and Lee \citeyearpar{tran_you_2014} included an outcome variable where participants rated how much longer they would continue the interaction with their partner compared to their interactions in general. The scale ranged from -2 (\emph{much less than average}) through 0 (\emph{average}) to 2 (\emph{much more than average}). This variable is available in the original simulation and is an option for a slightly more challenging analysis.
 
 \hypertarget{problem-3-try-something-entirely-new.}{%
 \subsection{Problem \#3: Try something entirely new.}\label{problem-3-try-something-entirely-new.}}
 
 Using data for which you have permission and access (e.g., IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a one-way ANOVA. Please have at least 3 levels for the predictor variable.
 
-Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+\hypertarget{grading-rubric-1}{%
+\subsection{Grading Rubric}\label{grading-rubric-1}}
+
+Regardless which option(s) you chose, use the elements in the grading rubric to guide you through the practice.
 
 \begin{longtable}[]{@{}lcc@{}}
 \toprule
@@ -3675,7 +3561,7 @@ Assignment Component & Points Possible & Points Earned \\
 6. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
 7. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
 8 Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
+\textbf{Totals} & 40 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
 
@@ -4152,7 +4038,7 @@ At this stage, it would be useful to plot our data. Figures can really help us c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-111-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-114-1.pdf}
 Narrating results is sometimes made easier if variables are switched. There is usually not a right or wrong answer. Here is another view, switching the Rater and Photo predictors.
 
 \begin{Shaded}
@@ -4162,7 +4048,7 @@ Narrating results is sometimes made easier if variables are switched. There is u
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-112-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-115-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4175,7 +4061,7 @@ Narrating results is sometimes made easier if variables are switched. There is u
 Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-113-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-116-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4194,7 +4080,7 @@ Bin width defaults to 1/30 of the range of the data. Pick better value with `bin
 Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-114-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-117-1.pdf}
 
 \hypertarget{working-the-factorial-anova-by-hand}{%
 \section{Working the Factorial ANOVA (by hand)}\label{working-the-factorial-anova-by-hand}}
@@ -4906,7 +4792,7 @@ First, we extract the residuals (i.e., that which is left-over/unexplained) from
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-138-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-141-1.pdf}
 So far so good -- these look normal. Let's examine a QQ plot. We want the dots (the \emph{residuals}), or what is leftover after the model is applied to line up on the diagonal line (within reason). This would indicate a normal distribution.
 
 \begin{Shaded}
@@ -4915,7 +4801,7 @@ So far so good -- these look normal. Let's examine a QQ plot. We want the dots (
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-139-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-142-1.pdf}
 We can formally test the distribution of the residuals with a Shapiro test. We want the associated \emph{p} value to be less than 0.05.
 
 \begin{Shaded}
@@ -4945,6 +4831,37 @@ Levene's test is also applied to the ANOVA model; in this case I just wrote it o
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Loading required package: carData
+\end{verbatim}
+
+\begin{verbatim}
+Attaching package: 'car'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:psych':
+
+    logit
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:dplyr':
+
+    recode
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:purrr':
+
+    some
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{leveneTest}\NormalTok{(Negative }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Rater}\SpecialCharTok{*}\NormalTok{Photo, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -5046,7 +4963,7 @@ Rater main effect: significant (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-143-1.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-143-2.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-143-3.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-143-4.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-146-1.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-146-2.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-146-3.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-146-4.pdf}
 
 \hypertarget{effect-sizes}{%
 \subsubsection{Effect sizes}\label{effect-sizes}}
@@ -5229,7 +5146,7 @@ To explore the interaction effect, we followed with a test of the simple main ef
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-148-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-151-1.pdf}
 
 \hypertarget{option-2-the-simple-main-effect-of-ethnicity-of-rater-within-photo-stimulus.}{%
 \subsubsection{Option \#2 the simple main effect of ethnicity of rater within photo stimulus.}\label{option-2-the-simple-main-effect-of-ethnicity-of-rater-within-photo-stimulus.}}
@@ -5408,7 +5325,7 @@ To control for Type I error, we have 4 follow-up contrasts (2 for Dayaknese, 2 f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-157-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-160-1.pdf}
 
 \hypertarget{post-hoc-comparisons}{%
 \subsubsection{Post hoc comparisons}\label{post-hoc-comparisons}}
@@ -5781,7 +5698,7 @@ A boxplot representing this main effect may help convey how the main effect of R
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \hypertarget{follow-up-with-all-post-hocs}{%
 \subsection{Follow-up with all post-hocs}\label{follow-up-with-all-post-hocs}}
@@ -5965,7 +5882,7 @@ Results supported a significant linear trend (\emph{t} = 3.556, \emph{p} \textle
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-172-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-175-1.pdf}
 
 \hypertarget{my-final-apa-style-results-section}{%
 \section{\texorpdfstring{My \emph{final} APA Style Results Section}{My final APA Style Results Section}}\label{my-final-apa-style-results-section}}
@@ -5995,7 +5912,7 @@ To explore the interaction effect, we followed with a test of the simple main ef
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-173-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-176-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6244,6 +6161,27 @@ If we want to understand power in our analysis, we need to convert our effect si
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(effectsize)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Attaching package: 'effectsize'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:formattable':
+
+    normalize
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:psych':
+
+    phi
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.1066}\NormalTok{) }\CommentTok{\#FactorA {-}{-} Rater}
 \end{Highlighting}
 \end{Shaded}
@@ -6892,7 +6830,7 @@ Let's also take a quick look at a boxplot of our data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-198-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-201-1.pdf}
 
 \hypertarget{working-the-one-way-repeated-measures-anova-by-hand}{%
 \section{Working the One-Way Repeated Measures ANOVA (by hand)}\label{working-the-one-way-repeated-measures-anova-by-hand}}
@@ -7371,12 +7309,39 @@ Let's take a look at a boxplot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-216-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-219-1.pdf}
 The package \emph{rstatix} has features that allow us to identify outliers.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(rstatix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Attaching package: 'rstatix'
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:effectsize':
+
+    cohens_d, eta_squared
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:MASS':
+
+    select
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:stats':
+
+    filter
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{Amodeo\_long }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(Wave)}\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{identify\_outliers}\NormalTok{(Resilience)}
@@ -7456,7 +7421,7 @@ The Shapiro-Wilk test is sensitive to sample size \citep{noauthor_repeated_nodat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-220-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-223-1.pdf}
 
 We already have a non-significant \emph{p} from the Shapiro-Wilk; and these dots stay pretty well on the prediction line.
 
@@ -7586,7 +7551,7 @@ Coolest boxplots ever
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-224-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-227-1.pdf}
 Unfortunately, the \emph{apaTables} package does not work with the \emph{rstatix} package, so a table would need to be crafted by hand.
 
 \hypertarget{results-section}{%
@@ -8438,7 +8403,7 @@ The boxplot is one common way for identifying outliers. The boxplot uses the med
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-246-1.pdf}
 The distributions look relatively normal with the mean well-centered. Given that we simulated the data from means and standard deviations, this is not terribly surprising. This boxplot also provides us a glimpse of the patterns in our data. That is, the means are quite similar at baseline; in the post intervention waves we see greater difference scores for the Friends condition.
 
 Let's reconfigure the data by putting the wave on the X axis. Plotting it both ways (i.e.,swapping roles of predictor and moderator) can help us get a sense of what is happening.
@@ -8453,7 +8418,7 @@ Let's reconfigure the data by putting the wave on the X axis. Plotting it both w
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-247-1.pdf}
 Outliers are generally identified when values fall outside these lower and upper boundaries:
 
 \begin{itemize}
@@ -8527,7 +8492,7 @@ The Shapiro Wilks test suggests that distribution in each of our cells is not si
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-250-1.pdf}
 \#\#\#\# Homogeneity of variance assumption
 
 Because there is a between-subjects variable, we need need to evaluate the homogeneity of variance assumption. As before, we can use the Levene's test. Considering each of the comparisons of condition within wave, there is no instance where we violate the assumption.
@@ -8896,7 +8861,7 @@ This first figure would pair well if you report the simple main effect of condit
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-257-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-260-1.pdf}
 
 This second figure would pair well with the results that reported the simple main effect of wave within condition.
 
@@ -8912,7 +8877,7 @@ This second figure would pair well with the results that reported the simple mai
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-258-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-261-1.pdf}
 
 \hypertarget{results-1}{%
 \subsubsection{Results}\label{results-1}}
@@ -9621,7 +9586,7 @@ We can create a scatterplot (with regression lines) between covariate (our prete
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-273-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-276-1.pdf}
 
 Yikes! This plot looks like an interaction!
 
@@ -9995,7 +9960,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-286-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-289-1.pdf}
 \textbf{Results}
 
 A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, condition, had two levels: Friends, Little Mosque. The dependent variable was attitudes towards Arabs expressed by the participant at post-test and covariate was the baseline assessment of the same variable. Descriptive statistics are presented in Table 1. A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable differed significantly as a function of the independent variable, \emph{F} (1, 189) = 4.297, \emph{p} = .040, \(\eta^2\) = 0.022. Regarding the assumption that the dependent variable is normally distributed in the population for any specific value of the covariate and for any one level of a factor, results of the Shapiro-Wilk test of normality on the model residuals was also significant,\emph{W} = 0.984, \emph{p} = .026. Only one datapoint (in the Little Mosque condition) had a standardized residual (-3.37) that exceeded an absolute value of 3.0. A non-significant Levene's test indicated no violation of the homogeneity of the residual variances for all groups, \emph{F}(1, 191) = 3.515 \emph{p} = .062.
@@ -10077,7 +10042,7 @@ We can create a scatterplot (with regression lines) between the covariate (attit
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-287-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-290-1.pdf}
 As we look at this scatterplot, we are trying to determine if there is an interaction effect (rather than a covarying effect). The linearity here, looks reasonable and not terribly ``interacting'' (to help us decide whether empathy should be a covariate or a moderator). More testing can help us make this distinction.
 
 \hypertarget{homogeneity-of-regression-slopes-1}{%
@@ -10411,7 +10376,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-300-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-303-1.pdf}
 \textbf{Results}
 
 A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, sitcom condition, had two levels: Friends, Little Mosque. The dependent variable was attitudes towards Arabs at pre-test. Preliminary analyses which tested the assumptions of ANCOVA were mixed. Results suggesting that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable (\emph{F} {[}1, 189{]} = 1.886, \emph{p} = .171, \(\eta^2\) = 0.010) provided evidence that we did not violate the homogeneity-of-slopes assumption. In contrast, the Shapiro-Wilk test of normality on the model residuals was statistically significant (\emph{W} = 0.984, \emph{p} = .029). This means that we likely violated the assumption that the dependent variable is normally distributed in the population for any specific value of the covariate and for any one level of a factor. Regarding outliers, one datapoint (-3.38) had a standardized residual that exceeded an absolute value of 3.0. Further, a statistically significant Levene's test indicated a violation of the homogeneity of the residual variances for all groups, (\emph{F}{[}1, 191{]} = 4.539, \emph{p} = .034). \emph{Because the intent of this analysis was to demonstrate how ANCOVA differs from mixed design ANOVA we proceeded with the analysis. Were this for ``real research'' we would have chosen a different analysis.}
