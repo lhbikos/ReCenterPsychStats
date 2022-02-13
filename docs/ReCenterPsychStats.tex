@@ -8,7 +8,7 @@
 ]{book}
 \title{ReCentering Psych Stats: Analysis of Variance}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{10 Feb 2022}
+\date{12 Feb 2022}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -157,7 +157,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 10 Feb 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 12 Feb 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -1597,6 +1597,7 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 \CommentTok{\#will install the package if not already installed}
 \CommentTok{\#if(!require(gplots))\{install.packages("gplots")\} \#easy plotting for simple ANOVA}
 \CommentTok{\#if(!require(tidyverse))\{install.packages("tidyverse")\} \#creating new variables and other handy functions}
+\CommentTok{\#if(!require(dplyr))\{install.packages("dplyr")\} \#a specific part of the tidyverse with useful tools for manipulating data}
 \CommentTok{\#if(!require(psych))\{install.packages("psych")\} \#for descriptive statistics and writing them as csv files}
 \CommentTok{\#if(!require(rstatix))\{install.packages("rstatix")\} \#a number of wrappers for ANOVA models; today for evaluating the Shapiro}
 \CommentTok{\#if(!require(lsr))\{install.packages("lsr")\} \#produces effect sizes}
@@ -2051,7 +2052,7 @@ Our grand (i.e., overall) mean is
 [1] 1.603042
 \end{verbatim}
 
-Subtracting the grand mean from each Accurate score yields a mean difference. In the script below I have used the \emph{mutate()} function from the \emph{dplyr} package (a part of the \emph{tidyverse}) to created a new variable ('' m\_dev'') in the dataframe. The \emph{tidyverse} package is one of the few exceptions that I will open via the library. This is because we need it if we are going to use the pipe (\%\textgreater\%) to string parts of our script together.
+Subtracting the grand mean from each Accurate rating yields a mean difference. In the script below I have used the \emph{mutate()} function from the \emph{dplyr} package (a part of the \emph{tidyverse}) to created a new variable ('' m\_dev'') in the dataframe. The \emph{tidyverse} package is one of the few exceptions that I will open via the library. This is because we need it if we are going to use the pipe (\%\textgreater\%) to string parts of our script together.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3506,7 +3507,7 @@ Results indicated a significant effect of COND on accuracy perception \emph{F} (
 \hypertarget{practice-problems-1}{%
 \section{Practice Problems}\label{practice-problems-1}}
 
-In each of these lessons I provide suggestions for practice that allow you to select one or more problems that offer differing levels of difficulty. Whichever you choose, you will focus on these larger steps in one-way ANOVA, inluding:
+In each of these lessons I provide suggestions for practice that allow you to select one or more problems that offer differing levels of difficulty. Whichever you choose, you will focus on these larger steps in one-way ANOVA, including:
 
 \begin{itemize}
 \tightlist
@@ -3625,7 +3626,7 @@ I'm still learning about this and am using the lessons to practice. In these hid
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=3bb1bee1-c2ac-4cda-95f2-ad8b0152132c}{Screencasted Lecture Link}
 
-In this lesson we conduct a 3X2 ANOVA. The lesson is long and somewhat complicated. We will
+In this (somewhat long and complex) lesson we conduct a 3X2 ANOVA. We will
 
 \begin{itemize}
 \tightlist
@@ -3661,7 +3662,7 @@ In this lesson we conduct a 3X2 ANOVA. The lesson is long and somewhat complicat
   \end{itemize}
 \end{itemize}
 
-The complexity is that not all of these things need to be conducted for every analysis. The Two-Way ANOVA Decision-Tree is provided to help you map a way through your own analyses. I will periodically indicate this map in the lesson so that we can more easily keep track of where we are in the process.
+The complexity is that not all of these things need to be conducted for every analysis. The Two-Way ANOVA Workflow is provided to help you map a way through your own analyses. I will periodically refer to this map so that we can more easily keep track of where we are in the process.
 
 \hypertarget{navigating-this-lesson-3}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-3}}
@@ -3714,7 +3715,7 @@ Learning objectives from this lecture include the following:
 
 In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results \emph{should} map onto the ones obtained in the lecture.
 
-The second option comes from the research vignette. The Ramdhani et al. \citeyearpar{ramdhani_affective_2018} article has two dependent variables (negative and positive evaluation) which are suitable for two-way ANOVAs. I will demonstrate a simulation of one of their 2X3 ANOVAs (negative) in this lecturette. The second dependent variable (positive) is suggested for the moderate level of difficulty.
+The second option comes from the research vignette. The Ramdhani et al. \citeyearpar{ramdhani_affective_2018} article has two dependent variables (DVs; negative and positive evaluation) which are suitable for two-way ANOVAs. I will demonstrate a simulation of one of their 3X2 ANOVAs (negative) in this lecturette. The second dependent variable (positive) is suggested for the moderate level of difficulty.
 
 As a third option, you are welcome to use data to which you have access and is suitable for two-way ANOVA. In either case, you will be expected to:
 
@@ -3746,15 +3747,21 @@ In preparing this chapter, I drew heavily from the following resource(s) that ar
 \begin{itemize}
 \tightlist
 \item
-  Navarro, D. (2020). Chapter 16: Factorial ANOVA. In \emph{Learning Statistics with R - A tutorial for Psychology Students and other Beginners.} Retrieved from \url{https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book\%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)}
+  Navarro, D. (2020). Chapter 16: Factorial ANOVA. In \href{https://learningstatisticswithr.com/}{Learning Statistics with R - A tutorial for Psychology Students and other Beginners}. Retrieved from \url{https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book\%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)}
 
   \begin{itemize}
   \tightlist
   \item
-    Navarro's OER includes a good mix of conceptual information about factorial ANOVA as well as R code. My code/approach is a mix of Field's, Navarro's, and other techniques I have found on the internet and learned from my students.
+    Navarro's OER includes a good mix of conceptual information about one-way ANOVA as well as R code. My code/approach is a mix of Green and Salkind's \citeyearpar{green_using_2014}, Field's \citeyearpar{field_discovering_2012}, Navarro's \citeyearpar{navarro_chapter_2020}, and other techniques I have found on the internet and learned from my students.
   \end{itemize}
 \item
-  Ramdhani, N., Thontowi, H. B., \& Ancok, D. (2018). Affective Reactions Among Students Belonging to Ethnic Groups Engaged in Prior Conflict. \emph{Journal of Pacific Rim Psychology, 1}2, e2. \url{https://doi.org/10.1017/prp.2017.22}
+  Ramdhani, N., Thontowi, H. B., \& Ancok, D. (2018). Affective Reactions Among Students Belonging to Ethnic Groups Engaged in Prior Conflict. \emph{Journal of Pacific Rim Psychology, 12}, e2. \url{https://doi.org/10.1017/prp.2017.22}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The source of our research vignette.
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{packages-2}{%
@@ -3765,11 +3772,13 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#will install the package if not already installed}
+\CommentTok{\#if(!require(knitr))\{install.packages("knitr")\}}
 \CommentTok{\#if(!require(psych))\{install.packages("psych")\}}
 \CommentTok{\#if(!require(tidyverse))\{install.packages("tidyverse")\}}
 \CommentTok{\#if(!require(lsr))\{install.packages("lsr")\}}
 \CommentTok{\#if(!require(car))\{install.packages("car")\}}
 \CommentTok{\#if(!require(ggpubr))\{install.packages("ggpubr")\}}
+\CommentTok{\#if(!require(effectsize))\{install.packages("effectsize")\}}
 \CommentTok{\#if(!require(pwr2))\{install.packages("pwr2")\}}
 \CommentTok{\#if(!require(apaTables))\{install.packages("apaTables")\}}
 \end{Highlighting}
@@ -3780,22 +3789,22 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 My approach to teaching is to address the conceptual as we work problems. That said, there are some critical ideas we should address first.
 
-\textbf{ANOVA is for experiments} (or arguably closely related designs). As we get into the assumptions you'll see that it has some interesting ones (e.g., there should be an equal/equivalent number of cases per cell). To the degree that we violate these assumptions, we should locate alternative statistical approaches where these assumptions are relaxed.
+\textbf{ANOVA is for experiments} (or arguably closely related designs). As we get into the assumptions you'll see that it has some rather restrictive ones (e.g., there should be an equal/equivalent number of cases per cell). To the degree that we violate these assumptions, we should locate alternative statistical approaches where these assumptions are relaxed.
 
-\textbf{Factorial}: the term used when there are two or more independent variables (the factors). The factors could be between-groups, within-groups, repeated measures, or a combination of between and within.
+\textbf{Factorial}: a term used when there are two or more independent variables (IVs; the factors). The factors could be between-groups, within-groups, repeated measures, or a combination of between and within.
 
 \begin{itemize}
 \tightlist
 \item
   \textbf{Independent factorial design}: several IVs (predictors/factors) and each has been measured using different participants (between groups).
 \item
-  \textbf{Related factorial design}: several IVs (factors/predictors) have been measured, but the same participants have been used in all conditions (repeated measures).
+  \textbf{Related factorial design}: several IVs (factors/predictors) have been measured, but the same participants have been used in all conditions (repeated measures or within-subjects).
 \item
-  \textbf{Mixed design}: several IVs (factors/predictors) have been measured; some with different participants whereas others use the same participants. A combo of independent (between) and related (within) designs.
+  \textbf{Mixed design}: several IVs (factors/predictors) have been measured. One or more factors uses different participants (between-subjects) and one or more factors uses the same participants (within-subjects). Thus, there is a cobination of independent (between) and related (within or repated) designs.
 \item
   Factor naming follows a number/levels convention.\\
 \item
-  Today's example is a 3X2 ANOVA. We know there are two factors that have three and two levels, respectively: \emph{Ethnicity} has three levels representing the two ethnic groups that were in prior conflict (Marudese, Dayaknese) and a third group who was uninvolved in the conflict (Javanese); \emph{Photo stimulus} has two levels representing members of the two ethnic groups that were in prior conflict (Madurese, Dayaknese);
+  Today's example is a 3X2 ANOVA. We know there are two factors that have three and two levels, respectively: \emph{ethnicity} has three levels representing the two ethnic groups that were in prior conflict (Marudese, Dayaknese) and a third group who was uninvolved in the conflict (Javanese); \emph{photo stimulus} has two levels representing members of the two ethnic groups that were in prior conflict (Madurese, Dayaknese);
 \end{itemize}
 
 \textbf{Moderator} is what creates an interaction. Below are traditional representations of the \emph{statistical} and \emph{conceptual} figures of interaction effects. We will say that Factor B, \emph{moderates} the relationship between Factor A/IV and the DV.
@@ -3803,11 +3812,9 @@ My approach to teaching is to address the conceptual as we work problems. That s
 In a later lesson we work an ANCOVA -- where we will distinguish between a \emph{moderator} and a \emph{covariate.} In regression models, you will likely be introduced to the \emph{mediator.}
 
 \begin{figure}
-\hypertarget{id}{%
 \centering
-\includegraphics[width=10.41667in,height=4.16667in]{images/factorial/modfigs.jpg}
-\caption{Graphic representations of a moderated relationship?}\label{id}
-}
+\includegraphics{images/factorial/modfigs.jpg}
+\caption{Graphic representations of a moderated relationship?}
 \end{figure}
 
 \hypertarget{workflow-for-two-way-anova}{%
@@ -3832,9 +3839,9 @@ Steps of the workflow include:
   \begin{itemize}
   \tightlist
   \item
-    seems straightforward; understanding the format of data can often provide clues as to which ANOVA/statistic to use
-  \item
     predictors should formatted as as factors (ordered or unordered); the dependent variable should be continuously scaled
+  \item
+    understanding the format of data can often provide clues as to which ANOVA/statistic to use
   \end{itemize}
 \item
   Explore data
@@ -3858,7 +3865,7 @@ Steps of the workflow include:
   \begin{itemize}
   \tightlist
   \item
-    select contrasts \& specify for all of the independent variables in your analysis
+    select contrasts and specify for all of the IVs in the analysis
   \item
     if you want to use Type III sums of squares, contrasts must be orthogonal
   \end{itemize}
@@ -3868,7 +3875,7 @@ Steps of the workflow include:
   \begin{itemize}
   \tightlist
   \item
-    \emph{Depending on what you found in the data exploration phase, you may need to run a robust version of the test}
+    \emph{depending on what you found in the data exploration phase, you may need to run a robust version of the test}
   \end{itemize}
 \item
   Follow-up testing based on significant main or interaction effects
@@ -3876,7 +3883,7 @@ Steps of the workflow include:
   \begin{itemize}
   \tightlist
   \item
-    significant interactions require test of simple main effects which could be urther explored with contrasts, posthoc acomparisons, and/or polynomials
+    significant interactions require test of simple main effects which could be further explored with contrasts, posthoc comparisons, and/or polynomials
   \item
     \emph{the exact methods you choose will depend upon the tests of assumptions during data exploration}
   \end{itemize}
@@ -3887,9 +3894,9 @@ Steps of the workflow include:
 \hypertarget{research-vignette-2}{%
 \section{Research Vignette}\label{research-vignette-2}}
 
-The research vignette for this example was located in Kalimantan, Indonesia and focused on bias in young people from three ethnic groups. The Madurese and Dayaknese groups were engaged in ethnic conflict that spanned 1996 to 2001. The last incidence of mass violence was in 2001 where approximately 500 people (mostly from the Madurese ethnic group)were expelled from the province. Ramdhani et al.'s \citeyearpar{ramdhani_affective_2018} research hypotheses were based on the roles of the three ethnic groups in the study. The Madurese appear to be viewed as the transgressors when they occupied lands and took employment and business opportunities from the Dayaknese. Ramdhani et al.~also included a third group who were not involved in the conflict (Javanese). The research participants were students studying in Yogyakara who were not involved in the conflict. They included 39 Madurese, 35 Dyaknese, and 37 Javanese; 83 were male and 28 were female.
+The research vignette for this example was located in Kalimantan, Indonesia and focused on bias in young people from three ethnic groups. The Madurese and Dayaknese groups were engaged in ethnic conflict that spanned 1996 to 2001. The last incidence of mass violence was in 2001 where approximately 500 people (mostly from the Madurese ethnic group) were expelled from the province. Ramdhani et al.'s \citeyearpar{ramdhani_affective_2018} research hypotheses were based on the roles of the three ethnic groups in the study. The Madurese appear to be viewed as the transgressors when they occupied lands and took employment and business opportunities from the Dayaknese. Ramdhani et al.~also included a third group who were not involved in the conflict (Javanese). The research participants were students studying in Yogyakara who were not involved in the conflict. They included 39 Madurese, 35 Dyaknese, and 37 Javanese; 83 were male and 28 were female.
 
-In the study \citep{ramdhani_affective_2018}, participants viewed facial pictures of three men and three women (in traditional dress) from each ethnic group (6 photos per ethnic group). Participant were asked, ``How do you feel when you see this photo? Please indicate your answers based on your actual feelings.'' Participants responded on a 7-point Likert scale ranging from 1 (\emph{strongly disagree}) to 7 (\emph{strongly agree}. Higher scores indicated ratings of higher intensity on that scale. The two scales included the following words:
+In the study \citep{ramdhani_affective_2018}, participants viewed facial pictures of three men and three women (in traditional dress) from each ethnic group (6 photos per ethnic group). Participant were asked, ``How do you feel when you see this photo? Please indicate your answers based on your actual feelings.'' Participants responded on a 7-point Likert scale ranging from 1 (\emph{strongly disagree}) to 7 (\emph{strongly agree}). Higher scores indicated ratings of higher intensity on that scale. The two scales included the following words:
 
 \begin{itemize}
 \tightlist
@@ -3946,7 +3953,7 @@ For two-way ANOVA our variables need to be properly formatted. In our case:
  $ Photo   : chr  "Dayaknese" "Dayaknese" "Dayaknese" "Dayaknese" ...
 \end{verbatim}
 
-Our Negative variable is correctly formatted. Let's reformat Numeric and Photo to be factors. And ask for the structure again. In the absence of instruction, R will order the factors alphabetically. In this case this is fine. If we had ordered factors such as dosage (placebo, lo, hi) we would want to specify the order.
+Our Negative variable is correctly formatted. Let's reformat Rater and Photo to be factors and ask for the structure again. R's default is to order the factors alphabetically. In this case this is fine. If we had ordered factors such as dosage (placebo, lo, hi) we would want to respecify the order.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3994,11 +4001,10 @@ The code for the .rds file will retain the formatting of the variables, but is n
 \hypertarget{preliminary-exploration-of-our-research-vignette}{%
 \subsection{Preliminary exploration of our research vignette}\label{preliminary-exploration-of-our-research-vignette}}
 
-Let's first examine the descriptive statistic (e.g., means of Negative) by group. We can use the \emph{describeBy()} function from the \emph{psych} package.
+Let's first examine the descriptive statistics (e.g., means of the variable, Negative) by group. We can use the \emph{describeBy()} function from the \emph{psych} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(psych)}
 \NormalTok{negative.descripts }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(Negative }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Rater }\SpecialCharTok{+}\NormalTok{ Photo, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{) }\CommentTok{\#digits allows us to round the output}
 \NormalTok{negative.descripts}
 \end{Highlighting}
@@ -4029,7 +4035,7 @@ The \emph{write.table()} function can be a helpful way to export output to .csv 
 \end{Highlighting}
 \end{Shaded}
 
-At this stage, it would be useful to plot our data. Figures can really help us conceptualize our analysis.
+At this stage, it would be useful to plot our data. Figures can assist in the conceptualization of the analysis.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4049,6 +4055,7 @@ Narrating results is sometimes made easier if variables are switched. There is u
 \end{Shaded}
 
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-115-1.pdf}
+Yet another option plots the raw data as bubbles, the means as lines, and denotes differences in the moderator with color.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4068,6 +4075,8 @@ Bin width defaults to 1/30 of the range of the data. Pick better value with `bin
 \CommentTok{\#add this for a different color palette:  palette = c("\#00AFBB", "\#E7B800")}
 \end{Highlighting}
 \end{Shaded}
+
+We can reverse this to see if it assists with our conceptualization.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4093,14 +4102,14 @@ Before we work an ANOVA let's take a moment to consider what we are doing and ho
 \caption{Image of a flowchart that partitions variance from sums of squares totals to its component pieces}
 \end{figure}
 
-As in one-way ANOVA, we partition variance into \textbf{total}, \textbf{model}, and \textbf{residual}. However, we now further divide the \(SS_M\) into its respective factors A(column), B(row) and their a x b product.
+As in one-way ANOVA, we partition variance into \textbf{total}, \textbf{model}, and \textbf{residual}. However, we now further divide the \(SS_M\) into its respective factors A(column), B(row,) and their a x b product.
 
 In this, we begin to talk about main effects and interactions.
 
 \hypertarget{sums-of-squares-total-1}{%
 \subsection{Sums of Squares Total}\label{sums-of-squares-total-1}}
 
-Our formula is the same as before:
+Our formula is the same as it was for one-way ANOVA:
 
 \[SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}\]
 Let's calculate it for the Ramdhani et al. \citeyearpar{ramdhani_affective_2018} data.
@@ -4116,7 +4125,7 @@ Our grand (i.e., overall) mean is
 [1] 2.947369
 \end{verbatim}
 
-Subtracting the grand mean from each Accurate score yields a mean difference.
+Subtracting the grand mean from each Negative rating yields a mean difference.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4140,7 +4149,7 @@ Let's find out!
 [1] -0.000000000000007549517
 \end{verbatim}
 
-If we square those mean deviations:
+Of course! The sum of squared deviations around the mean is zero. Next we square those mean deviations.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4149,7 +4158,7 @@ If we square those mean deviations:
 \end{Highlighting}
 \end{Shaded}
 
-If we sum the squared mean deviations:
+Then we sum the squared mean deviations.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4161,8 +4170,9 @@ If we sum the squared mean deviations:
 [1] 114.7746
 \end{verbatim}
 
-This value, 114.775, the sum of squared deviations around the grand mean, is our \(SS_T\); the associated \emph{degrees of freedom} is \(N\) - 1.\\
-In factorial ANOVA, we divide \(SS_T\) into \textbf{model/between sums of squares} and \textbf{residual/within sums of squares}.
+This value, 114.775, the sum of squared deviations around the grand mean, is our \(SS_T\); the associated \emph{degrees of freedom} is \(N\) - 1.
+
+In factorial ANOVA, we divide \(SS_T\) into \textbf{model/between} sums of squares and \textbf{residual/within} sums of squares.
 
 \hypertarget{sums-of-squares-for-the-model}{%
 \subsection{Sums of Squares for the Model}\label{sums-of-squares-for-the-model}}
@@ -4181,7 +4191,7 @@ In factorial, we need to obtain means for each of the combinations of the factor
   Photo with two levels: Dayaknese, Madurese
 \end{itemize}
 
-Let's repeat some code we used before to get the cell-level means and sample size.
+Let's repeat some code we used before to obtain the cell-level means and cell sizes.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4206,7 +4216,7 @@ X15 4.631 2.175 -0.010   -1.307 0.146
 X16 5.641 4.430  0.215   -1.238 0.298
 \end{verbatim}
 
-We also need the grand mean (i.e., the mean that disregards the factors).
+We also need the grand mean (i.e., the mean that disregards {[}or ``collapses across''{]} the factors).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4230,12 +4240,12 @@ This formula occurs in six chunks, representing the six cells of our designed. I
 [1] 35.41501
 \end{verbatim}
 
-This value, 35.415, \(SS_M\) is the value accounted for by the model -- the proportion of variance accounted for by the grouping variables/factors, Rater and Photo.
+This value, 35.415, \(SS_M\) is the value accounted for by the model. That is, the amount of variance accounted for by the grouping variable/factors, Rater and Photo.
 
 \hypertarget{sums-of-squares-residual-or-within-1}{%
 \subsection{Sums of Squares Residual (or within)}\label{sums-of-squares-residual-or-within-1}}
 
-\(SS_R\) is error associated with within group variability -- If people are randomly assigned to treatment group there should be no other covariate (confounding variable) so that all SSR variability is \emph{uninteresting} for the research and treated as noise.
+\(SS_R\) is error associated with within group variability. If people are randomly assigned to treatment group there should be no other covariate (confounding variable) so that all \(SS_R\) variability is \emph{uninteresting} for the research and treated as noise.
 
 \[SS_{R}= \sum(x_{ik}-\bar{x}_{k})^{^{2}}\]
 Here's another configuration of the same:
@@ -4279,7 +4289,7 @@ Calculating \(SS_R\)
 [1] 79.32078
 \end{verbatim}
 
-The value for our \(SS_R\) is 79.321. It's degrees of freedom is \(N - k\), meaning the total \(N\) minus the number of groups:
+The value for our \(SS_R\) is 79.321. Its degrees of freedom is \(N - k\). That is, the total \(N\) minus the number of groups:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4291,8 +4301,8 @@ The value for our \(SS_R\) is 79.321. It's degrees of freedom is \(N - k\), mean
 [1] 105
 \end{verbatim}
 
-\hypertarget{relationship-between-ss_t-ss_m-and-ss_r.-in-case-its-not-clear}{%
-\subsection{\texorpdfstring{Relationship between \(SS_T\), \(SS_M\), and \(SS_R\). In case it's not clear:}{Relationship between SS\_T, SS\_M, and SS\_R. In case it's not clear:}}\label{relationship-between-ss_t-ss_m-and-ss_r.-in-case-its-not-clear}}
+\hypertarget{a-recap-on-the-relationship-between-ss_t-ss_m-and-ss_r}{%
+\subsection{\texorpdfstring{A Recap on the Relationship between \(SS_T\), \(SS_M\), and \(SS_R\)}{A Recap on the Relationship between SS\_T, SS\_M, and SS\_R}}\label{a-recap-on-the-relationship-between-ss_t-ss_m-and-ss_r}}
 
 \(SS_T = SS_M + SS_R\)
 In our case:
@@ -4319,17 +4329,17 @@ Considering rounding error, we were successful!
 [1] 114.736
 \end{verbatim}
 
-\hypertarget{but-we-need-to-understand-the-ss-for-each-of-the-factors-and-their-product.}{%
-\subsection{But we need to understand the SS for each of the factors and their product.}\label{but-we-need-to-understand-the-ss-for-each-of-the-factors-and-their-product.}}
+\hypertarget{calculating-ss-for-each-factor-and-their-products}{%
+\subsection{Calculating SS for Each Factor and Their Products}\label{calculating-ss-for-each-factor-and-their-products}}
 
 \hypertarget{rater-main-effect}{%
 \subsubsection{Rater Main Effect}\label{rater-main-effect}}
 
-\(SS_a:Rater\) is calculated the same way as \(SS_M\) for one-way ANOVA, simply collapsing across Photo and calculating the \emph{marginal means} for Negative as a function of ethnicity of the Rater:
+\(SS_a:Rater\) is calculated the same way as \(SS_M\) for one-way ANOVA. Simply collapse across Photo and calculate the \emph{marginal means} for Negative as a function of the Rater's ethnicity.
 
 Reminder of the formula: \(SS_{a:Rater}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\)
 
-With Rater, we have three cells:
+There are three cells involved in the calculation of \(SS_a:Rater\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4360,7 +4370,7 @@ Again, we need the grand mean.
 [1] 2.947369
 \end{verbatim}
 
-Now to calculate the Rater main effect
+Now to calculate the Rater main effect.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4375,11 +4385,11 @@ Now to calculate the Rater main effect
 \hypertarget{photo-main-effect}{%
 \subsubsection{Photo Main Effect}\label{photo-main-effect}}
 
-\(SS_b:Photo\) is calculated the same way as \(SS_M\) for one-way ANOVA, simply collapsing across Rater and calculating the \emph{marginal means} for Negative as a function of ethnicity reflected in the Photo stimulus:
+\(SS_b:Photo\) is calculated the same way as \(SS_M\) for one-way ANOVA. Simply collapse across Rater and calculate the \emph{marginal means} for Negative as a function of the ethnicity reflected in the Photo stimulus:
 
-Reminder of the formula: \(SS_{a:Photo}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\)
+Reminder of the formula: \(SS_{a:Photo}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\).
 
-With Photo, we have only two cells:
+With Photo, we have only two cells.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4396,7 +4406,7 @@ X11 0.47   -0.555 0.142
 X12 0.35    0.581 0.115
 \end{verbatim}
 
-Again, we need the grand mean
+Again, we need the grand mean.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4467,28 +4477,6 @@ b & & \(k_{b}-1\) & & & \\
 aXb & & \((df_{a})(df_{b})\) & & & \\
 Residual & & \(n-k\) & & & \\
 Total & & & & & \\
-\bottomrule
-\end{longtable}
-
-\begin{longtable}[]{@{}l@{}}
-\toprule
-Summary ANOVA for Negative Reaction \\
-\midrule
-\endhead
-\bottomrule
-\end{longtable}
-
-\begin{longtable}[]{@{}llllll@{}}
-\toprule
-Source & SS & df & \(MS = \frac{SS}{df}\) & \(F = \frac{MS_{source}}{MS_{resid}}\) & \(F_{CV}\) \\
-\midrule
-\endhead
-Model & 35.415 & 5 & 7.083 & 9.381 & 2.301 \\
-a & 12.243 & 2 & 6.122 & 8.109 & 3.083 \\
-b & 14.575 & 1 & 14.575 & 19.305 & 3.932 \\
-aXb & 8.597 & 2 & 4.299 & 5.694 & 3.083 \\
-Residual & 79.321 & 105 & 0.755 & & \\
-Total & 114.775 & & & & \\
 \bottomrule
 \end{longtable}
 
@@ -4621,6 +4609,28 @@ Or use a look-up function, which follows this general form: qf(p, df1, df2. lowe
 
 When the \(F\) value exceeds the \(F_{CV}\), the effect is statistically significant.
 
+\begin{longtable}[]{@{}l@{}}
+\toprule
+Summary ANOVA for Negative Reaction \\
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Source & SS & df & \(MS = \frac{SS}{df}\) & \(F = \frac{MS_{source}}{MS_{resid}}\) & \(F_{CV}\) \\
+\midrule
+\endhead
+Model & 35.415 & 5 & 7.083 & 9.381 & 2.301 \\
+a & 12.243 & 2 & 6.122 & 8.109 & 3.083 \\
+b & 14.575 & 1 & 14.575 & 19.305 & 3.932 \\
+aXb & 8.597 & 2 & 4.299 & 5.694 & 3.083 \\
+Residual & 79.321 & 105 & 0.755 & & \\
+Total & 114.775 & & & & \\
+\bottomrule
+\end{longtable}
+
 \hypertarget{interpreting-the-results}{%
 \subsection{Interpreting the results}\label{interpreting-the-results}}
 
@@ -4644,7 +4654,7 @@ In the face of this significant interaction effect, we would follow-up by invest
 \hypertarget{evaluating-the-statistical-assumptions-1}{%
 \subsection{Evaluating the statistical assumptions}\label{evaluating-the-statistical-assumptions-1}}
 
-All statistical tests have some assumptions about the data. This particular ANOVA has three:
+All statistical tests have some assumptions about the data. This particular ANOVA has four:
 
 Assumptions
 
@@ -4658,7 +4668,7 @@ Assumptions
   \item
     This is an issue of research design
   \item
-    ANOVA was really designed for the RCT; while we see it applied elsewhere\ldots argHHHHHHHH
+    Although we see ANOVA used (often incorrectly) in other settings, ANOVA was really designed for the random clinical trial (RCT).
   \end{itemize}
 \item
   Scores on the DV are independent of each other.
@@ -4666,17 +4676,17 @@ Assumptions
   \begin{itemize}
   \tightlist
   \item
-    With correlated observations, a dramatic increase of Type I error
+    With correlated observations, there is a dramatic increase of Type I error
   \item
-    There are better options for analyzing data that has dependencies (i.e., repeated measures ANOVA\ldots but also dyadic, multilevel modeling)
+    There are options designed for analyzing data that has dependencies (e.g., repeated measures ANOVA, dyadic data analysis, multilevel modeling)
   \end{itemize}
 \item
-  DV is normally distributed for each of the populations
+  The DV is normally distributed for each of the populations
 
   \begin{itemize}
   \tightlist
   \item
-    that is, each cell (representing the combinations of each factor) is normally distributed
+    that is, data for each cell (representing the combinations of each factor) is normally distributed
   \end{itemize}
 \item
   Population variances of the DV are the same for all cells
@@ -4684,18 +4694,18 @@ Assumptions
   \begin{itemize}
   \tightlist
   \item
-    When cell sizes ≠, ANOVA not robust to this violation and cannot trust F ratio
+    When cell sizes are not equal, ANOVA not robust to this violation and cannot trust F ratio
   \end{itemize}
 \end{itemize}
 
-Even though we position the evaluation of assumptions first -- some of the best tests of the assumptions use the resulting ANOVA model. So, I'm going to quickly run the model now -- but not explain the results -- but use it to evaluate the assumptions.
+Even though we position the evaluation of assumptions first -- some of the best tests of the assumptions use the resulting ANOVA model. Because of this, I will quickly run the model now. I will not explain the results until after we evaluate the assumptions.
 
-I have marked our Two-Way ANOVA Decision-Tree with a yellow box outlined in red to let us know that we are just beginning the process of analyzing our data.
+I have marked our Two-Way ANOVA Workflow with a yellow box outlined in red to let us know that we are just beginning the process of analyzing our data.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/WrkFlw_Assumptions.jpg}
-\caption{Image of a flowchart showing that we are on the ``Evaluating assumptions'' portion of the decision-tree}
+\caption{Image of a flowchart showing that we are on the ``Evaluating assumptions'' portion of the workflow}
 \end{figure}
 
 \begin{Shaded}
@@ -4751,11 +4761,10 @@ Rater       Dayaknese Madurese
 \hypertarget{dv-is-normally-distributed}{%
 \subsubsection{DV is normally distributed}\label{dv-is-normally-distributed}}
 
-We can start easy with \textbf{skew} and \textbf{kurtosis}.
+Let's start by analyzing \textbf{skew} and \textbf{kurtosis}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(psych)}
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(Negative }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Rater }\SpecialCharTok{+}\NormalTok{ Photo, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -4777,13 +4786,11 @@ X15 4.631 2.175 -0.010   -1.307 0.146
 X16 5.641 4.430  0.215   -1.238 0.298
 \end{verbatim}
 
-Using guidelines from Kline \citeyearpar{kline_principles_2016}
-* All skew is below 3;
-* All kurtosis is below 8 (8 to 20 is considered to be \emph{extreme})
+Using guidelines from Kline \citeyearpar{kline_principles_2016} our values for skewness should fall below 3.0 (they do) and all values for kurtosis should fall below 8 to 20 (ours do).
 
 In a factorial design, the Shapiro-Wilk test is applied to residuals from the model itself. Examination of those residuals can give us a good indication of normality.
 
-First, we extract the residuals (i.e., that which is left-over/unexplained) from the model.
+First, we extract the residuals (i.e., that which is left-over/unexplained) from the model. We can examine their distribution with a plot.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4793,7 +4800,10 @@ First, we extract the residuals (i.e., that which is left-over/unexplained) from
 \end{Shaded}
 
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-141-1.pdf}
-So far so good -- these look normal. Let's examine a QQ plot. We want the dots (the \emph{residuals}), or what is leftover after the model is applied to line up on the diagonal line (within reason). This would indicate a normal distribution.
+So far so good -- these look normal. Let's examine a QQ plot. We want the dots (the
+Our distribution of \emph{residuals} (i.e., what is leftover after the model is applied) resembles a normal distribution.
+
+The Q-Q plot provides another view. If the residuals are normally distributed, they will line up on the diagonal line (within reason).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4802,7 +4812,9 @@ So far so good -- these look normal. Let's examine a QQ plot. We want the dots (
 \end{Shaded}
 
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-142-1.pdf}
-We can formally test the distribution of the residuals with a Shapiro test. We want the associated \emph{p} value to be less than 0.05.
+We can formally test the distribution of the residuals with a Shapiro test. We want the
+
+We can formally test the distribution of the residuals with a Shapiro test. We want the associated \emph{p} value to be greather than 0.05.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4826,43 +4838,11 @@ Factorial ANOVA assumes that the dependent variable is normally is distributed f
 \hypertarget{homogeneity-of-variance}{%
 \subsubsection{Homogeneity of variance}\label{homogeneity-of-variance}}
 
-Levene's test is also applied to the ANOVA model; in this case I just wrote it out. Levene's requires a \emph{fully saturated model.} This means that the prediction model requires an interaction effect (not just two, non-interacting predictors).
+We can evaluate the homogeneity of variance test with the Levene's test for the equality of error variances. Levene's requires a \emph{fully saturated model.} This means that the prediction model requires an interaction effect (not just two, non-interacting predictors). We can use the \emph{leveneTest()} function from the \emph{car} package. Within the function we specify the model we will be testing in the factorial ANOVA. That is, predicting Negative from the Rater and Photo factors. The asterisk indicates that they will also be added as an interaction term.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(car)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Loading required package: carData
-\end{verbatim}
-
-\begin{verbatim}
-Attaching package: 'car'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:psych':
-
-    logit
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:dplyr':
-
-    recode
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:purrr':
-
-    some
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{leveneTest}\NormalTok{(Negative }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Rater}\SpecialCharTok{*}\NormalTok{Photo, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df)}
+\NormalTok{car}\SpecialCharTok{::}\FunctionTok{leveneTest}\NormalTok{(Negative }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Rater}\SpecialCharTok{*}\NormalTok{Photo, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4880,14 +4860,14 @@ Levene's test has indicated a violation of the homogeneity of variance assumptio
 \hypertarget{evaluating-the-omnibus-anova}{%
 \subsection{Evaluating the Omnibus ANOVA}\label{evaluating-the-omnibus-anova}}
 
-The \emph{F}-tests associated with the two-way ANOVA are the \emph{omnibus} -- giving the result for the main and interaction effects.
+The \emph{F}-tests associated with the two-way ANOVA are the \emph{omnibus} -- providing the result for the main and interaction effects.
 
-Here's where we are in the decision tree.
+Here's where we are in the workflow.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/WrkFlw_Omnibus.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
 When we run the two-way ANOVA we will be looking for several effects:
@@ -4900,7 +4880,7 @@ When we run the two-way ANOVA we will be looking for several effects:
   the interaction effect.
 \end{itemize}
 
-It is possible that all of them will be significant, none will be significant, or some will be significant. The interaction effect always takes precedence over the main effect because it let's us know there is a more nuanced/complex story.
+It is possible that all effects will be significant, none will be significant, or some will be significant. The interaction effect always takes precedence over the main effect because it let's us know there is a more nuanced/complex story.
 
 In specifying the ANOVA, order of entry matters. If you have a distinction between IV and moderator, put the IV first.
 
@@ -4954,8 +4934,19 @@ Rater       Dayaknese Madurese
   rep       19.000    20.000  
 \end{verbatim}
 
-Let's gather the \emph{F strings}''* from the above table.
-Rater main effect: significant (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless{} .001). Photo stimulus main effect: significant (\emph{F}{[}1, 105{]} = 19.346, \emph{p} \textless{} .001). Interaction effect: significant (\emph{F}{[}2, 105{]} = 5.696, \emph{p} = .004).
+Let's write the \emph{F strings}''* from the above table.
+
+\begin{itemize}
+\tightlist
+\item
+  Rater main effect: (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless{} .001).
+\item
+  Photo stimulus main effect: (\emph{F}{[}1, 105{]} = 19.346, \emph{p} \textless{} .001).
+\item
+  Interaction effect: (\emph{F}{[}2, 105{]} = 5.696, \emph{p} = .004).
+\end{itemize}
+
+The \emph{plot()} function provides some quick plots from the object created from the ANOVA.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4968,24 +4959,30 @@ Rater main effect: significant (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless
 \hypertarget{effect-sizes}{%
 \subsubsection{Effect sizes}\label{effect-sizes}}
 
-\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IV/predictor. Traditional interpretive values are similar to the Pearson's \emph{r}:
+\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IVs/predictors. Traditional interpretive values are similar to the Pearson's \emph{r}:
 
-0 = no relationship
-.02 = small
-.13 = medium
-.26 = large
-1 = a perfect (one-to-one) correspondence
+\begin{itemize}
+\tightlist
+\item
+  0 = no relationship
+\item
+  .02 = small
+\item
+  .13 = medium
+\item
+  .26 = large
+\item
+  1.0 = a perfect (one-to-one) correspondence
+\end{itemize}
 
-More interpretive info can be found here: \url{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}
-
-The formula is straightforward:
+The formula for \(\eta ^{2}\) is straightforward:
 
 \[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]
+We can apply the \emph{etaSquared()} function from the \emph{lsr} package to our ANOVA object to retrieve \$\eta \^{}\{2\}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(lsr)}
-\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg)}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4996,41 +4993,48 @@ Photo       0.12736755  0.15558329
 Rater:Photo 0.07500609  0.09788289
 \end{verbatim}
 
-We can update our \emph{F} string:
-Rater main effect: significant (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.107). Photo stimulus main effect: significant (\emph{F}{[}1, 105{]} = 19.346, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.127). Interaction effect: significant (\emph{F}{[}2, 105{]} = 5.696, \emph{p} = .004, \(\eta ^{2}\) = 0.075).
+We can update our \emph{F} strings to include the effect size:
+
+\begin{itemize}
+\tightlist
+\item
+  Rater main effect: (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.107).
+\item
+  Photo stimulus main effect: (\emph{F}{[}1, 105{]} = 19.346, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.127).
+\item
+  Interaction effect: (\emph{F}{[}2, 105{]} = 5.696, \emph{p} = .004, \(\eta ^{2}\) = 0.075).
+\end{itemize}
+
+Before moving to follow-up, let's capture an APA style write-up so far.
 
 \hypertarget{apa-write-up-of-the-omnibus-results}{%
 \subsubsection{APA Write-up of the omnibus results}\label{apa-write-up-of-the-omnibus-results}}
 
-A 3 X 2 ANOVA was conducted to evaluate the effects of rater ethnicity (3 levels, Dayaknese, Madurese, Javanese) and photo stimulus (2 levels, Dayaknese on Madurese,) on negative reactions to the photo stimuli. Results of Levene's Test for Equality of Error Variances indicated violation of the assumption, (\(F\){[}5, 105{]} = 8.834, \(p\) \textless{} .001). Our analysis of the individual cell means (see Table 1 for means and standard deviations) suggested skew and kurtosis were within the bounds considered to be normally distributed \citep{kline_principles_2016}. A non-significant Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) provided further evidence that the assumption of normality was not violated (\(W\) = 0.9846, \(p\) = 0.234).
+A 3 X 2 ANOVA was conducted to evaluate the effects of rater ethnicity (3 levels, Dayaknese, Madurese, Javanese) and photo stimulus (2 levels, Dayaknese on Madurese,) on negative reactions to the photo stimuli. Results of Levene's Test for Equality of Error Variances indicated violation of the homogeneity of variance assumption, (\(F\){[}5, 105{]} = 8.834, \(p\) \textless{} .001). Our analysis of the individual cell means (see Table 1 for means and standard deviations) suggested skew and kurtosis were within the bounds considered to be normally distributed \citep{kline_principles_2016}. A non-significant Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) provided further evidence that the assumption of normality was not violated (\(W\) = 0.9846, \(p\) = 0.234).
 
 Computing sums of squares with a Type II approach, the results for the ANOVA indicated a significant main effect for ethnicity of the rater (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.107), a significant main effect for photo stimulus, (\emph{F}{[}1, 105{]} = 19.346, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.127), and a significant interaction effect (\emph{F}{[}2, 105{]} = 5.696, \emph{p} = .004, \(\eta ^{2}\) = 0.075).
 
-\emph{\ldots The next paragraph will have one of the follow-up options. We will add it later in the lesson}
+\emph{Note. The next paragraph will have one of the follow-up options. We will add it later in the lesson}
 
 \hypertarget{follow-up-a-significant-interaction-effect}{%
 \subsection{Follow-up a significant interaction effect}\label{follow-up-a-significant-interaction-effect}}
 
-The aspirational ideal of a factorial ANOVA is a significant interaction effect. Interpretation is more complex than a main effect (later) of either factor.
+In factorial ANOVA we are interested in main effects and interaction effects. When the result is explained by a main effect, then there is a consistent trend as a function of a factor (e.g., Madurese raters had consistently higher Negative evaluations, irrespective of stimulus). In an interaction effect, the results are more complex (e.g., the ratings across the stimulus differed for the three groups of raters).
 
-There are a mazillion ways to follow-up a significant interaction effect. I will demo the four I believe to be the most useful in the context of psychologists operating within the scientist-practitioner-advocacy context.
+There are a variety of strategies to follow-up a significant interaction effect. I will demonstrate the four I believe to be the most useful in the context of psychologists operating within the scientist-practitioner-advocacy context.
 
-When an interaction effect is significant (irrespective of the significance of one or more main effects), examination of \textbf{simple main effects} is a common statistical/explanatory approached that is used. The Two-Way ANOVA Decision Tree shows where we are in this process.
+When an interaction effect is significant (irrespective of the significance of one or more main effects), examination of \textbf{simple main effects} is a common statistical/explanatory approached that is used. The Two-Way ANOVA Workflow shows where we are in this process.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/WrkFlo_IntSmp.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
-
-We're going to subset the data to see only the people in one group (e.g., low income neighborhood) and the do the other group(s) separately.
-
-Remember the custom orthogonal contrasts in one-way ANOVA? We will do the same for these super, simple main effects. In our 3x2 ANOVA, Rater has three levels: Dayaknese, Madurese, and Javanese.
 
 \hypertarget{option-1-the-simple-main-effect-of-photo-stimulus-within-ethnicity-of-the-rater}{%
 \subsubsection{Option \#1 the simple main effect of photo stimulus within ethnicity of the rater}\label{option-1-the-simple-main-effect-of-photo-stimulus-within-ethnicity-of-the-rater}}
 
-Here we subset each of the three ethnic groups and then compare their ratings of the two photos.
+Here we subset each of the three ethnic groups and then compare their ratings of the two photos. Essentially, we are conducting a one-way ANOVA for the Dyaknese ratings of the Dayaknese and Madurese photos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5050,7 +5054,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(Dayaknese\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(Dayaknese\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5079,7 +5083,7 @@ Residuals   37  52.82  1.4275
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(Madurese\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(Madurese\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5108,7 +5112,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(Javanese\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(Javanese\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5131,13 +5135,13 @@ If I were using this approach in a 3 X 2 ANOVA, I would probably not control for
   Photo stimulus (Dayaknese or Madurese) within the Javanese ethnic group.
 \end{itemize}
 
-However, because it's good for instruction, it would be equally fine to use a traditional Bonferroni, dividing .05/3 = 0.017 and testing each at 0.017. I will use this approach in the write-up.
+However, because it is good for instruction, it would be equally fine to use a traditional Bonferroni, dividing .05/3 = 0.017 and testing each at 0.017. I will use this approach in the write-up.
 
-FAQ: Could we do the reverse simple effect, ethnicity of rater within the photo stimulus? Absolutely! The choice is yours (and sometimes the results will differ). I usually run both and then report ONE -- the one that conveys the story the data has to tell. You \emph{could} report both sets, but then you would really want to control Type I error and your repetitive contrasts are faaaaaar from independent/orthogonal.
+FAQ: Could we do the reverse simple effect, ethnicity of rater within the photo stimulus? Absolutely! The choice is yours (and sometimes the results will differ). I usually run both and then report ONE -- the one that conveys the story the data has to tell. You \emph{could} report both sets, but then you would really want to control Type I error and your repetitive contrasts are far from independent/orthogonal.
 
 \textbf{APA Style Results for Option \#1 follow-up.} \emph{This would be added to the results of the omnibus two-way ANOVA.}
 
-To explore the interaction effect, we followed with a test of the simple main effect of photo stimulus within the ethnicity of the rater. That is, we looked at the effect of the photo stimulus within the Dayaknese, Madurese, and Javanese groups, separately. To control for Type I error across the three simple main effects, we set alpha at .017 (.05/3). Results indicated significant differences for Dayaknese (\emph{F} {[}1, 33{]} = 50.4, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.60.) and Javanese ethnic groups (\emph{F} {[}1, 35{]}= 17.18, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.33), but not for the Madurese ethnic group (\emph{F} {[}1, 37{]} = 0.000, \emph{p} = .993, \(\eta ^{2}\) \textless{} .001). As illustrated in Figure 1, the Dayaknese and Javanese rathers both reported stronger negative reactions to the Madurese. The differences in ratings for the Madurese were not statistically significantly different. In this way, the rater's ethnic group moderated the relationship between the photo stimulus and negative reactions.
+\emph{Option \#1}: To explore the interaction effect, we followed with a test of the simple main effect of photo stimulus within the ethnicity of the rater. That is, we looked at the effect of the photo stimulus within the Dayaknese, Madurese, and Javanese groups, separately. To control for Type I error across the three simple main effects, we set alpha at .017 (.05/3). Results indicated significant differences for Dayaknese (\emph{F} {[}1, 33{]} = 50.4, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.60.) and Javanese ethnic groups (\emph{F} {[}1, 35{]}= 17.18, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.33), but not for the Madurese ethnic group (\emph{F} {[}1, 37{]} = 0.000, \emph{p} = .993, \(\eta ^{2}\) \textless{} .001). As illustrated in Figure 1, the Dayaknese and Javanese rathers both reported stronger negative reactions to the Madurese. The differences in ratings for the Madurese were not statistically significantly different. In this way, the rater's ethnic group moderated the relationship between the photo stimulus and negative reactions.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5153,7 +5157,7 @@ To explore the interaction effect, we followed with a test of the simple main ef
 
 In this simple main effect of ethnicity of rater (3 levels) within photo stimulus (2 levels), we will conduct two one-way ANOVAs for the Dayaknese and Madurese photos, separately. However, we will want to do orthogonal contrast-coding for rater ethnicity for the follow-up (to the follow-up).
 
-It helps to know what the default contrast codes are:
+It helps to know what the default contrast codes are; we can get that information with the \emph{contrasts()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5225,7 +5229,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(Dykn\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(Dykn\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5234,7 +5238,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Rater 0.3432006   0.3432006
 \end{verbatim}
 
-\emph{F} {[}2, 51{]}) = 13.32, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.343.
+We can capture the \emph{F} string from this output: \emph{F} {[}2, 51{]}) = 13.32, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.343.
+
+This code produces the contrasts we specified. Note that in our code we can improve the interpretability of the output by adding labels. We know the specific contrasts from our prior work.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5259,6 +5265,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 The simple main effect of ethnicity of the rater within the reaction to the photos of members of the Dayaknese ethnic group was statistically significant: \emph{F} {[}2, 51{]} = 13.32, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.343. Follow-up testing indicated non-significant differences when the ratings from members of the Javanese ethnic group were compared to the Dayaknese and Madurese, combined (\emph{F} {[}1, 51{]} = 0.095, \emph{p} = .759). There was a statistically significant difference when Dayaknese and Madurese raters were compared (\emph{F} {[}1, 51{]} =26.554, \emph{p} \textless{} .001)
 
+We repeat the simple main effect process when the Madurese photos were the stimulus.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Madurese\_Ph }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(Ramdhani\_df, Photo }\SpecialCharTok{==} \StringTok{"Madurese"}\NormalTok{) }\CommentTok{\#subset data}
@@ -5275,7 +5283,7 @@ Residuals   54  41.44  0.7674
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(Mdrs\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(Mdrs\_simple, }\AttributeTok{anova =} \ConstantTok{FALSE}\NormalTok{ ) }\CommentTok{\#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5284,7 +5292,9 @@ Residuals   54  41.44  0.7674
 Rater 0.02451385  0.02451385
 \end{verbatim}
 
-\emph{F} {[}2, 54{]} = 0.679, \emph{p} = .512, \(\eta ^{2}\) = 0.024.
+Let's capture the \emph{F} string for ratings of the Madurese photos: \emph{F} {[}2, 54{]} = 0.679, \emph{p} = .512, \(\eta ^{2}\) = 0.024.
+
+We can use the procedure described above to obtain our orthogonal contrasts.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5300,6 +5310,8 @@ Rater                                       2   1.04  0.5207   0.679  0.512
 Residuals                                  54  41.44  0.7674               
 \end{verbatim}
 
+Here's a write-up of this portion of the result.
+
 The simple main effect of ethnicity of the rater within rating the photos of Madurese people was not statistically significant: (\emph{F} {[}2, 54{]} = 0.679, \emph{p} = .512, \(\eta ^{2}\) = 0.024). Correspondingly, follow-up testing indicated non-significant differences when the ratings of the Javanese were compared to Dayaknese and Madurese, combined (\emph{F} {[}1, 54{]} = 1.008, \emph{p} = .320) and when the ratings of the Dayaknese and Madurese were compared (\emph{F} {[}1, 54{]} = 0.349, \emph{p} = .557)
 
 To control for Type I error, we have 4 follow-up contrasts (2 for Dayaknese, 2 for Madurese). We'll control Type I error with .05/4 = .0125
@@ -5314,7 +5326,9 @@ To control for Type I error, we have 4 follow-up contrasts (2 for Dayaknese, 2 f
 [1] 0.0125
 \end{verbatim}
 
-\textbf{APA Write-up of the simple main effect of photo stimulus within rater ethnicity.} *This would be added to the write-up of the omnibus two-way ANOVA test.
+\textbf{APA Write-up of the simple main effect of photo stimulus within rater ethnicity.}
+
+This would be added to the write-up of the omnibus two-way ANOVA test.
 
 \emph{Option \#2}: To explore the interaction effect, we followed with tests of simple effect of rater ethnicity within the photo stimulus. That is, we looked at the effect of each each rater's ethnicity within the Madurese and Dayaknese photo stimulus, separately. Our first analysis evaluated the effect of the rater's ethnicity when evaluating the Dayaknese photo; our second analysis evaluated effect of the rater's ethnicity when evaluating the Madurese photo. To control for Type I error across the two simple main effects, we set alpha at .0125 (.05/4). The simple main effect of ethnicity of the rater within the reaction to the photos of members of the Dayaknese ethnic group was statistically significant: \emph{F} {[}2, 51{]} = 13.32, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.343. Follow-up testing indicated non-significant differences when the ratings from members of the Javanese ethnic group were compared to the Dayaknese and Madurese, combined (\emph{F} {[}1, 51{]} = 0.095, \emph{p} = .759). There was a statistically significant difference when Dayaknese and Madurese raters were compared (\emph{F} {[}1, 51{]} =26.554, \emph{p} \textless{} .001). The simple main effect of ethnicity of the rater within when rating the photos of Madurese people was not statistically significant: (\emph{F} {[}2, 54{]} = 0.679, \emph{p} = .512, \(\eta ^{2}\) = 0.024). Correspondingly, follow-up testing indicated non-significant differences when the ratings of the Javanese were compared to Dayaknese and Madurese, combined (\emph{F} {[}1, 54{]} = 1.008, \emph{p} = .320) and when the ratings of the Dayaknese and Madurese were compared (\emph{F} {[}1, 54{]} = 0.349, \emph{p} = .557). This moderating effect of ethnicity of the rater on the negative reaction to the photo stimulus is illustrated in Figure 1.
 
@@ -5327,21 +5341,20 @@ To control for Type I error, we have 4 follow-up contrasts (2 for Dayaknese, 2 f
 
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-160-1.pdf}
 
-\hypertarget{post-hoc-comparisons}{%
-\subsubsection{Post hoc comparisons}\label{post-hoc-comparisons}}
+\hypertarget{option-3-post-hoc-comparisons}{%
+\subsubsection{Option \#3 post hoc comparisons}\label{option-3-post-hoc-comparisons}}
 
-Another option is compare all possible cells. These are termed \emph{post hoc comparisons.} They are an alternative to simple main effects; you would not report both. The figure shows our place on the Two-Way ANOVA Decision Tree.
+Another option is compare all possible cells. These are termed \emph{post hoc comparisons.} They are an alternative to simple main effects; you would not report both. The figure shows our place on the Two-Way ANOVA Workflow.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/WrkFlw_IntPH.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
-As the numbers of levels increase, post hoc comparisons become somewhat unwieldly. Even though this procedure produces them all, you can select which sensible number you want to prepare and control for Type I error in that way.
+As the numbers of levels increase, post hoc comparisons become somewhat unwieldly. Even though this procedure produces them all, you can select which sensible number you want to compare and control for Type I error according to the number in that set.
 
-The total number of paired comparisons is: k(k-1)*2
-k is the number of groups. With race (2 levels) and neighborhood income level (3 levels), we have 6 groups
+With rater ethnicity (3 levels) and photo stimulus (2 levels), we have 6 groupings. When \emph{k} is the number of groups, the total number of paired comparisons is: k(k-1)*2
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5353,7 +5366,7 @@ k is the number of groups. With race (2 levels) and neighborhood income level (3
 [1] 15
 \end{verbatim}
 
-Sure enough -- look below:
+Obtain the 15 post-hoc paired comparisons with the \emph{TukeyHSD()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5416,7 +5429,7 @@ Javanese:Madurese-Madurese:Dayaknese   0.9920328
 
 If we want to consider all 15 pairwise comparisons and also control for Type I error, a Holm's sequential Bonerroni \citep{green_using_2014} will help us take a middle-of-the-road approach (not as strict as .05/15 with the traditional Bonferroni; not as lenient as ``none'') to managing Type I error.
 
-With the Holms, we rank order the \emph{p} values associated with the 15 comparisons in order from lowest (e.g., .0000018) to highest (e.g., 1.000). The first \emph{p} value is evaluated with the most strict criterion (.05/15) according to the traditional Bonferonni approach. Then, each successive comparison calculates the \emph{p} value by using the number of \emph{remaining} comparisons as the denominator (e.g., .05/14, .05/13, .05/12). As the \emph{p} values rise and the alpha levels relax, there will be a cut-point where remaining comparisons are not statistically significant.
+With the Holms, we rank order the \emph{p} values associated with the 15 comparisons in order from lowest (e.g., .0000018) to highest (e.g., 1.000). The first \emph{p} value is evaluated with the most strict criterion (.05/15; the traditional Bonferonni approach). Then, each successive comparison calculates the \emph{p} value by using the number of \emph{remaining} comparisons as the denominator (e.g., .05/14, .05/13, .05/12). As the \emph{p} values rise and the alpha levels relax, there will be a cut-point where remaining comparisons are not statistically significant.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5474,7 +5487,7 @@ List of 3
 \end{Highlighting}
 \end{Shaded}
 
-In Excel, I would sort my results by their \emph{p} values (low to high) and consider my thresshold (\emph{p} \textless{} .003) to determine which effects were statistically significant. Using the strictest criteria of \emph{p} \textless{} .0033, we would have four statistically significant values.
+In Excel, I would sort my results by their \emph{p} values (low to high) and consider my threshold (\emph{p} \textless{} .0033) to determine which effects were statistically significant. Using the strictest criteria of \emph{p} \textless{} .0033, we would have four statistically significant values.
 
 \begin{figure}
 \centering
@@ -5499,6 +5512,7 @@ First, how are the two sets of photos (Madurese and Dayaknese) rated within each
 Second, focused on each photo, what are the relative ratings.
 
 \begin{itemize}
+\tightlist
 \item
   Javanese:Madurese - Dayaknese:Madurese
 \item
@@ -5529,17 +5543,19 @@ Below I have greyed-out the comparisons that are less interesting to me and left
 \caption{Image of the results of the Holms sequential Bonferroni.}
 \end{figure}
 
-\hypertarget{polynomial-trends}{%
-\subsubsection{Polynomial Trends}\label{polynomial-trends}}
+\hypertarget{option-4-polynomial-trends}{%
+\subsubsection{Option \#4 polynomial trends}\label{option-4-polynomial-trends}}
 
 In the context of the significant interaction effect, we might also be interested in polynomial trends for any simple main effects where 3 or more cells are compared.
 
-Why? If there are only two cells being compared, then the significance of that has already been tested and if significant, it is also a significant linear effect (because the shape between any two points is a line, hence it's \emph{linear}). Below is a figure of where the polynomial test of an interaction effect may fall in the process.
+Why? If there are only two cells being compared, then the significance of that has already been tested and if significant, it is also a significant linear effect (because the shape between any two points is a line). Below is a figure of where the polynomial test of an interaction effect may fall in the process.
+
+At the outset, let me acknowledge that this is not the best example to demonstrate a polynomial trend. Why? We do not necessarily have an ordered prediction across categories for this vignette. Other research scenarios (e.g., when dosage is none, low, high) are more readily suited for this approach.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/WrkFlw_Poly.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
 In our example, Rater has three groups Thus, we could evaluate a polynomial for the simple main effect of ethnicity of the rater within photo stimulus (separately for the photos of the Dayaknese and Madurese). We conduct these separately for Dayaknese, Madurese, and Javanese groups.
@@ -5608,15 +5624,15 @@ F-statistic: 0.6785 on 2 and 54 DF,  p-value: 0.5116
 
 Results of a polynomial trend analysis were non-significant when ethnicity of the rater was evaluated when rating Madurese photos.
 
-\hypertarget{in-the-event-of-a-non-significant-interaction-but-one-or-more-significant-main-effects}{%
-\section{In the event of a non-significant interaction, but one or more significant main effects}\label{in-the-event-of-a-non-significant-interaction-but-one-or-more-significant-main-effects}}
+\hypertarget{investigating-main-effects}{%
+\section{Investigating Main Effects}\label{investigating-main-effects}}
 
-We now focus on the possibility that there might be significant main effects, but a non-significant interaction effect. We \textbf{only} interpret main effects when there is a non-significant interaction effect. Why? Because in the presence of a significant interaction effect, the main effect will not tell a complete story. \emph{(And, if we didn't specify a correct model, we still might have an incomplete story. But that's another issue.)} Here's where we are on the Decision-Tree.
+We now focus on the possibility that there might be significant main effects, but a non-significant interaction effect. We only interpret main effects when there is a non-significant interaction effect. Why? Because in the presence of a significant interaction effect, the main effect will not tell a complete story. \emph{(And, if we didn't specify a correct model, we still might have an incomplete story. But that's another issue.)} Here's where we are on the workflow.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/WayWrkFlw_Main.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
 Recall that main effects are the \emph{marginal means} -- that is the effects of Factor A \emph{collapsed across} all the levels of Factor B.
@@ -5645,7 +5661,7 @@ If the main effect has three or more levels (e.g,. ethnicity of rater with Dayak
   polynomial
 \end{itemize}
 
-I will demo how to do each as follow-up to a \emph{pretend} scenario where the main effect (but not the interaction) had been significant. I will write up the portion that would be inserted in an APA style results section.
+I will demonstrate how to do each as follow-up to a \emph{pretend} scenario where a main effect (but not an interaction) had been significant. I will write up the portion that would be inserted in an APA style results section.
 
 Essentially, we treat these main effect analyses as the follow-up to a significant one-way ANOVA evaluating, in our case, the ethnicity of the Rater.
 
@@ -5681,7 +5697,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(RaterMain)}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(RaterMain)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5701,16 +5717,16 @@ A boxplot representing this main effect may help convey how the main effect of R
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \hypertarget{follow-up-with-all-post-hocs}{%
-\subsection{Follow-up with all post-hocs}\label{follow-up-with-all-post-hocs}}
+\subsection{Follow-up with all Post-Hocs}\label{follow-up-with-all-post-hocs}}
 
 An easy possibility is to follow-up with all possible post-hocs. In the main effect case, these are far simpler than where we conducted all possile posthocs for the interaction effect (remember the Holms sequential Bonferroni?).
 
-Here is a reminder of our location on the Decision-Tree.
+Here is a reminder of our location on the workflow.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/wfMain_PH.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
 The \emph{TukeyHSD()} function produces posthoc comparisons by providing the mean difference, a 95\% confidence interval of those differences, and the associated \emph{p} value.
@@ -5740,15 +5756,15 @@ Results suggest there were statistically significant differences (\emph{p} \text
 \hypertarget{follow-up-with-planned-contrasts}{%
 \subsection{Follow-up with planned contrasts}\label{follow-up-with-planned-contrasts}}
 
-We generally try for \emph{orthogonal} contrasts so that the partitioning of variance is independent (clean, not overlapping). Planned contrasts are a great way to do this. Here's where we are in the Decision-Tree.
+We generally try for \emph{orthogonal} contrasts so that the partitioning of variance is independent (clean, not overlapping). Planned contrasts are a great way to do this. Here's where we are in the workflow.
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/wfMain_Plnd.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
-If you aren't SUPER DUPER careful about your order-of-operations in R, it can confuse objects, so I have named these contrasts \emph{main\_c1} and \emph{main\_c2} to remind myself that they refer to the main effect of ethnicity of the rater.
+If you aren't extremely careful about your order-of-operations in R, it can confuse objects, so I have named these contrasts \emph{main\_c1} and \emph{main\_c2} to remind myself that they refer to the main effect of ethnicity of the rater.
 
 In this hypothetical scenario (remember we are pretending we are in the circumstance of a non-significant interaction effect but a significant main effect), I am:
 
@@ -5772,7 +5788,7 @@ These are orthogonal because:
   \begin{itemize}
   \tightlist
   \item
-    piece of cake analogy\ldots once you take out a piece of the cake, you really can't put it back in
+    Recall the piece of cake analogy: once you take out a piece of the cake, you really can't put it back in
   \end{itemize}
 \end{itemize}
 
@@ -5833,10 +5849,10 @@ F-statistic: 6.426 on 2 and 108 DF,  p-value: 0.002307
 
 These planned contrasts show that when the Javanese raters are compared to the combined Dayaknese and Madurese raters, there was a non significant difference, \emph{t}(108) = -0.567, \emph{p} = .572. However, there were significant differences between Dayaknese and Javanese raters, \emph{t}(108) = 3.556, \emph{p} \textless{} .001.
 
-\hypertarget{polynomial-trends-1}{%
-\subsection{Polynomial Trends}\label{polynomial-trends-1}}
+\hypertarget{polynomial-trends}{%
+\subsection{Polynomial Trends}\label{polynomial-trends}}
 
-Polynomial contrasts let us see if there is a linear (or curvilinear) pattern to the data. To detect a trend, the data must be coded in an ascending order\ldots and it needs to be a sensible comparison. Here's where this would fall in our Decision-Tree.
+Polynomial contrasts let us see if there is a linear (or curvilinear) pattern to the data. To detect a trend, the data must be coded in an ascending order\ldots and it needs to be a sensible comparison. Here's where this would fall in our workflow.
 
 \includegraphics{images/factorial/wfMain_Poly.jpg}
 Because these three ethnic groups are not \emph{ordered} in the same way as would an experiment involving dosage (e.g,. placebo, lo dose, hi dose), evaluation of the polynomial trend is not really justified (even though it is statistically possible). None-the-less, I will demonstrate how it is conducted.
@@ -5872,7 +5888,7 @@ F-statistic: 6.426 on 2 and 108 DF,  p-value: 0.002307
 
 \textbf{Rater.L} tests the data to see if there is a significant linear trend. There is: \emph{t} = 3.556, \emph{p} \textless{} .001.
 
-\textbf{Rater.!} tests to see if there is a significant quadratic (curvilinear, one hump) trend. There is not: \emph{t} = -0.567, \emph{p} = .572.
+\textbf{Rater.Q} tests to see if there is a significant quadratic (curvilinear, one hump) trend. There is not: \emph{t} = -0.567, \emph{p} = .572.
 
 Results supported a significant linear trend (\emph{t} = 3.556, \emph{p} \textless{} .001) such that negative reactions increased in a linear reaction across the three rating groups.
 
@@ -5884,22 +5900,22 @@ Results supported a significant linear trend (\emph{t} = 3.556, \emph{p} \textle
 
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-175-1.pdf}
 
-\hypertarget{my-final-apa-style-results-section}{%
-\section{\texorpdfstring{My \emph{final} APA Style Results Section}{My final APA Style Results Section}}\label{my-final-apa-style-results-section}}
+\hypertarget{my-apa-style-results-section}{%
+\section{My APA Style Results Section}\label{my-apa-style-results-section}}
 
-First, I am reluctant to term anything ``final.'' It seems like there is always the possibility or revision. Given that I demonstrated a number of options, let me first show the Decision-Tree with the particular path I took:
+First, I am reluctant to term anything ``final.'' It seems like there is always the possibility or revision. Given that I demonstrated a number of options, let me first show the workflow with the particular path I took:
 
 \begin{figure}
 \centering
 \includegraphics{images/factorial/WrkFlw_mypath.jpg}
-\caption{Image our place in the Two-Way ANOVA Decision-Tree.}
+\caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
 In light of that, here's the final write-up:
 
 \textbf{Results}
 
-A 3 X 2 ANOVA was conducted to evaluate the effects of rater ethnicity (3 levels, Dayaknese, Madurese, Javanese) and photo stimulus (2 levels, Dayaknese on Madurese,) on negative reactions to the photo stimuli. Results of Levene's Test for Equality of Error Variances indicated violation of the assumption, (\(F\){[}5, 105{]} = 8.834, \(p\) \textless{} .001). Our analysis of the individual cell means (see Table 1 for means and standard deviations) suggested skew and kurtosis were within the bounds considered to be normally distributed \citep{kline_principles_2016}. A non-significant Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) provided further evidence that the assumption of normality was not violated (\(W\) = 0.9846, \(p\) = 0.234).
+A 3 X 2 ANOVA was conducted to evaluate the effects of rater ethnicity (3 levels, Dayaknese, Madurese, Javanese) and photo stimulus (2 levels, Dayaknese on Madurese,) on negative reactions to the photo stimuli. Results of Levene's test for equality of error variances indicated violation of the assumption, (\(F\){[}5, 105{]} = 8.834, \(p\) \textless{} .001). Our analysis of the individual cell means (see Table 1 for means and standard deviations) suggested skew and kurtosis were within the bounds considered to be normally distributed \citep{kline_principles_2016}. A non-significant Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) provided further evidence that the assumption of normality was not violated (\(W\) = 0.9846, \(p\) = 0.234).
 
 Computing sums of squares with a Type II approach, the results for the ANOVA indicated a significant main effect for ethnicity of the rater (\emph{F}{[}2, 105{]} = 8.077, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.107), a significant main effect for photo stimulus, (\emph{F}{[}1, 105{]} = 19.346, \emph{p} \textless{} .001, \(\eta ^{2}\) = 0.127), and a significant interaction effect (\emph{F}{[}2, 105{]} = 5.696, \emph{p} = .004, \(\eta ^{2}\) = 0.075).
 
@@ -5907,8 +5923,7 @@ To explore the interaction effect, we followed with a test of the simple main ef
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggpubr)}
-\FunctionTok{ggboxplot}\NormalTok{(Ramdhani\_df, }\AttributeTok{x =} \StringTok{"Rater"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Negative"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Photo"}\NormalTok{,}\AttributeTok{xlab =} \StringTok{"Ethnicity of Rater"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Negative Reaction"}\NormalTok{)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(Ramdhani\_df, }\AttributeTok{x =} \StringTok{"Rater"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Negative"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Photo"}\NormalTok{,}\AttributeTok{xlab =} \StringTok{"Ethnicity of Rater"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Negative Reaction"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5916,8 +5931,7 @@ To explore the interaction effect, we followed with a test of the simple main ef
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(apaTables)}
-\FunctionTok{apa.2way.table}\NormalTok{(}\AttributeTok{iv1 =}\NormalTok{ Rater, }\AttributeTok{iv2 =}\NormalTok{ Photo, }\AttributeTok{dv =}\NormalTok{ Negative, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df, }\AttributeTok{landscape=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{filename=}\StringTok{"Table\_1\_MeansSDs.doc"}\NormalTok{)}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.2way.table}\NormalTok{(}\AttributeTok{iv1 =}\NormalTok{ Rater, }\AttributeTok{iv2 =}\NormalTok{ Photo, }\AttributeTok{dv =}\NormalTok{ Negative, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df, }\AttributeTok{landscape=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{filename=}\StringTok{"Table\_1\_MeansSDs.doc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5939,7 +5953,7 @@ Note. M and SD represent mean and standard deviation, respectively.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{apa.aov.table}\NormalTok{(TwoWay\_neg, }\AttributeTok{filename =} \StringTok{"Table\_2\_effects.doc"}\NormalTok{, }\AttributeTok{table.number =} \DecValTok{2}\NormalTok{, }\AttributeTok{type =} \StringTok{"II"}\NormalTok{)}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.aov.table}\NormalTok{(TwoWay\_neg, }\AttributeTok{filename =} \StringTok{"Table\_2\_effects.doc"}\NormalTok{, }\AttributeTok{table.number =} \DecValTok{2}\NormalTok{, }\AttributeTok{type =} \StringTok{"II"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5962,12 +5976,12 @@ Note: Values in square brackets indicate the bounds of the 90% confidence interv
 \hypertarget{comparing-our-results-to-rhamdani-et-al.--ramdhani_affective_2018}{%
 \subsection{\texorpdfstring{Comparing Our Results to Rhamdani et al. \citeyearpar{ramdhani_affective_2018}}{Comparing Our Results to Rhamdani et al. {[}-@ramdhani\_affective\_2018{]}}}\label{comparing-our-results-to-rhamdani-et-al.--ramdhani_affective_2018}}
 
-As is common in simulations, our data gets close to the findings, but does not replicate them exactly. Our main and interaction effects map on very closely. However, in the follow-up tests, while our findings that Dayaknese rated the Madurese photos more negatively, was consistent across our simulated data and the article, the findings related to the Javanese' and Madurese' ratings wiggled around some. A close look at the figures can explain that with varying variability and close means, this is probable. I find it to be a useful lesson in ``what it takes'' to get stable, meaningful results.
+As is common in simulations, our results approximate the findings reported in the manuscript, but does not replicate them exactly. Our main and interaction effects map on very closely. However, in the follow-up tests, while our findings that Dayaknese rated the Madurese photos more negatively, the findings related to the Javanese' and Madurese' ratings wiggled around some. A close look at the figures can explain that with varying variability and means with similar values, this is probable. I find it to be a useful lesson in ``what it takes'' to get stable, meaningful results.
 
 \hypertarget{options-for-assumption-violations}{%
 \section{Options for Assumption Violations}\label{options-for-assumption-violations}}
 
-In one-way ANOVA we could simply apply the Welch's alternative. It's not so easy in factorial. One alternative, though, is to change the Sums of Squares type used in the ANOVA calculations.
+In one-way ANOVA we could simply apply the Welch's alternative. It's not so easy in factorial ANOVA. One alternative, though, is to change the sums of squares type used in the ANOVA calculations.
 
 In ANOVA models sums of squares can be calculated four different ways: Type I, II, III, and IV. This matters.
 
@@ -5975,13 +5989,13 @@ SS Type II is the \emph{aov()} default. It may be a best practice to go ahead an
 
 \textbf{Type I} sums of squares is similar to hierarchical linear regression in that the first predictor in the model claims as much variance as it can and the leftovers are claimed by the variable entered next -- each claiming as much as possible leaving the leftovers for what follows. Unless the variables are completely independent of each other (unlikely), Type I sums of squares cannot evaluate the true main effect of each variable. Type I should not be used to evaluate main effects and interactions because the order of predictors will affect the results.
 
-\textbf{Type II} is the R default appropriate if you are interested main effects because it ignores the effect of any interactions involving the main effect. Thus, variance from a main effect is not ``lost'' to any interaction terms containing that effect. Type II is appropriate for main effects analyses only, but should not be used when evaluating interaction effects. Type II sums of squares is not affected by the type of contrast coding used to specify the predictor variables.
+\textbf{Type II} (the R default) is appropriate if you are interested main effects because it ignores the effect of any interactions involving the main effect. Thus, variance from a main effect is not ``lost'' to any interaction terms containing that effect. Type II is appropriate for main effects analyses only, but should not be used when evaluating interaction effects. Type II sums of squares is not affected by the type of contrast coding used to specify the predictor variables.
 
 \textbf{Type III} is the default in many stats packages -- but not R. In Type III all effects (main effects and interactions) are evaluated (simultaneously) taking into consideration all other effects in the model (not just the ones entered before). Type III is more robust to unequal samples sizes (e.g., unbalanced designs). Type III is best when predictors are encoded with orthogonal contrasts.
 
 *\textbf{Type IV} is identical to Type III except it requires no missing cells.
 
-Field \citeyearpar{field_discovering_2012} suggests that it is safest to stick with Type III sums of squares . We apply the type to the model we create in the initial run. For more information, check out this explanation on \href{https://www.r-bloggers.com/2011/03/anova-\%E2\%80\%93-type-iiiiii-ss-explained/}{r-bloggers}.
+Field \citeyearpar{field_discovering_2012} suggested that it is safest to stick with Type III sums of squares . We apply the type to the model we create in the initial run. For more information, check out this explanation on \href{https://www.r-bloggers.com/2011/03/anova-\%E2\%80\%93-type-iiiiii-ss-explained/}{r-bloggers}.
 
 Many researchers automatically use Type III as the SS type. Today I went with the R default because
 
@@ -6000,7 +6014,7 @@ For demonstration purposes, let's run the Type III alternative to see the differ
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#this is what we did}
-\FunctionTok{Anova}\NormalTok{(TwoWay\_neg)}
+\NormalTok{car}\SpecialCharTok{::}\FunctionTok{Anova}\NormalTok{(TwoWay\_neg)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6020,7 +6034,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#We change the SS type by applying it to our model.}
-\FunctionTok{Anova}\NormalTok{(TwoWay\_neg, }\AttributeTok{type =}\StringTok{"III"}\NormalTok{)}
+\NormalTok{car}\SpecialCharTok{::}\FunctionTok{Anova}\NormalTok{(TwoWay\_neg, }\AttributeTok{type =}\StringTok{"III"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6044,7 +6058,7 @@ Now let's compare the effect sizes across models.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg)}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6057,7 +6071,7 @@ Rater:Photo 0.07500609  0.09788289
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg, }\AttributeTok{type=}\DecValTok{3}\NormalTok{)}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg, }\AttributeTok{type=}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6073,11 +6087,11 @@ The Type III effect size for Rater is higher; the others are quite similar.
 \hypertarget{power}{%
 \section{Power}\label{power}}
 
-\emph{Power} is often our euphemistic way of asking, ``How large should my sample size be?''
+Asking about \emph{power} can be a euphemistic way of asking, ``How large should my sample size be?''
 
-Power defined is the ability of the test to detect statistical significance when there is such. It's represented formulaically as 1 - \emph{P})(Type II error). Power is traditionally set at 80\% (or .8)
+Power is defined as the ability of the test to detect statistical significance when there is such. It's represented formulaically as (1 - \emph{P})(Type II error). Power is traditionally set at 80\% (or .8)
 
-We'll do both -- evaluate the power of our current example and then work backwards to estimate the sample size needed (which is our usual question for MRPs and dissertations).
+We will do both -- evaluate the power of our current example and then work backwards to estimate the sample size needed (which is our usual question for MRPs and dissertations).
 
 We'll use the \emph{pwr.2way()} function from the \emph{pwr2} package.
 Helpful resources are found here:
@@ -6115,7 +6129,7 @@ Hints for calculating the \emph{f.A} and \emph{f.B} values:
 \begin{itemize}
 \tightlist
 \item
-  In this case, we will rerun the statistic, grab both, and convert them to the \emph{f} (not the \(f^2\))
+  In this case, we will rerun the statistic, grab both effect sizes, and convert them to the \emph{f} (not the \(f^2\))
 
   \begin{itemize}
   \tightlist
@@ -6123,16 +6137,14 @@ Hints for calculating the \emph{f.A} and \emph{f.B} values:
     calculation can be straightforward, either use an online calculator, a hand-calculated formula, or the \emph{eta2\_to\_f} function from the \emph{effectsize}
   \end{itemize}
 \item
-  In unknown case, you can substitute what you expect using Cohen's guidelines of .10, .25, and .40 as small, medium, and large (for the \emph{f}, not \(F^2\))
-\item
-  Helpful resource: \url{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}
+  When an effect size is unknown, you can substitute what you expect using Cohen's guidelines of .10, .25, and .40 as small, medium, and large (for the \emph{f}, not \(F^2\))
 \end{itemize}
 
 Let's quickly rerun our model to get both the df and calculate the \emph{f} effect value
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg, }\AttributeTok{anova =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{lsr}\SpecialCharTok{::}\FunctionTok{etaSquared}\NormalTok{(TwoWay\_neg, }\AttributeTok{anova =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6160,29 +6172,7 @@ If we want to understand power in our analysis, we need to convert our effect si
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(effectsize)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Attaching package: 'effectsize'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:formattable':
-
-    normalize
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:psych':
-
-    phi
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.1066}\NormalTok{) }\CommentTok{\#FactorA {-}{-} Rater}
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.1066}\NormalTok{) }\CommentTok{\#FactorA {-}{-} Rater}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6192,7 +6182,7 @@ The following object is masked from 'package:psych':
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.1274}\NormalTok{) }\CommentTok{\#Factor B {-}{-} Photo}
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.1274}\NormalTok{) }\CommentTok{\#Factor B {-}{-} Photo}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6200,19 +6190,30 @@ The following object is masked from 'package:psych':
 [1] 0.3821001
 \end{verbatim}
 
-Now, to calculate power for our existing model. We'll use the package \emph{pwr2} and the function \emph{pwr.2way()}. To specify this we identify:
+\hypertarget{post-hoc-power-analysis}{%
+\subsection{Post Hoc Power Analysis}\label{post-hoc-power-analysis}}
 
-a: number of groups for Factor A (Rater)
-b: number of groups for Factor B (Photo)
-size.A: sample size per group in Factor A (because ours differ slightly, I divided the N by the number of groups)
-size.B: sample size per group in Factor B (because ours differ slightly, I divided the N by the number of groups)
-f.A: Effect size of Factor A
-f.A.: Effect size of Factor B
+Now we calculate power for our existing model. We'll use the package \emph{pwr2} and the function \emph{pwr.2way()}. To specify this we identify:
+
+\begin{itemize}
+\tightlist
+\item
+  a: number of groups for Factor A (Rater)
+\item
+  b: number of groups for Factor B (Photo)
+\item
+  size.A: sample size per group in Factor A (because ours differ slightly, I divided the N by the number of groups)
+\item
+  size.B: sample size per group in Factor B (because ours differ slightly, I divided the N by the number of groups)
+\item
+  f.A: Effect size of Factor A
+\item
+  f.A.: Effect size of Factor B
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(pwr2)}
-\FunctionTok{pwr.2way}\NormalTok{(}\AttributeTok{a=}\DecValTok{3}\NormalTok{, }\AttributeTok{b=}\DecValTok{2}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{size.A =} \DecValTok{37}\NormalTok{, }\AttributeTok{size.B =} \DecValTok{55}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{345}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{382}\NormalTok{)}
+\NormalTok{pwr2}\SpecialCharTok{::}\FunctionTok{pwr.2way}\NormalTok{(}\AttributeTok{a=}\DecValTok{3}\NormalTok{, }\AttributeTok{b=}\DecValTok{2}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{size.A =} \DecValTok{37}\NormalTok{, }\AttributeTok{size.B =} \DecValTok{55}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{345}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{382}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6231,25 +6232,36 @@ f.A.: Effect size of Factor B
 NOTE: power is the minimum power among two factors
 \end{verbatim}
 
-Our power to detect a significant effect for Factor A/Rater and Factor B/Photo was huge!
+At 0.997 (Rater), 0.999 (Photo), and 0.997 (interaction), our power to detect a significant effect for Factor A/Rater and Factor B/Photo was huge!
 
-\textbf{Calculating sample size requirements}
+\hypertarget{estimating-sample-size-requirements}{%
+\subsection{Estimating Sample Size Requirements}\label{estimating-sample-size-requirements}}
 
-Say we wanted to replicate this study. We could use the estimates from this study to estimate what would be needed for the replication.
+If we want to replicate this study we could use its results to estimate what would be needed for the replication.
 
 In this specification:
 
-a: number of groups for Factor A (Rater)
-b: number of groups for Factor B (Photo)
-alpha: significance level (Type I error probability); usually .05
-beta: Type II error probability (Power = 1-beta); usually .80
-f.A: Effect size (\emph{f}) of Factor A (this time we know; other times we can guess from previously published literature)
-f.A.: Effect size (\emph{f}) of Factor B
-B: iteration times, default number is 100
+\begin{itemize}
+\tightlist
+\item
+  a: number of groups for Factor A (Rater)
+\item
+  b: number of groups for Factor B (Photo)
+\item
+  alpha: significance level (Type I error probability); usually .05
+\item
+  beta: Type II error probability (Power = 1-beta); usually .80
+\item
+  f.A: Effect size (\emph{f}) of Factor A (this time we know; other times we can guess from previously published literature)
+\item
+  f.A.: Effect size (\emph{f}) of Factor B
+\item
+  B: iteration times, default number is 100
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ss.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{3}\NormalTok{, }\AttributeTok{b =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{beta =}\NormalTok{ .}\DecValTok{8}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{345}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{382}\NormalTok{, }\AttributeTok{B=} \DecValTok{100}\NormalTok{)}
+\NormalTok{pwr2}\SpecialCharTok{::}\FunctionTok{ss.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{3}\NormalTok{, }\AttributeTok{b =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{beta =}\NormalTok{ .}\DecValTok{8}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{345}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{382}\NormalTok{, }\AttributeTok{B=} \DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6267,11 +6279,11 @@ NOTE: n is number in each group, total sample = 18
 
 Curiously, that's just about the number that was in each of the six cells!
 
-Often times researchers will play around with the \emph{f} values. Remember Cohen's indication of small (.10), medium (.25), and large (.40). We know we have a small effect for race and a larger effect for neighborhood income. Let's see what happens when we enter different values. Specifically, what if we only had a medium effect.
+Often times researchers will play around with the \emph{f} values. Remember Cohen's indication of small (.10), medium (.25), and large (.40). Let's see what happens when we enter different values. Specifically, what if we only had a medium effect?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ss.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{3}\NormalTok{, }\AttributeTok{b =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{beta =}\NormalTok{ .}\DecValTok{80}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{25}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{25}\NormalTok{, }\AttributeTok{B=} \DecValTok{100}\NormalTok{) }\CommentTok{\#if we expected a medium effect}
+\NormalTok{pwr2}\SpecialCharTok{::}\FunctionTok{ss.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{3}\NormalTok{, }\AttributeTok{b =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{beta =}\NormalTok{ .}\DecValTok{80}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{25}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{25}\NormalTok{, }\AttributeTok{B=} \DecValTok{100}\NormalTok{) }\CommentTok{\#if we expected a medium effect}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6287,9 +6299,11 @@ Often times researchers will play around with the \emph{f} values. Remember Cohe
 NOTE: n is number in each group, total sample = 36
 \end{verbatim}
 
+And what would happen if we only had a small effect?
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ss.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{3}\NormalTok{, }\AttributeTok{b =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{beta =}\NormalTok{ .}\DecValTok{80}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{10}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{10}\NormalTok{, }\AttributeTok{B=} \DecValTok{100}\NormalTok{) }\CommentTok{\#if we expected a small effect}
+\NormalTok{pwr2}\SpecialCharTok{::}\FunctionTok{ss.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{3}\NormalTok{, }\AttributeTok{b =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{beta =}\NormalTok{ .}\DecValTok{80}\NormalTok{, }\AttributeTok{f.A =}\NormalTok{ .}\DecValTok{10}\NormalTok{, }\AttributeTok{f.B =}\NormalTok{ .}\DecValTok{10}\NormalTok{, }\AttributeTok{B=} \DecValTok{100}\NormalTok{) }\CommentTok{\#if we expected a small effect}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6308,7 +6322,7 @@ NOTE: n is number in each group, total sample = 180
 \hypertarget{practice-problems-2}{%
 \section{Practice Problems}\label{practice-problems-2}}
 
-In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty. In any case, you will be expected to:
+In each of these lessons I provide suggestions for practice that allow you to select one or more problems that offer differing levels of difficulty. Whichever you choose, you will focus on these larger steps in factorial-way ANOVA, including:
 
 \begin{itemize}
 \tightlist
@@ -6345,51 +6359,20 @@ Copy the script for the simulation and then change (at least) one thing in the s
   If you are interested in variability (i.e., the homogeneity of variance assumption), perhaps you change the standard deviations in a way that violates the assumption.
 \end{itemize}
 
-Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+\hypertarget{problem-2-conduct-a-factorial-anova-with-the-positive-evaluation-dependent-variable.}{%
+\subsection{\texorpdfstring{Problem \#2: Conduct a factorial ANOVA with the \emph{positive evaluation} dependent variable.}{Problem \#2: Conduct a factorial ANOVA with the positive evaluation dependent variable.}}\label{problem-2-conduct-a-factorial-anova-with-the-positive-evaluation-dependent-variable.}}
 
-\begin{longtable}[]{@{}lcc@{}}
-\toprule
-Assignment Component & Points Possible & Points Earned \\
-\midrule
-\endhead
-1. Check and, if needed, format data & 5 & \_\_\_\_\_ \\
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-7. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
-\bottomrule
-\end{longtable}
-
-\hypertarget{problem-2-conduct-a-one-way-anova-with-the-positive-evaluation-dependent-variable.}{%
-\subsection{\texorpdfstring{Problem \#2: Conduct a one-way ANOVA with the \emph{positive evaluation} dependent variable.}{Problem \#2: Conduct a one-way ANOVA with the positive evaluation dependent variable.}}\label{problem-2-conduct-a-one-way-anova-with-the-positive-evaluation-dependent-variable.}}
-
-The Ramdhani et al. \citeyearpar{ramdhani_affective_2018} article has two dependent variables (negative and positive evaluation) which are suitable for two-way ANOVAs. I used \emph{negative evaluation} as the dependent variable; you are welcome to conduct the analysis with \emph{positive evaluation} as the dependent variable.
-
-\begin{longtable}[]{@{}lcc@{}}
-\toprule
-Assignment Component & Points Possible & Points Earned \\
-\midrule
-\endhead
-1. Check and, if needed, format data & 5 & \_\_\_\_\_ \\
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-4. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-7. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
-\bottomrule
-\end{longtable}
+The Ramdhani et al. \citeyearpar{ramdhani_affective_2018} article has two dependent variables (negative and positive evaluation). Each is suitable for two-way ANOVA. I used \emph{negative evaluation} as the dependent variable; you are welcome to conduct the analysis with \emph{positive evaluation} as the dependent variable.
 
 \hypertarget{problem-3-try-something-entirely-new.-1}{%
 \subsection{Problem \#3: Try something entirely new.}\label{problem-3-try-something-entirely-new.-1}}
 
 Using data for which you have permission and access (e.g., IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a two-way, factorial ANOVA. Please have at least 3 levels for one predictor and at least 2 levels for the second predictor.
 
-Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+\hypertarget{grading-rubric-2}{%
+\subsection{Grading Rubric}\label{grading-rubric-2}}
+
+Regardless which option(s) you chose, use the elements in the grading rubric to guide you through the practice.
 
 \begin{longtable}[]{@{}lcc@{}}
 \toprule
@@ -6404,7 +6387,7 @@ Assignment Component & Points Possible & Points Earned \\
 6. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
 7. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
 8 Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
+\textbf{Totals} & 40 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
 
@@ -6418,7 +6401,7 @@ In the prior lessons, a critical assumption is that the observations must be ``i
 \hypertarget{navigating-this-lesson-4}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-4}}
 
-There is just over one hour of lecture. If you work through the materials with me it would be plan for an additional two hours
+There is just over one hour of lecture. If you work through the materials with me plan for an additional two hours
 
 While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://github.com/lhbikos/ReCenterPsychStats}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \protect\hyperlink{ReCintro}{introduction}
 
@@ -6432,12 +6415,12 @@ Learning objectives from this lecture include the following:
 \item
   Evaluate the suitability of a research design/question and dataset for conducting a one-way repeated measures ANOVA; identify alternatives if the data is not suitable.
 \item
-  Hand-calculate a one-way repeated measures NOVA
+  Hand-calculate a one-way repeated measures ANOVAs
 
   \begin{itemize}
   \tightlist
   \item
-    describing the partitioning of variance as it relates to model/residual; within/between
+    describing the partitioning of variance as it relates to model/residual; within/between.
   \end{itemize}
 \item
   Test the assumptions for one-way repeated measures ANOVA.
@@ -6474,7 +6457,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 \begin{itemize}
 \tightlist
 \item
-  Repeated Measures ANOVA in R: The Ultimate Guide. (n.d.). Datanovia. Retrieved October 19, 2020, from \url{https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r}
+  \emph{Repeated Measures ANOVA in R: The Ultimate Guide}. (n.d.). Datanovia. Retrieved October 19, 2020, from \url{https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r}
 
   \begin{itemize}
   \tightlist
@@ -6482,7 +6465,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
     This website is an excellent guide for both one-way repeated measures and mixed design ANOVA. A great resource for both the conceptual and procedural. This is the guide I have used for the basis of the lecture. Working through their example would be great additional practice.
   \end{itemize}
 \item
-  Green, S. B., \& Salkind, N. J. (2014). One-Way Repeated Measures Analysis of Variance (Lesson 29). In Using SPSS for Windows and Macintosh: Analyzing and understanding data (Seventh edition., pp.~209--217). Pearson.
+  Green, S. B., \& Salkind, N. J. (2014). One-Way Repeated Measures Analysis of Variance (Lesson 29). In \emph{Using SPSS for Windows and Macintosh: Analyzing and understanding data} (Seventh edition., pp.~209--217). Pearson.
 
   \begin{itemize}
   \tightlist
@@ -6490,12 +6473,12 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
     For years I taught from the Green and Salkind text. Even though it was written for SPSS, the authors do a terrific job of walking the reader through the one-way repeated measures logic and process.
   \end{itemize}
 \item
-  Amodeo, A. L., Picariello, S., Valerio, P., \& Scandurra, C. (2018). Empowering transgender youths: Promoting resilience through a group training program. Journal of Gay \& Lesbian Mental Health, 22(1), 3--19.
+  Amodeo, A. L., Picariello, S., Valerio, P., \& Scandurra, C. (2018). Empowering transgender youths: Promoting resilience through a group training program. \emph{Journal of Gay \& Lesbian Mental Health, 22}(1), 3--19.
 
   \begin{itemize}
   \tightlist
   \item
-    This mixed methods (qualitative and quantitative) includes a one-way repeated measures example. While the entire article is a good read, if you are short on time, focus your reading on the portions that address relevant to the use of the one-way repeated measures ANOVA: research design, procedure, results.
+    This mixed methods (qualitative and quantitative) includes a one-way repeated measures example.
   \end{itemize}
 \end{itemize}
 
@@ -6507,12 +6490,14 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#will install the package if not already installed}
+\CommentTok{\#if(!require(knitr))\{install.packages("knitr")\}}
 \CommentTok{\#if(!require(tidyverse))\{install.packages("tidyverse")\} \#manipulate data}
 \CommentTok{\#if(!require(psych))\{install.packages("psych")\} }
 \CommentTok{\#if(!require(ggpubr))\{install.packages("ggpubr")\} \#easy plots}
 \CommentTok{\#if(!require(rstatix))\{install.packages("rstatix")\} \#pipe{-}friendly R functions}
 \CommentTok{\#if(!require(data.table))\{install.packages("data.table")\} \#pipe{-}friendly R functions}
 \CommentTok{\#if(!require(reshape2))\{install.packages("reshape2")\} \#pipe{-}friendly R functions}
+\CommentTok{\#if(!require(effectsize))\{install.packages("effectsize")\} \#converts effect sizes for use in power analysis}
 \CommentTok{\#if(!require(WebPower))\{install.packages("WebPower")\} \#power analysis tools for repeated measures}
 \CommentTok{\#if(!require(MASS))\{install.packages("MASS")\} \#power analysis tools for repeated measures}
 \end{Highlighting}
@@ -6523,7 +6508,7 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 There are a couple of typical use cases for one-way repeated measures ANOVA. In the first, the research participant is assessed in multiple conditions -- with no interested in change-over-time.
 
-In the Green and Salkind \citeyearpar{green_using_2014} statistics text, the one-way repeated measures example used in the lesson compared a teachers' perception of stress when responding to parents, teachers, and school administrators.
+An example of a research design using this approach occured in the Green and Salkind \citeyearpar{green_using_2014} statistics text, the one-way repeated measures vignette compared teachers' perception of stress when responding to parents, teachers, and school administrators.
 
 \begin{figure}
 \centering
@@ -6531,14 +6516,12 @@ In the Green and Salkind \citeyearpar{green_using_2014} statistics text, the one
 \caption{Illustration of a research design appropriate for one-way repeated measures ANOVA}
 \end{figure}
 
-Another common use case is about time, with the classic design being a pre-test, an intervention, a post-test and a follow up. In this we likely hope that there is a positive change from pre-to-post and that that change either stays constant (from post-to-follow-up) or, perhaps, increases even further. Our research vignette is interested in change-over-time.
+Another common use case is about time. The classic design is a pre-test, an intervention, a post-test, and a follow up. In designs like these researchers often hope that there is a positive change from pre-to-post and that that change either stays constant (from post-to-follow-up) or, perhaps, increases even further. The research vignette for this lesson is interested in change-over-time.
 
 \begin{figure}
-\hypertarget{id}{%
 \centering
-\includegraphics[width=10.41667in,height=1.04167in]{images/oneway_repeated/repeated_design.jpg}
-\caption{Illustration of a research design appropriate for one-way repeated measures ANOVA}\label{id}
-}
+\includegraphics{images/oneway_repeated/repeated_design.jpg}
+\caption{Illustration of a research design appropriate for one-way repeated measures ANOVA}
 \end{figure}
 
 \hypertarget{workflow-for-oneway-repeated-measures-anova}{%
@@ -6558,9 +6541,9 @@ Steps involved in analyzing the data include:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Prepare (upload) data.
+  Preparing and importing the data.
 \item
-  Explore data
+  Exploring the data
 
   \begin{itemize}
   \tightlist
@@ -6580,9 +6563,9 @@ Steps involved in analyzing the data include:
     checking or violation of the \emph{sphericity} assumption with Mauchly's test; if violated interpret the corrected output or use a multivariate approach for the analysis
   \end{itemize}
 \item
-  Compute the omnibus ANOVA
+  Computing the omnibus ANOVA
 \item
-  Compute post-hoc comparisons, planned contrasts, or polynomial trends
+  Computing post-hoc comparisons, planned contrasts, or polynomial trends
 \item
   Managing Type I error
 \item
@@ -6594,9 +6577,9 @@ Steps involved in analyzing the data include:
 
 Amodeo \citep{amodeo_empowering_2018} and colleagues conducted a mixed methods study (qualitative and quantitative) to evaluate the effectiveness of an empowerment, peer-group-based, intervention with participants (\emph{N} = 8) who experienced transphobic episodes. Focus groups used qualitative methods to summarize emergent themes from the program (identity affirmation, self-acceptance, group as support) and a one-way, repeated measures ANOVA provided evidence of increased resilience from pre to three-month followup.
 
-Eight participants (seven transgender women and one genderqueer person) participated in the intervention. The mean age was 28.5 (\emph{SD} = 5.85). All participants were Italian.
+Eight participants (seven transgender women and one genderqueer person) participated in the intervention. The mean age was 28.5 (\emph{SD} = 5.85). All participants were located in Italy.
 
-The within-subjects condition was wave:
+The within-subjects condition was wave, represented by T1, T2, and T3:
 
 \begin{itemize}
 \tightlist
@@ -6618,7 +6601,7 @@ The within-subjects condition was wave:
   T3, at the conclusion of the +3 month follow-up session
 \end{itemize}
 
-The dependent variable (assessed at each wave) was a 14-item resilience scale \citep{wagnild_development_1993}. Items were assessed on a 7-point scale ranting from \emph{Strongly disagree} to \emph{Strongly agree} with higher scores indicating higher levels of resilience. An example items was, ``I usually manage one way or another.''
+The dependent variable (assessed at each wave) was a 14-item resilience scale \citep{wagnild_development_1993}. Items were assessed on a 7-point scale ranging from \emph{strongly disagree} to \emph{strongly agree} with higher scores indicating higher levels of resilience. An example items was, ``I usually manage one way or another.''
 
 \begin{figure}
 \hypertarget{id}{%
@@ -6661,7 +6644,7 @@ Let's take a look at the structure of our variables. We want ID to be a factor, 
  $ Resilience: num  6.49 5.28 5.93 4.43 5.95 ...
 \end{verbatim}
 
-We just need to change Wave to be an ordered factor.
+We just need to change Wave to be an ordered factor. Because R's default is to order factors alphabetically, we can use the levels command and identify our preferred order.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6669,7 +6652,7 @@ We just need to change Wave to be an ordered factor.
 \end{Highlighting}
 \end{Shaded}
 
-And we check the structure again.
+We check the structure again.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6688,23 +6671,7 @@ And we check the structure again.
 
 The form of our data matters. The simulation created a \emph{long} form (formally called the \emph{person-period} form) of data. That is, each observation for each person is listed in its own row. In this dataset where we have 8 people with 3 observation (pre, post, follow-up) each, we have 24 rows. This is convenient, because this is the form we need for repeated measures ANOVA.
 
-However, for some of the calculations (particularly those we will do by hand), we need the data to be in its typical wide form (formally called the \emph{person level} form). We can do this with the \emph{data.table} and \emph{reshape2}()* packages.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(reshape2)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Attaching package: 'reshape2'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:tidyr':
-
-    smiths
-\end{verbatim}
+However, for some of the calculations (particularly those we will do by hand), we need the data to be in its more familiar wide form (formally called the \emph{person level} form). We can do this with the \emph{data.table} and \emph{reshape2}()* packages.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6731,9 +6698,9 @@ The following object is masked from 'package:tidyr':
 \end{Highlighting}
 \end{Shaded}
 
-In this reshape script, I asked for a quick structure check. The format of the variables looks good.
+In this reshape script, I asked for a quick structure check. The format of the variables looks correct.
 
-If you want to export these data as files to your computer, remove the hashtags to save (and re-import) them as .csv (``Excel lite'') or .rds (R object) files. This is not a necessary step.
+If you want to export these data as files to your computer, remove the hashtags to save (and re-import) them as .rds (R object) or .csv (``Excel lite'') files. This is not a necessary step to continue working the problem in this lesson.
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. I would choose this option.
 
@@ -6748,7 +6715,7 @@ The code for the .rds file will retain the formatting of the variables, but is n
 \end{Highlighting}
 \end{Shaded}
 
-An option is to write them as .csv files. The code for .csv will likely lose any variable formatting, but they is easy to view and manipulate in Excel. If you choose this option, you will probably need to re-run the code to reformat the Wave variable as an ordered factor
+Another option is to write them as .csv files. The code for .csv will likely lose any variable formatting, but the .csv file is easy to view and manipulate in Excel. If you choose this option, you will probably need to re-run the prior code to reformat Wave as an ordered factor
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6764,7 +6731,7 @@ An option is to write them as .csv files. The code for .csv will likely lose any
 \hypertarget{quick-peek-at-the-data}{%
 \subsection{Quick peek at the data}\label{quick-peek-at-the-data}}
 
-Before we get into the statistic let's look at our data.
+As we work the problem we will switch between long and wide formats.Before we get into the statistic let's inspect our data. We can start with the long form.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6779,27 +6746,33 @@ Before we get into the statistic let's look at our data.
  $ Resilience: num  6.49 5.28 5.93 4.43 5.95 ...
 \end{verbatim}
 
-In the following output, see the order of presentation on the first screen of output. Even though we have ordered our factor so that ``Pre'' is first, the \emph{describeBy()} function seems to be ordering them alphabetically.
+In the following output, note the order of presentation of the grouping variable (i.e., FollowUp, Post, Pre). Even though we have ordered our factor so that ``Pre'' is first, the \emph{describeBy()} function seems to be ordering them alphabetically.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(psych)}
-\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(Amodeo\_long}\SpecialCharTok{$}\NormalTok{Resilience, Wave, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data =}\NormalTok{ Amodeo\_long)}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(Amodeo\_long}\SpecialCharTok{$}\NormalTok{Resilience, Wave, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data =}\NormalTok{ Amodeo\_long, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-    item   group1 vars n     mean        sd   median  trimmed       mad
-X11    1 FollowUp    1 8 6.136916 0.4729432 6.215983 6.136916 0.4416578
-X12    2     Post    1 8 6.327615 0.6550520 6.356491 6.327615 0.8751431
-X13    3      Pre    1 8 5.587693 0.8217561 5.770952 5.587693 1.1471137
-         min      max    range       skew   kurtosis        se
-X11 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107
-X12 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
-X13 4.428839 6.597214 2.168376 -0.1437061 -1.8118551 0.2905347
+    item   group1 vars n  mean    sd median trimmed   mad   min   max range
+X11    1 FollowUp    1 8 6.137 0.473  6.216   6.137 0.442 5.187 6.708 1.521
+X12    2     Post    1 8 6.328 0.655  6.356   6.328 0.875 5.283 7.090 1.807
+X13    3      Pre    1 8 5.588 0.822  5.771   5.588 1.147 4.429 6.597 2.168
+      skew kurtosis    se
+X11 -0.720   -0.610 0.167
+X12 -0.231   -1.629 0.232
+X13 -0.144   -1.812 0.291
 \end{verbatim}
 
-Another view (if we use the wide file)
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Note. Recently my students and I have been having intermittent struggles with the describeBy function in the psych package. We have noticed that it is problematic when using .rds files and when using data directly imported from Qualtrics. If you are having similar difficulties, try uploading the .csv file and making the appropriate formatting changes.}
+\end{Highlighting}
+\end{Shaded}
+
+Another view (if we use the wide file).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6830,7 +6803,7 @@ Let's also take a quick look at a boxplot of our data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-202-1.pdf}
 
 \hypertarget{working-the-one-way-repeated-measures-anova-by-hand}{%
 \section{Working the One-Way Repeated Measures ANOVA (by hand)}\label{working-the-one-way-repeated-measures-anova-by-hand}}
@@ -6853,7 +6826,7 @@ In repeated measures ANOVA: \(SS_T = SS_B + SS_W\), where
   \end{itemize}
 \end{itemize}
 
-What differs is that \(SS_M\) and \(SS_R\) (model and residual, are found in \(SS_W\))
+What differs is that \(SS_M\) and \(SS_R\) (model and residual) are located in \(SS_W\)
 
 \begin{itemize}
 \tightlist
@@ -6862,21 +6835,21 @@ What differs is that \(SS_M\) and \(SS_R\) (model and residual, are found in \(S
 \end{itemize}
 
 \begin{figure}
-\hypertarget{id}{%
 \centering
-\includegraphics[width=5.20833in,height=2.60417in]{images/oneway_repeated/SourceTable.jpg}
-\caption{Demonstration of partitioning variance}\label{id}
-}
+\includegraphics{images/oneway_repeated/SourceTable.jpg}
+\caption{Demonstration of partitioning variance}
 \end{figure}
 
 \hypertarget{sums-of-squares-total-2}{%
 \subsection{Sums of Squares Total}\label{sums-of-squares-total-2}}
 
+Our formulas for \(SS_{T}\) are the same as they were for one-way and factorial ANOVA:
+
 \[SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}\]
 \[SS_{T}= s_{grand}^{2}(n-1)\]
 Degrees of freedom for \(SS_T\) is \emph{N} - 1, where \emph{N} is the total number of cells.
 
-Let's take a moment to \emph{hand-calculate} \(SS_{T}\) (but in R).
+Let's take a moment to \emph{hand-calculate} \(SS_{T}\) (but using R).
 
 Our grand (i.e., overall) mean is
 
@@ -6898,10 +6871,22 @@ Subtracting the grand mean from each resilience score yields a mean difference.
 
 \NormalTok{Amodeo\_long }\OtherTok{\textless{}{-}}\NormalTok{ Amodeo\_long }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_dev =}\NormalTok{ Resilience}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(Resilience))}
+
+\FunctionTok{head}\NormalTok{(Amodeo\_long)}
 \end{Highlighting}
 \end{Shaded}
 
-Pop quiz: What's the sum of our new \emph{m\_dev} variable?
+\begin{verbatim}
+  ID     Wave Resilience       m_dev
+1  1      Pre   6.492125  0.47471697
+2  1     Post   5.283057 -0.73435114
+3  1 FollowUp   5.927930 -0.08947756
+4  2      Pre   4.428839 -1.58856921
+5  2     Post   5.948499 -0.06890871
+6  2 FollowUp   5.186767 -0.83064071
+\end{verbatim}
+
+\textbf{Pop quiz}: What's the sum of our new \emph{m\_dev} variable?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6919,8 +6904,20 @@ If we square those mean deviations:
 \begin{Highlighting}[]
 \NormalTok{Amodeo\_long }\OtherTok{\textless{}{-}}\NormalTok{ Amodeo\_long }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_devSQ =}\NormalTok{ m\_dev}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(Amodeo\_long)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+  ID     Wave Resilience       m_dev     m_devSQ
+1  1      Pre   6.492125  0.47471697 0.225356199
+2  1     Post   5.283057 -0.73435114 0.539271599
+3  1 FollowUp   5.927930 -0.08947756 0.008006235
+4  2      Pre   4.428839 -1.58856921 2.523552145
+5  2     Post   5.948499 -0.06890871 0.004748410
+6  2 FollowUp   5.186767 -0.83064071 0.689963983
+\end{verbatim}
 
 If we sum the squared mean deviations:
 
@@ -6939,13 +6936,14 @@ This value, the sum of squared deviations around the grand mean, is our \(SS_T\)
 \hypertarget{sums-of-squares-within-for-repated-measures-anova}{%
 \subsection{Sums of Squares Within for Repated Measures ANOVA}\label{sums-of-squares-within-for-repated-measures-anova}}
 
+The format of the formula is parallel to the formulae for \(SS\) we have seen before. In this case each person serves as its own grouping factor.
+
 \[SS_W = s_{person1}^{2}(n_{1}-1)+s_{person2}^{2}(n_{2}-1)+s_{person3}^{2}(n_{3}-1)+...+s_{personk}^{2}(n_{k}-1)\]
-Degrees of freedom (df) within is \emph{N - k}; or the summation of the df for each of the persons.
+The degrees of freedom (df) within is \emph{N - k}; or the summation of the df for each of the persons.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(psych)}
-\FunctionTok{describeBy}\NormalTok{(Resilience }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ID, }\AttributeTok{data =}\NormalTok{ Amodeo\_long, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{)}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(Resilience }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ID, }\AttributeTok{data =}\NormalTok{ Amodeo\_long, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6977,7 +6975,7 @@ With 8 people, there will be 8 chunks of the analysis, in each:
 \item
   SD squared (to get the variance)
 \item
-  multiplied by \#observations less 1
+  multiplied by the number of observations less 1
 \end{itemize}
 
 \begin{Shaded}
@@ -6993,12 +6991,13 @@ With 8 people, there will be 8 chunks of the analysis, in each:
 \hypertarget{sums-of-squares-model-effect-of-time}{%
 \subsection{Sums of Squares Model -- Effect of Time}\label{sums-of-squares-model-effect-of-time}}
 
+The \(SS_{M}\) conceptualizes the within-persons (or repeated measures) element as the grouping factor. In our case these are the pre, post, and follow-up clusters.
+
 \[SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\]
-Degrees of freedom will be k - 1 (number of levels, minus one).
+The degrees of freedom will be \emph{k} - 1 (number of levels, minus one).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(psych)}
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(Amodeo\_wide)}
 \end{Highlighting}
 \end{Shaded}
@@ -7016,9 +7015,9 @@ Post     0.23
 FollowUp 0.17
 \end{verbatim}
 
-In this case, we are interested in change in resilience over time. Hence, \emph{time} is our mode. In our equation, we have three chunks representing the pre, post, and follow-up \emph{conditions} (waves). From each, we subtract the grand mean, square it, and multiply by the \emph{n} observed in each wave.
+In this case, we are interested in change in resilience over time. Hence, \emph{time} is our factor. In our equation, we have three chunks representing the pre, post, and follow-up \emph{conditions} (waves). From each, we subtract the grand mean, square it, and multiply by the \emph{n} observed in each wave.
 
-Degrees of freedom (df) for \(SS_M\) is \emph{k} - 1
+The degrees of freedom (df) for \(SS_M\) is \emph{k} - 1
 
 Let's calculate grand mean; that is the resilience score for all participants across all waves.
 
@@ -7053,10 +7052,15 @@ Now we can calculate the \(SS_M\).
 \hypertarget{sums-of-squares-residual}{%
 \subsection{Sums of Squares Residual}\label{sums-of-squares-residual}}
 
-Let's take the easy way out, given that \(SS_W = SS_M + SS_R\):
+Because \(SS_W = SS_M + SS_R\) we can caluclate \(SS_R\) with simple subtraction:
 
-\(SS_w\) = 6.636
-\(SS_M\) = 2.363
+\begin{itemize}
+\tightlist
+\item
+  \(SS_w\) = 6.636
+\item
+  \(SS_M\) = 2.363
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7068,7 +7072,7 @@ Let's take the easy way out, given that \(SS_W = SS_M + SS_R\):
 [1] 4.273
 \end{verbatim}
 
-Degrees of freedom (also taking the easy way out) is calculated by subtracting the \(SS_M\) from \(SS_W\).
+Correspondingly, the degrees of freedom (also taking the easy way out) is calculated by subtracting (the associated degrees of freedom) \(SS_M\) from \(SS_W\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7083,10 +7087,15 @@ Degrees of freedom (also taking the easy way out) is calculated by subtracting t
 \hypertarget{sums-of-squares-between}{%
 \subsection{Sums of Squares Between}\label{sums-of-squares-between}}
 
-Not used in our calculations today, but also calculated easily. Given that \(SS_T\) = \(SS_W\) + \(SS_B\):
+The \(SS_B\) is not used in our calculations today, but also calculated easily. Given that \(SS_T\) = \(SS_W\) + \(SS_B\):
 
-\(SS_T\) = 11.66; \emph{df} = 23
-\(SS_W\) = 6.64; \emph{df} = 16
+\begin{itemize}
+\tightlist
+\item
+  \(SS_T\) = 11.66; \emph{df} = 23
+\item
+  \(SS_W\) = 6.64; \emph{df} = 16
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7116,7 +7125,7 @@ Looking again at our sourcetable, we can move through the steps to calculate our
 \hypertarget{mean-squares-model-residual-1}{%
 \subsection{Mean Squares Model \& Residual}\label{mean-squares-model-residual-1}}
 
-Now that we have the Sums of Squares, we can calculate the mean squares (we need these for our \(F\) statistic).
+Now that we have the Sums of Squares, we can calculate the mean squares (we need these for our \(F\) statistic). Here is the formula for the mean square model.
 
 \[MS_M = \frac{SS_{M}}{df^{_{M}}}\]
 
@@ -7131,10 +7140,11 @@ Now that we have the Sums of Squares, we can calculate the mean squares (we need
 [1] 1.18
 \end{verbatim}
 
+HEre is the formula for mean square residual.
+
 And \(MS_R=\)
 \[MS_R = \frac{SS_{R}}{df^{_{R}}}\]
-Recall, df for the residual is N - k
-(in our case that's 90 - 3)
+Recall, degrees of freedom for the residual is \(N - k\). In our case that is 90 - 3.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7150,6 +7160,8 @@ Recall, df for the residual is N - k
 \hypertarget{f-ratio}{%
 \subsection{\texorpdfstring{\emph{F} ratio}{F ratio}}\label{f-ratio}}
 
+The \emph{F} ratio is calculated with \(MS_M\) and \(MS_R=\).
+
 \[F = \frac{MS_{M}}{MS_{R}}\]
 
 \begin{Shaded}
@@ -7162,9 +7174,7 @@ Recall, df for the residual is N - k
 [1] 3.868852
 \end{verbatim}
 
-To find the \(F_{CV}\) we can use an \href{https://www.statology.org/f-distribution-table/}{F distribution table}.
-
-Or use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
+To find the \(F_{CV}\) we can use an \href{https://www.statology.org/f-distribution-table/}{F distribution table}. Or use a look-up function in R, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7177,7 +7187,7 @@ Or use a look-up function, which follows this general form: qf(p, df1, df2. lowe
 [1] 3.738892
 \end{verbatim}
 
-Our example has 2 (numerator) and 14 (denominator) degrees of freedom. Rolling down to the table where \(\alpha = .05\), we can see that any \(F\) value \textgreater{} 3.73 will be statistically significant. Our \(F\) = 3.87, so we have (just barely) exceeded the thresshhold. This is our \emph{omnibus F}. We know there is at least 1 statistically significant difference between our pre, post, and follow-up conditions.
+Our example has 2 (numerator) and 14 (denominator) degrees of freedom. If we use a table we find the corresponding degrees of freedom combinations for the column where \(\alpha = .05\). We observe that any \(F\) value \textgreater{} 3.73 will be statistically significant. Our \(F\) = 3.87, so we have (just barely) exceeded the threshold. This is our \emph{omnibus F}. We know there is at least 1 statistically significant difference between our pre, post, and follow-up conditions.
 
 \hypertarget{working-the-one-way-anova-with-r-packages}{%
 \section{Working the One-Way ANOVA with R packages}\label{working-the-one-way-anova-with-r-packages}}
@@ -7185,7 +7195,7 @@ Our example has 2 (numerator) and 14 (denominator) degrees of freedom. Rolling d
 \hypertarget{testing-the-assumptions}{%
 \subsection{Testing the assumptions}\label{testing-the-assumptions}}
 
-Well start by testing the assumptions. Here is our place in the one-way ANOVA decision tree:
+We will start by testing the assumptions. Highlighting in the figure notes our place in the one-way ANOVA workflow:
 
 \begin{figure}
 \centering
@@ -7203,7 +7213,7 @@ There are several different ways to conduct a repeated measures ANOVA. Each has 
   \begin{itemize}
   \tightlist
   \item
-    this is what we will use today
+    This is what we will use today.
   \end{itemize}
 \item
   multivariate statistics
@@ -7211,7 +7221,7 @@ There are several different ways to conduct a repeated measures ANOVA. Each has 
   \begin{itemize}
   \tightlist
   \item
-    same as univariate, except it does not require the sphericity assumption
+    Functionally similar to univariate, except the underlying algorithm does not require the sphericity assumption.
   \end{itemize}
 \item
   multi-level modeling/hierarchical linear modeling
@@ -7219,7 +7229,7 @@ There are several different ways to conduct a repeated measures ANOVA. Each has 
   \begin{itemize}
   \tightlist
   \item
-    a different statistic altogether; stay tuned
+    This a different statistic altogether and is addressed in the \href{https://lhbikos.github.io/MultilevelModeling}{multilevel modeling OER}.
   \end{itemize}
 \end{itemize}
 
@@ -7229,40 +7239,55 @@ There are several different ways to conduct a repeated measures ANOVA. Each has 
 \begin{itemize}
 \tightlist
 \item
-  The cases represent a random sample from the population, and there is no dependency in the scores between participants.
+  The cases represent a random sample from the population.
+\item
+  There is no dependency in the scores \emph{between} participants.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Of course there is intentional dependency in the repeated measures (or within-subjects) factor.
+  \end{itemize}
 \item
   There are no significant outliers in any cell of the design
 
   \begin{itemize}
   \tightlist
   \item
-    Check by visualizing the data using box plots and the function \emph{identify\_outliers()} {[}rstatix{]}
-  \item
-    Conduct a Shapiro-Wilk test of normality for each of the levels of the DV
-  \item
-    Visually examine qq plots
+    Check by visualizing the data using box plots. The \emph{identify\_outliers()} function in the \emph{rstatix} package identifies extreme outliers.
   \end{itemize}
 \item
   The dependent variable is normally distributed in the population for each level of the within-subjects factor.
-\item
-  The population variance of difference scores computed between any two levels of a within-subjects factor is the same value regardless of which two levels are chosen; termed the \textbf{sphericity assumption}.
 
   \begin{itemize}
   \tightlist
   \item
-    Akin to compound symmetry (both variances across conditions are equal).
+    Conduct a Shapiro-Wilk test of normality for each of the levels of the DV.
   \item
-    Akin to the homogeneity of variance assumption in between-group designs.
+    Visually examine Q-Q plots.
+  \end{itemize}
+\item
+  The population variance of difference scores computed between any two levels of a within-subjects factor is the same value regardless of which two levels are chosen; termed the \textbf{sphericity assumption}. This assumption is
+
+  \begin{itemize}
+  \tightlist
   \item
-    Sometimes called the homogeneity-of-variance-of-differences assumption.
+    akin to compound symmetry (both variances across conditions are equal).
   \item
-    Statistically evaluated with \emph{Mauchly's test.} If Mauchly's \emph{p} \textless{} .05, there are statistically significant differences. The \emph{anova\_test()} function in the \emph{rstatix} package reports Mauchly's and two alternatives to the traditional \emph{F} that correct the values by the degree to which the sphericity assumption is violated.
+    akin to the homogeneity of variance assumption in between-group designs.
+  \item
+    sometimes called the homogeneity-of-variance-of-differences assumption.
+  \item
+    statistically evaluated with \emph{Mauchly's test.} If Mauchly's \emph{p} \textless{} .05, there are statistically significant differences. The \emph{anova\_test()} function in the \emph{rstatix} package reports Mauchly's and two alternatives to the traditional \emph{F} that correct the values by the degree to which the sphericity assumption is violated.
   \end{itemize}
 \end{itemize}
 
-Demonstrating sphericity:
+\hypertarget{demonstrating-sphericity}{%
+\subsubsection{Demonstrating sphericity}\label{demonstrating-sphericity}}
 
-Using the data from our motivating example, I calculated differences for each of the time variables. When we get into the analysis, we will use \emph{Mauchly's test} in hopes that there are non-significant differences in variances between all three of the comparisons.
+Using the data from our motivating example, I calculated differences for each of the time variables. These are the three columns (in green shading) on the right. The variance for each is reported at the bottom of the column.
+
+When we get into the analysis, we will use \emph{Mauchly's test} in hopes that there are non-significant differences in variances between all three of the comparisons.
 
 We are only concerned with the sphericity assumption if there are three or more groups.
 
@@ -7303,48 +7328,20 @@ Let's take a look at a boxplot.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggpubr)}
-\NormalTok{bxp }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(Amodeo\_long, }\AttributeTok{x =} \StringTok{"Wave"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Resilience"}\NormalTok{, }\AttributeTok{add =} \StringTok{"point"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Assessment Wave"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Self{-}Perception of Resilience"}\NormalTok{)}
+\CommentTok{\#Note that we are creating an object (bxp) from our work. This script creates the basic boxplot, we will add to it (by using the object) later.}
+\NormalTok{bxp }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(Amodeo\_long, }\AttributeTok{x =} \StringTok{"Wave"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Resilience"}\NormalTok{, }\AttributeTok{add =} \StringTok{"point"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Assessment Wave"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Self{-}Perception of Resilience"}\NormalTok{)}
 \NormalTok{bxp}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-219-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-220-1.pdf}
 The package \emph{rstatix} has features that allow us to identify outliers.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(rstatix)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Attaching package: 'rstatix'
-\end{verbatim}
-
-\begin{verbatim}
-The following objects are masked from 'package:effectsize':
-
-    cohens_d, eta_squared
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:MASS':
-
-    select
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:stats':
-
-    filter
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Amodeo\_long }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(Wave)}\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{identify\_outliers}\NormalTok{(Resilience)}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{identify\_outliers}\NormalTok{(Resilience)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7359,14 +7356,17 @@ The following object is masked from 'package:stats':
 \end{Highlighting}
 \end{Shaded}
 
-No outliers are identified. Visual inspection of boxplots, assisted by the \emph{identify\_outliers()} function in the \emph{rstatix} package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers.
+The output, ``0 rows'' indicates there are no outliers.
+
+This is consistent with the visual inspection of boxplots (above), where all observed scores fell within the 1.5x the interquartile range.
 
 \hypertarget{assessing-normality}{%
 \subsubsection{Assessing normality}\label{assessing-normality}}
 
+We can obtain skew and kurtosis values for each cell in our model with the \emph{psych::describeBy()} function.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(psych)}
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(Resilience }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Wave, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data =}\NormalTok{ Amodeo\_long)}
 \end{Highlighting}
 \end{Shaded}
@@ -7382,7 +7382,7 @@ X12 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
 X13 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107
 \end{verbatim}
 
-Our skew and kurtosis values fall below the thresshholds of concern \citep{kline_principles_2016}:
+Our skew and kurtosis values fall below the thresholds of concern \citep{kline_principles_2016}:
 
 \begin{itemize}
 \tightlist
@@ -7392,13 +7392,13 @@ Our skew and kurtosis values fall below the thresshholds of concern \citep{kline
   8 - 20 indicates extreme skew for kurtosis
 \end{itemize}
 
-We can use the Shapiro-Wilk test for a formal detection of normality. When \emph{p} \textless{} .05, it indicates that the distribution is statistically significantly different than a normal one. Therefore, \emph{p} \textgreater{} .05 indicates we did not violate the normal distribution assumption.
+We can use the Shapiro-Wilk test for a formal detection of normality. When \emph{p} \textless{} .05, it indicates that the distribution is statistically significantly different than a normal one. Therefore, \emph{p} \textgreater{} .05 indicates we did not violate the normal distribution assumption. The code below groups the DV by wave so that we can test normality for each cell in the model.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Amodeo\_long }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(Wave) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{shapiro\_test}\NormalTok{(Resilience)}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{shapiro\_test}\NormalTok{(Resilience)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7411,19 +7411,17 @@ We can use the Shapiro-Wilk test for a formal detection of normality. When \emph
 3 FollowUp Resilience     0.926 0.480
 \end{verbatim}
 
-Great! The \emph{p} value is \textgreater{} .05 for each of the cells.
+The \emph{p} value is \textgreater{} .05 for each of the cells. This provides some assurance that we have not violated the assumption of normality at any level of the design.
 
-The Shapiro-Wilk test is sensitive to sample size \citep{noauthor_repeated_nodate}. Samples \textgreater{} 50 may lead to \emph{p} values that are \textless{} .05, even when non-normality is not problematic. Therefore a second check with a QQ plot can be helpful.
+The Shapiro-Wilk test is sensitive to sample size \citep{noauthor_repeated_nodate}. Samples \textgreater{} 50 may lead to \emph{p} values that are \textless{} .05, even when non-normality is not problematic. Therefore a second check with a Q-Q plot can be helpful. In a normal distribution the residuals will align along the line for each of the cells in the model.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ggqqplot}\NormalTok{(Amodeo\_long, }\StringTok{"Resilience"}\NormalTok{, }\AttributeTok{facet.by =} \StringTok{"Wave"}\NormalTok{)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggqqplot}\NormalTok{(Amodeo\_long, }\StringTok{"Resilience"}\NormalTok{, }\AttributeTok{facet.by =} \StringTok{"Wave"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-223-1.pdf}
-
-We already have a non-significant \emph{p} from the Shapiro-Wilk; and these dots stay pretty well on the prediction line.
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-224-1.pdf}
 
 \textbf{APA Assumption Write-up So Far}
 
@@ -7432,12 +7430,26 @@ Repeated measures ANOVA has several assumptions regarding outliers, normality, a
 \hypertarget{assumption-of-sphericity}{%
 \subsubsection{Assumption of Sphericity}\label{assumption-of-sphericity}}
 
-The sphericity assumption is automatically checked with Mauchley's test during the computation of the ANOVA when the \emph{anova\_test()} {[}rstatix package{]} is used. When the \emph{get\_anova\_table()} {[}rstatix{]} function is used, the Greenhouse-Geisser sphericity correction is automatically applied to factors violating the sphericity assumption.
+The sphericity assumption is automatically checked with Mauchley's test during the computation of the ANOVA when the \emph{rstatix::anova\_test()} function is used. When the \emph{rstatix::get\_anova\_table()} function is used, the Greenhouse-Geisser sphericity correction is automatically applied to factors violating the sphericity assumption.
 
-The effect size, \(\eta^2\) is reported in the ges column.
+The effect size, \(\eta^2\) is reported in the column labeled ``ges.''
 
-\hypertarget{omnibus-anova}{%
-\subsection{Omnibus ANOVA}\label{omnibus-anova}}
+Earlier in the lesson I noted that the evaluation of the sphericity assumption occurs at the same time that we evaluate the omnibus ANOVA. We are at that point in the analyses. The workflow points to our stage in the process.
+
+\begin{figure}
+\centering
+\includegraphics{images/oneway_repeated/wf_rptd_omnibus.jpg}
+\caption{Image of our position in the workflow for the one-way repeated measures ANOVA}
+\end{figure}
+
+\hypertarget{omnibus-repeated-measures-anova}{%
+\subsection{Omnibus Repeated Measures ANOVA}\label{omnibus-repeated-measures-anova}}
+
+As we prepare to run the omnibus ANOVA it may be helpful to think again about our variables. Our DV, Resilience, should be a continuous variable. In R, its structure should be ``num.'' Our predictor, Wave, should be categorical. In R case, Wave should be an ordered factor that is consistent with its timing: pre, post, follow-up.
+
+The repeated measures ANOVA must be run with a long form of the data. This means that there needs to be a within-subjects identifier. In our case, it is the ``ID'' variable which is also formatted as a factor.
+
+We can verify the format of our variables by examining the structure of our dataframe. Recall that we created the ``m\_dev'' and ``m\_devSQ'' variables earlier in the demonstration. We will not use them in this analysis; it does not harm anything for them to ``ride along'' in the dataframe.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7454,10 +7466,21 @@ The effect size, \(\eta^2\) is reported in the ges column.
  $ m_devSQ   : num  0.22536 0.53927 0.00801 2.52355 0.00475 ...
 \end{verbatim}
 
+We can use the \emph{rstatix::anova\_test()} function to calculate the omnibus ANOVA. Notice where our variables are included in the script:
+
+\begin{itemize}
+\tightlist
+\item
+  Resilience is the dv
+\item
+  ID is the wid
+\item
+  Wave is assigned to within
+\end{itemize}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(rstatix)}
-\NormalTok{RM\_AOV }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}\AttributeTok{data =}\NormalTok{ Amodeo\_long, }\AttributeTok{dv =}\NormalTok{ Resilience, }\AttributeTok{wid =}\NormalTok{ ID, }\AttributeTok{within =}\NormalTok{ Wave)}
+\NormalTok{RM\_AOV }\OtherTok{\textless{}{-}}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{anova\_test}\NormalTok{(}\AttributeTok{data =}\NormalTok{ Amodeo\_long, }\AttributeTok{dv =}\NormalTok{ Resilience, }\AttributeTok{wid =}\NormalTok{ ID, }\AttributeTok{within =}\NormalTok{ Wave)}
 \NormalTok{RM\_AOV}
 \end{Highlighting}
 \end{Shaded}
@@ -7478,34 +7501,34 @@ $`Sphericity Corrections`
 1   Wave 0.698 1.4, 9.77 0.068           0.817 1.63, 11.44 0.057          
 \end{verbatim}
 
-From the ANOVA object: \(F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203\)
+We can assemble our \emph{F} string from the ANOVA object: \(F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203\)
 
 From the Mauchly's Test for Sphericity object we learn that we did not violate the sphericity assumption: \(W = 0.566, p = .182\)
 
-From the Sphericity Corrections object are output for two alternative corrections to the \emph{F} statistic, the Greenhouse-Geiser epsilon (GGe) and Huynh-Feldt epsilon (HFe). Because we did not violate the sphericity assumption we do not need to use it. Notice that these two tests adjust our df (both numerator and denominator) to have a more conservative p value.
+From the Sphericity Corrections object are output for two alternative corrections to the \emph{F} statistic, the Greenhouse-Geiser epsilon (GGe), and Huynh-Feldt epsilon (HFe). Because we did not violate the sphericity assumption we do not need to use them. Notice that these two tests adjust our df (both numerator and denominator) to have a more conservative p value.
 
-If we needed to write it up, the \emph{F} string might look like this:
+If we needed to write an \emph{F} string that is corrected for violation of the sphericity assumption, it might look like this:
 
 The Greenhouse Geiser estimate was 0.698 the correct omnibus was \emph{F}(1.4, 9.77) = 3.91, \emph{p} = .068.
 The Huyhn Feldt estimate was 0.817 and the corrected omnibus was \emph{F} (1.63, 11.44) = 3.91 \emph{p} = .057.
 
-You might be surprised that we are at follow-up already. The test of the sphericity assumption occured at the same time we evaluated the omnibus ANOVA.
+You might be surprised that we are at follow-up already.
 
 \begin{figure}
 \centering
-\includegraphics{images/oneway_repeated/wf_rptd_omnibus.jpg}
+\includegraphics{images/oneway_repeated/wf_rptd_pairwise.jpg}
 \caption{Image of our position in the workflow for the one-way repeated measures ANOVA}
 \end{figure}
 
 \hypertarget{follow-up}{%
 \subsection{Follow-up}\label{follow-up}}
 
-Note that when I am calculating these pairwise \emph{t} tests, I am creating an object (named ``pwc''). The object will be a helpful tool in creating a Figure and an APA Style table.
+Given the simplicity of our design, it makes sense to me to follow-up with post hoc, pairwise, comparisons. Note that when I am calculating these pairwise \emph{t} tests, I am creating an object (named ``pwc''). The object will be a helpful tool in creating a Figure and an APA Style table.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pwc }\OtherTok{\textless{}{-}}\NormalTok{ Amodeo\_long }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pairwise\_t\_test}\NormalTok{(Resilience}\SpecialCharTok{\textasciitilde{}}\NormalTok{Wave, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{)}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{pairwise\_t\_test}\NormalTok{(Resilience}\SpecialCharTok{\textasciitilde{}}\NormalTok{Wave, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{)}
 \NormalTok{pwc}
 \end{Highlighting}
 \end{Shaded}
@@ -7519,7 +7542,7 @@ Note that when I am calculating these pairwise \emph{t} tests, I am creating an 
 3 Resilience Post   FollowUp     8     8      1.06     7 0.325 0.975 ns          
 \end{verbatim}
 
-So why didn't we get significance in the follow-up?
+Although we had a statistically significant omnibus test, we did not obtain statistically significant results in an of the posthoc pairwise comparisons. Why not?
 
 \begin{itemize}
 \tightlist
@@ -7529,37 +7552,37 @@ So why didn't we get significance in the follow-up?
   \begin{itemize}
   \tightlist
   \item
-    a larger sample size (assuming that the effects would hold) would be really useful.
+    a larger sample size (assuming that the effects would hold) would have been more powerful.
   \item
     there could be significance if we compared pre to the combined effects of post and follow-up.
   \end{itemize}
 \end{itemize}
 
-What about Type I error? With only three possible post-omnibus comparisons, I will claim the Tukey LSD approach and not adjust the alpha to a more conservative level \citep{green_using_2014}.
+How would we manage Type I error? With only three possible post-omnibus comparisons, I would cite the Tukey LSD approach and not adjust the alpha to a more conservative level \citep{green_using_2014}.
 
-Coolest boxplots ever
+We can combine information from the object we created (``bxp'') from an earlier boxplot with the object we saved from the posthoc pairwise comparisons (``pwc) to enhance our boxplot with the \emph{F} string and indications of pairwise significant (or, in our case, non-significance).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pwc }\OtherTok{\textless{}{-}}\NormalTok{ pwc }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Wave"}\NormalTok{)}
+\NormalTok{pwc }\OtherTok{\textless{}{-}}\NormalTok{ pwc }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Wave"}\NormalTok{)}
 \NormalTok{bxp }\SpecialCharTok{+} 
-  \FunctionTok{stat\_pvalue\_manual}\NormalTok{(pwc) }\SpecialCharTok{+}
+\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_pvalue\_manual}\NormalTok{(pwc) }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}
-    \AttributeTok{subtitle =} \FunctionTok{get\_test\_label}\NormalTok{(RM\_AOV, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{),}
-    \AttributeTok{caption =} \FunctionTok{get\_pwc\_label}\NormalTok{(pwc)}
+    \AttributeTok{subtitle =}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{get\_test\_label}\NormalTok{(RM\_AOV, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{caption =}\NormalTok{ rstatix}\SpecialCharTok{::} \FunctionTok{get\_pwc\_label}\NormalTok{(pwc)}
 \NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-227-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-228-1.pdf}
 Unfortunately, the \emph{apaTables} package does not work with the \emph{rstatix} package, so a table would need to be crafted by hand.
 
 \hypertarget{results-section}{%
 \subsection{Results Section}\label{results-section}}
 
-Repeated measures ANOVA has several assumptions regarding outliers, normality, and sphericity. Visual inspection of boxplots for each wave of the design, assisted by the \emph{identify\_outliers()} function in the \emph{rstatix} package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis \citep{kline_principles_2016}. Additionally, the Shapiro-Wilk tests applied at each wave of the design were non-significant. A non-significant Mauchley's test (\(W = 0.566, p = .182\)) indicated that the sphericity assumption was not violated.
+Repeated measures ANOVA has several assumptions regarding outliers, normality, and sphericity. Visual inspection of boxplots for each wave of the design, assisted by the \emph{rstatix::identify\_outliers()} function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis \citep{kline_principles_2016}. Additionally, the Shapiro-Wilk tests applied at each wave of the design were non-significant. A non-significant Mauchley's test (\(W = 0.566, p = .182\)) indicated that the sphericity assumption was not violated.
 
-The omnibus ANOVA was significant: \(F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203\). We followed up with all pairwise comparisons. Curiously, and in spite of a significant omnibus test, there were not statistically significant differences between any of the pairs. Regarding pre versus post, \emph{t} = -2.15, \emph{p}= .069. Regarding pre versus follow-up, \emph{t} = -2.00, \emph{p} = .068. Regarding post versus follow-up, \emph{t} = 1.059, \emph{p}= .325. Because there were only three pairwise comparisons subsequent to the omnibus test, alpha was retained at .05 \citep{green_using_2014}. While the trajectories from pre-to-post and pre-to-follow-up were in the expected direction, the small sample size likely contributed to a Type II error. Descriptive statistics are reported in Table 1 and the differences are illustrated in Figure 1.
+The omnibus ANOVA was significant: \(F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203\). We followed up with all pairwise comparisons. Curiously, and in spite of a significant omnibus test, there were not statistically significant differences between any of the pairs. Regarding pre versus post, \emph{t} = -2.15, \emph{p}= .069. Regarding pre versus follow-up, \emph{t} = -2.00, \emph{p} = .068. Regarding post versus follow-up, \emph{t} = 1.059, \emph{p} = .325. Because there were only three pairwise comparisons subsequent to the omnibus test, alpha was retained at .05 \citep{green_using_2014}. While the trajectories from pre-to-post and pre-to-follow-up were in the expected direction, the small sample size likely contributed to a Type II error. Descriptive statistics are reported in Table 1 and the differences are illustrated in Figure 1.
 
 \hypertarget{creating-an-apa-style-table}{%
 \subsubsection{Creating an APA Style Table**}\label{creating-an-apa-style-table}}
@@ -7568,26 +7591,18 @@ While I have not located a package that will take \emph{rstatix} output to make 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(MASS)}
-\FunctionTok{write.matrix}\NormalTok{(pwc, }\AttributeTok{sep =} \StringTok{","}\NormalTok{, }\AttributeTok{file =} \StringTok{"PWC.csv"}\NormalTok{)}
+\NormalTok{MASS}\SpecialCharTok{::}\FunctionTok{write.matrix}\NormalTok{(pwc, }\AttributeTok{sep =} \StringTok{","}\NormalTok{, }\AttributeTok{file =} \StringTok{"PWC.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Let's compare this to the write-up in the Amodeo et al.\citeyearpar{amodeo_empowering_2018}article.}
+\hypertarget{comparison-with-amodeo-et-al.-amodeo_empowering_2018}{%
+\subsubsection{\texorpdfstring{Comparison with Amodeo et al.\citeyearpar{amodeo_empowering_2018}}{Comparison with Amodeo et al.{[}-@amodeo\_empowering\_2018{]}}}\label{comparison-with-amodeo-et-al.-amodeo_empowering_2018}}
 
-\begin{itemize}
-\tightlist
-\item
-  The \emph{F} string is presented in the Table 1 note (\emph{F}{[}1.612, 11.283{]}) = 6.390, \emph{p} = 0.18, \(\eta _{p}^{2}\))
+How do our findings and our write-up from the simulated data compare with the original article?
 
-  \begin{itemize}
-  \tightlist
-  \item
-    we can tell from the df that the \emph{p} value has been had a correction for violation of the sphericity assumption
-  \end{itemize}
-\item
-  Table 1 also reports all of the post-hoc, pairwise comparisons. There is no mention of control for Type I error. Had they used a traditional Bonferroni, they would have needed to reduce the alpha to (k*(k-1)/2) and then divide .05 by that number.
-\end{itemize}
+The \emph{F} string is presented in the Table 1 note (\emph{F}{[}1.612, 11.283{]}) = 6.390, \emph{p} = 0.18, \(\eta _{p}^{2}\)). We can tell from the fractional degrees of freedom that the \emph{p} value has been had a correction for violation of the sphericity assumption.
+
+Table 1 also reports all of the post-hoc, pairwise comparisons. There is no mention of control for Type I error. Had they used a traditional Bonferroni, they would have needed to reduce the alpha to (k*(k-1)/2) and then divide .05 by that number.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7609,14 +7624,33 @@ While I have not located a package that will take \emph{rstatix} output to make 
 [1] 0.01666667
 \end{verbatim}
 
-Although they report 6 comparisons; 3 are repeated because they are merely in reverse. Yet, the revised alpha would be .016 and the one, lone, comparison would not have been statistically significant. That said, we can invoke the Tukey LSD because there are only 3 comparisons and holding alpha at .05 can be defended \citep{green_using_2014}.
-* Regarding the presentation of the results
-- there is no figure
-- there is no data presented in the text; all data is presented in Table 1
-* Regarding the research design and its limitations
-- the authors note that a control condition would have better supported the conclusions
-- the authors note the limited sample size and argue that this is a difficult group to recruit for intervention and evaluation
-- the article is centered around the qualitative aspect of the design; the quantitative portion is secondary
+Although they report 6 comparisons; 3 are repeated because they are merely in reverse. Yet, the revised alpha would be .016 and the one, lone, comparison would not have been statistically significant. That said, we can use the Tukey LSD because there are only 3 comparisons and holding alpha at .05 can be defended \citep{green_using_2014}.
+
+\begin{itemize}
+\tightlist
+\item
+  Regarding the presentation of the results
+
+  \begin{itemize}
+  \tightlist
+  \item
+    there is no figure
+  \item
+    there is no data presented in the text; all data is presented in Table 1
+  \end{itemize}
+\item
+  Regarding the research design and its limitations
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the authors note that a control condition would have better supported the conclusions
+  \item
+    the authors note the limited sample size and argue that this is a difficult group to recruit for intervention and evaluation
+  \item
+    the article is centered around the qualitative aspect of the design; the quantitative portion is, appropriately, secondary
+  \end{itemize}
+\end{itemize}
 
 \begin{figure}
 \hypertarget{id}{%
@@ -7635,21 +7669,31 @@ Power analysis allows us to determine the probability of detecting an effect of 
 
 In the \emph{WebPower} package, we specify 6 of 7 interrelated elements; the package computes the missing one.
 
-n = sample size (number of individuals in the whole study)
-ng = number of groups
-nm = number of measurements/conditions/waves
-f = Cohen's \emph{f} (an effect size; we can use a conversion calculator)
-nscor = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package's default; \textless{} 1 means some correction was applied.
-alpha = is the probability of Type I error; we traditionally set this at .05
-power = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)
-type = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect.
+\begin{itemize}
+\tightlist
+\item
+  \emph{n} = sample size (number of individuals in the whole study)
+\item
+  \emph{ng} = number of groups
+\item
+  \emph{nm} = number of measurements/conditions/waves
+\item
+  \emph{f} = Cohen's \emph{f} (an effect size; we can use a conversion calculator)
+\item
+  \emph{nscor} = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package's default; \textless{} 1 means some correction was applied.
+\item
+  \emph{alpha} = is the probability of Type I error; we traditionally set this at .05
+\item
+  \emph{power} = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)
+\item
+  \emph{type} = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect.
+\end{itemize}
 
 I used \emph{effectsize} packages converter to transform our \(\eta^2\) to Cohen's \emph{f}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(effectsize)}
-\FunctionTok{eta2\_to\_f}\NormalTok{(.}\DecValTok{203}\NormalTok{) }
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(.}\DecValTok{203}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -7659,58 +7703,7 @@ I used \emph{effectsize} packages converter to transform our \(\eta^2\) to Cohen
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(WebPower)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Loading required package: lme4
-\end{verbatim}
-
-\begin{verbatim}
-Loading required package: Matrix
-\end{verbatim}
-
-\begin{verbatim}
-Attaching package: 'Matrix'
-\end{verbatim}
-
-\begin{verbatim}
-The following objects are masked from 'package:tidyr':
-
-    expand, pack, unpack
-\end{verbatim}
-
-\begin{verbatim}
-Loading required package: lavaan
-\end{verbatim}
-
-\begin{verbatim}
-This is lavaan 0.6-9
-lavaan is FREE software! Please report any bugs.
-\end{verbatim}
-
-\begin{verbatim}
-Attaching package: 'lavaan'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:psych':
-
-    cor2cov
-\end{verbatim}
-
-\begin{verbatim}
-Loading required package: parallel
-\end{verbatim}
-
-\begin{verbatim}
-Loading required package: PearsonDS
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{wp.rmanova}\NormalTok{(}\AttributeTok{n=}\DecValTok{8}\NormalTok{, }\AttributeTok{ng=}\DecValTok{1}\NormalTok{, }\AttributeTok{nm=}\DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{5047}\NormalTok{, }\AttributeTok{nscor =}\NormalTok{ .}\DecValTok{689}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
+\NormalTok{WebPower}\SpecialCharTok{::}\FunctionTok{wp.rmanova}\NormalTok{(}\AttributeTok{n=}\DecValTok{8}\NormalTok{, }\AttributeTok{ng=}\DecValTok{1}\NormalTok{, }\AttributeTok{nm=}\DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{5047}\NormalTok{, }\AttributeTok{nscor =}\NormalTok{ .}\DecValTok{689}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7724,6 +7717,8 @@ NOTE: Power analysis for within-effect test
 URL: http://psychstat.org/rmanova
 \end{verbatim}
 
+Here we learned that we were only powered at .16. That is, we had a 16\% chance of finding a statistically significant effect if, in fact, it existed. This is low!
+
 In reverse, setting \emph{power} at .80 (the traditional value) and changing \emph{n} to \emph{NULL} yields a recommended sample size.
 
 In many cases we won't know some of the values in advance. We can make best guesses based on our review of the literature. In the script below:
@@ -7731,14 +7726,14 @@ In many cases we won't know some of the values in advance. We can make best gues
 \begin{itemize}
 \tightlist
 \item
-  nscor is the degree of violation of the sphericity assumption. If we think we won't violate it, we can enter 1.0 or leave it out (the wp.rmanova default is 1.0)
+  \emph{nscor} is the degree of violation of the sphericity assumption. If we think we won't violate it, we can enter 1.0 or leave it out (the wp.rmanova default is 1.0)
 \item
-  f is the effect size estimate; Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively.
+  \emph{f} is the effect size estimate; Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively.
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{wp.rmanova}\NormalTok{(}\AttributeTok{n=}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{ng=}\DecValTok{1}\NormalTok{, }\AttributeTok{nm=}\DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{5047}\NormalTok{, }\AttributeTok{nscor =}\NormalTok{ .}\DecValTok{689}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
+\NormalTok{WebPower}\SpecialCharTok{::}\FunctionTok{wp.rmanova}\NormalTok{(}\AttributeTok{n=}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{ng=}\DecValTok{1}\NormalTok{, }\AttributeTok{nm=}\DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{5047}\NormalTok{, }\AttributeTok{nscor =}\NormalTok{ .}\DecValTok{689}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =}\NormalTok{ .}\DecValTok{80}\NormalTok{, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7752,10 +7747,12 @@ NOTE: Power analysis for within-effect test
 URL: http://psychstat.org/rmanova
 \end{verbatim}
 
+With these new values, we learn that we would need 50 individuals in order to feel confident in our ability to get a statistically significant result if, in fact, it existed.
+
 \hypertarget{practice-problems-3}{%
 \section{Practice Problems}\label{practice-problems-3}}
 
-In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty. In any case, you will be expected to:
+In each of these lessons I provide suggestions for practice that allow you to select one or more problems that offer differing levels of difficulty. Whichever you choose, you will focus on these larger steps in one-way repeated measures/within-subjects ANOVA, including:
 
 \begin{itemize}
 \tightlist
@@ -7775,54 +7772,35 @@ In each of these lessons I provide suggestions for practice that allow you to se
   write a results section to include a figure and tables
 \end{itemize}
 
-\hypertarget{problem-2-change-the-random-seed}{%
-\subsection{Problem \#2: Change the Random Seed}\label{problem-2-change-the-random-seed}}
+\hypertarget{problem-1-change-the-random-seed-1}{%
+\subsection{Problem \#1: Change the Random Seed}\label{problem-1-change-the-random-seed-1}}
 
 If repeated measures ANOVA is new to you, perhaps change the random seed and follow-along with the lesson.
-
-\begin{longtable}[]{@{}lcc@{}}
-\toprule
-Assignment Component & Points Possible & Points Earned \\
-\midrule
-\endhead
-1. Check and, if needed, format data & 5 & \_\_\_\_\_ \\
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-4. Conduct all possible pairwise comparisons (like in the lecture) & 5 & \_\_\_\_\_ \\
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-7. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
-\bottomrule
-\end{longtable}
 
 \hypertarget{problem-2-increase-n}{%
 \subsection{\texorpdfstring{Problem \#2: Increase \emph{N}}{Problem \#2: Increase N}}\label{problem-2-increase-n}}
 
-Our analysis of the Amodio et al. \citeyearpar{amodio_empowering_2018} data failed to find significant increases in resilience from pre-to-post through follow-up. Our power analysis suggested that a sample size of 50 would be sufficient to garner statistical significance. The new dataset has been resimulated with this new sample size.
+Our analysis of the Amodeo et al. \citep{amodeo_empowering_2018} data failed to find significant increases in resilience from pre-to-post through follow-up. Our power analysis suggested that a sample size of 50 would be sufficient to garner statistical significance. The script below resimulates the data by increasing the sample size to 50 (from 8). All else remains the same.
 
-\begin{longtable}[]{@{}lcc@{}}
-\toprule
-Assignment Component & Points Possible & Points Earned \\
-\midrule
-\endhead
-1. Check and, if needed, format data & 5 & \_\_\_\_\_ \\
-2. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-3. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-4. Conduct all possible pairwise comparisons (like in the lecture) & 5 & \_\_\_\_\_ \\
-5. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-6. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-7. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 35 & \_\_\_\_\_ \\
-\bottomrule
-\end{longtable}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2022}\NormalTok{)}
+\NormalTok{ID}\OtherTok{\textless{}{-}}\FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{50}\NormalTok{),}\AttributeTok{each=}\DecValTok{3}\NormalTok{)))}\CommentTok{\#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence}
+\NormalTok{Resilience}\OtherTok{\textless{}{-}}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{150}\NormalTok{,}\AttributeTok{mean=}\FunctionTok{c}\NormalTok{(}\FloatTok{5.7}\NormalTok{,}\FloatTok{6.21}\NormalTok{,}\FloatTok{6.26}\NormalTok{),}\AttributeTok{sd=}\FunctionTok{c}\NormalTok{(.}\DecValTok{88}\NormalTok{,.}\DecValTok{79}\NormalTok{,.}\DecValTok{37}\NormalTok{)) }\CommentTok{\#gives me a column of 24 numbers with the specified Ms and SD}
+\NormalTok{Wave}\OtherTok{\textless{}{-}}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Pre"}\NormalTok{,}\StringTok{"Post"}\NormalTok{, }\StringTok{"FollowUp"}\NormalTok{),}\AttributeTok{each=}\DecValTok{1}\NormalTok{,}\DecValTok{50}\NormalTok{) }\CommentTok{\#repeats pre, post, follow{-}up once each, 8 times}
+\NormalTok{Amodeo50\_long}\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(ID, Wave, Resilience)}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{problem-2-try-something-entirely-new}{%
-\subsection{Problem \#2: Try Something Entirely New}\label{problem-2-try-something-entirely-new}}
+\hypertarget{problem-3-try-something-entirely-new}{%
+\subsection{Problem \#3: Try Something Entirely New}\label{problem-3-try-something-entirely-new}}
 
 Using data for which you have permission and access (e.g., IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a one-way repeated measures ANOVA. Please have at least 3 levels for the predictor variable.
 
-Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+\hypertarget{grading-rubric-3}{%
+\subsection{Grading Rubric}\label{grading-rubric-3}}
+
+Regardless which option(s) you chose, use the elements in the grading rubric to guide you through the practice.
 
 \begin{longtable}[]{@{}lcc@{}}
 \toprule
@@ -7863,15 +7841,6 @@ Without the \emph{rstatix} helper package, here is how the analysis would be run
 \NormalTok{waveBind }\OtherTok{\textless{}{-}}\FunctionTok{cbind}\NormalTok{(Amodeo\_wide}\SpecialCharTok{$}\NormalTok{Pre, Amodeo\_wide}\SpecialCharTok{$}\NormalTok{Post, Amodeo\_wide}\SpecialCharTok{$}\NormalTok{FollowUp)}
 \NormalTok{waveModel}\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(waveBind}\SpecialCharTok{\textasciitilde{}}\DecValTok{1}\NormalTok{)}
 \NormalTok{analysis }\OtherTok{\textless{}{-}}\FunctionTok{Anova}\NormalTok{(waveModel, }\AttributeTok{idata=}\NormalTok{waveFrame, }\AttributeTok{idesign=}\SpecialCharTok{\textasciitilde{}}\NormalTok{waveFactor)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Note: model has only an intercept; equivalent type-III tests substituted.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(analysis)}
 \end{Highlighting}
 \end{Shaded}
@@ -8403,7 +8372,7 @@ The boxplot is one common way for identifying outliers. The boxplot uses the med
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-246-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-248-1.pdf}
 The distributions look relatively normal with the mean well-centered. Given that we simulated the data from means and standard deviations, this is not terribly surprising. This boxplot also provides us a glimpse of the patterns in our data. That is, the means are quite similar at baseline; in the post intervention waves we see greater difference scores for the Friends condition.
 
 Let's reconfigure the data by putting the wave on the X axis. Plotting it both ways (i.e.,swapping roles of predictor and moderator) can help us get a sense of what is happening.
@@ -8418,7 +8387,7 @@ Let's reconfigure the data by putting the wave on the X axis. Plotting it both w
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-249-1.pdf}
 Outliers are generally identified when values fall outside these lower and upper boundaries:
 
 \begin{itemize}
@@ -8444,6 +8413,27 @@ Using the \emph{rstatix} package we can look for outliers in the dependent varia
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(rstatix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Attaching package: 'rstatix'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:MASS':
+
+    select
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:stats':
+
+    filter
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{Murrar\_df }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(Wave, COND) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{identify\_outliers}\NormalTok{(Diff)}
@@ -8492,7 +8482,7 @@ The Shapiro Wilks test suggests that distribution in each of our cells is not si
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-250-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-252-1.pdf}
 \#\#\#\# Homogeneity of variance assumption
 
 Because there is a between-subjects variable, we need need to evaluate the homogeneity of variance assumption. As before, we can use the Levene's test. Considering each of the comparisons of condition within wave, there is no instance where we violate the assumption.
@@ -8541,8 +8531,8 @@ None-the-less, Box's M indicated no violation of the homogeneity of covariance m
 
 Mixed design ANOVA has a number of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normally distributed at each level of design. Visual inspection of boxplots for each wave of the design, assisted by the \emph{identify\_outliers()} function in the \emph{rstatix} package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated some outliers, but none at the extreme level. There was no evidence of skew (all values were at or below the absolute value of 0.32) or kurtosis (all values were below the absolute value of .57; \citep{kline_principles_2016}). Additionally, the Shapiro-Wilk tests applied at each level of the design were non-significant. Because of the between-subjects aspect of the design, the homogeneity of variance assumption was evaluated. Levene's test indicated a violation of this assumption between the Friends and Little Mosque conditions at baseline \emph{F} {[}1, 191{]} = 3.973, \emph{p} = .047). However, there was no indication of assumption violation at post1 (\emph{F} {[}1, 191{]} = 0.141, \emph{p} = .708), and post2 (\emph{F} {[}1, 191{]} = 0.107, \emph{p} = .743) waves of the design. Further, Box's M-test (\emph{M} = 3.209, \emph{p} = .073) indicated no violation of the homogeneity of covariance matrices. \textbf{SAVE A SPACE FOR THE SPHERICITY ASSUMPTION}
 
-\hypertarget{omnibus-anova-1}{%
-\subsection{Omnibus ANOVA}\label{omnibus-anova-1}}
+\hypertarget{omnibus-anova}{%
+\subsection{Omnibus ANOVA}\label{omnibus-anova}}
 
 Having evaluated the assumptions (excepting sphericity) we are ready to move to the evaluation of the omnibus ANOVA. Note that the next step produces both the omnibus test as well as testing the sphericity assumption. Conceptually, evaluating the sphericity assumption precedes the omnibus; procedurally these are evaluated simultaneously.The figure also reflects decisions-related to follow-up are dependent upon the interpretation of the main and omnibus effects.
 
@@ -8861,7 +8851,7 @@ This first figure would pair well if you report the simple main effect of condit
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-260-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-262-1.pdf}
 
 This second figure would pair well with the results that reported the simple main effect of wave within condition.
 
@@ -8877,7 +8867,7 @@ This second figure would pair well with the results that reported the simple mai
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-261-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-263-1.pdf}
 
 \hypertarget{results-1}{%
 \subsubsection{Results}\label{results-1}}
@@ -8951,6 +8941,33 @@ As in the prior lessons, we need to convert our effect size for the \emph{intera
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(effectsize)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Attaching package: 'effectsize'
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:rstatix':
+
+    cohens_d, eta_squared
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:formattable':
+
+    normalize
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:psych':
+
+    phi
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.017}\NormalTok{) }\CommentTok{\#interaction effect}
 \end{Highlighting}
 \end{Shaded}
@@ -8962,6 +8979,56 @@ As in the prior lessons, we need to convert our effect size for the \emph{intera
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(WebPower)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Loading required package: lme4
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: Matrix
+\end{verbatim}
+
+\begin{verbatim}
+Attaching package: 'Matrix'
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:tidyr':
+
+    expand, pack, unpack
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: lavaan
+\end{verbatim}
+
+\begin{verbatim}
+This is lavaan 0.6-9
+lavaan is FREE software! Please report any bugs.
+\end{verbatim}
+
+\begin{verbatim}
+Attaching package: 'lavaan'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:psych':
+
+    cor2cov
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: parallel
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: PearsonDS
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{wp.rmanova}\NormalTok{(}\AttributeTok{n=}\DecValTok{193}\NormalTok{, }\AttributeTok{ng=}\DecValTok{2}\NormalTok{, }\AttributeTok{nm=}\DecValTok{3}\NormalTok{, }\AttributeTok{f =}\NormalTok{ .}\DecValTok{1315}\NormalTok{, }\AttributeTok{nscor =}\NormalTok{ .}\DecValTok{99}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{type =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -9481,6 +9548,21 @@ The form of our data matters. The simulation created a \emph{long} form (formall
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(reshape2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Attaching package: 'reshape2'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:tidyr':
+
+    smiths
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Create a new df (Murrar\_wide)}
 \CommentTok{\# Identify the original df}
 \CommentTok{\#In the transition from long{-}to{-}wide it seems like you can only do one time{-}varying variable at a time}
@@ -9586,7 +9668,7 @@ We can create a scatterplot (with regression lines) between covariate (our prete
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-276-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-278-1.pdf}
 
 Yikes! This plot looks like an interaction!
 
@@ -9960,7 +10042,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-289-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-291-1.pdf}
 \textbf{Results}
 
 A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, condition, had two levels: Friends, Little Mosque. The dependent variable was attitudes towards Arabs expressed by the participant at post-test and covariate was the baseline assessment of the same variable. Descriptive statistics are presented in Table 1. A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable differed significantly as a function of the independent variable, \emph{F} (1, 189) = 4.297, \emph{p} = .040, \(\eta^2\) = 0.022. Regarding the assumption that the dependent variable is normally distributed in the population for any specific value of the covariate and for any one level of a factor, results of the Shapiro-Wilk test of normality on the model residuals was also significant,\emph{W} = 0.984, \emph{p} = .026. Only one datapoint (in the Little Mosque condition) had a standardized residual (-3.37) that exceeded an absolute value of 3.0. A non-significant Levene's test indicated no violation of the homogeneity of the residual variances for all groups, \emph{F}(1, 191) = 3.515 \emph{p} = .062.
@@ -10042,7 +10124,7 @@ We can create a scatterplot (with regression lines) between the covariate (attit
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-290-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-292-1.pdf}
 As we look at this scatterplot, we are trying to determine if there is an interaction effect (rather than a covarying effect). The linearity here, looks reasonable and not terribly ``interacting'' (to help us decide whether empathy should be a covariate or a moderator). More testing can help us make this distinction.
 
 \hypertarget{homogeneity-of-regression-slopes-1}{%
@@ -10376,7 +10458,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-303-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-305-1.pdf}
 \textbf{Results}
 
 A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, sitcom condition, had two levels: Friends, Little Mosque. The dependent variable was attitudes towards Arabs at pre-test. Preliminary analyses which tested the assumptions of ANCOVA were mixed. Results suggesting that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable (\emph{F} {[}1, 189{]} = 1.886, \emph{p} = .171, \(\eta^2\) = 0.010) provided evidence that we did not violate the homogeneity-of-slopes assumption. In contrast, the Shapiro-Wilk test of normality on the model residuals was statistically significant (\emph{W} = 0.984, \emph{p} = .029). This means that we likely violated the assumption that the dependent variable is normally distributed in the population for any specific value of the covariate and for any one level of a factor. Regarding outliers, one datapoint (-3.38) had a standardized residual that exceeded an absolute value of 3.0. Further, a statistically significant Levene's test indicated a violation of the homogeneity of the residual variances for all groups, (\emph{F}{[}1, 191{]} = 4.539, \emph{p} = .034). \emph{Because the intent of this analysis was to demonstrate how ANCOVA differs from mixed design ANOVA we proceeded with the analysis. Were this for ``real research'' we would have chosen a different analysis.}
