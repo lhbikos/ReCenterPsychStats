@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2022-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -518,8 +518,7 @@ div.csl-indent {
 </ul></li>
 <li>Murrar, S., &amp; Brauer, M. (2018). Entertainment-education effectively reduces prejudice. <em>Group Processes &amp; Intergroup Relations, 21</em>(7), 1053–1077. <a href="https://doi.org/10.1177/1368430216682350" class="uri">https://doi.org/10.1177/1368430216682350</a>
 <ul>
-<li>This article is the source of our research vignette. Our vignette is simulated from the first of their two experiments. The authors did not conduct mixed design ANOVA. Instead, they ran independent-samples <em>t</em> tests to test the differences between the sitcom conditions for each of the three waves. This is comparable to conducting the simple-main effect analysis of condition within wave subsequent to a significant interaction.<br />
-</li>
+<li>This article is the source of our research vignette. Our vignette is simulated from the first of their two experiments. The authors did not conduct mixed design ANOVA. Instead, they ran independent-samples <em>t</em> tests to test the differences between the sitcom conditions for each of the three waves. This is comparable to conducting the simple-main effect analysis of condition within wave subsequent to a significant interaction.</li>
 <li>Full-text of the article is available at the <a href="https://www.researchgate.net/publication/312177602_Entertainment-education_effectively_reduces_prejudice">authors’ ResearchGate</a>.</li>
 </ul></li>
 </ul>
@@ -542,8 +541,7 @@ div.csl-indent {
 <h2><span class="header-section-number">7.2</span> Introducing Mixed Design ANOVA</h2>
 <p>Mixed design ANOVA is characterized by the following:</p>
 <ul>
-<li>at least two independent variables.<br />
-</li>
+<li>at least two independent variables.</li>
 <li>Termed “mixed” because
 <ul>
 <li>one is a between-subjects factor, and</li>
@@ -669,7 +667,7 @@ div.csl-indent {
 <span id="cb454-4"><a href="Mixed.html#cb454-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Murrar_df &lt;- readRDS(&quot;Murrar_RDS.rds&quot;)</span></span></code></pre></div>
 <p>If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv (“Excel lite”) or .rds (R object) file. This is not a necessary step.</p>
 <p>The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="Mixed.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="Mixed.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
 <span id="cb455-2"><a href="Mixed.html#cb455-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Murrar_df, file=&quot;DiffCSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb455-3"><a href="Mixed.html#cb455-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
 <span id="cb455-4"><a href="Mixed.html#cb455-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Murrar_df &lt;- read.csv (&quot;DiffCSV.csv&quot;, header = TRUE)</span></span></code></pre></div>
@@ -899,7 +897,7 @@ Coefficient covariances computed by hccm()</code></pre>
 2 Post1    COND       1   191 17.5   0.0000438 &quot;*&quot;     0.084     0.000131
 3 Post2    COND       1   191  5.99  0.015     &quot;*&quot;     0.03      0.045   </code></pre>
 <p>In prior lectures we have adjusted the <em>p</em> value against which we compare the resulting <em>p</em> value. When we specify “bonferroni” on the <em>adjust_pvalue()</em> command, the algorithm adjusts the reported <em>p</em> value for us. We can see the unadjusted <em>p</em> value in the “p p&lt;.05” column and the Bonferroni adjustment in the “p.adj” column.</p>
-<p>I think that it will be easiest for us to interpret this simple main effect as the traditional <em>p</em> &lt; .05 and then apply the restrictions to the alpha at the next level of analysis In this particular instance, we would have statistically significant differences somewhere between the Friends and Little Mosque conditions for both the Post (<em>p</em> = .027) and Post2 (<em>p</em> = .010) waves.</p>
+<p>I think that it will be easiest for us to interpret this simple main effect as the traditional <em>p</em> &lt; .05 and then apply the restrictions to the alpha at the next level of analysis. In this particular instance, we would have statistically significant differences somewhere between the Friends and Little Mosque conditions for both the Post (<em>p</em> = .027) and Post2 (<em>p</em> = .010) waves.</p>
 <p>F strings:</p>
 <ul>
 <li>Pre: <em>F</em> (1, 191) = 0.012, <em>p</em> = .914, <span class="math inline">\(\eta^{2}\)</span> = 0.000 (the effect size is zero)</li>

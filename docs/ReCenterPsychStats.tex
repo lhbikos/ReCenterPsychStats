@@ -8,7 +8,7 @@
 ]{book}
 \title{ReCentering Psych Stats: Analysis of Variance}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{13 Feb 2022}
+\date{14 Feb 2022}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -159,7 +159,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 13 Feb 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 14 Feb 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -519,7 +519,7 @@ Hiccups are normal. Here are some ideas that I have found useful in getting unst
     Still overwhelmed? Keep moving forward by downloading a copy of the .rmd file that accompanies any given chapter and just ``run it along'' with the lecture. Spend your mental power trying to understand what each piece does. Then select a practice problem that is appropriate for your next level of growth.
   \end{itemize}
 \item
-  Copy script that works elsewhere and replace it with your datafile, variables, and so forth.\\
+  Copy script that works elsewhere and replace it with your datafile, variables, and so forth.
 \item
   The leaRning curve is steep, but not impossible. Gladwell \citeyearpar{gladwell_outliers_2008} taught us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.
 \item
@@ -676,7 +676,7 @@ Because R is already on my machine (and because the instructions are sufficient)
 
 The only thing in the chunks should be script for running R. You can also hashtag-out comments so they won't run.
 
-You can put almost anything you want in the ``inline text with simple formatting.'' Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold) is found here: \url{https://rmarkdown.rstudio.com/authoring_basics.html}
+You can put almost anything you want in the ``inline text with simple formatting.'' Syntax for simple formatting in the text areas (e.g., using italics, making headings, bold) is found here: \url{https://rmarkdown.rstudio.com/authoring_basics.html}
 
 ``Chunks'' start and end with with three little tics and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.
 
@@ -690,7 +690,7 @@ Note that I have hashtags in front my ``install.packages'' commands. This is bec
 \begin{itemize}
 \tightlist
 \item
-  You can run the script by temporarily removing the hashtag and running each command individually by placing your cursor at the end of the line of code and entering CNTRL/ENTER as a keyboard shortcut.\\
+  You can run the script by temporarily removing the hashtag and running each command individually by placing your cursor at the end of the line of code and entering CNTRL/ENTER as a keyboard shortcut.
 \item
   You can run the entire chunk by selecting the green arrow in the upper right of the chunk.
 \item
@@ -747,7 +747,7 @@ In this simulation, I am simply creating an ID number, a condition (High, Low, C
 \NormalTok{Accurate[Accurate}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{0} \CommentTok{\#set lower bound for DV}
 \NormalTok{ID}\OtherTok{\textless{}{-}}\FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{90}\NormalTok{)) }\CommentTok{\#IDs for participants}
 \NormalTok{COND}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{)) }\CommentTok{\#name factors and identify how many in each group; should be in same order as first row of script}
-\NormalTok{Acc\_sim30 }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(ID, COND, Accurate) }\CommentTok{\#groups the 3 variables into a single df:  ID\#, DV, condition}
+\NormalTok{Acc\_sim30 }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(ID, COND, Accurate) }\CommentTok{\#groups the 3 variables into a single df: ID\#, DV, condition}
 \end{Highlighting}
 \end{Shaded}
 
@@ -836,7 +836,7 @@ COND*    0.09
 Accurate 0.07
 \end{verbatim}
 
-Because ``ID'' is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is ``Accurate.'' None-the-less, this provides an example of how to apply a package's function to a dataset. As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.
+Because ``ID'' is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is ``Accurate.'' Nonetheless, this provides an example of how to apply a package's function to a dataset. As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.
 
 \hypertarget{the-knitted-file}{%
 \section{the knitted file}\label{the-knitted-file}}
@@ -850,7 +850,7 @@ One of the coolest things about R Markdown is its capacity to \emph{knit} to HTM
 \item
   The package \emph{papaja} is designed to prepare APA manuscripts where the writing, statistics, and references are all accomplished in a single file. This process contributes to replicability and reproducibility.
 \item
-  If you are using the PDF or ebook version of this OER you will realize that it is also possible to render to these formats. Albeit slighy more complicated, this is possible, too! MOre detailed instructions for this are provided in the \href{https://lhbikos.github.io/extRas/}{extRas} mini-volume of \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats}.
+  If you are using the PDF or ebook version of this OER you will realize that it is also possible to render to these formats. Albeit slighy more complicated, this is possible, too! More detailed instructions for this are provided in the \href{https://lhbikos.github.io/extRas/}{extRas} mini-volume of \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats}.
 \end{itemize}
 
 \hypertarget{troubleshooting-in-r-markdown-1}{%
@@ -894,7 +894,7 @@ One of the coolest things about R Markdown is its capacity to \emph{knit} to HTM
 \item
   It (or at least it appears to be) is the futuRe.
 \item
-  SPSS site (and individual) license are increasingly expensive and limited (e.g., we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to ``do just about anything.''
+  SPSS site (and individual) licenses are increasingly expensive and limited (e.g., we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to ``do just about anything.''
 \item
   Most graduate psychology programs are scientist/practitioner in nature and include training in ``high end'' statistics. Yet, many of your employing organizations will not have SPSS. R is a free, universally accessible program, that our graduates can use anywhere.
 \end{itemize}
@@ -917,7 +917,7 @@ One of the coolest things about R Markdown is its capacity to \emph{knit} to HTM
     Still overwhelmed? Keep moving forward by (retrieving the original.rmd file from the GitHub repository) opening a copy of the .rmd file and just ``run it along'' with the lecture. Spend your mental power trying to understand what each piece does so you can translate it for any homework assignments. My suggestions for practice aspire to be parallel to the lecture with no sneaky trix.
   \end{itemize}
 \item
-  Copy script that works elsewhere and replace it with your datafile, variables, and so forth.\\
+  Copy script that works elsewhere and replace it with your datafile, variables, and so forth.
 \item
   The leaRning curve is steep, but not impossible. Gladwell \citeyearpar{gladwell_outliers_2008} taught us that it takes about 10,000 hours to get great at something (2,000 to get reasonably competent). Practice. Practice. Practice.
 \item
@@ -1022,7 +1022,7 @@ Using the means, standard deviations, correlation matrix, and group sizes (\emph
 \CommentTok{\#First, the data for the students who identified as Asian American}
 \NormalTok{Asian\_mu }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.52}\NormalTok{, }\FloatTok{1.72}\NormalTok{, }\FloatTok{2.69}\NormalTok{, }\FloatTok{1.71}\NormalTok{, }\FloatTok{2.14}\NormalTok{, }\FloatTok{2.35}\NormalTok{, }\FloatTok{2.42}\NormalTok{)}
 \NormalTok{Asian\_stddev }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{2.52}\NormalTok{, }\FloatTok{2.04}\NormalTok{, }\FloatTok{0.47}\NormalTok{, }\FloatTok{0.70}\NormalTok{, }\FloatTok{0.80}\NormalTok{, }\FloatTok{2.41}\NormalTok{, }\FloatTok{3.36}\NormalTok{)}
-\NormalTok{Asian\_corMat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.69}\NormalTok{,  }\FloatTok{0.19}\NormalTok{,  }\FloatTok{0.28}\NormalTok{,  }\FloatTok{0.32}\NormalTok{,  }\FloatTok{0.08}\NormalTok{,  }\FloatTok{0.23}\NormalTok{,}
+\NormalTok{Asian\_corMat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.00}\NormalTok{, }\FloatTok{0.69}\NormalTok{, }\FloatTok{0.19}\NormalTok{, }\FloatTok{0.28}\NormalTok{, }\FloatTok{0.32}\NormalTok{,  }\FloatTok{0.08}\NormalTok{,  }\FloatTok{0.23}\NormalTok{,}
                           \FloatTok{0.69}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.20}\NormalTok{,  }\FloatTok{0.29}\NormalTok{,  }\FloatTok{0.33}\NormalTok{,  }\FloatTok{0.13}\NormalTok{,  }\FloatTok{0.25}\NormalTok{,}
                           \FloatTok{0.19}\NormalTok{,  }\FloatTok{0.20}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.50}\NormalTok{,  }\FloatTok{0.50}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.04}\NormalTok{,  }\FloatTok{0.09}\NormalTok{,}
                           \FloatTok{0.28}\NormalTok{,  }\FloatTok{0.29}\NormalTok{,  }\FloatTok{0.50}\NormalTok{,  }\FloatTok{1.00}\NormalTok{,  }\FloatTok{0.76}\NormalTok{,  }\FloatTok{0.04}\NormalTok{,  }\FloatTok{0.18}\NormalTok{,}
@@ -1081,7 +1081,7 @@ If you have simulated the data, you can continue using the the ``Lui\_sim\_df'' 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write the simulated data as a .csv}
 \CommentTok{\#write.table(Lui\_sim\_df, file="Lui\_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#bring back the simulated dat from a .csv file}
 \CommentTok{\#df \textless{}{-} read.csv ("Lui\_CSV.csv", header = TRUE)}
@@ -1102,7 +1102,7 @@ You may have noticed a couple of things in each of these operations
 \begin{itemize}
 \tightlist
 \item
-  First, I named the data object that global environment ``df'' (i.e., dataframe).
+  First, I named the data object to include a ``df'' (i.e., dataframe).
 
   \begin{itemize}
   \tightlist
@@ -1161,8 +1161,12 @@ Looking back at the Lui \citeyearpar{lui_racial_2020} article we can presume the
   \end{itemize}
 \item
   Microaggressions/mAggr: interval/num
-\item
-  theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (\emph{never}; and then \emph{not at all} {[}stressful{]}) for all the options.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (\emph{never}; and then \emph{not at all} {[}stressful{]}) for all the options.
+  \end{itemize}
 \item
   Neuroticism/Neuro: interval/num
 \item
@@ -1214,7 +1218,7 @@ Manipulating the data is an important skill. I can use the \emph{select()} funct
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse) }\CommentTok{\#I often "open" the package by placing it (and two colons) in front of its function. However, opening tidyverse via the library command allows me to use the pipe:  \%\textgreater{}\%}
+\FunctionTok{library}\NormalTok{(tidyverse) }\CommentTok{\#I often "open" the package by placing it (and two colons) in front of its function. However, opening tidyverse via the library command allows me to use the pipe: \%\textgreater{}\%}
 \NormalTok{tiny\_df }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(mAggr, nAff, psyDist)}
 \end{Highlighting}
@@ -1239,7 +1243,7 @@ nAff    0.03
 psyDist 0.03
 \end{verbatim}
 
-One of the easiest way to get ``counts'' of categorical variables is to use them in the \emph{psych} package's \emph{describeBy()} function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth.
+One of the easiest way to get ``counts'' of categorical variables is to use them in the \emph{psych} package's \emph{describeBy()} function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth. I have added the ``mat=TRUE'' command so that the results are presented in one complete table. This is optional and so omitting the statement or writing ``mat=FALSE'' can be something you might like to try.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1303,7 +1307,7 @@ RacEth*3   3.00000000  3.000000  0.000000          NaN         NaN 0.00000000
 \hypertarget{determining-skew-and-kurtosis}{%
 \subsection{Determining Skew and Kurtosis}\label{determining-skew-and-kurtosis}}
 
-To understand whether our data are normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the \emph{psych} package are reported as \emph{z} scores. Regarding skew, values \textgreater{} 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued anywhere \textgreater{} 8 to 20 \citep{kline_principles_2016}.
+To understand whether our data is normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the \emph{psych} package are reported as \emph{z} scores. Regarding skew, values \textgreater{} 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued anywhere \textgreater{} 8 to 20 \citep{kline_principles_2016}.
 
 \hypertarget{splom}{%
 \subsection{SPLOM}\label{splom}}
@@ -1485,12 +1489,12 @@ One-way ANOVA allows the researcher to analyze mean differences between two or m
 
 The factor must be categorical in nature, dividing the cases into two or more groups or levels. These levels could be ordered (e.g., placebo, low dose, high dose) or unordered (e.g., cognitive-behavioral, existential, psychodynamic). The dependent variable must be assessed on a quantitative, continuous dimension. The ANOVA \emph{F} test evaluates whether population means on the dependent variable differ across the levels of the factor.
 
-One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter we will examine some some of the requirements (assumptions) of the statistic in greater detail.
+One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter, we will examine some some of the requirements (assumptions) of the statistic in greater detail.
 
 \hypertarget{navigating-this-lesson-2}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-2}}
 
-There is about 2 hours of lecture. If you work through the materials with me plan for another two hours of study.
+There is about 2 hours of lecture. If you work through the materials with me, plan for another two hours of study.
 
 \hypertarget{learning-objectives-2}{%
 \subsection{Learning Objectives}\label{learning-objectives-2}}
@@ -1516,7 +1520,7 @@ Learning objectives from this lecture include the following:
 \hypertarget{planning-for-practice-1}{%
 \subsection{Planning for Practice}\label{planning-for-practice-1}}
 
-In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results \emph{should} map onto the ones obtained in the lecture.
+In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty. The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results \emph{should} map onto the ones obtained in the lecture.
 
 The second option comes from the research vignette. The Tran et al. \citeyearpar{tran_you_2014} vignette has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (\emph{Accurate}) in this lecture; the second is available as one of the homework options.
 
@@ -1769,7 +1773,7 @@ There are many ways to convert variables to factors; here is one of the simplest
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#convert variable  to factor}
+\CommentTok{\#convert variable to factor}
 \NormalTok{accSIM30}\SpecialCharTok{$}\NormalTok{COND }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(accSIM30}\SpecialCharTok{$}\NormalTok{COND)}
 \end{Highlighting}
 \end{Shaded}
@@ -1826,7 +1830,7 @@ I have hashtagged out the code. If you wish to use it, delete the hashtags. Alth
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write the simulated data as a .csv}
 \CommentTok{\#write.table(accSIM30, file="accSIM.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#bring back the simulated dat from a .csv file}
 \CommentTok{\#acc\_csv \textless{}{-} read.csv ("accSIM.csv", header = TRUE)}
@@ -1946,11 +1950,11 @@ ANOVA was developed by Sir Ronald Fisher in the early 20th century. The name is 
 ANOVA falls squarely within the tradition of \textbf{null hypothesis significance testing} (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. \emph{Note. In their article, Tran and Lee \citeyearpar{tran_you_2014} do not list such.}
 
 In our example, we would hypothesize that the population means (i.e., Asian or Asian American individuals in the U.S.) are equal:
-\[H_{O}:  \mu _{1} = \mu _{2} = \mu _{3}\]
+\[H_{O}: \mu _{1} = \mu _{2} = \mu _{3}\]
 There are an number of ways that the \(H_{O}\) could be false. Here are a few:
-\[H_{a1}:  \mu _{1} \neq \mu _{2} \neq \mu _{3}\]
-\[H_{a2}:  \mu _{1} =  \mu _{2} > \mu _{3}\]
-\[H_{a3}:  \mu _{1} >  \mu _{2} > \mu _{3}\]
+\[H_{a1}: \mu _{1} \neq \mu _{2} \neq \mu _{3}\]
+\[H_{a2}: \mu _{1} = \mu _{2} > \mu _{3}\]
+\[H_{a3}: \mu _{1} > \mu _{2} > \mu _{3}\]
 The bottom line is that if we have a statistically significant omnibus ANOVA (i.e., the test of the overall significance of the model) and the \(H_{O}\) is false, somewhere between the three levels of the grouping factor, the means are statistically significantly different from each other.
 
 In evaluating the differences between means, one-way ANOVA compares:
@@ -2057,7 +2061,7 @@ Pop quiz: What's the sum of our new \emph{m\_dev} variable? Let's check.
 [1] 0.00000000000000003830065
 \end{verbatim}
 
-Unless you run the script at the top of this document (``options(scipen=999)'') R will (seemingly selectively) use \textbf{scientific e notation} to report your results. The proper value is one where the base number (before the ``e'') is multiplied by 10, raised to the power shown: \(3.830065 * 10^{17}\) Another way to think of it is to move the decimal 17 places to the left. In any case, this number is essentially zero.
+Unless you run the script at the top of this document (``options(scipen=999)''), R will (seemingly selectively) use \textbf{scientific e notation} to report your results. The proper value is one where the base number (before the ``e'') is multiplied by 10, raised to the power shown: \(3.830065 * 10^{17}\) Another way to think of it is to move the decimal 17 places to the left. In any case, this number is essentially zero.
 
 Back to the point of sums of squares total, the sum of deviations around the grand mean will always be zero. To make them useful, we must square them:
 
@@ -2559,7 +2563,7 @@ All statistical tests have some assumptions about the data. The one-way ANOVA ha
   \begin{itemize}
   \tightlist
   \item
-    \emph{Independence} in observations is a research design issue. ANOVA not robust to violating this assumption. When observations are correlated/dependent there is a dramatic increase in Type I error.
+    \emph{Independence} in observations is a research design issue. ANOVA is not robust to violating this assumption. When observations are correlated/dependent there is a dramatic increase in Type I error.
   \end{itemize}
 \item
   The dependent variable is measured on an interval scale.
@@ -2624,7 +2628,7 @@ X13  0.208   -0.690 0.120
 
 Skew and kurtosis speaks to normal distributions. The skew and kurtosis indices in the \emph{psych} package are reported as \emph{z} scores. Regarding skew, values greater than 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued to be anywhere greater 8 to 20 \citep{kline_principles_2016}.
 
-The \emph{Shapiro-Wilks} test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (\emph{p} \textgreater.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (\emph{p} \textless{} .05) then the sample distribution is significantly different from a normal distribution. The \emph{rstatix} package has a wrapper that can conduct the Shapiro-Wilks test for us.
+The \emph{Shapiro-Wilks} test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (\emph{p} \textgreater.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (\emph{p} \textless{} .05), then the sample distribution is significantly different from a normal distribution. The \emph{rstatix} package has a wrapper that can conduct the Shapiro-Wilks test for us.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2770,6 +2774,7 @@ The \emph{aov()} command has a quickplot feature.
 \end{Shaded}
 
 \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-1.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-2.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-3.pdf} \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-4.pdf}
+
 The first of the four plots fits the residuals. We already know from Levene's that we did not violate the homogeneity of variance test. With its straight line, this plot shows an equal spread across the three groups.
 
 When the dots of the Q-Q plot map onto the diagonal, we have some indication of normality of the residuals (we want residuals to be normally distributed).
@@ -2779,11 +2784,19 @@ When the dots of the Q-Q plot map onto the diagonal, we have some indication of 
 
 \textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson's \emph{r}:
 
-0 = no relationship
-.02 = small
-.13 = medium
-.26 = large
-1 = a perfect (one-to-one) correspondence
+\begin{itemize}
+\tightlist
+\item
+  0.0 = no relationship
+\item
+  .02 = small
+\item
+  .13 = medium
+\item
+  .26 = large
+\item
+  1.0 = a perfect (one-to-one) correspondence
+\end{itemize}
 
 A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
 
@@ -2902,7 +2915,7 @@ P value adjustment method: none
 
 The output only provides the \(p\) values associated with the mean differences in each of the conditions. We see that \(p < .05\) when high is compared to control (0.00015) and high is compared to low (0.0000042). An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their \emph{p} values.
 
-\textbf{Should we be concerned about Type I error?{}``}
+\textbf{Should we be concerned about Type I error?}
 
 Recall that \emph{Type I error} is the concern about false positives -- that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern increases when we have a large number of pairwise comparisons.
 
@@ -2932,7 +2945,7 @@ Green and Salkind \citeyearpar{green_using_2014} reviewed three options for mana
   \begin{itemize}
   \tightlist
   \item
-    Permitted when there are only three pairwise comparisons among three groups, researchers can leave the \emph{p} values as they are. Since the Tran and Lee \citeyearpar{tran_you_2014} research vignette is one of those circumstances, I not make adjustments for Type I error. That is, I would claim the LSD and cite Green and Salkind \citeyearpar{green_using_2014} as justification for that decision.
+    Permitted when there are only three pairwise comparisons among three groups, researchers can leave the \emph{p} values as they are. Since the Tran and Lee \citeyearpar{tran_you_2014} research vignette is one of those circumstances, I will not make adjustments for Type I error. That is, I would claim the LSD and cite Green and Salkind \citeyearpar{green_using_2014} as justification for that decision.
   \end{itemize}
 \end{itemize}
 
@@ -3013,9 +3026,9 @@ Multiple R-squared:  0.2377,    Adjusted R-squared:  0.2202
 F-statistic: 13.57 on 2 and 87 DF,  p-value: 0.000007446
 \end{verbatim}
 
-From the above, regression output, we see that there was not a statistically significant difference between COND\_Control and COND\_Low (\emph{p} = 0.347). There were statistically significant difference when CONDControl (the intercept) was compared to CONDHigh (\emph{p} \textless{} .001).
+From the above, regression output, we see that there was not a statistically significant difference between CONDControl and CONDLow (\emph{p} = 0.347). There were statistically significant difference when CONDControl (the intercept) was compared to CONDHigh (\emph{p} \textless{} .001).
 
-Note that these tests are conducted as \emph{t} tests. Why? We are comparing only two groups and can use the \emph{t}. distribution.
+Note that these tests are conducted as \emph{t} tests. Why? We are comparing only two groups and can use the \emph{t} distribution.
 
 Also note that these involved the comparison of the control group to low; then the control to high. This is consistent with an orthogonal contrast in that there are \emph{k} - 1 contrasts (two contrasts with three original groups). However it is inconsistent with the requriement that once a group is singled out, it should not be used in a subsequent contrast. Therefore, it is quite possible we want something different.
 
@@ -3051,7 +3064,7 @@ This is sensible because we likely hypothesize that any degree of racially loade
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Contrast1  compares Control against the combined effects of Low and High.}
+\CommentTok{\#Contrast1 compares Control against the combined effects of Low and High.}
 \NormalTok{contrast1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 
 \CommentTok{\#Contrast2 excludes Control; compares Low to High.}
@@ -3087,7 +3100,7 @@ Thinking back to the hand-calculations and contrast mapping, the table of weight
 \begin{itemize}
 \tightlist
 \item
-  Contrast 1 compares the control condition against the levels with any racial loading.\\
+  Contrast 1 compares the control condition against the levels with any racial loading.
 \item
   Contrast 2 compares the low and high loadings.
 \end{itemize}
@@ -3185,7 +3198,7 @@ It depends! What best tells the story of your data? Here are some things to cons
 \begin{itemize}
 \tightlist
 \item
-  If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would learn toward reporting those.
+  If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would lean toward reporting those.
 \item
   If \emph{p} values are hovering around 0.05, an orthogonal contrast will offer more power because
 
@@ -3200,7 +3213,7 @@ It depends! What best tells the story of your data? Here are some things to cons
   The polynomial can be a useful descriptive addition if there is a linear or quadratic relationship that is sensible or interesting.
 \end{itemize}
 
-Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data.
+Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data).
 
 \hypertarget{what-if-we-violated-the-homogeneity-of-variance-test}{%
 \subsection{What if we Violated the Homogeneity of Variance test?}\label{what-if-we-violated-the-homogeneity-of-variance-test}}
@@ -3255,7 +3268,7 @@ There are four interrelating elements of power:
     Stated another way, Type I error is the probability of finding an effect that is not there.
   \end{itemize}
 \item
-  power = 1 - P(Type II error),
+  Power = 1 - P(Type II error),
 
   \begin{itemize}
   \tightlist
@@ -3427,7 +3440,7 @@ I will want to give the values of mean differences (\(M_{diff}\)) in the results
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{1.76} \SpecialCharTok{{-}} \FloatTok{1.90}\CommentTok{\#calculating mean difference between  control and low}
+\FloatTok{1.76} \SpecialCharTok{{-}} \FloatTok{1.90}\CommentTok{\#calculating mean difference between control and low}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3772,7 +3785,7 @@ My approach to teaching is to address the conceptual as we work problems. That s
 \item
   \textbf{Mixed design}: several IVs (factors/predictors) have been measured. One or more factors uses different participants (between-subjects) and one or more factors uses the same participants (within-subjects). Thus, there is a cobination of independent (between) and related (within or repated) designs.
 \item
-  Factor naming follows a number/levels convention.\\
+  Factor naming follows a number/levels convention.
 \item
   Today's example is a 3X2 ANOVA. We know there are two factors that have three and two levels, respectively: \emph{ethnicity} has three levels representing the two ethnic groups that were in prior conflict (Marudese, Dayaknese) and a third group who was uninvolved in the conflict (Javanese); \emph{photo stimulus} has two levels representing members of the two ethnic groups that were in prior conflict (Madurese, Dayaknese);
 \end{itemize}
@@ -3887,7 +3900,7 @@ Below is script to simulate data for the negative reactions variable from the in
 \NormalTok{ID }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{111}\NormalTok{))}
 \NormalTok{Rater }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Dayaknese"}\NormalTok{,}\DecValTok{35}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Madurese"}\NormalTok{, }\DecValTok{39}\NormalTok{), }\FunctionTok{rep}\NormalTok{ (}\StringTok{"Javanese"}\NormalTok{, }\DecValTok{37}\NormalTok{))}
 \NormalTok{Photo }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Dayaknese"}\NormalTok{, }\DecValTok{17}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Madurese"}\NormalTok{, }\DecValTok{18}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Dayaknese"}\NormalTok{, }\DecValTok{19}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Madurese"}\NormalTok{, }\DecValTok{20}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Dayaknese"}\NormalTok{, }\DecValTok{18}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Madurese"}\NormalTok{, }\DecValTok{19}\NormalTok{))}
-\NormalTok{Ramdhani\_df}\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(ID, Negative, Positive, Rater, Photo) }\CommentTok{\#groups the 3 variables into a single df:  ID\#, DV, condition}
+\NormalTok{Ramdhani\_df}\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(ID, Negative, Positive, Rater, Photo) }\CommentTok{\#groups the 3 variables into a single df: ID\#, DV, condition}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3945,7 +3958,7 @@ The code for .csv will likely lose the formatting (i.e., making the Rater and Ph
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write the simulated data as a .csv}
 \CommentTok{\#write.table(Ramdhani\_df, file="RamdhaniCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#bring back the simulated dat from a .csv file}
 \CommentTok{\#Ramdhani\_df \textless{}{-} read.csv ("RamdhaniCSV.csv", header = TRUE)}
@@ -4356,7 +4369,7 @@ Now to calculate the Rater main effect.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{35}\SpecialCharTok{*}\NormalTok{(}\FloatTok{2.491} \SpecialCharTok{{-}} \FloatTok{2.947}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{37}\SpecialCharTok{*}\NormalTok{(}\FloatTok{3.007} \SpecialCharTok{{-}} \FloatTok{2.947}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\DecValTok{39}\SpecialCharTok{*}\NormalTok{(}\FloatTok{3.299} \SpecialCharTok{{-}} \FloatTok{2.947}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}  
+\DecValTok{35}\SpecialCharTok{*}\NormalTok{(}\FloatTok{2.491} \SpecialCharTok{{-}} \FloatTok{2.947}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{37}\SpecialCharTok{*}\NormalTok{(}\FloatTok{3.007} \SpecialCharTok{{-}} \FloatTok{2.947}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\DecValTok{39}\SpecialCharTok{*}\NormalTok{(}\FloatTok{3.299} \SpecialCharTok{{-}} \FloatTok{2.947}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} 
 \end{Highlighting}
 \end{Shaded}
 
@@ -5225,7 +5238,7 @@ This code produces the contrasts we specified. Note that in our code we can impr
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary.aov}\NormalTok{(Dykn\_simple, }\AttributeTok{split=}\FunctionTok{list}\NormalTok{(}\AttributeTok{Rater=}\FunctionTok{list}\NormalTok{(}\StringTok{"Javanese v Dayaknese and Madurese"}\OtherTok{=}\DecValTok{1}\NormalTok{, }\StringTok{"Dayaknese  Madurese"} \OtherTok{=} \DecValTok{2}\NormalTok{)))}
+\FunctionTok{summary.aov}\NormalTok{(Dykn\_simple, }\AttributeTok{split=}\FunctionTok{list}\NormalTok{(}\AttributeTok{Rater=}\FunctionTok{list}\NormalTok{(}\StringTok{"Javanese v Dayaknese and Madurese"}\OtherTok{=}\DecValTok{1}\NormalTok{, }\StringTok{"Dayaknese Madurese"} \OtherTok{=} \DecValTok{2}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5233,12 +5246,12 @@ This code produces the contrasts we specified. Note that in our code we can impr
                                            Df Sum Sq Mean Sq F value     Pr(>F)
 Rater                                       2  19.81   9.903  13.325 0.00002211
   Rater: Javanese v Dayaknese and Madurese  1   0.07   0.071   0.095      0.759
-  Rater: Dayaknese  Madurese                1  19.73  19.735  26.554 0.00000419
+  Rater: Dayaknese Madurese                 1  19.73  19.735  26.554 0.00000419
 Residuals                                  51  37.90   0.743                   
                                               
 Rater                                      ***
   Rater: Javanese v Dayaknese and Madurese    
-  Rater: Dayaknese  Madurese               ***
+  Rater: Dayaknese Madurese                ***
 Residuals                                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -5279,7 +5292,7 @@ We can use the procedure described above to obtain our orthogonal contrasts.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary.aov}\NormalTok{(Mdrs\_simple, }\AttributeTok{split=}\FunctionTok{list}\NormalTok{(}\AttributeTok{Rater=}\FunctionTok{list}\NormalTok{(}\StringTok{"Javanese v Dayaknese and Madurese"}\OtherTok{=}\DecValTok{1}\NormalTok{, }\StringTok{"Dayaknese  Madurese"} \OtherTok{=} \DecValTok{2}\NormalTok{)))}
+\FunctionTok{summary.aov}\NormalTok{(Mdrs\_simple, }\AttributeTok{split=}\FunctionTok{list}\NormalTok{(}\AttributeTok{Rater=}\FunctionTok{list}\NormalTok{(}\StringTok{"Javanese v Dayaknese and Madurese"}\OtherTok{=}\DecValTok{1}\NormalTok{, }\StringTok{"Dayaknese Madurese"} \OtherTok{=} \DecValTok{2}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5287,7 +5300,7 @@ We can use the procedure described above to obtain our orthogonal contrasts.
                                            Df Sum Sq Mean Sq F value Pr(>F)
 Rater                                       2   1.04  0.5207   0.679  0.512
   Rater: Javanese v Dayaknese and Madurese  1   0.77  0.7734   1.008  0.320
-  Rater: Dayaknese  Madurese                1   0.27  0.2679   0.349  0.557
+  Rater: Dayaknese Madurese                 1   0.27  0.2679   0.349  0.557
 Residuals                                  54  41.44  0.7674               
 \end{verbatim}
 
@@ -5539,7 +5552,7 @@ At the outset, let me acknowledge that this is not the best example to demonstra
 \caption{Image our place in the Two-Way ANOVA Workflow.}
 \end{figure}
 
-In our example, Rater has three groups Thus, we could evaluate a polynomial for the simple main effect of ethnicity of the rater within photo stimulus (separately for the photos of the Dayaknese and Madurese). We conduct these separately for Dayaknese, Madurese, and Javanese groups.
+In our example, Rater has three groups. Thus, we could evaluate a polynomial for the simple main effect of ethnicity of the rater within photo stimulus (separately for the photos of the Dayaknese and Madurese). We conduct these separately for Dayaknese, Madurese, and Javanese groups.
 
 In the event that more than one polynomial trend select the higher one. For example, if both linear and quadratic are selected, interpret the quadratic trend
 
@@ -5648,7 +5661,7 @@ Essentially, we treat these main effect analyses as the follow-up to a significa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{RaterMain }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(Negative }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Rater, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df) }\CommentTok{\#DV \textasciitilde{} IV  I say, "DV by IV"}
+\NormalTok{RaterMain }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(Negative }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Rater, }\AttributeTok{data =}\NormalTok{ Ramdhani\_df) }\CommentTok{\#DV \textasciitilde{} IV I say, "DV by IV"}
 \FunctionTok{model.tables}\NormalTok{ (RaterMain) }\CommentTok{\#ANOVA output}
 \end{Highlighting}
 \end{Shaded}
@@ -5976,7 +5989,7 @@ SS Type II is the \emph{aov()} default. It may be a best practice to go ahead an
 
 *\textbf{Type IV} is identical to Type III except it requires no missing cells.
 
-Field \citeyearpar{field_discovering_2012} suggested that it is safest to stick with Type III sums of squares . We apply the type to the model we create in the initial run. For more information, check out this explanation on \href{https://www.r-bloggers.com/2011/03/anova-\%E2\%80\%93-type-iiiiii-ss-explained/}{r-bloggers}.
+Field \citeyearpar{field_discovering_2012} suggested that it is safest to stick with Type III sums of squares. We apply the type to the model we create in the initial run. For more information, check out this explanation on \href{https://www.r-bloggers.com/2011/03/anova-\%E2\%80\%93-type-iiiiii-ss-explained/}{r-bloggers}.
 
 Many researchers automatically use Type III as the SS type. Today I went with the R default because
 
@@ -6489,7 +6502,7 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 There are a couple of typical use cases for one-way repeated measures ANOVA. In the first, the research participant is assessed in multiple conditions -- with no interested in change-over-time.
 
-An example of a research design using this approach occured in the Green and Salkind \citeyearpar{green_using_2014} statistics text, the one-way repeated measures vignette compared teachers' perception of stress when responding to parents, teachers, and school administrators.
+An example of a research design using this approach occurred in the Green and Salkind \citeyearpar{green_using_2014} statistics text, the one-way repeated measures vignette compared teachers' perception of stress when responding to parents, teachers, and school administrators.
 
 \begin{figure}
 \centering
@@ -6697,7 +6710,7 @@ Another option is to write them as .csv files. The code for .csv will likely los
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write the simulated data as a .csv}
 \CommentTok{\#write.table(Amodeo\_long, file="Amodeo\_longCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#write.table(Amodeo\_wide, file="Amodeo\_wideCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#bring back the simulated dat from a .csv file}
@@ -7696,8 +7709,7 @@ URL: http://psychstat.org/rmanova
 
 Here we learned that we were only powered at .16. That is, we had a 16\% chance of finding a statistically significant effect if, in fact, it existed. This is low!
 
-In reverse, setting \emph{power} at .80 (the traditional value) and changing \emph{n} to \emph{NULL} yields a recommended sample size.
-
+In reverse, setting \emph{power} at .80 (the traditional value) and changing \emph{n} to \emph{NULL} yields a recommended sample size.\\
 In many cases we won't know some of the values in advance. We can make best guesses based on our review of the literature. In the script below:
 
 \begin{itemize}
@@ -7982,7 +7994,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
   \begin{itemize}
   \tightlist
   \item
-    This article is the source of our research vignette. Our vignette is simulated from the first of their two experiments. The authors did not conduct mixed design ANOVA. Instead, they ran independent-samples \emph{t} tests to test the differences between the sitcom conditions for each of the three waves. This is comparable to conducting the simple-main effect analysis of condition within wave subsequent to a significant interaction.\\
+    This article is the source of our research vignette. Our vignette is simulated from the first of their two experiments. The authors did not conduct mixed design ANOVA. Instead, they ran independent-samples \emph{t} tests to test the differences between the sitcom conditions for each of the three waves. This is comparable to conducting the simple-main effect analysis of condition within wave subsequent to a significant interaction.
   \item
     Full-text of the article is available at the \href{https://www.researchgate.net/publication/312177602_Entertainment-education_effectively_reduces_prejudice}{authors' ResearchGate}.
   \end{itemize}
@@ -8015,7 +8027,7 @@ Mixed design ANOVA is characterized by the following:
 \begin{itemize}
 \tightlist
 \item
-  at least two independent variables.\\
+  at least two independent variables.
 \item
   Termed ``mixed'' because
 
@@ -8257,7 +8269,7 @@ The code for .csv will likely lose the formatting (i.e., stripping Wave and COND
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write the simulated data as a .csv}
 \CommentTok{\#write.table(Murrar\_df, file="DiffCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#bring back the simulated dat from a .csv file}
 \CommentTok{\#Murrar\_df \textless{}{-} read.csv ("DiffCSV.csv", header = TRUE)}
@@ -8660,7 +8672,7 @@ Coefficient covariances computed by hccm()
 
 In prior lectures we have adjusted the \emph{p} value against which we compare the resulting \emph{p} value. When we specify ``bonferroni'' on the \emph{adjust\_pvalue()} command, the algorithm adjusts the reported \emph{p} value for us. We can see the unadjusted \emph{p} value in the ``p p\textless.05'' column and the Bonferroni adjustment in the ``p.adj'' column.
 
-I think that it will be easiest for us to interpret this simple main effect as the traditional \emph{p} \textless{} .05 and then apply the restrictions to the alpha at the next level of analysis In this particular instance, we would have statistically significant differences somewhere between the Friends and Little Mosque conditions for both the Post (\emph{p} = .027) and Post2 (\emph{p} = .010) waves.
+I think that it will be easiest for us to interpret this simple main effect as the traditional \emph{p} \textless{} .05 and then apply the restrictions to the alpha at the next level of analysis. In this particular instance, we would have statistically significant differences somewhere between the Friends and Little Mosque conditions for both the Post (\emph{p} = .027) and Post2 (\emph{p} = .010) waves.
 
 F strings:
 
@@ -9342,7 +9354,7 @@ Let's check the structure. We want
 \item
   rowID and caseID to be unordered factors,
 \item
-  Wave and COND to be ordered factors,\\
+  Wave and COND to be ordered factors,
 \item
   AttArab, AttWhite, and Diff to be numerical
 \end{itemize}
@@ -9383,7 +9395,7 @@ The code for .csv will likely lose the formatting (i.e., stripping Wave and COND
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write the simulated data as a .csv}
 \CommentTok{\#write.table(Murrar\_df, file="DiffCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#bring back the simulated dat from a .csv file}
 \CommentTok{\#Murrar\_df \textless{}{-} read.csv ("DiffCSV.csv", header = TRUE)}
@@ -9461,7 +9473,7 @@ The code for .csv will likely lose the formatting (i.e., stripping Wave and COND
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#write the simulated data  as a .csv}
+\CommentTok{\#write the simulated data as a .csv}
 \CommentTok{\#write.table(Murrar\_wide, file="MurrarW\_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)}
 \CommentTok{\#bring back the simulated dat from a .csv file}
 \CommentTok{\#Murrar\_wide \textless{}{-} read.csv ("MurrarW\_CSV.csv", header = TRUE)}
@@ -10182,7 +10194,6 @@ With only two levels of sitcom condition (Friends, Little Mosque), we do not nee
 \end{verbatim}
 
 Results suggest a statistically significant post-test difference between the Friends and Little Mosque sitcom conditions.
-
 With the script below we can obtain the covariate-adjusted marginal means. These are termed \emph{estimated marginal means.}
 
 \begin{Shaded}

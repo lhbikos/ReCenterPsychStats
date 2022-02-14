@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2022-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -520,7 +520,7 @@ div.csl-indent {
 <span id="cb16-5"><a href="waRmups.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#First, the data for the students who identified as Asian American</span></span>
 <span id="cb16-6"><a href="waRmups.html#cb16-6" aria-hidden="true" tabindex="-1"></a>Asian_mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.52</span>, <span class="fl">1.72</span>, <span class="fl">2.69</span>, <span class="fl">1.71</span>, <span class="fl">2.14</span>, <span class="fl">2.35</span>, <span class="fl">2.42</span>)</span>
 <span id="cb16-7"><a href="waRmups.html#cb16-7" aria-hidden="true" tabindex="-1"></a>Asian_stddev <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.52</span>, <span class="fl">2.04</span>, <span class="fl">0.47</span>, <span class="fl">0.70</span>, <span class="fl">0.80</span>, <span class="fl">2.41</span>, <span class="fl">3.36</span>)</span>
-<span id="cb16-8"><a href="waRmups.html#cb16-8" aria-hidden="true" tabindex="-1"></a>Asian_corMat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.00</span>,  <span class="fl">0.69</span>,  <span class="fl">0.19</span>,  <span class="fl">0.28</span>,  <span class="fl">0.32</span>,  <span class="fl">0.08</span>,  <span class="fl">0.23</span>,</span>
+<span id="cb16-8"><a href="waRmups.html#cb16-8" aria-hidden="true" tabindex="-1"></a>Asian_corMat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.00</span>, <span class="fl">0.69</span>, <span class="fl">0.19</span>, <span class="fl">0.28</span>, <span class="fl">0.32</span>,  <span class="fl">0.08</span>,  <span class="fl">0.23</span>,</span>
 <span id="cb16-9"><a href="waRmups.html#cb16-9" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.69</span>,  <span class="fl">1.00</span>,  <span class="fl">0.20</span>,  <span class="fl">0.29</span>,  <span class="fl">0.33</span>,  <span class="fl">0.13</span>,  <span class="fl">0.25</span>,</span>
 <span id="cb16-10"><a href="waRmups.html#cb16-10" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.19</span>,  <span class="fl">0.20</span>,  <span class="fl">1.00</span>,  <span class="fl">0.50</span>,  <span class="fl">0.50</span>, <span class="sc">-</span><span class="fl">0.04</span>,  <span class="fl">0.09</span>,</span>
 <span id="cb16-11"><a href="waRmups.html#cb16-11" aria-hidden="true" tabindex="-1"></a>                          <span class="fl">0.28</span>,  <span class="fl">0.29</span>,  <span class="fl">0.50</span>,  <span class="fl">1.00</span>,  <span class="fl">0.76</span>,  <span class="fl">0.04</span>,  <span class="fl">0.18</span>,</span>
@@ -573,7 +573,7 @@ div.csl-indent {
 <span id="cb16-58"><a href="waRmups.html#cb16-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-59"><a href="waRmups.html#cb16-59" aria-hidden="true" tabindex="-1"></a>Lui_sim_df <span class="ot">&lt;-</span><span class="fu">bind_rows</span> (Asian_df, Black_df, Latinx_df)</span></code></pre></div>
 <p>If you have simulated the data, you can continue using the the “Lui_sim_df” object that we created. In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think “Excel lite”) and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R. For more complete instructions see the <a href="Ready.html#Ready">Ready_Set_R</a> lesson.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="waRmups.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="waRmups.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
 <span id="cb17-2"><a href="waRmups.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Lui_sim_df, file=&quot;Lui_CSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb17-3"><a href="waRmups.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
 <span id="cb17-4"><a href="waRmups.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- read.csv (&quot;Lui_CSV.csv&quot;, header = TRUE)</span></span></code></pre></div>
@@ -583,7 +583,7 @@ div.csl-indent {
 <span id="cb18-4"><a href="waRmups.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- readRDS(&quot;Lui_RDS.rds&quot;)</span></span></code></pre></div>
 <p>You may have noticed a couple of things in each of these operations</p>
 <ul>
-<li>First, I named the data object that global environment “df” (i.e., dataframe).
+<li>First, I named the data object to include a “df” (i.e., dataframe).
 <ul>
 <li>It is a common (but not required) practice for researchers to simply use “df” or “dat” for their R script, no matter the type or source of the data. This practice has advantages (such as making the reuse of code quite easy) and disadvantages (it is easy to get confused about what data is what).</li>
 </ul></li>
@@ -611,8 +611,10 @@ div.csl-indent {
 <ul>
 <li>theoretically someone could experience no discrimination, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (<em>never</em> or <em>not at all</em>) for all the options.</li>
 </ul></li>
-<li>Microaggressions/mAggr: interval/num</li>
+<li>Microaggressions/mAggr: interval/num
+<ul>
 <li>theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (<em>never</em>; and then <em>not at all</em> [stressful]) for all the options.</li>
+</ul></li>
 <li>Neuroticism/Neuro: interval/num</li>
 <li>Negative affect/nAff: interval/num</li>
 <li>Psychological distress/psyDist :interval/num</li>
@@ -639,7 +641,7 @@ div.csl-indent {
  $ RacEth : Factor w/ 3 levels &quot;Asian&quot;,&quot;Black&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>It is possible to work with this data without restructuring them into a “tiny df.” However, this function is often one of the first skills we want to use so I will demonstrate it here.</p>
 <p>Manipulating the data is an important skill. I can use the <em>select()</em> function to retain three variables that are continuous and then obtain descriptive statistics about them.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="waRmups.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#I often &quot;open&quot; the package by placing it (and two colons) in front of its function. However, opening tidyverse via the library command allows me to use the pipe:  %&gt;%</span></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="waRmups.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#I often &quot;open&quot; the package by placing it (and two colons) in front of its function. However, opening tidyverse via the library command allows me to use the pipe: %&gt;%</span></span>
 <span id="cb25-2"><a href="waRmups.html#cb25-2" aria-hidden="true" tabindex="-1"></a>tiny_df <span class="ot">&lt;-</span> df<span class="sc">%&gt;%</span></span>
 <span id="cb25-3"><a href="waRmups.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(mAggr, nAff, psyDist)</span></code></pre></div>
 <p>We can start with simple descriptives. Revelle’s <span class="citation">(<a href="#ref-revelle_introduction_2021" role="doc-biblioref">Revelle, 2021</a>)</span> <em>psych</em> package was made specifically for much of the type of work we do.</p>
@@ -652,7 +654,7 @@ psyDist    3 713 2.14 0.80   2.11    2.13 0.79 -0.10  4.73  4.84 0.12     0.08
 mAggr   0.09
 nAff    0.03
 psyDist 0.03</code></pre>
-<p>One of the easiest way to get “counts” of categorical variables is to use them in the <em>psych</em> package’s <em>describeBy()</em> function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth.</p>
+<p>One of the easiest way to get “counts” of categorical variables is to use them in the <em>psych</em> package’s <em>describeBy()</em> function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth. I have added the “mat=TRUE” command so that the results are presented in one complete table. This is optional and so omitting the statement or writing “mat=FALSE” can be something you might like to try.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="waRmups.html#cb28-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span> (df, df<span class="sc">$</span>RacEth, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         item group1 vars   n mean   sd   median  trimmed       mad
 OvDisc1     1  Asian    1 398 1.52 2.52 1.671877 1.536984 2.5083543
@@ -706,7 +708,7 @@ RacEth*2   2.00000000  2.000000  0.000000          NaN         NaN 0.00000000
 RacEth*3   3.00000000  3.000000  0.000000          NaN         NaN 0.00000000</code></pre>
 <div id="determining-skew-and-kurtosis" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Determining Skew and Kurtosis</h3>
-<p>To understand whether our data are normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the <em>psych</em> package are reported as <em>z</em> scores. Regarding skew, values &gt; 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued anywhere &gt; 8 to 20 <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>.</p>
+<p>To understand whether our data is normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the <em>psych</em> package are reported as <em>z</em> scores. Regarding skew, values &gt; 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued anywhere &gt; 8 to 20 <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>.</p>
 </div>
 <div id="splom" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> SPLOM</h3>

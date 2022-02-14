@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2022-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -542,7 +542,7 @@ div.csl-indent {
 <div id="introducing-one-way-repeated-measures-anova" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Introducing One-way Repeated Measures ANOVA</h2>
 <p>There are a couple of typical use cases for one-way repeated measures ANOVA. In the first, the research participant is assessed in multiple conditions – with no interested in change-over-time.</p>
-<p>An example of a research design using this approach occured in the Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014b</a>)</span> statistics text, the one-way repeated measures vignette compared teachers’ perception of stress when responding to parents, teachers, and school administrators.</p>
+<p>An example of a research design using this approach occurred in the Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014b</a>)</span> statistics text, the one-way repeated measures vignette compared teachers’ perception of stress when responding to parents, teachers, and school administrators.</p>
 <div class="figure">
 <img src="images/oneway_repeated/repeated_conditions.jpg" alt="" />
 <p class="caption">Illustration of a research design appropriate for one-way repeated measures ANOVA</p>
@@ -646,7 +646,7 @@ div.csl-indent {
 <span id="cb369-5"><a href="Repeated.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Amodeo_long &lt;- readRDS(&quot;Amodeo_longRDS.rds&quot;)</span></span>
 <span id="cb369-6"><a href="Repeated.html#cb369-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Amodeo_wide &lt;- readRDS(&quot;Amodeo_wideRDS.rds&quot;)</span></span></code></pre></div>
 <p>Another option is to write them as .csv files. The code for .csv will likely lose any variable formatting, but the .csv file is easy to view and manipulate in Excel. If you choose this option, you will probably need to re-run the prior code to reformat Wave as an ordered factor</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="Repeated.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="Repeated.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
 <span id="cb370-2"><a href="Repeated.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Amodeo_long, file=&quot;Amodeo_longCSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb370-3"><a href="Repeated.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Amodeo_wide, file=&quot;Amodeo_wideCSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb370-4"><a href="Repeated.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
@@ -1143,8 +1143,8 @@ Unfortunately, the <em>apaTables</em> package does not work with the <em>rstatix
 NOTE: Power analysis for within-effect test
 URL: http://psychstat.org/rmanova</code></pre>
 <p>Here we learned that we were only powered at .16. That is, we had a 16% chance of finding a statistically significant effect if, in fact, it existed. This is low!</p>
-<p>In reverse, setting <em>power</em> at .80 (the traditional value) and changing <em>n</em> to <em>NULL</em> yields a recommended sample size.</p>
-<p>In many cases we won’t know some of the values in advance. We can make best guesses based on our review of the literature. In the script below:</p>
+<p>In reverse, setting <em>power</em> at .80 (the traditional value) and changing <em>n</em> to <em>NULL</em> yields a recommended sample size.<br />
+In many cases we won’t know some of the values in advance. We can make best guesses based on our review of the literature. In the script below:</p>
 <ul>
 <li><em>nscor</em> is the degree of violation of the sphericity assumption. If we think we won’t violate it, we can enter 1.0 or leave it out (the wp.rmanova default is 1.0)</li>
 <li><em>f</em> is the effect size estimate; Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively.</li>

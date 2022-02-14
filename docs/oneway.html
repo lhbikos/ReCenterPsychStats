@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2022-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -477,10 +477,10 @@ div.csl-indent {
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c88f8492-0599-462d-a471-ad8a01702156">Screencasted Lecture Link</a></p>
 <p>One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor. For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables: a factor and a dependent variable.</p>
 <p>The factor must be categorical in nature, dividing the cases into two or more groups or levels. These levels could be ordered (e.g., placebo, low dose, high dose) or unordered (e.g., cognitive-behavioral, existential, psychodynamic). The dependent variable must be assessed on a quantitative, continuous dimension. The ANOVA <em>F</em> test evaluates whether population means on the dependent variable differ across the levels of the factor.</p>
-<p>One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter we will examine some some of the requirements (assumptions) of the statistic in greater detail.</p>
+<p>One-way ANOVA can be used in experimental, quasi-experimental, and field studies. As we work through the chapter, we will examine some some of the requirements (assumptions) of the statistic in greater detail.</p>
 <div id="navigating-this-lesson-2" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Navigating this Lesson</h2>
-<p>There is about 2 hours of lecture. If you work through the materials with me plan for another two hours of study.</p>
+<p>There is about 2 hours of lecture. If you work through the materials with me, plan for another two hours of study.</p>
 <div id="learning-objectives-2" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Learning Objectives</h3>
 <p>Learning objectives from this lecture include the following:</p>
@@ -495,7 +495,7 @@ div.csl-indent {
 </div>
 <div id="planning-for-practice-1" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Planning for Practice</h3>
-<p>In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results <em>should</em> map onto the ones obtained in the lecture.</p>
+<p>In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty. The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results <em>should</em> map onto the ones obtained in the lecture.</p>
 <p>The second option comes from the research vignette. The Tran et al. <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> vignette has two variables where the authors have conducted one-way ANOVAs. I will demonstrate one (<em>Accurate</em>) in this lecture; the second is available as one of the homework options.</p>
 <p>As a third option, you are welcome to use data to which you have access and is suitable for two-way ANOVA. In either case the practice options suggest that you:</p>
 <ul>
@@ -661,7 +661,7 @@ div.csl-indent {
 </ul></li>
 </ul>
 <p>There are many ways to convert variables to factors; here is one of the simplest.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="oneway.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert variable  to factor</span></span>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="oneway.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert variable to factor</span></span>
 <span id="cb39-2"><a href="oneway.html#cb39-2" aria-hidden="true" tabindex="-1"></a>accSIM30<span class="sc">$</span>COND <span class="ot">&lt;-</span> <span class="fu">factor</span>(accSIM30<span class="sc">$</span>COND)</span></code></pre></div>
 <p>Let’s recheck the structure</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="oneway.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(accSIM30)</span></code></pre></div>
@@ -685,7 +685,7 @@ div.csl-indent {
 <p>Now our variables are suitable for analysis.</p>
 <p>At this point, you may wish to export and/or import the data as a .csv (think “Excel lite”) or .rds (R object that preserves the information about the variables – such changing COND to an ordered factor), here is the code to do so. The data should save in the same folder as the .rmd file. Therefore, it is really important (think, “good R hygiene”) to have organized your folders so that your .rmd and data files are co-located.</p>
 <p>I have hashtagged out the code. If you wish to use it, delete the hashtags. Although I show the .csv code first, my personal preference is to save R data as .rds files. While they aren’t easy to “see” as an independent file, they retain the formatting of the variables. For a demonstration, refer back to the <a href="Ready.html#Ready">Ready_Set_R</a> lesson.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="oneway.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="oneway.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
 <span id="cb45-2"><a href="oneway.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(accSIM30, file=&quot;accSIM.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb45-3"><a href="oneway.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
 <span id="cb45-4"><a href="oneway.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">#acc_csv &lt;- read.csv (&quot;accSIM.csv&quot;, header = TRUE)</span></span></code></pre></div>
@@ -741,11 +741,11 @@ div.csl-indent {
 <p>ANOVA was developed by Sir Ronald Fisher in the early 20th century. The name is a bit of a misnomer – rather than analyzing <em>variances</em>, we are investigating differences in <em>means</em> (but the formula does take variances into consideration…stay tuned).</p>
 <p>ANOVA falls squarely within the tradition of <strong>null hypothesis significance testing</strong> (NHST). As such, a formal, traditional, ANOVA begins with statements of the null and alternate hypotheses. <em>Note. In their article, Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> do not list such.</em></p>
 <p>In our example, we would hypothesize that the population means (i.e., Asian or Asian American individuals in the U.S.) are equal:
-<span class="math display">\[H_{O}:  \mu _{1} = \mu _{2} = \mu _{3}\]</span>
+<span class="math display">\[H_{O}: \mu _{1} = \mu _{2} = \mu _{3}\]</span>
 There are an number of ways that the <span class="math inline">\(H_{O}\)</span> could be false. Here are a few:
-<span class="math display">\[H_{a1}:  \mu _{1} \neq \mu _{2} \neq \mu _{3}\]</span>
-<span class="math display">\[H_{a2}:  \mu _{1} =  \mu _{2} &gt; \mu _{3}\]</span>
-<span class="math display">\[H_{a3}:  \mu _{1} &gt;  \mu _{2} &gt; \mu _{3}\]</span>
+<span class="math display">\[H_{a1}: \mu _{1} \neq \mu _{2} \neq \mu _{3}\]</span>
+<span class="math display">\[H_{a2}: \mu _{1} = \mu _{2} &gt; \mu _{3}\]</span>
+<span class="math display">\[H_{a3}: \mu _{1} &gt; \mu _{2} &gt; \mu _{3}\]</span>
 The bottom line is that if we have a statistically significant omnibus ANOVA (i.e., the test of the overall significance of the model) and the <span class="math inline">\(H_{O}\)</span> is false, somewhere between the three levels of the grouping factor, the means are statistically significantly different from each other.</p>
 <p>In evaluating the differences between means, one-way ANOVA compares:</p>
 <ul>
@@ -804,7 +804,7 @@ Let’s take a moment to <em>hand-calculate</em> <span class="math inline">\(SS_
 <p>Pop quiz: What’s the sum of our new <em>m_dev</em> variable? Let’s check.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="oneway.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(accSIM30<span class="sc">$</span>m_dev)</span></code></pre></div>
 <pre><code>[1] 0.00000000000000003830065</code></pre>
-<p>Unless you run the script at the top of this document (“options(scipen=999)”) R will (seemingly selectively) use <strong>scientific e notation</strong> to report your results. The proper value is one where the base number (before the “e”) is multiplied by 10, raised to the power shown: <span class="math inline">\(3.830065 * 10^{17}\)</span> Another way to think of it is to move the decimal 17 places to the left. In any case, this number is essentially zero.</p>
+<p>Unless you run the script at the top of this document (“options(scipen=999)”), R will (seemingly selectively) use <strong>scientific e notation</strong> to report your results. The proper value is one where the base number (before the “e”) is multiplied by 10, raised to the power shown: <span class="math inline">\(3.830065 * 10^{17}\)</span> Another way to think of it is to move the decimal 17 places to the left. In any case, this number is essentially zero.</p>
 <p>Back to the point of sums of squares total, the sum of deviations around the grand mean will always be zero. To make them useful, we must square them:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="oneway.html#cb63-1" aria-hidden="true" tabindex="-1"></a>accSIM30 <span class="ot">&lt;-</span> accSIM30 <span class="sc">%&gt;%</span> </span>
 <span id="cb63-2"><a href="oneway.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">m_devSQ =</span> m_dev<span class="sc">^</span><span class="dv">2</span>)</span>
@@ -1059,7 +1059,7 @@ Regarding the calculation of our <em>F</em>-ratio:</p>
 </ul></li>
 <li>The cases represent <em>random</em> samples from the populations and scores on the test variable are <em>independent</em> of each other. That is, comparing related cases (e.g., parent/child, manager/employee, time1/time2) violates this assumption and this question would need to be evaluated by a different statistic such as repeated measures ANOVA or dyadic data analysis.
 <ul>
-<li><em>Independence</em> in observations is a research design issue. ANOVA not robust to violating this assumption. When observations are correlated/dependent there is a dramatic increase in Type I error.</li>
+<li><em>Independence</em> in observations is a research design issue. ANOVA is not robust to violating this assumption. When observations are correlated/dependent there is a dramatic increase in Type I error.</li>
 </ul></li>
 <li>The dependent variable is measured on an interval scale.
 <ul>
@@ -1094,7 +1094,7 @@ X12 -0.378   -0.465 0.115
 X13  0.208   -0.690 0.120</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="oneway.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (des.mat, <span class="at">file=</span><span class="st">&quot;Table1.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
 <p>Skew and kurtosis speaks to normal distributions. The skew and kurtosis indices in the <em>psych</em> package are reported as <em>z</em> scores. Regarding skew, values greater than 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued to be anywhere greater 8 to 20 <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>.</p>
-<p>The <em>Shapiro-Wilks</em> test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (<em>p</em> &gt;.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (<em>p</em> &lt; .05) then the sample distribution is significantly different from a normal distribution. The <em>rstatix</em> package has a wrapper that can conduct the Shapiro-Wilks test for us.</p>
+<p>The <em>Shapiro-Wilks</em> test evaluates the hypothesis that the distribution of the data as a whole deviates from a comparable normal distribution. If the test is non-significant (<em>p</em> &gt;.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (<em>p</em> &lt; .05), then the sample distribution is significantly different from a normal distribution. The <em>rstatix</em> package has a wrapper that can conduct the Shapiro-Wilks test for us.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="oneway.html#cb113-1" aria-hidden="true" tabindex="-1"></a>shapiro <span class="ot">&lt;-</span> accSIM30 <span class="sc">%&gt;%</span></span>
 <span id="cb113-2"><a href="oneway.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(COND) <span class="sc">%&gt;%</span></span>
 <span id="cb113-3"><a href="oneway.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(Accurate)</span>
@@ -1171,17 +1171,19 @@ Control     Low    High
  1.7562  1.9001  1.1528 </code></pre>
 <p>The <em>aov()</em> command has a quickplot feature.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="oneway.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(omnibus) </span></code></pre></div>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-1.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-2.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-3.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-4.png" width="672" />
-The first of the four plots fits the residuals. We already know from Levene’s that we did not violate the homogeneity of variance test. With its straight line, this plot shows an equal spread across the three groups.</p>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-1.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-2.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-3.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-4.png" width="672" /></p>
+<p>The first of the four plots fits the residuals. We already know from Levene’s that we did not violate the homogeneity of variance test. With its straight line, this plot shows an equal spread across the three groups.</p>
 <p>When the dots of the Q-Q plot map onto the diagonal, we have some indication of normality of the residuals (we want residuals to be normally distributed).</p>
 <div id="effect-size-for-the-one-way-anova" class="section level4" number="4.6.2.1">
 <h4><span class="header-section-number">4.6.2.1</span> Effect size for the one-way ANOVA</h4>
 <p><strong>Eta squared</strong> is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson’s <em>r</em>:</p>
-<p>0 = no relationship
-.02 = small
-.13 = medium
-.26 = large
-1 = a perfect (one-to-one) correspondence</p>
+<ul>
+<li>0.0 = no relationship</li>
+<li>.02 = small</li>
+<li>.13 = medium</li>
+<li>.26 = large</li>
+<li>1.0 = a perfect (one-to-one) correspondence</li>
+</ul>
 <p>A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
 <p>The formula for <span class="math inline">\(\eta^2\)</span> is straightforward. If we think back to our hand-calculations of all the sums of squares, we can see that this is the proportion of variance that is accounted for by the model.</p>
 <p><span class="math display">\[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]</span>
@@ -1237,7 +1239,7 @@ High 0.00015 0.0000042
 P value adjustment method: none </code></pre>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="oneway.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co">#can swap &quot;bonf&quot; or &quot;holm&quot; for p.adj</span></span></code></pre></div>
 <p>The output only provides the <span class="math inline">\(p\)</span> values associated with the mean differences in each of the conditions. We see that <span class="math inline">\(p &lt; .05\)</span> when high is compared to control (0.00015) and high is compared to low (0.0000042). An APA style reporting results of these typically involves referencing the means (often reported in a table of means and standard deviations) or mean differences (hand calculated) with their <em>p</em> values.</p>
-<p><strong>Should we be concerned about Type I error?“</strong></p>
+<p><strong>Should we be concerned about Type I error?</strong></p>
 <p>Recall that <em>Type I error</em> is the concern about false positives – that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern increases when we have a large number of pairwise comparisons.</p>
 <p>Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014b</a>)</span> reviewed three options for managing Type I error.</p>
 <ul>
@@ -1251,7 +1253,7 @@ P value adjustment method: none </code></pre>
 </ul></li>
 <li>LSD method:
 <ul>
-<li>Permitted when there are only three pairwise comparisons among three groups, researchers can leave the <em>p</em> values as they are. Since the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> research vignette is one of those circumstances, I not make adjustments for Type I error. That is, I would claim the LSD and cite Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014b</a>)</span> as justification for that decision.</li>
+<li>Permitted when there are only three pairwise comparisons among three groups, researchers can leave the <em>p</em> values as they are. Since the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014" role="doc-biblioref">2014</a>)</span> research vignette is one of those circumstances, I will not make adjustments for Type I error. That is, I would claim the LSD and cite Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014b</a>)</span> as justification for that decision.</li>
 </ul></li>
 </ul>
 <p>There is, though, an even more powerful approach…</p>
@@ -1301,8 +1303,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 0.5896 on 87 degrees of freedom
 Multiple R-squared:  0.2377,    Adjusted R-squared:  0.2202 
 F-statistic: 13.57 on 2 and 87 DF,  p-value: 0.000007446</code></pre>
-<p>From the above, regression output, we see that there was not a statistically significant difference between COND_Control and COND_Low (<em>p</em> = 0.347). There were statistically significant difference when CONDControl (the intercept) was compared to CONDHigh (<em>p</em> &lt; .001).</p>
-<p>Note that these tests are conducted as <em>t</em> tests. Why? We are comparing only two groups and can use the <em>t</em>. distribution.</p>
+<p>From the above, regression output, we see that there was not a statistically significant difference between CONDControl and CONDLow (<em>p</em> = 0.347). There were statistically significant difference when CONDControl (the intercept) was compared to CONDHigh (<em>p</em> &lt; .001).</p>
+<p>Note that these tests are conducted as <em>t</em> tests. Why? We are comparing only two groups and can use the <em>t</em> distribution.</p>
 <p>Also note that these involved the comparison of the control group to low; then the control to high. This is consistent with an orthogonal contrast in that there are <em>k</em> - 1 contrasts (two contrasts with three original groups). However it is inconsistent with the requriement that once a group is singled out, it should not be used in a subsequent contrast. Therefore, it is quite possible we want something different.</p>
 </div>
 <div id="option-3-planned-contrasts-orthogonal" class="section level4" number="4.6.3.3">
@@ -1321,7 +1323,7 @@ F-statistic: 13.57 on 2 and 87 DF,  p-value: 0.000007446</code></pre>
 In <em>contrast2</em> we discard the control condition (it was already singled out) and we compare the low and high conditions.</p>
 <p>This is sensible because we likely hypothesize that any degree of racially loaded stereotypes may have a deleterious outcome, so we first compare control to the two conditions with any degree of racial loading. Subsequently, we compare the low and high levels of the factor.</p>
 <p><strong>Step 2:</strong> Bind them together and check the output to ensure that we’ve mapped them correctly.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="oneway.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Contrast1  compares Control against the combined effects of Low and High.</span></span>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="oneway.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Contrast1 compares Control against the combined effects of Low and High.</span></span>
 <span id="cb136-2"><a href="oneway.html#cb136-2" aria-hidden="true" tabindex="-1"></a>contrast1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
 <span id="cb136-3"><a href="oneway.html#cb136-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-4"><a href="oneway.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Contrast2 excludes Control; compares Low to High.</span></span>
@@ -1348,8 +1350,7 @@ High            1         1
 Levels: Control Low High</code></pre>
 <p>Thinking back to the hand-calculations and contrast mapping, the table of weights that R just produced confirms that</p>
 <ul>
-<li>Contrast 1 compares the control condition against the levels with any racial loading.<br />
-</li>
+<li>Contrast 1 compares the control condition against the levels with any racial loading.</li>
 <li>Contrast 2 compares the low and high loadings.</li>
 </ul>
 <p><strong>Step 3:</strong> Create a new <em>aov()</em> model</p>
@@ -1415,7 +1416,7 @@ F-statistic: 13.57 on 2 and 87 DF,  p-value: 0.000007446</code></pre>
 <h4><span class="header-section-number">4.6.3.5</span> Which set of follow-up tests do we report?</h4>
 <p>It depends! What best tells the story of your data? Here are some things to consider.</p>
 <ul>
-<li>If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would learn toward reporting those.</li>
+<li>If the post-hoc comparisons are robustly statistically significant (and controlling Type I error is not going to change that significance), I think this provides good information and I would lean toward reporting those.</li>
 <li>If <em>p</em> values are hovering around 0.05, an orthogonal contrast will offer more power because
 <ul>
 <li>a <em>k</em> - 1 comparison will be more powerful</li>
@@ -1423,7 +1424,7 @@ F-statistic: 13.57 on 2 and 87 DF,  p-value: 0.000007446</code></pre>
 </ul></li>
 <li>The polynomial can be a useful descriptive addition if there is a linear or quadratic relationship that is sensible or interesting.</li>
 </ul>
-<p>Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data.</p>
+<p>Although I would report either the post-hoc or planned contrasts, I will sometimes add a polynomial if it clarifies the result (i.e., there is a meaningful linear or curvilinear pattern essential to understanding the data).</p>
 </div>
 </div>
 <div id="what-if-we-violated-the-homogeneity-of-variance-test" class="section level3" number="4.6.4">
@@ -1454,7 +1455,7 @@ F = 11.569, num df = 2.000, denom df = 56.343, p-value = 0.00006174</code></pre>
 <li>Recall that Type I error is the rejection of a true null hypothesis (a false positive).</li>
 <li>Stated another way, Type I error is the probability of finding an effect that is not there.</li>
 </ul></li>
-<li>power = 1 - P(Type II error),
+<li>Power = 1 - P(Type II error),
 <ul>
 <li>Recall that Type II error is the non-rejection of a false null hypothesis (a false negative).</li>
 <li>Power is the probability of finding an effect that is there.</li>
@@ -1547,7 +1548,7 @@ have caused a sample mean (Cumming, 2014). </code></pre>
 <pre><code>[1] 0.61</code></pre>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="oneway.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.90</span> <span class="sc">-</span> <span class="fl">1.15</span><span class="co">#calculating mean difference between low and high</span></span></code></pre></div>
 <pre><code>[1] 0.75</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="oneway.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.76</span> <span class="sc">-</span> <span class="fl">1.90</span><span class="co">#calculating mean difference between  control and low</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="oneway.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.76</span> <span class="sc">-</span> <span class="fl">1.90</span><span class="co">#calculating mean difference between control and low</span></span></code></pre></div>
 <pre><code>[1] -0.14</code></pre>
 <p>Here I create Table 2 with results of the one-way ANOVA. The result in Microsoft Word can be edited (e.g., I would replace the partial-eta squared with <span class="math inline">\(\eta^2\)</span>) for the journal article.</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="oneway.html#cb160-1" aria-hidden="true" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.aov.table</span> (omnibus, <span class="at">table.number =</span> <span class="dv">2</span>, <span class="at">filename =</span> <span class="st">&quot;Table2.doc&quot;</span>)</span></code></pre></div>

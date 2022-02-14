@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2022-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -634,8 +634,7 @@ div.csl-indent {
 <p>Let’s check the structure. We want</p>
 <ul>
 <li>rowID and caseID to be unordered factors,</li>
-<li>Wave and COND to be ordered factors,<br />
-</li>
+<li>Wave and COND to be ordered factors,</li>
 <li>AttArab, AttWhite, and Diff to be numerical</li>
 </ul>
 <div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="ANCOVA.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Murrar_df)</span></code></pre></div>
@@ -655,7 +654,7 @@ div.csl-indent {
 <span id="cb500-3"><a href="ANCOVA.html#cb500-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from an .rds file</span></span>
 <span id="cb500-4"><a href="ANCOVA.html#cb500-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Murrar_df &lt;- readRDS(&quot;Murrar_RDS.rds&quot;)</span></span></code></pre></div>
 <p>The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="ANCOVA.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="ANCOVA.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
 <span id="cb501-2"><a href="ANCOVA.html#cb501-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Murrar_df, file=&quot;DiffCSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb501-3"><a href="ANCOVA.html#cb501-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
 <span id="cb501-4"><a href="ANCOVA.html#cb501-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Murrar_df &lt;- read.csv (&quot;DiffCSV.csv&quot;, header = TRUE)</span></span></code></pre></div>
@@ -704,7 +703,7 @@ div.csl-indent {
 <span id="cb504-3"><a href="ANCOVA.html#cb504-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from an .rds file</span></span>
 <span id="cb504-4"><a href="ANCOVA.html#cb504-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Murrar_wide &lt;- readRDS(&quot;MurrarW_RDS.rds&quot;)</span></span></code></pre></div>
 <p>The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="ANCOVA.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="ANCOVA.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
 <span id="cb505-2"><a href="ANCOVA.html#cb505-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Murrar_wide, file=&quot;MurrarW_CSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb505-3"><a href="ANCOVA.html#cb505-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
 <span id="cb505-4"><a href="ANCOVA.html#cb505-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Murrar_wide &lt;- read.csv (&quot;MurrarW_CSV.csv&quot;, header = TRUE)</span></span></code></pre></div>
@@ -1132,8 +1131,8 @@ Coefficients:
   term            .y.       group1 group2    df statistic       p   p.adj p.adj.signif
 * &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
 1 AttWhiteP1*COND AttArabP1 Frien~ Littl~   190     -5.11 7.79e-7 7.79e-7 ****        </code></pre>
-<p>Results suggest a statistically significant post-test difference between the Friends and Little Mosque sitcom conditions.</p>
-<p>With the script below we can obtain the covariate-adjusted marginal means. These are termed <em>estimated marginal means.</em></p>
+<p>Results suggest a statistically significant post-test difference between the Friends and Little Mosque sitcom conditions.
+With the script below we can obtain the covariate-adjusted marginal means. These are termed <em>estimated marginal means.</em></p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="ANCOVA.html#cb560-1" aria-hidden="true" tabindex="-1"></a>emmeans_cond <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_cond)</span>
 <span id="cb560-2"><a href="ANCOVA.html#cb560-2" aria-hidden="true" tabindex="-1"></a>emmeans_cond</span></code></pre></div>
 <pre><code># A tibble: 2 x 8

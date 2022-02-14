@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2022-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -573,8 +573,7 @@ div.csl-indent {
 <li><strong>Independent factorial design</strong>: several IVs (predictors/factors) and each has been measured using different participants (between groups).</li>
 <li><strong>Related factorial design</strong>: several IVs (factors/predictors) have been measured, but the same participants have been used in all conditions (repeated measures or within-subjects).</li>
 <li><strong>Mixed design</strong>: several IVs (factors/predictors) have been measured. One or more factors uses different participants (between-subjects) and one or more factors uses the same participants (within-subjects). Thus, there is a cobination of independent (between) and related (within or repated) designs.</li>
-<li>Factor naming follows a number/levels convention.<br />
-</li>
+<li>Factor naming follows a number/levels convention.</li>
 <li>Today’s example is a 3X2 ANOVA. We know there are two factors that have three and two levels, respectively: <em>ethnicity</em> has three levels representing the two ethnic groups that were in prior conflict (Marudese, Dayaknese) and a third group who was uninvolved in the conflict (Javanese); <em>photo stimulus</em> has two levels representing members of the two ethnic groups that were in prior conflict (Madurese, Dayaknese);</li>
 </ul>
 <p><strong>Moderator</strong> is what creates an interaction. Below are traditional representations of the <em>statistical</em> and <em>conceptual</em> figures of interaction effects. We will say that Factor B, <em>moderates</em> the relationship between Factor A/IV and the DV.</p>
@@ -639,7 +638,7 @@ div.csl-indent {
 <span id="cb165-5"><a href="between.html#cb165-5" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">111</span>))</span>
 <span id="cb165-6"><a href="between.html#cb165-6" aria-hidden="true" tabindex="-1"></a>Rater <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Dayaknese&quot;</span>,<span class="dv">35</span>), <span class="fu">rep</span>(<span class="st">&quot;Madurese&quot;</span>, <span class="dv">39</span>), <span class="fu">rep</span> (<span class="st">&quot;Javanese&quot;</span>, <span class="dv">37</span>))</span>
 <span id="cb165-7"><a href="between.html#cb165-7" aria-hidden="true" tabindex="-1"></a>Photo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Dayaknese&quot;</span>, <span class="dv">17</span>), <span class="fu">rep</span>(<span class="st">&quot;Madurese&quot;</span>, <span class="dv">18</span>), <span class="fu">rep</span>(<span class="st">&quot;Dayaknese&quot;</span>, <span class="dv">19</span>), <span class="fu">rep</span>(<span class="st">&quot;Madurese&quot;</span>, <span class="dv">20</span>), <span class="fu">rep</span>(<span class="st">&quot;Dayaknese&quot;</span>, <span class="dv">18</span>), <span class="fu">rep</span>(<span class="st">&quot;Madurese&quot;</span>, <span class="dv">19</span>))</span>
-<span id="cb165-8"><a href="between.html#cb165-8" aria-hidden="true" tabindex="-1"></a>Ramdhani_df<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Negative, Positive, Rater, Photo) <span class="co">#groups the 3 variables into a single df:  ID#, DV, condition</span></span></code></pre></div>
+<span id="cb165-8"><a href="between.html#cb165-8" aria-hidden="true" tabindex="-1"></a>Ramdhani_df<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Negative, Positive, Rater, Photo) <span class="co">#groups the 3 variables into a single df: ID#, DV, condition</span></span></code></pre></div>
 <p>For two-way ANOVA our variables need to be properly formatted. In our case:</p>
 <ul>
 <li>Negative is a continuously scaled DV and should be <em>num</em></li>
@@ -666,7 +665,7 @@ div.csl-indent {
  $ Photo   : Factor w/ 2 levels &quot;Dayaknese&quot;,&quot;Madurese&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv (“Excel lite”) or .rds (R object) file. This is not a necessary step.</p>
 <p>The code for .csv will likely lose the formatting (i.e., making the Rater and Photo variables factors), but it is easy to view in Excel.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="between.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data  as a .csv</span></span>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="between.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
 <span id="cb170-2"><a href="between.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(Ramdhani_df, file=&quot;RamdhaniCSV.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
 <span id="cb170-3"><a href="between.html#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
 <span id="cb170-4"><a href="between.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Ramdhani_df &lt;- read.csv (&quot;RamdhaniCSV.csv&quot;, header = TRUE)</span></span>
@@ -852,7 +851,7 @@ X13  0.117   -1.036 0.189</code></pre>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="between.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Ramdhani_df<span class="sc">$</span>Negative)</span></code></pre></div>
 <pre><code>[1] 2.947369</code></pre>
 <p>Now to calculate the Rater main effect.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="between.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="dv">35</span><span class="sc">*</span>(<span class="fl">2.491</span> <span class="sc">-</span> <span class="fl">2.947</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">37</span><span class="sc">*</span>(<span class="fl">3.007</span> <span class="sc">-</span> <span class="fl">2.947</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span><span class="dv">39</span><span class="sc">*</span>(<span class="fl">3.299</span> <span class="sc">-</span> <span class="fl">2.947</span>)<span class="sc">^</span><span class="dv">2</span>  </span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="between.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="dv">35</span><span class="sc">*</span>(<span class="fl">2.491</span> <span class="sc">-</span> <span class="fl">2.947</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">37</span><span class="sc">*</span>(<span class="fl">3.007</span> <span class="sc">-</span> <span class="fl">2.947</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span><span class="dv">39</span><span class="sc">*</span>(<span class="fl">3.299</span> <span class="sc">-</span> <span class="fl">2.947</span>)<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
 <pre><code>[1] 12.24322</code></pre>
 </div>
 <div id="photo-main-effect" class="section level4" number="5.4.5.2">
@@ -1384,16 +1383,16 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Rater 0.3432006   0.3432006</code></pre>
 <p>We can capture the <em>F</em> string from this output: <em>F</em> [2, 51]) = 13.32, <em>p</em> &lt; .001, <span class="math inline">\(\eta ^{2}\)</span> = 0.343.</p>
 <p>This code produces the contrasts we specified. Note that in our code we can improve the interpretability of the output by adding labels. We know the specific contrasts from our prior work.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="between.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(Dykn_simple, <span class="at">split=</span><span class="fu">list</span>(<span class="at">Rater=</span><span class="fu">list</span>(<span class="st">&quot;Javanese v Dayaknese and Madurese&quot;</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">&quot;Dayaknese  Madurese&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="between.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(Dykn_simple, <span class="at">split=</span><span class="fu">list</span>(<span class="at">Rater=</span><span class="fu">list</span>(<span class="st">&quot;Javanese v Dayaknese and Madurese&quot;</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">&quot;Dayaknese Madurese&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>                                           Df Sum Sq Mean Sq F value     Pr(&gt;F)
 Rater                                       2  19.81   9.903  13.325 0.00002211
   Rater: Javanese v Dayaknese and Madurese  1   0.07   0.071   0.095      0.759
-  Rater: Dayaknese  Madurese                1  19.73  19.735  26.554 0.00000419
+  Rater: Dayaknese Madurese                 1  19.73  19.735  26.554 0.00000419
 Residuals                                  51  37.90   0.743                   
                                               
 Rater                                      ***
   Rater: Javanese v Dayaknese and Madurese    
-  Rater: Dayaknese  Madurese               ***
+  Rater: Dayaknese Madurese                ***
 Residuals                                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
@@ -1410,11 +1409,11 @@ Residuals   54  41.44  0.7674               </code></pre>
 Rater 0.02451385  0.02451385</code></pre>
 <p>Let’s capture the <em>F</em> string for ratings of the Madurese photos: <em>F</em> [2, 54] = 0.679, <em>p</em> = .512, <span class="math inline">\(\eta ^{2}\)</span> = 0.024.</p>
 <p>We can use the procedure described above to obtain our orthogonal contrasts.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="between.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(Mdrs_simple, <span class="at">split=</span><span class="fu">list</span>(<span class="at">Rater=</span><span class="fu">list</span>(<span class="st">&quot;Javanese v Dayaknese and Madurese&quot;</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">&quot;Dayaknese  Madurese&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="between.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(Mdrs_simple, <span class="at">split=</span><span class="fu">list</span>(<span class="at">Rater=</span><span class="fu">list</span>(<span class="st">&quot;Javanese v Dayaknese and Madurese&quot;</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">&quot;Dayaknese Madurese&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>                                           Df Sum Sq Mean Sq F value Pr(&gt;F)
 Rater                                       2   1.04  0.5207   0.679  0.512
   Rater: Javanese v Dayaknese and Madurese  1   0.77  0.7734   1.008  0.320
-  Rater: Dayaknese  Madurese                1   0.27  0.2679   0.349  0.557
+  Rater: Dayaknese Madurese                 1   0.27  0.2679   0.349  0.557
 Residuals                                  54  41.44  0.7674               </code></pre>
 <p>Here’s a write-up of this portion of the result.</p>
 <p>The simple main effect of ethnicity of the rater within rating the photos of Madurese people was not statistically significant: (<em>F</em> [2, 54] = 0.679, <em>p</em> = .512, <span class="math inline">\(\eta ^{2}\)</span> = 0.024). Correspondingly, follow-up testing indicated non-significant differences when the ratings of the Javanese were compared to Dayaknese and Madurese, combined (<em>F</em> [1, 54] = 1.008, <em>p</em> = .320) and when the ratings of the Dayaknese and Madurese were compared (<em>F</em> [1, 54] = 0.349, <em>p</em> = .557)</p>
@@ -1555,7 +1554,7 @@ Javanese:Madurese-Madurese:Dayaknese   0.9920328</code></pre>
 <img src="images/factorial/WrkFlw_Poly.jpg" alt="" />
 <p class="caption">Image our place in the Two-Way ANOVA Workflow.</p>
 </div>
-<p>In our example, Rater has three groups Thus, we could evaluate a polynomial for the simple main effect of ethnicity of the rater within photo stimulus (separately for the photos of the Dayaknese and Madurese). We conduct these separately for Dayaknese, Madurese, and Javanese groups.</p>
+<p>In our example, Rater has three groups. Thus, we could evaluate a polynomial for the simple main effect of ethnicity of the rater within photo stimulus (separately for the photos of the Dayaknese and Madurese). We conduct these separately for Dayaknese, Madurese, and Javanese groups.</p>
 <p>In the event that more than one polynomial trend select the higher one. For example, if both linear and quadratic are selected, interpret the quadratic trend</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="between.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(Dayaknese_Ph<span class="sc">$</span>Rater)<span class="ot">&lt;-</span><span class="fu">contr.poly</span>(<span class="dv">3</span>)</span>
 <span id="cb310-2"><a href="between.html#cb310-2" aria-hidden="true" tabindex="-1"></a>poly_Dy<span class="ot">&lt;-</span><span class="fu">aov</span>(Negative <span class="sc">~</span> Rater, <span class="at">data =</span> Dayaknese_Ph)</span>
@@ -1628,7 +1627,7 @@ F-statistic: 0.6785 on 2 and 54 DF,  p-value: 0.5116</code></pre>
 </ul>
 <p>I will demonstrate how to do each as follow-up to a <em>pretend</em> scenario where a main effect (but not an interaction) had been significant. I will write up the portion that would be inserted in an APA style results section.</p>
 <p>Essentially, we treat these main effect analyses as the follow-up to a significant one-way ANOVA evaluating, in our case, the ethnicity of the Rater.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="between.html#cb314-1" aria-hidden="true" tabindex="-1"></a>RaterMain <span class="ot">&lt;-</span> <span class="fu">aov</span>(Negative <span class="sc">~</span> Rater, <span class="at">data =</span> Ramdhani_df) <span class="co">#DV ~ IV  I say, &quot;DV by IV&quot;</span></span>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="between.html#cb314-1" aria-hidden="true" tabindex="-1"></a>RaterMain <span class="ot">&lt;-</span> <span class="fu">aov</span>(Negative <span class="sc">~</span> Rater, <span class="at">data =</span> Ramdhani_df) <span class="co">#DV ~ IV I say, &quot;DV by IV&quot;</span></span>
 <span id="cb314-2"><a href="between.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="fu">model.tables</span> (RaterMain) <span class="co">#ANOVA output</span></span></code></pre></div>
 <pre><code>Tables of effects
 
@@ -1820,7 +1819,7 @@ Note: Values in square brackets indicate the bounds of the 90% confidence interv
 <p><strong>Type II</strong> (the R default) is appropriate if you are interested main effects because it ignores the effect of any interactions involving the main effect. Thus, variance from a main effect is not “lost” to any interaction terms containing that effect. Type II is appropriate for main effects analyses only, but should not be used when evaluating interaction effects. Type II sums of squares is not affected by the type of contrast coding used to specify the predictor variables.</p>
 <p><strong>Type III</strong> is the default in many stats packages – but not R. In Type III all effects (main effects and interactions) are evaluated (simultaneously) taking into consideration all other effects in the model (not just the ones entered before). Type III is more robust to unequal samples sizes (e.g., unbalanced designs). Type III is best when predictors are encoded with orthogonal contrasts.</p>
 <p>*<strong>Type IV</strong> is identical to Type III except it requires no missing cells.</p>
-<p>Field <span class="citation">(<a href="#ref-field_discovering_2012" role="doc-biblioref">2012</a>)</span> suggested that it is safest to stick with Type III sums of squares . We apply the type to the model we create in the initial run. For more information, check out this explanation on <a href="https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/">r-bloggers</a>.</p>
+<p>Field <span class="citation">(<a href="#ref-field_discovering_2012" role="doc-biblioref">2012</a>)</span> suggested that it is safest to stick with Type III sums of squares. We apply the type to the model we create in the initial run. For more information, check out this explanation on <a href="https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/">r-bloggers</a>.</p>
 <p>Many researchers automatically use Type III as the SS type. Today I went with the R default because</p>
 <ul>
 <li>Type II sums of squares was used in hand-calculations,</li>

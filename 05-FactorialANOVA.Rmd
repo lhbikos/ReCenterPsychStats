@@ -1,6 +1,6 @@
 # Factorial (Between-Subjects) ANOVA {#between}
 
-```{r  include=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
 options(scipen=999)#eliminates scientific notation
@@ -21,13 +21,13 @@ In this (somewhat long and complex) lesson we conduct a 3X2 ANOVA. We will
   - Explore tools for analyzing the complexity in designs.
 
 The complexity is that not all of these things need to be conducted for every analysis. The Two-Way ANOVA Workflow is provided to help you map a way through your own analyses. I will periodically refer to this map so that we can more easily keep track of where we are in the process.
-  
+ 
 
 ## Navigating this Lesson
 
-There is about 1 hour and 30 minutes hours of lecture.  If you work through the materials with me plan for another two hours of study.
+There is about 1 hour and 30 minutes hours of lecture. If you work through the materials with me plan for another two hours of study.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReCenterPsychStats) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the [Github site](https://github.com/lhbikos/ReCenterPsychStats) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -37,7 +37,7 @@ Learning objectives from this lecture include the following:
   - main
   - interaction (introducing the concept, *moderator*)
   - simple main effects
-* Identify which means belong with which effects.  Then compare and interpret them.
+* Identify which means belong with which effects. Then compare and interpret them.
   - marginal means
   - individual cell means 
   - comparing them
@@ -45,12 +45,11 @@ Learning objectives from this lecture include the following:
 * Manage Type I error
 * Conduct a power analysis to determine sample size 
 
-
 ### Planning for Practice
 
 In each of these lessons I provide suggestions for practice that allow you to select one or more problems that are graded in difficulty The least complex is to change the random seed and rework the problem demonstrated in the lesson. The results *should* map onto the ones obtained in the lecture. 
 
-The second option comes from the research vignette. The Ramdhani et al. [-@ramdhani_affective_2018] article has two dependent variables (DVs; negative and positive evaluation) which are suitable for two-way ANOVAs.  I will demonstrate a simulation of one of their 3X2 ANOVAs (negative) in this lecturette. The second dependent variable (positive) is suggested for the moderate level of difficulty. 
+The second option comes from the research vignette. The Ramdhani et al. [-@ramdhani_affective_2018] article has two dependent variables (DVs; negative and positive evaluation) which are suitable for two-way ANOVAs. I will demonstrate a simulation of one of their 3X2 ANOVAs (negative) in this lecturette. The second dependent variable (positive) is suggested for the moderate level of difficulty. 
 
 As a third option, you are welcome to use data to which you have access and is suitable for two-way ANOVA. In either case the practice options suggest that you:
 
@@ -63,10 +62,10 @@ As a third option, you are welcome to use data to which you have access and is s
 
 ### Readings & Resources
 
-In preparing this chapter, I drew heavily from the following resource(s) that are freely available on the internet.  Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
+In preparing this chapter, I drew heavily from the following resource(s) that are freely available on the internet. Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
 * Navarro, D. (2020). Chapter 16: Factorial ANOVA. In [Learning Statistics with R - A tutorial for Psychology Students and other Beginners](https://learningstatisticswithr.com/). Retrieved from https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)
-  - Navarro's OER includes a good mix of conceptual information about one-way ANOVA as well as R code.  My code/approach is a mix of Green and Salkind's [-@green_using_2014], Field's [-@field_discovering_2012], Navarro's [-@navarro_chapter_2020], and other techniques I have found on the internet and learned from my students.
+  - Navarro's OER includes a good mix of conceptual information about one-way ANOVA as well as R code. My code/approach is a mix of Green and Salkind's [-@green_using_2014], Field's [-@field_discovering_2012], Navarro's [-@navarro_chapter_2020], and other techniques I have found on the internet and learned from my students.
 * Ramdhani, N., Thontowi, H. B., & Ancok, D. (2018). Affective Reactions Among Students Belonging to Ethnic Groups Engaged in Prior Conflict. *Journal of Pacific Rim Psychology, 12*, e2. https://doi.org/10.1017/prp.2017.22
   - The source of our research vignette.
 
@@ -88,21 +87,21 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 ## Introducing Factorial ANOVA
 
-My approach to teaching is to address the conceptual as we work problems.  That said, there are some critical ideas we should address first.
+My approach to teaching is to address the conceptual as we work problems. That said, there are some critical ideas we should address first.
 
-**ANOVA is for experiments** (or arguably closely related designs).  As we get into the assumptions you'll see that it has some rather restrictive ones (e.g., there should be an equal/equivalent number of cases per cell).  To the degree that we violate these assumptions, we should locate alternative statistical approaches where these assumptions are relaxed.
+**ANOVA is for experiments** (or arguably closely related designs). As we get into the assumptions you'll see that it has some rather restrictive ones (e.g., there should be an equal/equivalent number of cases per cell). To the degree that we violate these assumptions, we should locate alternative statistical approaches where these assumptions are relaxed.
 
-**Factorial**: a term used when there are two or more independent variables (IVs; the factors).  The factors could be between-groups, within-groups, repeated measures, or a combination of between and within.  
+**Factorial**: a term used when there are two or more independent variables (IVs; the factors). The factors could be between-groups, within-groups, repeated measures, or a combination of between and within. 
 
 * **Independent factorial design**: several IVs (predictors/factors) and each has been measured using different participants (between groups).
 * **Related factorial design**: several IVs (factors/predictors) have been measured, but the same participants have been used in all conditions (repeated measures or within-subjects).
 * **Mixed design**: several IVs (factors/predictors) have been measured. One or more factors uses different participants (between-subjects) and one or more factors uses the same participants (within-subjects). Thus, there is a cobination of independent (between) and related (within or repated) designs.
-*  Factor naming follows a number/levels convention.  
-  - Today's example is a 3X2 ANOVA.  We know there are two factors that have three and two levels, respectively: *ethnicity*  has three levels representing the two ethnic groups that were in prior conflict (Marudese, Dayaknese) and a third group who was uninvolved in the conflict (Javanese); *photo stimulus* has two levels representing members of the two ethnic groups that were in prior conflict (Madurese, Dayaknese);  
+*  Factor naming follows a number/levels convention. 
+  - Today's example is a 3X2 ANOVA. We know there are two factors that have three and two levels, respectively: *ethnicity* has three levels representing the two ethnic groups that were in prior conflict (Marudese, Dayaknese) and a third group who was uninvolved in the conflict (Javanese); *photo stimulus* has two levels representing members of the two ethnic groups that were in prior conflict (Madurese, Dayaknese); 
 
- **Moderator** is what creates an interaction.  Below are traditional representations of the *statistical* and *conceptual* figures of interaction effects. We will say that Factor B, *moderates* the relationship between Factor A/IV and the DV.
+ **Moderator** is what creates an interaction. Below are traditional representations of the *statistical* and *conceptual* figures of interaction effects. We will say that Factor B, *moderates* the relationship between Factor A/IV and the DV.
  
-In a later lesson we work an ANCOVA -- where we will distinguish between a *moderator* and a *covariate.*  In regression models, you will likely be introduced to the *mediator.*  
+In a later lesson we work an ANCOVA -- where we will distinguish between a *moderator* and a *covariate.* In regression models, you will likely be introduced to the *mediator.* 
 
 ![Graphic representations of a moderated relationship?](images/factorial/modfigs.jpg)
 
@@ -137,12 +136,12 @@ Steps of the workflow include:
 
 ## Research Vignette
 
-The research vignette for this example was located in Kalimantan, Indonesia and focused on bias in young people from three ethnic groups. The Madurese and Dayaknese groups were engaged in ethnic conflict that spanned 1996 to 2001. The last incidence of mass violence was in 2001 where approximately 500 people (mostly from the Madurese ethnic group) were expelled from the province. Ramdhani et al.'s [-@ramdhani_affective_2018] research hypotheses were based on the roles of the three ethnic groups in the study. The Madurese appear to be viewed as the transgressors when they occupied lands and took employment and business opportunities from the Dayaknese. Ramdhani et al. also included a third group who were not involved in the conflict (Javanese). The research participants were students studying in Yogyakara who were not involved in the conflict.  They included 39 Madurese, 35 Dyaknese, and 37 Javanese; 83 were male and 28 were female.
+The research vignette for this example was located in Kalimantan, Indonesia and focused on bias in young people from three ethnic groups. The Madurese and Dayaknese groups were engaged in ethnic conflict that spanned 1996 to 2001. The last incidence of mass violence was in 2001 where approximately 500 people (mostly from the Madurese ethnic group) were expelled from the province. Ramdhani et al.'s [-@ramdhani_affective_2018] research hypotheses were based on the roles of the three ethnic groups in the study. The Madurese appear to be viewed as the transgressors when they occupied lands and took employment and business opportunities from the Dayaknese. Ramdhani et al. also included a third group who were not involved in the conflict (Javanese). The research participants were students studying in Yogyakara who were not involved in the conflict. They included 39 Madurese, 35 Dyaknese, and 37 Javanese; 83 were male and 28 were female.
 
-In the study [@ramdhani_affective_2018], participants viewed facial pictures of three men and three women (in traditional dress) from each ethnic group (6 photos per ethnic group). Participant were asked, "How do you feel when you see this photo?  Please indicate your answers based on your actual feelings."  Participants responded on a 7-point Likert scale ranging from 1 (*strongly disagree*) to 7 (*strongly agree*). Higher scores indicated ratings of higher intensity on that scale.  The two scales included the following words:
+In the study [@ramdhani_affective_2018], participants viewed facial pictures of three men and three women (in traditional dress) from each ethnic group (6 photos per ethnic group). Participant were asked, "How do you feel when you see this photo? Please indicate your answers based on your actual feelings." Participants responded on a 7-point Likert scale ranging from 1 (*strongly disagree*) to 7 (*strongly agree*). Higher scores indicated ratings of higher intensity on that scale. The two scales included the following words:
 
-* Positive:  friendly, kind, helpful, happy
-* Negative:  disgusting, suspicious, hateful, angry
+* Positive: friendly, kind, helpful, happy
+* Negative: disgusting, suspicious, hateful, angry
 
 Below is script to simulate data for the negative reactions variable from the information available from the manuscript [@ramdhani_affective_2018].
 
@@ -154,7 +153,7 @@ Positive<-round(c(rnorm(17,mean=4.99,sd=1.38),rnorm(18,mean=3.83,sd=1.13),rnorm(
 ID <- factor(seq(1,111))
 Rater <- c(rep("Dayaknese",35), rep("Madurese", 39), rep ("Javanese", 37))
 Photo <- c(rep("Dayaknese", 17), rep("Madurese", 18), rep("Dayaknese", 19), rep("Madurese", 20), rep("Dayaknese", 18), rep("Madurese", 19))
-Ramdhani_df<- data.frame(ID, Negative, Positive, Rater, Photo) #groups the 3 variables into a single df:  ID#, DV, condition
+Ramdhani_df<- data.frame(ID, Negative, Positive, Rater, Photo) #groups the 3 variables into a single df: ID#, DV, condition
 ```
 
 For two-way ANOVA our variables need to be properly formatted. In our case:
@@ -167,7 +166,7 @@ For two-way ANOVA our variables need to be properly formatted. In our case:
 ```{r}
 str(Ramdhani_df)
 ```
-Our Negative variable is correctly formatted. Let's reformat Rater and Photo to be factors and ask for the structure again. R's default is to order the factors alphabetically. In this case this is fine.  If we had ordered factors such as dosage (placebo, lo, hi) we would want to respecify the order.
+Our Negative variable is correctly formatted. Let's reformat Rater and Photo to be factors and ask for the structure again. R's default is to order the factors alphabetically. In this case this is fine. If we had ordered factors such as dosage (placebo, lo, hi) we would want to respecify the order.
 
 ```{r}
 Ramdhani_df[,'Rater'] <- as.factor(Ramdhani_df[,'Rater'])
@@ -178,7 +177,7 @@ If you want to export this data as a file to your computer, remove the hashtags 
 
 The code for .csv will likely lose the formatting (i.e., making the Rater and Photo variables factors), but it is easy to view in Excel.
 ```{r}
-#write the simulated data  as a .csv
+#write the simulated data as a .csv
 #write.table(Ramdhani_df, file="RamdhaniCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
 #bring back the simulated dat from a .csv file
 #Ramdhani_df <- read.csv ("RamdhaniCSV.csv", header = TRUE)
@@ -209,7 +208,7 @@ The *write.table()* function can be a helpful way to export output to .csv files
 write.table(negative.descripts, file="NegativeDescripts.csv", sep=",", col.names=TRUE, row.names=FALSE)
 ```
 
-At this stage, it would be useful to plot our data. Figures can assist in the conceptualization of the analysis.  
+At this stage, it would be useful to plot our data. Figures can assist in the conceptualization of the analysis. 
 
 ```{r message = FALSE, warning = FALSE}
 ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",xlab = "Ethnicity of Rater", ylab = "Negative Reaction")
@@ -233,14 +232,13 @@ ggpubr::ggline(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater", xlab =
              ylab = "Negative Reaction", add = c("mean_se", "dotplot"))
 ```
 
-
 ## Working the Factorial ANOVA (by hand)
 
 Before we work an ANOVA let's take a moment to consider what we are doing and how it informs our decision-making. This figure (which already contains "the answers") may help conceptualize how variance becomes partitioned.
 
 ![Image of a flowchart that partitions variance from sums of squares totals to its component pieces](images/factorial/partition.png)
 
-As in one-way ANOVA, we partition variance into **total**, **model**, and **residual**.  However, we now further divide the $SS_M$ into its respective factors A(column), B(row,) and their a x b product.
+As in one-way ANOVA, we partition variance into **total**, **model**, and **residual**. However, we now further divide the $SS_M$ into its respective factors A(column), B(row,) and their a x b product.
 
 
 In this, we begin to talk about main effects and interactions.
@@ -263,7 +261,7 @@ library(tidyverse)
 Ramdhani_df <- Ramdhani_df %>% 
   mutate(m_dev = Negative-mean(Negative))
 ```
-Pop quiz:  What's the sum of our new *m_dev* variable?
+Pop quiz: What's the sum of our new *m_dev* variable?
 
 Let's find out!
 ```{r }
@@ -280,7 +278,7 @@ Then we sum the squared mean deviations.
 ```{r }
 sum(Ramdhani_df$m_devSQ)
 ```
-This value, 114.775, the sum of squared deviations around the grand mean, is our $SS_T$; the associated *degrees of freedom* is $N$ - 1.  
+This value, 114.775, the sum of squared deviations around the grand mean, is our $SS_T$; the associated *degrees of freedom* is $N$ - 1. 
 
 In factorial ANOVA, we divide $SS_T$ into **model/between** sums of squares and **residual/within** sums of squares.
 
@@ -288,12 +286,12 @@ In factorial ANOVA, we divide $SS_T$ into **model/between** sums of squares and 
 
 $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
 
-The *model* generally represents the notion that the means are different than each other.  We want the variation between our means to be greater than the variation within each of the groups from which our means are calculated.
+The *model* generally represents the notion that the means are different than each other. We want the variation between our means to be greater than the variation within each of the groups from which our means are calculated.
 
 In factorial, we need to obtain means for each of the combinations of the factors. We have a 3 x 2:
 
-* Rater with three levels:  Dayaknese, Madurese, Javanese
-* Photo with two levels:  Dayaknese, Madurese
+* Rater with three levels: Dayaknese, Madurese, Javanese
+* Photo with two levels: Dayaknese, Madurese
 
 Let's repeat some code we used before to obtain the cell-level means and cell sizes.
 
@@ -306,7 +304,7 @@ We also need the grand mean (i.e., the mean that disregards [or "collapses acros
 ```{r }
 mean(Ramdhani_df$Negative)
 ```
-This formula occurs in six chunks, representing the six cells of our designed.  In each of the chunks we have the $n$, group mean, and grand mean.
+This formula occurs in six chunks, representing the six cells of our designed. In each of the chunks we have the $n$, group mean, and grand mean.
 
 ```{r }
 17*(1.818 - 2.947)^2 + 18*(2.524 - 2.947)^2 + 19*(3.301 - 2.947)^2 + 18*(3.129 - 2.947)^2 + 19*(3.465 - 2.947)^2 + 20*(3.297 - 2.947)^2
@@ -315,14 +313,14 @@ This value, 35.415, $SS_M$ is the value accounted for by the model. That is, the
 
 ### Sums of Squares Residual (or within)
 
-$SS_R$ is error associated with within group variability. If people are randomly assigned to treatment group there should be no other covariate (confounding variable) so that all $SS_R$  variability is *uninteresting* for the research and treated as noise.
+$SS_R$ is error associated with within group variability. If people are randomly assigned to treatment group there should be no other covariate (confounding variable) so that all $SS_R$ variability is *uninteresting* for the research and treated as noise.
 
 $$SS_{R}= \sum(x_{ik}-\bar{x}_{k})^{^{2}}$$
 Here's another configuration of the same:
 
 $$SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1) + s_{group4}^{2}(n-1) + s_{group5}^{2}(n-1) + s_{group6}^{2}(n-1))$$
 
-Again, the formula is in six chunks -- but this time the calculations are *within-group*.  We need the variance (the standard deviation squared) for the calculation. Let's take another look at our descriptives.
+Again, the formula is in six chunks -- but this time the calculations are *within-group*. We need the variance (the standard deviation squared) for the calculation. Let's take another look at our descriptives.
 
 ```{r}
 psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df, digits = 3)
@@ -333,7 +331,7 @@ Calculating $SS_R$
 ((.768^2)*(17-1))+ ((.742^2)*(18-1)) + ((1.030^2)*(19-1)) + ((.156^2)*(18-1)) + ((.637^2)*(19-1)) + ((1.332^2)*(20-1))
 ```
 
-The value for our $SS_R$ is 79.321.  Its degrees of freedom is $N - k$. That is, the total $N$ minus the number of groups:  
+The value for our $SS_R$ is 79.321. Its degrees of freedom is $N - k$. That is, the total $N$ minus the number of groups: 
 ```{r}
 111 - 6
 ```
@@ -358,7 +356,7 @@ Considering rounding error, we were successful!
 
 $SS_a:Rater$ is calculated the same way as $SS_M$ for one-way ANOVA. Simply collapse across Photo and calculate the *marginal means* for Negative as a function of the Rater's ethnicity.
 
-Reminder of the formula:  $SS_{a:Rater}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$
+Reminder of the formula: $SS_{a:Rater}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$
 
 There are three cells involved in the calculation of $SS_a:Rater$.
 
@@ -371,13 +369,13 @@ mean(Ramdhani_df$Negative)
 ```
 Now to calculate the Rater main effect.
 ```{r }
-35*(2.491 - 2.947)^2 + 37*(3.007 - 2.947)^2 +39*(3.299 - 2.947)^2  
+35*(2.491 - 2.947)^2 + 37*(3.007 - 2.947)^2 +39*(3.299 - 2.947)^2 
 ```
-#### Photo  Main Effect
+#### Photo Main Effect
 
 $SS_b:Photo$ is calculated the same way as $SS_M$ for one-way ANOVA. Simply collapse across Rater and calculate the *marginal means* for Negative as a function of the ethnicity reflected in the Photo stimulus:
 
-Reminder of the formula:  $SS_{a:Photo}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$.
+Reminder of the formula: $SS_{a:Photo}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$.
 
 With Photo, we have only two cells.
 
@@ -409,7 +407,7 @@ Let's revisit the figure I showed at the beginning of this section to see, again
 
 ### Source Table Games!
 
-As in the lesson for one-way ANOVA, we can use the hints in this source table to determine if we have statistically significance in the model.  The formulas in the table provide some hints. 
+As in the lesson for one-way ANOVA, we can use the hints in this source table to determine if we have statistically significance in the model. The formulas in the table provide some hints. 
 
 |Summary ANOVA for Negative Reaction
 |:-------------------------------------------------------|
@@ -439,7 +437,7 @@ As in the lesson for one-way ANOVA, we can use the hints in this source table to
 
 To find the $F_{CV}$ we can use an [F distribution table](https://www.statology.org/f-distribution-table/).
 
-Or use a look-up function, which follows this general form:  qf(p, df1, df2. lower.tail=FALSE)
+Or use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 ```{r}
 #looking up the F critical values
 qf(.05, 5, 105, lower.tail=FALSE)#Model F critical value
@@ -469,7 +467,7 @@ What have we learned?
 * there is a main effect for Photo
 * there is a significant interaction effect
 
-In the face of this significant interaction effect, we would follow-up by investigating the interaction effect.  Why?  The significant interaction effect means that findings (e.g., the story of the results) are more complex than group identity or photo stimulus, alone, can explain.
+In the face of this significant interaction effect, we would follow-up by investigating the interaction effect. Why? The significant interaction effect means that findings (e.g., the story of the results) are more complex than group identity or photo stimulus, alone, can explain.
 
 ## Working the Factorial ANOVA with R packages
 
@@ -512,7 +510,7 @@ psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df, digi
 
 Using guidelines from Kline [-@kline_principles_2016] our values for skewness should fall below 3.0 (they do) and all values for kurtosis should fall below 8 to 20 (ours do). 
 
-In a factorial design, the Shapiro-Wilk test is applied to residuals from the model itself.  Examination of those residuals can give us a good indication of normality.
+In a factorial design, the Shapiro-Wilk test is applied to residuals from the model itself. Examination of those residuals can give us a good indication of normality.
 
 First, we extract the residuals (i.e., that which is left-over/unexplained) from the model. We can examine their distribution with a plot.
 
@@ -520,7 +518,7 @@ First, we extract the residuals (i.e., that which is left-over/unexplained) from
 resid_neg<- residuals (TwoWay_neg) #creates object of residuals
 hist(resid_neg)
 ```
-So far so good -- these look normal. Let's examine a QQ plot.  We want the dots (the 
+So far so good -- these look normal. Let's examine a QQ plot. We want the dots (the 
 Our distribution of *residuals* (i.e., what is leftover after the model is applied) resembles a normal distribution.
 
 The Q-Q plot provides another view. If the residuals are normally distributed, they will line up on the diagonal line (within reason). 
@@ -534,15 +532,15 @@ We can formally test the distribution of the residuals with a Shapiro test. We w
 ```{r }
 shapiro.test(resid_neg)
 ```
-Whooo hoo!  $p > 0.05$
+Whooo hoo! $p > 0.05$
 
 Here's how I would summarize our data in terms of normality:
 
-Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design.  Our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed.  Further, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals did not differ significantly from a normal distribution ($W$ = 0.9846, $p$ = 0.234).
+Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed. Further, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals did not differ significantly from a normal distribution ($W$ = 0.9846, $p$ = 0.234).
 
 #### Homogeneity of variance
 
-We can evaluate the homogeneity of variance test with the Levene's test for the equality of error variances. Levene's requires a *fully saturated model.*  This means that the prediction model requires an interaction effect (not just two, non-interacting predictors). We can use the *leveneTest()* function from the *car* package. Within the function we specify the model we will be testing in the factorial ANOVA. That is, predicting Negative from the Rater and Photo factors. The asterisk indicates that they will also be added as an interaction term.
+We can evaluate the homogeneity of variance test with the Levene's test for the equality of error variances. Levene's requires a *fully saturated model.* This means that the prediction model requires an interaction effect (not just two, non-interacting predictors). We can use the *leveneTest()* function from the *car* package. Within the function we specify the model we will be testing in the factorial ANOVA. That is, predicting Negative from the Rater and Photo factors. The asterisk indicates that they will also be added as an interaction term.
 
 ```{r }
 car::leveneTest(Negative ~ Rater*Photo, data = Ramdhani_df)
@@ -551,7 +549,7 @@ Levene's test has indicated a violation of the homogeneity of variance assumptio
 
 ### Evaluating the Omnibus ANOVA
 
-The *F*-tests associated with the two-way ANOVA are the *omnibus* -- providing the result for the main and interaction effects.  
+The *F*-tests associated with the two-way ANOVA are the *omnibus* -- providing the result for the main and interaction effects. 
 
 Here's where we are in the workflow.
 
@@ -564,7 +562,7 @@ When we run the two-way ANOVA we will be looking for several effects:
 
 It is possible that all effects will be significant, none will be significant, or some will be significant. The interaction effect always takes precedence over the main effect because it let's us know there is a more nuanced/complex story.
 
-In specifying the ANOVA, order of entry matters.  If you have a distinction between IV and moderator, put the IV first.
+In specifying the ANOVA, order of entry matters. If you have a distinction between IV and moderator, put the IV first.
 ```{r }
 TwoWay_neg<-aov(Negative~Rater*Photo, Ramdhani_df)
 summary(TwoWay_neg)
@@ -584,7 +582,7 @@ plot(TwoWay_neg)
 
 #### Effect sizes
 
-**Eta squared** is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IVs/predictors.  Traditional interpretive values are similar to the Pearson's *r*:
+**Eta squared** is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IVs/predictors. Traditional interpretive values are similar to the Pearson's *r*:
 
 * 0 = no relationship
 * .02 = small
@@ -617,9 +615,9 @@ Computing sums of squares with a Type II approach, the results for the ANOVA ind
 
 ### Follow-up a significant interaction effect
 
-In factorial ANOVA we are interested in main effects and interaction effects.  When the result is explained by a main effect, then there is a consistent trend as a function of a factor (e.g., Madurese raters had consistently higher Negative evaluations, irrespective of stimulus). In an interaction effect, the results are more complex (e.g., the ratings across the stimulus differed for the three groups of raters). 
+In factorial ANOVA we are interested in main effects and interaction effects. When the result is explained by a main effect, then there is a consistent trend as a function of a factor (e.g., Madurese raters had consistently higher Negative evaluations, irrespective of stimulus). In an interaction effect, the results are more complex (e.g., the ratings across the stimulus differed for the three groups of raters). 
 
-There are a variety of strategies to follow-up a significant interaction effect.  I will demonstrate the four I believe to be the most useful in the context of psychologists operating within the scientist-practitioner-advocacy context.
+There are a variety of strategies to follow-up a significant interaction effect. I will demonstrate the four I believe to be the most useful in the context of psychologists operating within the scientist-practitioner-advocacy context.
 
 When an interaction effect is significant (irrespective of the significance of one or more main effects), examination of **simple main effects** is a common statistical/explanatory approached that is used. The Two-Way ANOVA Workflow shows where we are in this process.
 
@@ -637,15 +635,15 @@ lsr::etaSquared(Dayaknese_simple, anova = FALSE ) #effect size for simple main e
 Within the Dayaknese ethnic group, there is a statistically significant difference in negative reactions to Dayaknese and Madurese photos: *F* (1, 33) = 50.4, *p* < .001, $\eta ^{2}$ = 0.60.
 
 Next we evaluate photo rating within the Madurese ethnic group.
-```{r  message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 Madurese <- subset(Ramdhani_df, Rater == "Madurese") #subset data
 Madurese_simple <- aov(Negative ~ Photo, data = Madurese) #change df to subset, new model name 
 summary(Madurese_simple) #output for simple main effect
 lsr::etaSquared(Madurese_simple, anova = FALSE ) #effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run
 ```
-Within the Madurese ethnic group, there was a nonsignificant difference in negative reactions to Dayaknese and Madurese photos:  *F* (1, 37) = 0.00, *p* = .993, $\eta ^{2}$ < .001.
+Within the Madurese ethnic group, there was a nonsignificant difference in negative reactions to Dayaknese and Madurese photos: *F* (1, 37) = 0.00, *p* = .993, $\eta ^{2}$ < .001.
 
-```{r  message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 Javanese <- subset(Ramdhani_df, Rater == "Javanese") #subset data
 Javanese_simple <- aov(Negative ~ Photo, data = Javanese) #change df to subset, new model name 
 summary(Javanese_simple) #output for simple main effect
@@ -653,19 +651,19 @@ lsr::etaSquared(Javanese_simple, anova = FALSE ) #effect size for simple main ef
 ```
 Within the Javanese ethnic group, there was a significant difference in negative reactions to Dayaknese and Madurese photos: *F* (1, 35) = 17.18, *p* < .001, $\eta ^{2}$ = 0.33.
 
-If I were using this approach in a 3 X 2 ANOVA, I would probably not control for Type I error.  Why?  I only conducted follow-up comparisons to evaluate the simple main effect of photo stimulus within rater ethnicity; that is, I would hold it at alpha = 0.05.  
+If I were using this approach in a 3 X 2 ANOVA, I would probably not control for Type I error. Why? I only conducted follow-up comparisons to evaluate the simple main effect of photo stimulus within rater ethnicity; that is, I would hold it at alpha = 0.05. 
 
 * Photo stimulus (Dayaknese or Madurese) within the Dayaknese ethnic group.
 * Photo stimulus (Dayaknese or Madurese) within the Madurese ethnic group.
-* Photo stimulus (Dayaknese or Madurese) within the Javanese ethnic group.  
+* Photo stimulus (Dayaknese or Madurese) within the Javanese ethnic group. 
 
-However, because it is good for instruction, it would be equally fine to use a traditional Bonferroni, dividing .05/3 = 0.017 and testing each at 0.017.  I will use this approach in the write-up.
+However, because it is good for instruction, it would be equally fine to use a traditional Bonferroni, dividing .05/3 = 0.017 and testing each at 0.017. I will use this approach in the write-up.
 
-FAQ:  Could we do the reverse simple effect, ethnicity of rater within the photo stimulus?  Absolutely!  The choice is yours (and sometimes the results will differ).  I usually run both and then report ONE -- the one that conveys the story the data has to tell.  You *could* report both sets, but then you would really want to control Type I error and your repetitive contrasts are far from independent/orthogonal.
+FAQ: Could we do the reverse simple effect, ethnicity of rater within the photo stimulus? Absolutely! The choice is yours (and sometimes the results will differ). I usually run both and then report ONE -- the one that conveys the story the data has to tell. You *could* report both sets, but then you would really want to control Type I error and your repetitive contrasts are far from independent/orthogonal.
 
-**APA Style Results for Option #1 follow-up.**  *This would be added to the results of the omnibus two-way ANOVA.* 
+**APA Style Results for Option #1 follow-up.** *This would be added to the results of the omnibus two-way ANOVA.* 
 
-*Option #1*: To explore the interaction effect, we followed with a test of the simple main effect of photo stimulus within the ethnicity of the rater. That is, we looked at the effect of the photo stimulus within the Dayaknese, Madurese, and Javanese groups, separately. To control for Type I error across the three simple main effects, we set alpha at .017 (.05/3). Results indicated significant differences for Dayaknese (*F* [1, 33] = 50.4, *p* < .001, $\eta ^{2}$ = 0.60.) and Javanese ethnic groups (*F* [1, 35]= 17.18, *p* < .001, $\eta ^{2}$ = 0.33), but not for the Madurese ethnic group (*F* [1, 37] = 0.000, *p* = .993, $\eta ^{2}$ < .001).  As illustrated in Figure 1, the Dayaknese and Javanese rathers both reported stronger negative reactions to the Madurese. The differences in ratings for the Madurese were not statistically significantly different.  In this way, the rater's ethnic group moderated the relationship between the photo stimulus and negative reactions.
+*Option #1*: To explore the interaction effect, we followed with a test of the simple main effect of photo stimulus within the ethnicity of the rater. That is, we looked at the effect of the photo stimulus within the Dayaknese, Madurese, and Javanese groups, separately. To control for Type I error across the three simple main effects, we set alpha at .017 (.05/3). Results indicated significant differences for Dayaknese (*F* [1, 33] = 50.4, *p* < .001, $\eta ^{2}$ = 0.60.) and Javanese ethnic groups (*F* [1, 35]= 17.18, *p* < .001, $\eta ^{2}$ = 0.33), but not for the Madurese ethnic group (*F* [1, 37] = 0.000, *p* = .993, $\eta ^{2}$ < .001). As illustrated in Figure 1, the Dayaknese and Javanese rathers both reported stronger negative reactions to the Madurese. The differences in ratings for the Madurese were not statistically significantly different. In this way, the rater's ethnic group moderated the relationship between the photo stimulus and negative reactions.
 
 ```{r }
 ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",xlab = "Ethnicity of Rater", ylab = "Negative Reaction")
@@ -673,7 +671,7 @@ ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",xlab
 
 #### Option #2 the simple main effect of ethnicity of rater within photo stimulus.
 
-In this simple main effect of ethnicity of rater (3 levels) within photo stimulus (2 levels), we will conduct two one-way ANOVAs for the Dayaknese and Madurese photos, separately.  However, we will want to do orthogonal contrast-coding for rater ethnicity for the follow-up (to the follow-up).
+In this simple main effect of ethnicity of rater (3 levels) within photo stimulus (2 levels), we will conduct two one-way ANOVAs for the Dayaknese and Madurese photos, separately. However, we will want to do orthogonal contrast-coding for rater ethnicity for the follow-up (to the follow-up).
 
 It helps to know what the default contrast codes are; we can get that information with the *contrasts()* function.
 
@@ -688,7 +686,7 @@ Thus, I want to compare the
 * Javanese to the Dayaknese and Madurese combined, then
 * Dayaknese to Madurese
 
-```{r  message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 # tell R which groups to compare
 c1 <- c(1, -2, 1) 
 c2 <- c(-1, 0, 1) 
@@ -700,7 +698,7 @@ This allows us to recheck the contrasts.
 ```{r }
 contrasts (Ramdhani_df$Rater)
 ```
-Yes, in contrast 1 we are comparing the Javanese to the combined Dayaknese and Madurese.  In contrast 2 we are comparing the Dayaknese to the Madureses.
+Yes, in contrast 1 we are comparing the Javanese to the combined Dayaknese and Madurese. In contrast 2 we are comparing the Dayaknese to the Madureses.
 
 ```{r message=FALSE, warning=FALSE}
 Dayaknese_Ph <- subset(Ramdhani_df, Photo == "Dayaknese") #subset data
@@ -708,13 +706,13 @@ Dykn_simple <- aov(Negative ~ Rater, data = Dayaknese_Ph) #change df to subset, 
 summary(Dykn_simple) #output for simple main effect
 lsr::etaSquared(Dykn_simple, anova = FALSE ) #effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run
 ```
-We can capture the *F* string from this output:  *F* [2, 51]) = 13.32, *p* < .001, $\eta ^{2}$ = 0.343.
+We can capture the *F* string from this output: *F* [2, 51]) = 13.32, *p* < .001, $\eta ^{2}$ = 0.343.
 
 This code produces the contrasts we specified. Note that in our code we can improve the interpretability of the output by adding labels. We know the specific contrasts from our prior work.
 ```{r message=FALSE, warning=FALSE}
-summary.aov(Dykn_simple, split=list(Rater=list("Javanese v Dayaknese and Madurese"=1, "Dayaknese  Madurese" = 2)))
+summary.aov(Dykn_simple, split=list(Rater=list("Javanese v Dayaknese and Madurese"=1, "Dayaknese Madurese" = 2)))
 ```
-The simple main effect of ethnicity of the rater within the reaction to the photos of members of the Dayaknese ethnic group was  statistically significant:  *F* [2, 51] = 13.32, *p* < .001, $\eta ^{2}$ = 0.343. Follow-up testing indicated non-significant differences when the ratings from members of the Javanese ethnic group were compared to the Dayaknese and Madurese, combined (*F* [1, 51] = 0.095, *p* = .759).  There was a statistically significant difference when Dayaknese and Madurese raters were compared (*F* [1, 51] =26.554, *p* < .001)
+The simple main effect of ethnicity of the rater within the reaction to the photos of members of the Dayaknese ethnic group was statistically significant: *F* [2, 51] = 13.32, *p* < .001, $\eta ^{2}$ = 0.343. Follow-up testing indicated non-significant differences when the ratings from members of the Javanese ethnic group were compared to the Dayaknese and Madurese, combined (*F* [1, 51] = 0.095, *p* = .759). There was a statistically significant difference when Dayaknese and Madurese raters were compared (*F* [1, 51] =26.554, *p* < .001)
 
 We repeat the simple main effect process when the Madurese photos were the stimulus.
 ```{r message=FALSE, warning=FALSE}
@@ -727,14 +725,14 @@ Let's capture the *F* string for ratings of the Madurese photos: *F* [2, 54] = 0
 
 We can use the procedure described above to obtain our orthogonal contrasts.
 
-```{r  message=FALSE, warning=FALSE}
-summary.aov(Mdrs_simple, split=list(Rater=list("Javanese v Dayaknese and Madurese"=1, "Dayaknese  Madurese" = 2)))
+```{r message=FALSE, warning=FALSE}
+summary.aov(Mdrs_simple, split=list(Rater=list("Javanese v Dayaknese and Madurese"=1, "Dayaknese Madurese" = 2)))
 ```
 Here's a write-up of this portion of the result.
 
-The simple main effect of ethnicity of the rater within  rating the photos of Madurese people was not statistically significant:  (*F* [2, 54] = 0.679, *p* = .512, $\eta ^{2}$ = 0.024). Correspondingly, follow-up testing indicated non-significant differences when the ratings of the Javanese were compared to Dayaknese and Madurese, combined (*F* [1, 54] = 1.008, *p* = .320) and when the ratings of the Dayaknese and Madurese were compared (*F* [1, 54] = 0.349, *p* = .557)
+The simple main effect of ethnicity of the rater within rating the photos of Madurese people was not statistically significant: (*F* [2, 54] = 0.679, *p* = .512, $\eta ^{2}$ = 0.024). Correspondingly, follow-up testing indicated non-significant differences when the ratings of the Javanese were compared to Dayaknese and Madurese, combined (*F* [1, 54] = 1.008, *p* = .320) and when the ratings of the Dayaknese and Madurese were compared (*F* [1, 54] = 0.349, *p* = .557)
 
-To control for Type I error, we have 4 follow-up contrasts (2 for Dayaknese, 2 for Madurese).  We'll control Type I error with .05/4 = .0125
+To control for Type I error, we have 4 follow-up contrasts (2 for Dayaknese, 2 for Madurese). We'll control Type I error with .05/4 = .0125
 
 ```{r }
 .05/4
@@ -744,7 +742,7 @@ To control for Type I error, we have 4 follow-up contrasts (2 for Dayaknese, 2 f
 
 This would be added to the write-up of the omnibus two-way ANOVA test.
 
-*Option #2*: To explore the interaction effect, we followed with tests of simple effect of rater ethnicity within the photo stimulus. That is, we looked at the effect of each each rater's ethnicity within the Madurese and Dayaknese photo stimulus, separately. Our first analysis evaluated the effect of the rater's ethnicity when evaluating the Dayaknese photo; our second analysis evaluated effect of the rater's ethnicity when evaluating the Madurese photo. To control for Type I error across the two simple main effects, we set alpha at .0125 (.05/4). The simple main effect of ethnicity of the rater within the reaction to the photos of members of the Dayaknese ethnic group was  statistically significant:  *F* [2, 51] = 13.32, *p* < .001, $\eta ^{2}$ = 0.343. Follow-up testing indicated non-significant differences when the ratings from members of the Javanese ethnic group were compared to the Dayaknese and Madurese, combined (*F* [1, 51] = 0.095, *p* = .759).  There was a statistically significant difference when Dayaknese and Madurese raters were compared (*F* [1, 51] =26.554, *p* < .001).  The simple main effect of ethnicity of the rater within when rating the photos of Madurese people was not statistically significant:  (*F* [2, 54] = 0.679, *p* = .512, $\eta ^{2}$ = 0.024). Correspondingly, follow-up testing indicated non-significant differences when the ratings of the Javanese were compared to Dayaknese and Madurese, combined (*F* [1, 54] = 1.008, *p* = .320) and when the ratings of the Dayaknese and Madurese were compared (*F* [1, 54] = 0.349, *p* = .557).  This moderating effect of ethnicity of the rater on the negative reaction to the photo stimulus is illustrated in Figure 1. 
+*Option #2*: To explore the interaction effect, we followed with tests of simple effect of rater ethnicity within the photo stimulus. That is, we looked at the effect of each each rater's ethnicity within the Madurese and Dayaknese photo stimulus, separately. Our first analysis evaluated the effect of the rater's ethnicity when evaluating the Dayaknese photo; our second analysis evaluated effect of the rater's ethnicity when evaluating the Madurese photo. To control for Type I error across the two simple main effects, we set alpha at .0125 (.05/4). The simple main effect of ethnicity of the rater within the reaction to the photos of members of the Dayaknese ethnic group was statistically significant: *F* [2, 51] = 13.32, *p* < .001, $\eta ^{2}$ = 0.343. Follow-up testing indicated non-significant differences when the ratings from members of the Javanese ethnic group were compared to the Dayaknese and Madurese, combined (*F* [1, 51] = 0.095, *p* = .759). There was a statistically significant difference when Dayaknese and Madurese raters were compared (*F* [1, 51] =26.554, *p* < .001). The simple main effect of ethnicity of the rater within when rating the photos of Madurese people was not statistically significant: (*F* [2, 54] = 0.679, *p* = .512, $\eta ^{2}$ = 0.024). Correspondingly, follow-up testing indicated non-significant differences when the ratings of the Javanese were compared to Dayaknese and Madurese, combined (*F* [1, 54] = 1.008, *p* = .320) and when the ratings of the Dayaknese and Madurese were compared (*F* [1, 54] = 0.349, *p* = .557). This moderating effect of ethnicity of the rater on the negative reaction to the photo stimulus is illustrated in Figure 1. 
 
 ```{r}
 ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater", xlab = "Photo Stimulus",
@@ -753,13 +751,13 @@ ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater", xla
 
 #### Option #3 post hoc comparisons
 
-Another option is compare all possible cells. These are termed *post hoc comparisons.*  They are an alternative to simple main effects; you would not report both. The figure shows our place on the Two-Way ANOVA Workflow.
+Another option is compare all possible cells. These are termed *post hoc comparisons.* They are an alternative to simple main effects; you would not report both. The figure shows our place on the Two-Way ANOVA Workflow.
 
 ![Image our place in the Two-Way ANOVA Workflow.](images/factorial/WrkFlw_IntPH.jpg)
 
-As the numbers of levels increase, post hoc comparisons become somewhat unwieldly.  Even though this procedure produces them all, you can select which sensible number you want to compare and control for Type I error according to the number in that set.
+As the numbers of levels increase, post hoc comparisons become somewhat unwieldly. Even though this procedure produces them all, you can select which sensible number you want to compare and control for Type I error according to the number in that set.
 
-With rater ethnicity (3 levels) and photo stimulus (2 levels), we have 6 groupings. When *k* is the number of groups, the total number of paired comparisons is:  k(k-1)*2
+With rater ethnicity (3 levels) and photo stimulus (2 levels), we have 6 groupings. When *k* is the number of groups, the total number of paired comparisons is: k(k-1)*2
 
 ```{r }
 6*(6-1)/2
@@ -773,7 +771,7 @@ posthocs
 
 If we want to consider all 15 pairwise comparisons and also control for Type I error, a Holm's sequential Bonerroni [@green_using_2014] will help us take a middle-of-the-road approach (not as strict as .05/15 with the traditional Bonferroni; not as lenient as "none") to managing Type I error. 
 
-With the Holms, we rank order the *p* values associated with the 15 comparisons in order from lowest (e.g., .0000018) to highest (e.g., 1.000).  The first *p* value is evaluated with the most strict criterion (.05/15; the traditional Bonferonni approach). Then, each successive comparison calculates the *p* value by using the number of *remaining* comparisons as the denominator (e.g., .05/14, .05/13, .05/12). As the *p* values rise and the alpha levels relax, there will be a cut-point where remaining comparisons are not statistically significant.
+With the Holms, we rank order the *p* values associated with the 15 comparisons in order from lowest (e.g., .0000018) to highest (e.g., 1.000). The first *p* value is evaluated with the most strict criterion (.05/15; the traditional Bonferonni approach). Then, each successive comparison calculates the *p* value by using the number of *remaining* comparisons as the denominator (e.g., .05/14, .05/13, .05/12). As the *p* values rise and the alpha levels relax, there will be a cut-point where remaining comparisons are not statistically significant.
 
 ```{r }
 .05/15
@@ -815,7 +813,7 @@ This is only seven sets of comparisons and would considerably reduce the alpha:
 ```{r}
 .05/7
 ```
-Below I have greyed-out the comparisons that are less interesting to me and left the seven that are my focal interest. I have highlighted in green the two comparisons that are statistically significant based on the Holms' sequential criteria. In this case, it does not make any difference in our interpretation of these focal predictors.  
+Below I have greyed-out the comparisons that are less interesting to me and left the seven that are my focal interest. I have highlighted in green the two comparisons that are statistically significant based on the Holms' sequential criteria. In this case, it does not make any difference in our interpretation of these focal predictors. 
 
 ![Image of the results of the Holms sequential Bonferroni.](images/factorial/HolmsSelect.jpg)
 
@@ -823,15 +821,15 @@ Below I have greyed-out the comparisons that are less interesting to me and left
 
 In the context of the significant interaction effect, we might also be interested in polynomial trends for any simple main effects where 3 or more cells are compared.
 
-Why?  If there are only two cells being compared, then the significance of that has already been tested and if significant, it is also a significant linear effect (because the shape between any two points is a line). Below is a figure of where the polynomial test of an interaction effect may fall in the process.
+Why? If there are only two cells being compared, then the significance of that has already been tested and if significant, it is also a significant linear effect (because the shape between any two points is a line). Below is a figure of where the polynomial test of an interaction effect may fall in the process.
 
 At the outset, let me acknowledge that this is not the best example to demonstrate a polynomial trend. Why? We do not necessarily have an ordered prediction across categories for this vignette. Other research scenarios (e.g., when dosage is none, low, high) are more readily suited for this approach.
 
 ![Image our place in the Two-Way ANOVA Workflow.](images/factorial/WrkFlw_Poly.jpg)
 
-In our example, Rater has three groups  Thus, we could evaluate a polynomial for the simple main effect of ethnicity of the rater within photo stimulus (separately for the photos of the Dayaknese and Madurese). We conduct these separately for Dayaknese, Madurese, and Javanese groups.
+In our example, Rater has three groups. Thus, we could evaluate a polynomial for the simple main effect of ethnicity of the rater within photo stimulus (separately for the photos of the Dayaknese and Madurese). We conduct these separately for Dayaknese, Madurese, and Javanese groups.
 
-In the event that more than one polynomial trend select the higher one.  For example, if both linear and quadratic are selected, interpret the quadratic trend
+In the event that more than one polynomial trend select the higher one. For example, if both linear and quadratic are selected, interpret the quadratic trend
 
 ```{r }
 contrasts(Dayaknese_Ph$Rater)<-contr.poly(3)
@@ -849,7 +847,7 @@ Results of a polynomial trend analysis were non-significant when ethnicity of th
 
 ## Investigating Main Effects
 
-We now focus on the possibility that there might be significant main effects, but a non-significant interaction effect.  We only interpret main effects when there is a non-significant interaction effect.  Why? Because in the presence of a significant interaction effect, the main effect will not tell a complete story. *(And, if we didn't specify a correct model, we still might have an incomplete story. But that's another issue.)* Here's where we are on the workflow.
+We now focus on the possibility that there might be significant main effects, but a non-significant interaction effect. We only interpret main effects when there is a non-significant interaction effect. Why? Because in the presence of a significant interaction effect, the main effect will not tell a complete story. *(And, if we didn't specify a correct model, we still might have an incomplete story. But that's another issue.)* Here's where we are on the workflow.
 
 ![Image our place in the Two-Way ANOVA Workflow.](images/factorial/WayWrkFlw_Main.jpg)
 
@@ -859,9 +857,9 @@ If the main effect has only two levels (e.g., the ratings of the Dayaknese and M
 
 * the comparison was already ignoring/including all levels of the rater ethnicity factor (Dayaknese, Madurese, Javanese),
 * it was only a comparison of two cells (Dayaknese rater, Madurese rater), therefore
-* there is no need for further follow-up.  
+* there is no need for further follow-up. 
 
-If the main effect has three or more levels (e.g,. ethnicity of rater with Dayaknese, Madurese, Javanese levels), then you would follow-up with one or more of the myriad of options.  In this class we have focused on three:
+If the main effect has three or more levels (e.g,. ethnicity of rater with Dayaknese, Madurese, Javanese levels), then you would follow-up with one or more of the myriad of options. In this class we have focused on three:
 
 * planned contrasts
 * posthoc comparisons (all possible cells)
@@ -872,7 +870,7 @@ I will demonstrate how to do each as follow-up to a *pretend* scenario where a m
 Essentially, we treat these main effect analyses as the follow-up to a significant one-way ANOVA evaluating, in our case, the ethnicity of the Rater.
 
 ```{r }
-RaterMain <- aov(Negative ~ Rater, data = Ramdhani_df) #DV ~ IV  I say, "DV by IV"
+RaterMain <- aov(Negative ~ Rater, data = Ramdhani_df) #DV ~ IV I say, "DV by IV"
 model.tables (RaterMain) #ANOVA output
 summary(RaterMain)
 lsr::etaSquared(RaterMain)
@@ -895,11 +893,11 @@ The *TukeyHSD()* function produces posthoc comparisons by providing the mean dif
 ```{r }
 TukeyHSD(RaterMain, ordered = TRUE)
 ```
-Results suggest there were statistically significant differences (*p* < .05) between the Madurese and Dayaknese. These differences, though, would have been when rating *all* photos.  This analysis disregards the ethnicity portrayed in the photo.
+Results suggest there were statistically significant differences (*p* < .05) between the Madurese and Dayaknese. These differences, though, would have been when rating *all* photos. This analysis disregards the ethnicity portrayed in the photo.
 
 ### Follow-up with planned contrasts
 
-We generally try for *orthogonal* contrasts so that the partitioning of variance is independent (clean, not overlapping). Planned contrasts are a great way to do this.  Here's where we are in the workflow.
+We generally try for *orthogonal* contrasts so that the partitioning of variance is independent (clean, not overlapping). Planned contrasts are a great way to do this. Here's where we are in the workflow.
 
 ![Image our place in the Two-Way ANOVA Workflow.](images/factorial/wfMain_Plnd.jpg)
 
@@ -907,8 +905,8 @@ If you aren't extremely careful about your order-of-operations in R, it can conf
 
 In this hypothetical scenario (remember we are pretending we are in the circumstance of a non-significant interaction effect but a significant main effect), I am:
 
-* Constrast #1:  comparing the DV for the Javanese rater to the combined Dayaknese and Madurese raters.
-* Contrast #2:  comparing the DV for the Dayaknese and Madurese raters.
+* Constrast #1: comparing the DV for the Javanese rater to the combined Dayaknese and Madurese raters.
+* Contrast #2: comparing the DV for the Dayaknese and Madurese raters.
 
 These are orthogonal because:
 
@@ -949,9 +947,9 @@ mainTrend<-aov(Negative ~ Rater, data = Ramdhani_df)
 summary.lm(mainTrend)
 ```
 
-**Rater.L** tests the data to see if there is a significant linear trend.  There is:  *t* = 3.556, *p* < .001.
+**Rater.L** tests the data to see if there is a significant linear trend. There is: *t* = 3.556, *p* < .001.
 
-**Rater.Q** tests to see if there is a significant quadratic (curvilinear, one hump) trend.  There is not:  *t* = -0.567, *p* = .572.
+**Rater.Q** tests to see if there is a significant quadratic (curvilinear, one hump) trend. There is not: *t* = -0.567, *p* = .572.
 
 Results supported a significant linear trend (*t* = 3.556, *p* < .001) such that negative reactions increased in a linear reaction across the three rating groups.
 
@@ -962,7 +960,7 @@ ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", xlab = "Ethnicity of
 
 ## My APA Style Results Section
 
-First, I am reluctant to term anything "final." It seems like there is always the possibility or revision.  Given that I demonstrated a number of options, let me first show the workflow with the particular path I took:
+First, I am reluctant to term anything "final." It seems like there is always the possibility or revision. Given that I demonstrated a number of options, let me first show the workflow with the particular path I took:
 
 ![Image our place in the Two-Way ANOVA Workflow.](images/factorial/WrkFlw_mypath.jpg)
 
@@ -974,7 +972,7 @@ A 3 X 2 ANOVA was conducted to evaluate the effects of rater ethnicity (3 levels
 
 Computing sums of squares with a Type II approach, the results for the ANOVA indicated a significant main effect for ethnicity of the rater (*F*[2, 105] = 8.077, *p* < .001, $\eta ^{2}$ = 0.107), a significant main effect for photo stimulus, (*F*[1, 105] = 19.346, *p* < .001, $\eta ^{2}$ = 0.127), and a significant interaction effect (*F*[2, 105] = 5.696, *p* = .004, $\eta ^{2}$ = 0.075).
 
-To explore the interaction effect, we followed with a test of the simple main effect of photo stimulus within the ethnicity of the rater. That is, we looked at the effect of the photo stimulus within the Dayaknese, Madurese, and Javanese groups, separately. To control for Type I error across the three simple main effects, we set alpha at .017 (.05/3). Results indicated significant differences for Dayaknese (*F* [1, 33] = 50.4, *p* < .001, $\eta ^{2}$ = 0.60.) and Javanese ethnic groups (*F* [1, 35]= 17.18, *p* < .001, $\eta ^{2}$ = 0.33), but not for the Madurese ethnic group (*F* [1, 37] = 0.000, *p* = .993, $\eta ^{2}$ < .001).  As illustrated in Figure 1, the Dayaknese and Javanese rathers both reported stronger negative reactions to the Madurese. The differences in ratings for the Madurese were not statistically significantly different.  In this way, the rater's ethnic group moderated the relationship between the photo stimulus and negative reactions.
+To explore the interaction effect, we followed with a test of the simple main effect of photo stimulus within the ethnicity of the rater. That is, we looked at the effect of the photo stimulus within the Dayaknese, Madurese, and Javanese groups, separately. To control for Type I error across the three simple main effects, we set alpha at .017 (.05/3). Results indicated significant differences for Dayaknese (*F* [1, 33] = 50.4, *p* < .001, $\eta ^{2}$ = 0.60.) and Javanese ethnic groups (*F* [1, 35]= 17.18, *p* < .001, $\eta ^{2}$ = 0.33), but not for the Madurese ethnic group (*F* [1, 37] = 0.000, *p* = .993, $\eta ^{2}$ < .001). As illustrated in Figure 1, the Dayaknese and Javanese rathers both reported stronger negative reactions to the Madurese. The differences in ratings for the Madurese were not statistically significantly different. In this way, the rater's ethnic group moderated the relationship between the photo stimulus and negative reactions.
 
 ```{r }
 ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",xlab = "Ethnicity of Rater", ylab = "Negative Reaction")
@@ -991,15 +989,15 @@ apaTables::apa.aov.table(TwoWay_neg, filename = "Table_2_effects.doc", table.num
 
 ### Comparing Our Results to Rhamdani et al. [-@ramdhani_affective_2018]
 
-As is common in simulations, our results approximate the findings reported in the manuscript, but does not replicate them exactly. Our main and interaction effects map on very closely. However, in the follow-up tests, while our findings that Dayaknese rated the Madurese photos more negatively, the findings related to the Javanese' and Madurese' ratings wiggled around some. A close look at the figures can explain that with varying variability and means with similar values, this is probable.  I find it to be a useful lesson in "what it takes" to get stable, meaningful results. 
+As is common in simulations, our results approximate the findings reported in the manuscript, but does not replicate them exactly. Our main and interaction effects map on very closely. However, in the follow-up tests, while our findings that Dayaknese rated the Madurese photos more negatively, the findings related to the Javanese' and Madurese' ratings wiggled around some. A close look at the figures can explain that with varying variability and means with similar values, this is probable. I find it to be a useful lesson in "what it takes" to get stable, meaningful results. 
 
 ## Options for Assumption Violations
 
-In one-way ANOVA we could simply apply the Welch's alternative.  It's not so easy in factorial ANOVA.  One alternative, though, is to change the sums of squares type used in the ANOVA calculations.  
+In one-way ANOVA we could simply apply the Welch's alternative. It's not so easy in factorial ANOVA. One alternative, though, is to change the sums of squares type used in the ANOVA calculations. 
 
 In ANOVA models sums of squares can be calculated four different ways: Type I, II, III, and IV. This matters. 
 
-SS Type II is the *aov()* default. It may be a best practice to go ahead and specify the SS Type in both the *aov()*, eta-squared, and apaTables script so that they are  consistent.
+SS Type II is the *aov()* default. It may be a best practice to go ahead and specify the SS Type in both the *aov()*, eta-squared, and apaTables script so that they are consistent.
 
 **Type I** sums of squares is similar to hierarchical linear regression in that the first predictor in the model claims as much variance as it can and the leftovers are claimed by the variable entered next – each claiming as much as possible leaving the leftovers for what follows. Unless the variables are completely independent of each other (unlikely), Type I sums of squares cannot evaluate the true main effect of each variable. Type I should not be used to evaluate main effects and interactions because the order of predictors will affect the results.
 
@@ -1009,15 +1007,15 @@ SS Type II is the *aov()* default. It may be a best practice to go ahead and spe
 
 ***Type IV** is identical to Type III except it requires no missing cells. 
 
-Field [-@field_discovering_2012] suggested that it is safest to stick with Type III sums of squares .  We apply the type to the model we create in the initial run. For more information, check out this explanation on [r-bloggers](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/).
+Field [-@field_discovering_2012] suggested that it is safest to stick with Type III sums of squares. We apply the type to the model we create in the initial run. For more information, check out this explanation on [r-bloggers](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/).
 
-Many researchers automatically use Type III as the SS type.  Today I went with the R default because
+Many researchers automatically use Type III as the SS type. Today I went with the R default because
 
 * Type II sums of squares was used in hand-calculations,
 * Our example was reasonably balanced (equal cell sizes), and 
-* We had only violated the homogeneity of variance assumption.  
+* We had only violated the homogeneity of variance assumption. 
 
-For demonstration purposes, let's run the Type III alternative to see the differences:  
+For demonstration purposes, let's run the Type III alternative to see the differences: 
 
 ```{r }
 #this is what we did
@@ -1028,7 +1026,7 @@ car::Anova(TwoWay_neg)
 #We change the SS type by applying it to our model.
 car::Anova(TwoWay_neg, type ="III")
 ```
-Note that the sums of squares are somewhat different between models -- and that the Type III tests includes an intercept. In today's example, the  statistical significance remains the same across the models.
+Note that the sums of squares are somewhat different between models -- and that the Type III tests includes an intercept. In today's example, the statistical significance remains the same across the models.
 
 Now let's compare the effect sizes across models.
 
@@ -1046,7 +1044,7 @@ The Type III effect size for Rater is higher; the others are quite similar.
 
 Asking about *power* can be a euphemistic way of asking, "How large should my sample size be?"
 
-Power is defined as the ability of the test to detect statistical significance when there is such.  It's represented formulaically as (1 - *P*)(Type II error).  Power is traditionally set at 80% (or .8)
+Power is defined as the ability of the test to detect statistical significance when there is such. It's represented formulaically as (1 - *P*)(Type II error). Power is traditionally set at 80% (or .8)
 
 We will do both -- evaluate the power of our current example and then work backwards to estimate the sample size needed (which is our usual question for MRPs and dissertations).
 
@@ -1060,7 +1058,7 @@ The *pwr.2way()* and *ss.2way()* functions require the following:
 
 * **a** number of groups in Factor A
 * **b** number of groups in Factor B
-* **alpha**  significant level (Type I error probaility)
+* **alpha** significant level (Type I error probaility)
 * **beta** Type II error probability (Power = 1 - beta; traditionally set at .1 or .2)
 * **f.A** the *f* effect size of Factor A 
 * **f.B** the *f* effect size of Factor B
@@ -1073,12 +1071,12 @@ Hints for calculating the *f.A* and *f.B* values:
 * When an effect size is unknown, you can substitute what you expect using Cohen's guidelines of .10, .25, and .40 as small, medium, and large (for the *f*, not $F^2$)
 
 Let's quickly rerun our model to get both the df and calculate the *f* effect value
-```{r  message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 lsr::etaSquared(TwoWay_neg, anova = TRUE)
 # get the partial eta-square (second number)
 # and dfs 
 ```
-If we want to understand power in our analysis, we need to convert our effect size for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters.  We can use the *eta2_to_f()* function. 
+If we want to understand power in our analysis, we need to convert our effect size for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
 ```{r}
 effectsize::eta2_to_f(0.1066) #FactorA -- Rater
@@ -1088,16 +1086,16 @@ effectsize::eta2_to_f(0.1274) #Factor B -- Photo
 
 Now we calculate power for our existing model. We'll use the package *pwr2* and the function *pwr.2way()*. To specify this we identify:
 
-* a:  number of groups for Factor A (Rater)
-* b:  number of groups for Factor B (Photo)
-* size.A:  sample size per group in Factor A (because ours differ slightly, I divided the N by the number of groups)
-* size.B:  sample size per group in Factor B (because ours differ slightly, I divided the N by the number of groups)
-* f.A:  Effect size of Factor A
-* f.A.:  Effect size of Factor B
+* a: number of groups for Factor A (Rater)
+* b: number of groups for Factor B (Photo)
+* size.A: sample size per group in Factor A (because ours differ slightly, I divided the N by the number of groups)
+* size.B: sample size per group in Factor B (because ours differ slightly, I divided the N by the number of groups)
+* f.A: Effect size of Factor A
+* f.A.: Effect size of Factor B
 ```{r}
 pwr2::pwr.2way(a=3, b=2, alpha = 0.05, size.A = 37, size.B = 55, f.A = .345, f.B = .382)
 ```
-At 0.997 (Rater), 0.999 (Photo), and 0.997 (interaction), our power to detect a significant effect for Factor A/Rater and Factor B/Photo was huge!  
+At 0.997 (Rater), 0.999 (Photo), and 0.997 (interaction), our power to detect a significant effect for Factor A/Rater and Factor B/Photo was huge! 
 
 ### Estimating Sample Size Requirements
 
@@ -1105,12 +1103,12 @@ If we want to replicate this study we could use its results to estimate what wou
 
 In this specification:
 
-* a:  number of groups for Factor A (Rater)
-* b:  number of groups for Factor B (Photo)
-* alpha: significance level  (Type I error probability); usually .05
-* beta:  Type II error probability (Power = 1-beta); usually .80
-* f.A:  Effect size (*f*) of Factor A (this time we know; other times we can guess from previously published literature)
-* f.A.:  Effect size (*f*) of Factor B
+* a: number of groups for Factor A (Rater)
+* b: number of groups for Factor B (Photo)
+* alpha: significance level (Type I error probability); usually .05
+* beta: Type II error probability (Power = 1-beta); usually .80
+* f.A: Effect size (*f*) of Factor A (this time we know; other times we can guess from previously published literature)
+* f.A.: Effect size (*f*) of Factor B
 * B: iteration times, default number is 100
 
 ```{r}
@@ -1118,7 +1116,7 @@ pwr2::ss.2way(a = 3, b = 2, alpha = .05, beta = .8, f.A = .345, f.B = .382, B= 1
 ```
 Curiously, that's just about the number that was in each of the six cells!
 
-Often times researchers will play around with the *f* values.  Remember Cohen's indication of small (.10), medium (.25), and large (.40).  Let's see what happens when we enter different values. Specifically, what if we only had a medium effect?
+Often times researchers will play around with the *f* values. Remember Cohen's indication of small (.10), medium (.25), and large (.40). Let's see what happens when we enter different values. Specifically, what if we only had a medium effect?
 
 ```{r}
 pwr2::ss.2way(a = 3, b = 2, alpha = .05, beta = .80, f.A = .25, f.B = .25, B= 100) #if we expected a medium effect
@@ -1140,21 +1138,21 @@ In each of these lessons I provide suggestions for practice that allow you to se
   - conduct follow-up testing of simple main effects
 * write a results section to include a figure and tables
 
-### Problem #1:  Play around with this simulation.
+### Problem #1: Play around with this simulation.
 
-Copy the script for the simulation and then change (at least) one thing in the simulation to see how it impacts the results.  
+Copy the script for the simulation and then change (at least) one thing in the simulation to see how it impacts the results. 
 
 * If two-way ANOVA is new to you, perhaps you just change the number in "set.seed(210731)" from 210731 to something else. Your results should parallel those obtained in the lecture, making it easier for you to check your work as you go.
 * If you are interested in power, change the sample size to something larger or smaller.
 * If you are interested in variability (i.e., the homogeneity of variance assumption), perhaps you change the standard deviations in a way that violates the assumption.
 
-### Problem #2:  Conduct a factorial ANOVA with the *positive evaluation* dependent variable.
+### Problem #2: Conduct a factorial ANOVA with the *positive evaluation* dependent variable.
 
 The Ramdhani et al. [-@ramdhani_affective_2018] article has two dependent variables (negative and positive evaluation). Each is suitable for two-way ANOVA. I used *negative evaluation* as the dependent variable; you are welcome to conduct the analysis with *positive evaluation* as the dependent variable.
 
-### Problem #3:  Try something entirely new.
+### Problem #3: Try something entirely new.
 
-Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a two-way, factorial ANOVA. Please have at least 3 levels for one predictor and at least 2 levels for the second predictor.
+Using data for which you have permission and access (e.g., IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a two-way, factorial ANOVA. Please have at least 3 levels for one predictor and at least 2 levels for the second predictor.
 
 ### Grading Rubric
 

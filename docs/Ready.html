@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2022-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -549,7 +549,7 @@ div.csl-indent {
 <div id="script-in-chunks-and-everything-else-in-the-inline-text-sections" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Script in chunks and everything else in the “inline text” sections</h3>
 <p>The only thing in the chunks should be script for running R. You can also hashtag-out comments so they won’t run.</p>
-<p>You can put almost anything you want in the “inline text with simple formatting.” Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold) is found here: <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="uri">https://rmarkdown.rstudio.com/authoring_basics.html</a></p>
+<p>You can put almost anything you want in the “inline text with simple formatting.” Syntax for simple formatting in the text areas (e.g., using italics, making headings, bold) is found here: <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="uri">https://rmarkdown.rstudio.com/authoring_basics.html</a></p>
 <p>“Chunks” start and end with with three little tics and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.</p>
 <p>The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i</p>
 </div>
@@ -557,8 +557,7 @@ div.csl-indent {
 <h3><span class="header-section-number">2.3.3</span> Managing packages</h3>
 <p>Note that I have hashtags in front my “install.packages” commands. This is because I have already installed them.</p>
 <ul>
-<li>You can run the script by temporarily removing the hashtag and running each command individually by placing your cursor at the end of the line of code and entering CNTRL/ENTER as a keyboard shortcut.<br />
-</li>
+<li>You can run the script by temporarily removing the hashtag and running each command individually by placing your cursor at the end of the line of code and entering CNTRL/ENTER as a keyboard shortcut.</li>
 <li>You can run the entire chunk by selecting the green arrow in the upper right of the chunk.</li>
 <li>You can run all the script prior to any chunk by clicking the middle symbol (grey down arrow)</li>
 </ul>
@@ -588,7 +587,7 @@ div.csl-indent {
 <span id="cb8-5"><a href="Ready.html#cb8-5" aria-hidden="true" tabindex="-1"></a>Accurate[Accurate<span class="sc">&lt;</span><span class="dv">0</span>]<span class="ot">&lt;-</span><span class="dv">0</span> <span class="co">#set lower bound for DV</span></span>
 <span id="cb8-6"><a href="Ready.html#cb8-6" aria-hidden="true" tabindex="-1"></a>ID<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">90</span>)) <span class="co">#IDs for participants</span></span>
 <span id="cb8-7"><a href="Ready.html#cb8-7" aria-hidden="true" tabindex="-1"></a>COND<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>)) <span class="co">#name factors and identify how many in each group; should be in same order as first row of script</span></span>
-<span id="cb8-8"><a href="Ready.html#cb8-8" aria-hidden="true" tabindex="-1"></a>Acc_sim30 <span class="ot">&lt;-</span><span class="fu">data.frame</span>(ID, COND, Accurate) <span class="co">#groups the 3 variables into a single df:  ID#, DV, condition</span></span></code></pre></div>
+<span id="cb8-8"><a href="Ready.html#cb8-8" aria-hidden="true" tabindex="-1"></a>Acc_sim30 <span class="ot">&lt;-</span><span class="fu">data.frame</span>(ID, COND, Accurate) <span class="co">#groups the 3 variables into a single df: ID#, DV, condition</span></span></code></pre></div>
 <p>At this point, this data lives only in this .rmd file after the above code is run. Although there are numerous ways to export and import data, I have a preference for two.</p>
 <div id="to-and-from-.csv-files" class="section level4" number="2.3.4.1">
 <h4><span class="header-section-number">2.3.4.1</span> To and from .csv files</h4>
@@ -631,7 +630,7 @@ Accurate    3 90  1.52  0.68   1.55    1.54  0.70   0   3     3 -0.19    -0.34
 ID*      2.75
 COND*    0.09
 Accurate 0.07</code></pre>
-<p>Because “ID” is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is “Accurate.” None-the-less, this provides an example of how to apply a package’s function to a dataset. As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.</p>
+<p>Because “ID” is the case ID and COND is the factor (high, low, control), the only variable for which this data is sensible is “Accurate.” Nonetheless, this provides an example of how to apply a package’s function to a dataset. As we progress through the text we will learn how to manage the data so that we get the specific output we are seeking.</p>
 </div>
 <div id="the-knitted-file" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> the knitted file</h2>
@@ -639,7 +638,7 @@ Accurate 0.07</code></pre>
 <ul>
 <li>In this OER, I am writing the lessons in R markdown (.rmd files), with the package <em>bookdown</em> as a helper, and knitting the files to the .html format. In prior years, I knitted these documents to .doc formats. There are numerous possibilities!</li>
 <li>The package <em>papaja</em> is designed to prepare APA manuscripts where the writing, statistics, and references are all accomplished in a single file. This process contributes to replicability and reproducibility.</li>
-<li>If you are using the PDF or ebook version of this OER you will realize that it is also possible to render to these formats. Albeit slighy more complicated, this is possible, too! MOre detailed instructions for this are provided in the <a href="https://lhbikos.github.io/extRas/">extRas</a> mini-volume of <a href="https://lhbikos.github.io/BikosRVT/ReCenter.html">ReCentering Psych Stats</a>.</li>
+<li>If you are using the PDF or ebook version of this OER you will realize that it is also possible to render to these formats. Albeit slighy more complicated, this is possible, too! More detailed instructions for this are provided in the <a href="https://lhbikos.github.io/extRas/">extRas</a> mini-volume of <a href="https://lhbikos.github.io/BikosRVT/ReCenter.html">ReCentering Psych Stats</a>.</li>
 </ul>
 </div>
 <div id="troubleshooting-in-r-markdown-1" class="section level2" number="2.6">
@@ -664,7 +663,7 @@ Accurate 0.07</code></pre>
 <h2><span class="header-section-number">2.7</span> just <em>why</em> are we tRansitioning to R?</h2>
 <ul>
 <li>It (or at least it appears to be) is the futuRe.</li>
-<li>SPSS site (and individual) license are increasingly expensive and limited (e.g., we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to “do just about anything.”</li>
+<li>SPSS site (and individual) licenses are increasingly expensive and limited (e.g., we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to “do just about anything.”</li>
 <li>Most graduate psychology programs are scientist/practitioner in nature and include training in “high end” statistics. Yet, many of your employing organizations will not have SPSS. R is a free, universally accessible program, that our graduates can use anywhere.</li>
 </ul>
 </div>
@@ -677,8 +676,7 @@ Accurate 0.07</code></pre>
 <li>If this stresses you out, move to simply copying the code into the .rmd file and running it. If you continue to have errors, you may have violated one of the best practices above (ask, “Is the package activated?” “Are the data and .rmd files in the same place?” “Is all the prerequisite script run?”).</li>
 <li>Still overwhelmed? Keep moving forward by (retrieving the original.rmd file from the GitHub repository) opening a copy of the .rmd file and just “run it along” with the lecture. Spend your mental power trying to understand what each piece does so you can translate it for any homework assignments. My suggestions for practice aspire to be parallel to the lecture with no sneaky trix.</li>
 </ul></li>
-<li>Copy script that works elsewhere and replace it with your datafile, variables, and so forth.<br />
-</li>
+<li>Copy script that works elsewhere and replace it with your datafile, variables, and so forth.</li>
 <li>The leaRning curve is steep, but not impossible. Gladwell <span class="citation">(<a href="#ref-gladwell_outliers_2008" role="doc-biblioref">2008</a>)</span> taught us that it takes about 10,000 hours to get great at something (2,000 to get reasonably competent). Practice. Practice. Practice.</li>
 <li>Updates to R, R Studio, and the packages are necessary, but can also be problematic. Sometimes updates cause programs/script to fail (e.g., “X has been deprecated for version X.XX”). My personal practice is to update R, R Studio, and the packages a week or two before each academic term. I expect that prior scripts may need to be updated or revised with package updates and incongruencies between base R, R Studio, and the packages.</li>
 <li>Embrace your downward dog. And square breathing. Also, walk away, then come back.</li>

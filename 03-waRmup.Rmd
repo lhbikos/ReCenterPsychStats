@@ -13,9 +13,9 @@ The beginning of any data analysis means familiarizing yourself with the data, t
 
 ## Navigating this Lesson
 
-There is about 25 minutes of lecture.  
+There is about 25 minutes of lecture. 
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReCenterPsychStats) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the [Github site](https://github.com/lhbikos/ReCenterPsychStats) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -28,7 +28,7 @@ Learning objectives from this lecture include the following:
 
 ### Planning for Practice
 
-This is designed as a "get (or 'get back') into it" assignment.  You will essentially work through this very same lecture, using the same dataframe -- just a different set of continuous variables.
+This is designed as a "get (or 'get back') into it" assignment. You will essentially work through this very same lecture, using the same dataframe -- just a different set of continuous variables.
 
 ### Readings & Resources
 
@@ -39,7 +39,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 * Lui, P. P. (2020). Racial microaggression, overt discrimination, and distress: (In)Direct associations with psychological adjustment. *The Counseling Psychologist, 32*.
   - This is the research vignette from which I simulate data that we can use in the lesson and practice problem.
  
-```{r  include=FALSE}
+```{r include=FALSE}
 #will install the package if not already installed
 #if(!require(tidyverse)){install.packages("tidyverse")}
 #if(!require(psych)){install.packages("psych")}
@@ -61,7 +61,7 @@ set.seed(210807)#sets the random seed so that we consistently get the same resul
 #First, the data for the students who identified as Asian American
 Asian_mu <- c(1.52, 1.72, 2.69, 1.71, 2.14, 2.35, 2.42)
 Asian_stddev <- c(2.52, 2.04, 0.47, 0.70, 0.80, 2.41, 3.36)
-Asian_corMat <- matrix(c(1.00,  0.69,  0.19,  0.28,  0.32,  0.08,  0.23,
+Asian_corMat <- matrix(c(1.00, 0.69, 0.19, 0.28, 0.32,  0.08,  0.23,
                           0.69,  1.00,  0.20,  0.29,  0.33,  0.13,  0.25,
                           0.19,  0.20,  1.00,  0.50,  0.50, -0.04,  0.09,
                           0.28,  0.29,  0.50,  1.00,  0.76,  0.04,  0.18,
@@ -115,10 +115,10 @@ Latinx_df$RacEth <- "Latinx"
 Lui_sim_df <-bind_rows (Asian_df, Black_df, Latinx_df)
 ```
 
-If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created.  In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R. For more complete instructions see the [Ready_Set_R](#Ready) lesson.
+If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created. In your own research you may wish to save data as a file. Although I will hashtag it out (making it inoperable until the hashtags are removed), here is code to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we assigned to it in R) files and then bring/import them back into R. For more complete instructions see the [Ready_Set_R](#Ready) lesson.
 
 ```{r}
-#write the simulated data  as a .csv
+#write the simulated data as a .csv
 #write.table(Lui_sim_df, file="Lui_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
 #bring back the simulated dat from a .csv file
 #df <- read.csv ("Lui_CSV.csv", header = TRUE)
@@ -133,18 +133,18 @@ If you have simulated the data, you can continue using the the "Lui_sim_df" obje
 
 You may have noticed a couple of things in each of these operations
 
-* First, I named the data object that global environment "df" (i.e., dataframe). 
+* First, I named the data object to include a "df" (i.e., dataframe). 
   - It is a common (but not required) practice for researchers to simply use "df" or "dat" for their R script, no matter the type or source of the data. This practice has advantages (such as making the reuse of code quite easy) and disadvantages (it is easy to get confused about what data is what).
 * Second, if you run the code, the updating *replaces* the prior code. 
   - While this is irrelevant today (we are saving the same data in different ways), it points out the importance of creating a sensible and systematic *order of operations* in your .rmd files and then knowing where you are in the process.
-  
+ 
 Because the data is simulated, I can simply use the data I created in the simulation, however, I will go ahead and use the convention of renaming it, "df."
 
 ```{r}
 df <- Lui_sim_df
 ```
 
-Is this R session reading our variables correctly?  Check it with the "structure" command.
+Is this R session reading our variables correctly? Check it with the "structure" command.
 
 ```{r}
 str (df)
@@ -155,7 +155,7 @@ Looking back at the Lui [-@lui_racial_2020] article we can presume the following
 * Discrimination/OvDis: interval/num
   - theoretically someone could experience no discrimination, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (*never* or *not at all*) for all the options.
 * Microaggressions/mAggr: interval/num
- - theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (*never*; and then *not at all* [stressful]) for all the options.
+  - theoretically someone could experience no microaggressions, but it would still score as 1.0 if the scale is averaged and the respondent marked 1 (*never*; and then *not at all* [stressful]) for all the options.
 * Neuroticism/Neuro: interval/num
 * Negative affect/nAff: interval/num
 * Psychological distress/psyDist :interval/num
@@ -163,7 +163,7 @@ Looking back at the Lui [-@lui_racial_2020] article we can presume the following
 * Drinking problems/drProb: interval/num
 * Race Ethnicity/RacEth: nominal/chr
 
-Only the Race Ethnicity needs to be transformed from a character ("chr) variable to a factor. I will use the  *mutate()* function in the *dplyr* package to convert the RacEth variable to be a factor with three levels.
+Only the Race Ethnicity needs to be transformed from a character ("chr) variable to a factor. I will use the *mutate()* function in the *dplyr* package to convert the RacEth variable to be a factor with three levels.
 
 ```{r }
 # A .csv file is uninformed -- it just holds data (and R guesses what it is); respecifying the type of variable will likely need to be completed each time the file is used.
@@ -182,7 +182,7 @@ It is possible to work with this data without restructuring them into a "tiny df
 Manipulating the data is an important skill. I can use the *select()* function to retain three variables that are continuous and then obtain descriptive statistics about them. 
 
 ```{r message=FALSE, warning=FALSE}
-library(tidyverse) #I often "open" the package by placing it (and two colons) in front of its function. However, opening tidyverse via the library command allows me to use the pipe:  %>%
+library(tidyverse) #I often "open" the package by placing it (and two colons) in front of its function. However, opening tidyverse via the library command allows me to use the pipe: %>%
 tiny_df <- df%>%
   dplyr::select(mAggr, nAff, psyDist)
 ```
@@ -193,22 +193,22 @@ We can start with simple descriptives. Revelle's [@revelle_introduction_2021] *p
 psych::describe(tiny_df)
 ```
 
-One of the easiest way to get "counts" of categorical variables is to use them in the *psych* package's *describeBy()* function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth.
+One of the easiest way to get "counts" of categorical variables is to use them in the *psych* package's *describeBy()* function. In the script below, I am asking for descriptives of the entire df, but disaggregated by RacEth. I have added the "mat=TRUE" command so that the results are presented in one complete table. This is optional and so omitting the statement or writing "mat=FALSE" can be something you might like to try.
 ```{r}
 psych::describeBy (df, df$RacEth, mat=TRUE)
 ```
 
 ### Determining Skew and Kurtosis
 
-To understand whether our data are normally distributed, we can look at skew and kurtosis.  The skew and kurtosis indices in the *psych* package are reported as *z* scores.  Regarding skew, values > 3.0 are generally considered "severely skewed."  Regarding kurtosis, "severely kurtotic" is argued anywhere > 8 to 20 [@kline_principles_2016].
+To understand whether our data is normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the *psych* package are reported as *z* scores. Regarding skew, values > 3.0 are generally considered "severely skewed." Regarding kurtosis, "severely kurtotic" is argued anywhere > 8 to 20 [@kline_principles_2016].
 
 ### SPLOM 
 
-SPLOM (scatterplot matrix) is a graphical tool that uses multiple scatterplots to determine the correlation (if any) between a set of variables.  These plots are organized into a matrix, making it easy to see them all at once.
+SPLOM (scatterplot matrix) is a graphical tool that uses multiple scatterplots to determine the correlation (if any) between a set of variables. These plots are organized into a matrix, making it easy to see them all at once.
 
 In the *psych* package, the *pairs.panels()* produces these. 
 
-**On the diagonal** we see:  
+**On the diagonal** we see: 
 
  * histogram of each variable
  * superimposed with a normal curve
@@ -233,9 +233,9 @@ What do we observe?
 * All 3 variables look normally distributed
 * The relationship between mAggr with nAff and psyDist is quite comparable
 * The relationship between nAff and psyDist is very strong
-* Are these correlations significant?  Revelle [-@revelle_introduction_2021] is not a fan of the associated *p* value, but we can get it several ways (hang tight).
+* Are these correlations significant? Revelle [-@revelle_introduction_2021] is not a fan of the associated *p* value, but we can get it several ways (hang tight).
 
-Writing up an APA style results section frequently involves tables.  A helpful package for doing this is *apaTables*.  An instructional article notes the contributions of tools like this contributing to the *reproducibility* of science by reducing errors made when the author or analyst retypes or copies text from output to the manuscript.  When the R script is shared through an open science framework, reproducibility is further enhanced [@stanley_reproducible_2018].
+Writing up an APA style results section frequently involves tables. A helpful package for doing this is *apaTables*. An instructional article notes the contributions of tools like this contributing to the *reproducibility* of science by reducing errors made when the author or analyst retypes or copies text from output to the manuscript. When the R script is shared through an open science framework, reproducibility is further enhanced [@stanley_reproducible_2018].
 
 We pass our tiny df to the *apa.cor.table()* function of the *apaTables* package. Commands allow us to specify what is included in the table and whether it should be displayed in the console or saved as a document to the project's folder.
 
@@ -251,7 +251,7 @@ These types of statistics are often presented in the preliminary results portion
 
 ## Results
 
-Our sample included Asian American (*n* = 398), Latinx (*n* = 182), and Black (*n* = 133) participants. Visual inspection of the three variables of interest (negative affect, psychological distress, microaggressions) combined with formal evaluation of skewness and kurtosis suggested univariate normality.  Correlations between negative affect and psychological distress were quite strong; correlations with each of these variables and microaggressions were moderate.  Results are presented in Table 1.
+Our sample included Asian American (*n* = 398), Latinx (*n* = 182), and Black (*n* = 133) participants. Visual inspection of the three variables of interest (negative affect, psychological distress, microaggressions) combined with formal evaluation of skewness and kurtosis suggested univariate normality. Correlations between negative affect and psychological distress were quite strong; correlations with each of these variables and microaggressions were moderate. Results are presented in Table 1.
 
 
 ## Practice Problems
