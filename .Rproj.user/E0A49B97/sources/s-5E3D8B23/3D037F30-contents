@@ -1,0 +1,342 @@
+--- 
+title: "ReCentering Psych Stats: Analysis of Variance"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "`r format (Sys.Date(), '%d %b %Y')`" 
+site: bookdown::bookdown_site
+documentclass: book
+fontsize: 11pt
+geometry: margin=1in
+highlight: tango
+urlcolor: blue #without this the links in the PDF do not show
+citation-style: apa-single-spaced.csl #if you want APA style
+bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
+link-citations: yes
+url: https://lhbikos.github.io/ReCenterPsychStats/ #a link to the GitHub pages where it is rendered
+cover-image: images/ReC_ANOVA_bookcover.png #link to the image for the book which will show up in any previews
+description: |
+  "Analysis of Variance" is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner. 
+github-repo: lhbikos/ReCenterPsychStats
+---
+
+# BOOK COVER {-}
+
+Placeholder
+
+
+## Copyright with Open Access {-}
+
+<!--chapter:end:index.Rmd-->
+
+
+# Introduction {#ReCintro}
+
+Placeholder
+
+
+## What to expect in each chapter
+## Strategies for Accessing and Using this OER
+## If You are New to R
+### Base R
+### R Studio
+### R Hygiene
+#### Everything is documented in the .rmd file
+#### File organization
+#### Chunks
+#### Packages
+#### Knitting
+### tRoubleshooting in R maRkdown
+### stRategies for success
+### Resources for getting staRted
+
+<!--chapter:end:01-Introduction.Rmd-->
+
+
+# Ready_Set_R {#Ready}
+
+Placeholder
+
+
+## Navigating this Lesson
+### Learning Objectives
+##  downloading and installing R
+### So many paRts and pieces
+### oRienting to R Studio (focusing only on the things we will be using first and most often)
+## best pRactices
+### Setting up the file
+### Script in chunks and everything else in the "inline text" sections
+### Managing packages
+### Upload the data 
+#### To and from .csv files
+#### To and from .rds files
+#### From SPSS files
+## quick demonstRation
+## the knitted file
+## tRoubleshooting in R maRkdown
+## just *why* are we tRansitioning to R?
+## stRategies for success
+## Resources for getting staRted
+
+<!--chapter:end:02-ReadySetR.Rmd-->
+
+
+# waRming up {#waRmups}
+
+Placeholder
+
+
+## Navigating this Lesson
+### Learning Objectives
+### Planning for Practice
+### Readings & Resources
+## Research Vignette
+### Determining Skew and Kurtosis
+### SPLOM 
+## Results
+## Practice Problems
+### Problem #1: Change the Random Seed
+### Problem #2: Swap Variables in the Simulation
+### Problem #3: Use (or Simulate) Your Own Data
+### Grading Rubric
+
+<!--chapter:end:03-waRmup.Rmd-->
+
+
+# One-way ANOVA {#oneway}
+
+Placeholder
+
+
+## Navigating this Lesson
+### Learning Objectives
+### Planning for Practice
+### Readings & Resources
+### Packages
+## Workflow for One-Way ANOVA
+## Research Vignette
+### Data Simulation
+## Working the Problem
+### Preparing the Data
+### Exploring the Distributional Characteristics Numerically
+### Exploring the Distributional Characteristics Graphically
+## Understanding ANOVA with *Hand Calculations*
+### Sums of Squares Total
+### Sums of Squares for the Model (or Between)
+### Sums of Squares Residual (or within)
+#### On the relationship between standard deviation and variance
+### Relationship between $SS_T$, $SS_M$, and $SS_R$.  
+### Mean Squares Model & Residual
+### Calculating the *F* Statistic
+### Source Table Games
+## Working the One-Way ANOVA in R
+### Evaluating the Statistical Assumptions
+#### Is the dependent variable normally distributed across levels of the factor?
+#### Are the variances of the dependent variable similar across the levels of the grouping factor?
+#### Summarizing results from the analysis of assumptions
+### Computing the Omnibus ANOVA
+#### Effect size for the one-way ANOVA
+#### Summarizing results from the omnibus ANOVA
+### Follow-up to the Omnibus *F*
+#### OPTION 1:  Post-hoc, pairwise, comparisons 
+#### OPTION 2:  Planned contrasts (non-orthogonal)
+#### OPTION 3: Planned contrasts (orthogonal)
+#### OPTION 4: Trend (polynomial) analysis
+#### Which set of follow-up tests do we report?
+### What if we Violated the Homogeneity of Variance test?
+## Power Analysis
+## APA Style Results
+## Practice Problems
+### Problem #1:  Play around with this simulation.
+### Problem #2:  Conduct a one-way ANOVA with the *moreTalk* dependent variable.
+### Problem #3:  Try something entirely new.
+### Grading Rubric
+## Bonus Reel: 
+### Coming soon!
+### What's with the inline code?
+
+<!--chapter:end:04-OnewayANOVA.Rmd-->
+
+
+# Factorial (Between-Subjects) ANOVA {#between}
+
+Placeholder
+
+
+## Navigating this Lesson
+### Learning Objectives
+### Planning for Practice
+### Readings & Resources
+### Packages
+## Introducing Factorial ANOVA
+### Workflow for Two-Way ANOVA
+## Research Vignette
+### Preliminary exploration of our research vignette
+## Working the Factorial ANOVA (by hand)
+### Sums of Squares Total
+### Sums of Squares for the Model 
+### Sums of Squares Residual (or within)
+### A Recap on the Relationship between $SS_T$, $SS_M$, and $SS_R$
+### Calculating SS for Each Factor and Their Products
+#### Rater Main Effect
+#### Photo  Main Effect
+#### Interaction effect
+### Source Table Games!
+### Interpreting the results
+## Working the Factorial ANOVA with R packages
+### Evaluating the statistical assumptions
+#### DV is normally distributed
+#### Homogeneity of variance
+### Evaluating the Omnibus ANOVA
+#### Effect sizes
+#### APA Write-up of the omnibus results
+### Follow-up a significant interaction effect
+#### Option #1 the simple main effect of photo stimulus within ethnicity of the rater
+#### Option #2 the simple main effect of ethnicity of rater within photo stimulus.
+#### Option #3 post hoc comparisons
+#### Option #4 polynomial trends 
+## Investigating Main Effects
+### Follow-up with all Post-Hocs
+### Follow-up with planned contrasts
+### Polynomial Trends
+## My APA Style Results Section
+### Comparing Our Results to Rhamdani et al. [-@ramdhani_affective_2018]
+## Options for Assumption Violations
+## Power 
+### Post Hoc Power Analysis
+### Estimating Sample Size Requirements
+## Practice Problems
+### Problem #1:  Play around with this simulation.
+### Problem #2:  Conduct a factorial ANOVA with the *positive evaluation* dependent variable.
+### Problem #3:  Try something entirely new.
+### Grading Rubric
+
+<!--chapter:end:05-FactorialANOVA.Rmd-->
+
+
+# One-Way Repeated Measures ANOVA {#Repeated}
+
+Placeholder
+
+
+## Navigating this Lesson
+### Learning Objectives
+### Planning for Practice
+### Readings & Resources
+### Packages
+## Introducing One-way Repeated Measures ANOVA
+### Workflow for Oneway Repeated Measures ANOVA
+## Research Vignette
+### Code for simulating the data used today.
+### Quick peek at the data
+## Working the One-Way Repeated Measures ANOVA (by hand)
+### Sums of Squares Total
+### Sums of Squares Within for Repated Measures ANOVA
+### Sums of Squares Model -- Effect of Time
+### Sums of Squares Residual
+### Sums of Squares Between
+### Mean Squares Model & Residual
+### *F* ratio
+## Working the One-Way ANOVA with R packages
+### Testing the assumptions
+#### Univariate assumptions for repeated measures ANOVA
+#### Demonstrating sphericity
+#### Any outliers?
+#### Assessing normality 
+#### Assumption of Sphericity
+### Omnibus Repeated Measures ANOVA
+### Follow-up
+### Results Section
+#### Creating an APA Style Table**
+#### Comparison with Amodeo et al.[-@amodeo_empowering_2018]
+## Power in Repeated Measures ANOVA
+## Practice Problems
+### Problem #1: Change the Random Seed
+### Problem #2: Increase *N*
+### Problem #3: Try Something Entirely New
+### Grading Rubric
+## Bonus Reel: 
+
+<!--chapter:end:06-OneWayRepeated.Rmd-->
+
+
+# Mixed Design ANOVA {#Mixed}
+
+Placeholder
+
+
+## Navigating this Lesson
+### Learning Objectives
+### Planning for Practice
+### Readings & Resources
+### Packages
+## Introducing Mixed Design ANOVA
+## Research Vignette
+### Simulating the data from the journal article
+## Working the Mixed Design ANOVA with R packages
+### Exploring data and testing assumptions
+#### Assumption of Normality
+#### Homogeneity of variance assumption
+#### Assumption of homogeneity of covariance matrices
+#### APA style writeup of assumptions
+### Omnibus ANOVA
+#### Checking the sphericity assumption
+### Simple main effect of condition within wave
+### Simple main effect of wave within condition
+### If we only had a main effect
+### APA Style Write-up of the Results
+#### Results
+#### Comparing our findings to Murrar and Brauer [-@murrar_entertainment-education_2018] 
+## Power in Mixed Design ANOVA
+## Practice Problems
+### Problem #1:  Play around with this simulation.
+### Problem #2:  Conduct a one-way ANOVA with a different dependent variable.
+### Problem #3:  Try something entirely new.
+### Grading Rubric
+
+<!--chapter:end:07-MixedANOVA.Rmd-->
+
+
+# Analysis of Covariance {#ANCOVA}
+
+Placeholder
+
+
+## Navigating this Lesson
+### Learning Objectives
+### Planning for Practice
+### Readings & Resources
+### Packages
+## Introducing Analysis of Covariance (ANCOVA)
+## Research Vignette
+### Simulating the data from the journal article
+## Scenario #1:  Controlling for the pretest
+### Preparing the data
+### Checking the assumptions
+#### Linearity assumption
+#### Homogeneity of regression slopes
+#### Normality of residuals
+#### Homogeneity of variances
+#### Outliers
+#### Write-up of Assumptions
+### Calculating the Omnibus ANOVA
+### Post-hoc pairwise comparisons (controlling for the covariate)
+### Toward an APA style results section
+## Scenario #2:  Controlling for a confounding or covarying variable
+### Preparing the data
+### Checking the assumptions
+#### Linearity assumption
+#### Homogeneity of regression slopes
+#### Normality of residuals
+#### Homogeneity of variances
+#### Outliers
+#### Write-up of Assumptions
+### Calculating the Omnibus ANOVA
+### Post-hoc pairwise comparisons (controlling for the covariate)
+### Toward an APA style results section
+## More (and a recap) on covariates
+## Practice Problems
+### Problem #1:  Play around with this simulation.
+### Problem #2:  Conduct a one-way ANOVA with the DV and covariate at post2.
+### Problem #3:  Try something entirely new.
+
+<!--chapter:end:08-ANCOVA.Rmd-->
+

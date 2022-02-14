@@ -1,0 +1,8 @@
+"0","pwc_cond <- pwc_cond %>% rstatix::add_xy_position(x = ""COND"", fun = ""mean_se"")"
+"0","ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = ""COND"", y = ""emmean"") +"
+"0","  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + "
+"0","  ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = FALSE) +"
+"0","  labs("
+"0","    subtitle = rstatix::get_test_label(WhCov_ANCOVA, detailed = TRUE),"
+"0","    caption = rstatix::get_pwc_label(pwc_cond)"
+"0","  )"
