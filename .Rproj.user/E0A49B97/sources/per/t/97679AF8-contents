@@ -1,0 +1,1073 @@
+---
+title: "scRiptuRe"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "10/20/2019"
+output:
+  word_document:
+   toc: true
+   toc_depth: 2 #default is 3
+bibliography: REFS.bib
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+**Screencast link:** https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=45f67c1c-6c8f-4bab-97f4-ab8b010dc986 
+
+# Alpha Coefficients
+
+**In order for this to work you must give reverse any items first and use the reversed items in the keys**
+
+```{r}
+#haven't tried this yet, but it makes a great deal of sense#psych::alpha(rel[,c("Rel_Attend","Scrip_Read","Scrip3")])
+```
+
+
+```{r alpha coefficients the scoring key way}
+library(psych)
+
+#STEP 1:make a list of the keys
+FL_keys_list <- list(flourish_pr = c("Fl1Y1pr","Fl2Y1pr","Fl3Y1pr","Fl4Y1pr","Fl5Y1pr","Fl6Y1pr","Fl7Y1pr","Fl8Y1pr"), flourish_po = c("Fl1Y1po","Fl2Y1po","Fl3Y1po","Fl4Y1po","Fl5Y1po","Fl6Y1po","Fl7Y1po","Fl8Y1po"), flourish_fu = c("Fl1Y1fu","Fl2Y1fu","Fl3Y1fu","Fl4Y1fu","Fl5Y1fu","Fl6Y1fu","Fl7Y1fu","Fl8Y1fu"))
+
+#STEP 2
+#extract an object for each subscale and scale to source each key
+#STEP 2: extract the key (as object) from the list
+FLpr_key_source <- FL_keys_list$flourish_pr
+FLpo_key_source <- FL_keys_list$flourish_po
+FLfu_key_source <- FL_keys_list$flourish_fu
+
+#STEP 3:  apply the selectFromKeys function to christen it as a key; use this one in commands like alpha
+FLpr_key <- selectFromKeys(FLpr_key_source)
+FLpo_key <- selectFromKeys(FLpo_key_source)
+FLfu_key <- selectFromKeys(FLfu_key_source)
+```
+
+Now we insert the key we made into the alpha command.  Because the *alpha()* function can be glitchy, a sure-fire way to point it to its maker (the *psych* package) is to list write "psych::" in front of the function.
+
+Which alpha?  Cronbach's alpha is either the middle value (lower, alpha, upper) on the first screen of output; this should be the same as raw_alpha on the second page of output.
+
+We want our alphas to be > .80 
+
+```{r Pretest alpha}
+psych::alpha(Y1FL_df[FLpr_key])
+```
+
+# As Factor:
+```{r}
+as.numeric(as.character(soap_cost)) 
+
+#from integer to factor; other methods didn't work
+df[,'var'] <- as.factor(df[,'var'])
+```
+
+# As Numeric:  apply to entire df
+```{r convert entire df to numeric format}
+#this code changes an entire df to numeric -- needed when running the alpha function in psych (among others)
+library(tidyverse)
+df <- mutate_all(df, function(x) as.numeric(as.character(x)))
+
+#confirm by looking at structure
+str(XVdf)
+```
+
+# As something else via dplyr
+
+```{r change format of individual variables}
+library(dplyr) 
+dat <- dat %>%
+    mutate(
+        factorvar1 = as.factor(factorvar1),
+        factorvar2 = as.factor(factorvar2),
+        numericvar1 = as.numeric(numericvar1)
+    )
+```
+
+
+# Assign ID number to each row
+```{r assign ID number to each row} 
+flibrary(dplyr)
+df <- df %>% mutate(ID = row_number())
+
+#moving the ID number to the first column; requires 
+df <- df%>%select(ID, everything())
+```
+
+#Bookdown/Github/GithubPages
+
+Today (12/2/21):
+1. First, created the book project locally
+2. Opened GitHub Desktop
+3. File/Add local respository/navigated to the book folder BUT
+   - followed the warning to say "Would you rather create a new respository insteadd" and let GitHub Desktop make the choices
+
+ReC bookchapter instructions (best I can tell):
+
+1. Download GitHub Desktop:  https://desktop.github.com/
+2. Git your very own GitHub account:  https://github.com/ 
+3. Create a GitHub repository (for your book, shared project, or website) in Github itself
+   - Make sure GitHub Desktop is open on your laptop 
+   - Choose:  Quick setup:  Set up in Desktop
+   - Carefully navigate to the parent folder you want the subfolder
+   -  The cloning process will create a new folder (so don't already name/create the specific folder; let the cloning process name your subfolder OR you will have the slightly inconvenient process of having identically named subfolders)
+   * The cloning process will result in a project folder (project is named the same as the Github repo) with a ".git" file
+5.  Create the bookdown project
+   * Create Project:  Bookproject using bookdown; gitstyle
+   * New Directory
+   * Book Project Using Bookdown
+   * follow instructions, but create the folder structure where you want it (I always get this wrong)
+6. Structure of a Bookdown project
+   * ReadMe
+   * Index:  Copied over yml matter and updated for the specific volume
+   * copy ove css file, bibliography, and apa style sheets
+   * Change _bookdown.yml to include the output_dire: "docs" statement at the end
+   * My Intro and index are the same -- excepting title of book and link to github repo
+
+Here are instructions for getting bookdown from Github to Github Pages.  Biggest tricks:
+
+* to open the _bookdown.yml file on the local computer and add this unique line of code *output_dir: "docs"*; this sends all the bookparts to the docs folder.  This command should be far left and not a subcommand of something else.  Looks like this:
+
+book_filename: "ReC_ConditionalProcessAnalysis"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+output_dir: "docs"
+
+Have been getting error:
+File google-analytics-otl.html not found in resource path
+Error: pandoc document conversion failed with error 99
+Execution halted
+
+It worked when I hashtagged out his lilne:
+#includes: 
+        #in_header: [google-analytics-otl.html]
+
+* render the book on the local computer
+* push (or pull; haven't figured out that language yet) to Github
+* In the repository settings, for pages, direct to main branch/docs folder...
+
+https://community.rstudio.com/t/hosting-bookdown-in-github/20427/7
+https://github.blog/2016-08-17-simpler-github-pages-publishing/ 
+
+On using R Markdown to make a website:
+https://www.emilyzabor.com/tutorials/rmarkdown_websites_tutorial.html 
+https://holtzy.github.io/Pimp-my-rmd/ 
+https://happygitwithr.com/
+
+
+
+
+#Chunk Options
+```{r do not knit chunks}
+#eval = FALSE
+```
+
+* message=FALSE stops packages like mosaic from printing all their messages when they load
+* warning=FALSE stops packages from displaying warnings if there is a version conflict
+* error=FALSE can be used to make a document knit even if there is a problem in one chunk (that chunk will just run and print its error)
+* echo=TRUE shows the code, where echo=FALSE would hide the code.
+* eval=TRUE means to evaluate (run) the code, where eval=FALSE will just show the code but not evaluate it.
+* cache=TRUE see below for “shortening knit time.”
+
+# Clear global environment
+
+Can add right before the "START HERE" sections
+```{r clear global environment}
+rm(list = ls())
+```
+
+```{r restart R}
+.rs.restartR()
+```
+
+# Citation of packages
+
+to cite
+
+```{r}
+#citation("Pkg_Name")
+citation("psych")
+```
+
+# Coalesce
+
+df <- structure(list(A = c(56L, NA, NA, 67L, NA),
+                     B = c(75L, 45L, 77L, 41L, 65L),
+                     Year = c(1921L, 1921L, 1922L, 1923L, 1923L)),.Names = c("A", 
+                                                                                                                            "B", "Year"), class = "data.frame", row.names = c(NA, -5L))
+df$A <- ifelse(is.na(df$A), df$B, df$A)
+```
+
+```{r}
+library(dplyr)
+df %>%
+mutate(A = coalesce(A,B)) 
+```
+
+
+
+# Conditional Select statements
+
+Helpful documentation on using the case_when function in R.  https://rpubs.com/prlicari13/541675
+
+```{r}
+Redux <- Redux %>%
+  mutate(NotStopR = case_when(
+    NbhdInc == "Low" & NotStop < .67 ~ 0,
+    NbhdInc == "Low" & NotStop >= .67 & NotStop < 2.00 ~1,
+    NbhdInc == "Low" & NotStop >= 2.00 ~ 2,
+    NbhdInc == "High" & NotStop < .67 ~ 0,
+    NbhdInc == "High" & NotStop >= .67 & NotStop < 2.00 ~1,
+    NbhdInc == "High" & NotStop >= 2.00 ~ 2
+  ))
+```
+
+# Correlation matrix
+```{r correlation matrix of entire df}
+library(psych)
+#whole df
+R<-cor(dat) #correlation matrix (with the negatively scored item already reversed) created and saved as object
+```
+
+```{r pairs panels of entire df}
+#Correlation matrix
+pairs.panels(dat)
+```
+
+```{r}
+library(apaTables)
+Lefevor_cor <- Lefevor2020%>%select(-ID, ATSS, Female0, age, education, attendance, homogeneity)
+col_order <- c("ATSS", "Female0", "age", "education", "attendance", "homogeneity")
+Lefevor_cor <- Lefevor_cor[, col_order]
+apa.cor.table(Lefevor_cor)
+```
+
+
+
+# part df
+
+```{r correlation matrix of part of a df}
+Robject <- corr.test(df[c("Q1", "Q2", "Q3", "Q4", "Score1", "Score2")])
+
+Robject <- cor(RETESTdf[c("Score1", "Score2", "Score3")], use = "pairwise")
+round(lowerMat(Robject, 3))
+
+#printing only lower half and rounding to 3 decimal places (include this after the actual correlation syntax)
+#this doesn't work with corr.test because corr.test produces all the signifcance stuff
+round(lowerMat(rRETEST, 3))
+
+#screen-friendly output, printing the matrix in chunks if it is massive (include this after the actual correlation syntax)
+round(R[,1:8], 2)
+round(R[,9:16], 2)
+round(R[,17:23], 2)
+
+#use corFiml if you have missing data and want to avoid listwise deletion when any pair is missing (shown with how to print the lower matrix rounded to 3 decimal places)
+Rfiml <- corFiml(df[c("Q1", "Q2", "Q3", "Q4", "Score1", "Score2")])
+round(lowerMat(Rfiml, 3))
+```
+
+
+# Data Cleaning
+Reverse coding
+```{r reverse coding}
+#OK, have just changed my thinking (again; 12/29/2019).  If you reverse code into the same variable you (a) may forget and or (b) if you rerun the code and haven't started fresh, it just keeps toggling back/forth, so you don't know where you are.  I have returned to creating different variables with "r" at their end.
+#Recoding (reverse-scoring) AGLII items
+#the AGLII is a 4 point scale, subtracting 5 converts 4 to 1, 3 to 2, 2 to 3, and 1 to 4
+df<- df %>%
+  mutate(VAR1r = 5 - VAR1)%>%
+  mutate (VAR2r = 5 - VAR2)%>%
+  mutate (VAR3r = 5 - VAR3) 
+
+#changes the existing variable to the reverse coding
+#I still like to keep the df separate, so I have updated the label of the new df to include an "_r" to let me know it is updated with the negatively scored items
+library(tidyverse)
+Dat_r<- mutate(dat, Q03 = 6 - Q03) #the simple subtraction converts 5 to 1, 4 to 2, 3 to 3, 2 to 4, 1 to 5.
+
+#although this might work better
+Dat_r<- mutate(Q03 = 6 - Q03) #the simple subtraction converts 5 to 1, 4 to 2, 3 to 3, 2 to 4, 1 to 5.
+```
+
+# Delete variables or columns
+```{r deleting columns}
+library(tidyverse)
+#deleting multiple variables at a time
+df <- df %>%
+  select (-c(var1, var2))
+
+Updated_df <- Originaldf%>%select(-ID, ATSS, Female0, age, education, attendance, homogeneity)
+
+#deleting a single var
+df <- df %>%
+   select (-var1)
+```
+
+
+
+# Descriptives
+
+## Continuous variables
+```{r descriptives of df}
+library(psych)
+describe(dat)
+describe(dat$var)
+```
+
+```{r}
+descriptives.matrix <- describeBy (DV ~ IV, mat=TRUE, digits=2, data=dat) #unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file
+
+describeBy(df$continuous_var, df$grouping_var, mat=TRUE)
+
+descriptives.matrix #let's you see the matrix object
+write.csv (descriptives.matrix, file="DescriptivesMatrix.csv") #optional to write it to a .csv file
+```
+
+
+Shapiro Wilks
+```{r}
+shapiro.test(DF$var)
+```
+
+## Getting counts or frequencies of categorical variables
+```{r}
+jtools::freq(iris$Species, plain.ascii = FALSE, style = "rmarkdown")
+```
+
+
+
+```{r frequencies of categorical variables}
+library(dplyr)
+# In this case I just wanted one
+
+df %>%
+  count(VARIABLE)
+
+# In this case I wanted disaggregated data
+df %>%
+  group_by(GROUPING_VAR)%>%
+  count(VARIABLE)
+```
+
+```{r grouped descriptives from psych }
+library(psych)
+psych::describeBy(df, df$grouping_var, mat=TRUE)
+```
+
+```{r Create new variable, counting across multiple variables on multiple categories}
+scrub_df$count.nW <- apply(scrub_df[c("tRace1", "tRace2", "tRace3", "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")], 1, function(x) sum(x %in% c("Black", "nBpoc", "BiMulti")))
+```
+
+
+
+# Exponents
+
+Looks like you can add thisto something somewhere to deal with exponentiation
+options(scipen = 999)
+
+# Everyday Errors
+
+*Error in file(file, ifelse(append, "a", "w")) : cannot open the connection* means your knitted RMD file (or other outfile, like a .csv table) is open and can't be rewritten.
+
+# Extract Numeric Material from a String
+
+```{r}
+library(strex)
+#this function changes the type of variable and it won't write over itself (which is fine/good)
+#this script says extract the first complete number (it can be multi-digit)
+#n = 1, tells it "the first"
+df$var <- str_nth_number(df$var, n = 1)
+```
+
+#Export/Import -- in the case of objects like Bayesian models
+
+Click the disk and it runs it.  Then hit the folder and it brings it back up.
+You have to call it something.
+
+
+# Factors and Categorical Variables
+
+https://www.statmethods.net/input/valuelabels.html
+
+A number of ways to change categorical variables that are represented by numbers (as in Qualtrics) to categories.  I like this one the best because you can doublecheck which label is associated with which level...they are merely the order of entry
+
+Mauricio example..next two chunks
+```{r}
+#this keeps same numbers for a factor that was 0,1 coded
+dat$vote_f <- factor(dat$vote)
+```
+
+```{r}
+dat$vote_L <- factor(dat$vote,
+                     levels = c("0","1"),
+                     labels = c("No", "Yes"))
+```
+
+
+
+```{r}
+#Dana Kendall example
+tenure$tenure <- factor(tenure$tenure,levels = c(0,1),labels = c("Tenured", "Untenured"))
+```
+
+```{r assign labels and levels to factors}
+df$var <- factor(df$var, 
+    levels = c(1, 2),
+    labels = c("label1", "label2"))
+df %>% count(var) #to check your work; results should also change the df you can view
+```
+
+```{r assigning multiple labels to levels}
+#recoding factors so that many are one
+df$newvar <- factor(df$Advisor, 
+    levels = c("Var1", "Var2", "Var3", "Var4", "Var5", "Var6", "Var7", "Var8", "Var9", "Var10", "Var11", "Var12", "Var13"),
+    labels = c("two", "three", "one", "one", "two", "one", "two", "three", "three", "three", "three", "one", "two"))
+
+#updating the factor to ordered levels
+df$newvar <- factor(df$newvar, levels = c("one", "two", "three"))
+
+df %>% count(newvar)
+```
+
+
+```{r combining two character variables}
+#combining 2 factors into 1 without losing the character
+
+df$var3 <- ifelse(!is.na(df$var1),as.character(df$var1),as.character(df$var2))
+df %>% count(var3)
+```
+
+
+# Filter and Recode
+https://blog.exploratory.io/filter-data-with-dplyr-76cf5f1a258e 
+
+Filtering out rows with specific missingness (i.e., in MLM when the L1 variables are missing)
+```{r}
+#eliminate the row if both FL and Months are missing.
+df <- df %>% filter_at(vars(VAR1, VAR2),all_vars(!is.na(.)))
+```
+
+Audrey's cool thing
+```{r}
+#collapsing across three groups, making 2 groups
+df_long2$Group <- plyr::mapvalues(df_long2$Group, from = c(1, 2, 3), to = c(0, 0, 1))
+```
+
+Recode character variables, one by one
+```{r}
+Wave1_10.21$ID <- dplyr::recode(Wave1_10.21$Q2, "Hailey North" = "HN", "Alé Ruiz" = "AR", "Alison Moore" = "AM", "Declan Goodale" = "DG", "melissa muzulu" = "MM", "Hannah Kuhn" = "HK", "Olive Bushiri" = "OB", "Victoria Moyo" = "VM", "Cara Conforti" = "CC", "ale ruiz" = "AR2")
+```
+
+replace NA with 0 in a new variable
+```{r}
+df$new <- replace_na(df$raw, 0) 
+#also
+
+```
+
+delete cases if there is NA in the entire df
+```{r}
+na.omit(df)
+```
+
+
+Filtering out specific cases
+```{r filtering out case}
+#deleted a specific case if "Group" variable is missing and "RecipientEmail" is specified
+df <- df[!(is.na(df$Group) & df$RecipientEmail == "NAME@spu.edu"),]
+
+#deleted a specific case of "Group" variable is a certain value and and "RecipientEmail" is specified
+#God bless Sam Cannon.  Just sayin'
+#subsets df, taking out the single row that meets the conditions you specified
+subset_df <- subset(df, Group == "VALUE" & RecipientEmail == "NAME@spu.edu")
+subset_df <- subset(bigdf, V1 == "Cond1" | V1 == "Cond2") #multiple conditions
+#removes the row in the subset df from the original df
+df <- df[!row.names(df) %in% row.names(subset_df),]
+
+#deleting a specified case on the single value of RecipientEmail
+df <- df[!df$RecipientEmail == "NAME@spu.edu",]
+
+#a tidyverse way to do the same
+df <- filter (df, variable != "some_value")
+```
+
+Filtering in specific case
+```{r filtering in cases}
+#including cases if they meet a specific, singular, condition with a categorical variable
+df <- filter(df, VARIABLE == "value")  
+```
+
+
+```{r filter in avariables with specific values}
+library(tidyverse)
+smaller_df <- big_df %>%
+  filter (VARIABLE == "SPECIFIC_VALUE")
+```
+
+```{r somewhat complicated filtering example}
+#In this example, there were the 50 states (classified as REPUBLICAN or DEMOCRATIC) but then the territories (not easily classified).  I just wanted the REPUBLICAN or DEMOCRATIC classifications.
+#started with a list
+
+party_classification <- c("DEMOCRATIC", "REPUBLICAN")
+states_df <- states_df%>%
+  filter (PARTY %in% party_classification)
+```
+
+```{r recoding on multiple conditions}
+#if var1 is 0 and var2 is not zero, then var1 becomes 0.5
+df[df$var1 == 0 & df$var2 !=0, "var1"]<- 0.5
+Y1L[Y1L$Submissions == 0 & Y1L$PgViews !=0, "Submissions"]<- 0.5
+```
+
+# Histogram
+
+Remember:  psych::pairs.panels also provides a histogram with the normal curve superimposed -- much easier (and smaller)
+
+```{r histogram, superimposing a normal curve}
+hist(item_scores_df$iBIPOC_pr, freq = FALSE)
+curve(dnorm(x, mean = .44, sd = .4), add = TRUE, col = "blue") #M and SD should be updated manually
+```
+
+
+
+# Hyperlink
+From Danielle Navarro's [Learning Statistics with R](https://learningstatisticswithr.com/)  
+
+## Using ifelse
+
+```{r using ifelse}
+#In this example I needed to classify the 50 states were classified as Rep or Dem.  The list also included a bundle of territories.
+#I made two lists of republican and democratic states.  
+
+REPUBLICAN_STATES <- c("ALABAMA", "ALASKA", "ARIZONA", "ARKANSAS", "FLORIDA", "GEORGIA", "IDAHO", "INDIANA", "IOWA", "KANSAS", "KENTUCKY", "LOUISIANA", "MICHIGAN", "MISSISSIPPI", "MISSOURI", "MONTANA", "NEBRASKA", "NORTH_CAROLINA", "NORTH_DAKOTA", "OHIO", "OKLAHOMA", "PENNSYLVANIA", "SOUTH_CAROLINA", "SOUTH_DAKOTA", "TENNESSEE", "TEXAS", "UTAH", "WEST_VIRGINIA", "WISCONSIN", "WYOMING")
+DEMOCRATIC_STATES <- c( "CALIFORNIA" , "COLORADO" , "CONNECTICUT", "DELEWARE", "HAWAII","ILLINOIS","MAINE", "MARYLAND", "MASSACHUSETTS", "MINNESOTA", "NEVADA", "NEW_HAMPSHIRE", "NEW_JERSEY", "NEW_MEXICO", "NEW_YORK", "OREGON", "RHODE_ISLAND", "VERMONT", "VIRGINIA", "WASHINGTON")
+
+#then used those lists in an ifelse statement that basically said, In the states_df, the new variable PARTY2 will be "NOT_CLASSIFIED" unless it is listed in the REPUBLICAN_STATES list (and then it will be Republican) or it is listed in the DEMOCRATIC_STATES list (and then it would be Democratic)
+states_df <- states_df %>%
+  mutate (PARTY2 = ifelse (STATE %in% REPUBLICAN_STATES, "REPUBLICAN",
+                           ifelse (STATE %in% DEMOCRATIC_STATES, "DEMOCRATIC", "NOT_CLASSIFIED")))
+
+#Elsewhere in this script, I then filtered in only the Republican and Democratic states.
+```
+
+```{r more filtering}
+#ANOTHER FILTER OPTION
+states_df <- states_df%>%
+  filter(PARTY2 == "DEMOCRATIC" | PARTY2 == "REPUBLICAN")
+```
+
+
+```{r another filtering option}
+#same result but less efficient and doesn't use ifelse
+states_df <- states_df %>%
+  mutate(PARTY = recode(STATE, "CALIFORNIA" = "DEMOCRATIC", "COLORADO" = "DEMOCRATIC", "CONNECTICUT"= "DEMOCRATIC", "DELEWARE"= "DEMOCRATIC", "HAWAII"= "DEMOCRATIC","ILLINOIS"= "DEMOCRATIC","MAINE"= "DEMOCRATIC", "MARYLAND"= "DEMOCRATIC", "MASSACHUSETTS"= "DEMOCRATIC", "MINNESOTA"= "DEMOCRATIC", "NEVADA"= "DEMOCRATIC", "NEW_HAMPSHIRE"= "DEMOCRATIC", "NEW_JERSEY"= "DEMOCRATIC", "NEW_MEXICO"= "DEMOCRATIC", "NEW_YORK"= "DEMOCRATIC", "OREGON"= "DEMOCRATIC", "RHODE_ISLAND"= "DEMOCRATIC", "VERMONT"= "DEMOCRATIC", "VIRGINIA"= "DEMOCRATIC", "WASHINGTON"= "DEMOCRATIC", "ALABAMA" ="REPUBLICAN", "ALASKA"="REPUBLICAN", "ARIZONA"="REPUBLICAN", "ARKANSAS"="REPUBLICAN", "FLORIDA"="REPUBLICAN", "GEORGIA"="REPUBLICAN", "IDAHO"="REPUBLICAN", "INDIANA"="REPUBLICAN", "IOWA"="REPUBLICAN", "KANSAS"="REPUBLICAN", "KENTUCKY"="REPUBLICAN", "LOUISIANA"="REPUBLICAN", "MICHIGAN"="REPUBLICAN", "MISSISSIPPI"="REPUBLICAN", "MISSOURI"="REPUBLICAN", "MONTANA"="REPUBLICAN", "NEBRASKA"="REPUBLICAN", "NORTH_CAROLINA"="REPUBLICAN", "NORTH_DAKOTA"="REPUBLICAN", "OHIO"="REPUBLICAN", "OKLAHOMA"="REPUBLICAN", "PENNSYLVANIA"="REPUBLICAN", "SOUTH_CAROLINA"="REPUBLICAN", "SOUTH_DAKOTA"="REPUBLICAN", "TENNESSEE"="REPUBLICAN", "TEXAS"="REPUBLICAN", "UTAH"="REPUBLICAN", "WEST_VIRGINIA"="REPUBLICAN", "WISCONSIN"="REPUBLICAN", "WYOMING"="REPUBLICAN"))
+```
+
+# Adding IDs
+
+https://stackoverflow.com/questions/24119599/how-to-assign-a-unique-id-number-to-each-group-of-identical-values-in-a-column
+```{r}
+#adding IDs for an aggregated variable (in this casethe grouping variable was sample)
+library(data.table)
+setDT(df)[, id := .GRP, by = sample]
+```
+
+Works really well!
+```{r}
+library(data.table)
+setDT(COMBO_df)[, caseID := .GRP, by = EmailID]
+#moving the ID number to the first column; requires 
+COMBO_df <- COMBO_df%>%select(caseID, everything())
+```
+
+
+# Inline text
+
+Helpful:  https://cran.r-project.org/web/packages/gtsummary/vignettes/inline_text.html
+
+Basically, use the tick, r, and then reference the object.  
+`r attempts`
+
+In complicated objects, you may need to identify levels of the name, imbedded in the object:
+`r Stigma_alpha$total$raw_alpha)`
+
+In *lm*() objects it's super tough to find.  I get the str of the *lm* object and then do some guessing.  This worked for a 3 variable moderation:
+
+```{r}
+k1RYicpt <- digits(summary(KimSimpMod)$coefficients [1,1],3) #B weight for intercept
+k1RYicpt
+k1RYicpt_se <- digits(summary(KimSimpMod)$coefficients [1,2],3) #SE for intercept
+k1RYicpt_se
+k1RYicpt_p <- digits(summary(KimSimpMod)$coefficients [1, 4], 3)#p value for the intercept
+k1RYicpt_p
+```
+
+
+HOWEVER, with the package *formattable* you can add functions (like digits for decimal) to format the object being printed.
+`r digits(Stigma_alpha$total$raw_alpha, 3)`
+
+HOWEVER HOWEVER, I'm finding it easier to extract-and-display (but then hide from rendering) objects with short names in the code, then use the short names in the inline text.  This means that apply formattable to the script that creates the object with the short name.  This lets me check the code and also use short names in the inline text -- fewer errors (most of the time).  Here's an example:
+
+```{r Coefficients and p values for inline text, echo = FALSE, results ='hide'}
+library(formattable)
+Bel_B <- digits(Climate_fit$coefficients[2],3) #the beta weight for Belonging
+Bel_p <- digits(summary(Climate_fit)$coefficients[2,4],3) #the p value for Belonging
+Bel_B
+Bel_p
+```
+
+Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging ($B$ = `r Bel_B`, $p$ = `r Bel_p`)...
+
+# Insert spreadsheet
+```{r import spreadsheet}
+library(tidyverse)
+library(pander)
+
+object <- read.csv("title.csv")
+pandoc.table(object, style = "multiline", split.table = Inf, justify = "left", format = docx)
+```
+
+# Importing data
+```{r importing data}
+#for a .csv file
+df <- read.csv ("dat.csv", head = TRUE, sep = ",")
+
+#for a .dat file
+df<-read.delim("Dat.dat", header = TRUE)
+
+#Uploading SPSS file, requires the "foreign" package.
+short_name_for_dataframe <- read.spss ("filename.sav", use.value.labels = TRUE, to.data.frame = TRUE)
+
+
+```
+
+
+# Install Packages
+```{r initial packages}
+#will install the package if not already installed
+if(!require(qualtRics)){install.packages("qualtRics")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(psych)){install.packages("psych")}
+
+library(qualtRics)
+library(tidyverse)
+library(psych)
+```
+
+To reimport installed packages
+```{r}
+ip <- installed.packages()
+write.csv(ip, "installed.csv")
+```
+
+
+# Joins and Mergers
+```{r joins and mergers}
+#adding IDs
+library(tidyverse)
+Dat1 <- Dat1 %>% mutate(id = row_number())
+Dat2 <- as.data.frame(Dat2) #may not need to do this, we did on a scores list we created
+Dat2 <- Dat2 %>% mutate(id = row_number())
+
+#merging
+Dat_merged <- full_join(Dat1, Dat2, by = "id")
+```
+
+```{r adding cases to a df}
+#adding cases to a df
+#this presumes that all variables have the same names
+df_to_update <- rbind(df_to_update, xtra_data)
+```
+
+# Image
+![Image of PhD Comicstrip](plot.gif){#id .class width=900 height=300px}
+
+
+# lavaan resources
+
+lavaanPlot tutorial:  https://cran.rstudio.com/web/packages/lavaanPlot/vignettes/Intro_to_lavaanPlot.html
+chi-square difference test via lavTestLRT:  https://rdrr.io/cran/lavaan/man/lavTestLRT.html
+semTable tutorials:  https://rdrr.io/cran/kutils/man/semTable.html, http://www.crmda.dept.ku.edu/timeline/archives/193 
+
+# Mean centering
+
+```{r mean centering}
+#Building new columns
+METUdf <- METUdf %>% 
+  mutate(cTrkshFl = TrkshFl-mean(TrkshFl)) %>% 
+  mutate(cEglshFl = EglshFl-mean(EglshFl)) %>% 
+  mutate(cSCA = SCA-mean(SCA))
+
+#Quick check to see that it worked as expected
+head(METUdf[,c('TrkshFl','cTrkshFl', 'EglshFl', 'cEglshFl', 'SCA', 'cSCA')])
+```
+
+# Missing Data:  Retain only complete cases
+
+```{r}
+df <- na.omit(df)
+```
+
+
+# Missing Data Analysis
+```{r df and row missingness}
+mean(is.na(df)) #percent missing across df
+mean(complete.cases(df)) #percent of rows with nonmissing data
+```
+
+```{r Little MCAR test}
+#library(BaylorEdPsych)  was deprecated
+#LittleMCAR(df)
+
+library(narniar) #the replacement for BaylorEdPsych
+mcar_test(data)
+```
+
+```{r MissMech MCAR test}
+library(MissMech)
+
+#Note -- make sure that when you run this you do not have extraneous variables in the mix (e.g,. num_miss, prop_miss)
+#TestMCARNormality(SCASEEcfa_df1)
+#Wouldn't run by simply specifying the dataset. From Jamshidian et al 2014 I llearned you could include the del.lesscases command.  They recommend 3 (but this throws out all cases for the MCAR analysis with 3 or more missing -- have no idea why this is ok.)
+#i got this to run with del.lesscases=1
+
+TestMCARNormality(data=df, del.lesscases = 1)
+
+#Running the MCAR test is also problematic if there are more variables/columns than rows.  In order to solve the "too wide" problem, you can have it calculated on only variables with missing dat, like this:
+
+has_na <- sapply(df, function(x) any(is.na(x)))
+TestMCARNormality(df[has_na], del.lesscases=1)
+```
+
+#Missingness Routine
+
+```{r calculating proportion missing of each variable}
+#Create a variable (n_miss) that counts the number missing
+Raw_df$n_miss <- Raw_df %>%
+select(VAR1:VarN) %>% 
+is.na %>% 
+rowSums
+
+#Create a proportion missing by dividing n_miss by the total number of variables (80)
+#Pipe to sort in order of descending frequency to get a sense of the missingness
+Raw_df<- Raw_df%>%
+mutate(prop_miss = (n_miss/NBRofVARS)*100)%>%
+  arrange(desc(n_miss))
+```
+
+```{r drop variable of certain prop missing}
+#Looking at the data, we see that once we drop below 20% missing, individuals are missing between 1 and 7 items.
+
+Updated_df <- filter(Raw_df, prop_miss <= 20)  #update df to have only those with at least 80% of complete data
+
+Updated_df <-(select (Raw_df, VAR1:VarN))
+
+#Writing an outfile to import and immediately start modeling if I don't want to repeat this whole thing
+write.table(Updated_df, file="Updated_df.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+# Modification indices -- extracting and sorting
+```{r mod indices}
+mi_1 <- modindices(corrF) # it's a dataframe!
+mi_1 <- mi_1[order(- mi_1$mi),] #the minus sign makes it sort descending
+mi_1 # print the results
+```
+
+# Making a poster in R
+
+https://github.com/brentthorne/posterdown/wiki 
+
+#Power
+
+## A priori power analysis to determine sample size
+
+```{r a priori power}
+#install.packages("WebPower")
+#f2 is the effect size, Cohen used .02, .15, and .35 as small, medium, large
+#.95 as power is lots, .80 is moderate and will be a little more lenient in sample size
+library(WebPower)
+wp.regression(n = NULL, p1 = 3, f2 = 0.15, alpha = 0.05, power = 0.8)
+wp.regression(n = NULL, p1 = 2, f2 = 0.15, alpha = 0.05, power = 0.95)
+wp.regression(n = NULL, p1 = 2, f2 = 0.35, alpha = 0.05, power = 0.8)
+```
+
+
+```{r}
+library(WebPower)
+wp.regression(n = NULL, p1 = 4, f2 = 0.15, alpha = .05, power = 0.8)
+```
+
+## Observed (post hoc) power
+To calculate observed power (i.e,. post hoc power anlaysis), first need the $f^2$
+Calculated:  
+$f^{2} = \frac{R^{2}}{1-R^{2}}$
+
+```{r observed pwoer}
+.465/(1-.465)
+```
+
+```{r power check}
+#Can check work with Daniel Sopers online power calculator:  https://www.danielsoper.com/statcalc/calculator.aspx?id=9 
+#p1 is number of predictors
+#p2 is at the moment, confusing to me...but see information in the package
+wp.regression(n = 74, p1 = 2, p2 = 0, f2 = 0.999, alpha = 0.05, power = NULL)
+```
+
+
+
+# Rename Variables
+```{r rename variables}
+#ok to simply update the old dataset (by using same object), but I often like to create a new df (df_named) object from the old (df_raw)
+#it is not necessary to rename all vars; you can simply update those you desire and others will stay in the dataset with original names
+library(tidyverse)
+df_named <- rename(df_raw, NewName1 = OldName1, NewName2 = OldName2, NewName3 = OldName3)
+```
+
+
+# Restructure Reshape
+
+More here:  https://riptutorial.com/data-table/example/9839/reshape-using--data-table- 
+
+```{r}
+library(reshape2)
+library(data.table)
+# Create a new df (Amodio_wide)
+# Identify the original df
+# We are telling it to connect the values of the Resilience variable its respective Wave designation
+df_wide <- reshape2::dcast(data = df_long, formula =ID~Wave, value.var = "Resilience")
+
+w <- reshape(Tiny, 
+  timevar = "Checkpoint",
+  idvar = c("id" ),
+  direction = "wide")
+
+```
+
+# Rounding
+```{r rounding}
+round(factor.residuals(raqRr, raqPAF2$loadings), 3)
+```
+
+```{r}
+options(scipen=999)#eliminates scientific notation
+```
+
+```{r if need to round values to whole numbers}
+#this rounds all numeric values to whole numbers
+#could easily respecify to a specific variable
+library(tidyverse)
+df <- df%>% mutate_if(is.numeric, round,0)
+```
+
+```{r}
+#rounded a variable into a new variable
+Redux$NotStopR <- round(Redux$NotStop, 0)
+Redux$NotStopR <- as.integer(Redux$NotStop)
+```
+
+#RTools
+
+* You want to make sure you have R 4.0 or greater. I already did, but I uninstalled and reinstalled R just in case (it wasn't the case)
+* I downloaded RTools for Windows here:  http://lib.stat.cmu.edu/R/CRAN/bin/windows/Rtools/
+* When it asked me to put the path, I let it choose the default
+* Kirby helped me "point R toward Rtools" with this code typed into the R Console:  
+```{r}
+#Sys.setenv(PATH = paste(Sys.getenv("PATH"), "C:\\RTools40\\usr\\bin", "C:\\RTools40\\mingw64\\bin", sep = ";"))
+```
+
+#Scoring items with the sjstats package
+
+This allows you to specify how many items (whole number) or what percentage of items should be present in order to get the mean.
+
+https://rdrr.io/cran/sjstats/man/mean_n.html
+
+```{r sjstats toy df creation}
+library(sjstats)
+library(tidyverse)
+dat <- data.frame(c1 = c(1,2,NA,4),
+                  c2 = c(NA,2,NA,5),
+                  c3 = c(NA,4,NA,NA),
+                  c4 = c(2,3,7,8))
+
+dat <- dat%>%
+  mutate (M = mean_n(dat, .8))
+```
+
+Our data are a little more complicated because they are usually embedded in a larger df.  Easiest to first make a list of the variables and then insert it to the script:
+
+**THIS IS HOW I SCORE...THE AIA WAY!!!**
+```{r AIA approach to scoring}
+library(sjstats)
+#Making the list of variables
+Flpr_vars <- c('Fl1Y2pr','Fl2Y2pr','Fl3Y2pr','Fl4Y2pr','Fl5Y2pr','Fl6Y2pr','Fl7Y2pr','Fl8Y2pr')
+Flpo_vars <- c('Fl1Y2po', 'Fl2Y2po','Fl3Y2po','Fl4Y2po','Fl5Y2po','Fl6Y2po','Fl7Y2po','Fl8Y2po')
+Flfu_vars <- c('Fl1Y2fu', 'Fl2Y2fu','Fl3Y2fu','Fl4Y2fu','Fl5Y2fu','Fl6Y2fu','Fl7Y2fu','Fl8Y2fu')
+
+Y2FL_df$FLpr <- mean_n(Y2FL_df[,Flpr_vars], .80)
+Y2FL_df$FLpo <- mean_n(Y2FL_df[,Flpo_vars], .80)
+Y2FL_df$FLfu <- mean_n(Y2FL_df[,Flfu_vars], .80)
+
+#the last time I did it I had to add some dots
+COMBO_df$PANAS <-mean_n(COMBO_df[,..PANAS_vars], .80)
+```
+
+# Scoring Items, the psych package way
+```{r psych pkg approach to scoring}
+library(psych)
+#STEP 1:make a list of the keys
+RAQ_keys_list <- list(FearComputers = c("Q06", "Q07", "Q10", "Q13","Q14","Q15","Q18"), FearStatistics = c("Q01", "Q03", "Q04", "Q05","Q12","Q16","Q20", "Q21"), FearMath = c("Q08", "Q11", "Q17"), PeerEval = c("Q02", "Q09", "Q19","Q22", "Q23"), RAQtot =c("Q06", "Q07", "Q10", "Q13","Q14","Q15","Q18","Q01", "Q03", "Q04", "Q05","Q12","Q16","Q20", "Q21","Q08", "Q11", "Q17","Q02", "Q09", "Q19","Q22", "Q23"))
+
+#STEP 2: extract the key (as object) from the list
+#a total score key is needed for the omega, and later for the overall alpha
+RAQtot.keys <- RAQ_keys_list$RAQtot
+
+#not needed now, but we need to extract a key for each subscale to later calculate the alpha
+CmpFrkey <- RAQ_keys_list$FearComputers
+StatFrkey <- RAQ_keys_list$FearStatistics
+MathFrkey <- RAQ_keys_list$FearMath
+PrEvkey<- RAQ_keys_list$PeerEval
+
+#STEP 3:  apply the selectFromKeys function to christen it as a key; use this one in commands like alpha
+TOTkey <- selectFromKeys(RAQtot.keys)
+COMPkey <- selectFromKeys(CmpFrkey)
+STATkey <- selectFromKeys(StatFrkey)
+MATHkey <- selectFromKeys(MathFrkey)
+PEERkey <- selectFromKeys(PrEvkey)
+
+#STEP 4: actual scoring
+RAQ_scales <- scoreItems(RAQ_keys_list, raqDat_r)
+RAQ_scores <- RAQ_scales$scores #gives us actual scores that are saved in the coping_scales object
+```
+
+#Scoring Items w dplyr
+
+Help here:  https://stackoverflow.com/questions/34169190/how-to-get-the-average-of-two-columns-using-dplyr 
+```{r dplyr approach to scoring}
+library(dplyr)
+#Creating means
+#na.rm=TRUE means that it will create the mean even if some of the item-level data is missing and adjust the denominator to represet the number of scores included; can switch to FALSE and it will listwise delete that scale or subscale
+df <- df %>%
+  rowwise()%>%
+  mutate(SCALE1 = mean (c(Item1, Item2, Item3, Item4), na.rm=TRUE))%>%
+  mutate(SCALE2 = mean (c(Item5, Item6, Item7, Item8), na.rm=TRUE)) #if add a pipe, can keep adding scales
+```
+
+# Scoring the Sam Cannon way
+
+```{r Sam Cannon approach to scoring}
+#--- Select all rows (indicated by (., ) from these columns (., column1:column n))
+library(tidyverse)
+
+df <- df %>%
+  mutate(Scale1 = select(., item1:item10) %>% rowMeans(na.rm = TRUE))%>%
+  mutate (Scale2 = select(., item11:item20) %>% rowMeans(na.rm = TRUE))
+```
+
+
+# Select Variables
+Filtering help:  https://suzan.rbind.io/2018/02/dplyr-tutorial-3/
+```{r select variables}
+y2pr <-(select (y2pr_named, RecipientEmail, DatePr, OFGConsY2Pr, LS1Y2pr:LS5Y2pr,Fl1Y2pr:Fl8Y2pr,AgeY2pr, GenderY2pr))
+```
+
+# Session Info (R references)
+
+```{r}
+# for a list of R references, put this the end of the .rmd file
+sessionInfo()
+```
+
+
+# Set Random Seed
+
+```{r}
+set.seed(2020)
+```
+
+# Subsetting
+
+This is so cool.  Making baby dfs.
+No package needed, this is baseR
+```{r}
+subset_of_df <- subset(big_df, Variable == "value") #subset data
+#for example
+LowIncome <- subset(curbside, NbhdInc == "Low") #subset data
+```
+
+# Tables
+
+```{r}
+library(apaTables)
+apa.2way.table(iv1 = Race, iv2 = NbhdInc, dv = NotStop, data = curbside, landscape=TRUE, table.number = 1, filename="Table_1_MeansSDs.doc")
+```
+
+```{r}
+#make certain the SStype in the table is identical to the one you ran
+#apparently the default for aov is Type II (not Type I)
+apa.aov.table(TwoWay_curbside, filename = "Table_2_effects.doc", table.number = 2, type = "II")
+```
+
+# Updating R
+
+I do it quarterly.
+
+First, R Studio: Help/Check for Updates
+Second, base_R.
+
+* In the Console (not R Markdown), library(installr)
+* Run the function updateR(), it will tell you if you are using the latest versions
+* If yes, 
+  - close down R
+  - go to the website and download R
+  - last time I did it, R Studio automatically adjusted
+  - uninstall the prior versions of R
+
+# Write Table
+
+```{r export df to csv file}
+write.table(MY_OBJECT, file="MyObject.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+## Writing output for the psych package. 
+
+Creating an object from the alpha output and using the *write.csv()* function, specifically identifying the element (item.stats) from the output lets me copy it from a .csv file and drop it directly into the table.  In the .csv I specify the number of decimal places (3) that I want, copy the column (or row) and then select the past option "overwrite text."  Took some practice, but slick.
+
+SEEMS LIKE YOU DON'T NEED PANDER:  If the write.csv function doesn't work it's because the pander package needs to be open (I'm not 100% sure about this and haven't tested it yet).
+
+See demo of the *str()* function below on how to identify what page of output you want
+```{r Writing alpha output}
+item.stats.object <- psych::alpha(df[scale_key])
+write.csv (item.stats.object$item.stats, file="item.stats.csv")
+```
+
+```{r Writing correlation test output}
+corr.object <- psych::corr.test(df[c("SCASEE1", "SCASEE2", "SCASEE3", "SCASEE4", "SCASEE5", "SCASEE6", "SCASEE7", "SCASEE8", "BE", "CE", "AI", "BI", "CI")])
+write.csv (corr.object$r, file="AEcorr.csv")
+
+#r gets the correlation values
+#p would get p values
+```
+
+```{r Writing descriptives output}
+scores <- (select (df, AE30:SCASEE_18)) #in the psych pkg, descriptives are provided for the entire df, so select what you want, first
+descriptives <- (psych::describe(scores)) # create an object because that's what you will write to the csv file
+descriptives #lets you view it, optional
+write.csv (descriptives, file="descripts.csv")
+```
+
+## Writing output for miscellaneous objects
+
+https://stat.ethz.ch/pipermail/r-help/2012-June/314626.html
+```{r write pairwise comps to outfile}
+library(MASS)
+write.matrix(pairwise.object, sep = ",", file = "PWC.csv")
+```
+
+```{r structure of variables in a df}
+#To see structure
+str(SCASEE60_ItTot)
+```
+
+```{r glimpse of a df}
+glimpse(df)
+```
+

@@ -51,7 +51,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 ### Packages
 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
-```{r  }
+```{r  tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #will install the package if not already installed
 #if(!require(knitr)){install.packages("knitr")}
 #if(!require(tidyverse)){install.packages("tidyverse")} #manipulate data
@@ -119,11 +119,14 @@ The dependent variable (assessed at each wave) was a 14-item resilience scale [@
 ### Code for simulating the data used today.
 
 Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup).
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 set.seed(2022)
-ID<-factor(c(rep(seq(1,8),each=3)))#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence
-Resilience<-rnorm(24,mean=c(5.7,6.21,6.26),sd=c(.88,.79,.37)) #gives me a column of 24 numbers with the specified Ms and SD
-Wave<-rep(c("Pre","Post", "FollowUp"),each=1,8) #repeats pre, post, follow-up once each, 8 times
+#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence
+ID<-factor(c(rep(seq(1,8),each=3)))
+#gives me a column of 24 numbers with the specified Ms and SD
+Resilience<-rnorm(24,mean=c(5.7,6.21,6.26),sd=c(.88,.79,.37)) 
+#repeats pre, post, follow-up once each, 8 times
+Wave<-rep(c("Pre","Post", "FollowUp"),each=1,8) 
 Amodeo_long<-data.frame(ID, Wave, Resilience)
 ```
 
@@ -134,7 +137,7 @@ str(Amodeo_long)
 ```
 We just need to change Wave to be an ordered factor. Because R's default is to order factors alphabetically, we can use the levels command and identify our preferred order.
 
-```{r}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 Amodeo_long$Wave <- factor(Amodeo_long$Wave, levels = c("Pre", "Post", "FollowUp"))
 ```
 
@@ -149,7 +152,7 @@ The form of our data matters. The simulation created a *long* form (formally cal
 
 However, for some of the calculations (particularly those we will do by hand), we need the data to be in its more familiar wide form (formally called the *person level* form). We can do this with the *data.table* and *reshape2*()* packages. 
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 # Create a new df (Amodeo_wide)
 # Identify the original df
 # We are telling it to connect the values of the Resilience variable its respective Wave designation
@@ -164,8 +167,9 @@ In this reshape script, I asked for a quick structure check. The format of the v
 If you want to export these data as files to your computer, remove the hashtags to save (and re-import) them as .rds (R object) or .csv ("Excel lite") files. This is not a necessary step to continue working the problem in this lesson. 
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. I would choose this option.
-```{r}
-#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#to save the df as an .rds (think "R object") file on your computer; 
+#it should save in the same file as the .rmd file you are working with
 #saveRDS(Amodeo_long, "Amodeo_longRDS.rds")
 #saveRDS(Amodeo_wide, "Amodeo_wideRDS.rds")
 #bring back the simulated dat from an .rds file
@@ -174,7 +178,7 @@ The code for the .rds file will retain the formatting of the variables, but is n
 ```
 
 Another option is to write them as .csv files. The code for .csv will likely lose any variable formatting, but the .csv file is easy to view and manipulate in Excel. If you choose this option, you will probably need to re-run the prior code to reformat Wave as an ordered factor
-```{r}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #write the simulated data as a .csv
 #write.table(Amodeo_long, file="Amodeo_longCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
 #write.table(Amodeo_wide, file="Amodeo_wideCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
@@ -191,21 +195,21 @@ str(Amodeo_long)
 ```
 In the following output, note the order of presentation of the grouping variable (i.e., FollowUp, Post, Pre). Even though we have ordered our factor so that "Pre" is first, the *describeBy()* function seems to be ordering them alphabetically.
 
-```{r}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 psych::describeBy(Amodeo_long$Resilience, Wave, mat = TRUE, data = Amodeo_long, digits = 3)
 #Note. Recently my students and I have been having intermittent struggles with the describeBy function in the psych package. We have noticed that it is problematic when using .rds files and when using data directly imported from Qualtrics. If you are having similar difficulties, try uploading the .csv file and making the appropriate formatting changes.
 ```
 
 Another view (if we use the wide file).
 
-```{r}
+```{r }
 psych::describe(Amodeo_wide)
 ```
 Our means suggest that resilience increases from pre to post, then declines a bit. We use one-way repeated measures ANOVA to learn if there are statistically significant differences between the pairs of means and over time.
 
 Let's also take a quick look at a boxplot of our data. 
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 boxplot (Resilience ~ Wave, data = Amodeo_long, xlab = "Wave", ylab = "Resilience", n.label = TRUE)
 ```
 
@@ -276,7 +280,7 @@ The format of the formula is parallel to the formulae for $SS$ we have seen befo
 $$SS_W = s_{person1}^{2}(n_{1}-1)+s_{person2}^{2}(n_{2}-1)+s_{person3}^{2}(n_{3}-1)+...+s_{personk}^{2}(n_{k}-1)$$
 The degrees of freedom (df) within is *N - k*; or the summation of the df for each of the persons.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 psych::describeBy(Resilience ~ ID, data = Amodeo_long, mat = TRUE, digits = 3)
 ```
 With 8 people, there will be 8 chunks of the analysis, in each:
@@ -284,7 +288,7 @@ With 8 people, there will be 8 chunks of the analysis, in each:
 * SD squared (to get the variance)
 * multiplied by the number of observations less 1
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 (.605^2*(3-1)) + (.760^2*(3-1)) + (.992^2*(3-1))+ (.568^2*(3-1))+ (.824^2*(3-1))+ (.146^2*(3-1))+ (.248^2*(3-1)) + (.553^2*(3-1))
 ```
 
@@ -308,7 +312,7 @@ mean(Amodeo_long$Resilience)
 ```
 
 Now we can calculate the $SS_M$.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 (8*(6.14 - 6.017)^2) + (8*(6.33 - 6.017)^2) + (8*(5.59 - 6.017)^2) 
 #df is 3-1 = 2
 ```
@@ -350,7 +354,7 @@ Now that we have the Sums of Squares, we can calculate the mean squares (we need
 
 $$MS_M = \frac{SS_{M}}{df^{_{M}}}$$
 ```{r }
-# mean squares for the model
+#mean squares for the model
 2.36/2
 ```
 HEre is the formula for mean square residual.
@@ -360,7 +364,7 @@ $$MS_R = \frac{SS_{R}}{df^{_{R}}}$$
 Recall, degrees of freedom for the residual is $N - k$. In our case that is 90 - 3.
 
 ```{r }
-# mean squares for the residual
+#mean squares for the residual
 4.27 / 14
 ```
 
@@ -375,8 +379,7 @@ $$F = \frac{MS_{M}}{MS_{R}}$$
 
 To find the $F_{CV}$ we can use an [F distribution table](https://www.statology.org/f-distribution-table/). Or use a look-up function in R, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 ```{r}
-#looking up the F critical values
-qf(.05, 2, 14, lower.tail=FALSE)#Model F critical value
+qf(.05, 2, 14, lower.tail=FALSE)
 ```
 
 Our example has 2 (numerator) and 14 (denominator) degrees of freedom. If we use a table we find the corresponding degrees of freedom combinations for the column where $\alpha = .05$. We observe that any $F$ value > 3.73 will be statistically significant. Our $F$ = 3.87, so we have (just barely) exceeded the threshold. This is our *omnibus F*. We know there is at least 1 statistically significant difference between our pre, post, and follow-up conditions.
@@ -439,8 +442,9 @@ Extreme values occur when values fall outside these boundaries:
 * Q3 + 3xIQR
 
 Let's take a look at a boxplot.
-```{r }
-#Note that we are creating an object (bxp) from our work. This script creates the basic boxplot, we will add to it (by using the object) later.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#Note that we are creating an object (bxp) from our work. 
+#This script creates the basic boxplot, we will add to it (by using the object) later.
 bxp <- ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "point", xlab = "Assessment Wave", ylab = "Self-Perception of Resilience")
 bxp
 ```
@@ -461,7 +465,7 @@ This is consistent with the visual inspection of boxplots (above), where all obs
 
 We can obtain skew and kurtosis values for each cell in our model with the *psych::describeBy()* function.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 psych::describeBy(Resilience ~ Wave, mat=TRUE, data = Amodeo_long)
 ```
 
@@ -482,7 +486,7 @@ The *p* value is > .05 for each of the cells. This provides some assurance that 
 
 The Shapiro-Wilk test is sensitive to sample size [@datanovia_repeated_nodate]. Samples > 50 may lead to *p* values that are < .05, even when non-normality is not problematic. Therefore a second check with a Q-Q plot can be helpful. In a normal distribution the residuals will align along the line for each of the cells in the model.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 ggpubr::ggqqplot(Amodeo_long, "Resilience", facet.by = "Wave")
 ```
 
@@ -518,7 +522,7 @@ We can use the *rstatix::anova_test()* function to calculate the omnibus ANOVA. 
 * ID is the wid
 * Wave is assigned to within
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 RM_AOV <- rstatix::anova_test(data = Amodeo_long, dv = Resilience, wid = ID, within = Wave)
 RM_AOV
 ```
@@ -541,7 +545,7 @@ You might be surprised that we are at follow-up already.
 
 Given the simplicity of our design, it makes sense to me to follow-up with post hoc, pairwise, comparisons. Note that when I am calculating these pairwise *t* tests, I am creating an object (named "pwc"). The object will be a helpful tool in creating a Figure and an APA Style table.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 pwc <- Amodeo_long %>%
   rstatix::pairwise_t_test(Resilience~Wave, paired = TRUE, p.adjust.method = "bonferroni")
 pwc
@@ -556,7 +560,7 @@ Although we had a statistically significant omnibus test, we did not obtain stat
 How would we manage Type I error? With only three possible post-omnibus comparisons, I would cite the Tukey LSD approach and not adjust the alpha to a more conservative level [@green_using_2014].
 
 We can combine information from the object we created ("bxp") from an earlier boxplot with the object we saved from the posthoc pairwise comparisons ("pwc) to enhance our boxplot with the *F* string and indications of pairwise significant (or, in our case, non-significance). 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 pwc <- pwc %>% rstatix::add_xy_position(x = "Wave")
 bxp + 
   ggpubr::stat_pvalue_manual(pwc) +
@@ -577,7 +581,7 @@ The omnibus ANOVA was significant: $F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203$. 
 
 While I have not located a package that will take *rstatix* output to make an APA style table, we can use the *MASS* package to write the pwc object to a .csv file, then manually make our own table.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 MASS::write.matrix(pwc, sep = ",", file = "PWC.csv")
 ```
 
@@ -629,7 +633,7 @@ I used *effectsize* packages converter to transform our $\eta^2$ to Cohen's *f*.
 effectsize::eta2_to_f(.203) 
 ```
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 WebPower::wp.rmanova(n=8, ng=1, nm=3, f = .5047, nscor = .689, alpha = .05, power = NULL, type = 1)
 ```
 Here we learned that we were only powered at .16. That is, we had a 16% chance of finding a statistically significant effect if, in fact, it existed. This is low!
@@ -640,7 +644,7 @@ In many cases we won't know some of the values in advance. We can make best gues
 * *nscor* is the degree of violation of the sphericity assumption. If we think we won't violate it, we can enter 1.0 or leave it out (the wp.rmanova default is 1.0)
 * *f* is the effect size estimate; Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively. 
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 WebPower::wp.rmanova(n=NULL, ng=1, nm=3, f = .5047, nscor = .689, alpha = .05, power = .80, type = 1)
 ```
 With these new values, we learn that we would need 50 individuals in order to feel confident in our ability to get a statistically significant result if, in fact, it existed.
@@ -664,7 +668,7 @@ If repeated measures ANOVA is new to you, perhaps change the random seed and fol
 
 Our analysis of the Amodeo et al. [@amodeo_empowering_2018] data failed to find significant increases in resilience from pre-to-post through follow-up. Our power analysis suggested that a sample size of 50 would be sufficient to garner statistical significance. The script below resimulates the data by increasing the sample size to 50 (from 8). All else remains the same.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 set.seed(2022)
 ID<-factor(c(rep(seq(1,50),each=3)))#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence
 Resilience<-rnorm(150,mean=c(5.7,6.21,6.26),sd=c(.88,.79,.37)) #gives me a column of 24 numbers with the specified Ms and SD
@@ -699,7 +703,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 Without the *rstatix* helper package, here is how the analysis would be run in the package, *car.*  Note that this package results in the multivariate output. The *p* value of the omnibus *F* was non-significant from the start (*p* = .213).
 
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 library(car)
 
 waveLevels <- c(1,2,3)

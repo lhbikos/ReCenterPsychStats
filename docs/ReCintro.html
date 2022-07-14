@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction | ReCentering Psych Stats: Analysis of Variance</title>
   <meta name="description" content="“Analysis of Variance” is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | ReCentering Psych Stats: Analysis of Variance" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://lhbikos.github.io/ReCenterPsychStats/" />
   <meta property="og:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReC_ANOVA_bookcover.png" />
   <meta property="og:description" content="“Analysis of Variance” is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner." />
   <meta name="github-repo" content="lhbikos/ReCenterPsychStats" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-14" />
+<meta name="date" content="2022-07-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="acknowledgements.html"/>
 <link rel="next" href="Ready.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -169,15 +168,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
 <li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
-<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
-<ul>
-<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
-<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
-<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
-<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
-<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
 <ul>
@@ -192,17 +183,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="Ready.html"><a href="Ready.html#best-practices"><i class="fa fa-check"></i><b>2.3</b> best pRactices</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.1</b> Setting up the file</a></li>
-<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.2</b> Script in chunks and everything else in the “inline text” sections</a></li>
-<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.3</b> Managing packages</a></li>
-<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.4</b> Upload the data</a></li>
+<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>2.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.2</b> Setting up the file</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.3</b> Script in chunks and everything else in the “inline text” sections</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.4</b> Managing packages</a></li>
+<li class="chapter" data-level="2.3.5" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.5</b> Upload the data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="Ready.html"><a href="Ready.html#quick-demonstration"><i class="fa fa-check"></i><b>2.4</b> quick demonstRation</a></li>
 <li class="chapter" data-level="2.5" data-path="Ready.html"><a href="Ready.html#the-knitted-file"><i class="fa fa-check"></i><b>2.5</b> the knitted file</a></li>
-<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown-1"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
-<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-are-we-transitioning-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> are we tRansitioning to R?</a></li>
-<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success-1"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
-<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started-1"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
+<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-have-we-transitioned-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> have we tRansitioned to R?</a></li>
+<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
+<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="waRmups.html"><a href="waRmups.html"><i class="fa fa-check"></i><b>3</b> waRming up</a>
 <ul>
@@ -233,7 +225,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.1.1" data-path="oneway.html"><a href="oneway.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="4.1.2" data-path="oneway.html"><a href="oneway.html#planning-for-practice-1"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="4.1.3" data-path="oneway.html"><a href="oneway.html#readings-resources-1"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="4.1.4" data-path="oneway.html"><a href="oneway.html#packages-1"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+<li class="chapter" data-level="4.1.4" data-path="oneway.html"><a href="oneway.html#packages"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="oneway.html"><a href="oneway.html#workflow-for-one-way-anova"><i class="fa fa-check"></i><b>4.2</b> Workflow for One-Way ANOVA</a></li>
 <li class="chapter" data-level="4.3" data-path="oneway.html"><a href="oneway.html#research-vignette-1"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a>
@@ -265,17 +257,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>4.7</b> Power Analysis</a></li>
 <li class="chapter" data-level="4.8" data-path="oneway.html"><a href="oneway.html#apa-style-results"><i class="fa fa-check"></i><b>4.8</b> APA Style Results</a></li>
-<li class="chapter" data-level="4.9" data-path="oneway.html"><a href="oneway.html#practice-problems-1"><i class="fa fa-check"></i><b>4.9</b> Practice Problems</a>
+<li class="chapter" data-level="4.9" data-path="oneway.html"><a href="oneway.html#a-conversation-with-dr.-tran"><i class="fa fa-check"></i><b>4.9</b> A Conversation with Dr. Tran</a></li>
+<li class="chapter" data-level="4.10" data-path="oneway.html"><a href="oneway.html#practice-problems-1"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
 <ul>
-<li class="chapter" data-level="4.9.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>4.9.1</b> Problem #1: Play around with this simulation.</a></li>
-<li class="chapter" data-level="4.9.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>4.9.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
-<li class="chapter" data-level="4.9.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>4.9.3</b> Problem #3: Try something entirely new.</a></li>
-<li class="chapter" data-level="4.9.4" data-path="oneway.html"><a href="oneway.html#grading-rubric-1"><i class="fa fa-check"></i><b>4.9.4</b> Grading Rubric</a></li>
+<li class="chapter" data-level="4.10.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="4.10.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
+<li class="chapter" data-level="4.10.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="4.10.4" data-path="oneway.html"><a href="oneway.html#grading-rubric-1"><i class="fa fa-check"></i><b>4.10.4</b> Grading Rubric</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>4.10</b> Bonus Reel:</a>
+<li class="chapter" data-level="4.11" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>4.11</b> Bonus Reel:</a>
 <ul>
-<li class="chapter" data-level="4.10.1" data-path="oneway.html"><a href="oneway.html#coming-soon"><i class="fa fa-check"></i><b>4.10.1</b> Coming soon!</a></li>
-<li class="chapter" data-level="4.10.2" data-path="oneway.html"><a href="oneway.html#whats-with-the-inline-code"><i class="fa fa-check"></i><b>4.10.2</b> What’s with the inline code?</a></li>
+<li class="chapter" data-level="4.11.1" data-path="oneway.html"><a href="oneway.html#whats-with-the-inline-code"><i class="fa fa-check"></i><b>4.11.1</b> What’s with the inline code?</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="between.html"><a href="between.html"><i class="fa fa-check"></i><b>5</b> Factorial (Between-Subjects) ANOVA</a>
@@ -285,7 +277,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.1.1" data-path="between.html"><a href="between.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="5.1.2" data-path="between.html"><a href="between.html#planning-for-practice-2"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="5.1.3" data-path="between.html"><a href="between.html#readings-resources-2"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="5.1.4" data-path="between.html"><a href="between.html#packages-2"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+<li class="chapter" data-level="5.1.4" data-path="between.html"><a href="between.html#packages-1"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="between.html"><a href="between.html#introducing-factorial-anova"><i class="fa fa-check"></i><b>5.2</b> Introducing Factorial ANOVA</a>
 <ul>
@@ -342,7 +334,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.1.1" data-path="Repeated.html"><a href="Repeated.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="6.1.2" data-path="Repeated.html"><a href="Repeated.html#planning-for-practice-3"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="6.1.3" data-path="Repeated.html"><a href="Repeated.html#readings-resources-3"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="6.1.4" data-path="Repeated.html"><a href="Repeated.html#packages-3"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+<li class="chapter" data-level="6.1.4" data-path="Repeated.html"><a href="Repeated.html#packages-2"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="Repeated.html"><a href="Repeated.html#introducing-one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>6.2</b> Introducing One-way Repeated Measures ANOVA</a>
 <ul>
@@ -387,7 +379,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="Mixed.html"><a href="Mixed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="7.1.2" data-path="Mixed.html"><a href="Mixed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="7.1.3" data-path="Mixed.html"><a href="Mixed.html#readings-resources-4"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="7.1.4" data-path="Mixed.html"><a href="Mixed.html#packages-4"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+<li class="chapter" data-level="7.1.4" data-path="Mixed.html"><a href="Mixed.html#packages-3"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="Mixed.html"><a href="Mixed.html#introducing-mixed-design-anova"><i class="fa fa-check"></i><b>7.2</b> Introducing Mixed Design ANOVA</a></li>
 <li class="chapter" data-level="7.3" data-path="Mixed.html"><a href="Mixed.html#research-vignette-4"><i class="fa fa-check"></i><b>7.3</b> Research Vignette</a>
@@ -419,7 +411,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.1.1" data-path="ANCOVA.html"><a href="ANCOVA.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="8.1.2" data-path="ANCOVA.html"><a href="ANCOVA.html#planning-for-practice-5"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="8.1.3" data-path="ANCOVA.html"><a href="ANCOVA.html#readings-resources-5"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="8.1.4" data-path="ANCOVA.html"><a href="ANCOVA.html#packages-5"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ANCOVA.html"><a href="ANCOVA.html#packages-4"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="ANCOVA.html"><a href="ANCOVA.html#introducing-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>8.2</b> Introducing Analysis of Covariance (ANCOVA)</a></li>
 <li class="chapter" data-level="8.3" data-path="ANCOVA.html"><a href="ANCOVA.html#research-vignette-5"><i class="fa fa-check"></i><b>8.3</b> Research Vignette</a>
@@ -472,14 +464,14 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ReCintro" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="ReCintro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="ReCintro.html#ReCintro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=cc9b7c0d-e5c3-4e4e-a469-acf7013ee761">Screencasted Lecture Link</a></p>
-<div id="what-to-expect-in-each-chapter" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> What to expect in each chapter</h2>
+<div id="what-to-expect-in-each-chapter" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> What to expect in each chapter<a href="ReCintro.html#what-to-expect-in-each-chapter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This textbook is intended as <em>applied,</em> in that a primary goal is to help the scientist-practitioner-advocate use a variety of statistics in research problems and <em>writing them up</em> for a program evaluation, dissertation, or journal article. In support of that goal, I try to provide just enough conceptual information so that the researcher can select the appropriate statistic (i.e., distinguishing between when ANOVA is appropriate and when regression is appropriate) and assign variables to their proper role (e.g., covariate, moderator, mediator).</p>
 <p>This conceptual approach does include occasional, step-by-step, <em>hand-calculations</em> (using R to do the math for us) to provide a <em>visceral feeling</em> of what is happening within the statistical algorithm that may be invisible to the researcher. Additionally, the conceptual review includes a review of the assumptions about the characteristics of the data and research design that are required for the statistic.</p>
-<p>Statistics can be daunting, so I have worked hard to establish a <em>workflow</em> through each analysis. When possible, I include a flowchart that is referenced frequently in each chapter and assists the the researcher keep track of their place in the many steps and choices that accompany even the simplest of analyses.</p>
+<p>Statistics can be daunting, so I have worked hard to establish a <em>workflow</em> through each analysis. When possible, I include a flowchart that is referenced frequently in each chapter and assists the researcher keep track of their place in the many steps and choices that accompany even the simplest of analyses.</p>
 <p>As with many statistics texts, each chapter includes a <em>research vignette.</em> Somewhat unique to this resource is that the vignettes are selected from recently published articles. Each vignette is chosen with the intent to meet as many of the following criteria as possible:</p>
 <ul>
 <li>the statistic that is the focus of the chapter was properly used in the article,</li>
@@ -489,8 +481,8 @@ div.csl-indent {
 </ul>
 <p>In each chapter we employ <em>R</em> packages that will efficiently calculate the statistic and the dashboard of metrics (e.g., effect sizes, confidence intervals) that are typically reported in psychological science.</p>
 </div>
-<div id="strategies-for-accessing-and-using-this-oer" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Strategies for Accessing and Using this OER</h2>
+<div id="strategies-for-accessing-and-using-this-oer" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Strategies for Accessing and Using this OER<a href="ReCintro.html#strategies-for-accessing-and-using-this-oer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are a number of ways you can access this resource. You may wish to try several strategies and then select which works best for you. I demonstrate these in the screencast that accompanies this chapter.</p>
 <ol style="list-style-type: decimal">
 <li><p>Simply follow along in your preferred format of the book (html, PDF, or ebook) and then</p>
@@ -510,153 +502,16 @@ div.csl-indent {
 <li>open up an editing tool and mark up the document with your edits,</li>
 <li>start a discussion by leaving comments/questions, and then</li>
 <li>sending them back to me by committing and saving. I get an e-mail notiying me of this action. I can then review (accepting or rejecting) them and, if a discussion is appropriate, reply back to you.</li>
+<li>I am also seeking peer-review feedback at this <a href="https://spupsych.az1.qualtrics.com/jfe/form/SV_0OnBLfut3VIOIS2">Qualtrics-hosted survey</a>. You are welcome to complete only the portions that are relevant to you.</li>
 </ul></li>
 </ol>
 </div>
-<div id="if-you-are-new-to-r" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> If You are New to R</h2>
-<p>R can be oveRwhelming. Jumping right into advanced statistics might not be the easiest way to start. However, in these chapters, I provide complete code for every step of the process, starting with uploading the data. To help explain what R script is doing, I sometimes write it in the chapter text; sometimes leave hastagged-comments in the chunks; and, particularly in the accompanying screencasted lectures, try to take time to narrate what the R script is doing.</p>
-<p>I’ve found that, somewhere on the internet, there’s almost always a solution to what I’m trying to do. I am frequently stuck and stumped and have spent hours searching the internet for even the tiniest of tasks. When you watch my videos, you may notice that in my R studio, there is a “scRiptuRe” file. I takes notes on the solutions and scripts here – using keywords that are meaningful to me so that when I need to repeat the task, I can hopefully search my own prior solutions and find a fix or a hint.</p>
-<div id="base-r" class="section level3" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Base R</h3>
-<p>The base program is free and is available here: <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a></p>
-<p>Because R is already on my machine (and because the instructions are sufficient), I will not walk through the installation, but I will point out a few things.</p>
-<ul>
-<li>Follow the instructions for your operating system (Mac, Windows, Linux)</li>
-<li>The “cran” (I think “cranium”) is the <em>Comprehensive R Archive Network.</em> In order for R to run on your computer, you have to choose a location. Because proximity is somewhat related to processing speed, select one that is geographically “close to you.”</li>
-<li>You will see the results of this download on your desktop (or elsewhere if you chose to not have it appear there) but you won’t ever use R through this platform.</li>
-</ul>
-</div>
-<div id="r-studio" class="section level3" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> R Studio</h3>
-<p><em>R Studio</em> is the desktop application I use for R. It’s a separate download. Choose the free, desktop, option that is appropriate for your operating system: <a href="https://www.rstudio.com/products/RStudio/" class="uri">https://www.rstudio.com/products/RStudio/</a></p>
-<ul>
-<li>Upper right window: Includes several tabs; we frequently monitor the
-<ul>
-<li>Environment: it lists the <em>objects</em> that are available to you (e.g., dataframes)</li>
-</ul></li>
-<li>Lower right window: has a number of helpful tabs.
-<ul>
-<li><em>Files</em>: Displays the file structure in your computer’s environment. Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.</li>
-<li><em>Packages</em>: Lists the packages that have been installed. If you navigate to it, you can see if it is “on.” You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu. This information opens in the Help window.</li>
-<li>The <em>Viewer</em> and <em>Plots</em> tabs will be useful, later, in some advanced statistics when we can simultaneously examine output and still work on script.</li>
-</ul></li>
-<li>Primary window
-<ul>
-<li>R Studio runs in the background (in the <em>Console</em>). Very occasionally, I find useful troubleshooting information in the Console.</li>
-<li>More commonly, I open my R Markdown document so that it takes the whole screen.</li>
-</ul></li>
-<li><em>R Markdown</em> is the way that many analysts write <em>script</em>, conduct analyses, and even write up results. These are saved as .rmd files.
-<ul>
-<li>In R Studio, open an R Markdown document through File/New File/R Markdown</li>
-<li>Specify the details of your document (title, author, desired ouput)</li>
-<li>In a separate step, SAVE this document (File/Save] into a NEW FILE FOLDER that will contain anything else you need for your project (e.g., the data).</li>
-<li><em>Packages</em> are at the heart of working in R. Installing and activating packages require writing script.</li>
-</ul></li>
-</ul>
-</div>
-<div id="r-hygiene" class="section level3" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> R Hygiene</h3>
-<p>Many initial problems in R can be solved with good R hygiene. Here are some suggestions for basic practices. It can be tempting to “skip this.” However, in the first few weeks of class, these are the solutions I am presenting (and repeating, ad nauseum) to my students.</p>
-<div id="everything-is-documented-in-the-.rmd-file" class="section level4" number="1.3.3.1">
-<h4><span class="header-section-number">1.3.3.1</span> Everything is documented in the .rmd file</h4>
-<p>Although others do it differently, everything is in my .rmd file. That is, for uploading data and opening packages I write the code in my .rmd file. Why? Because when I read about what I did hours or years later, I have a permanent record of very critical things like (a) where my data is located, (b) what version I was using, and (c) what package was associated with the functions.</p>
-</div>
-<div id="file-organization" class="section level4" number="1.3.3.2">
-<h4><span class="header-section-number">1.3.3.2</span> File organization</h4>
-<p>File organization is a critical key to this:</p>
-<ul>
-<li>Create a project file folder.</li>
-<li>Put the data file in it.</li>
-<li>Open an R Markdown file.</li>
-<li>Save it in the same file folder.</li>
-<li>When your data and .rmd files are in the same folder (not your desktop, but a shared folder), they can be connected.</li>
-</ul>
-</div>
-<div id="chunks" class="section level4" number="1.3.3.3">
-<h4><span class="header-section-number">1.3.3.3</span> Chunks</h4>
-<p>The R Markdown document is an incredible tool for integrating text, tables, and analyses. This entire OER is written in R Markdown. A central feature of this is “chunks.”</p>
-<p>The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i</p>
-<p>“Chunks” start and end with with those three tic marks and will show up in a shaded box, like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ReCintro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hashtags let me write comments to remind myself what I did</span></span>
-<span id="cb1-2"><a href="ReCintro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#here I am simply demonstrating arithmetic (but I would normally be running code)</span></span>
-<span id="cb1-3"><a href="ReCintro.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2021</span> <span class="sc">-</span> <span class="dv">1966</span></span></code></pre></div>
-<pre><code>## [1] 55</code></pre>
-<p>Each chunk must open and close with a series of three tics. If one or more of the tics is missing, the chunk won’t be read as such and the script will not run. The only thing in the chunks should be script for running R; you can hashtag-out comments to preserve annotations.</p>
-<p>Although unnecessary, you can add a brief title for the chunk in the opening row, after the “r.” These create something of a table of contents of all the chunks – making it easier to find what you did. You can access them in the “Chunks” tab at the bottom left of R Studio. If you wish to knit a document, you cannot have identical chunk titles.</p>
-<p>You can put almost anything you want in the space outside of tics. Syntax for simple formatting in the text areas (e.g,. using italics, making headings, bold, etc.) is found here: <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="uri">https://rmarkdown.rstudio.com/authoring_basics.html</a></p>
-</div>
-<div id="packages" class="section level4" number="1.3.3.4">
-<h4><span class="header-section-number">1.3.3.4</span> Packages</h4>
-<p>As scientist-practitioners (and not coders), we will rely on <em>packages</em> to do much of the work. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, lavaan, apaTables).</p>
-<p>Researchers treat packages differently. In these lectures, I list the packages we will use in an opening chunk that asks R to check to see if the package is installed, and if not, installs it. In this textbook form I have hashtagged out the command. Simply remove the hashtag to run it.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ReCintro.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)}</span></span></code></pre></div>
-<p>To make a package operable, you need to open it. There are two primary ways to do this. The first is to use the library function.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ReCintro.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages (&quot;tidyverse&quot;)</span></span>
-<span id="cb4-2"><a href="ReCintro.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span></code></pre></div>
-<p>The second way is to place a double colon between the package and function. This second method has become my preferred practice because it helps me remember what package goes with each function. It can also prevent R hiccups when there are identical function names and R does not know which package to use. Below is an example where I might ask for descriptives from the psych package. Because I have not yet uploaded data, I have hashtagged it out, making the command inoperable.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ReCintro.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#psych::describe(mydata)</span></span></code></pre></div>
-<p>There are exceptions. One is the <em>tidyverse</em> package. Some of my script uses pipes (%&gt;%) and they require tidyverse to be activated this is why you will often see me call the tidyverse package with the <em>library()</em> function (as demonstrated above.)</p>
-<p>If you type in your own “install.packages” code, hashtag it out once it’s been installed. It can be problematic to re-run this code.</p>
-</div>
-<div id="knitting" class="section level4" number="1.3.3.5">
-<h4><span class="header-section-number">1.3.3.5</span> Knitting</h4>
-<p>An incredible feature of R Markdown is its capacity to <em>knit</em> to HTML, PowerPoint, or Word. If you access the .rmd files for this OER, you can annotate, revise, or remix them to suit your purposes. If you redistribute them, though, please honor the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License with a citation.</p>
-</div>
-</div>
-<div id="troubleshooting-in-r-markdown" class="section level3" number="1.3.4">
-<h3><span class="header-section-number">1.3.4</span> tRoubleshooting in R maRkdown</h3>
-<p>Hiccups are normal. Here are some ideas that I have found useful in getting unstuck.</p>
-<ul>
-<li>In an R script, you must have everything in order: Every. Single. Time.
-<ul>
-<li>All the packages have to be in your library and activated; if you restart R, you need to reload each package.</li>
-<li>If you open an .rmd file and want a boxplot, you cannot just scroll down to that script. You need to run any <em>prerequisite</em> script (like loading the package, importing data, putting the data in the global environment, etc.)</li>
-<li>If you get lost, clear your global environment with the broom icon, then start at the top of the R script. Frequent, fresh starts are a best practice.</li>
-</ul></li>
-<li>Your .rmd file and your data need to be stored in the same file folder. These should be separate for separate projects, no matter how small.</li>
-<li>Type any warnings you get into a search engine. Odds are, you’ll get some decent hints in a manner of seconds. Especially at first, these are common errors:
-<ul>
-<li>The package isn’t loaded (if you restarted R, you need to reload your packages). Using the double colon procedure to open a package (i.e., <em>package::function()</em>) can mitigate this problem.</li>
-<li>The .rmd file has been saved yet, or isn’t saved in the same folder as the data.</li>
-<li>There are errors in punctuation or spelling.</li>
-</ul></li>
-<li>Restart R (it’s quick – not like restarting your computer)</li>
-<li>If you receive an error indicating that a function isn’t working or recognized, and you have loaded the package, type the name of the package in front of the function with two colons (e.g., psych::describe(df)). If multiple packages are loaded with functions that have the same name, R can get confused.</li>
-</ul>
-</div>
-<div id="strategies-for-success" class="section level3" number="1.3.5">
-<h3><span class="header-section-number">1.3.5</span> stRategies for success</h3>
-<ul>
-<li>Engage with R, but don’t let it overwhelm you.
-<ul>
-<li>The <em>mechanical is also the conceptual</em>. Especially when it is <em>simpler</em>, do try to retype the script into your own .rmd file and run it. Track down the errors you are making and fix them.</li>
-<li>If this stresses you out, move to simply copying the code into the .rmd file and running it. If you continue to have errors, you may have violated one of the best practices above (Is the package loaded? Are the data and .rmd files in the same place? Is all the prerequisite script run?).</li>
-<li>Still overwhelmed? Keep moving forward by downloading a copy of the .rmd file that accompanies any given chapter and just “run it along” with the lecture. Spend your mental power trying to understand what each piece does. Then select a practice problem that is appropriate for your next level of growth.</li>
-</ul></li>
-<li>Copy script that works elsewhere and replace it with your datafile, variables, and so forth.</li>
-<li>The leaRning curve is steep, but not impossible. Gladwell <span class="citation">(<a href="#ref-gladwell_outliers_2008" role="doc-biblioref">2008</a>)</span> taught us that it takes about 10,000 hours to get GREAT at something (2,000 to get reasonably competent). Practice. Practice. Practice.</li>
-<li>Updates to R, R Studio, and the packages are necessary, but can also be problematic. Sometimes updates cause programs/script to fail (e.g., “X has been deprecated for version X.XX”). My personal practice is to update R, R Studio, and the packages a week or two before each academic term. I expect that prior scripts may need to be updated or revised with package updates and incongruencies between base R, R Studio, and the packages.</li>
-<li>Embrace your downward dog. And square breathing. Also, walk away, then come back.</li>
-</ul>
-</div>
-<div id="resources-for-getting-started" class="section level3" number="1.3.6">
-<h3><span class="header-section-number">1.3.6</span> Resources for getting staRted</h3>
-<p>R for Data Science: <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p>
-<p>R Cookbook: <a href="http://shop.oreilly.com/product/9780596809164.do" class="uri">http://shop.oreilly.com/product/9780596809164.do</a></p>
-<p>R Markdown homepage with tutorials: <a href="https://rmarkdown.rstudio.com/index.html" class="uri">https://rmarkdown.rstudio.com/index.html</a></p>
-<p>R has cheatsheets for everything, here’s one for R Markdown: <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf</a></p>
-<p>R Markdown Reference guide: <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf</a></p>
-<p>Using R Markdown for writing reproducible scientific papers: <a href="https://libscie.github.io/rmarkdown-workshop/handout.html" class="uri">https://libscie.github.io/rmarkdown-workshop/handout.html</a></p>
-<p>LaTeX equation editor: <a href="https://www.codecogs.com/latex/eqneditor.php" class="uri">https://www.codecogs.com/latex/eqneditor.php</a></p>
+<div id="if-you-are-new-to-r" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> If You are New to R<a href="ReCintro.html#if-you-are-new-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R can be oveRwhelming. Jumping right into advanced statistics might not be the easiest way to start. The <a href="https://lhbikos.github.io/ReCenterPsychStats/Ready.html">Ready_Set_R</a>lesson of this volume provides an introduction and the <a href="https://lhbikos.github.io/ReCenterPsychStats/waRmups.html">waRming up</a>lesson walks through simple data preparation and descriptive statistics.</p>
+<p>In the remaining lessons, I have attempted to provide complete code for every step of the process, starting with uploading the data. To help explain what R script is doing, I sometimes write it in the chapter text; sometimes leave hashtagged-comments in the chunks; and, particularly in the accompanying screencasted lectures, try to take time to narrate what the R script is doing.</p>
+<p>I’ve found that, somewhere on the internet, there’s almost always a solution to what I’m trying to do. I am frequently stuck and stumped and have spent hours searching the internet for even the tiniest of tasks. When you watch my videos, you may notice that in my R studio, there is a “scRiptuRe” file. I take notes on the solutions and scripts here – using keywords that are meaningful to me so that when I need to repeat the task, I can hopefully search my own prior solutions and find a fix or a hint. You may also find it useful to create a working document of your own tips and tricks.</p>
 
-</div>
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-gladwell_outliers_2008" class="csl-entry">
-Gladwell, M. (2008). <em>Outliers: The story of success</em> (First edition.). Little, Brown; Company.
 </div>
 </div>
             </section>

@@ -4,8 +4,10 @@
  
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
-options(scipen=999)#eliminates scientific notation
+#keeps out the hashtags in the knits
+knitr::opts_chunk$set(comment = NA) 
+#eliminates scientific notation
+options(scipen=999)
 ```
 
 The focus of this lecture is mixed design ANOVA. That is, we are conducting a two-way ANOVA where one of the factors is repeated measures and one of the factors is between groups. The mixed design ANOVA is often associated with the random clinical trial (RCT) where the researcher hopes for a significant interaction effect. Specifically, the researcher hopes that the individuals who were randomly assigned to the treatment condition improve from pre-test to post-test and maintain (or continue to improve) after post-test, while the people assigned to the no-treatment control are not statistically significantly different from treatment group at pre-test, and do not improve over time.
@@ -55,7 +57,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 ### Packages
 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #will install the package if not already installed
 #if(!require(knitr)){install.packages("knitr")}
 #if(!require(tidyverse)){install.packages("tidyverse")}
@@ -127,20 +129,26 @@ With random assignment, nearly equal cell sizes, a condition with two levels (Fr
 
 Below is the code I have used to simulate the data. The simulation includes two dependent variables (AttWhite, AttArab), Wave (baseline, post1, post2), and COND (condition; Friends, Little_Mosque). There is also a caseID (repeated three times across the three waves) and rowID (giving each observation within each case an ID). This creates the long-file, where each person has 3 rows of data representing baseline, post1, and post2. You can use this simulation for two of the three practice suggestions.
 
-```{r message=FALSE, library=FALSE}
+```{r message=FALSE, library=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 library(tidyverse)
-set.seed(210813)#change this to any different number (and rerun the simulation) to rework the chapter problem
+#change this to any different number (and rerun the simulation) to rework the chapter problem
+set.seed(210813)
 AttWhite<-round(c(rnorm(98,mean=76.79,sd=18.55),rnorm(95,mean=75.37,sd=18.99),rnorm(98, mean=77.47, sd=18.95), rnorm(95, mean=75.81, sd=19.29), rnorm(98, mean=77.79, sd=17.25), rnorm(95, mean=75.89, sd=19.44)),3) #sample size, M and SD for each cell; this will put it in a long file
-AttWhite[AttWhite>100]<-100 #set upper bound for variable
-AttWhite[AttWhite<0]<-0 #set lower bound for variable
+#set upper bound for variable
+AttWhite[AttWhite>100]<-100 
+#set lower bound for variable
+AttWhite[AttWhite<0]<-0 
 AttArab<-round(c(rnorm(98,mean=64.11,sd=20.97),rnorm(95,mean=64.37,sd=20.03),rnorm(98, mean=64.16, sd=21.64), rnorm(95, mean=70.52, sd=18.55), rnorm(98, mean=65.29, sd=19.76), rnorm(95, mean=70.30, sd=17.98)),3)
-AttArab[AttArab>100]<-100 #set upper bound for variable
-AttArab[AttArab<0]<-0 #set lower bound for variable
+#set upper bound for variable
+AttArab[AttArab>100]<-100 
+#set lower bound for variable
+AttArab[AttArab<0]<-0 
 rowID <- factor(seq(1,579))
 caseID <- rep((1:193),3)
 Wave <- c(rep("Baseline",193), rep("Post1", 193), rep ("Post2", 193))
 COND <- c(rep("Friends", 98), rep("LittleMosque", 95), rep("Friends", 98), rep("LittleMosque", 95), rep("Friends", 98), rep("LittleMosque", 95))
-Murrar_df<- data.frame(rowID, caseID, Wave, COND, AttArab, AttWhite) #groups the 3 variables into a single df:  ID#, DV, condition
+#groups the 3 variables into a single df:  ID#, DV, condition
+Murrar_df<- data.frame(rowID, caseID, Wave, COND, AttArab, AttWhite) 
 ```
 
 Let's check the structure. We want 
@@ -157,7 +165,7 @@ The script below changes
 * caseID from integer to factor
 * Wave and COND from factor to ordered factors
   - It makes sense to order Friends and LittleMosque, since we believe that LittleMosque contains prejudice-reducing properties
-```{r}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #make caseID a factor
 Murrar_df[,'caseID'] <- as.factor(Murrar_df[,'caseID'])
 #make Wave an ordered factor
@@ -178,8 +186,9 @@ Murrar_df$Diff <- Murrar_df$AttWhite - Murrar_df$AttArab
 ```
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. This is what I would do.
-```{r}
-#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#to save the df as an .rds (think "R object") file on your computer; 
+#it should save in the same file as the .rmd file you are working with
 #saveRDS(Murrar_df, "Murrar_RDS.rds")
 #bring back the simulated dat from an .rds file
 #Murrar_df <- readRDS("Murrar_RDS.rds")
@@ -188,7 +197,7 @@ The code for the .rds file will retain the formatting of the variables, but is n
 If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv ("Excel lite") or .rds (R object) file. This is not a necessary step.
 
 The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.
-```{r}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #write the simulated data as a .csv
 #write.table(Murrar_df, file="DiffCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
 #bring back the simulated dat from a .csv file
@@ -209,7 +218,7 @@ psych::describe(Murrar_df)
 ```
 
 Our analysis will use the difference score (Diff) as the dependent variable. Let's look at this variable in its combinations of wave and condition.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 psych::describeBy(Diff ~ Wave + COND, data = Murrar_df, mat=TRUE)
 #Note. Recently my students and I have been having intermittent struggles with the describeBy function in the psych package. We have noticed that it is problematic when using .rds files and when using data directly imported from Qualtrics. If you are having similar difficulties, try uploading the .csv file and making the appropriate formatting changes.
 ```
@@ -228,7 +237,7 @@ The boxplot is one common way for identifying outliers. The boxplot uses the med
 
 You'll notice that as we are creating these boxplors we are saving them as objects. This is not necessary to produce the graph. However, we will combine the object with other data, later, to embed results if the anlaysis in our figures.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 CNDwiWV <- ggpubr::ggboxplot(
   Murrar_df, x = "Wave", y = "Diff",
   color = "COND", palette = "jco", xlab = "Assessment Wave", ylab = "Difference in Attitudes towards Whites and Arabs", 
@@ -238,7 +247,7 @@ CNDwiWV
 The distributions look relatively normal with the mean well-centered. Given that we simulated the data from means and standard deviations, this is somewhat expected. This boxplot also provides a glimpse of the patterns in our data. That is, the means are quite similar at baseline; in the post intervention waves we see greater difference scores for the Friends condition.
 
 Let's reconfigure the data by putting the wave on the X axis. Plotting it both ways (i.e.,swapping roles of predictor and moderator) can help us get a sense of what is happening.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 WVwiCND <- ggpubr::ggboxplot(
   Murrar_df, x = "COND", y = "Diff",
   color = "Wave", palette = "jco", xlab = "Treatment Condition", ylab = "Difference in Attitudes towards Whites and Arabs"
@@ -256,7 +265,7 @@ Extreme values occur when values fall outside these boundaries:
 * Q3 + 3xIQR
 
 Using the *rstatix::identify_outliers* function we can look for outliers in the dependent variable, doubly grouped by our predictor variables.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 Murrar_df %>%
   group_by(Wave, COND) %>%
   rstatix::identify_outliers(Diff)
@@ -266,14 +275,14 @@ While we have some outliers (where "is.outlier" = "TRUE"), none are extreme (whe
 If I had extreme outliers, I would individually inspect them. Especially if something looked awry (e.g., erratic responding extreme scores across variables) I might consider deleting them.
 
 Next we can use the *rstatix::shapiro_test()* to see if any of the distributions of the dependent variable (Diff) within each wave-by-condition combinations differs significantly from a normal distribution.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 Murrar_df %>%
   group_by(Wave, COND) %>%
   rstatix::shapiro_test(Diff)
 ```
 The Shapiro Wilks test suggests that distribution in each of our cells is not significantly different than normal. We can further visualize this with QQ plots.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 ggpubr::ggqqplot(Murrar_df, "Diff", ggtheme = theme_bw()) +  facet_grid(Wave ~ COND)
 ```
 
@@ -281,7 +290,7 @@ ggpubr::ggqqplot(Murrar_df, "Diff", ggtheme = theme_bw()) +  facet_grid(Wave ~ C
 
 Because there is a between-subjects variable, we need need to evaluate the homogeneity of variance assumption. As before, we can use the Levene's test with the *rstatix::levene_test()* function. Considering each of the comparisons of condition within wave, there is no instance where we violate the assumption.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 Murrar_df %>%
   group_by(Wave) %>%
   rstatix::levene_test(Diff ~ COND)
@@ -292,7 +301,7 @@ Levene's test indicated a violation of this assumption between the Friends and L
 
 In this multivariate sample, the Box's M test evaluates if two or more covariance matrices are homogeneous. Like other tests of assumptions, we want a non-significant test result (i.e., where *p* > .05). Box's M has some disavantages. Box's M has low power in small sample sizes and is overly sensitive in large sample sizes. We would unlikely make a decision about our data with Box's M alone. Rather, we consider it along with our dashboard of diagnostic screeners.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 rstatix::box_m(Murrar_df[, "Diff", drop = FALSE], Murrar_df$COND)
 ```
 None-the-less, Box's M indicated no violation of the homogeneity of covariance matrices assumption (*M* = 3.209, *p* = .073)
@@ -318,10 +327,12 @@ If we are ever confused about a function, we can place a question mark in front 
 ```
 
 In the code below the identification of the data, DV, between, and within variables are likely to be intuitive. The within-subjects identifier (*wid*) is the person-level ID that assists the statistic in controlling for the dependency introduced by the repeated-measures factor.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#Murrar_df is our df, Diff is our df, wid is the caseID
+#between is the between-subjects variable, within is the within subjects variable
 Diff_2way <- rstatix::anova_test(
-  data = Murrar_df, dv = Diff, wid = caseID, #Murrar_df is our df, Diff is our df, wid is the caseID
-  between = COND, within = Wave # between is the between-subjects variable, within is the within subjects variable
+  data = Murrar_df, dv = Diff, wid = caseID, 
+  between = COND, within = Wave 
   )
 Diff_2way
 ```
@@ -365,12 +376,16 @@ If we take this option we follow up with 3 one-way ANOVAs. When we look at condi
 * comparison of Friends and Little Mosque within the post1 wave
 * comparison of Friends and Little Mosque within the post2 wave
 
-```{r }
-SimpleWave <- Murrar_df %>% #crate an object to hold the output
-  group_by(Wave) %>% #this group_by function is what results in three, one-way ANOVAs for each of the waves, separately
-  rstatix::anova_test(dv = Diff, wid = caseID, between = COND) %>% #the between = Cond means that each level of cond will be compared
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#crate an object to hold the output
+#the group_by function is what results in three, one-way ANOVAs for each of the waves, separately
+#the between = Cond means that each level of cond will be compared
+#method - "bonferroni" gets us both the standard and adjusted p values
+SimpleWave <- Murrar_df %>% 
+  group_by(Wave) %>% 
+  rstatix::anova_test(dv = Diff, wid = caseID, between = COND) %>% 
   rstatix::get_anova_table() %>%
-  rstatix::adjust_pvalue(method = "bonferroni") #we will get both the standard and adjusted p values
+  rstatix::adjust_pvalue(method = "bonferroni") 
 SimpleWave
 ```
 In prior lectures we have adjusted the *p* value against which we compare the resulting *p* value. When we specify "bonferroni" on the *adjust_pvalue()* command, the algorithm adjusts the reported *p* value for us. We can see the unadjusted *p* value in the "p p<.05" column and the Bonferroni adjustment in the "p.adj" column.
@@ -407,7 +422,7 @@ If we conducted this alternative we would start with three one-way ANOVAs and th
 * comparison of baseline, post1, and post2 within the Friends condition
 * comparison of baseline, post1, and post2 within the Little Mosque condition
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 SimpleCond <- Murrar_df %>%
   group_by(COND) %>%
   rstatix::anova_test(dv = Diff, wid = caseID, within = Wave) %>%
@@ -425,7 +440,7 @@ Because each of these one-way ANOVAs has three levels, we need to follow with pa
 
 You will notice that we are saving the results of the pairwise comparisons as an object. This is not necessary, however we can use this object in combination with the boxplot we created earlier to embed results of our analysis in the resulting figure.
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 pwcWVwiGP <- Murrar_df %>%
   group_by(COND) %>%
   rstatix::pairwise_t_test(
@@ -453,7 +468,7 @@ The figure shows our place on the workflow.
 ![Image of a workflow showing that we at the "Main effects only" step](images/mixed/mx_main.jpg)
 
 If we had not had a significant interaction, but did have a significant main effect for wave, we could have conducted pairwise comparisons for pre, post1, and post2 -- collapsing across condition.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 Murrar_df %>%
   rstatix::pairwise_t_test(
     Diff ~ Wave, paired = TRUE, 
@@ -470,7 +485,7 @@ If we had had a non-significant interaction effect but a significant main effect
 Recall that earlier in this lesson we save objects for the boxplots (e.g., CNDwiWV) and the pairwise comparisons (e.g., pwcVWwiGP). The script below use the objects created from omnibus ANOVA and the pairwise comparisons to add results to the figure. Depending on where you are presenting your results, these may be useful. 
 
 This first figure would pair well if you report the simple main effect of condition within wave.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 pwcWVwiGP <- pwcWVwiGP %>% rstatix::add_xy_position(x = "Wave")
 CNDwiWV + 
   ggpubr::stat_pvalue_manual(pwcWVwiGP, tip.length = 0, hide.ns = TRUE) +
@@ -481,13 +496,16 @@ CNDwiWV +
 ```
 
 This second figure would pair well with the results that reported the simple main effect of wave within condition.
-```{r }
-pwcWVwiGP <- pwcWVwiGP %>% rstatix::add_xy_position(x = "Wave") #pwcWVwiGP were my pairwise comparisons for the simple effect
-WVwiCND +  #WVwiCND was the boxplot before I did the ANOVA
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#pwcWVwiGP were my pairwise comparisons for the simple effect
+#UE_2way was my omnibus ANOVA object
+#WVwiCND was the boxplot before I did the ANOVA
+pwcWVwiGP <- pwcWVwiGP %>% rstatix::add_xy_position(x = "Wave") 
+WVwiCND +  
   ggpubr::stat_pvalue_manual(pwcWVwiGP, tip.length = 0, hide.ns = TRUE) +
   labs(
-    subtitle = rstatix::get_test_label(Diff_2way, detailed = TRUE), #UE_2way was my omnibus ANOVA model
-    caption = rstatix::get_pwc_label(pwcWVwiGP) #and again the pairwise comparisons for the simple effect
+    subtitle = rstatix::get_test_label(Diff_2way, detailed = TRUE), 
+    caption = rstatix::get_pwc_label(pwcWVwiGP) 
   )
 ```
 
@@ -504,10 +522,10 @@ We followed the significant interaction effect with an evaluation of simple main
 As illustrated in Figure 1 difference scores were comparable at baseline. After the intervention, difference scores increased for those in the Friends condition -- indicating more favorable attitudes toward White people. In contrast, those exposed to the Little Mosque condition had difference scores that were lower. Means and standard deviations are reported in Table 1.
 
 The following code can be used to write output to .csv files. From there it is easy(er) to manipulate them into tables for use in an empirical manuscript.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 MASS::write.matrix(pwcWVwiGP, sep = ",", file = "pwcWVwiGP.csv")
 #this command can also be used to export other output
-MASS::write.matrix(Diff_2way$ANOVA, sep = ",", file = "Diff_2way.csv") #can get name of specific part of object by using str(object)
+MASS::write.matrix(Diff_2way$ANOVA, sep = ",", file = "Diff_2way.csv") 
 MASS::write.matrix(SimpleWave, sep = ",", file = "SimpleWave.csv")
 MASS::write.matrix(SimpleCond, sep = ",", file = "SimpleCond.csv") 
 ```
@@ -543,7 +561,8 @@ In the *WebPower* package, we specify 6 of 7 interrelated elements; the package 
 As in the prior lessons, we need to convert our effect size for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function to translate the $\eta^{2}$ associated with the interaction effect to Cohen's *f*. 
 
 ```{r message=FALSE, warning = FALSE}
-effectsize::eta2_to_f(0.017) #interaction effect
+#interaction effect
+effectsize::eta2_to_f(0.017) 
 ```
 We can now retrieve information from our study (including the Cohen's *f* value we just calculated) and insert it into the script for the power analysis.
 ```{r message=FALSE, warning = FALSE }
@@ -553,7 +572,7 @@ We are powered at .349 (we have a 35% of rejecting the null hypothesis, if it is
 
 In reverse, setting *power* at .80 (the traditional value) and changing *n* to *NULL* yields a recommended sample size.  
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 WebPower::wp.rmanova(n=NULL, ng=2, nm=3, f = .1315, nscor = .99, alpha = .05, power = .80, type = 2)
 ```
 Given our desire for strong power and our weak effect size, this power analysis suggests a sample size of 562 participants to detect a significant interaction effect.

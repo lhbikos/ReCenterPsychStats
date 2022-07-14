@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>PREFACE | ReCentering Psych Stats: Analysis of Variance</title>
   <meta name="description" content="“Analysis of Variance” is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="PREFACE | ReCentering Psych Stats: Analysis of Variance" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://lhbikos.github.io/ReCenterPsychStats/" />
   <meta property="og:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReC_ANOVA_bookcover.png" />
   <meta property="og:description" content="“Analysis of Variance” is a mini-volume in the ReCentering Psych Stats series that provides workflows and worked examples in R. A core focus of the ReCentering series is simulate data from published examples that recenter psychological research in a socially and culturally responsive manner." />
   <meta name="github-repo" content="lhbikos/ReCenterPsychStats" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-02-14" />
+<meta name="date" content="2022-07-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="acknowledgements.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -169,15 +168,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
 <li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
-<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
-<ul>
-<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
-<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
-<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
-<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
-<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
 <ul>
@@ -192,17 +183,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="Ready.html"><a href="Ready.html#best-practices"><i class="fa fa-check"></i><b>2.3</b> best pRactices</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.1</b> Setting up the file</a></li>
-<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.2</b> Script in chunks and everything else in the “inline text” sections</a></li>
-<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.3</b> Managing packages</a></li>
-<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.4</b> Upload the data</a></li>
+<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>2.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.2</b> Setting up the file</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.3</b> Script in chunks and everything else in the “inline text” sections</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.4</b> Managing packages</a></li>
+<li class="chapter" data-level="2.3.5" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.5</b> Upload the data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="Ready.html"><a href="Ready.html#quick-demonstration"><i class="fa fa-check"></i><b>2.4</b> quick demonstRation</a></li>
 <li class="chapter" data-level="2.5" data-path="Ready.html"><a href="Ready.html#the-knitted-file"><i class="fa fa-check"></i><b>2.5</b> the knitted file</a></li>
-<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown-1"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
-<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-are-we-transitioning-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> are we tRansitioning to R?</a></li>
-<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success-1"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
-<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started-1"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
+<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-have-we-transitioned-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> have we tRansitioned to R?</a></li>
+<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
+<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="waRmups.html"><a href="waRmups.html"><i class="fa fa-check"></i><b>3</b> waRming up</a>
 <ul>
@@ -233,7 +225,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.1.1" data-path="oneway.html"><a href="oneway.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="4.1.2" data-path="oneway.html"><a href="oneway.html#planning-for-practice-1"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="4.1.3" data-path="oneway.html"><a href="oneway.html#readings-resources-1"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="4.1.4" data-path="oneway.html"><a href="oneway.html#packages-1"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+<li class="chapter" data-level="4.1.4" data-path="oneway.html"><a href="oneway.html#packages"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="oneway.html"><a href="oneway.html#workflow-for-one-way-anova"><i class="fa fa-check"></i><b>4.2</b> Workflow for One-Way ANOVA</a></li>
 <li class="chapter" data-level="4.3" data-path="oneway.html"><a href="oneway.html#research-vignette-1"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a>
@@ -265,17 +257,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>4.7</b> Power Analysis</a></li>
 <li class="chapter" data-level="4.8" data-path="oneway.html"><a href="oneway.html#apa-style-results"><i class="fa fa-check"></i><b>4.8</b> APA Style Results</a></li>
-<li class="chapter" data-level="4.9" data-path="oneway.html"><a href="oneway.html#practice-problems-1"><i class="fa fa-check"></i><b>4.9</b> Practice Problems</a>
+<li class="chapter" data-level="4.9" data-path="oneway.html"><a href="oneway.html#a-conversation-with-dr.-tran"><i class="fa fa-check"></i><b>4.9</b> A Conversation with Dr. Tran</a></li>
+<li class="chapter" data-level="4.10" data-path="oneway.html"><a href="oneway.html#practice-problems-1"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
 <ul>
-<li class="chapter" data-level="4.9.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>4.9.1</b> Problem #1: Play around with this simulation.</a></li>
-<li class="chapter" data-level="4.9.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>4.9.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
-<li class="chapter" data-level="4.9.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>4.9.3</b> Problem #3: Try something entirely new.</a></li>
-<li class="chapter" data-level="4.9.4" data-path="oneway.html"><a href="oneway.html#grading-rubric-1"><i class="fa fa-check"></i><b>4.9.4</b> Grading Rubric</a></li>
+<li class="chapter" data-level="4.10.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="4.10.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
+<li class="chapter" data-level="4.10.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="4.10.4" data-path="oneway.html"><a href="oneway.html#grading-rubric-1"><i class="fa fa-check"></i><b>4.10.4</b> Grading Rubric</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>4.10</b> Bonus Reel:</a>
+<li class="chapter" data-level="4.11" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>4.11</b> Bonus Reel:</a>
 <ul>
-<li class="chapter" data-level="4.10.1" data-path="oneway.html"><a href="oneway.html#coming-soon"><i class="fa fa-check"></i><b>4.10.1</b> Coming soon!</a></li>
-<li class="chapter" data-level="4.10.2" data-path="oneway.html"><a href="oneway.html#whats-with-the-inline-code"><i class="fa fa-check"></i><b>4.10.2</b> What’s with the inline code?</a></li>
+<li class="chapter" data-level="4.11.1" data-path="oneway.html"><a href="oneway.html#whats-with-the-inline-code"><i class="fa fa-check"></i><b>4.11.1</b> What’s with the inline code?</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="between.html"><a href="between.html"><i class="fa fa-check"></i><b>5</b> Factorial (Between-Subjects) ANOVA</a>
@@ -285,7 +277,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.1.1" data-path="between.html"><a href="between.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="5.1.2" data-path="between.html"><a href="between.html#planning-for-practice-2"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="5.1.3" data-path="between.html"><a href="between.html#readings-resources-2"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="5.1.4" data-path="between.html"><a href="between.html#packages-2"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+<li class="chapter" data-level="5.1.4" data-path="between.html"><a href="between.html#packages-1"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="between.html"><a href="between.html#introducing-factorial-anova"><i class="fa fa-check"></i><b>5.2</b> Introducing Factorial ANOVA</a>
 <ul>
@@ -342,7 +334,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.1.1" data-path="Repeated.html"><a href="Repeated.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="6.1.2" data-path="Repeated.html"><a href="Repeated.html#planning-for-practice-3"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="6.1.3" data-path="Repeated.html"><a href="Repeated.html#readings-resources-3"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="6.1.4" data-path="Repeated.html"><a href="Repeated.html#packages-3"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+<li class="chapter" data-level="6.1.4" data-path="Repeated.html"><a href="Repeated.html#packages-2"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="Repeated.html"><a href="Repeated.html#introducing-one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>6.2</b> Introducing One-way Repeated Measures ANOVA</a>
 <ul>
@@ -387,7 +379,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="Mixed.html"><a href="Mixed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="7.1.2" data-path="Mixed.html"><a href="Mixed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="7.1.3" data-path="Mixed.html"><a href="Mixed.html#readings-resources-4"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="7.1.4" data-path="Mixed.html"><a href="Mixed.html#packages-4"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+<li class="chapter" data-level="7.1.4" data-path="Mixed.html"><a href="Mixed.html#packages-3"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="Mixed.html"><a href="Mixed.html#introducing-mixed-design-anova"><i class="fa fa-check"></i><b>7.2</b> Introducing Mixed Design ANOVA</a></li>
 <li class="chapter" data-level="7.3" data-path="Mixed.html"><a href="Mixed.html#research-vignette-4"><i class="fa fa-check"></i><b>7.3</b> Research Vignette</a>
@@ -419,7 +411,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.1.1" data-path="ANCOVA.html"><a href="ANCOVA.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="8.1.2" data-path="ANCOVA.html"><a href="ANCOVA.html#planning-for-practice-5"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
 <li class="chapter" data-level="8.1.3" data-path="ANCOVA.html"><a href="ANCOVA.html#readings-resources-5"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="8.1.4" data-path="ANCOVA.html"><a href="ANCOVA.html#packages-5"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ANCOVA.html"><a href="ANCOVA.html#packages-4"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="ANCOVA.html"><a href="ANCOVA.html#introducing-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>8.2</b> Introducing Analysis of Covariance (ANCOVA)</a></li>
 <li class="chapter" data-level="8.3" data-path="ANCOVA.html"><a href="ANCOVA.html#research-vignette-5"><i class="fa fa-check"></i><b>8.3</b> Research Vignette</a>
@@ -472,12 +464,12 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preface" class="section level1 unnumbered">
-<h1>PREFACE</h1>
-<p><strong>If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 14 Feb 2022</strong>. Emerging volumes on other statistics are posted on the <a href="https://lhbikos.github.io/BikosRVT/ReCenter.html">ReCentering Psych Stats</a> page at my research team’s website.</p>
+<div id="preface" class="section level1 unnumbered hasAnchor">
+<h1>PREFACE<a href="preface.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 14 Jul 2022</strong>. Emerging volumes on other statistics are posted on the <a href="https://lhbikos.github.io/BikosRVT/ReCenter.html">ReCentering Psych Stats</a> page at my research team’s website.</p>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a">Screencasted Lecture Link</a></p>
 <p>To <em>center</em> a variable in regression means to set its value at zero and interpret all other values in relation to this reference point. Regarding race and gender, researchers often center male and White at zero. Further, it is typical that research vignettes in statistics textbooks are similarly seated in a White, Western (frequently U.S.), heteronormative, framework. The purpose of this project is to create a set of open educational resources (OER) appropriate for doctoral and post-doctoral training that contribute to a socially responsive pedagogy – that is, it contributes to justice, equity, diversity, and inclusion.</p>
-<p>Statistics training in doctoral programs are frequently taught with fee-for-use programs (e.g., SPSS/AMOS, SAS, MPlus) that may not be readily available to the post-doctoral professional. In recent years, there has been an increase and improvement in R packages (e.g., <em>psych</em>, <em>lavaan</em>) used for in analyses common to psychological research. Correspondingly, many graduate programs are transitioning to statistics training in R (free and open source). This is a challenge for post-doctoral psychologists who were trained with other software. This OER will offer statistics training with R and be freely available (specifically in a GitHub respository and posted through GitHub Pages) under a Creative Commons Attribution - Non Commercial - Share Alike license [CC BY-NC-SA 4.0].</p>
+<p>Statistics training in doctoral programs are frequently taught with fee-for-use programs (e.g., SPSS/AMOS, SAS, MPlus) that may not be readily available to the post-doctoral professional. In recent years, there has been an increase and improvement in R packages (e.g., <em>psych</em>, <em>lavaan</em>) used for analyses common to psychological research. Correspondingly, many graduate programs are transitioning to statistics training in R (free and open source). This is a challenge for post-doctoral psychologists who were trained with other software. This OER will offer statistics training with R and be freely available (specifically in a GitHub repository and posted through GitHub Pages) under a Creative Commons Attribution - Non Commercial - Share Alike license [CC BY-NC-SA 4.0].</p>
 <p>Training models for doctoral programs in health service psychology are commonly scholar-practitioner, scientist-practitioner, or clinical-scientist. An emerging model, the <em>scientist-practitioner-advocacy</em> training model, incorporates social justice advocacy so that graduates are equipped to recognize and address the sociocultural context of oppression and unjust distribution of resources and opportunities <span class="citation">(<a href="#ref-mallinckrodt_scientist-practitioner-advocate_2014" role="doc-biblioref">Mallinckrodt et al., 2014</a>)</span>. In statistics textbooks, the use of research vignettes engages the learner around a tangible scenario for identifying independent variables, dependent variables, covariates, and potential mechanisms of change. Many students recall examples in Field’s <span class="citation">(<a href="#ref-field_discovering_2012" role="doc-biblioref">2012</a>)</span> popular statistics text: Viagra to teach one-way ANOVA, beer goggles for two-way ANOVA, and bushtucker for repeated measures. What if the research vignettes were more socially responsive?</p>
 <p>In this OER, research vignettes will be from recently published articles where:</p>
 <ul>
@@ -486,15 +478,15 @@ div.csl-indent {
 <li>the lesson’s statistic is used in the article, and</li>
 <li>there is sufficient information in the article to simulate the data for the chapter example(s) and practice problem(s); or it is publicly available.</li>
 </ul>
-<p>In training for multicultural competence, the saying, “A fish doesn’t know that it’s wet” is often used to convey the notion that we are often unaware of our own cultural characteristics. In recent months and years, there has been an increased awakening to the institutional and systemic racism that our systems are perpetuating. Queuing from the water metaphor, I am hopeful that a text that is recentered in the ways I have described can contribute to <em>changing the water</em> in higher education and in the profession of psychology.</p>
-<div id="copyright-with-open-access" class="section level2 unnumbered">
-<h2>Copyright with Open Access</h2>
+<p>In training for multicultural competence, the saying, “A fish doesn’t know that it’s wet” is often used to convey the notion that we are often unaware of our own cultural characteristics. In recent months and years, there has been an increased awakening to institutional and systemic factors that contribute to discrimination as a function of race, gender, nationality, class, and so forth. Queuing from the water metaphor, I am hopeful that a text that is recentered in the ways I have described can contribute to <em>changing the water</em> in higher education and in the profession of psychology.</p>
+<div id="copyright-with-open-access" class="section level2 unnumbered hasAnchor">
+<h2>Copyright with Open Access<a href="preface.html#copyright-with-open-access" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></p>
 <p>This book is published under a a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license: CC BY-SA 4.0.</p>
-<p>A <a href="https://github.com/lhbikos/ReC_Psychometrics">GitHub open-source repository</a> contains all of the text and source code for the book, including data and images.</p>
+<p>A <a href="https://github.com/lhbikos/ReCenterPsychStats">GitHub open-source repository</a> contains all of the text and source code for the book, including data and images.</p>
 </div>
 </div>
-<h3>References</h3>
+<h3>References<a href="refs.html#refs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-field_discovering_2012" class="csl-entry">
 Field, A. P. (2012). <em>Discovering statistics using <span>R</span></em>. Sage.
