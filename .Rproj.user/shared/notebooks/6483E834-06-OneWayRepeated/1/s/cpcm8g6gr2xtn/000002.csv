@@ -1,8 +1,0 @@
-"0","set.seed(2022)"
-"0","ID<-factor(c(rep(seq(1,8),each=3)))#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence"
-"0","Resilience<-rnorm(24,mean=c(5.7,6.21,6.26),sd=c(.88,.79,.37)) #gives me a column of 24 numbers with the specified Ms and SD"
-"0","Wave<-rep(c(""Pre"",""Post"", ""FollowUp""),each=1,8) #repeats pre, post, follow-up once each, 8 times"
-"0","Amodeo_long<-data.frame(ID, Wave, Resilience)"
-"0","#OneWay_mod<-aov(Resilience~Wave + Error(ID/(Wave)), AmodeoSIM)"
-"0","#summary(OneWay_mod)"
-"0","#model.tables(OneWay_mod,""means"")"

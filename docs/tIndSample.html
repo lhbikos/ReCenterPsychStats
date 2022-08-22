@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Independent Samples t test | ReCentering Psych Stats</title>
+  <meta name="description" content="Chapter 4 Independent Samples t test | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Independent Samples t test | ReCentering Psych Stats" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReCenterPsychStats-bookcover2.jpg" />
+  <meta property="og:description" content="Chapter 4 Independent Samples t test | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="github-repo" content="lhbikos/ReCenterPsychStats" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Independent Samples t test | ReCentering Psych Stats" />
+  
+  <meta name="twitter:description" content="Chapter 4 Independent Samples t test | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReCenterPsychStats-bookcover2.jpg" />
+
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
+
+
+<meta name="date" content="2022-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tOneSample.html"/>
+<link rel="next" href="tPaired.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ReCentering Psych Stats: Analysis of Variance</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Ready.html"><a href="Ready.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="Ready.html"><a href="Ready.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="Ready.html"><a href="Ready.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.2</b> downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="Ready.html"><a href="Ready.html#so-many-parts-and-pieces"><i class="fa fa-check"></i><b>2.2.1</b> So many paRts and pieces</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Ready.html"><a href="Ready.html#orienting-to-r-studio-focusing-only-on-the-things-we-will-be-using-first-and-most-often"><i class="fa fa-check"></i><b>2.2.2</b> oRienting to R Studio (focusing only on the things we will be using first and most often)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Ready.html"><a href="Ready.html#best-practices"><i class="fa fa-check"></i><b>2.3</b> best pRactices</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>2.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.2</b> Setting up the file</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.3</b> Script in chunks and everything else in the “inline text” sections</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.4</b> Managing packages</a></li>
+<li class="chapter" data-level="2.3.5" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.5</b> Upload the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="Ready.html"><a href="Ready.html#quick-demonstration"><i class="fa fa-check"></i><b>2.4</b> quick demonstRation</a></li>
+<li class="chapter" data-level="2.5" data-path="Ready.html"><a href="Ready.html#the-knitted-file"><i class="fa fa-check"></i><b>2.5</b> the knitted file</a></li>
+<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-have-we-transitioned-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> have we tRansitioned to R?</a></li>
+<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
+<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
+<li class="chapter" data-level="2.10" data-path="Ready.html"><a href="Ready.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>2.10</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Ready.html"><a href="Ready.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.10.2" data-path="Ready.html"><a href="Ready.html#planning-for-practice"><i class="fa fa-check"></i><b>2.10.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.10.3" data-path="Ready.html"><a href="Ready.html#readings-resources"><i class="fa fa-check"></i><b>2.10.3</b> Readings &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="Ready.html"><a href="Ready.html#research-vignette"><i class="fa fa-check"></i><b>2.11</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.12" data-path="Ready.html"><a href="Ready.html#variable-types-scale-of-measurement"><i class="fa fa-check"></i><b>2.12</b> Variable Types (Scale of Measurement)</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="Ready.html"><a href="Ready.html#measurement-scale"><i class="fa fa-check"></i><b>2.12.1</b> Measurement Scale</a></li>
+<li class="chapter" data-level="2.12.2" data-path="Ready.html"><a href="Ready.html#corresponding-variable-structure-in-r"><i class="fa fa-check"></i><b>2.12.2</b> Corresponding Variable Structure in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="Ready.html"><a href="Ready.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.13</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.13.1" data-path="Ready.html"><a href="Ready.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>2.13.1</b> Measures of Central Tendency</a></li>
+</ul></li>
+<li class="chapter" data-level="2.14" data-path="Ready.html"><a href="Ready.html#variability"><i class="fa fa-check"></i><b>2.14</b> Variability</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="Ready.html"><a href="Ready.html#range"><i class="fa fa-check"></i><b>2.14.1</b> Range</a></li>
+<li class="chapter" data-level="2.14.2" data-path="Ready.html"><a href="Ready.html#percentiles-quantiles-interquartile-range"><i class="fa fa-check"></i><b>2.14.2</b> Percentiles, Quantiles, Interquartile Range</a></li>
+<li class="chapter" data-level="2.14.3" data-path="Ready.html"><a href="Ready.html#deviations-around-the-mean"><i class="fa fa-check"></i><b>2.14.3</b> Deviations around the Mean</a></li>
+<li class="chapter" data-level="2.14.4" data-path="Ready.html"><a href="Ready.html#variance"><i class="fa fa-check"></i><b>2.14.4</b> Variance</a></li>
+<li class="chapter" data-level="2.14.5" data-path="Ready.html"><a href="Ready.html#standard-deviation"><i class="fa fa-check"></i><b>2.14.5</b> Standard Deviation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="Ready.html"><a href="Ready.html#are-the-variables-normally-distributed"><i class="fa fa-check"></i><b>2.15</b> Are the Variables Normally Distributed?</a></li>
+<li class="chapter" data-level="2.16" data-path="Ready.html"><a href="Ready.html#relations-between-variables"><i class="fa fa-check"></i><b>2.16</b> Relations between Variables</a></li>
+<li class="chapter" data-level="2.17" data-path="Ready.html"><a href="Ready.html#shortcuts-to-preliminary-analyses"><i class="fa fa-check"></i><b>2.17</b> Shortcuts to Preliminary Analyses</a>
+<ul>
+<li class="chapter" data-level="2.17.1" data-path="Ready.html"><a href="Ready.html#splom"><i class="fa fa-check"></i><b>2.17.1</b> SPLOM</a></li>
+<li class="chapter" data-level="2.17.2" data-path="Ready.html"><a href="Ready.html#apatables"><i class="fa fa-check"></i><b>2.17.2</b> apaTables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.18" data-path="Ready.html"><a href="Ready.html#an-apa-style-writeup"><i class="fa fa-check"></i><b>2.18</b> An APA Style Writeup</a></li>
+<li class="chapter" data-level="2.19" data-path="Ready.html"><a href="Ready.html#practice-problems"><i class="fa fa-check"></i><b>2.19</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.19.1" data-path="Ready.html"><a href="Ready.html#problem-1-change-the-random-seed"><i class="fa fa-check"></i><b>2.19.1</b> Problem #1: Change the Random Seed</a></li>
+<li class="chapter" data-level="2.19.2" data-path="Ready.html"><a href="Ready.html#problem-2-swap-variables-in-the-simulation"><i class="fa fa-check"></i><b>2.19.2</b> Problem #2: Swap Variables in the Simulation</a></li>
+<li class="chapter" data-level="2.19.3" data-path="Ready.html"><a href="Ready.html#problem-3-use-or-simulate-your-own-data"><i class="fa fa-check"></i><b>2.19.3</b> Problem #3: Use (or Simulate) Your Own Data</a></li>
+<li class="chapter" data-level="2.19.4" data-path="Ready.html"><a href="Ready.html#grading-rubric"><i class="fa fa-check"></i><b>2.19.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="t-tests.html"><a href="t-tests.html"><i class="fa fa-check"></i><em>t</em>-tests</a></li>
+<li class="chapter" data-level="3" data-path="tOneSample.html"><a href="tOneSample.html"><i class="fa fa-check"></i><b>3</b> One Sample <em>t</em>-tests</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tOneSample.html"><a href="tOneSample.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="tOneSample.html"><a href="tOneSample.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="tOneSample.html"><a href="tOneSample.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="tOneSample.html"><a href="tOneSample.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="tOneSample.html"><a href="tOneSample.html#packages"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="tOneSample.html"><a href="tOneSample.html#z-before-t"><i class="fa fa-check"></i><b>3.2</b> <em>z</em> before <em>t</em></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="tOneSample.html"><a href="tOneSample.html#simulating-a-mini-research-vignette"><i class="fa fa-check"></i><b>3.2.1</b> Simulating a Mini Research Vignette</a></li>
+<li class="chapter" data-level="3.2.2" data-path="tOneSample.html"><a href="tOneSample.html#raw-scores-z-scores-and-proportions"><i class="fa fa-check"></i><b>3.2.2</b> Raw Scores, <em>z</em>-scores, and Proportions</a></li>
+<li class="chapter" data-level="3.2.3" data-path="tOneSample.html"><a href="tOneSample.html#determining-probabilities"><i class="fa fa-check"></i><b>3.2.3</b> Determining Probabilities</a></li>
+<li class="chapter" data-level="3.2.4" data-path="tOneSample.html"><a href="tOneSample.html#percentiles"><i class="fa fa-check"></i><b>3.2.4</b> Percentiles</a></li>
+<li class="chapter" data-level="3.2.5" data-path="tOneSample.html"><a href="tOneSample.html#transforming-variables-to-standard-scores"><i class="fa fa-check"></i><b>3.2.5</b> Transforming Variables to Standard Scores</a></li>
+<li class="chapter" data-level="3.2.6" data-path="tOneSample.html"><a href="tOneSample.html#the-one-sample-z-test"><i class="fa fa-check"></i><b>3.2.6</b> The One-Sample <em>z</em> test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="tOneSample.html"><a href="tOneSample.html#introducing-the-one-sample-t-test"><i class="fa fa-check"></i><b>3.3</b> Introducing the One Sample <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="tOneSample.html"><a href="tOneSample.html#workflow-for-the-one-sample-t-test"><i class="fa fa-check"></i><b>3.3.1</b> Workflow for the One Sample <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="tOneSample.html"><a href="tOneSample.html#research-vignette-1"><i class="fa fa-check"></i><b>3.4</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.5" data-path="tOneSample.html"><a href="tOneSample.html#working-the-problem"><i class="fa fa-check"></i><b>3.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="tOneSample.html"><a href="tOneSample.html#stating-the-hypothesis"><i class="fa fa-check"></i><b>3.5.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="3.5.2" data-path="tOneSample.html"><a href="tOneSample.html#preliminary-exploration"><i class="fa fa-check"></i><b>3.5.2</b> Preliminary Exploration</a></li>
+<li class="chapter" data-level="3.5.3" data-path="tOneSample.html"><a href="tOneSample.html#hand-calculations"><i class="fa fa-check"></i><b>3.5.3</b> Hand-Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="tOneSample.html"><a href="tOneSample.html#computation-in-r"><i class="fa fa-check"></i><b>3.6</b> Computation in R</a></li>
+<li class="chapter" data-level="3.7" data-path="tOneSample.html"><a href="tOneSample.html#apa-style-results"><i class="fa fa-check"></i><b>3.7</b> APA Style Results</a></li>
+<li class="chapter" data-level="3.8" data-path="tOneSample.html"><a href="tOneSample.html#power-in-independent-samples-t-tests"><i class="fa fa-check"></i><b>3.8</b> Power in Independent Samples <em>t</em> tests</a></li>
+<li class="chapter" data-level="3.9" data-path="tOneSample.html"><a href="tOneSample.html#practice-problems-1"><i class="fa fa-check"></i><b>3.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="tOneSample.html"><a href="tOneSample.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>3.9.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="3.9.2" data-path="tOneSample.html"><a href="tOneSample.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation"><i class="fa fa-check"></i><b>3.9.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="3.9.3" data-path="tOneSample.html"><a href="tOneSample.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>3.9.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tIndSample.html"><a href="tIndSample.html"><i class="fa fa-check"></i><b>4</b> Independent Samples <em>t</em> test</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tIndSample.html"><a href="tIndSample.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="tIndSample.html"><a href="tIndSample.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="tIndSample.html"><a href="tIndSample.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="tIndSample.html"><a href="tIndSample.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="tIndSample.html"><a href="tIndSample.html#packages-1"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="tIndSample.html"><a href="tIndSample.html#introducing-the-independent-samples-t-test"><i class="fa fa-check"></i><b>4.2</b> Introducing the Independent Samples <em>t</em> Test</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="tIndSample.html"><a href="tIndSample.html#workflow-for-independent-samples-t-test"><i class="fa fa-check"></i><b>4.2.1</b> Workflow for Independent Samples <em>t</em> test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="tIndSample.html"><a href="tIndSample.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="tIndSample.html"><a href="tIndSample.html#working-the-problem-1"><i class="fa fa-check"></i><b>4.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="tIndSample.html"><a href="tIndSample.html#stating-the-hypothesis-1"><i class="fa fa-check"></i><b>4.4.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="4.4.2" data-path="tIndSample.html"><a href="tIndSample.html#preliminary-exploration-1"><i class="fa fa-check"></i><b>4.4.2</b> Preliminary Exploration</a></li>
+<li class="chapter" data-level="4.4.3" data-path="tIndSample.html"><a href="tIndSample.html#hand-calculations-1"><i class="fa fa-check"></i><b>4.4.3</b> Hand-Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="tIndSample.html"><a href="tIndSample.html#computation-in-r-1"><i class="fa fa-check"></i><b>4.5</b> Computation in R</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="tIndSample.html"><a href="tIndSample.html#what-if-we-had-violated-the-homogeneity-of-variance-assumption"><i class="fa fa-check"></i><b>4.5.1</b> What if we had violated the homogeneity of variance assumption?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="tIndSample.html"><a href="tIndSample.html#apa-style-results-1"><i class="fa fa-check"></i><b>4.6</b> APA Style Results</a></li>
+<li class="chapter" data-level="4.7" data-path="tIndSample.html"><a href="tIndSample.html#power-in-independent-samples-t-tests-1"><i class="fa fa-check"></i><b>4.7</b> Power in Independent Samples <em>t</em> tests</a></li>
+<li class="chapter" data-level="4.8" data-path="tIndSample.html"><a href="tIndSample.html#practice-problems-2"><i class="fa fa-check"></i><b>4.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="tIndSample.html"><a href="tIndSample.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>4.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="4.8.2" data-path="tIndSample.html"><a href="tIndSample.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-1"><i class="fa fa-check"></i><b>4.8.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="4.8.3" data-path="tIndSample.html"><a href="tIndSample.html#problem-3-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>4.8.3</b> Problem #3: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="4.8.4" data-path="tIndSample.html"><a href="tIndSample.html#problem-4-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>4.8.4</b> Problem #4: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tPaired.html"><a href="tPaired.html"><i class="fa fa-check"></i><b>5</b> Paired Samples <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tPaired.html"><a href="tPaired.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="tPaired.html"><a href="tPaired.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tPaired.html"><a href="tPaired.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="tPaired.html"><a href="tPaired.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="tPaired.html"><a href="tPaired.html#packages-2"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="tPaired.html"><a href="tPaired.html#introducing-the-paired-samples-t-test"><i class="fa fa-check"></i><b>5.2</b> Introducing the Paired Samples <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.3" data-path="tPaired.html"><a href="tPaired.html#workflow-for-paired-samples-t-test"><i class="fa fa-check"></i><b>5.3</b> Workflow for Paired Samples <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.4" data-path="tPaired.html"><a href="tPaired.html#research-vignette-3"><i class="fa fa-check"></i><b>5.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tPaired.html"><a href="tPaired.html#simulating-data-for-the-paired-samples-t-test"><i class="fa fa-check"></i><b>5.4.1</b> Simulating Data for the Paired Samples <em>t</em> test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tPaired.html"><a href="tPaired.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="tPaired.html"><a href="tPaired.html#stating-the-hypothesis-2"><i class="fa fa-check"></i><b>5.5.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="5.5.2" data-path="tPaired.html"><a href="tPaired.html#preliminary-exploration-2"><i class="fa fa-check"></i><b>5.5.2</b> Preliminary Exploration</a></li>
+<li class="chapter" data-level="5.5.3" data-path="tPaired.html"><a href="tPaired.html#hand-calculations-2"><i class="fa fa-check"></i><b>5.5.3</b> Hand Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="tPaired.html"><a href="tPaired.html#computation-in-r-2"><i class="fa fa-check"></i><b>5.6</b> Computation in R</a></li>
+<li class="chapter" data-level="5.7" data-path="tPaired.html"><a href="tPaired.html#apa-style-results-2"><i class="fa fa-check"></i><b>5.7</b> APA Style Results</a></li>
+<li class="chapter" data-level="5.8" data-path="tPaired.html"><a href="tPaired.html#power-in-paired-samples-t-tests"><i class="fa fa-check"></i><b>5.8</b> Power in Paired Samples <em>t</em> tests</a></li>
+<li class="chapter" data-level="5.9" data-path="tPaired.html"><a href="tPaired.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="tPaired.html"><a href="tPaired.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="5.9.2" data-path="tPaired.html"><a href="tPaired.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-2"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="5.9.3" data-path="tPaired.html"><a href="tPaired.html#problem-3-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="5.9.4" data-path="tPaired.html"><a href="tPaired.html#problem-4-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>5.9.4</b> Problem #4: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i>Analysis of Variance</a></li>
+<li class="chapter" data-level="6" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>6</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="oneway.html"><a href="oneway.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="oneway.html"><a href="oneway.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="oneway.html"><a href="oneway.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="oneway.html"><a href="oneway.html#packages-3"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="oneway.html"><a href="oneway.html#workflow-for-one-way-anova"><i class="fa fa-check"></i><b>6.2</b> Workflow for One-Way ANOVA</a></li>
+<li class="chapter" data-level="6.3" data-path="oneway.html"><a href="oneway.html#research-vignette-4"><i class="fa fa-check"></i><b>6.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="oneway.html"><a href="oneway.html#data-simulation"><i class="fa fa-check"></i><b>6.3.1</b> Data Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="oneway.html"><a href="oneway.html#working-the-problem-3"><i class="fa fa-check"></i><b>6.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="oneway.html"><a href="oneway.html#preparing-the-data"><i class="fa fa-check"></i><b>6.4.1</b> Preparing the Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-numerically"><i class="fa fa-check"></i><b>6.4.2</b> Exploring the Distributional Characteristics Numerically</a></li>
+<li class="chapter" data-level="6.4.3" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-graphically"><i class="fa fa-check"></i><b>6.4.3</b> Exploring the Distributional Characteristics Graphically</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="oneway.html"><a href="oneway.html#understanding-anova-with-hand-calculations"><i class="fa fa-check"></i><b>6.5</b> Understanding ANOVA with <em>Hand Calculations</em></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="oneway.html"><a href="oneway.html#sums-of-squares-total"><i class="fa fa-check"></i><b>6.5.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="6.5.2" data-path="oneway.html"><a href="oneway.html#sums-of-squares-for-the-model-or-between"><i class="fa fa-check"></i><b>6.5.2</b> Sums of Squares for the Model (or Between)</a></li>
+<li class="chapter" data-level="6.5.3" data-path="oneway.html"><a href="oneway.html#sums-of-squares-residual-or-within"><i class="fa fa-check"></i><b>6.5.3</b> Sums of Squares Residual (or within)</a></li>
+<li class="chapter" data-level="6.5.4" data-path="oneway.html"><a href="oneway.html#relationship-between-ss_t-ss_m-and-ss_r."><i class="fa fa-check"></i><b>6.5.4</b> Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span>.</a></li>
+<li class="chapter" data-level="6.5.5" data-path="oneway.html"><a href="oneway.html#mean-squares-model-residual"><i class="fa fa-check"></i><b>6.5.5</b> Mean Squares Model &amp; Residual</a></li>
+<li class="chapter" data-level="6.5.6" data-path="oneway.html"><a href="oneway.html#calculating-the-f-statistic"><i class="fa fa-check"></i><b>6.5.6</b> Calculating the <em>F</em> Statistic</a></li>
+<li class="chapter" data-level="6.5.7" data-path="oneway.html"><a href="oneway.html#source-table-games"><i class="fa fa-check"></i><b>6.5.7</b> Source Table Games</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="oneway.html"><a href="oneway.html#working-the-one-way-anova-in-r"><i class="fa fa-check"></i><b>6.6</b> Working the One-Way ANOVA in R</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>6.6.1</b> Evaluating the Statistical Assumptions</a></li>
+<li class="chapter" data-level="6.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>6.6.2</b> Computing the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="6.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>6.6.3</b> Follow-up to the Omnibus <em>F</em></a></li>
+<li class="chapter" data-level="6.6.4" data-path="oneway.html"><a href="oneway.html#what-if-we-violated-the-homogeneity-of-variance-test"><i class="fa fa-check"></i><b>6.6.4</b> What if we Violated the Homogeneity of Variance test?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>6.7</b> Power Analysis</a></li>
+<li class="chapter" data-level="6.8" data-path="oneway.html"><a href="oneway.html#apa-style-results-3"><i class="fa fa-check"></i><b>6.8</b> APA Style Results</a></li>
+<li class="chapter" data-level="6.9" data-path="oneway.html"><a href="oneway.html#a-conversation-with-dr.-tran"><i class="fa fa-check"></i><b>6.9</b> A Conversation with Dr. Tran</a></li>
+<li class="chapter" data-level="6.10" data-path="oneway.html"><a href="oneway.html#practice-problems-4"><i class="fa fa-check"></i><b>6.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>6.10.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="6.10.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>6.10.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
+<li class="chapter" data-level="6.10.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>6.10.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="6.10.4" data-path="oneway.html"><a href="oneway.html#grading-rubric-1"><i class="fa fa-check"></i><b>6.10.4</b> Grading Rubric</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>6.11</b> Bonus Reel:</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="oneway.html"><a href="oneway.html#whats-with-the-inline-code"><i class="fa fa-check"></i><b>6.11.1</b> What’s with the inline code?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="between.html"><a href="between.html"><i class="fa fa-check"></i><b>7</b> Factorial (Between-Subjects) ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="between.html"><a href="between.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="between.html"><a href="between.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="between.html"><a href="between.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="between.html"><a href="between.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="between.html"><a href="between.html#packages-4"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="between.html"><a href="between.html#introducing-factorial-anova"><i class="fa fa-check"></i><b>7.2</b> Introducing Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="between.html"><a href="between.html#workflow-for-two-way-anova"><i class="fa fa-check"></i><b>7.2.1</b> Workflow for Two-Way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="between.html"><a href="between.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="between.html"><a href="between.html#preliminary-exploration-of-our-research-vignette"><i class="fa fa-check"></i><b>7.3.1</b> Preliminary exploration of our research vignette</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="between.html"><a href="between.html#working-the-factorial-anova-by-hand"><i class="fa fa-check"></i><b>7.4</b> Working the Factorial ANOVA (by hand)</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="between.html"><a href="between.html#sums-of-squares-total-1"><i class="fa fa-check"></i><b>7.4.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="7.4.2" data-path="between.html"><a href="between.html#sums-of-squares-for-the-model"><i class="fa fa-check"></i><b>7.4.2</b> Sums of Squares for the Model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="between.html"><a href="between.html#sums-of-squares-residual-or-within-1"><i class="fa fa-check"></i><b>7.4.3</b> Sums of Squares Residual (or within)</a></li>
+<li class="chapter" data-level="7.4.4" data-path="between.html"><a href="between.html#a-recap-on-the-relationship-between-ss_t-ss_m-and-ss_r"><i class="fa fa-check"></i><b>7.4.4</b> A Recap on the Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span></a></li>
+<li class="chapter" data-level="7.4.5" data-path="between.html"><a href="between.html#calculating-ss-for-each-factor-and-their-products"><i class="fa fa-check"></i><b>7.4.5</b> Calculating SS for Each Factor and Their Products</a></li>
+<li class="chapter" data-level="7.4.6" data-path="between.html"><a href="between.html#source-table-games-1"><i class="fa fa-check"></i><b>7.4.6</b> Source Table Games!</a></li>
+<li class="chapter" data-level="7.4.7" data-path="between.html"><a href="between.html#interpreting-the-results"><i class="fa fa-check"></i><b>7.4.7</b> Interpreting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="between.html"><a href="between.html#working-the-factorial-anova-with-r-packages"><i class="fa fa-check"></i><b>7.5</b> Working the Factorial ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="between.html"><a href="between.html#evaluating-the-statistical-assumptions-1"><i class="fa fa-check"></i><b>7.5.1</b> Evaluating the statistical assumptions</a></li>
+<li class="chapter" data-level="7.5.2" data-path="between.html"><a href="between.html#evaluating-the-omnibus-anova"><i class="fa fa-check"></i><b>7.5.2</b> Evaluating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="7.5.3" data-path="between.html"><a href="between.html#follow-up-a-significant-interaction-effect"><i class="fa fa-check"></i><b>7.5.3</b> Follow-up a significant interaction effect</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="between.html"><a href="between.html#investigating-main-effects"><i class="fa fa-check"></i><b>7.6</b> Investigating Main Effects</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="between.html"><a href="between.html#follow-up-with-all-post-hocs"><i class="fa fa-check"></i><b>7.6.1</b> Follow-up with all Post-Hocs</a></li>
+<li class="chapter" data-level="7.6.2" data-path="between.html"><a href="between.html#follow-up-with-planned-contrasts"><i class="fa fa-check"></i><b>7.6.2</b> Follow-up with planned contrasts</a></li>
+<li class="chapter" data-level="7.6.3" data-path="between.html"><a href="between.html#polynomial-trends"><i class="fa fa-check"></i><b>7.6.3</b> Polynomial Trends</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="between.html"><a href="between.html#my-apa-style-results-section"><i class="fa fa-check"></i><b>7.7</b> My APA Style Results Section</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="between.html"><a href="between.html#comparing-our-results-to-rhamdani-et-al.--ramdhani_affective_2018"><i class="fa fa-check"></i><b>7.7.1</b> Comparing Our Results to Rhamdani et al. <span class="citation">(<span>2018</span>)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="between.html"><a href="between.html#options-for-assumption-violations"><i class="fa fa-check"></i><b>7.8</b> Options for Assumption Violations</a></li>
+<li class="chapter" data-level="7.9" data-path="between.html"><a href="between.html#power"><i class="fa fa-check"></i><b>7.9</b> Power</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="between.html"><a href="between.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>7.9.1</b> Post Hoc Power Analysis</a></li>
+<li class="chapter" data-level="7.9.2" data-path="between.html"><a href="between.html#estimating-sample-size-requirements"><i class="fa fa-check"></i><b>7.9.2</b> Estimating Sample Size Requirements</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="between.html"><a href="between.html#practice-problems-5"><i class="fa fa-check"></i><b>7.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="between.html"><a href="between.html#problem-1-play-around-with-this-simulation.-1"><i class="fa fa-check"></i><b>7.10.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="7.10.2" data-path="between.html"><a href="between.html#problem-2-conduct-a-factorial-anova-with-the-positive-evaluation-dependent-variable."><i class="fa fa-check"></i><b>7.10.2</b> Problem #2: Conduct a factorial ANOVA with the <em>positive evaluation</em> dependent variable.</a></li>
+<li class="chapter" data-level="7.10.3" data-path="between.html"><a href="between.html#problem-3-try-something-entirely-new.-1"><i class="fa fa-check"></i><b>7.10.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="7.10.4" data-path="between.html"><a href="between.html#grading-rubric-2"><i class="fa fa-check"></i><b>7.10.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Repeated.html"><a href="Repeated.html"><i class="fa fa-check"></i><b>8</b> One-Way Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="Repeated.html"><a href="Repeated.html#navigating-this-lesson-7"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="Repeated.html"><a href="Repeated.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="Repeated.html"><a href="Repeated.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="Repeated.html"><a href="Repeated.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="Repeated.html"><a href="Repeated.html#packages-5"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="Repeated.html"><a href="Repeated.html#introducing-one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>8.2</b> Introducing One-way Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="Repeated.html"><a href="Repeated.html#workflow-for-oneway-repeated-measures-anova"><i class="fa fa-check"></i><b>8.2.1</b> Workflow for Oneway Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="Repeated.html"><a href="Repeated.html#research-vignette-6"><i class="fa fa-check"></i><b>8.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="Repeated.html"><a href="Repeated.html#code-for-simulating-the-data-used-today."><i class="fa fa-check"></i><b>8.3.1</b> Code for simulating the data used today.</a></li>
+<li class="chapter" data-level="8.3.2" data-path="Repeated.html"><a href="Repeated.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.3.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="Repeated.html"><a href="Repeated.html#working-the-one-way-repeated-measures-anova-by-hand"><i class="fa fa-check"></i><b>8.4</b> Working the One-Way Repeated Measures ANOVA (by hand)</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-total-2"><i class="fa fa-check"></i><b>8.4.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="8.4.2" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-within-for-repated-measures-anova"><i class="fa fa-check"></i><b>8.4.2</b> Sums of Squares Within for Repated Measures ANOVA</a></li>
+<li class="chapter" data-level="8.4.3" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-model-effect-of-time"><i class="fa fa-check"></i><b>8.4.3</b> Sums of Squares Model – Effect of Time</a></li>
+<li class="chapter" data-level="8.4.4" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-residual"><i class="fa fa-check"></i><b>8.4.4</b> Sums of Squares Residual</a></li>
+<li class="chapter" data-level="8.4.5" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-between"><i class="fa fa-check"></i><b>8.4.5</b> Sums of Squares Between</a></li>
+<li class="chapter" data-level="8.4.6" data-path="Repeated.html"><a href="Repeated.html#mean-squares-model-residual-1"><i class="fa fa-check"></i><b>8.4.6</b> Mean Squares Model &amp; Residual</a></li>
+<li class="chapter" data-level="8.4.7" data-path="Repeated.html"><a href="Repeated.html#f-ratio"><i class="fa fa-check"></i><b>8.4.7</b> <em>F</em> ratio</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="Repeated.html"><a href="Repeated.html#working-the-one-way-anova-with-r-packages"><i class="fa fa-check"></i><b>8.5</b> Working the One-Way ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="Repeated.html"><a href="Repeated.html#testing-the-assumptions"><i class="fa fa-check"></i><b>8.5.1</b> Testing the assumptions</a></li>
+<li class="chapter" data-level="8.5.2" data-path="Repeated.html"><a href="Repeated.html#omnibus-repeated-measures-anova"><i class="fa fa-check"></i><b>8.5.2</b> Omnibus Repeated Measures ANOVA</a></li>
+<li class="chapter" data-level="8.5.3" data-path="Repeated.html"><a href="Repeated.html#follow-up"><i class="fa fa-check"></i><b>8.5.3</b> Follow-up</a></li>
+<li class="chapter" data-level="8.5.4" data-path="Repeated.html"><a href="Repeated.html#results-section"><i class="fa fa-check"></i><b>8.5.4</b> Results Section</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="Repeated.html"><a href="Repeated.html#power-in-repeated-measures-anova"><i class="fa fa-check"></i><b>8.6</b> Power in Repeated Measures ANOVA</a></li>
+<li class="chapter" data-level="8.7" data-path="Repeated.html"><a href="Repeated.html#practice-problems-6"><i class="fa fa-check"></i><b>8.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="Repeated.html"><a href="Repeated.html#problem-1-change-the-random-seed-1"><i class="fa fa-check"></i><b>8.7.1</b> Problem #1: Change the Random Seed</a></li>
+<li class="chapter" data-level="8.7.2" data-path="Repeated.html"><a href="Repeated.html#problem-2-increase-n"><i class="fa fa-check"></i><b>8.7.2</b> Problem #2: Increase <em>N</em></a></li>
+<li class="chapter" data-level="8.7.3" data-path="Repeated.html"><a href="Repeated.html#problem-3-try-something-entirely-new"><i class="fa fa-check"></i><b>8.7.3</b> Problem #3: Try Something Entirely New</a></li>
+<li class="chapter" data-level="8.7.4" data-path="Repeated.html"><a href="Repeated.html#grading-rubric-3"><i class="fa fa-check"></i><b>8.7.4</b> Grading Rubric</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="Repeated.html"><a href="Repeated.html#bonus-reel-1"><i class="fa fa-check"></i><b>8.8</b> Bonus Reel:</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Mixed.html"><a href="Mixed.html"><i class="fa fa-check"></i><b>9</b> Mixed Design ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="Mixed.html"><a href="Mixed.html#navigating-this-lesson-8"><i class="fa fa-check"></i><b>9.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="Mixed.html"><a href="Mixed.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="Mixed.html"><a href="Mixed.html#planning-for-practice-7"><i class="fa fa-check"></i><b>9.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="9.1.3" data-path="Mixed.html"><a href="Mixed.html#readings-resources-7"><i class="fa fa-check"></i><b>9.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="9.1.4" data-path="Mixed.html"><a href="Mixed.html#packages-6"><i class="fa fa-check"></i><b>9.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="Mixed.html"><a href="Mixed.html#introducing-mixed-design-anova"><i class="fa fa-check"></i><b>9.2</b> Introducing Mixed Design ANOVA</a></li>
+<li class="chapter" data-level="9.3" data-path="Mixed.html"><a href="Mixed.html#research-vignette-7"><i class="fa fa-check"></i><b>9.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="Mixed.html"><a href="Mixed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>9.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="Mixed.html"><a href="Mixed.html#working-the-mixed-design-anova-with-r-packages"><i class="fa fa-check"></i><b>9.4</b> Working the Mixed Design ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="Mixed.html"><a href="Mixed.html#exploring-data-and-testing-assumptions"><i class="fa fa-check"></i><b>9.4.1</b> Exploring data and testing assumptions</a></li>
+<li class="chapter" data-level="9.4.2" data-path="Mixed.html"><a href="Mixed.html#omnibus-anova"><i class="fa fa-check"></i><b>9.4.2</b> Omnibus ANOVA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-condition-within-wave"><i class="fa fa-check"></i><b>9.4.3</b> Simple main effect of condition within wave</a></li>
+<li class="chapter" data-level="9.4.4" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-wave-within-condition"><i class="fa fa-check"></i><b>9.4.4</b> Simple main effect of wave within condition</a></li>
+<li class="chapter" data-level="9.4.5" data-path="Mixed.html"><a href="Mixed.html#if-we-only-had-a-main-effect"><i class="fa fa-check"></i><b>9.4.5</b> If we only had a main effect</a></li>
+<li class="chapter" data-level="9.4.6" data-path="Mixed.html"><a href="Mixed.html#apa-style-write-up-of-the-results"><i class="fa fa-check"></i><b>9.4.6</b> APA Style Write-up of the Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="Mixed.html"><a href="Mixed.html#power-in-mixed-design-anova"><i class="fa fa-check"></i><b>9.5</b> Power in Mixed Design ANOVA</a></li>
+<li class="chapter" data-level="9.6" data-path="Mixed.html"><a href="Mixed.html#practice-problems-7"><i class="fa fa-check"></i><b>9.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="Mixed.html"><a href="Mixed.html#problem-1-play-around-with-this-simulation.-2"><i class="fa fa-check"></i><b>9.6.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="9.6.2" data-path="Mixed.html"><a href="Mixed.html#problem-2-conduct-a-one-way-anova-with-a-different-dependent-variable."><i class="fa fa-check"></i><b>9.6.2</b> Problem #2: Conduct a one-way ANOVA with a different dependent variable.</a></li>
+<li class="chapter" data-level="9.6.3" data-path="Mixed.html"><a href="Mixed.html#problem-3-try-something-entirely-new.-2"><i class="fa fa-check"></i><b>9.6.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="9.6.4" data-path="Mixed.html"><a href="Mixed.html#grading-rubric-4"><i class="fa fa-check"></i><b>9.6.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ANCOVA.html"><a href="ANCOVA.html"><i class="fa fa-check"></i><b>10</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ANCOVA.html"><a href="ANCOVA.html#navigating-this-lesson-9"><i class="fa fa-check"></i><b>10.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="ANCOVA.html"><a href="ANCOVA.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ANCOVA.html"><a href="ANCOVA.html#planning-for-practice-8"><i class="fa fa-check"></i><b>10.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="10.1.3" data-path="ANCOVA.html"><a href="ANCOVA.html#readings-resources-8"><i class="fa fa-check"></i><b>10.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="10.1.4" data-path="ANCOVA.html"><a href="ANCOVA.html#packages-7"><i class="fa fa-check"></i><b>10.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ANCOVA.html"><a href="ANCOVA.html#introducing-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>10.2</b> Introducing Analysis of Covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="10.3" data-path="ANCOVA.html"><a href="ANCOVA.html#research-vignette-8"><i class="fa fa-check"></i><b>10.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="ANCOVA.html"><a href="ANCOVA.html#simulating-the-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>10.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-1-controlling-for-the-pretest"><i class="fa fa-check"></i><b>10.4</b> Scenario #1: Controlling for the pretest</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-1"><i class="fa fa-check"></i><b>10.4.1</b> Preparing the data</a></li>
+<li class="chapter" data-level="10.4.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions"><i class="fa fa-check"></i><b>10.4.2</b> Checking the assumptions</a></li>
+<li class="chapter" data-level="10.4.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova"><i class="fa fa-check"></i><b>10.4.3</b> Calculating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="10.4.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate"><i class="fa fa-check"></i><b>10.4.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
+<li class="chapter" data-level="10.4.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section"><i class="fa fa-check"></i><b>10.4.5</b> Toward an APA style results section</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-2-controlling-for-a-confounding-or-covarying-variable"><i class="fa fa-check"></i><b>10.5</b> Scenario #2: Controlling for a confounding or covarying variable</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-2"><i class="fa fa-check"></i><b>10.5.1</b> Preparing the data</a></li>
+<li class="chapter" data-level="10.5.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions-1"><i class="fa fa-check"></i><b>10.5.2</b> Checking the assumptions</a></li>
+<li class="chapter" data-level="10.5.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova-1"><i class="fa fa-check"></i><b>10.5.3</b> Calculating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="10.5.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate-1"><i class="fa fa-check"></i><b>10.5.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
+<li class="chapter" data-level="10.5.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section-1"><i class="fa fa-check"></i><b>10.5.5</b> Toward an APA style results section</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="ANCOVA.html"><a href="ANCOVA.html#more-and-a-recap-on-covariates"><i class="fa fa-check"></i><b>10.6</b> More (and a recap) on covariates</a></li>
+<li class="chapter" data-level="10.7" data-path="ANCOVA.html"><a href="ANCOVA.html#practice-problems-8"><i class="fa fa-check"></i><b>10.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-1-play-around-with-this-simulation.-3"><i class="fa fa-check"></i><b>10.7.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="10.7.2" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-2-conduct-a-one-way-ancova-with-the-dv-and-covariate-at-post2."><i class="fa fa-check"></i><b>10.7.2</b> Problem #2: Conduct a one-way ANCOVA with the DV and covariate at post2.</a></li>
+<li class="chapter" data-level="10.7.3" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-3-try-something-entirely-new.-3"><i class="fa fa-check"></i><b>10.7.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="10.7.4" data-path="ANCOVA.html"><a href="ANCOVA.html#grading-rubric-5"><i class="fa fa-check"></i><b>10.7.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tIndSample" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Independent Samples <em>t</em> test<a href="tIndSample.html#tIndSample" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="link%20here">Screencasted Lecture Link</a></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tIndSample.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)  <span class="co">#eliminates scientific notation</span></span></code></pre></div>
+<p>Researchers may wish to know if there are differences on a given outcome variable as a result of a dichotomous grouping variable. For example, during the COVID-19 pandemic, my research team asked if there were differences in the percentage of time that individuals wore facemasks as a result of 2020 Presidential voting trends (Republican or Democratic) of their county of residence. In these simple designs, the independent samples <em>t</em> test could be used to test the researchers’ hypotheses.</p>
+<div id="navigating-this-lesson-3" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Navigating this Lesson<a href="tIndSample.html#navigating-this-lesson-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There is about # hour and ## minutes of lecture. If you work through the materials with me it would be plan for an additional TIME.</p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReCenterPsychStats">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
+<div id="learning-objectives-3" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Learning Objectives<a href="tIndSample.html#learning-objectives-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Recognize the research questions for which utilization of the independent samples <em>t</em> test would be appropriate.</li>
+<li>Narrate the steps in conducting an independent samples <em>t</em> test, beginning with testing the statistical assumptions through writing up an APA style results section.</li>
+<li>Calculate an independent samples <em>t</em> test in R (including effect sizes).</li>
+<li>Interpret a 95% confidence interval around a mean difference score.</li>
+<li>Produce an APA style results for an independent samples <em>t</em> test.</li>
+<li>Determine a sample size that (given a set of parameters) would likely result in a statistically significant effect, if there was one.</li>
+</ul>
+</div>
+<div id="planning-for-practice-2" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Planning for Practice<a href="tIndSample.html#planning-for-practice-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The suggestions for homework are graded in complexity. The more complete descriptions at the end of the chapter follow these suggestions.</p>
+<ul>
+<li>Rework the independent samples <em>t</em> test in the lesson by changing the random seed in the code that simulates the data. This should provide minor changes to the data, but the results will likely be very similar.</li>
+<li>Rework the independent samples <em>t</em> test in the lesson by changing something else about the simulation. For example, if you are interested in power, consider changing the sample size.</li>
+<li>Use the simulated data that is provided, but use the nonverbal variable, instead.</li>
+<li>Conduct an independent samples <em>t</em> test with data to which you have access and permission to use. This could include data you simulate on your own or from a published article.</li>
+</ul>
+</div>
+<div id="readings-resources-2" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Readings &amp; Resources<a href="tIndSample.html#readings-resources-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<ul>
+<li>Navarro, D. (2020). Chapter 13: Comparing two means. In <a href="https://learningstatisticswithr.com/">Learning Statistics with R - A tutorial for Psychology Students and other Beginners</a>. Retrieved from <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)" class="uri">https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)</a>
+<ul>
+<li>Navarro’s OER includes a good mix of conceptual information about <em>t</em> tests as well as R code. My lesson integrates her approach as well as considering information from Field’s <span class="citation">(<a href="#ref-field_discovering_2012" role="doc-biblioref">2012</a>)</span> and Green and Salkind’s <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">2014b</a>)</span> texts (as well as searching around on the internet).</li>
+</ul></li>
+<li>Elliott, A. M., Alexander, S. C., Mescher, C. A., Mohan, D., &amp; Barnato, A. E. (2016). Differences in Physicians’ Verbal and Nonverbal Communication With Black and White Patients at the End of Life. <em>Journal of Pain and Symptom Management, 51</em>(1), 1–8. <a href="https://doi.org/10.1016/j.jpainsymman.2015.07.008" class="uri">https://doi.org/10.1016/j.jpainsymman.2015.07.008</a>
+<ul>
+<li>The source of our research vignette.</li>
+</ul></li>
+</ul>
+</div>
+<div id="packages-1" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Packages<a href="tIndSample.html#packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="tIndSample.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
+<span id="cb232-2"><a href="tIndSample.html#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
+<span id="cb232-3"><a href="tIndSample.html#cb232-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
+<span id="cb232-4"><a href="tIndSample.html#cb232-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
+<span id="cb232-5"><a href="tIndSample.html#cb232-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if(!require(lsr)){install.packages(&#39;lsr&#39;)}</span></span>
+<span id="cb232-6"><a href="tIndSample.html#cb232-6" aria-hidden="true" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)}</span></span>
+<span id="cb232-7"><a href="tIndSample.html#cb232-7" aria-hidden="true" tabindex="-1"></a><span class="co"># if(!require(pwr)){install.packages(&#39;pwr&#39;)}</span></span></code></pre></div>
+</div>
+</div>
+<div id="introducing-the-independent-samples-t-test" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Introducing the Independent Samples <em>t</em> Test<a href="tIndSample.html#introducing-the-independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The independent samples <em>t</em>-test assesses whether the population mean of the test variable for one group differs from the population mean of the test variable for a second group. This <em>t</em> test can only accommodate two levels of a grouping variable (e.g., teachers/students, volunteers/employees, treatment/control) and the participants must be different in each group.</p>
+<div class="figure">
+<img src="images/ttests/conditions_paired.jpg" alt="" />
+<p class="caption">An image of a row with two boxes labeled Condition A (in light blue) and Condition B (in dark blue). This represents the use of an independent samples <em>t</em>-test to compare across conditions.</p>
+</div>
+<p>The comparison of two means is especially evident in the numerator of the formula. In the denominator we can see that the mean difference is adjusted by the standard error. At the outset, you should know that the formula in the denominator gets messy, but the formula, alone, provides an important conceptual map.</p>
+<p><span class="math display">\[t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}}\]</span>
+If the researcher is interested in comparing the same participants’ experiences across time or in different groups, they should consider using a <a href="tPaired.html#tPaired">paired samples <em>t</em>-test</a>. Further, the independent samples <em>t</em>-test is limited to a grouping variable with only two levels. If the researcher is interested in three or more levels, they should consider using a <a href="oneway.html#oneway">one-way ANOVA</a>.</p>
+<div id="workflow-for-independent-samples-t-test" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Workflow for Independent Samples <em>t</em> test<a href="tIndSample.html#workflow-for-independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The following is a proposed workflow for conducting a independent samples <em>t</em>-test.</p>
+<p><img src="images/ttests/IndSampleWrkFlw.jpg" alt="A colorful image of a workflow for the one sample t test" />
+If the data meets the assumptions associated with the research design (e.g., independence of observations and a continuously scaled metric), these are the steps for the analysis of an independent samples <em>t</em> test:</p>
+<ol style="list-style-type: decimal">
+<li>Prepare (upload) data.</li>
+<li>Explore data with
+<ul>
+<li>graphs</li>
+<li>descriptive statistics</li>
+</ul></li>
+<li>Assess normality via skew and kurtosis</li>
+<li>Consider the homogeneity of variance assumption and decide whether to use the Student’s or Welch’s formulation.</li>
+<li>Compute the independent samples <em>t</em>-test</li>
+<li>Compute an effect size (frequently the <em>d</em> or <em>eta</em> statistic)</li>
+<li>Manage Type I error</li>
+<li>Sample size/power analysis (which you should think about first, but in the context of teaching statistics, it’s more pedagogically sensible, here).</li>
+</ol>
+</div>
+</div>
+<div id="research-vignette-2" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Research Vignette<a href="tIndSample.html#research-vignette-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Empirically published articles where <em>t</em> tests are the primary statistic are difficult to locate. Having exhausted the psychology archives, I located this article in an interdisciplinary journal focused on palliative medicine. The research vignette for this lesson examined differences in physician’s verbal and nonverbal communication with Black and White patients at the end of life <span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">Elliott et al., 2016</a>)</span>.</p>
+<p>Elliott and colleagues <span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span> were curious to know if hospital-based physicians (56% White, 26% Asian, 7.4% each Black and Hispanic) engaged in verbal and nonverbal communication differently with Black and White patients. Black and White patient participants were matched on characteristics deemed important to the researchers (e.g., critically and terminally ill, prognostically similar, expressed similar treatment preferences). Interactions in the intensive care unit were audio and video recorded and then coded on dimensions of verbal and nonverbal communication.</p>
+<p>Because each physician saw a pair of patients (i.e., one Black patient and one White patient), the researchers utilized a paired samples, or dependent <em>t</em>-test. This statistical choice was consistent with the element of the research design that controlled for physician effects through matching. Below are the primary findings of the study.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Black Patients</th>
+<th align="left">White Patients</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Category</td>
+<td align="left"><em>Mean</em>(<em>SD</em>)</td>
+<td align="left"><em>Mean</em>(<em>SD</em>)</td>
+<td align="left"><em>p</em>-value</td>
+</tr>
+<tr class="even">
+<td align="left">Verbal skill score (range 0 - 27)</td>
+<td align="left">8.37(3.36)</td>
+<td align="left">8.41(3.21)</td>
+<td align="left">0.958</td>
+</tr>
+<tr class="odd">
+<td align="left">Nonverbal skill score (range 0 - 5)</td>
+<td align="left">2.68(.84)</td>
+<td align="left">2.93(.77)</td>
+<td align="left">0.014</td>
+</tr>
+</tbody>
+</table>
+<p>Although their design was more sophisticated (and, therefore, required the paired samples <em>t</em>-test), Elliott et al. <span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span> could have simply compared the outcome variables (e.g., verbal and nonverbal communication) as a function of their dichotomous variable, patient race (Black, White).</p>
+<p>In the data below, I have simulated the verbal and non-verbal communication variables using the means and standard deviations listed in the article. Further, I truncated them to fit within the assigned range. I created 33 sets each and assigned them to the Black or White level of the grouping variable.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tIndSample.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220815</span>)</span>
+<span id="cb233-2"><a href="tIndSample.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb233-3"><a href="tIndSample.html#cb233-3" aria-hidden="true" tabindex="-1"></a>Verbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">8.37</span>, <span class="at">sd =</span> <span class="fl">3.36</span>), <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">8.41</span>, <span class="at">sd =</span> <span class="fl">3.21</span>))</span>
+<span id="cb233-4"><a href="tIndSample.html#cb233-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb233-5"><a href="tIndSample.html#cb233-5" aria-hidden="true" tabindex="-1"></a>Verbal[Verbal <span class="sc">&gt;</span> <span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb233-6"><a href="tIndSample.html#cb233-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb233-7"><a href="tIndSample.html#cb233-7" aria-hidden="true" tabindex="-1"></a>Verbal[Verbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb233-8"><a href="tIndSample.html#cb233-8" aria-hidden="true" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb233-9"><a href="tIndSample.html#cb233-9" aria-hidden="true" tabindex="-1"></a>Nonverbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">2.68</span>, <span class="at">sd =</span> <span class="fl">0.84</span>), <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">2.93</span>,</span>
+<span id="cb233-10"><a href="tIndSample.html#cb233-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.77</span>))</span>
+<span id="cb233-11"><a href="tIndSample.html#cb233-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb233-12"><a href="tIndSample.html#cb233-12" aria-hidden="true" tabindex="-1"></a>Nonverbal[Nonverbal <span class="sc">&gt;</span> <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb233-13"><a href="tIndSample.html#cb233-13" aria-hidden="true" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb233-14"><a href="tIndSample.html#cb233-14" aria-hidden="true" tabindex="-1"></a>Nonverbal[Nonverbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb233-15"><a href="tIndSample.html#cb233-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-16"><a href="tIndSample.html#cb233-16" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">66</span>))</span>
+<span id="cb233-17"><a href="tIndSample.html#cb233-17" aria-hidden="true" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
+<span id="cb233-18"><a href="tIndSample.html#cb233-18" aria-hidden="true" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
+<span id="cb233-19"><a href="tIndSample.html#cb233-19" aria-hidden="true" tabindex="-1"></a>PatientRace <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Black&quot;</span>, <span class="dv">33</span>), <span class="fu">rep</span>(<span class="st">&quot;White&quot;</span>, <span class="dv">33</span>))</span>
+<span id="cb233-20"><a href="tIndSample.html#cb233-20" aria-hidden="true" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
+<span id="cb233-21"><a href="tIndSample.html#cb233-21" aria-hidden="true" tabindex="-1"></a>dfIndSamples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, PatientRace, Verbal, Nonverbal)</span></code></pre></div>
+<p>With our data in hand, let’s inspect its structure (i.e., the measurement scales for the variables) to see if they are appropriate.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="tIndSample.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dfIndSamples)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   66 obs. of  4 variables:
+ $ ID         : Factor w/ 66 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ PatientRace: chr  &quot;Black&quot; &quot;Black&quot; &quot;Black&quot; &quot;Black&quot; ...
+ $ Verbal     : num  2.76 5.73 6.81 8.68 9.1 ...
+ $ Nonverbal  : num  3.41 4.02 1.62 2.52 2.11 ...</code></pre>
+<p>The verbal and nonverbal variables are quasi-interval scale variables. Therefore, the numerical scale is correctly assigned by R. In contrast, patient race is a nominal variable and should be a factor. In their article, Elliot et al. <span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span> assigned Black as the baseline variable and White as the comparison variable. Because R orders factors alphabetically, and “Black” precedes “White”, this would happen automatically. Because creating ordered factors is a useful skill, I will write out the full code.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="tIndSample.html#cb236-1" aria-hidden="true" tabindex="-1"></a>dfIndSamples<span class="sc">$</span>PatientRace <span class="ot">&lt;-</span> <span class="fu">factor</span>(dfIndSamples<span class="sc">$</span>PatientRace, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
+<span id="cb236-2"><a href="tIndSample.html#cb236-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
+<p>Let’s again check the formatting of the variables:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="tIndSample.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dfIndSamples)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   66 obs. of  4 variables:
+ $ ID         : Factor w/ 66 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ PatientRace: Factor w/ 2 levels &quot;Black&quot;,&quot;White&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+ $ Verbal     : num  2.76 5.73 6.81 8.68 9.1 ...
+ $ Nonverbal  : num  3.41 4.02 1.62 2.52 2.11 ...</code></pre>
+<p>The four variables of interest are now correctly formatted as <em>num</em> and <em>factor</em>.</p>
+<p>Below is code for saving (and then importing) the data in .csv or .rds files. I make choices about saving data based on what I wish to do with the data. If I want to manipulate the data outside of R, I will save it as a .csv file. It is easy to open .csv files in Excel. A limitation of the .csv format is that it does not save any restructuring or reformatting of variables. For this lesson, this is not an issue.</p>
+<p>Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="tIndSample.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfIndSamples, file</span></span>
+<span id="cb239-2"><a href="tIndSample.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="co"># = &#39;dfIndSamples.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE)</span></span>
+<span id="cb239-3"><a href="tIndSample.html#cb239-3" aria-hidden="true" tabindex="-1"></a><span class="co"># at this point you could clear your environment and then bring the</span></span>
+<span id="cb239-4"><a href="tIndSample.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="co"># data back in as a .csv reading the data back in as a .csv file</span></span>
+<span id="cb239-5"><a href="tIndSample.html#cb239-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dfIndSamples&lt;- read.csv (&#39;dfIndSamples.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<p>The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="tIndSample.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(dfIndSamples, &#39;dfIndSamples.rds&#39;) dfIndSamples &lt;-</span></span>
+<span id="cb240-2"><a href="tIndSample.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="co"># readRDS(&#39;dfIndSamples.rds&#39;)</span></span></code></pre></div>
+</div>
+<div id="working-the-problem-1" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Working the Problem<a href="tIndSample.html#working-the-problem-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="stating-the-hypothesis-1" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Stating the Hypothesis<a href="tIndSample.html#stating-the-hypothesis-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this lesson, I will focus on differences in the verbal communication variable. Specifically, I hypothesize that physician verbal communication scores for Black and White patients will differ. In the hypotheses below, the null hypothesis (<span class="math inline">\(H_0\)</span>) states that the two means are equal; the alternative hypothesis (<span class="math inline">\(H_A\)</span>) states that the two means are not equal.</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+H_0: &amp; \mu_1 = \mu_2  \\
+H_A: &amp; \mu_1 \neq \mu_2
+\end{array}
+\]</span></p>
+</div>
+<div id="preliminary-exploration-1" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Preliminary Exploration<a href="tIndSample.html#preliminary-exploration-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Plotting the data is a helpful early step in any data analysis. The <em>ggpubr</em> package is one of my go-to-tools for quick and easy plots of data. Boxplots are terrific for data that is grouped. A helpful <a href="https://rpkgs.datanovia.com/ggpubr/">tutorial</a> for boxplots (and related plots) can be found at datanovia.</p>
+<p>In the code below I introduced the colors by identifying the grouping variable and assigning colors. Those color codes are the “Hex” codes you find in the custom color palette in your word processing program.</p>
+<p>I am also fond of plotting each case with the command, <em>add = “jitter”</em>. To increase your comfort and confidence in creating figures (and with other tools) try deleting and adding back in different commands. This is how to distinguish between the essential and the elective.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="tIndSample.html#cb241-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfIndSamples, <span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>, <span class="at">color =</span> <span class="st">&quot;PatientRace&quot;</span>,</span>
+<span id="cb241-2"><a href="tIndSample.html#cb241-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-126-1.png" width="672" />
+The box of the boxplot covers the middle 50% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots are outliers.</p>
+<p>We can begin to evaluate the assumption of normality by obtaining the descriptive statistics with the <em>describe()</em> function from the <em>psych</em> package.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="tIndSample.html#cb242-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfIndSamples<span class="sc">$</span>Verbal)</span></code></pre></div>
+<pre><code>   vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
+X1    1 66 8.25 3.14   7.93     8.2 3.08 0.35 19.31 18.96 0.43     1.21 0.39</code></pre>
+<p>From this, we learn that the overall verbal mean is 8.25 with a standard deviation of 3.14. The values for skew (0.43) and kurtosis (1.21) fall below the areas of concern (below the absolute value of 3 for skew; below the absolute values of 8 for kurtosis) identified by Kline <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>Recall that one of the assumptions for independent samples <em>t</em>-test is that the variable of interest is normally distributed within each level of the grouping variable. The <em>describeBy()</em> function in the <em>psych</em> package allows us to obtain these values for each level of the grouping variable.</p>
+<p>If we feed the function the entire df, it will give us results for each level of PatientRace for each variable, including variables for which such disaggregation is nonsensible (i.e., physID, PatientRace). If we had a large df, we might want to create a tiny df that only includes our variable(s) of interest. For now, it is not problematic to include all the variables.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="tIndSample.html#cb244-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(dfIndSamples, <span class="at">group =</span> PatientRace, <span class="at">mat =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>              item group1 vars  n      mean        sd    median   trimmed
+ID*1             1  Black    1 33 17.000000 9.6695398 17.000000 17.000000
+ID*2             2  White    1 33 50.000000 9.6695398 50.000000 50.000000
+PatientRace*1    3  Black    2 33  1.000000 0.0000000  1.000000  1.000000
+PatientRace*2    4  White    2 33  2.000000 0.0000000  2.000000  2.000000
+Verbal1          5  Black    3 33  7.614884 2.9854116  7.693516  7.733412
+Verbal2          6  White    3 33  8.891483 3.2032222  7.979546  8.606615
+Nonverbal1       7  Black    4 33  2.943125 0.9251164  2.885724  2.931841
+Nonverbal2       8  White    4 33  2.965472 0.7001442  2.936787  2.995131
+                     mad        min       max     range       skew    kurtosis
+ID*1          11.8608000  1.0000000 33.000000 32.000000  0.0000000 -1.30951223
+ID*2          11.8608000 34.0000000 66.000000 32.000000  0.0000000 -1.30951223
+PatientRace*1  0.0000000  1.0000000  1.000000  0.000000        NaN         NaN
+PatientRace*2  0.0000000  2.0000000  2.000000  0.000000        NaN         NaN
+Verbal1        2.9075794  0.3507447 13.011100 12.660355 -0.3537887 -0.30860583
+Verbal2        3.2861809  4.5891699 19.311207 14.722037  1.0170842  1.26737896
+Nonverbal1     0.9185825  0.8333731  5.000000  4.166627  0.1150450 -0.04929788
+Nonverbal2     0.5560620  1.1311619  4.350886  3.219724 -0.4143090  0.19115265
+                     se
+ID*1          1.6832508
+ID*2          1.6832508
+PatientRace*1 0.0000000
+PatientRace*2 0.0000000
+Verbal1       0.5196935
+Verbal2       0.5576094
+Nonverbal1    0.1610421
+Nonverbal2    0.1218795</code></pre>
+<p>In this analysis we are interested in the verbal variable. We see that patients who are Black received verbal interactions from physicians that were quantified by a mean score of 7.61 (<em>SD</em> = 2.99); physicians’ scores for White patients were 8.89 (<em>SD</em> = 3.20). Skew and kurtosis values for the verbal ratings with Black patients were -.35 and -.31, respectively. They were 1.02 and 1.27 for White patients. As before, these fall well below the absolute values of 3 (skew) and 8 (kurtosis) that are considered to be concerning.</p>
+<p>One of the assumptions of the independent samples <em>t</em>-test is that the variances of the dependent variable are similar for both levels of the grouping factor. We can use the Levene’s test to do this. We want this value to be non-significant (<span class="math inline">\(p\)</span> &gt; .05). If violated, we we can use the Welch’s test because it is “robust to the violation of the homogeneity of variance.”</p>
+<p>In R, Levene’s test is found in the <em>car</em> package.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="tIndSample.html#cb246-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(Verbal <span class="sc">~</span> PatientRace, dfIndSamples, <span class="at">center =</span> mean)</span></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = mean)
+      Df F value Pr(&gt;F)
+group  1  0.1422 0.7074
+      64               </code></pre>
+<p>The results of the Levene’s test are presented as an <em>F</em> statistic. We’ll get to <em>F</em> distributions in the next chapter. For now, it is just important to know how to report and interpret them:</p>
+<ul>
+<li>Degrees of freedom are 1 and 74</li>
+<li>The value of the <em>F</em> statistic is 0.142</li>
+<li>We want our <em>p</em> value to be &lt; .05</li>
+</ul>
+<p>Happily, our Levene’s result is (<em>F</em>[1, 64] = 0.142, <em>p</em> = .707) not significant. Because <em>p</em> is less than 05, we have not violated the homogeneity of variance assumption. That is to say, the variance in each of the patient race groups is not statistically significantly different. we can use the regular (Student’s) formulation of the <em>t</em> test for independent samples.</p>
+</div>
+<div id="hand-calculations-1" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Hand-Calculations<a href="tIndSample.html#hand-calculations-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Earlier I presented a formula for the independent samples <em>t</em>-test.</p>
+<p><span class="math display">\[t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}}\]</span>
+There are actually two formulations of the <em>t</em>-test. Student’s version can be used when there is no violation of the homogeneity of variance assumption; Welch’s can be used when the homogeneity of variance assumption is violated. For the hand-calculation demonstration, I will only demonstrate the formula in the most ideal of circumstances, that is: there is no violation of the homogeneity of variance assumption and sample sizes are equal.</p>
+<p>Even so, while the formula seems straightforward enough, calculating the SE in the denominator gets a little spicy:</p>
+<p><span class="math display">\[t = \frac{\bar{X_{1}} -\bar{X_{2}}}{\sqrt{\frac{s_{1}^{2}}{N_{1}}+\frac{s_{2}^{2}}{N_{2}}}}\]</span>
+Let’s first calculate the SE – the value of the denominator. For this, we need the standard deviations for the dependent variable (verbal) for both levels of patient race. We obtained these earlier when we used the <em>describeBy()</em> function in the <em>psych</em> package.</p>
+<p>The standard deviation of the verbal variable for the levels in the patient race group were 2.99 for Black patients and 3.20 for White patients; the <em>N</em> in both our groups is 33. We can do the denominator math right in an R chunk:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="tIndSample.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>((<span class="fl">2.985</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">33</span>) <span class="sc">+</span> (<span class="fl">3.203</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">33</span>))</span></code></pre></div>
+<pre><code>[1] 0.7621627</code></pre>
+<p>Our <em>SE</em> = 0.762</p>
+<p>With the simplification of the denominator, we can easily calculate the independent sample <em>t</em>-test.</p>
+<p><span class="math display">\[t = \frac{\bar{X_{1}} -\bar{X_{2}}}{SE}\]</span></p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="tIndSample.html#cb250-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">7.615</span> <span class="sc">-</span> <span class="fl">8.891</span>)<span class="sc">/</span><span class="fl">0.762</span></span></code></pre></div>
+<pre><code>[1] -1.674541</code></pre>
+<p>Hopefully, this hand-calculation provided an indication of how the means, standard deviation, and sample sizes contribute to the estimate of this <em>t</em> test value. Now we ask, “But it is statistically significant?”</p>
+<div id="statistical-significance-1" class="section level4 hasAnchor" number="4.4.3.1">
+<h4><span class="header-section-number">4.4.3.1</span> Statistical Significance<a href="tIndSample.html#statistical-significance-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The question of statistical significance testing invokes NHST (null hypothesis significance testing). In the case of the independent samples <em>t</em>-test, the null hypothesis is that the two means are equal; the alternative is that they are not equal. Our test is of the null hypothesis. When the probability (<em>p</em>) is less than the value we specify (usually .05), we are 95% certain that the two means are not equal. Thus, we reject the null hypothesis (the one we tested) in favor of the alternative (that the means are not equal).</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+H_0: &amp; \mu_1 = \mu_2  \\
+H_A: &amp; \mu_1 \neq \mu_2
+\end{array}
+\]</span>
+Although still used, NHST has its critiques. Among the critiques are the layers of logic and confusing language as we interpret the results.</p>
+<p>Our <em>t</em>-value was -1.675. We compare this value to the test critical value in a table of <em>t</em> critical values. In-so-doing we must know our degrees of freedom. In the test that involves two levels of a grouping value, we will use <em>N</em> -1 as the value for degrees of freedom. We must also specify the <em>p</em> value (in our case .05) and whether-or-not our hypothesis is unidirectional or bi-directional. Our question only asked, “Are the verbal communication levels different?” In this case, the test is two-tailed, or bi-directional.</p>
+<p>Let’s return to the <a href="https://www.statology.org/t-distribution-table/">table of critical values</a> for the <em>t</em> distribution to compare our <em>t</em>-value (-1.675) to the column that is appropriate for our:</p>
+<ul>
+<li>Degrees of freedom (in this case <span class="math inline">\(N-2\)</span> or 64)
+<ul>
+<li>We have two levels of a grouping value; for each our df is <span class="math inline">\(N-1\)</span></li>
+</ul></li>
+<li>Alpha, as represented by <span class="math inline">\(p &lt; .05\)</span></li>
+<li>Specification as a one-tailed or two-tailed test
+<ul>
+<li>Our alternative hypothesis made no prediction about the direction of the difference; therefore we will use a two-tailed test</li>
+</ul></li>
+</ul>
+<p>In the linked table, when the degrees of freedom reaches 30, there larger intervals. We will use the row representing degrees of freedom of 60. If our <em>t</em> test value is lower than an absolute value of -1.675 or greater than the absolute value of 1.675, then our means are statistically significantly different from each other. In our case, we have not achieved statistical significance and we cannot say that the means are different. The <em>t</em> string would look like this: <span class="math inline">\(t(64) = -1.675, p &gt; .05\)</span></p>
+<p>We can also use the <em>qt()</em> function in base R. In the script below, I have indicated an alpha of .05. The “2” that follows indicates I want a two-tailed test. The 64 represents my degrees of freedom (<span class="math inline">\(N-2\)</span>). In a two-tailed test, the regions of rejection will be below the lowerbound (lower.tail=TRUE) and above the upperbound (lower.tail=FALSE).</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="tIndSample.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>[1] -1.99773</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="tIndSample.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>[1] 1.99773</code></pre>
+<p>Given the large intervals, it makes sense that this test critical value is slightly different than the one fro the table.</p>
+</div>
+<div id="confidence-intervals-1" class="section level4 hasAnchor" number="4.4.3.2">
+<h4><span class="header-section-number">4.4.3.2</span> Confidence Intervals<a href="tIndSample.html#confidence-intervals-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>How confident are we in our result? With independent samples <em>t</em>-tests, it is common to report an interval in which we are 95% confident that our true mean difference exists. Below is the formula, which involves:</p>
+<ul>
+<li><span class="math inline">\(\bar{X_{1}}-\bar{X_{2}}\)</span> the difference in the means</li>
+<li><span class="math inline">\(t_{cv}\)</span> the test critical value for a two-tailed model (even if the hypothesis was one-tailed) where <span class="math inline">\(\alpha = .05\)</span> and the degrees of freedom are <span class="math inline">\(N-2\)</span></li>
+<li><span class="math inline">\(SE\)</span> the standard error used in the denominator of the test statistic</li>
+</ul>
+<p><span class="math display">\[(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)\]</span>
+Let’s calculate it:</p>
+<p>First, let’s get the proper <em>t</em> critical value. Even though these are identical to the one above, I am including them again. Why? Because if the original hypothesis had been one-tailed, we would need to calculate a two-tailed confidence interval; this is a placeholder to remind us.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="tIndSample.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>[1] -1.99773</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="tIndSample.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>[1] 1.99773</code></pre>
+<p>With this in hand, let’s calculate the confidence intervals.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="tIndSample.html#cb260-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">7.614</span> <span class="sc">-</span> <span class="fl">8.891</span>) <span class="sc">-</span> (<span class="fl">1.99773</span> <span class="sc">*</span> <span class="fl">0.762</span>)</span></code></pre></div>
+<pre><code>[1] -2.79927</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="tIndSample.html#cb262-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">7.614</span> <span class="sc">-</span> <span class="fl">8.891</span>) <span class="sc">+</span> (<span class="fl">1.99773</span> <span class="sc">*</span> <span class="fl">0.762</span>)</span></code></pre></div>
+<pre><code>[1] 0.2452703</code></pre>
+<p>These values indicate the range of scores in which we are 95% confident that our true mean difference (<span class="math inline">\(\bar{X_{1}}-\bar{X_{2}}\)</span>) lies. Stated another way, we are 95% confident that the true mean difference lies between -2.80 and 0.25 Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant <em>p</em> value. For these types of statistics, the 95% confidence interval and <em>p</em> value will always be yoked together.</p>
+</div>
+<div id="effect-size-1" class="section level4 hasAnchor" number="4.4.3.3">
+<h4><span class="header-section-number">4.4.3.3</span> Effect Size<a href="tIndSample.html#effect-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Whereas <em>p</em> values address statistical significance, effect sizes address the magnitude of difference. There are two common effect sizes that are used with the independent samples <em>t</em>-test. The first is the <em>d</em> statistic, which measures, in standard deviation units, the distance between the two means. The simplest formula involves the <em>t</em> value and sample sizes:</p>
+<p><span class="math display">\[d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}\]</span></p>
+<p>With a <em>t</em> value of -1.675 and sample sizes at 33 each, we can easily calculate this. Small, medium, and large sizes for the <em>d</em> statistic are .2, .5, and .8, respectively (irrespective of sign).</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tIndSample.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">1.675</span> <span class="sc">*</span> (<span class="fu">sqrt</span>((<span class="dv">33</span> <span class="sc">+</span> <span class="dv">33</span>)<span class="sc">/</span>(<span class="dv">33</span> <span class="sc">*</span> <span class="dv">33</span>)))</span></code></pre></div>
+<pre><code>[1] -0.4123565</code></pre>
+<p>Our value, -0.412 suggests a small-to-medium effect size. We might wonder why it wasn’t statistically significant? Later we will discuss power and the relationship between sample size, one vs. two-tailed hypotheses, and effect sizes.</p>
+<p>Eta square, <span class="math inline">\(\eta^2\)</span> is the proportion of variance of a test variable that is a function of the grouping variable. A value of 0 indicates that the difference in the mean scores is equal to 0, where a value of 1 indicates that the sample means differ, and the test scores do not differ within each group. The following equation can be used to compute <span class="math inline">\(\eta^2\)</span>. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
+<p><span class="math display">\[\eta^{2} =\frac{t^{2}}{{t^{2}+(N_{1}+N_{2}-2)}}\]</span>
+Let’s calculate it:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tIndSample.html#cb266-1" aria-hidden="true" tabindex="-1"></a>(<span class="sc">-</span><span class="fl">1.6745</span> <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.6745</span>)<span class="sc">/</span>((<span class="sc">-</span><span class="fl">1.6745</span> <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.6745</span>) <span class="sc">+</span> (<span class="dv">33</span> <span class="sc">+</span> <span class="dv">33</span> <span class="sc">-</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>[1] 0.04197282</code></pre>
+<p>Similarly, the <span class="math inline">\(\eta^2\)</span> is small-to-medium.</p>
+</div>
+</div>
+</div>
+<div id="computation-in-r-1" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Computation in R<a href="tIndSample.html#computation-in-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Navarro’s <em>lsr</em> package makes the computation of the independent <em>t</em>-test easy and produces output that is commonly used in psychological science.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="tIndSample.html#cb268-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">independentSamplesTTest</span>(<span class="at">formula =</span> Verbal <span class="sc">~</span> PatientRace, <span class="at">data =</span> dfIndSamples,</span>
+<span id="cb268-2"><a href="tIndSample.html#cb268-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+   Student&#39;s independent samples t-test 
+
+Outcome variable:   Verbal 
+Grouping variable:  PatientRace 
+
+Descriptive statistics: 
+            Black White
+   mean     7.615 8.891
+   std dev. 2.985 3.203
+
+Hypotheses: 
+   null:        population means equal for both groups
+   alternative: different population means in each group
+
+Test results: 
+   t-statistic:  -1.675 
+   degrees of freedom:  64 
+   p-value:  0.099 
+
+Other information: 
+   two-sided 95% confidence interval:  [-2.799, 0.246] 
+   estimated effect size (Cohen&#39;s d):  0.412 </code></pre>
+<p>This well-organized output has everything we need for an APA style presentation of results. Identical to all the information we hand-calculated, we would write the <em>t</em> string this way: <em>t</em>(64) = -1.675, <em>p</em> = .099, <em>d</em> = 0.412. The <em>lsr</em> output also includes confidence intervals. These represent the 95% confidence interval of the true difference between the means. That is, we are 95% confident that the true difference between means could be as large as -2.799 or as (small/medium/large) as 0.246. What is critically important is that this confidence interval crosses zero. There is an important link between the CI95% and statistical significance. When the CI95% includes zero, <em>p</em> will not be lower than 0.05.</p>
+<div id="what-if-we-had-violated-the-homogeneity-of-variance-assumption" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> What if we had violated the homogeneity of variance assumption?<a href="tIndSample.html#what-if-we-had-violated-the-homogeneity-of-variance-assumption" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Earlier we used the Levene’s test to examine the homogeneity of variance assumption. If we had violated it, the Welch’s formulation of the independent sample <em>t</em> test is available to us. Navarro’s <em>lsr</em> package makes this easy. We simply change the <em>var.equal</em> to <em>FALSE</em>. This will produce the Welch’s alternative, which takes into consideration violations of the homogeneity of variance assumption. Conveniently, “Student’s” or “Welch’s” will serve as the first row of the output.</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tIndSample.html#cb270-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">independentSamplesTTest</span>(<span class="at">formula =</span> Verbal <span class="sc">~</span> PatientRace, <span class="at">data =</span> dfIndSamples,</span>
+<span id="cb270-2"><a href="tIndSample.html#cb270-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>
+   Welch&#39;s independent samples t-test 
+
+Outcome variable:   Verbal 
+Grouping variable:  PatientRace 
+
+Descriptive statistics: 
+            Black White
+   mean     7.615 8.891
+   std dev. 2.985 3.203
+
+Hypotheses: 
+   null:        population means equal for both groups
+   alternative: different population means in each group
+
+Test results: 
+   t-statistic:  -1.675 
+   degrees of freedom:  63.685 
+   p-value:  0.099 
+
+Other information: 
+   two-sided 95% confidence interval:  [-2.799, 0.246] 
+   estimated effect size (Cohen&#39;s d):  0.412 </code></pre>
+<p>Likely because of the similarity of the standard deviations associated with each level of patient race and our equal cell sizes, this changes nothing about our conclusion. Note that the degrees of freedom in the Student’s <em>t</em>-test analysis (the first one) was 64; in the Welch’s version, the degrees of freedom is 63.685. It is this change that, when the homogeneity of variance assumption is violated, can make the Welch’s results more conservative (i.e., less likely to have a statistically significant result).</p>
+</div>
+</div>
+<div id="apa-style-results-1" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> APA Style Results<a href="tIndSample.html#apa-style-results-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>An independent samples <em>t</em>-test was conducted to evaluate the hypothesis that there would be differences between the quality of physicians’ verbal communication depending on whether the patient’s race (Black, White). Although the independent samples <em>t</em>-test was nonsignificant, <em>t</em>(64) = -1.675, <em>p</em> = .099, the effect size (<em>d</em> = 0.412) was somewhat moderate in size. The 95% confidence interval for the difference in means ranged from -2.799 to 0.246. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.</p>
+</blockquote>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="tIndSample.html#cb272-1" aria-hidden="true" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.1way.table</span>(PatientRace, Verbal, dfIndSamples)</span></code></pre></div>
+<pre><code>
+
+Descriptive statistics for Verbal as a function of PatientRace.  
+
+ PatientRace    M   SD
+       Black 7.61 2.99
+       White 8.89 3.20
+
+Note. M and SD represent mean and standard deviation, respectively.
+ </code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="tIndSample.html#cb274-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfIndSamples, <span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>, <span class="at">color =</span> <span class="st">&quot;PatientRace&quot;</span>,</span>
+<span id="cb274-2"><a href="tIndSample.html#cb274-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Verbal Engagement as a Function of Patient Race&quot;</span>)</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+</div>
+<div id="power-in-independent-samples-t-tests-1" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Power in Independent Samples <em>t</em> tests<a href="tIndSample.html#power-in-independent-samples-t-tests-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Researchers often use power analysis packages to estimate the sample size needed to detect a statistically significant effect, if, in fact, there is one. Utilized another way, these tools allows us to determine the probability of detecting an effect of a given size with a given level of confidence. If the probability is unacceptably low, we may want to revise or stop. A helpful overview of power as well as guidelines for how to use the <em>pwr</em> package can be found at a <a href="https://www.statmethods.net/stats/power.html">Quick-R website</a> <span class="citation">(<a href="#ref-kabacoff_power_2017" role="doc-biblioref">Kabacoff, 2017</a>)</span>.</p>
+<p>In Champely’s <em>pwr</em> package, we can conduct a power analysis for a variety of designs, including the independent samples <em>t</em> test that we worked in this lesson. There are a number of interrelating elements of power:</p>
+<ul>
+<li>Sample size, <em>n</em> refers to the number of observations in each group; our vignette had 30</li>
+<li><em>d</em> refers to the difference between means divided by the pooled standard deviation; ours was (7.615 - 8.891) = -1.276</li>
+<li><em>power</em> refers to the power of a statistical test; conventionally it is set at .80</li>
+<li><em>sig.level</em> refers to our desired alpha level; conventionally it is set at .05</li>
+<li><em>type</em> indicates the type of test we ran; this was “two.sample”</li>
+<li><em>alternative</em> refers to whether the hypothesis is non-directional/two-tailed (“two.sided”) or directional/one-tailed(“less” or “greater”)</li>
+</ul>
+<p>In this script, we must specify <em>all-but-one</em> parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.</p>
+<p>When we conduct a “power analysis” (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, “power=NULL”. Using the data from our results, we learn from this first run, that our statistical power was 0.99. That is, given the value of the mean difference (1.276) we had a 99% chance of detecting a statistically significant effect if there was one.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="tIndSample.html#cb275-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">1.276</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb275-2"><a href="tIndSample.html#cb275-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>
+     Two-sample t test power calculation 
+
+              n = 33
+              d = 1.276
+      sig.level = 0.05
+          power = 0.9991669
+    alternative = two.sided
+
+NOTE: n is number in *each* group</code></pre>
+<p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>. Using the results from the simulation of our research vignette, you can see that we would have needed 11 individuals (per group; 22 total) for the <em>p</em> value to be &lt; .05.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="tIndSample.html#cb277-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">1.276</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb277-2"><a href="tIndSample.html#cb277-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>
+     Two-sample t test power calculation 
+
+              n = 10.69247
+              d = 1.276
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in *each* group</code></pre>
+<p>Let’s see if this is true. Below I will re-simulate the data for the verbal scores and change only the sample size:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="tIndSample.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220821</span>)</span>
+<span id="cb279-2"><a href="tIndSample.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb279-3"><a href="tIndSample.html#cb279-3" aria-hidden="true" tabindex="-1"></a>rVerbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">11</span>, <span class="at">mean =</span> <span class="fl">8.37</span>, <span class="at">sd =</span> <span class="fl">3.36</span>), <span class="fu">rnorm</span>(<span class="dv">11</span>, <span class="at">mean =</span> <span class="fl">8.41</span>,</span>
+<span id="cb279-4"><a href="tIndSample.html#cb279-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">3.21</span>))</span>
+<span id="cb279-5"><a href="tIndSample.html#cb279-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb279-6"><a href="tIndSample.html#cb279-6" aria-hidden="true" tabindex="-1"></a>rVerbal[rVerbal <span class="sc">&gt;</span> <span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb279-7"><a href="tIndSample.html#cb279-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb279-8"><a href="tIndSample.html#cb279-8" aria-hidden="true" tabindex="-1"></a>rVerbal[rVerbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb279-9"><a href="tIndSample.html#cb279-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb279-10"><a href="tIndSample.html#cb279-10" aria-hidden="true" tabindex="-1"></a>rNonverbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">11</span>, <span class="at">mean =</span> <span class="fl">2.68</span>, <span class="at">sd =</span> <span class="fl">0.84</span>), <span class="fu">rnorm</span>(<span class="dv">11</span>, <span class="at">mean =</span> <span class="fl">2.93</span>,</span>
+<span id="cb279-11"><a href="tIndSample.html#cb279-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.77</span>))</span>
+<span id="cb279-12"><a href="tIndSample.html#cb279-12" aria-hidden="true" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb279-13"><a href="tIndSample.html#cb279-13" aria-hidden="true" tabindex="-1"></a>rNonverbal[rNonverbal <span class="sc">&gt;</span> <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb279-14"><a href="tIndSample.html#cb279-14" aria-hidden="true" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb279-15"><a href="tIndSample.html#cb279-15" aria-hidden="true" tabindex="-1"></a>rNonverbal[rNonverbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb279-16"><a href="tIndSample.html#cb279-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-17"><a href="tIndSample.html#cb279-17" aria-hidden="true" tabindex="-1"></a>rID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">22</span>))</span>
+<span id="cb279-18"><a href="tIndSample.html#cb279-18" aria-hidden="true" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
+<span id="cb279-19"><a href="tIndSample.html#cb279-19" aria-hidden="true" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
+<span id="cb279-20"><a href="tIndSample.html#cb279-20" aria-hidden="true" tabindex="-1"></a>rPatientRace <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Black&quot;</span>, <span class="dv">11</span>), <span class="fu">rep</span>(<span class="st">&quot;White&quot;</span>, <span class="dv">11</span>))</span>
+<span id="cb279-21"><a href="tIndSample.html#cb279-21" aria-hidden="true" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
+<span id="cb279-22"><a href="tIndSample.html#cb279-22" aria-hidden="true" tabindex="-1"></a>rdfIndSamples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rID, rPatientRace, rVerbal, rNonverbal)</span>
+<span id="cb279-23"><a href="tIndSample.html#cb279-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-24"><a href="tIndSample.html#cb279-24" aria-hidden="true" tabindex="-1"></a>rdfIndSamples<span class="sc">$</span>rPatientRace <span class="ot">&lt;-</span> <span class="fu">factor</span>(rdfIndSamples<span class="sc">$</span>rPatientRace, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
+<span id="cb279-25"><a href="tIndSample.html#cb279-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="tIndSample.html#cb280-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">independentSamplesTTest</span>(<span class="at">formula =</span> rVerbal <span class="sc">~</span> rPatientRace, <span class="at">data =</span> rdfIndSamples,</span>
+<span id="cb280-2"><a href="tIndSample.html#cb280-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+   Student&#39;s independent samples t-test 
+
+Outcome variable:   rVerbal 
+Grouping variable:  rPatientRace 
+
+Descriptive statistics: 
+            Black White
+   mean     9.657 7.880
+   std dev. 3.147 4.094
+
+Hypotheses: 
+   null:        population means equal for both groups
+   alternative: different population means in each group
+
+Test results: 
+   t-statistic:  1.142 
+   degrees of freedom:  20 
+   p-value:  0.267 
+
+Other information: 
+   two-sided 95% confidence interval:  [-1.47, 5.025] 
+   estimated effect size (Cohen&#39;s d):  0.487 </code></pre>
+<p>Curiously, this did not result in a statistically significant result: <span class="math inline">\(t(20) = 1.142, p = 0.267, d = 0.487, CI95%[-1.47, 5.025]\)</span></p>
+</div>
+<div id="practice-problems-2" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Practice Problems<a href="tIndSample.html#practice-problems-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The suggestions for homework are graded in complexity and I encourage you to select one or more that meets you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands).</p>
+<div id="problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1" class="section level3 hasAnchor" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> Problem #1: Rework the research vignette as demonstrated, but change the random seed<a href="tIndSample.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If this topic feels a bit overwhelming, simply change the random seed in the data simulation of the research vignette, then rework the problem. This should provide minor changes to the data (maybe even in the second or third decimal point), but the results will likely be very similar. That said, don’t be alarmed if what was non-significant in my working of the problem becomes significant. Our selection of <em>p</em> &lt; .05 (and the corresponding 95% confidence interval) means that 5% of the time there could be a difference in statistical significance.</p>
+</div>
+<div id="problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-1" class="section level3 hasAnchor" number="4.8.2">
+<h3><span class="header-section-number">4.8.2</span> Problem #2: Rework the research vignette, but change something about the simulation<a href="tIndSample.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rework the independent samples <em>t</em> test in the lesson by changing something else about the simulation. You might have noticed that my re-simulation of a smaller sample size did not produce a statistically significant result. You may wish to pick a value in between the primary lecture <em>N</em> and the re-simulation to see what it takes to achieve statistical significance. Alternatively, you could specify different means and/or standard deviations.</p>
+</div>
+<div id="problem-3-rework-the-research-vignette-but-swap-one-or-more-variables" class="section level3 hasAnchor" number="4.8.3">
+<h3><span class="header-section-number">4.8.3</span> Problem #3: Rework the research vignette, but swap one or more variables<a href="tIndSample.html#problem-3-rework-the-research-vignette-but-swap-one-or-more-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the simulated data, but select the nonverbal communication variables that were evaluated in the Elliott et al. <span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span>study. Compare your results to those reported in the mansucript.</p>
+</div>
+<div id="problem-4-use-other-data-that-is-available-to-you" class="section level3 hasAnchor" number="4.8.4">
+<h3><span class="header-section-number">4.8.4</span> Problem #4: Use other data that is available to you<a href="tIndSample.html#problem-4-use-other-data-that-is-available-to-you" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using data for which you have permission and access (e.g., IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete an independent samples <em>t</em> test.</p>
+<p>Regardless which option(s) you chose, use the elements in the grading rubric to guide you through the practice.</p>
+<table>
+<colgroup>
+<col width="54%" />
+<col width="25%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Narrate the research vignette, describing the variables and their role in the analysis</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Simulate (or import) and format data</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Evaluate statistical assumptions</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Conduct an independent samples <em>t</em> test (with an effect size)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. APA style results with table(s) and figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6 Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">30</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<h3>References<a href="refs.html#refs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-elliott_differences_2016" class="csl-entry">
+Elliott, A. M., Alexander, S. C., Mescher, C. A., Mohan, D., &amp; Barnato, A. E. (2016). Differences in <span>Physicians</span>’ <span>Verbal</span> and <span>Nonverbal</span> <span>Communication</span> <span>With</span> <span>Black</span> and <span>White</span> <span>Patients</span> at the <span>End</span> of <span>Life</span>. <em>Journal of Pain and Symptom Management</em>, <em>51</em>(1), 1–8. <a href="https://doi.org/10.1016/j.jpainsymman.2015.07.008">https://doi.org/10.1016/j.jpainsymman.2015.07.008</a>
+</div>
+<div id="ref-field_discovering_2012" class="csl-entry">
+Field, A. P. (2012). <em>Discovering statistics using <span>R</span></em>. Sage.
+</div>
+<div id="ref-green_using_2014" class="csl-entry">
+Green, S. B., &amp; Salkind, N. J. (2014b). <em>Using <span>SPSS</span> for <span>Windows</span> and <span>Macintosh</span>: Analyzing and understanding data</em> (Seventh edition.). Pearson.
+</div>
+<div id="ref-kabacoff_power_2017" class="csl-entry">
+Kabacoff, R. I. (2017). Power <span>Analysis</span>. In <em>Quick-R by datacamp</em>. <a href="https://www.statmethods.net/stats/power.html">https://www.statmethods.net/stats/power.html</a>
+</div>
+<div id="ref-kline_principles_2016" class="csl-entry">
+Kline, R. B. (2016). <em>Principles and practice of structural equation modeling</em> (4th ed.). Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tOneSample.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tPaired.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhbikos/ReCenterPsychStats/edit/BRANCH/05-tIndSample.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ReCenterPsychStats.pdf", "ReCenterPsychStats.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

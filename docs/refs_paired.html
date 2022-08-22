@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>References | ReCentering Psych Stats</title>
+  <meta name="description" content="References | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="References | ReCentering Psych Stats" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReCenterPsychStats-bookcover2.jpg" />
+  <meta property="og:description" content="References | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="github-repo" content="lhbikos/ReCenterPsychStats" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="References | ReCentering Psych Stats" />
+  
+  <meta name="twitter:description" content="References | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReCenterPsychStats-bookcover2.jpg" />
+
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
+
+
+<meta name="date" content="2022-08-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tPaired.html"/>
+<link rel="next" href="analysis-of-variance.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ReCentering Psych Stats: Analysis of Variance</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Ready.html"><a href="Ready.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="Ready.html"><a href="Ready.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="Ready.html"><a href="Ready.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.2</b> downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="Ready.html"><a href="Ready.html#so-many-parts-and-pieces"><i class="fa fa-check"></i><b>2.2.1</b> So many paRts and pieces</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Ready.html"><a href="Ready.html#orienting-to-r-studio-focusing-only-on-the-things-we-will-be-using-first-and-most-often"><i class="fa fa-check"></i><b>2.2.2</b> oRienting to R Studio (focusing only on the things we will be using first and most often)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Ready.html"><a href="Ready.html#best-practices"><i class="fa fa-check"></i><b>2.3</b> best pRactices</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="Ready.html"><a href="Ready.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>2.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Ready.html"><a href="Ready.html#setting-up-the-file"><i class="fa fa-check"></i><b>2.3.2</b> Setting up the file</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Ready.html"><a href="Ready.html#script-in-chunks-and-everything-else-in-the-inline-text-sections"><i class="fa fa-check"></i><b>2.3.3</b> Script in chunks and everything else in the “inline text” sections</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Ready.html"><a href="Ready.html#managing-packages"><i class="fa fa-check"></i><b>2.3.4</b> Managing packages</a></li>
+<li class="chapter" data-level="2.3.5" data-path="Ready.html"><a href="Ready.html#upload-the-data"><i class="fa fa-check"></i><b>2.3.5</b> Upload the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="Ready.html"><a href="Ready.html#quick-demonstration"><i class="fa fa-check"></i><b>2.4</b> quick demonstRation</a></li>
+<li class="chapter" data-level="2.5" data-path="Ready.html"><a href="Ready.html#the-knitted-file"><i class="fa fa-check"></i><b>2.5</b> the knitted file</a></li>
+<li class="chapter" data-level="2.6" data-path="Ready.html"><a href="Ready.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>2.6</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="2.7" data-path="Ready.html"><a href="Ready.html#just-why-have-we-transitioned-to-r"><i class="fa fa-check"></i><b>2.7</b> just <em>why</em> have we tRansitioned to R?</a></li>
+<li class="chapter" data-level="2.8" data-path="Ready.html"><a href="Ready.html#strategies-for-success"><i class="fa fa-check"></i><b>2.8</b> stRategies for success</a></li>
+<li class="chapter" data-level="2.9" data-path="Ready.html"><a href="Ready.html#resources-for-getting-started"><i class="fa fa-check"></i><b>2.9</b> Resources for getting staRted</a></li>
+<li class="chapter" data-level="2.10" data-path="Ready.html"><a href="Ready.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>2.10</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Ready.html"><a href="Ready.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.10.2" data-path="Ready.html"><a href="Ready.html#planning-for-practice"><i class="fa fa-check"></i><b>2.10.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.10.3" data-path="Ready.html"><a href="Ready.html#readings-resources"><i class="fa fa-check"></i><b>2.10.3</b> Readings &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="Ready.html"><a href="Ready.html#research-vignette"><i class="fa fa-check"></i><b>2.11</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.12" data-path="Ready.html"><a href="Ready.html#variable-types-scale-of-measurement"><i class="fa fa-check"></i><b>2.12</b> Variable Types (Scale of Measurement)</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="Ready.html"><a href="Ready.html#measurement-scale"><i class="fa fa-check"></i><b>2.12.1</b> Measurement Scale</a></li>
+<li class="chapter" data-level="2.12.2" data-path="Ready.html"><a href="Ready.html#corresponding-variable-structure-in-r"><i class="fa fa-check"></i><b>2.12.2</b> Corresponding Variable Structure in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="Ready.html"><a href="Ready.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.13</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.13.1" data-path="Ready.html"><a href="Ready.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>2.13.1</b> Measures of Central Tendency</a></li>
+</ul></li>
+<li class="chapter" data-level="2.14" data-path="Ready.html"><a href="Ready.html#variability"><i class="fa fa-check"></i><b>2.14</b> Variability</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="Ready.html"><a href="Ready.html#range"><i class="fa fa-check"></i><b>2.14.1</b> Range</a></li>
+<li class="chapter" data-level="2.14.2" data-path="Ready.html"><a href="Ready.html#percentiles-quantiles-interquartile-range"><i class="fa fa-check"></i><b>2.14.2</b> Percentiles, Quantiles, Interquartile Range</a></li>
+<li class="chapter" data-level="2.14.3" data-path="Ready.html"><a href="Ready.html#deviations-around-the-mean"><i class="fa fa-check"></i><b>2.14.3</b> Deviations around the Mean</a></li>
+<li class="chapter" data-level="2.14.4" data-path="Ready.html"><a href="Ready.html#variance"><i class="fa fa-check"></i><b>2.14.4</b> Variance</a></li>
+<li class="chapter" data-level="2.14.5" data-path="Ready.html"><a href="Ready.html#standard-deviation"><i class="fa fa-check"></i><b>2.14.5</b> Standard Deviation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="Ready.html"><a href="Ready.html#are-the-variables-normally-distributed"><i class="fa fa-check"></i><b>2.15</b> Are the Variables Normally Distributed?</a></li>
+<li class="chapter" data-level="2.16" data-path="Ready.html"><a href="Ready.html#relations-between-variables"><i class="fa fa-check"></i><b>2.16</b> Relations between Variables</a></li>
+<li class="chapter" data-level="2.17" data-path="Ready.html"><a href="Ready.html#shortcuts-to-preliminary-analyses"><i class="fa fa-check"></i><b>2.17</b> Shortcuts to Preliminary Analyses</a>
+<ul>
+<li class="chapter" data-level="2.17.1" data-path="Ready.html"><a href="Ready.html#splom"><i class="fa fa-check"></i><b>2.17.1</b> SPLOM</a></li>
+<li class="chapter" data-level="2.17.2" data-path="Ready.html"><a href="Ready.html#apatables"><i class="fa fa-check"></i><b>2.17.2</b> apaTables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.18" data-path="Ready.html"><a href="Ready.html#an-apa-style-writeup"><i class="fa fa-check"></i><b>2.18</b> An APA Style Writeup</a></li>
+<li class="chapter" data-level="2.19" data-path="Ready.html"><a href="Ready.html#practice-problems"><i class="fa fa-check"></i><b>2.19</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.19.1" data-path="Ready.html"><a href="Ready.html#problem-1-change-the-random-seed"><i class="fa fa-check"></i><b>2.19.1</b> Problem #1: Change the Random Seed</a></li>
+<li class="chapter" data-level="2.19.2" data-path="Ready.html"><a href="Ready.html#problem-2-swap-variables-in-the-simulation"><i class="fa fa-check"></i><b>2.19.2</b> Problem #2: Swap Variables in the Simulation</a></li>
+<li class="chapter" data-level="2.19.3" data-path="Ready.html"><a href="Ready.html#problem-3-use-or-simulate-your-own-data"><i class="fa fa-check"></i><b>2.19.3</b> Problem #3: Use (or Simulate) Your Own Data</a></li>
+<li class="chapter" data-level="2.19.4" data-path="Ready.html"><a href="Ready.html#grading-rubric"><i class="fa fa-check"></i><b>2.19.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="t-tests.html"><a href="t-tests.html"><i class="fa fa-check"></i><em>t</em>-tests</a></li>
+<li class="chapter" data-level="3" data-path="tOneSample.html"><a href="tOneSample.html"><i class="fa fa-check"></i><b>3</b> One Sample <em>t</em>-tests</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tOneSample.html"><a href="tOneSample.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="tOneSample.html"><a href="tOneSample.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="tOneSample.html"><a href="tOneSample.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="tOneSample.html"><a href="tOneSample.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="tOneSample.html"><a href="tOneSample.html#packages"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="tOneSample.html"><a href="tOneSample.html#introducing-the-one-sample-t-test"><i class="fa fa-check"></i><b>3.2</b> Introducing the One Sample <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="tOneSample.html"><a href="tOneSample.html#workflow-for-the-one-sample-t-test"><i class="fa fa-check"></i><b>3.2.1</b> Workflow for the One Sample <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="tOneSample.html"><a href="tOneSample.html#research-vignette-1"><i class="fa fa-check"></i><b>3.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.4" data-path="tOneSample.html"><a href="tOneSample.html#working-the-problem"><i class="fa fa-check"></i><b>3.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="tOneSample.html"><a href="tOneSample.html#stating-the-hypothesis"><i class="fa fa-check"></i><b>3.4.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="3.4.2" data-path="tOneSample.html"><a href="tOneSample.html#preliminary-exploration"><i class="fa fa-check"></i><b>3.4.2</b> Preliminary Exploration</a></li>
+<li class="chapter" data-level="3.4.3" data-path="tOneSample.html"><a href="tOneSample.html#hand-calculations"><i class="fa fa-check"></i><b>3.4.3</b> Hand-Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="tOneSample.html"><a href="tOneSample.html#computation-in-r"><i class="fa fa-check"></i><b>3.5</b> Computation in R</a></li>
+<li class="chapter" data-level="3.6" data-path="tOneSample.html"><a href="tOneSample.html#apa-style-results"><i class="fa fa-check"></i><b>3.6</b> APA Style Results</a></li>
+<li class="chapter" data-level="3.7" data-path="tOneSample.html"><a href="tOneSample.html#power-in-independent-samples-t-tests"><i class="fa fa-check"></i><b>3.7</b> Power in Independent Samples <em>t</em> tests</a></li>
+<li class="chapter" data-level="3.8" data-path="tOneSample.html"><a href="tOneSample.html#practice-problems-1"><i class="fa fa-check"></i><b>3.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="tOneSample.html"><a href="tOneSample.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>3.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="3.8.2" data-path="tOneSample.html"><a href="tOneSample.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation"><i class="fa fa-check"></i><b>3.8.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="3.8.3" data-path="tOneSample.html"><a href="tOneSample.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>3.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs_onesample.html"><a href="refs_onesample.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="4" data-path="tIndSample.html"><a href="tIndSample.html"><i class="fa fa-check"></i><b>4</b> Independent Samples <em>t</em> test</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tIndSample.html"><a href="tIndSample.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="tIndSample.html"><a href="tIndSample.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="tIndSample.html"><a href="tIndSample.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="tIndSample.html"><a href="tIndSample.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="tIndSample.html"><a href="tIndSample.html#packages-1"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="tIndSample.html"><a href="tIndSample.html#introducing-the-independent-samples-t-test"><i class="fa fa-check"></i><b>4.2</b> Introducing the Independent Samples <em>t</em> Test</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="tIndSample.html"><a href="tIndSample.html#workflow-for-independent-samples-t-test"><i class="fa fa-check"></i><b>4.2.1</b> Workflow for Independent Samples <em>t</em> test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="tIndSample.html"><a href="tIndSample.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="tIndSample.html"><a href="tIndSample.html#working-the-problem-1"><i class="fa fa-check"></i><b>4.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="tIndSample.html"><a href="tIndSample.html#stating-the-hypothesis-1"><i class="fa fa-check"></i><b>4.4.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="4.4.2" data-path="tIndSample.html"><a href="tIndSample.html#preliminary-exploration-1"><i class="fa fa-check"></i><b>4.4.2</b> Preliminary Exploration</a></li>
+<li class="chapter" data-level="4.4.3" data-path="tIndSample.html"><a href="tIndSample.html#hand-calculations-1"><i class="fa fa-check"></i><b>4.4.3</b> Hand-Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="tIndSample.html"><a href="tIndSample.html#computation-in-r-1"><i class="fa fa-check"></i><b>4.5</b> Computation in R</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="tIndSample.html"><a href="tIndSample.html#what-if-we-had-violated-the-homogeneity-of-variance-assumption"><i class="fa fa-check"></i><b>4.5.1</b> What if we had violated the homogeneity of variance assumption?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="tIndSample.html"><a href="tIndSample.html#apa-style-results-1"><i class="fa fa-check"></i><b>4.6</b> APA Style Results</a></li>
+<li class="chapter" data-level="4.7" data-path="tIndSample.html"><a href="tIndSample.html#power-in-independent-samples-t-tests-1"><i class="fa fa-check"></i><b>4.7</b> Power in Independent Samples <em>t</em> tests</a></li>
+<li class="chapter" data-level="4.8" data-path="tIndSample.html"><a href="tIndSample.html#practice-problems-2"><i class="fa fa-check"></i><b>4.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="tIndSample.html"><a href="tIndSample.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>4.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="4.8.2" data-path="tIndSample.html"><a href="tIndSample.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-1"><i class="fa fa-check"></i><b>4.8.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="4.8.3" data-path="tIndSample.html"><a href="tIndSample.html#problem-3-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>4.8.3</b> Problem #3: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="4.8.4" data-path="tIndSample.html"><a href="tIndSample.html#problem-4-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>4.8.4</b> Problem #4: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs_indsample.html"><a href="refs_indsample.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="5" data-path="tPaired.html"><a href="tPaired.html"><i class="fa fa-check"></i><b>5</b> Paired Samples <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tPaired.html"><a href="tPaired.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="tPaired.html"><a href="tPaired.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tPaired.html"><a href="tPaired.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="tPaired.html"><a href="tPaired.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="tPaired.html"><a href="tPaired.html#packages-2"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="tPaired.html"><a href="tPaired.html#introducing-the-paired-samples-t-test"><i class="fa fa-check"></i><b>5.2</b> Introducing the Paired Samples <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.3" data-path="tPaired.html"><a href="tPaired.html#workflow-for-paired-samples-t-test"><i class="fa fa-check"></i><b>5.3</b> Workflow for Paired Samples <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.4" data-path="tPaired.html"><a href="tPaired.html#research-vignette-3"><i class="fa fa-check"></i><b>5.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tPaired.html"><a href="tPaired.html#simulating-data-for-the-paired-samples-t-test"><i class="fa fa-check"></i><b>5.4.1</b> Simulating Data for the Paired Samples <em>t</em> test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tPaired.html"><a href="tPaired.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="tPaired.html"><a href="tPaired.html#stating-the-hypothesis-2"><i class="fa fa-check"></i><b>5.5.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="5.5.2" data-path="tPaired.html"><a href="tPaired.html#preliminary-exploration-2"><i class="fa fa-check"></i><b>5.5.2</b> Preliminary Exploration</a></li>
+<li class="chapter" data-level="5.5.3" data-path="tPaired.html"><a href="tPaired.html#hand-calculations-2"><i class="fa fa-check"></i><b>5.5.3</b> Hand Calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="tPaired.html"><a href="tPaired.html#computation-in-r-2"><i class="fa fa-check"></i><b>5.6</b> Computation in R</a></li>
+<li class="chapter" data-level="5.7" data-path="tPaired.html"><a href="tPaired.html#apa-style-results-2"><i class="fa fa-check"></i><b>5.7</b> APA Style Results</a></li>
+<li class="chapter" data-level="5.8" data-path="tPaired.html"><a href="tPaired.html#power-in-paired-samples-t-tests"><i class="fa fa-check"></i><b>5.8</b> Power in Paired Samples <em>t</em> tests</a></li>
+<li class="chapter" data-level="5.9" data-path="tPaired.html"><a href="tPaired.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="tPaired.html"><a href="tPaired.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="5.9.2" data-path="tPaired.html"><a href="tPaired.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-2"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="5.9.3" data-path="tPaired.html"><a href="tPaired.html#problem-3-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="5.9.4" data-path="tPaired.html"><a href="tPaired.html#problem-4-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>5.9.4</b> Problem #4: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs_paired.html"><a href="refs_paired.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i>Analysis of Variance</a></li>
+<li class="chapter" data-level="6" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>6</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="oneway.html"><a href="oneway.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="oneway.html"><a href="oneway.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="oneway.html"><a href="oneway.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="oneway.html"><a href="oneway.html#packages-3"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="oneway.html"><a href="oneway.html#workflow-for-one-way-anova"><i class="fa fa-check"></i><b>6.2</b> Workflow for One-Way ANOVA</a></li>
+<li class="chapter" data-level="6.3" data-path="oneway.html"><a href="oneway.html#research-vignette-4"><i class="fa fa-check"></i><b>6.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="oneway.html"><a href="oneway.html#data-simulation"><i class="fa fa-check"></i><b>6.3.1</b> Data Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="oneway.html"><a href="oneway.html#working-the-problem-3"><i class="fa fa-check"></i><b>6.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="oneway.html"><a href="oneway.html#preparing-the-data"><i class="fa fa-check"></i><b>6.4.1</b> Preparing the Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-numerically"><i class="fa fa-check"></i><b>6.4.2</b> Exploring the Distributional Characteristics Numerically</a></li>
+<li class="chapter" data-level="6.4.3" data-path="oneway.html"><a href="oneway.html#exploring-the-distributional-characteristics-graphically"><i class="fa fa-check"></i><b>6.4.3</b> Exploring the Distributional Characteristics Graphically</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="oneway.html"><a href="oneway.html#understanding-anova-with-hand-calculations"><i class="fa fa-check"></i><b>6.5</b> Understanding ANOVA with <em>Hand Calculations</em></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="oneway.html"><a href="oneway.html#sums-of-squares-total"><i class="fa fa-check"></i><b>6.5.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="6.5.2" data-path="oneway.html"><a href="oneway.html#sums-of-squares-for-the-model-or-between"><i class="fa fa-check"></i><b>6.5.2</b> Sums of Squares for the Model (or Between)</a></li>
+<li class="chapter" data-level="6.5.3" data-path="oneway.html"><a href="oneway.html#sums-of-squares-residual-or-within"><i class="fa fa-check"></i><b>6.5.3</b> Sums of Squares Residual (or within)</a></li>
+<li class="chapter" data-level="6.5.4" data-path="oneway.html"><a href="oneway.html#relationship-between-ss_t-ss_m-and-ss_r."><i class="fa fa-check"></i><b>6.5.4</b> Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span>.</a></li>
+<li class="chapter" data-level="6.5.5" data-path="oneway.html"><a href="oneway.html#mean-squares-model-residual"><i class="fa fa-check"></i><b>6.5.5</b> Mean Squares Model &amp; Residual</a></li>
+<li class="chapter" data-level="6.5.6" data-path="oneway.html"><a href="oneway.html#calculating-the-f-statistic"><i class="fa fa-check"></i><b>6.5.6</b> Calculating the <em>F</em> Statistic</a></li>
+<li class="chapter" data-level="6.5.7" data-path="oneway.html"><a href="oneway.html#source-table-games"><i class="fa fa-check"></i><b>6.5.7</b> Source Table Games</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="oneway.html"><a href="oneway.html#working-the-one-way-anova-in-r"><i class="fa fa-check"></i><b>6.6</b> Working the One-Way ANOVA in R</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="oneway.html"><a href="oneway.html#evaluating-the-statistical-assumptions"><i class="fa fa-check"></i><b>6.6.1</b> Evaluating the Statistical Assumptions</a></li>
+<li class="chapter" data-level="6.6.2" data-path="oneway.html"><a href="oneway.html#computing-the-omnibus-anova"><i class="fa fa-check"></i><b>6.6.2</b> Computing the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="6.6.3" data-path="oneway.html"><a href="oneway.html#follow-up-to-the-omnibus-f"><i class="fa fa-check"></i><b>6.6.3</b> Follow-up to the Omnibus <em>F</em></a></li>
+<li class="chapter" data-level="6.6.4" data-path="oneway.html"><a href="oneway.html#what-if-we-violated-the-homogeneity-of-variance-test"><i class="fa fa-check"></i><b>6.6.4</b> What if we Violated the Homogeneity of Variance test?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="oneway.html"><a href="oneway.html#power-analysis"><i class="fa fa-check"></i><b>6.7</b> Power Analysis</a></li>
+<li class="chapter" data-level="6.8" data-path="oneway.html"><a href="oneway.html#apa-style-results-3"><i class="fa fa-check"></i><b>6.8</b> APA Style Results</a></li>
+<li class="chapter" data-level="6.9" data-path="oneway.html"><a href="oneway.html#a-conversation-with-dr.-tran"><i class="fa fa-check"></i><b>6.9</b> A Conversation with Dr. Tran</a></li>
+<li class="chapter" data-level="6.10" data-path="oneway.html"><a href="oneway.html#practice-problems-4"><i class="fa fa-check"></i><b>6.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="oneway.html"><a href="oneway.html#problem-1-play-around-with-this-simulation."><i class="fa fa-check"></i><b>6.10.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="6.10.2" data-path="oneway.html"><a href="oneway.html#problem-2-conduct-a-one-way-anova-with-the-moretalk-dependent-variable."><i class="fa fa-check"></i><b>6.10.2</b> Problem #2: Conduct a one-way ANOVA with the <em>moreTalk</em> dependent variable.</a></li>
+<li class="chapter" data-level="6.10.3" data-path="oneway.html"><a href="oneway.html#problem-3-try-something-entirely-new."><i class="fa fa-check"></i><b>6.10.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="6.10.4" data-path="oneway.html"><a href="oneway.html#grading-rubric-1"><i class="fa fa-check"></i><b>6.10.4</b> Grading Rubric</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="oneway.html"><a href="oneway.html#bonus-reel"><i class="fa fa-check"></i><b>6.11</b> Bonus Reel:</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="oneway.html"><a href="oneway.html#whats-with-the-inline-code"><i class="fa fa-check"></i><b>6.11.1</b> What’s with the inline code?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="between.html"><a href="between.html"><i class="fa fa-check"></i><b>7</b> Factorial (Between-Subjects) ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="between.html"><a href="between.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="between.html"><a href="between.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="between.html"><a href="between.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="between.html"><a href="between.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="between.html"><a href="between.html#packages-4"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="between.html"><a href="between.html#introducing-factorial-anova"><i class="fa fa-check"></i><b>7.2</b> Introducing Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="between.html"><a href="between.html#workflow-for-two-way-anova"><i class="fa fa-check"></i><b>7.2.1</b> Workflow for Two-Way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="between.html"><a href="between.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="between.html"><a href="between.html#preliminary-exploration-of-our-research-vignette"><i class="fa fa-check"></i><b>7.3.1</b> Preliminary exploration of our research vignette</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="between.html"><a href="between.html#working-the-factorial-anova-by-hand"><i class="fa fa-check"></i><b>7.4</b> Working the Factorial ANOVA (by hand)</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="between.html"><a href="between.html#sums-of-squares-total-1"><i class="fa fa-check"></i><b>7.4.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="7.4.2" data-path="between.html"><a href="between.html#sums-of-squares-for-the-model"><i class="fa fa-check"></i><b>7.4.2</b> Sums of Squares for the Model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="between.html"><a href="between.html#sums-of-squares-residual-or-within-1"><i class="fa fa-check"></i><b>7.4.3</b> Sums of Squares Residual (or within)</a></li>
+<li class="chapter" data-level="7.4.4" data-path="between.html"><a href="between.html#a-recap-on-the-relationship-between-ss_t-ss_m-and-ss_r"><i class="fa fa-check"></i><b>7.4.4</b> A Recap on the Relationship between <span class="math inline">\(SS_T\)</span>, <span class="math inline">\(SS_M\)</span>, and <span class="math inline">\(SS_R\)</span></a></li>
+<li class="chapter" data-level="7.4.5" data-path="between.html"><a href="between.html#calculating-ss-for-each-factor-and-their-products"><i class="fa fa-check"></i><b>7.4.5</b> Calculating SS for Each Factor and Their Products</a></li>
+<li class="chapter" data-level="7.4.6" data-path="between.html"><a href="between.html#source-table-games-1"><i class="fa fa-check"></i><b>7.4.6</b> Source Table Games!</a></li>
+<li class="chapter" data-level="7.4.7" data-path="between.html"><a href="between.html#interpreting-the-results"><i class="fa fa-check"></i><b>7.4.7</b> Interpreting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="between.html"><a href="between.html#working-the-factorial-anova-with-r-packages"><i class="fa fa-check"></i><b>7.5</b> Working the Factorial ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="between.html"><a href="between.html#evaluating-the-statistical-assumptions-1"><i class="fa fa-check"></i><b>7.5.1</b> Evaluating the statistical assumptions</a></li>
+<li class="chapter" data-level="7.5.2" data-path="between.html"><a href="between.html#evaluating-the-omnibus-anova"><i class="fa fa-check"></i><b>7.5.2</b> Evaluating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="7.5.3" data-path="between.html"><a href="between.html#follow-up-a-significant-interaction-effect"><i class="fa fa-check"></i><b>7.5.3</b> Follow-up a significant interaction effect</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="between.html"><a href="between.html#investigating-main-effects"><i class="fa fa-check"></i><b>7.6</b> Investigating Main Effects</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="between.html"><a href="between.html#follow-up-with-all-post-hocs"><i class="fa fa-check"></i><b>7.6.1</b> Follow-up with all Post-Hocs</a></li>
+<li class="chapter" data-level="7.6.2" data-path="between.html"><a href="between.html#follow-up-with-planned-contrasts"><i class="fa fa-check"></i><b>7.6.2</b> Follow-up with planned contrasts</a></li>
+<li class="chapter" data-level="7.6.3" data-path="between.html"><a href="between.html#polynomial-trends"><i class="fa fa-check"></i><b>7.6.3</b> Polynomial Trends</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="between.html"><a href="between.html#my-apa-style-results-section"><i class="fa fa-check"></i><b>7.7</b> My APA Style Results Section</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="between.html"><a href="between.html#comparing-our-results-to-rhamdani-et-al.--ramdhani_affective_2018"><i class="fa fa-check"></i><b>7.7.1</b> Comparing Our Results to Rhamdani et al. <span class="citation">(<span>2018</span>)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="between.html"><a href="between.html#options-for-assumption-violations"><i class="fa fa-check"></i><b>7.8</b> Options for Assumption Violations</a></li>
+<li class="chapter" data-level="7.9" data-path="between.html"><a href="between.html#power"><i class="fa fa-check"></i><b>7.9</b> Power</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="between.html"><a href="between.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>7.9.1</b> Post Hoc Power Analysis</a></li>
+<li class="chapter" data-level="7.9.2" data-path="between.html"><a href="between.html#estimating-sample-size-requirements"><i class="fa fa-check"></i><b>7.9.2</b> Estimating Sample Size Requirements</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="between.html"><a href="between.html#practice-problems-5"><i class="fa fa-check"></i><b>7.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="between.html"><a href="between.html#problem-1-play-around-with-this-simulation.-1"><i class="fa fa-check"></i><b>7.10.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="7.10.2" data-path="between.html"><a href="between.html#problem-2-conduct-a-factorial-anova-with-the-positive-evaluation-dependent-variable."><i class="fa fa-check"></i><b>7.10.2</b> Problem #2: Conduct a factorial ANOVA with the <em>positive evaluation</em> dependent variable.</a></li>
+<li class="chapter" data-level="7.10.3" data-path="between.html"><a href="between.html#problem-3-try-something-entirely-new.-1"><i class="fa fa-check"></i><b>7.10.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="7.10.4" data-path="between.html"><a href="between.html#grading-rubric-2"><i class="fa fa-check"></i><b>7.10.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Repeated.html"><a href="Repeated.html"><i class="fa fa-check"></i><b>8</b> One-Way Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="Repeated.html"><a href="Repeated.html#navigating-this-lesson-7"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="Repeated.html"><a href="Repeated.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="Repeated.html"><a href="Repeated.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="Repeated.html"><a href="Repeated.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="Repeated.html"><a href="Repeated.html#packages-5"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="Repeated.html"><a href="Repeated.html#introducing-one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>8.2</b> Introducing One-way Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="Repeated.html"><a href="Repeated.html#workflow-for-oneway-repeated-measures-anova"><i class="fa fa-check"></i><b>8.2.1</b> Workflow for Oneway Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="Repeated.html"><a href="Repeated.html#research-vignette-6"><i class="fa fa-check"></i><b>8.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="Repeated.html"><a href="Repeated.html#code-for-simulating-the-data-used-today."><i class="fa fa-check"></i><b>8.3.1</b> Code for simulating the data used today.</a></li>
+<li class="chapter" data-level="8.3.2" data-path="Repeated.html"><a href="Repeated.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.3.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="Repeated.html"><a href="Repeated.html#working-the-one-way-repeated-measures-anova-by-hand"><i class="fa fa-check"></i><b>8.4</b> Working the One-Way Repeated Measures ANOVA (by hand)</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-total-2"><i class="fa fa-check"></i><b>8.4.1</b> Sums of Squares Total</a></li>
+<li class="chapter" data-level="8.4.2" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-within-for-repated-measures-anova"><i class="fa fa-check"></i><b>8.4.2</b> Sums of Squares Within for Repated Measures ANOVA</a></li>
+<li class="chapter" data-level="8.4.3" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-model-effect-of-time"><i class="fa fa-check"></i><b>8.4.3</b> Sums of Squares Model – Effect of Time</a></li>
+<li class="chapter" data-level="8.4.4" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-residual"><i class="fa fa-check"></i><b>8.4.4</b> Sums of Squares Residual</a></li>
+<li class="chapter" data-level="8.4.5" data-path="Repeated.html"><a href="Repeated.html#sums-of-squares-between"><i class="fa fa-check"></i><b>8.4.5</b> Sums of Squares Between</a></li>
+<li class="chapter" data-level="8.4.6" data-path="Repeated.html"><a href="Repeated.html#mean-squares-model-residual-1"><i class="fa fa-check"></i><b>8.4.6</b> Mean Squares Model &amp; Residual</a></li>
+<li class="chapter" data-level="8.4.7" data-path="Repeated.html"><a href="Repeated.html#f-ratio"><i class="fa fa-check"></i><b>8.4.7</b> <em>F</em> ratio</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="Repeated.html"><a href="Repeated.html#working-the-one-way-anova-with-r-packages"><i class="fa fa-check"></i><b>8.5</b> Working the One-Way ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="Repeated.html"><a href="Repeated.html#testing-the-assumptions"><i class="fa fa-check"></i><b>8.5.1</b> Testing the assumptions</a></li>
+<li class="chapter" data-level="8.5.2" data-path="Repeated.html"><a href="Repeated.html#omnibus-repeated-measures-anova"><i class="fa fa-check"></i><b>8.5.2</b> Omnibus Repeated Measures ANOVA</a></li>
+<li class="chapter" data-level="8.5.3" data-path="Repeated.html"><a href="Repeated.html#follow-up"><i class="fa fa-check"></i><b>8.5.3</b> Follow-up</a></li>
+<li class="chapter" data-level="8.5.4" data-path="Repeated.html"><a href="Repeated.html#results-section"><i class="fa fa-check"></i><b>8.5.4</b> Results Section</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="Repeated.html"><a href="Repeated.html#power-in-repeated-measures-anova"><i class="fa fa-check"></i><b>8.6</b> Power in Repeated Measures ANOVA</a></li>
+<li class="chapter" data-level="8.7" data-path="Repeated.html"><a href="Repeated.html#practice-problems-6"><i class="fa fa-check"></i><b>8.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="Repeated.html"><a href="Repeated.html#problem-1-change-the-random-seed-1"><i class="fa fa-check"></i><b>8.7.1</b> Problem #1: Change the Random Seed</a></li>
+<li class="chapter" data-level="8.7.2" data-path="Repeated.html"><a href="Repeated.html#problem-2-increase-n"><i class="fa fa-check"></i><b>8.7.2</b> Problem #2: Increase <em>N</em></a></li>
+<li class="chapter" data-level="8.7.3" data-path="Repeated.html"><a href="Repeated.html#problem-3-try-something-entirely-new"><i class="fa fa-check"></i><b>8.7.3</b> Problem #3: Try Something Entirely New</a></li>
+<li class="chapter" data-level="8.7.4" data-path="Repeated.html"><a href="Repeated.html#grading-rubric-3"><i class="fa fa-check"></i><b>8.7.4</b> Grading Rubric</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="Repeated.html"><a href="Repeated.html#bonus-reel-1"><i class="fa fa-check"></i><b>8.8</b> Bonus Reel:</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Mixed.html"><a href="Mixed.html"><i class="fa fa-check"></i><b>9</b> Mixed Design ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="Mixed.html"><a href="Mixed.html#navigating-this-lesson-8"><i class="fa fa-check"></i><b>9.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="Mixed.html"><a href="Mixed.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="Mixed.html"><a href="Mixed.html#planning-for-practice-7"><i class="fa fa-check"></i><b>9.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="9.1.3" data-path="Mixed.html"><a href="Mixed.html#readings-resources-7"><i class="fa fa-check"></i><b>9.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="9.1.4" data-path="Mixed.html"><a href="Mixed.html#packages-6"><i class="fa fa-check"></i><b>9.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="Mixed.html"><a href="Mixed.html#introducing-mixed-design-anova"><i class="fa fa-check"></i><b>9.2</b> Introducing Mixed Design ANOVA</a></li>
+<li class="chapter" data-level="9.3" data-path="Mixed.html"><a href="Mixed.html#research-vignette-7"><i class="fa fa-check"></i><b>9.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="Mixed.html"><a href="Mixed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>9.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="Mixed.html"><a href="Mixed.html#working-the-mixed-design-anova-with-r-packages"><i class="fa fa-check"></i><b>9.4</b> Working the Mixed Design ANOVA with R packages</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="Mixed.html"><a href="Mixed.html#exploring-data-and-testing-assumptions"><i class="fa fa-check"></i><b>9.4.1</b> Exploring data and testing assumptions</a></li>
+<li class="chapter" data-level="9.4.2" data-path="Mixed.html"><a href="Mixed.html#omnibus-anova"><i class="fa fa-check"></i><b>9.4.2</b> Omnibus ANOVA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-condition-within-wave"><i class="fa fa-check"></i><b>9.4.3</b> Simple main effect of condition within wave</a></li>
+<li class="chapter" data-level="9.4.4" data-path="Mixed.html"><a href="Mixed.html#simple-main-effect-of-wave-within-condition"><i class="fa fa-check"></i><b>9.4.4</b> Simple main effect of wave within condition</a></li>
+<li class="chapter" data-level="9.4.5" data-path="Mixed.html"><a href="Mixed.html#if-we-only-had-a-main-effect"><i class="fa fa-check"></i><b>9.4.5</b> If we only had a main effect</a></li>
+<li class="chapter" data-level="9.4.6" data-path="Mixed.html"><a href="Mixed.html#apa-style-write-up-of-the-results"><i class="fa fa-check"></i><b>9.4.6</b> APA Style Write-up of the Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="Mixed.html"><a href="Mixed.html#power-in-mixed-design-anova"><i class="fa fa-check"></i><b>9.5</b> Power in Mixed Design ANOVA</a></li>
+<li class="chapter" data-level="9.6" data-path="Mixed.html"><a href="Mixed.html#practice-problems-7"><i class="fa fa-check"></i><b>9.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="Mixed.html"><a href="Mixed.html#problem-1-play-around-with-this-simulation.-2"><i class="fa fa-check"></i><b>9.6.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="9.6.2" data-path="Mixed.html"><a href="Mixed.html#problem-2-conduct-a-one-way-anova-with-a-different-dependent-variable."><i class="fa fa-check"></i><b>9.6.2</b> Problem #2: Conduct a one-way ANOVA with a different dependent variable.</a></li>
+<li class="chapter" data-level="9.6.3" data-path="Mixed.html"><a href="Mixed.html#problem-3-try-something-entirely-new.-2"><i class="fa fa-check"></i><b>9.6.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="9.6.4" data-path="Mixed.html"><a href="Mixed.html#grading-rubric-4"><i class="fa fa-check"></i><b>9.6.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ANCOVA.html"><a href="ANCOVA.html"><i class="fa fa-check"></i><b>10</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ANCOVA.html"><a href="ANCOVA.html#navigating-this-lesson-9"><i class="fa fa-check"></i><b>10.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="ANCOVA.html"><a href="ANCOVA.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ANCOVA.html"><a href="ANCOVA.html#planning-for-practice-8"><i class="fa fa-check"></i><b>10.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="10.1.3" data-path="ANCOVA.html"><a href="ANCOVA.html#readings-resources-8"><i class="fa fa-check"></i><b>10.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="10.1.4" data-path="ANCOVA.html"><a href="ANCOVA.html#packages-7"><i class="fa fa-check"></i><b>10.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ANCOVA.html"><a href="ANCOVA.html#introducing-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>10.2</b> Introducing Analysis of Covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="10.3" data-path="ANCOVA.html"><a href="ANCOVA.html#research-vignette-8"><i class="fa fa-check"></i><b>10.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="ANCOVA.html"><a href="ANCOVA.html#simulating-the-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>10.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-1-controlling-for-the-pretest"><i class="fa fa-check"></i><b>10.4</b> Scenario #1: Controlling for the pretest</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-1"><i class="fa fa-check"></i><b>10.4.1</b> Preparing the data</a></li>
+<li class="chapter" data-level="10.4.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions"><i class="fa fa-check"></i><b>10.4.2</b> Checking the assumptions</a></li>
+<li class="chapter" data-level="10.4.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova"><i class="fa fa-check"></i><b>10.4.3</b> Calculating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="10.4.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate"><i class="fa fa-check"></i><b>10.4.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
+<li class="chapter" data-level="10.4.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section"><i class="fa fa-check"></i><b>10.4.5</b> Toward an APA style results section</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="ANCOVA.html"><a href="ANCOVA.html#scenario-2-controlling-for-a-confounding-or-covarying-variable"><i class="fa fa-check"></i><b>10.5</b> Scenario #2: Controlling for a confounding or covarying variable</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="ANCOVA.html"><a href="ANCOVA.html#preparing-the-data-2"><i class="fa fa-check"></i><b>10.5.1</b> Preparing the data</a></li>
+<li class="chapter" data-level="10.5.2" data-path="ANCOVA.html"><a href="ANCOVA.html#checking-the-assumptions-1"><i class="fa fa-check"></i><b>10.5.2</b> Checking the assumptions</a></li>
+<li class="chapter" data-level="10.5.3" data-path="ANCOVA.html"><a href="ANCOVA.html#calculating-the-omnibus-anova-1"><i class="fa fa-check"></i><b>10.5.3</b> Calculating the Omnibus ANOVA</a></li>
+<li class="chapter" data-level="10.5.4" data-path="ANCOVA.html"><a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate-1"><i class="fa fa-check"></i><b>10.5.4</b> Post-hoc pairwise comparisons (controlling for the covariate)</a></li>
+<li class="chapter" data-level="10.5.5" data-path="ANCOVA.html"><a href="ANCOVA.html#toward-an-apa-style-results-section-1"><i class="fa fa-check"></i><b>10.5.5</b> Toward an APA style results section</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="ANCOVA.html"><a href="ANCOVA.html#more-and-a-recap-on-covariates"><i class="fa fa-check"></i><b>10.6</b> More (and a recap) on covariates</a></li>
+<li class="chapter" data-level="10.7" data-path="ANCOVA.html"><a href="ANCOVA.html#practice-problems-8"><i class="fa fa-check"></i><b>10.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-1-play-around-with-this-simulation.-3"><i class="fa fa-check"></i><b>10.7.1</b> Problem #1: Play around with this simulation.</a></li>
+<li class="chapter" data-level="10.7.2" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-2-conduct-a-one-way-ancova-with-the-dv-and-covariate-at-post2."><i class="fa fa-check"></i><b>10.7.2</b> Problem #2: Conduct a one-way ANCOVA with the DV and covariate at post2.</a></li>
+<li class="chapter" data-level="10.7.3" data-path="ANCOVA.html"><a href="ANCOVA.html#problem-3-try-something-entirely-new.-3"><i class="fa fa-check"></i><b>10.7.3</b> Problem #3: Try something entirely new.</a></li>
+<li class="chapter" data-level="10.7.4" data-path="ANCOVA.html"><a href="ANCOVA.html#grading-rubric-5"><i class="fa fa-check"></i><b>10.7.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="refs_paired" class="section level1 unnumbered hasAnchor">
+<h1>References<a href="refs_paired.html#refs_paired" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tPaired.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-variance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhbikos/ReCenterPsychStats/edit/BRANCH/06-tPairedSamples.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ReCenterPsychStats.pdf", "ReCenterPsychStats.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
