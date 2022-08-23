@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -592,7 +592,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 3</span> One Sample <em>t</em>-tests<a href="tOneSample.html#tOneSample" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><a href="link%20here">Screencasted Lecture Link</a></p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="tOneSample.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)  <span class="co">#eliminates scientific notation</span></span></code></pre></div>
-<p>Researchers, and perhaps especially those engaged in program evaluation, may wish to know if their data differs from an external standard. In today’s research vignette, we will ask if the time physicians spent with their patients differed from what was reported nationally. The one-sample <em>t</em>-test is an appropriate tool for this type of analysis.</p>
+<p>Researchers and program evaluators, may wish to know if their data differs from an external standard. In today’s research vignette, we will ask if the time physicians spent with their patients differed from an external benchmark. The one sample <em>t</em>-test is an appropriate tool for this type of analysis. As we work toward the one sample <em>t</em>-test we take some time to explore the standard normal curve and <em>z</em>-scores, particularly as they related to probability.</p>
 <div id="navigating-this-lesson-2" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Navigating this Lesson<a href="tOneSample.html#navigating-this-lesson-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There is about # hour and ## minutes of lecture. If you work through the materials with me it would be plan for an additional TIME.</p>
@@ -601,6 +601,8 @@ div.csl-indent {
 <h3><span class="header-section-number">3.1.1</span> Learning Objectives<a href="tOneSample.html#learning-objectives-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Learning objectives from this lecture include the following:</p>
 <ul>
+<li>Convert raw scores to <em>z</em>-scores (and back again).</li>
+<li>Using the <em>z</em> table, determine the probability of an occurence.</li>
 <li>Recognize the research questions for which utilization of a one sample <em>t</em>-test would be appropriate.</li>
 <li>Narrate the steps in conducting a one-sample <em>t</em>-test, beginning with testing the statistical assumptions through writing up an APA style results section.</li>
 <li>Calculate a one-sample <em>t</em>-test in R (including effect sizes).</li>
@@ -648,7 +650,7 @@ div.csl-indent {
 <h2><span class="header-section-number">3.2</span> <em>z</em> before <em>t</em><a href="tOneSample.html#z-before-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Probability density functions</strong> are mathematical formula that specifies idealized versions of known distributions. The equations that define these distributions allow us to calculate the probability of obtaining a given score. This is a powerful tool.</p>
 <p>As students progress through statistics, they become familiar with a variety of these distributions including the <em>t</em>-distribution (commonly used in <em>t</em>-tests), <em>F</em>-distribution (commonly used in analysis of variance [ANOVA]), and Chi-square (<span class="math inline">\(X^2\)</span>) distributions (used in a variety of statistics, including structural equation modeling). The <em>z</em> distribution is the most well-known of these distributions.</p>
-<p>The <em>z</em> distribution is also known as the normal distribution, the bell curve, or the standard normal distribution. Its mean is always 0.00 and its standard deviation is always 1.00. Regardless of what the actual mean and standard deviation are</p>
+<p>The <em>z</em> distribution is also known as the normal distribution, the bell curve, or the standard normal curve. Its mean is always 0.00 and its standard deviation is always 1.00. Regardless of what the actual mean and standard deviation are</p>
 <ul>
 <li>68.3% of the area falls within 1 standard deviation of the mean</li>
 <li>95.4% of the distribution falls within 2 standard deviations of the mean</li>
@@ -659,7 +661,7 @@ div.csl-indent {
 <p><span class="math display">\[z=\frac{X-\bar{X}}{s}\]</span>
 We can rearrange the formula to find what raw score corresponds with the <em>z</em>-score.</p>
 <p><span class="math display">\[X = \bar{X} + z(s)\]</span></p>
-<p>These powerful tools allow us to make inferences about the data.</p>
+<p>The properties of the <em>z</em>-score and the standard normal curve allow us to make inferences about the data.</p>
 <div id="simulating-a-mini-research-vignette" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Simulating a Mini Research Vignette<a href="tOneSample.html#simulating-a-mini-research-vignette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Later in this larger section on <em>t</em>-tests we introduce a research vignette that focuses on time physicians spend with patients. Because working with the <em>z</em>-test requires a minimum sample size of 120 (and the research vignette has a sample size of 33), I will quickly create normally distributed sample of 200 with a mean of 10 minutes and a standard deviation of 2 minutes per patient. This will allow us to ask some important questions of the data.</p>
@@ -680,13 +682,13 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="tOneSample.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 11.9</code></pre>
 <p>Because <span class="math inline">\(\pm 1SD\)</span> covers 68% of the distribution, we now know that 68% of patients have physician visits that are between 7.9 and 11.9 minutes long.</p>
-<p>What about <span class="math inline">\(\pm 2SDs\)</span>?</p>
+<p>What about <span class="math inline">\(\pm 2SDs\)</span>? Similarly, we would apply the raw score formula, using 2 for the standard deviation.</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="tOneSample.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 5.9</code></pre>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="tOneSample.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 13.9</code></pre>
 <p>Two standard deviations around the mean captures 94.5% of patients; patients in this range receive between visits that range between 5.9 and 13.9 minutes.</p>
-<p>And what about <span class="math inline">\(\pm 3SDs\)</span>?</p>
+<p>And what about <span class="math inline">\(\pm 3SDs\)</span>? This time we use 3 to represent the standard deviation.</p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="tOneSample.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 3.9</code></pre>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="tOneSample.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
@@ -702,16 +704,16 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code
 <p>We learn that 9.9 minutes (the mean of the distribution of raw scores) corresponds with 0 (the mean of the distribution of <em>z</em>-scores).</p>
 <p>Next, we examine a <a href="https://www.statology.org/z-table/">table of critical <em>z</em> values</a> where we see that a score of 0.0 corresponds to an area (probability) of .50. The directionality of our table is such that fewer minutes spent with patients are represented on the left (the shaded portion) and more minutes spent with patients are represented on the right (the unshaded portion). Our question asks, what is the probability that a physician spends <em>at least</em> 9.9 minutes with a patient (i.e., 9.9 or more minutes) means that we should use the area on the right. Thus, the probability that a physician spends <em>at least</em> 9.9 minutes with a patient is 50%. In this case it is also true that the probability that a physician spends 9.9 minutes or less is also 50%. This 50/50 result helps make the point that the area under the curve is equal to 1.0.</p>
 <p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-85-1.png" width="672" />
-We can also obtain the probability value with the <em>pnorm()</em> function. We enter the score, the mean, and the sd. As shown below, we can enter them in <em>z</em> score formula or from the raw scores.</p>
+We can also obtain the probability value with the <em>pnorm()</em> function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in <em>z</em> score formula or from the raw scores.</p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="tOneSample.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">0</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 0.5</code></pre>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="tOneSample.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">9.9</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 0.5</code></pre>
-<p>Let’s ask a question that requires careful inspection of the asymmetry of the curve. What is the probability that a physician spends less than 5 minutes with a patient? First, we calculate the corresponding <em>z</em>-score:</p>
+<p>Next, let’s ask a question that requires careful inspection of the asymmetry of the curve. What is the probability that a physician spends less than 5 minutes with a patient? First, we calculate the corresponding <em>z</em>-score:</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="tOneSample.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating the z-score</span></span>
 <span id="cb175-2"><a href="tOneSample.html#cb175-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 5 minutes</span></span></code></pre></div>
 <pre><code>[1] -2.45</code></pre>
-<p>Second we locate the corresponding area under the normal curve. Examining the table of critical <em>z</em>-values we see that a <em>z</em>-score of -2.95 corresponds with an area of 0.0071. We can check this with the <em>pnorm()</em> function:</p>
+<p>Second we locate the corresponding area under the normal curve. Examining the table of critical <em>z</em>-values we see that a <em>z</em>-score of -2.45 corresponds with an area of 0.0071. We can check this with the <em>pnorm()</em> function:</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="tOneSample.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">2.45</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 0.007142811</code></pre>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="tOneSample.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
@@ -730,13 +732,13 @@ The probability of a physician spending 12 minutes <em>or less</em> with a patie
 <div id="percentiles" class="section level3 hasAnchor" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Percentiles<a href="tOneSample.html#percentiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The same values that we just collected are often interpreted as percentiles. Our prior calculations taught us that a physician/patient visit that lasted 9.9 minutes (<em>z</em> = 0), is ranked at the 50th percentile. That is, a 9.9 minute visit is longer than 50% of patient/physician visits.</p>
-<p>A visit lasting 5 minutes (<em>z</em> = -2.45) is ranked at the .07th percentile. That is fewer than 1% of patient/physicizn visits are shorter than that.</p>
+<p>A visit lasting 5 minutes (<em>z</em> = -2.45) is ranked at the .07th percentile. That is fewer than 1% of patient/physician visits are shorter than 5 minutes.</p>
 <p>Finally, a visit lasting 12 minutes (<em>z</em> = 1.05) is ranked at the 85th percentile. That is, it is longer than 85% of patient visits.</p>
 <p>While this seems redundant, this something of a prelude to the importance of <em>z</em> scores and the standard normal curve in assessment, evaluation, and psychometrics.</p>
 </div>
 <div id="transforming-variables-to-standard-scores" class="section level3 hasAnchor" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Transforming Variables to Standard Scores<a href="tOneSample.html#transforming-variables-to-standard-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We could create a column of <em>z</em>-scores, this way:</p>
+<p>At this point, we have hand-calculated each score. It is easy to transform a set of scores into a column of <em>z</em>-scores:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="tOneSample.html#cb185-1" aria-hidden="true" tabindex="-1"></a>PhysTime<span class="sc">$</span>zMinutes <span class="ot">&lt;-</span> (PhysTime<span class="sc">$</span>minutes <span class="sc">-</span> <span class="fu">mean</span>(PhysTime<span class="sc">$</span>minutes))<span class="sc">/</span><span class="fu">sd</span>(PhysTime<span class="sc">$</span>minutes)</span>
 <span id="cb185-2"><a href="tOneSample.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PhysTime)</span></code></pre></div>
 <pre><code>    minutes    zMinutes
@@ -746,7 +748,26 @@ The probability of a physician spending 12 minutes <em>or less</em> with a patie
 4 13.162710  1.62977447
 5  6.120944 -1.88237678
 6 11.793346  0.94679063</code></pre>
-<p>The transformation of scores is considered to be <em>linear</em>. That is, this 1:1 relationship would result in a correlation of 1.00. Further, the z*version of the variable could be used in analyses, just as the original raw score. Choices to do this are made carefully and usually done to optimize interpretation.</p>
+<p>The transformation of scores is considered to be <em>linear</em>. That is, this 1:1 relationship would result in a correlation of 1.00. Further, the <em>z</em>version of the variable could be used in analyses, just as the original raw score. Choices to do this are made carefully and usually done to optimize interpretation. I will demonstrate this with set of descriptive statistics produced by the <em>apa.cor.table()</em> function from the <em>apaTables</em> package.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="tOneSample.html#cb187-1" aria-hidden="true" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(PhysTime)</span></code></pre></div>
+<pre><code>
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable    M    SD   1           
+  1. minutes  9.90 2.00             
+                                    
+  2. zMinutes 0.00 1.00 1.00**      
+                        [1.00, 1.00]
+                                    
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p &lt; .05. ** indicates p &lt; .01.
+ </code></pre>
 </div>
 <div id="the-one-sample-z-test" class="section level3 hasAnchor" number="3.2.6">
 <h3><span class="header-section-number">3.2.6</span> The One-Sample <em>z</em> test<a href="tOneSample.html#the-one-sample-z-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -765,15 +786,28 @@ H_0: &amp; \mu = 10.5 \\
 H_A: &amp; \mu &lt; 10.5
 \end{array}
 \]</span>
-Whether the test is one- or two- sided makes a difference in the strictness with which we interpret the results. We will reject the <span class="math inline">\(H_0\)</span> in favor of the alternative (<span class="math inline">\(H_A\)</span>) if the resulting test statistic (a <em>z</em> score) falls into the region of rejection. Sir Ronald Fisher was the scientist who popularized 5% as the rejection of rejection. In a directionless (two-tailed test), if a test value is greater than the hypothesized value of <span class="math inline">\(\pm 1.64\)</span> there is said to be a statistically significant difference in means. In contrast, in a two-tailed test, if a test value is greater than <span class="math inline">\(\pm 1.96\)</span> (where the 5% is split between the two tails), then the <span class="math inline">\(H_0\)</span> is rejected.</p>
-<p>Inspecting a table of <em>z</em> values shows that <span class="math inline">\(\pm 1.96\)</span> corresponds to areas of 0.025 and <em>z</em> values of <span class="math inline">\(\pm 1.64\)</span> correspond to areas of 0.05.
-<img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+Whether the test is one- or two- sided makes a difference in the strictness with which we interpret the results and can impact whether or not the result is statistically significant. We will reject the <span class="math inline">\(H_0\)</span> in favor of the alternative (<span class="math inline">\(H_A\)</span>) if the resulting test statistic (a <em>z</em> score) falls into the region of rejection (but that region shifts, depending on whether our test is one- or two- tailed..</p>
+<p>Statistician, Sir Ronald Fisher, popularized 5% as the rejection of rejection. Specifically, if a probability value associated with a <em>z</em>-score (or similar) falls into the tails of a distribution that represent 5%, then the <span class="math inline">\(H_0\)</span> is rejected, in favor of the <span class="math inline">\(H_A\)</span>.</p>
+<p>Stated another way</p>
+<ul>
+<li><em>p</em> is the probability that the <span class="math inline">\(H_0\)</span> is true
+<ul>
+<li><em>p</em> &gt; 0.05 suggests that there is a 95% chance or greater that the <span class="math inline">\(H_0\)</span> is true</li>
+</ul></li>
+<li>1 minus the <em>p</em> value is the probability that the alternative hypothesis is true.
+<ul>
+<li>A statistically significant test result (<em>p</em> ≤ 0.05) means that the test hypothesis is false or should be rejected.</li>
+<li>A <em>p</em> value greater than 0.05 means that no effect was observed.</li>
+</ul></li>
+</ul>
+<p>If our hypothesis is two-sided, then we can divide the 5% across both tails of the test. Inspecting a table of <em>z</em> values shows that <span class="math inline">\(\pm 1.96\)</span> would be the region of rejection of <span class="math inline">\(H_0\)</span>. In contrast, if the hypothesis is directionless (two-tailed),<span class="math inline">\(1.96\)</span> would serve as the boundary for the region of rejection and the corresponding <em>z</em>-test would have to have the same sign (+ or -) as the hypothesized tail of the distribution. So long as the hypothesis is consistent with the data, a one-sided test can be more powerful, that is, there is greater probability (defined as area under the curve) for rejecting the <span class="math inline">\(H_0\)</span>, if it is should be rejected.
+<img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <p>The formula for a one-sample <em>z</em>-test is as follows:</p>
 <p><span class="math display">\[
 z_{\bar{X}} =  \frac{\bar{X} - \mu_0}{\sigma / \sqrt{N}}
 \]</span>
 We have already calculated these values. But let’s grab some of them again as a reminder:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="tOneSample.html#cb187-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(PhysTime<span class="sc">$</span>minutes)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="tOneSample.html#cb189-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(PhysTime<span class="sc">$</span>minutes)</span></code></pre></div>
 <pre><code>   vars   n mean sd median trimmed mad  min   max range skew kurtosis   se
 X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code></pre>
 <ul>
@@ -782,20 +816,23 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code
 <li>Standard deviation is 2</li>
 <li><em>N</em> is 200</li>
 </ul>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="tOneSample.html#cb189-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">9.9</span> <span class="sc">-</span> <span class="fl">10.5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">200</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="tOneSample.html#cb191-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">9.9</span> <span class="sc">-</span> <span class="fl">10.5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">200</span>))</span></code></pre></div>
 <pre><code>[1] -4.242641</code></pre>
 <p>The resulting value, <span class="math inline">\(z = -4.242\)</span> is our test value. Because this faaaaaar exceeds <span class="math inline">\(\pm 1.96\)</span> we know that there is a statistically significant effect. Just to be sure, let’s use the <em>pnorm()</em> function to obtain the <em>p</em> value.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="tOneSample.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">4.24</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="tOneSample.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">4.24</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 0.0000000000007746685</code></pre>
-<p>Without a fancy statistics package, we can claim that there was a statistically significant difference between the physician/patient visit times in our sample and the externa criteria: <span class="math inline">\(z(200) = -4.24, p &lt; .001\)</span>.</p>
+<p>Simply with these hand-calculations, we can claim that there was a statistically significant difference between the physician/patient visit times in our simulated sample data and external benchmark criteria: <span class="math inline">\(z(200) = -4.24, p &lt; .001\)</span>.</p>
 <p>The one sample <em>z</em>-test is rarely seen in the published literature. However, a close inspection of tables that contain the critical values for <em>t</em>-tests reveals that the very bottom row (i.e., when sample sizes are 120 or greater) is, in fact, the <em>z</em> criteria. That must mean it’s time to learn about the one sample <em>t</em>-test.</p>
 </div>
 </div>
 <div id="introducing-the-one-sample-t-test" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Introducing the One Sample <em>t</em>-test<a href="tOneSample.html#introducing-the-one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The one-sample <em>t</em> test is used to evaluate whether the mean of a sample differs from another value that, symbolically, is represented as the population mean. Green and Salkind <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">Green &amp; Salkind, 2014b</a>)</span> noted that this value is often the midpoint of set of scores, the average value of the test variable based on past research, or a test value as the chance level of performance.</p>
-<p><img src="images/ttests/onesample.jpg" alt="An image of a row with two boxes labeled Condition A (in light blue) and the population mean (in dark blue) to which it is being compared. This represents the use of a one sample t test." />
-This comparison is evident in the numerator of the formula for the <em>t</em> test that shows the population mean <span class="math inline">\(\mu\)</span> being subtracted from the sample mean<span class="math inline">\(\bar{X}\)</span>.</p>
+<div class="figure">
+<img src="images/ttests/onesample.jpg" alt="" />
+<p class="caption">An image of a row with two boxes labeled Condition A (in light blue) and the population mean (in dark blue) to which it is being compared. This represents the use of a one sample <em>t</em> test.</p>
+</div>
+<p>This comparison is evident in the numerator of the formula for the <em>t</em> test that shows the population mean <span class="math inline">\(\mu\)</span> being subtracted from the sample mean<span class="math inline">\(\bar{X}\)</span>.</p>
 <p><span class="math display">\[
 t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 \]</span>
@@ -859,81 +896,73 @@ Although this statistic is straightforward, it is quite limited. If the research
 </tr>
 </tbody>
 </table>
-<p>In the research vignette Elliott et al. <span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span> indicated that physician/patient visits lasted between 3 minutes and 40 seconds (220 seconds) to 20 minutes and 13 seconds (1213 seconds). For the purpose of demonstrating the one sample <em>t</em>-test, we might want to ask whether the length of patient visits in this research study were statistically significantly different than patient in the ICU or in palliative care, more broadly. Elliott et al.<span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span> did not indicate a measure of central tendency (i.e., mean, mode, median) therefore, I will simulate the data by randomly generating 33 numbers between 220 and 1213. I will use <em>random selection with replacement</em>, which allows the same number to be selected more than once.</p>
-<p>A warning: this particularly analysis is “more simulated than usual” and does not represent reality. However, this research vignette lends itself for this type of question.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="tOneSample.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the &#39;random&#39; seed ensures that everyone gets the same</span></span>
-<span id="cb193-2"><a href="tOneSample.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="co"># result, every time they rerun the analysis. My personal practice is</span></span>
-<span id="cb193-3"><a href="tOneSample.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to create a random seed that represents the day I write up the</span></span>
-<span id="cb193-4"><a href="tOneSample.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="co"># problem (in this case August, 15, 2022) When the Suggestions for</span></span>
-<span id="cb193-5"><a href="tOneSample.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Practice invite you to &#39;change the random seed,&#39; simply change this</span></span>
-<span id="cb193-6"><a href="tOneSample.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="co"># number to anything you like (maybe your birthday or today&#39;s date)</span></span>
-<span id="cb193-7"><a href="tOneSample.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220815</span>)</span>
-<span id="cb193-8"><a href="tOneSample.html#cb193-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-9"><a href="tOneSample.html#cb193-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Assigns as physician ID number to each row Simulates 33 numbers</span></span>
-<span id="cb193-10"><a href="tOneSample.html#cb193-10" aria-hidden="true" tabindex="-1"></a><span class="co"># between 220 and 1213</span></span>
-<span id="cb193-11"><a href="tOneSample.html#cb193-11" aria-hidden="true" tabindex="-1"></a>dfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>)), <span class="at">PhysicianSeconds =</span> <span class="fu">sample</span>(<span class="dv">220</span><span class="sc">:</span><span class="dv">1213</span>,</span>
-<span id="cb193-12"><a href="tOneSample.html#cb193-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">33</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb193-13"><a href="tOneSample.html#cb193-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-14"><a href="tOneSample.html#cb193-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Displays the first 6 rows of the df</span></span>
-<span id="cb193-15"><a href="tOneSample.html#cb193-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dfOneSample)</span></code></pre></div>
-<pre><code>  ID PhysicianSeconds
-1  1              264
-2  2              356
-3  3             1078
-4  4              767
-5  5              815
-6  6             1107</code></pre>
-<p>With our data in hand, let’s examine its structure. The variable representing physician seconds represents the ratio scale of measurement and therefore should be noted as <em>num</em> (numerical) or <em>int</em> (integer; whole numbers) in R.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="tOneSample.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dfOneSample)</span></code></pre></div>
-<pre><code>&#39;data.frame&#39;:   33 obs. of  2 variables:
- $ ID              : Factor w/ 33 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
- $ PhysicianSeconds: int  264 356 1078 767 815 1107 583 892 698 1068 ...</code></pre>
+<p>In the research vignette Elliott et al. <span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span> indicated that physician/patient visits lasted between 3 minutes and 40 seconds to 20 minutes and 13 seconds. For the purpose of demonstrating the one sample <em>t</em>-test, we might want to ask whether the length of patient visits in this research study were statistically significantly different than patient in the ICU or in palliative care, more broadly. Elliott et al.<span class="citation">(<a href="#ref-elliott_differences_2016" role="doc-biblioref">2016</a>)</span> did not indicate a measure of central tendency (i.e., mean, mode, median) therefore, I will simulate the data by randomly generating 33 numbers with a mean of 8 and a standard deviation of 2.5. I will use <em>random selection with replacement</em>, which allows the same number to be selected more than once.</p>
+<p>I re-simulated (what may seem like identical data from above)to be consistent with the journal article’s research sample of 33.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="tOneSample.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the &#39;random&#39; seed ensures that everyone gets the same</span></span>
+<span id="cb195-2"><a href="tOneSample.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="co"># result, every time they rerun the analysis. My personal practice is</span></span>
+<span id="cb195-3"><a href="tOneSample.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to create a random seed that represents the day I write up the</span></span>
+<span id="cb195-4"><a href="tOneSample.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="co"># problem (in this case August, 15, 2022) When the Suggestions for</span></span>
+<span id="cb195-5"><a href="tOneSample.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Practice invite you to &#39;change the random seed,&#39; simply change this</span></span>
+<span id="cb195-6"><a href="tOneSample.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="co"># number to anything you like (maybe your birthday or today&#39;s date)</span></span>
+<span id="cb195-7"><a href="tOneSample.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220822</span>)</span>
+<span id="cb195-8"><a href="tOneSample.html#cb195-8" aria-hidden="true" tabindex="-1"></a>dfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">PhysMins =</span> <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.5</span>))</span>
+<span id="cb195-9"><a href="tOneSample.html#cb195-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-10"><a href="tOneSample.html#cb195-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dfOneSample)</span></code></pre></div>
+<pre><code>   PhysMins
+1  9.097343
+2 11.385558
+3  8.424395
+4  8.640534
+5 12.583856
+6  8.949883</code></pre>
+<p>A warning: this particularly analysis (the whole lesson, in fact) is “more simulated than usual” and does not represent reality. However, this research vignette lends itself for this type of question.</p>
+<p>With our data in hand, let’s examine its structure. The variable representing physician minutes represents the ratio scale of measurement and therefore should be noted as <em>num</em> (numerical) in R.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="tOneSample.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dfOneSample)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   33 obs. of  1 variable:
+ $ PhysMins: num  9.1 11.39 8.42 8.64 12.58 ...</code></pre>
 <p>Below is code for saving (and then importing) the data in .csv or .rds files. I make choices about saving data based on what I wish to do with the data. If I want to manipulate the data outside of R, I will save it as a .csv file. It is easy to open .csv files in Excel. A limitation of the .csv format is that it does not save any restructuring or reformatting of variables. For this lesson, this is not an issue.</p>
 <p>Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="tOneSample.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfOneSample, file</span></span>
-<span id="cb197-2"><a href="tOneSample.html#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="co"># = &#39;dfOneSample.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE) at</span></span>
-<span id="cb197-3"><a href="tOneSample.html#cb197-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this point you could clear your environment and then bring the data</span></span>
-<span id="cb197-4"><a href="tOneSample.html#cb197-4" aria-hidden="true" tabindex="-1"></a><span class="co"># back in as a .csv reading the data back in as a .csv file</span></span>
-<span id="cb197-5"><a href="tOneSample.html#cb197-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dfOneSample&lt;- read.csv (&#39;dfOneSample.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="tOneSample.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfOneSample, file</span></span>
+<span id="cb199-2"><a href="tOneSample.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co"># = &#39;dfOneSample.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE) at</span></span>
+<span id="cb199-3"><a href="tOneSample.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this point you could clear your environment and then bring the data</span></span>
+<span id="cb199-4"><a href="tOneSample.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="co"># back in as a .csv reading the data back in as a .csv file</span></span>
+<span id="cb199-5"><a href="tOneSample.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dfOneSample&lt;- read.csv (&#39;dfOneSample.csv&#39;, header = TRUE)</span></span></code></pre></div>
 <p>The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="tOneSample.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(dfOneSample, &#39;dfOneSample.rds&#39;) dfOneSample &lt;-</span></span>
-<span id="cb198-2"><a href="tOneSample.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="co"># readRDS(&#39;dfOneSample.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tOneSample.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(dfOneSample, &#39;dfOneSample.rds&#39;) dfOneSample &lt;-</span></span>
+<span id="cb200-2"><a href="tOneSample.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co"># readRDS(&#39;dfOneSample.rds&#39;)</span></span></code></pre></div>
 </div>
 <div id="working-the-problem" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Working the Problem<a href="tOneSample.html#working-the-problem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="stating-the-hypothesis" class="section level3 hasAnchor" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Stating the Hypothesis<a href="tOneSample.html#stating-the-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A quick scan of the literature suggests that health care workers’ visits to patients in the ICU are typically quite brief. Specifically, the average duration of a physician visit in a 2018 study was 73.5 seconds <span class="citation">(<a href="#ref-butler_estimating_2018" role="doc-biblioref">Butler et al., 2018</a>)</span>. A one-sample <em>t</em> test is appropriate for comparing the visit lengths from our sample to this external metric.</p>
-<p>As noted in the symbolic presentation below, our null hypothesis (<span class="math inline">\(H_0\)</span>) states that our data will be equal to the test value of 73.5 seconds. In contrast, the alternative hypothesis (<span class="math inline">\(H_A\)</span>) states that these values will not be equal.</p>
+<p>A quick scan of the literature suggests that health care workers’ visits to patients in the ICU are typically quite brief. Specifically, the average duration of a physician visit in a 2018 study was 73.5 seconds or 1.23 minutes <span class="citation">(<a href="#ref-butler_estimating_2018" role="doc-biblioref">Butler et al., 2018</a>)</span>. A one-sample <em>t</em> test is appropriate for comparing the visit lengths from our sample to this external metric.</p>
+<p>As noted in the symbolic presentation below, our null hypothesis (<span class="math inline">\(H_0\)</span>) states that our data will be equal to the test value of 1.23 minutes. In contrast, the alternative hypothesis (<span class="math inline">\(H_A\)</span>) states that these values will not be equal.</p>
 <p><span class="math display">\[
 \begin{array}{ll}
-H_0: &amp; \mu = 73.5 \\
-H_A: &amp; \mu \neq 73.5
+H_0: &amp; \mu = 1.23 \\
+H_A: &amp; \mu \neq 1.23
 \end{array}
 \]</span></p>
 </div>
 <div id="preliminary-exploration" class="section level3 hasAnchor" number="3.5.2">
 <h3><span class="header-section-number">3.5.2</span> Preliminary Exploration<a href="tOneSample.html#preliminary-exploration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plotting the data is best practice to any data analysis. The <em>ggpubr</em> package is one of my go-to-tools for quick and easy plots of data. Below, I have plotted the time-with-patient (Physician Seconds) variable and added the mean. As with most plotting packages, ggpubr will “bin” (or cluster) the data for plotting; this is especially true for data with a large number of units (a range from 220 to 1213 is quite large). The “rug = TRUE” command added a lower row of the table to identify where each of the datapoint follows.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="tOneSample.html#cb199-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(dfOneSample, <span class="at">x =</span> <span class="st">&quot;PhysicianSeconds&quot;</span>, <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb199-2"><a href="tOneSample.html#cb199-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">rug =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="tOneSample.html#cb201-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(dfOneSample, <span class="at">x =</span> <span class="st">&quot;PhysMins&quot;</span>, <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">rug =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>Warning: Using `bins = 30` by default. Pick better value with the argument
 `bins`.</code></pre>
 <pre><code>Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
 <pre><code>Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.</code></pre>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
-<p>The histogram makes it clear that our data does not reflect a standard normal curve.</p>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>Although the histogram is not perfectly normal, we can see at least the suggestion of a normal distribution. With only a sample of 33, I’m encouraged..</p>
 <p>Another view of our data is with a boxplot. The box captures the middle 50% of data with the horizontal bar at the median. The whiskers extend three standard deviations around the mean with dots beyond the whiskers representing outliers. I personally like the <em>add=“jitter”</em> statement because it shows where each case falls.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="tOneSample.html#cb203-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysicianSeconds, <span class="at">ylab =</span> <span class="st">&quot;Seconds with Patient&quot;</span>,</span>
-<span id="cb203-2"><a href="tOneSample.html#cb203-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-103-1.png" width="672" />
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tOneSample.html#cb205-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Seconds with Patient&quot;</span>,</span>
+<span id="cb205-2"><a href="tOneSample.html#cb205-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-104-1.png" width="672" />
 We can further evaluate normality by obtaining the descriptive statistics with the <em>describe()</em> function from the <em>psych</em> package.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="tOneSample.html#cb204-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfOneSample<span class="sc">$</span>PhysicianSeconds)</span></code></pre></div>
-<pre><code>   vars  n   mean     sd median trimmed    mad min  max range  skew kurtosis
-X1    1 33 717.12 312.22    762  720.07 403.27 225 1197   972 -0.14    -1.36
-      se
-X1 54.35</code></pre>
-<p>Here we see that our scores range from 225 to 1197 with a mean of 717.12 and a standard deviation of 312.22. We’re ready to calculate the one sample <em>t</em>-test.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="tOneSample.html#cb206-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfOneSample<span class="sc">$</span>PhysMins)</span></code></pre></div>
+<pre><code>   vars  n  mean  sd median trimmed  mad  min   max range skew kurtosis   se
+X1    1 33 10.01 2.7   9.78    9.96 2.44 4.92 17.41 12.49 0.36     0.04 0.47</code></pre>
+<p>Here we see that our minutes range from 4.92 to 17.41 with a mean of 10.01 and a standard deviation of 2.7. We’re ready to calculate the one sample <em>t</em>-test.</p>
 </div>
 <div id="hand-calculations" class="section level3 hasAnchor" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Hand-Calculations<a href="tOneSample.html#hand-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -942,29 +971,29 @@ X1 54.35</code></pre>
 t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 \]</span></p>
 <p>The denominator of the formula below subtracts the test value from the sample mean. The denominator involves multiplying the standard deviation by the square root of the sample size. The descriptive statistics provided the values we need to complete the analysis:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="tOneSample.html#cb206-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">717.12</span> <span class="sc">-</span> <span class="fl">73.5</span>)<span class="sc">/</span>(<span class="fl">312.22</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
-<pre><code>[1] 11.84202</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="tOneSample.html#cb208-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span>(<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
+<pre><code>[1] 18.68047</code></pre>
 <div id="statistical-significance" class="section level4 hasAnchor" number="3.5.3.1">
 <h4><span class="header-section-number">3.5.3.1</span> Statistical Significance<a href="tOneSample.html#statistical-significance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>If we ask about <em>statistical significance</em> then we are likely engaged in <em>null hypothesis significance testing</em> (NHST). In the case of a one sample test, we construct our hypothesis with a null and an alternative that are relatively straightforward. Specifically, we are interested in knowing if our sample mean (717.12) is statistically, significantly different from the test value of 73.5. We can write the hypotheses in this way:</p>
+<p>If we ask about <em>statistical significance</em> then we are engaged in <em>null hypothesis significance testing</em> (NHST). In the case of a one sample test, we construct our hypothesis with a null and an alternative that are relatively straightforward. Specifically, we are interested in knowing if our sample mean (10.01) is statistically, significantly different from the test value of 1.23. We can write the hypotheses in this way:</p>
 <p><span class="math display">\[
 \begin{array}{ll}
-H_0: &amp; \mu = 73.5 \\
-H_1: &amp; \mu \neq 73.5
+H_0: &amp; \mu = 1.23 \\
+H_1: &amp; \mu \neq 1.23
 \end{array}
 \]</span>
-In two parts, our null hypothesis (<span class="math inline">\(H_0\)</span>) states that the population mean (<span class="math inline">\(H_0\)</span>) for physician visits with palliative care patients is 73.5; the alternative <span class="math inline">\(\mu \neq\)</span> states that it is not 73.5.</p>
+In two parts, our null hypothesis (<span class="math inline">\(H_0\)</span>) states that the population mean (<span class="math inline">\(H_0\)</span>) for physician visits with palliative care patients is 1.23; the alternative <span class="math inline">\(\mu \neq\)</span> states that it is not 1.2.</p>
 <p>When we calculated the <em>t</em> test, we obtained a <em>t</em> value. We can check the statistical significance by determining the test critical value from a <a href="https://www.statology.org/t-distribution-table/">table of critical values</a> for the <em>t</em> distribution. There are many freely available on the internet. If our <em>t</em> value exceeds the value(s) in the table of critical values, then we can claim that our sample mean is statistically significantly different from the hypothesized value.</p>
 <p>Heading to the table of critical values we do the following:</p>
 <ul>
 <li>For the one-sample <em>t</em> test, the degrees of freedom (DF) is equal to the sample size (33). The closest value in our table is 30, so we will use that row.</li>
 <li>A priorily, we did not specify if we thought the difference would be greater, or lower. Therefore, we will use a column that indicates <em>two-tails</em>.</li>
-<li>A <em>p</em> value of .05 is customary.</li>
+<li>A <em>p</em> value of .05 is customary (but it will be split between two tails).</li>
 <li>Thus, if our <em>t</em> value is lower than -2.042 or higher than 2.042 we know we have a statistically significant difference.</li>
 </ul>
-<p>In our case, the <em>t</em> value of 11.03 exceeded the test critical value of 2.042. We would write the statistical string this way: <em>t</em>(33) = 11.84, <em>p</em> &lt; .05.</p>
+<p>In our case, the <em>t</em> value of 18.68 far exceeded the test critical value of 2.042. We would write the statistical string this way: <em>t</em>(33) = 18.68, <em>p</em> &lt; .05.</p>
 <p>In base R, the <em>qt()</em> function will look up a test critical value. For the one-sample <em>t</em> test, degrees of freedom (df) is equal to the sample size. We “divide the <em>p</em> value by 2” when we want a two-tailed test. Finally, the “lower.tail” command results in positive or negative values in the tail.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="tOneSample.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">33</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="tOneSample.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">33</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 2.034515</code></pre>
 <p>Not surprisingly, this value is quite similar to the value we saw in the table. The <em>qt()</em> function is more accurate because it used df of 33 (not rounded down to 30).</p>
 </div>
@@ -972,21 +1001,21 @@ In two parts, our null hypothesis (<span class="math inline">\(H_0\)</span>) sta
 <h4><span class="header-section-number">3.5.3.2</span> Confidence Intervals<a href="tOneSample.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>How confident are we in our result? With the one sample <em>t</em>-test, it is common to report an interval in which we are 95% confident that our true mean difference exists. Below is the formula, which involves:</p>
 <ul>
-<li><span class="math inline">\(\bar{X}\)</span> is the sample mean; in our case this is 717.12</li>
+<li><span class="math inline">\(\bar{X}\)</span> is the sample mean; in our case this is 10.01</li>
 <li><span class="math inline">\(t_{cv}\)</span> the test critical value for a two-tailed model (even if the hypothesis was one-tailed) where <span class="math inline">\(\alpha = .05\)</span> and the degrees of freedom are <span class="math inline">\(N-1\)</span></li>
-<li><span class="math inline">\(\frac{s}{\sqrt{n}}\)</span> was the denominator of the test statistic it involves the standard deviation of our sample (312.22) and the square root of our sample size (33)</li>
+<li><span class="math inline">\(\frac{s}{\sqrt{n}}\)</span> was the denominator of the test statistic it involves the standard deviation of our sample (2.7) and the square root of our sample size (33)</li>
 </ul>
 <p><span class="math display">\[\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})\]</span>
 Let’s calculate it:</p>
 <p>First, let’s get the proper <em>t</em> critical value. Even though these are identical to the one above, I am including them again. Why? Because if the original hypothesis had been one-tailed, we would need to calculate a two-tailed confidence interval; this is a placeholder to remind us.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="tOneSample.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="tOneSample.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 2.036933</code></pre>
 <p>Using the values from above, we can specify both the lower and upper bound of our confidence interval.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="tOneSample.html#cb212-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">717.12</span>) <span class="sc">-</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">312.22</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
-<pre><code>[1] 606.4134</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="tOneSample.html#cb214-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">717.12</span>) <span class="sc">+</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">312.22</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
-<pre><code>[1] 827.8266</code></pre>
-<p>The resulting interval is the 95% confidence interval around our sample mean. Stated another way, we are 95% certain that the true mean of time with patients in our sample ranges between 606.41 and 827.83 seconds.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="tOneSample.html#cb214-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">10.01</span>) <span class="sc">-</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
+<pre><code>[1] 9.052637</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="tOneSample.html#cb216-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">10.01</span>) <span class="sc">+</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
+<pre><code>[1] 10.96736</code></pre>
+<p>The resulting interval is the 95% confidence interval around our sample mean. Stated another way, we are 95% certain that the true mean of time with patients in our sample ranges between 9.05 and 10.97 minutes.</p>
 </div>
 <div id="effect-size" class="section level4 hasAnchor" number="3.5.3.3">
 <h4><span class="header-section-number">3.5.3.3</span> Effect size<a href="tOneSample.html#effect-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -994,53 +1023,53 @@ Let’s calculate it:</p>
 <p>The <em>d</em> statistic is commonly used with <em>t</em> tests; <em>d</em> assesses the degree that the mean on the test variable differs from the test value. Conveniently, <em>d</em> represents standard deviation units. A <em>d</em> value of 0 indicates that the mean of the sample equals the mean of the test value. As <em>d</em> moves away from 0 (in either direction), we can interpret the effect size to be stronger. Conventionally, the absolute values of .2, .5, and .8, represent small, medium, and large effect sizes, respectfully.</p>
 <p>Calculating the <em>d</em> statistic is easy. Here are two equivalent formulas:</p>
 <p><span class="math display">\[d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}\]</span></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="tOneSample.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First formula</span></span>
-<span id="cb216-2"><a href="tOneSample.html#cb216-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">717.12</span> <span class="sc">-</span> <span class="fl">73.5</span>)<span class="sc">/</span><span class="fl">312.22</span></span></code></pre></div>
-<pre><code>[1] 2.061431</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="tOneSample.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second formula</span></span>
-<span id="cb218-2"><a href="tOneSample.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="fl">11.842</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)</span></code></pre></div>
-<pre><code>[1] 2.061428</code></pre>
-<p>The value of 2.06 indicates that the test value is approximately two standard deviations away from the sample mean. This is a very large difference.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="tOneSample.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First formula</span></span>
+<span id="cb218-2"><a href="tOneSample.html#cb218-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span><span class="fl">2.7</span></span></code></pre></div>
+<pre><code>[1] 3.251852</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="tOneSample.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second formula</span></span>
+<span id="cb220-2"><a href="tOneSample.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fl">18.68047</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)</span></code></pre></div>
+<pre><code>[1] 3.251852</code></pre>
+<p>The value of 3.25 indicates that the test value is approximately more than three standard deviations away from the sample mean. This is a very large difference.</p>
 </div>
 </div>
 </div>
 <div id="computation-in-r" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Computation in R<a href="tOneSample.html#computation-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Calculating a one sample <em>t</em>-test is possible through base R and a number of packages. Navarro’s <span class="citation">(<a href="#ref-navarro_book_2020" role="doc-biblioref">2020</a>)</span> <em>lsr</em> package provides output that is commonly used in psychology.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="tOneSample.html#cb220-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">oneSampleTTest</span>(<span class="at">x =</span> dfOneSample<span class="sc">$</span>PhysicianSeconds, <span class="at">mu =</span> <span class="fl">73.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="tOneSample.html#cb222-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">oneSampleTTest</span>(<span class="at">x =</span> dfOneSample<span class="sc">$</span>PhysMins, <span class="at">mu =</span> <span class="fl">1.23</span>)</span></code></pre></div>
 <pre><code>
    One sample t-test 
 
-Data variable:   dfOneSample$PhysicianSeconds 
+Data variable:   dfOneSample$PhysMins 
 
 Descriptive statistics: 
-            PhysicianSeconds
-   mean              717.121
-   std dev.          312.216
+            PhysMins
+   mean       10.008
+   std dev.    2.701
 
 Hypotheses: 
-   null:        population mean equals 73.5 
-   alternative: population mean not equal to 73.5 
+   null:        population mean equals 1.23 
+   alternative: population mean not equal to 1.23 
 
 Test results: 
-   t-statistic:  11.842 
+   t-statistic:  18.672 
    degrees of freedom:  32 
    p-value:  &lt;.001 
 
 Other information: 
-   two-sided 95% confidence interval:  [606.414, 827.828] 
-   estimated effect size (Cohen&#39;s d):  2.061 </code></pre>
-<p>This well-organized output has everything we need for an APA style presentation of results. Identical to all the information we hand-calculated, we would write the <em>t</em> string this way: <span class="math inline">\(t(32) = 11.842, p &lt; .001, d = 2.061\)</span>. The <em>lsr</em> output also includes confidence intervals. These represent the 95% confidence interval of the true difference between the means. That is, we are 95% confident that the true mean of the physicians in our sample falls between 606.414 and 827.828.</p>
+   two-sided 95% confidence interval:  [9.051, 10.966] 
+   estimated effect size (Cohen&#39;s d):  3.25 </code></pre>
+<p>This well-organized output has everything we need for an APA style presentation of results. Identical to all the information we hand-calculated, we would write the <em>t</em> string this way: <span class="math inline">\(t(32) = 11.68, p &lt; .001, d = 3.25\)</span>. The <em>lsr</em> output also includes confidence intervals. These represent the 95% confidence interval of the true difference between the means. That is, we are 95% confident that the true mean of the minutes that physicians in our sample spent with patients falls between 9.05 and 10.97.</p>
 </div>
 <div id="apa-style-results" class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> APA Style Results<a href="tOneSample.html#apa-style-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s write up the results. I would probably choose to include the boxplot produced in the initial exploration of the data.</p>
 <blockquote>
-<p>A one-sample <em>t</em>-test was used to evaluate whether average amount of time that a sample of physicians (palliative care physicians in the ICU) enrolled in a research study on patient communication was statistically significantly different from the amount of time that ICU physicians spend with their patients, in general. The sample mean 717.121 (312.216) was significantly different from 73.5, <span class="math inline">\(t(33) = 11.84, p &lt; .001., d = 2.061\)</span>. The effect size, (<em>d</em>) indicates a very large effect. Figure 1 illustrates the distribution of time physicians in the research study spent with their patients. The results support the conclusion that physicians in the research study spent more time with their patients than ICU physicians in general.</p>
+<p>A one-sample <em>t</em>-test was used to evaluate whether average amount of time that a sample of physicians (palliative care physicians in the ICU) enrolled in a research study on patient communication was statistically significantly different from the amount of time that ICU physicians spend with their patients, in general. The sample mean 10.008 (<em>SD</em> = 2.7016) was significantly different from 1.23, <span class="math inline">\(t(33) = 18.672, p &lt; .001., d = 3.25\)</span>. The effect size, (<em>d</em>) indicates a very large effect. Figure 1 illustrates the distribution of time physicians in the research study spent with their patients. The results support the conclusion that physicians in the research study spent more time with their patients than ICU physicians in general.</p>
 </blockquote>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="tOneSample.html#cb222-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysicianSeconds, <span class="at">ylab =</span> <span class="st">&quot;Seconds with Patient&quot;</span>,</span>
-<span id="cb222-2"><a href="tOneSample.html#cb222-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Time with Patients (in seconds)&quot;</span>)</span></code></pre></div>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="tOneSample.html#cb224-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Physician Minutes&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb224-2"><a href="tOneSample.html#cb224-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Time with Patients (in minutes)&quot;</span>)</span></code></pre></div>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>Reflecting on these results, I must remind readers that this simulated data that is even further extrapolated. Although “data” informed both the amount of time spent by the physicians in the research study and data used as the test value, there are probably many reasons that the test value was not a good choice. For example, even though both contexts were ICU, palliative physicians may have a different standard of care than ICU physicians “in general.”</p>
 </div>
 <div id="power-in-independent-samples-t-tests" class="section level2 hasAnchor" number="3.8">
@@ -1057,72 +1086,61 @@ Other information:
 </ul>
 <p>In this script, we must specify <em>all-but-one</em> parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.</p>
 <p>When we conduct a “power analysis” (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, “power=NULL”. Using the data from our results, we learn from this first run, that our statistical power was 1.00. That is, given the value of the mean difference relative to the pooled standard deviation we had a 100% chance of detecting a statistically significant effect if there was one.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="tOneSample.html#cb223-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> (<span class="fl">717.121</span> <span class="sc">-</span> <span class="fl">73.5</span>)<span class="sc">/</span><span class="fl">312.216</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb223-2"><a href="tOneSample.html#cb223-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
-<pre><code>
-     One-sample t test power calculation 
-
-              n = 33
-              d = 2.061461
-      sig.level = 0.05
-          power = 1
-    alternative = two.sided</code></pre>
-<p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>. Using the results from the simulation of our research vignette, you can see that we would have needed 21,022 individuals for the <em>p</em> value to be &lt; .05.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tOneSample.html#cb225-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> (<span class="fl">717.121</span> <span class="sc">-</span> <span class="fl">73.5</span>)<span class="sc">/</span><span class="fl">312.216</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tOneSample.html#cb225-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> (<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span><span class="fl">2.7</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
 <span id="cb225-2"><a href="tOneSample.html#cb225-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      One-sample t test power calculation 
 
-              n = 4.109718
-              d = 2.061461
+              n = 33
+              d = 3.251852
+      sig.level = 0.05
+          power = 1
+    alternative = two.sided</code></pre>
+<p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tOneSample.html#cb227-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> (<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span><span class="fl">2.7</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb227-2"><a href="tOneSample.html#cb227-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>
+     One-sample t test power calculation 
+
+              n = 3.005993
+              d = 3.251852
       sig.level = 0.05
           power = 0.8
     alternative = two.sided</code></pre>
-<p>Shockingly, this suggests that a sample size of four could result in a statistically significant result. Let’s see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tOneSample.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the &#39;random&#39; seed ensures that everyone gets the same</span></span>
-<span id="cb227-2"><a href="tOneSample.html#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="co"># result, every time they rerun the analysis. My personal practice is</span></span>
-<span id="cb227-3"><a href="tOneSample.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to create a random seed that represents the day I write up the</span></span>
-<span id="cb227-4"><a href="tOneSample.html#cb227-4" aria-hidden="true" tabindex="-1"></a><span class="co"># problem (in this case August, 15, 2022) When the Suggestions for</span></span>
-<span id="cb227-5"><a href="tOneSample.html#cb227-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Practice invite you to &#39;change the random seed,&#39; simply change this</span></span>
-<span id="cb227-6"><a href="tOneSample.html#cb227-6" aria-hidden="true" tabindex="-1"></a><span class="co"># number to anything you like (maybe your birthday or today&#39;s date)</span></span>
-<span id="cb227-7"><a href="tOneSample.html#cb227-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220820</span>)</span>
-<span id="cb227-8"><a href="tOneSample.html#cb227-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb227-9"><a href="tOneSample.html#cb227-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Assigns as physician ID number to each row Simulates 33 numbers</span></span>
-<span id="cb227-10"><a href="tOneSample.html#cb227-10" aria-hidden="true" tabindex="-1"></a><span class="co"># between 220 and 1213</span></span>
-<span id="cb227-11"><a href="tOneSample.html#cb227-11" aria-hidden="true" tabindex="-1"></a>rdfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)), <span class="at">PhysicianSeconds =</span> <span class="fu">sample</span>(<span class="dv">220</span><span class="sc">:</span><span class="dv">1213</span>,</span>
-<span id="cb227-12"><a href="tOneSample.html#cb227-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb227-13"><a href="tOneSample.html#cb227-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb227-14"><a href="tOneSample.html#cb227-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Displays the first 6 rows of the df</span></span>
-<span id="cb227-15"><a href="tOneSample.html#cb227-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rdfOneSample)</span></code></pre></div>
-<pre><code>  ID PhysicianSeconds
-1  1             1071
-2  2              517
-3  3             1193
-4  4              877</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="tOneSample.html#cb229-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">oneSampleTTest</span>(<span class="at">x =</span> rdfOneSample<span class="sc">$</span>PhysicianSeconds, <span class="at">mu =</span> <span class="fl">73.5</span>)</span></code></pre></div>
+<p>Shockingly, this suggests that a sample size of 3 could result in a statistically significant result. Let’s see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="tOneSample.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220822</span>)</span>
+<span id="cb229-2"><a href="tOneSample.html#cb229-2" aria-hidden="true" tabindex="-1"></a>rdfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rPhysMins =</span> <span class="fu">rnorm</span>(<span class="dv">4</span>, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="fl">2.5</span>))</span>
+<span id="cb229-3"><a href="tOneSample.html#cb229-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-4"><a href="tOneSample.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rdfOneSample)</span></code></pre></div>
+<pre><code>  rPhysMins
+1  9.097343
+2 11.385558
+3  8.424395
+4  8.640534</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tOneSample.html#cb231-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">oneSampleTTest</span>(<span class="at">x =</span> rdfOneSample<span class="sc">$</span>rPhysMins, <span class="at">mu =</span> <span class="fl">1.23</span>)</span></code></pre></div>
 <pre><code>
    One sample t-test 
 
-Data variable:   rdfOneSample$PhysicianSeconds 
+Data variable:   rdfOneSample$rPhysMins 
 
 Descriptive statistics: 
-            PhysicianSeconds
-   mean              914.500
-   std dev.          295.221
+            rPhysMins
+   mean         9.387
+   std dev.     1.362
 
 Hypotheses: 
-   null:        population mean equals 73.5 
-   alternative: population mean not equal to 73.5 
+   null:        population mean equals 1.23 
+   alternative: population mean not equal to 1.23 
 
 Test results: 
-   t-statistic:  5.697 
+   t-statistic:  11.981 
    degrees of freedom:  3 
-   p-value:  0.011 
+   p-value:  0.001 
 
 Other information: 
-   two-sided 95% confidence interval:  [444.737, 1384.263] 
-   estimated effect size (Cohen&#39;s d):  2.849 </code></pre>
-<p>In this case our difference between the sample data and the external data is so huge, that a sample of four still nets a statistically significant result. This is unusual. Here’s the <em>t</em> string: <span class="math inline">\(t(3) = 914.50, p = 0.001, d = 2.85, 95%CI[444.74, 1384.26]\)</span>.</p>
+   two-sided 95% confidence interval:  [7.22, 11.554] 
+   estimated effect size (Cohen&#39;s d):  5.991 </code></pre>
+<p>In this case our difference between the sample data and the external data is so huge, that a sample of four still nets a statistically significant result. This is unusual. Here’s the <em>t</em> string: <span class="math inline">\(t(3) = 11.981, p = 0.001, d = 5.9915, 95%CI[7.22, 11.554]\)</span>.</p>
 </div>
 <div id="practice-problems-1" class="section level2 hasAnchor" number="3.9">
 <h2><span class="header-section-number">3.9</span> Practice Problems<a href="tOneSample.html#practice-problems-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1133,7 +1151,7 @@ Other information:
 </div>
 <div id="problem-2-rework-the-research-vignette-but-change-something-about-the-simulation" class="section level3 hasAnchor" number="3.9.2">
 <h3><span class="header-section-number">3.9.2</span> Problem #2: Rework the research vignette, but change something about the simulation<a href="tOneSample.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Rework the one sample <em>t</em>-test in the lesson by changing something else about the simulation. Perhaps estimate another comparative number. The 73.5 seconds was a dramatic difference from the mean of the research participants. Perhaps suggest (and, ideally, support with a reference) another number. Alternatively, if you are interested in issues of power, specify a different sample size.</p>
+<p>Rework the one sample <em>t</em>-test in the lesson by changing something else about the simulation. Perhaps estimate another comparative number. The 1.23 was a dramatic difference from the mean of the research participants. Perhaps suggest (and, ideally, support with a reference) another number. Alternatively, if you are interested in issues of power, specify a different sample size.</p>
 </div>
 <div id="problem-3-use-other-data-that-is-available-to-you" class="section level3 hasAnchor" number="3.9.3">
 <h3><span class="header-section-number">3.9.3</span> Problem #3: Use other data that is available to you<a href="tOneSample.html#problem-3-use-other-data-that-is-available-to-you" class="anchor-section" aria-label="Anchor link to header"></a></h3>
