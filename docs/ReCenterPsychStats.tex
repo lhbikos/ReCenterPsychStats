@@ -126,7 +126,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{23 Aug 2022}
+\date{27 Aug 2022}
 
 \begin{document}
 \maketitle
@@ -161,7 +161,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 23 Aug 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 27 Aug 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -754,14 +754,14 @@ LaTeX equation editor: \url{https://www.codecogs.com/latex/eqneditor.php}
 \hypertarget{preliminaries}{%
 \chapter{Preliminary Results}\label{preliminaries}}
 
-\href{}{Screencasted Lecture Link}
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=97ec1420-3527-4204-8521-aeff0000afed}{Screencasted Lecture Link}
 
 The beginning of any data analysis means familiarizing yourself with the data. Among other things, this includes producing and interpreting its distributional characteristics. In this lesson we mix common R operations for formatting, preparing, and analyzing the data with foundational statistical concepts in statistics.
 
 \hypertarget{navigating-this-lesson-1}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-1}}
 
-There is about \textbf{XX} minutes of lecture.
+There is just less than two hours of lecture.
 
 While the majority of R objects and data you will need are created within the R script that sources the lesson, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://github.com/lhbikos/ReCenterPsychStats}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \protect\hyperlink{ReCintro}{introduction}
 
@@ -781,7 +781,7 @@ Learning objectives from this lecture include the following:
 \item
   Describe the steps in calculating a standard deviation.
 \item
-  Describe the steps in calculating a bivarite correlation coefficient (i.e., Pearson \emph{r}).
+  Describe the steps in calculating a bivariate correlation coefficient (i.e., Pearson \emph{r}).
 \item
   Create an APA Style table and results section that includes means, standard deviations, and correlations and addresses skew and kurtosis.
 \end{itemize}
@@ -1112,7 +1112,7 @@ Only Race/Ethnicity needs to be transformed from a character (``chr) variable to
 \CommentTok{\# A .csv file is uninformed {-}{-} it just holds data (and R guesses what}
 \CommentTok{\# it is); respecifying the type of variable will likely need to be}
 \CommentTok{\# completed each time the file is used.}
-
+\FunctionTok{library}\NormalTok{(tidyverse)}
 \NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{RacEth =} \FunctionTok{as.factor}\NormalTok{(RacEth))}
 \end{Highlighting}
@@ -1215,7 +1215,7 @@ I can use the base R function \emph{mean()}. Inside the parentheses I point to t
 [1] 2.6
 \end{verbatim}
 
-Because of my simulation, we have no missing values, none-the-less, it is, perhaps a good habit to include the \emph{na.rm=TRUE} specification in our code. Becaue we have an entire dataframe, we just point to the dataframe and the specific variable.
+Because of my simulation, we have no missing values, none-the-less, it is, perhaps a good habit to include the \emph{na.rm=TRUE} specification in our code. Because we have an entire dataframe, we just point to the dataframe and the specific variable.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1230,7 +1230,7 @@ Because of my simulation, we have no missing values, none-the-less, it is, perha
 \hypertarget{median}{%
 \subsubsection{Median}\label{median}}
 
-The median of a set of values is the \textbf{median}. The easiest way to calculate the median is to sort the numbers:
+The middle value in a set of values is the \textbf{median}. The easiest way to calculate the median is to sort the numbers:
 
 \begin{longtable}[]{@{}lc@{}}
 \toprule()
@@ -1270,7 +1270,7 @@ Let's also calculate it for our negative affect variable.
 \hypertarget{mode}{%
 \subsubsection{Mode}\label{mode}}
 
-The \textbf{mode} is the score that occurs most frequently. When a histogram is available, spotting the mode is easy becaue it will have the tallest bar. Determining the mode can be made complicated if there are ties for high frequencies of values. A common occurence of this happens in the \textbf{bimodal} distribution.
+The \textbf{mode} is the score that occurs most frequently. When a histogram is available, spotting the mode is easy because it will have the tallest bar. Determining the mode can be made complicated if there are ties for high frequencies of values. A common occurrence of this happens in the \textbf{bimodal} distribution.
 
 Unfortunately, there is no base R function that will call a mode. In response, Navarro developed and included a function in the \emph{lsr} package that accompanies her \citeyearpar{navarro_book_2020} textbook. Once the package is installed, you can include two colons, the function name, and then the dataset to retrieve the mode.
 
@@ -1474,7 +1474,7 @@ As shown by our calculation, the value at the median and the 50th percentile is 
 1.750954 
 \end{verbatim}
 
-Again, we see the same result. Half of the values for negative affect are below 1.75; half are above.
+Again, we see the same result. Half of the values for negative affect are below 1.76; half are above.
 
 The \emph{quantile()} function is extremely useful. We can retrieve the raw score at any percentile, and we could ask for as many as we desired. Here's an example.
 
@@ -1545,7 +1545,7 @@ Nearly all statistics include assessments of variability in their calculation an
 
 Albeit one of the simplest, the mean is a statistical model. Rodgers noted this when he wrote, ``The mean and variance have done yeoman service to psychology and other behavioral sciences,'' \citeyearpar[p.~4]{rodgers_epistemology_2010}. These next statistical operations will walk through the use of the mean, particularly in its role in understanding variance. In later lessons, means and variances are used in understanding relations and differences.
 
-A first step in understanding mean deviation is to ask, ``How far does each individual score deviates from the mean of scores?'' We can demonstrate this with our toy dataset. I am taking more steps than necessary to (a) make clear how the mean deviation (abbreviated, mdev) is calcuated and (b) practice using R.
+A first step in understanding mean deviation is to ask, ``How far does each individual score deviates from the mean of scores?'' We can demonstrate this with our toy dataset. I am taking more steps than necessary to (a) make clear how the mean deviation (abbreviated, mdev) is calculated and (b) practice using R.
 
 First, I will create a variable representing the mean:
 
@@ -1686,7 +1686,7 @@ Let's quickly repeat the process with the negative affect variable in our resear
 [1] 0.521
 \end{verbatim}
 
-Thus, the absolute mean deviation for the negative affect variable in our research vignette is 0.521
+Thus, the absolute mean deviation for the negative affect variable in our research vignette is 0.526
 
 Although relatively intuitive, the absolute mean deviation is not all that useful. Most statistics texts include it because it is one of the steps toward variance, and ultimately, the standard deviation.
 
@@ -1812,7 +1812,7 @@ Let's quickly repeat this process with the negative affect variable from the res
 [1] 283.4418
 \end{verbatim}
 
-Our sums of squared deviations around the mean is 283.44. When we divide it by \emph{N} - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the \emph{var()} function.
+Our sums of squared deviations around the mean is 285.45. When we divide it by \emph{N} - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the \emph{var()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1865,7 +1865,7 @@ Calculating the standard deviation requires earlier steps:
 \item
   Summing the mean deviations to create the \emph{SS}, or sums of squares.
 \item
-  Dividing the \emph{SS} by \emph{N} - 1; this results in the \emph{variance} around teh mean.
+  Dividing the \emph{SS} by \emph{N} - 1; this results in the \emph{variance} around the mean.
 \end{enumerate}
 
 The 6th step is to take the square root of variance. It is represented in the formulae, below:
@@ -1924,7 +1924,7 @@ The seventh step is to take the square root of variance.
 [1] 1.516575
 \end{verbatim}
 
-It is common to report means and standard deviations for continuous variables in our datasets. For the toy data our mean is 2.6 with a standard deviation of 1.51.
+It is common to report means and standard deviations for continuous variables in our datasets. For the toy data our mean is 2.6 with a standard deviation of 1.52.
 
 Let's repeat the process for the negative affect variable in the research vignette. First the six steps to calculate variance.
 
@@ -2211,9 +2211,9 @@ We will use our covariance value in the numerator. The denominator involves the 
 [1] 0.2690291
 \end{verbatim}
 
-Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? That really depends on what you are studying. The traditional values of .10, .30, and .50 are used as small, medium, and large \citep{cohen_applied_2003}. Hence, when \emph{r} = 0.27, we can say that it is (more-or-less) medium.
+Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? That really depends on what you are studying. The traditional values of .10, .30, and .50 are used as small, medium, and large \citep{cohen_applied_2003}. Hence, when \emph{r} = 0.25, we can say that it is (more-or-less) medium.
 
-Is it statistically significant? Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the \emph{cor()} function in base R to check our math and retrieve the \emph{p} value associated with the correlation coefficient.
+Is it statistically significant? Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the \emph{cor.test()} function in base R to check our math and retrieve the \emph{p} value associated with the correlation coefficient.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2356,14 +2356,14 @@ Because I added: \emph{filename = ``Table1\_Cor.doc''}, a word version of the ta
 
 The statistics used in this lesson are often presented in the preliminary results portion of an empirical manuscript. Some of the results are written in text and some are presented in tables. APA Style recommends that the narration of results not duplicate what is presented in the tables. Rather, the write-up only highlights and clarifies what is presented in the table(s).
 
-At the outset, let me note that a primary purpose of the Lui \citeyearpar{lui_racial_2020} article was to compare the relations of variables between three racial/ethic groups in the U.S. identified as Asian American, Black, an Latinx. Because we did not run separate analyses for each of the groups, my write-up does not make these distinctions. I highly recommend that you examine the write-up of results and the accompanying tables in Lui's article. The presentation is clear and efficient (i.e., takes up as little space as possible).
+At the outset, let me note that a primary purpose of the Lui \citeyearpar{lui_racial_2020} article was to compare the relations of variables between three racial/ethic groups in the U.S. identified as Asian American, Black, and Latinx. Because we did not run separate analyses for each of the groups, my write-up does not make these distinctions. I highly recommend that you examine the write-up of results and the accompanying tables in Lui's article. The presentation is clear and efficient (i.e., takes up as little space as possible).
 
 Below is an example of how I might write up these preliminary results:
 
 \textbf{Preliminary Results}
 
 \begin{quote}
-Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Visual inspection of the three variables of interest (negative affect, microaggressions, drinking problems) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that he correlation between negative affect and microaggressions was moderate (\emph{r} - 0.29); correlations between remaining variables were smaller.
+Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Visual inspection of the three variables of interest (negative affect, microaggressions, drinking problems) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that the correlation between negative affect and microaggressions was moderate (\emph{r} = 0.25); correlations between remaining variables were smaller.
 \end{quote}
 
 \hypertarget{practice-problems}{%

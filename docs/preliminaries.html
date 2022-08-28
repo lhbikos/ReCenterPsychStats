@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-08-23" />
+<meta name="date" content="2022-08-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -594,11 +594,11 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="preliminaries" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Preliminary Results<a href="preliminaries.html#preliminaries" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><a href="">Screencasted Lecture Link</a></p>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=97ec1420-3527-4204-8521-aeff0000afed">Screencasted Lecture Link</a></p>
 <p>The beginning of any data analysis means familiarizing yourself with the data. Among other things, this includes producing and interpreting its distributional characteristics. In this lesson we mix common R operations for formatting, preparing, and analyzing the data with foundational statistical concepts in statistics.</p>
 <div id="navigating-this-lesson-1" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Navigating this Lesson<a href="preliminaries.html#navigating-this-lesson-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There is about <strong>XX</strong> minutes of lecture.</p>
+<p>There is just less than two hours of lecture.</p>
 <p>While the majority of R objects and data you will need are created within the R script that sources the lesson, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReCenterPsychStats">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
 <div id="learning-objectives-1" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Learning Objectives<a href="preliminaries.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -608,7 +608,7 @@ div.csl-indent {
 <li>Produce and interpret measures of central tendency</li>
 <li>Analyze the distributional characteristics of data</li>
 <li>Describe the steps in calculating a standard deviation.</li>
-<li>Describe the steps in calculating a bivarite correlation coefficient (i.e., Pearson <em>r</em>).</li>
+<li>Describe the steps in calculating a bivariate correlation coefficient (i.e., Pearson <em>r</em>).</li>
 <li>Create an APA Style table and results section that includes means, standard deviations, and correlations and addresses skew and kurtosis.</li>
 </ul>
 </div>
@@ -934,7 +934,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preliminaries.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A .csv file is uninformed -- it just holds data (and R guesses what</span></span>
 <span id="cb20-2"><a href="preliminaries.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># it is); respecifying the type of variable will likely need to be</span></span>
 <span id="cb20-3"><a href="preliminaries.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># completed each time the file is used.</span></span>
-<span id="cb20-4"><a href="preliminaries.html#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="preliminaries.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb20-5"><a href="preliminaries.html#cb20-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
 <span id="cb20-6"><a href="preliminaries.html#cb20-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">RacEth =</span> <span class="fu">as.factor</span>(RacEth))</span></code></pre></div>
 <p>Let’s check the structure again. Below we see that the RacEth variable is now a factor. R has imposed an alphabetical order: Asian, Black, Latinx.</p>
@@ -986,13 +986,13 @@ R is an incredible tool in that we can type out mathematical operations, use fun
 <p>I can use the base R function <em>mean()</em>. Inside the parentheses I point to the data. The function automatically sums the values. When there is missingness, adding <em>na.rm=TRUE</em> tells the function to exclude the missing variables from the count (i.e., the denominator would still be 5).</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="preliminaries.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(toy<span class="sc">$</span>toy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] 2.6</code></pre>
-<p>Because of my simulation, we have no missing values, none-the-less, it is, perhaps a good habit to include the <em>na.rm=TRUE</em> specification in our code. Becaue we have an entire dataframe, we just point to the dataframe and the specific variable.</p>
+<p>Because of my simulation, we have no missing values, none-the-less, it is, perhaps a good habit to include the <em>na.rm=TRUE</em> specification in our code. Because we have an entire dataframe, we just point to the dataframe and the specific variable.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="preliminaries.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>nAff, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] 1.814666</code></pre>
 </div>
 <div id="median" class="section level4 hasAnchor" number="3.4.1.2">
 <h4><span class="header-section-number">3.4.1.2</span> Median<a href="preliminaries.html#median" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The median of a set of values is the <strong>median</strong>. The easiest way to calculate the median is to sort the numbers:</p>
+<p>The middle value in a set of values is the <strong>median</strong>. The easiest way to calculate the median is to sort the numbers:</p>
 <table>
 <thead>
 <tr class="header">
@@ -1017,7 +1017,7 @@ R is an incredible tool in that we can type out mathematical operations, use fun
 </div>
 <div id="mode" class="section level4 hasAnchor" number="3.4.1.3">
 <h4><span class="header-section-number">3.4.1.3</span> Mode<a href="preliminaries.html#mode" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <strong>mode</strong> is the score that occurs most frequently. When a histogram is available, spotting the mode is easy becaue it will have the tallest bar. Determining the mode can be made complicated if there are ties for high frequencies of values. A common occurence of this happens in the <strong>bimodal</strong> distribution.</p>
+<p>The <strong>mode</strong> is the score that occurs most frequently. When a histogram is available, spotting the mode is easy because it will have the tallest bar. Determining the mode can be made complicated if there are ties for high frequencies of values. A common occurrence of this happens in the <strong>bimodal</strong> distribution.</p>
 <p>Unfortunately, there is no base R function that will call a mode. In response, Navarro developed and included a function in the <em>lsr</em> package that accompanies her <span class="citation">(<a href="#ref-navarro_book_2020" role="doc-biblioref">2020</a>)</span> textbook. Once the package is installed, you can include two colons, the function name, and then the dataset to retrieve the mode.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="preliminaries.html#cb35-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">modeOf</span>(toy<span class="sc">$</span>toy)</span></code></pre></div>
 <pre><code>[1] 2</code></pre>
@@ -1085,7 +1085,7 @@ Figure 3.2: A histogram of the negative affect variable.
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="preliminaries.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(df<span class="sc">$</span>nAff, <span class="at">probs =</span> <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>     50% 
 1.750954 </code></pre>
-<p>Again, we see the same result. Half of the values for negative affect are below 1.75; half are above.</p>
+<p>Again, we see the same result. Half of the values for negative affect are below 1.76; half are above.</p>
 <p>The <em>quantile()</em> function is extremely useful. We can retrieve the raw score at any percentile, and we could ask for as many as we desired. Here’s an example.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="preliminaries.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(df<span class="sc">$</span>nAff, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>))</span></code></pre></div>
 <pre><code>     10%      20%      30%      40%      50%      60%      70%      80% 
@@ -1112,7 +1112,7 @@ Figure 3.2: A histogram of the negative affect variable.
 <li>the model is simpler than reality.</li>
 </ul>
 <p>Albeit one of the simplest, the mean is a statistical model. Rodgers noted this when he wrote, “The mean and variance have done yeoman service to psychology and other behavioral sciences,” <span class="citation">(<a href="#ref-rodgers_epistemology_2010" role="doc-biblioref">2010, p. 4</a>)</span>. These next statistical operations will walk through the use of the mean, particularly in its role in understanding variance. In later lessons, means and variances are used in understanding relations and differences.</p>
-<p>A first step in understanding mean deviation is to ask, “How far does each individual score deviates from the mean of scores?” We can demonstrate this with our toy dataset. I am taking more steps than necessary to (a) make clear how the mean deviation (abbreviated, mdev) is calcuated and (b) practice using R.</p>
+<p>A first step in understanding mean deviation is to ask, “How far does each individual score deviates from the mean of scores?” We can demonstrate this with our toy dataset. I am taking more steps than necessary to (a) make clear how the mean deviation (abbreviated, mdev) is calculated and (b) practice using R.</p>
 <p>First, I will create a variable representing the mean:</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="preliminaries.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dissecting the script, each variable is referenced by</span></span>
 <span id="cb73-2"><a href="preliminaries.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df_name$variable_name</span></span>
@@ -1175,7 +1175,7 @@ Let’s quickly repeat the process with the negative affect variable in our rese
 6 1.174359 -0.6403072 0.6403072</code></pre>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="preliminaries.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(df_nAff<span class="sc">$</span>abNAmdev, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>[1] 0.521</code></pre>
-<p>Thus, the absolute mean deviation for the negative affect variable in our research vignette is 0.521</p>
+<p>Thus, the absolute mean deviation for the negative affect variable in our research vignette is 0.526</p>
 <p>Although relatively intuitive, the absolute mean deviation is not all that useful. Most statistics texts include it because it is one of the steps toward variance, and ultimately, the standard deviation.</p>
 </div>
 <div id="variance" class="section level3 hasAnchor" number="3.5.4">
@@ -1225,7 +1225,7 @@ Let’s do this with the toy data:</p>
 <p>… and sum them.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="preliminaries.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df_nAff<span class="sc">$</span>NAmd2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co">#sum of squared deviations</span></span></code></pre></div>
 <pre><code>[1] 283.4418</code></pre>
-<p>Our sums of squared deviations around the mean is 283.44. When we divide it by <em>N</em> - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the <em>var()</em> function.</p>
+<p>Our sums of squared deviations around the mean is 285.45. When we divide it by <em>N</em> - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the <em>var()</em> function.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="preliminaries.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fl">283.44</span><span class="sc">/</span>(<span class="dv">713</span> <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 0.3980899</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="preliminaries.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df_nAff<span class="sc">$</span>NAmd2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>((<span class="fu">nrow</span>(df_nAff) <span class="sc">-</span> <span class="dv">1</span>))  <span class="co">#variance</span></span></code></pre></div>
@@ -1243,7 +1243,7 @@ Let’s do this with the toy data:</p>
 <li>Calculating mean deviations by subtracting the mean from each individual score.</li>
 <li>Squaring the mean deviations.</li>
 <li>Summing the mean deviations to create the <em>SS</em>, or sums of squares.</li>
-<li>Dividing the <em>SS</em> by <em>N</em> - 1; this results in the <em>variance</em> around teh mean.</li>
+<li>Dividing the <em>SS</em> by <em>N</em> - 1; this results in the <em>variance</em> around the mean.</li>
 </ol>
 <p>The 6th step is to take the square root of variance. It is represented in the formulae, below:</p>
 <p><span class="math display">\[s=\sqrt{\frac{SS}{N-1}}=\sqrt{\frac{\sum_{i=1}^{n}(X_{i} - \bar{X})^{^{2}}}{N-1}}\]</span>
@@ -1266,7 +1266,7 @@ Repeated below are each of the six steps for the toy data:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="preliminaries.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checking work with the R function to calculate standard deviation</span></span>
 <span id="cb118-2"><a href="preliminaries.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(toy<span class="sc">$</span>toy)</span></code></pre></div>
 <pre><code>[1] 1.516575</code></pre>
-<p>It is common to report means and standard deviations for continuous variables in our datasets. For the toy data our mean is 2.6 with a standard deviation of 1.51.</p>
+<p>It is common to report means and standard deviations for continuous variables in our datasets. For the toy data our mean is 2.6 with a standard deviation of 1.52.</p>
 <p>Let’s repeat the process for the negative affect variable in the research vignette. First the six steps to calculate variance.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="preliminaries.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># six steps wrapped into 1</span></span>
 <span id="cb120-2"><a href="preliminaries.html#cb120-2" aria-hidden="true" tabindex="-1"></a>df_nAff<span class="sc">$</span>mdevNA <span class="ot">&lt;-</span> df_nAff<span class="sc">$</span>nAff <span class="sc">-</span> <span class="fu">mean</span>(df_nAff<span class="sc">$</span>nAff, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1416,8 +1416,8 @@ r_{XY}  = \frac{\mbox{Cov}(X,Y)}{ \hat{\sigma}_X \ \hat{\sigma}_Y}
 We will use our covariance value in the numerator. The denominator involves the multiplication of the standard deviations of X and Y. Because we have already learned how to calculate standard deviation in a step-by-step manner, I will use code to simplify that process:</p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="preliminaries.html#cb143-1" aria-hidden="true" tabindex="-1"></a>cov<span class="sc">/</span>(<span class="fu">sd</span>(df4corr<span class="sc">$</span>nAff) <span class="sc">*</span> <span class="fu">sd</span>(df4corr<span class="sc">$</span>mAggr))</span></code></pre></div>
 <pre><code>[1] 0.2690291</code></pre>
-<p>Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? That really depends on what you are studying. The traditional values of .10, .30, and .50 are used as small, medium, and large <span class="citation">(<a href="#ref-cohen_applied_2003" role="doc-biblioref">Cohen et al., 2003</a>)</span>. Hence, when <em>r</em> = 0.27, we can say that it is (more-or-less) medium.</p>
-<p>Is it statistically significant? Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the <em>cor()</em> function in base R to check our math and retrieve the <em>p</em> value associated with the correlation coefficient.</p>
+<p>Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? That really depends on what you are studying. The traditional values of .10, .30, and .50 are used as small, medium, and large <span class="citation">(<a href="#ref-cohen_applied_2003" role="doc-biblioref">Cohen et al., 2003</a>)</span>. Hence, when <em>r</em> = 0.25, we can say that it is (more-or-less) medium.</p>
+<p>Is it statistically significant? Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the <em>cor.test()</em> function in base R to check our math and retrieve the <em>p</em> value associated with the correlation coefficient.</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="preliminaries.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df4corr<span class="sc">$</span>nAff, df4corr<span class="sc">$</span>mAggr)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s product-moment correlation
@@ -1505,11 +1505,11 @@ that could have caused the sample correlation (Cumming, 2014).
 <div id="an-apa-style-writeup" class="section level2 hasAnchor" number="3.9">
 <h2><span class="header-section-number">3.9</span> An APA Style Writeup<a href="preliminaries.html#an-apa-style-writeup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The statistics used in this lesson are often presented in the preliminary results portion of an empirical manuscript. Some of the results are written in text and some are presented in tables. APA Style recommends that the narration of results not duplicate what is presented in the tables. Rather, the write-up only highlights and clarifies what is presented in the table(s).</p>
-<p>At the outset, let me note that a primary purpose of the Lui <span class="citation">(<a href="#ref-lui_racial_2020" role="doc-biblioref">2020</a>)</span> article was to compare the relations of variables between three racial/ethic groups in the U.S. identified as Asian American, Black, an Latinx. Because we did not run separate analyses for each of the groups, my write-up does not make these distinctions. I highly recommend that you examine the write-up of results and the accompanying tables in Lui’s article. The presentation is clear and efficient (i.e., takes up as little space as possible).</p>
+<p>At the outset, let me note that a primary purpose of the Lui <span class="citation">(<a href="#ref-lui_racial_2020" role="doc-biblioref">2020</a>)</span> article was to compare the relations of variables between three racial/ethic groups in the U.S. identified as Asian American, Black, and Latinx. Because we did not run separate analyses for each of the groups, my write-up does not make these distinctions. I highly recommend that you examine the write-up of results and the accompanying tables in Lui’s article. The presentation is clear and efficient (i.e., takes up as little space as possible).</p>
 <p>Below is an example of how I might write up these preliminary results:</p>
 <p><strong>Preliminary Results</strong></p>
 <blockquote>
-<p>Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Visual inspection of the three variables of interest (negative affect, microaggressions, drinking problems) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that he correlation between negative affect and microaggressions was moderate (<em>r</em> - 0.29); correlations between remaining variables were smaller.</p>
+<p>Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Visual inspection of the three variables of interest (negative affect, microaggressions, drinking problems) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that the correlation between negative affect and microaggressions was moderate (<em>r</em> = 0.25); correlations between remaining variables were smaller.</p>
 </blockquote>
 </div>
 <div id="practice-problems" class="section level2 hasAnchor" number="3.10">
