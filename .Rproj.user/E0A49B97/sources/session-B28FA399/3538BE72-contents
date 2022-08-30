@@ -1,0 +1,672 @@
+# *t*-tests {-}
+
+The lessons offered in the *t*-tests section introduce *inferential statistics*. In the prior chapters, our use of measures of central tendency (i.e., mean, median, mode) and variance (i.e., range, variance, standard deviation) serve to *describe* a sample.
+
+As we move into *inferential* statistics we evaluate data from a sample and try to determine whether or not we can use it to draw conclusions (i.e, predict or make inferences) about a larger, defined, population.
+
+The *t*-test lessons begin with an explanation of the *z*-score and progress through one sample, independent samples, and paired samples *t*-tests. Each lesson is centered around a research vignette that was focused on physicians' communication with patients who were critically and terminally ill and in the intensive care unit at a hospial [@elliott_differences_2016].
+
+In addition to a conceptual presentation of of each statistic, each lesson includes:
+
+* a workflow that guides researchers through decision-points in each statistic,
+* the presentation of formulas and R code for "hand-calculating" each component of the formula,
+* script for efficiently computing the statistic with R packages,
+* an "recipe" for an APA style presentation of the results,
+* a discussion of *power* in that particular statistic with R script for calculating sample sizes sufficient to reject the null hypothesis, if in fact, it is appropriate to do so, and
+* suggestions for practice that vary in degree of challenge.
+
+# One Sample *t*-tests {#tOneSample}
+
+[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c029edfb-4215-44be-972d-af0100365877) 
+ 
+```{r  tidy=TRUE, tidy.opts=list(width.cutoff=70), include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+options(scipen=999)#eliminates scientific notation
+```
+
+Researchers and program evaluators, may wish to know if their data differs from an external standard. In today's research vignette, we will ask if the time physicians spent with their patients differed from an external benchmark. The one sample *t*-test is an appropriate tool for this type of analysis. As we work toward the one sample *t*-test we take some time to explore the standard normal curve and *z*-scores, particularly as they related to probability.
+
+## Navigating this Lesson
+
+There is just over one hour of lecture.  If you work through the materials with me it would be plan for an additional hour-and-a-half.
+
+While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReCenterPsychStats) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+
+### Learning Objectives
+
+Learning objectives from this lecture include the following:
+
+* Convert raw scores to *z*-scores (and back again).
+* Using the *z* table, determine the probability of an occurence.
+* Recognize the research questions for which utilization of a one sample *t*-test would be appropriate.
+* Narrate the steps in conducting a one-sample *t*-test, beginning with testing the statistical assumptions through writing up an APA style results section.
+* Calculate a one-sample *t*-test in R (including effect sizes).
+* Interpret a 95% confidence interval around a mean difference score.
+* Produce an APA style results for a one-sample *t*-test .
+* Determine a sample size that (given a set of parameters) would likely result in a statistically significant effect, if there was one.
+
+### Planning for Practice
+
+The suggestions for homework are graded in complexity. The more complete descriptions at the end of the chapter follow these suggestions.
+
+* Rework the one-sample *t*-test in the lesson by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar.
+* Rework the one-sample *t*-test in the lesson by changing something else about the simulation. For example, if you are interested in power, consider changing the sample size.
+* Conduct a one sample *t*-test with data to which you have access and permission to use. This could include data you simulate on your own or from a published article.
+
+### Readings & Resources
+
+In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
+
+* Navarro, D. (2020). Chapter 13: Comparing two means. In [Learning Statistics with R - A tutorial for Psychology Students and other Beginners](https://learningstatisticswithr.com/). Retrieved from https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)
+  - Navarro's OER includes a good mix of conceptual information about *t* tests as well as R code. My lesson integrates her approach as well as considering information from Field's [-@field_discovering_2012] and Green and Salkind's [-@green_using_2014] texts (as well as searching around on the internet).
+* Elliott, A. M., Alexander, S. C., Mescher, C. A., Mohan, D., & Barnato, A. E. (2016). Differences in Physicians’ Verbal and Nonverbal Communication With Black and White Patients at the End of Life. *Journal of Pain and Symptom Management, 51*(1), 1–8. https://doi.org/10.1016/j.jpainsymman.2015.07.008
+  - The source of our research vignette.
+
+### Packages
+
+The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. Remove the hashtags for the code to work.
+```{r  tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#will install the package if not already installed
+#if(!require(psych)){install.packages("psych")}
+#if(!require(faux)){install.packages("faux")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(lsr)){install.packages("lsr")}
+#if(!require(ggpubr)){install.packages("ggpubr")}
+```
+
+## *z* before *t*
+
+**Probability density functions** are mathematical formula that specifies idealized versions of known distributions. The equations that define these distributions allow us to calculate the probability of obtaining a given score. This is a powerful tool. 
+
+As students progress through statistics, they become familiar with a variety of these distributions including the *t*-distribution (commonly used in *t*-tests), *F*-distribution (commonly used in analysis of variance [ANOVA]), and Chi-square ($X^2$) distributions (used in a variety of statistics, including structural equation modeling). The *z* distribution is the most well-known of these distributions.
+
+The *z* distribution is also known as the normal distribution, the bell curve, or the standard normal curve. Its mean is always 0.00 and its standard deviation is always 1.00. Regardless of what the actual mean and standard deviation are
+
+* 68.3% of the area falls within 1 standard deviation of the mean 
+* 95.4% of the distribution falls within 2 standard deviations of the mean
+* 99.7% of the distribution falls within 3 standard deviations of the mean
+
+```{r echo=FALSE,  tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#http://rstudio-pubs-static.s3.amazonaws.com/78857_86c2403ca9c146ba8fcdcda79c3f4738.html
+par(mfrow=c(1,3))
+
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(-1,1,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(-1,x,1),c(0,y,0),col="#FF99CC")
+text(0,0.1,"68.3%")
+
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(-2,2,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(-2,x,2),c(0,y,0),col="#cc99cc")
+text(0,0.1,"95.4%")
+
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(-3,3,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(-3,x,3),c(0,y,0),col="#993366")
+text(0,0.1,"99.7%")
+```
+*z*-scores are transformations of raw scores, in standard deviation units. Using the following formula, so long as the mean and standard deviation are known, any set of continuously scaled scores can be transformed to a  *z*-scores equivalent:
+
+$$z=\frac{X-\bar{X}}{s}$$
+We can rearrange the formula to find what raw score corresponds with the *z*-score.
+
+$$X = \bar{X} + z(s)$$
+
+The properties of the *z*-score and the standard normal curve allow us to make inferences about the data. 
+
+### Simulating a Mini Research Vignette
+
+Later in this larger section on *t*-tests we introduce a research vignette that focuses on time physicians spend with patients. Because working with the *z*-test requires a minimum sample size of 120 (and the research vignette has a sample size of 33), I will quickly create normally distributed sample of 200 with a mean of 10 minutes and a standard deviation of 2 minutes per patient. This will allow us to ask some important questions of the data.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#https://r-charts.com/distribution/histogram-curves/
+set.seed(220821)
+PhysTime <- data.frame(minutes = rnorm(200, mean=10, sd=2))
+```
+
+Using the *describe()* function from the *psych* package, we can see the resulting descriptive statistics.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+psych::describe(PhysTime$minutes)
+```
+
+Specifically, in this sample size of 200, our mean is 9.9 with a standard deviation of 2.0.
+
+### Raw Scores, *z*-scores, and Proportions
+
+With data in hand, let's ask, "What is the range of time that physicians spend with patients that fall within 1 standard deviation of the mean?" We would answer this question by applying the raw score formula ($X = \bar{X} + z(s)$) to +1 and -1 standard deviation.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+9.9 - 1*(2)
+9.9 + 1*(2)
+```
+Because $\pm 1SD$ covers 68% of the distribution, we now know that 68% of patients have physician visits that are between 7.9 and 11.9 minutes long.
+
+What about $\pm 2SDs$? Similarly, we would apply the raw score formula, using 2 for the standard deviation.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+9.9 - 2*(2)
+9.9 + 2*(2)
+```
+Two standard deviations around the mean captures 94.5% of patients; patients in this range receive between visits that range between 5.9 and 13.9 minutes.
+
+And what about $\pm 3SDs$? This time we use 3 to represent the standard deviation.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+9.9 - 3*(2)
+9.9 + 3*(2)
+```
+
+Three standard deviations around the mean captures 99.7% of patients; patients in this range receive between visits that range between 3.9 and 15.9 minutes.
+
+### Determining Probabilities 
+
+We can also ask questions of **probability**. For example, what is the probability that a physician spends at least 9.9 minutes with a patient? To answer this question we first calculate the *z*-score associated with 9.9 minutes.
+
+$$z=\frac{X-\bar{X}}{s}$$
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+(9.9-9.9)/2 #for 9.9 minutes
+```
+We learn that 9.9 minutes (the mean of the distribution of raw scores) corresponds with 0 (the mean of the distribution of *z*-scores).
+
+Next, we examine a [table of critical *z* values](https://www.statology.org/z-table/) where we see that a score of 0.0 corresponds to an area (probability) of .50. The directionality of our table is such that fewer minutes spent with patients are represented on the left (the shaded portion) and more minutes spent with patients are represented on the right (the unshaded portion). Our question asks, what is the probability that a physician spends *at least* 9.9 minutes with a patient (i.e., 9.9 or more minutes) means that we should use the area on the right. Thus, the probability that a physician spends *at least* 9.9 minutes with a patient is 50%. In this case it is also true that the probability that a physician spends 9.9 minutes or less is also 50%. This 50/50 result helps make the point that the area under the curve is equal to 1.0.
+
+```{r  tidy=TRUE, tidy.opts=list(width.cutoff=70), echo=FALSE}
+#http://rstudio-pubs-static.s3.amazonaws.com/78857_86c2403ca9c146ba8fcdcda79c3f4738.html
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(-3,0,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(-3,x,0),c(0,y,0),col="#993366")
+arrows(.3,.2,0,0,length=.15)
+text(.5,0.22,"z = 0.000")
+text(-.75,0.1,"0.5000 or 50%")
+text(1,0.1,"0.5000 or 50%")
+```
+We can also obtain the probability value with the *pnorm()* function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in *z* score formula or from the raw scores.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+pnorm(0, mean=0, sd=1)
+pnorm(9.9, mean=9.9, sd=2)
+```
+Next, let's ask a question that requires careful inspection of the asymmetry of the curve. What is the probability that a physician spends less than 5 minutes with a patient? First, we calculate the corresponding *z*-score: 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#calculating the z-score
+(5-9.9)/2 #for 5 minutes
+```
+Second we locate the corresponding area under the normal curve. Examining the table of critical *z*-values we see that a *z*-score of -2.45 corresponds with an area of 0.0071. We can check this with the *pnorm()* function:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+pnorm(-2.45, mean=0, sd=1)
+pnorm(5, mean=9.9, sd=2)
+```
+```{r  tidy=TRUE, tidy.opts=list(width.cutoff=70), echo=FALSE}
+#http://rstudio-pubs-static.s3.amazonaws.com/78857_86c2403ca9c146ba8fcdcda79c3f4738.html
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(-3,-2.45,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(-3,x,-2.45),c(0,y,0),col="#993366")
+arrows(-2.45,.2,-2.45,0,length=.15)
+text(-2.45,0.22,"z = -2.45")
+text(-2.3,0.1,"0.007 or .7%")
+text(0,0.1,"0.993 or 99.3%")
+```
+There is a .7% (that is less than 1%) probability that physicians spend less than 5 minutes with a patient. The inverse (1 - .7) indicates that we can be 99% confident that patients receive 5 or more minutes with the ICU physician.
+
+What about operations at the other end of the curve?  What is the probability that a patient receives less than 12 minutes with a physician? Again, we start with the calculation of the *z*-score.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+(12-9.9)/2 #for 12 minutes
+```
+The 12 minute mark is 1.05 *SD* above the mean. Checking the *z* table lets us know that an area of 0.8531 corresponds with a *z*-score of 1.05.
+
+```{r}
+1-.8531
+```
+```{r  tidy=TRUE, tidy.opts=list(width.cutoff=70), echo=FALSE}
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(1.05,3,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(1.05,x,3),c(0,y,0),col="#993366")
+arrows(.5,.2,1.05,0,length=.15)
+text(.5,0.22,"z = 1.05")
+text(-1,0.1,".8531 or 85%")
+text(1.6,0.1,".1469 or 15%")
+```
+The probability of a physician spending 12 minutes *or less* with a patient is 85%; the probability of a physician spending 12 minutes or more with a patient is 15%.
+
+### Percentiles
+
+The same values that we just collected are often interpreted as percentiles.  Our prior calculations taught us that a physician/patient visit that lasted 9.9 minutes (*z* = 0), is ranked at the 50th percentile. That is, a 9.9 minute visit is longer than 50% of patient/physician visits.
+
+A visit lasting 5 minutes (*z* = -2.45) is ranked at the .07th percentile. That is fewer than 1% of patient/physician visits are shorter than 5 minutes.
+
+Finally, a visit lasting 12 minutes (*z* = 1.05) is ranked at the 85th percentile. That is, it is longer than 85% of patient visits.
+
+While this seems redundant, this something of a prelude to the importance of *z* scores and the standard normal curve in assessment, evaluation, and psychometrics.
+
+### Transforming Variables to Standard Scores
+
+At this point, we have hand-calculated each score. It is easy to transform a set of scores into a column of *z*-scores:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+PhysTime$zMinutes <- (PhysTime$minutes - mean(PhysTime$minutes))/sd(PhysTime$minutes)
+
+head(PhysTime)
+```
+
+The transformation of scores is considered to be *linear*. That is, this 1:1 relationship would result in a correlation of 1.00. Further, the *z*version of the variable could be used in analyses, just as the original raw score. Choices to do this are made carefully and usually done to optimize interpretation. I will demonstrate this with set of descriptive statistics produced by the *apa.cor.table()* function from the *apaTables* package.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+apaTables::apa.cor.table(PhysTime)
+```
+
+### The One-Sample *z* test
+
+The one-sample *z* test is a common entry point to hypothesis testing. Let's imagine that we have reason to believe that an optimal physician/patient interaction in the ICU is 10.5 minutes. We want to use this value as a contrast to our own data and ask if the physician/patient interactions in our ICU are statistically significantly different.  To test this hypothesis, we first set up null ($H_0$) and alternative ($H_A$) hypotheses. Our null hypothesis states that the population mean for physician/patient visits is equal to 10.5; the alternative hypothesis states that it is unequal to 10.5.
+
+As written, this question is *two-tailed.* That is, the external mean could be larger or smaller, we are just curious to see if it is different. 
+
+$$
+\begin{array}{ll}
+H_0: & \mu = 10.5 \\
+H_A: & \mu \neq 10.5
+\end{array}
+$$
+Alternatively, we could ask a *one-sided* question. That is, we might hypothesize that our sample mean is smaller than the external mean.
+
+$$
+\begin{array}{ll}
+H_0: & \mu = 10.5 \\
+H_A: & \mu < 10.5
+\end{array}
+$$
+Whether the test is one- or two- sided makes a difference in the strictness with which we interpret the results and can impact whether or not the result is statistically significant. We will reject the $H_0$ in favor of the alternative ($H_A$) if the resulting test statistic (a *z* score) falls into the region of rejection (but that region shifts, depending on whether our test is one- or two- tailed.. 
+
+Statistician, Sir Ronald Fisher, popularized 5% as the region of rejection. Specifically, if a probability value associated with a *z*-score (or similar) falls into the tails of a distribution that represent 5%, then the $H_0$ is rejected, in favor of the $H_A$.
+
+Stated another way 
+
+* *p* is the probability that the $H_0$ is true
+  - *p* > 0.05 suggests that there is a 95% chance or greater that the $H_0$ is true
+* 1 minus the *p* value is the probability that the alternative hypothesis is true. 
+  - A statistically significant test result (*p* ≤ 0.05) means that the test hypothesis is false or should be rejected. 
+  - A *p* value greater than 0.05 means that no effect was observed.
+
+If our hypothesis is two-sided, then we can divide the 5% across both tails of the test. Inspecting a table of *z* values shows that $\pm 1.96$ would be the region of rejection of $H_0$.  In contrast, if the hypothesis is directionless (two-tailed),$1.64$ would serve as the boundary for the region of rejection and the corresponding *z*-test would have to have the same sign (+ or -) as the hypothesized tail of the distribution. So long as the hypothesis is consistent with the data, a one-sided test can be more powerful, that is, there is greater probability (defined as area under the curve) for rejecting the $H_0$, if it is should be rejected.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), echo=FALSE}
+par(mfrow=c(1,3))
+
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(-1.96,1.96,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(-1.96,x,1.96),c(0,y,0),col="#CCCCCC")
+text(-2.3,0.1,"-1.96")
+text(2.2,0.1,"1.96")
+
+x=seq(-3,3,length=200)
+y=dnorm(x,mean=0,sd=1)
+plot(x,y,type="l")
+x=seq(-1.64,3,length=100)
+y=dnorm(x,mean=0,sd=1)
+polygon(c(-1.64,x,3),c(0,y,0),col="#CCCCCC")
+text(-1.75,0.2,"-1.64")
+```
+
+The formula for a one-sample *z*-test is as follows:
+
+$$
+z_{\bar{X}} =  \frac{\bar{X} - \mu_0}{\sigma / \sqrt{N}}
+$$
+We have already calculated these values. But let's grab some of them again as a reminder:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+psych::describe(PhysTime$minutes)
+```
+
+* Sample mean is 9.9
+* Population mean (the one we're comparing to) is 10.5
+* Standard deviation is 2
+* *N* is 200
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+(9.9 - 10.5)/(2/sqrt(200))
+```
+The resulting value, $z = -4.242$ is our test value. Because this faaaaaar exceeds $\pm 1.96$ we know that there is a statistically significant effect. Just to be sure, let's use the *pnorm()* function to obtain the *p* value.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+pnorm(-4.24, mean=9.9, sd=2)
+```
+Simply with these hand-calculations, we can claim that there was a statistically significant difference between the physician/patient visit times in our simulated sample data and external benchmark criteria:  $z(200) = -4.24, p < .001$. 
+
+The one sample *z*-test is rarely seen in the published literature. However, a close inspection of tables that contain the critical values for *t*-tests reveals that the very bottom row (i.e., when sample sizes are 120 or greater) is, in fact, the *z* criteria. That must mean it's time to learn about the one sample *t*-test.
+
+## Introducing the One Sample *t*-test
+
+The one-sample *t* test is used to evaluate whether the mean of a sample differs from another value that, symbolically, is represented as the population mean. Green and Salkind [@green_using_2014] noted that this value is often the midpoint of set of scores, the average value of the test variable based on past research, or a test value as the chance level of performance. 
+
+![An image of a row with two boxes labeled Condition A (in light blue) and the population mean (in dark blue) to which it is being compared. This represents the use of a one sample *t* test.](images/ttests/onesample.jpg)
+
+This comparison is evident in the numerator of the formula for the *t* test that shows the population mean $\mu$ being subtracted from the sample mean$\bar{X}$.
+
+$$
+t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
+$$
+Although this statistic is straightforward, it is quite limited. If the researcher wants to compare an outcome variable across two groups of people, they should consider the [independent samples *t*-test](#tIndSample). If the participant wants to evaluate an outcome variable with two observations from the same group of people, they should consider the [paired samples *t*test](#tPaired)
+
+### Workflow for the One Sample *t*-test
+
+The following is a proposed workflow for conducting a one-sample *t*-test.
+
+![A colorful image of a workflow for the one sample *t*-test](images/ttests/OneSampleWrkFlw.jpg) 
+
+If the data meets the assumptions associated with the research design (e.g., independence of observations and a continuously scaled metric), these are the steps for the analysis of a one sample *t* test:
+
+1. Prepare (upload) data.
+2. Explore data with
+   - graphs
+   - descriptive statistics
+3. Assess normality via skew and kurtosis
+4. Select the comparison (i.e., test) value
+5. Compute the one sample *t*-test
+6. Compute an effect size (frequently the *d* statistic)
+7. Manage Type I error
+8. Sample size/power analysis (which you should think about first, but in the context of teaching statistics, it's more pedagogically sensible, here).
+
+## Research Vignette
+
+Empirically published articles where *t* tests are the primary statistic are difficult to locate. Having exhausted the psychology archives, I located this article in an interdisciplinary journal focused on palliative medicine. The research vignette for this lesson examined differences in physician's verbal and nonverbal communication with Black and White patients at the end of life [@elliott_differences_2016]. 
+
+Elliott and colleagues [-@elliott_differences_2016] were curious to know if hospital-based physicians (56% White, 26% Asian, 7.4% each Black and Hispanic) engaged in verbal and nonverbal communication differently with Black and White patients. Black and White patient participants were matched on characteristics deemed important to the researchers (e.g., critically and terminally ill, prognostically similar, expressed similar treatment preferences). Interactions in the intensive care unit were audio and video recorded and then coded on dimensions of verbal and nonverbal communication.
+
+Because each physician saw a pair of patients (i.e., one Black patient and one White patient), the researchers utilized a paired samples, or dependent *t*-test. This statistical choice was consistent with the element of the research design that controlled for physician effects through matching (and one we will work in a later lesson). Below are the primary findings of the study.
+
+|                |Black Patients |White Patients |         |
+|:---------------|:--------------|:--------------|:--------|
+|Category        |*Mean*(*SD*)   |*Mean*(*SD*)   |*p*-value|
+|Verbal skill score (range 0 - 27)|8.37(3.36) | 8.41(3.21) |0.958|
+|Nonverbal skill score (range 0 - 5) |2.68(.84) | 2.93(.77)|0.014|
+
+In the research vignette Elliott et al. [-@elliott_differences_2016] indicated that physician/patient visits lasted between 3 minutes and 40 seconds to 20 minutes and 13 seconds. For the purpose of demonstrating the one sample *t*-test, we might want to ask whether the length of patient visits in this research study were statistically significantly different than patient in the ICU or in palliative care, more broadly. Elliott et al.[-@elliott_differences_2016] did not indicate a measure of central tendency (i.e., mean, mode, median) therefore, I will simulate the data by randomly generating 33 numbers with a mean of 8 and a standard deviation of 2.5. I will use *random selection with replacement*, which allows the same number to be selected more than once. 
+
+I re-simulated (what may seem like identical data from above)to be consistent with the journal article's research sample of 33. 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+
+#Setting the "random" seed ensures that everyone gets the same result, every time they rerun the analysis.
+#My personal practice is to create a random seed that represents the day I write up the problem (in this case August, 15, 2022)
+#When the Suggestions for Practice invite you to "change the random seed," simply change this number to anything you like (maybe your birthday or today's date)
+set.seed(220822)
+dfOneSample <- data.frame(PhysMins = rnorm(33, mean=10, sd=2.5))
+
+head(dfOneSample)
+```
+
+A warning: this particularly analysis (the whole lesson, in fact) is "more simulated than usual" and does not represent reality. However, this research vignette lends itself for this type of question.
+
+With our data in hand, let's examine its structure. The variable representing physician minutes represents the ratio scale of measurement and therefore should be noted as *num* (numerical) in R.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+str(dfOneSample)
+```
+Below is code for saving (and then importing) the data in .csv or .rds files. I make choices about saving data based on what I wish to do with the data. If I want to manipulate the data outside of R, I will save it as a .csv file. It is easy to open .csv files in Excel. A limitation of the .csv format is that it does not save any restructuring or reformatting of variables. For this lesson, this is not an issue. 
+
+Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#writing the simulated data as a .csv 
+#write.table(dfOneSample, file = "dfOneSample.csv", sep = ',', col.names=TRUE, row.names=FALSE) 
+#at this point you could clear your environment and then bring the data back in as a .csv
+#reading the data back in as a .csv file
+dfOneSample<- read.csv ('dfOneSample.csv', header = TRUE)
+```
+
+The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#saveRDS(dfOneSample, 'dfOneSample.rds')
+#dfOneSample <- readRDS('dfOneSample.rds')
+```
+
+## Working the Problem
+
+### Stating the Hypothesis
+
+A quick scan of the literature suggests that health care workers' visits to patients in the ICU are typically quite brief. Specifically, the average duration of a physician visit in a 2018 study was 73.5 seconds or 1.23 minutes [@butler_estimating_2018]. A one-sample *t* test is appropriate for comparing the visit lengths from our sample to this external metric. 
+
+As noted in the symbolic presentation below, our null hypothesis ($H_0$) states that our data will be equal to the test value of 1.23 minutes. In contrast, the alternative hypothesis ($H_A$) states that these values will not be equal.
+
+$$
+\begin{array}{ll}
+H_0: & \mu = 1.23 \\
+H_A: & \mu \neq 1.23
+\end{array}
+$$
+
+### Preliminary Exploration
+
+Plotting the data is best practice to any data analysis. The *ggpubr* package is one of my go-to-tools for quick and easy plots of data. Below, I have plotted the time-with-patient (Physician Seconds) variable and added the mean. As with most plotting packages, ggpubr will "bin" (or cluster) the data for plotting; this is especially true for data with a large number of units (a range from 220 to 1213 is quite large). The "rug = TRUE" command added a lower row of the table to identify where each of the datapoint follows.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggpubr::gghistogram(dfOneSample, x = "PhysMins",  add = "mean",  rug = TRUE, color = "#993366")
+```
+
+Although the histogram is not perfectly normal, we can see at least the suggestion of a normal distribution. With only a sample of 33, I'm encouraged. 
+
+Another view of our data is with a boxplot. The box captures the middle 50% of data with the horizontal bar at the median. The whiskers extend three standard deviations around the mean with dots beyond the whiskers representing outliers. I personally like the *add="jitter"* statement because it shows where each case falls.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggpubr::ggboxplot(dfOneSample$PhysMins,
+         ylab = "Minutes with Patient", xlab = FALSE, add="jitter"
+         )
+```
+We can further evaluate normality by obtaining the descriptive statistics with the *describe()* function from the *psych* package.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+psych::describe(dfOneSample$PhysMins)
+```
+
+Here we see that our minutes range from 4.92 to 17.41 with a mean of 10.01 and a standard deviation of 2.7.  We're ready to calculate the one sample *t*-test.
+
+### Hand-Calculations
+
+In learning the statistic, hand-calculations can help understand what the statistic is doing. Here's the formula again:
+
+$$
+t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
+$$
+
+The denominator of the formula below subtracts the test value from the sample mean. The denominator involves multiplying the standard deviation by the square root of the sample size. The descriptive statistics provided the values we need to complete the analysis:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+(10.01 - 1.23)/(2.7/sqrt(33))
+```
+
+#### Statistical Significance  
+
+If we ask about *statistical significance* then we are engaged in *null hypothesis significance testing* (NHST). In the case of a one sample test, we construct our hypothesis with a null and an alternative that are relatively straightforward. Specifically, we are interested in knowing if our sample mean (10.01) is statistically, significantly different from the test value of 1.23.  We can write the hypotheses in this way:
+
+$$
+\begin{array}{ll}
+H_0: & \mu = 1.23 \\
+H_A: & \mu \neq 1.23
+\end{array}
+$$
+In two parts, our null hypothesis ($H_0$) states that the population mean ($H_0$) for physician visits with palliative care patients is 1.23; the alternative $\mu \neq$ states that it is not 1.23.
+
+When we calculated the *t* test, we obtained a *t* value. We can check the statistical significance by determining the test critical value from a [table of critical values](https://www.statology.org/t-distribution-table/) for the *t* distribution. There are many freely available on the internet. If our *t* value exceeds the value(s) in the table of critical values, then we can claim that our sample mean is statistically significantly different from the hypothesized value.
+
+Heading to the table of critical values we do the following:
+
+* For the one-sample *t* test, the degrees of freedom (DF) is equal to *N* - 1 (32). The closest value in our table is 30, so we will use that row.
+* A priorily, we did not specify if we thought the difference would be greater, or lower. Therefore, we will use a column that indicates *two-tails*.
+* A *p* value of .05 is customary (but it will be split between two tails).
+* Thus, if our *t* value is lower than -2.042 or higher than 2.042 we know we have a statistically significant difference.
+
+In our case, the *t* value of 18.68 far exceeded the test critical value of 2.042. We would write the statistical string this way: *t*(32) = 18.68, *p* < .05.
+
+In base R, the *qt()* function will look up a test critical value. For the one-sample *t* test, degrees of freedom (df) is equal to $N-1$. We "divide the *p* value by 2" when we want a two-tailed test. Finally, the "lower.tail" command results in positive or negative values in the tail.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+qt(p=.05/2, df=32,lower.tail=FALSE)
+```
+Not surprisingly, this value is quite similar to the value we saw in the table. The *qt()* function is more accurate because it used df of 32 (not rounded down to 30).
+
+#### Confidence Intervals
+
+How confident are we in our result? With the one sample *t*-test, it is common to report an interval in which we are 95% confident that our true mean difference exists. Below is the formula, which involves:
+
+* $\bar{X}$ is the sample mean; in our case this is 10.01
+* $t_{cv}$ the test critical value for a two-tailed model (even if the hypothesis was one-tailed) where $\alpha = .05$ and the degrees of freedom are $N-1$
+* $\frac{s}{\sqrt{n}}$ was the denominator of the test statistic it involves the standard deviation of our sample (2.7) and the square root of our sample size (33)
+
+$$\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})$$
+Let's calculate it:
+
+First, let's get the proper *t* critical value. Even though these are identical to the one above, I am including them again. Why? Because if the original hypothesis had been one-tailed, we would need to calculate a two-tailed confidence interval; this is a placeholder to remind us.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+qt(p=.05/2, df=32,lower.tail=FALSE)
+```
+Using the values from above, we can specify both the lower and upper bound of our confidence interval.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+(10.01) - ((2.0369)*(2.7/sqrt(33)))
+(10.01) + ((2.0369)*(2.7/sqrt(33)))
+```
+The resulting interval is the 95% confidence interval around our sample mean. Stated another way, we are 95% certain that the true mean of time with patients in our sample ranges between 9.05 and 10.97 minutes.
+
+#### Effect size
+
+If you have heard someone say something like, "I see there is statistical significance, but is the difference *clinically significant*," the person is probably asking about *effect sizes.*  Effect sizes provide an indication of the magnitude of the difference.
+
+The *d* statistic is commonly used with *t* tests; *d* assesses the degree that the mean on the test variable differs from the test value. Conveniently, *d* represents standard deviation units. A *d* value of 0 indicates that the mean of the sample equals the mean of the test value. As *d* moves away from 0 (in either direction), we can interpret the effect size to be stronger. Conventionally, the absolute values of .2, .5, and .8, represent small, medium, and large effect sizes, respectfully.
+
+Calculating the *d* statistic is easy. Here are two equivalent formulas:
+
+$$d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}$$
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#First formula
+(10.01 - 1.23)/2.7
+#Second formula
+18.68047/sqrt(33)
+```
+The value of 3.25 indicates that the test value is approximately more than three standard deviations away from the sample mean. This is a very large difference.
+
+## Computation in R
+
+Calculating a one sample *t*-test is possible through base R and a number of packages. Navarro's [-@navarro_book_2020] *lsr* package provides output that is commonly used in psychology.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+lsr::oneSampleTTest(x=dfOneSample$PhysMins, mu=1.23)
+```
+This well-organized output has everything we need for an APA style presentation of results. Identical to all the information we hand-calculated, we would write the *t* string this way:  $t(32) = 11.68, p < .001, d = 3.25$. The *lsr* output also includes confidence intervals. These represent the 95% confidence interval of the true difference between the means. That is, we are 95% confident that the true mean of the minutes that physicians in our sample spent with patients falls between 9.05 and 10.97.
+
+## APA Style Results
+
+Let's write up the results.  I would probably choose to include the boxplot produced in the initial exploration of the data.
+
+> A one-sample *t*-test was used to evaluate whether average amount of time that a sample of physicians (palliative care physicians in the ICU) enrolled in a research study on patient communication was statistically significantly different from the amount of time that ICU physicians spend with their patients, in general. The sample mean 10.008 (*SD* = 2.7016) was significantly different from 1.23, $t(32) = 18.672, p < .001., 95%CI (9.05, 10.97), d = 3.25$. The effect size, (*d*) indicates a very large effect. Figure 1 illustrates the distribution of time physicians in the research study spent with their patients. The results support the conclusion that physicians in the research study spent more time with their patients than ICU physicians in general.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggpubr::ggboxplot(dfOneSample$PhysMins,
+         ylab = "Physician Minutes", xlab = FALSE, add="jitter", title = "Figure 1. Physician Time with Patients (in minutes)"
+         )
+```
+
+Reflecting on these results, I must remind readers that this simulated data that is even further extrapolated. Although "data" informed both the amount of time spent by the physicians in the research study and data used as the test value, there are probably many reasons that the test value was not a good choice. For example, even though both contexts were ICU, palliative physicians may have a different standard of care than ICU physicians "in general." 
+
+
+## Power in Independent Samples *t* tests
+
+Researchers often use power analysis packages to estimate the sample size needed to detect a statistically significant effect, if, in fact, there is one. Utilized another way, these tools allows us to determine the probability of detecting an effect of a given size with a given level of confidence. If the probability is unacceptably low, we may want to revise or stop. A helpful overview of power as well as guidelines for how to use the *pwr* package can be found at a [Quick-R website](https://www.statmethods.net/stats/power.html) [@kabacoff_power_2017].
+
+In Champely's *pwr* package, we can conduct a power analysis for a variety of designs, including the one sample *t* test that we worked in this lesson. There are a number of interrelating elements of power:
+
+* Sample size, *n* refers to the number of observations; our vignette had 33
+* *d* refers to the difference between means divided by the pooled standard deviation; ours was (10.01-1.23)/2.7
+* *power* refers to the power of a statistical test; conventionally it is set at .80
+* *sig.level* refers to our desired alpha level; conventionally it is set at .05
+* *type* indicates the type of test we ran; this was "one.sample"
+* *alternative* refers to whether the hypothesis is non-directional/two-tailed ("two.sided") or directional/one-tailed("less" or "greater")
+ 
+In this script, we must specify *all-but-one* parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.
+
+When we conduct a "power analysis" (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, "power=NULL". Using the data from our results, we learn from this first run, that our statistical power was 1.00. That is, given the value of the mean difference relative to the pooled standard deviation we had a 100% chance of detecting a statistically significant effect if there was one.
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+pwr::pwr.t.test(d= (10.01-1.23)/2.7,n = 33, power=NULL,sig.level=0.05,type="one.sample",alternative="two.sided")
+```
+Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set *n* to *NULL*. 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+pwr::pwr.t.test(d= (10.01-1.23)/2.7, n = NULL, power=0.8,sig.level=0.05,type="one.sample",alternative="two.sided")
+```
+Shockingly, this suggests that a sample size of 3 could result in a statistically significant result. Let's see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:
+
+```{r}
+set.seed(220822)
+rdfOneSample <- data.frame(rPhysMins = rnorm(3, mean=10, sd=2.5))
+
+head(rdfOneSample)
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+lsr::oneSampleTTest(x=rdfOneSample$rPhysMins, mu=1.23)
+```
+In this case our difference between the sample data and the external data is so huge, that a sample of three still nets a statistically significant result. This is unusual. Here's the *t* string:  $t(2) = 9.379, p = 0.011, d = 5.415, 95%CI[5.78, 13.492]$.
+
+## Practice Problems
+
+The suggestions for homework are graded in complexity and I encourage you to select one or more that meets you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands).
+
+### Problem #1: Rework the research vignette as demonstrated, but change the random seed
+
+If this topic feels a bit overwhelming, simply change the random seed in the data simulation of the research vignette, then rework the problem. This should provide minor changes to the data but the results will likely be very similar. That said, don't be alarmed if what was non-significant in my working of the problem becomes significant. Our selection of *p* < .05 (and the corresponding 95% confidence interval) means that 5% of the time there could be a difference in statistical significance.
+
+### Problem #2:  Rework the research vignette, but change something about the simulation
+
+Rework the one sample *t*-test in the lesson by changing something else about the simulation. Perhaps estimate another comparative number. The 1.23 was a dramatic difference from the mean of the research participants. Perhaps suggest (and, ideally, support with a reference) another number. Alternatively, if you are interested in issues of power, specify a different sample size.
+
+### Problem #3:  Use other data that is available to you
+
+Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete an independent samples *t* test. 
+
+Regardless which option(s) you chose, use the elements in the grading rubric to guide you through the practice.
+
+|Assignment Component                    | Points Possible   | Points Earned|
+|:-------------------------------------- |:----------------: |:------------:|
+|1. Narrate the research vignette, describing the variables and their role in the analysis | 5 |_____  |
+|2. Simulate (or import) and format data |      5            |_____  |           
+|3. Evaluate statistical assumptions     |      5            |_____  |
+|4. Conduct a one sample *t* test (with an effect size) |5 | _____  |  
+|5. APA style results with table(s) and figure  |    5  |_____  |       
+|6 Explanation to grader                 |      5        |_____  |
+|**Totals**                              |      30      |_____  |          
+
+```{r include=FALSE}
+sessionInfo()
+```
+
+
+

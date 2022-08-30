@@ -126,7 +126,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{27 Aug 2022}
+\date{30 Aug 2022}
 
 \begin{document}
 \maketitle
@@ -161,7 +161,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 27 Aug 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 30 Aug 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -761,7 +761,7 @@ The beginning of any data analysis means familiarizing yourself with the data. A
 \hypertarget{navigating-this-lesson-1}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-1}}
 
-There is just less than two hours of lecture.
+There is just less than two hours of lecture. If you work through the lesson with me, I would plan for an additional three hours.
 
 While the majority of R objects and data you will need are created within the R script that sources the lesson, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://github.com/lhbikos/ReCenterPsychStats}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \protect\hyperlink{ReCintro}{introduction}
 
@@ -1152,16 +1152,24 @@ As we begin to explore the descriptive and distributional characteristics of thi
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{nAff, }\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.05}\NormalTok{), }\AttributeTok{border =} \StringTok{"white"}\NormalTok{, }\AttributeTok{col =} \StringTok{"grey"}\NormalTok{,}
-    \AttributeTok{xlab =} \StringTok{"Negative Affect"}\NormalTok{, }\AttributeTok{main =} \StringTok{""}\NormalTok{)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{nAff, }\AttributeTok{xlab=}\StringTok{"Negative Affect"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Frequency"}\NormalTok{, }\AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{rug=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#00AFBB"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/histogram1-1.pdf}
-\caption{\label{fig:histogram1}A histogram of the negative affect variable.}
-\end{figure}
+\begin{verbatim}
+Warning: Using `bins = 30` by default. Pick better value with the argument
+`bins`.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \hypertarget{measures-of-central-tendency}{%
 \subsection{Measures of Central Tendency}\label{measures-of-central-tendency}}
@@ -1339,14 +1347,27 @@ As a bit of an advanced cognitive organizer, it may be helpful to know that in a
 
 In our research vignette, the mean (1.81) is higher than the median (1.75) is higher than the mode (1.0). This would suggest a positive skew. Here is a reminder of our histogram:
 
-\begin{figure}
-\centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-33-1.pdf}
-\caption{\label{fig:unnamed-chunk-33}A histogram of the negative affect variable.}
-\end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{nAff, }\AttributeTok{xlab=}\StringTok{"Negative Affect"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Frequency"}\NormalTok{, }\AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{rug=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#00AFBB"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{variability}{%
-\section{Variability}\label{variability}}
+\begin{verbatim}
+Warning: Using `bins = 30` by default. Pick better value with the argument
+`bins`.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-34-1.pdf}
+\#\# Variability
 
 Researchers are equality interested in the spread or dispersion of the scores.
 
@@ -1647,7 +1668,7 @@ This value tells how far individual observations are from the mean, ``on average
 
 So that we can keep statistical notation in our mind, this is the formula calculating the absolute mean deviation:
 
-\[\sum_{i=1}^{n}X_{i} - \bar{X}\]
+\[\sum_{i=1}^{n}|X_{i} - \bar{X}|\]
 Let's quickly repeat the process with the negative affect variable in our research vignette. So that we can more clearly see the relationship of the new variables to negative affect, let me create a df containing only nAff:
 
 \begin{Shaded}
@@ -1686,7 +1707,7 @@ Let's quickly repeat the process with the negative affect variable in our resear
 [1] 0.521
 \end{verbatim}
 
-Thus, the absolute mean deviation for the negative affect variable in our research vignette is 0.526
+Thus, the absolute mean deviation for the negative affect variable in our research vignette is 0.521.
 
 Although relatively intuitive, the absolute mean deviation is not all that useful. Most statistics texts include it because it is one of the steps toward variance, and ultimately, the standard deviation.
 
@@ -1697,7 +1718,7 @@ Variance is considered to be an \emph{average} dispersion calculated by summing 
 
 Our next step is to square the mean deviations. This value is also called the \emph{sum of squared errors}, \emph{sum of squared deviations around the mean}, or \emph{sums of squares} and is abbreviated as \emph{SS}. Below are common statistical representations:
 
-\[s^{2}=SS = \sum_{i=1}^{n}(X_{i} - \bar{X})^{^{2}}\]
+\[SS = \sum_{i=1}^{n}(X_{i} - \bar{X})^{^{2}}\]
 Let's do it with our toy data.
 
 \begin{Shaded}
@@ -1812,7 +1833,7 @@ Let's quickly repeat this process with the negative affect variable from the res
 [1] 283.4418
 \end{verbatim}
 
-Our sums of squared deviations around the mean is 285.45. When we divide it by \emph{N} - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the \emph{var()} function.
+Our sums of squared deviations around the mean is 283.44. When we divide it by \emph{N} - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the \emph{var()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1868,7 +1889,7 @@ Calculating the standard deviation requires earlier steps:
   Dividing the \emph{SS} by \emph{N} - 1; this results in the \emph{variance} around the mean.
 \end{enumerate}
 
-The 6th step is to take the square root of variance. It is represented in the formulae, below:
+The 6th step is to take the square root of variance. It is represented in the formula, below:
 
 \[s=\sqrt{\frac{SS}{N-1}}=\sqrt{\frac{\sum_{i=1}^{n}(X_{i} - \bar{X})^{^{2}}}{N-1}}\]
 Repeated below are each of the six steps for the toy data:
@@ -1992,10 +2013,10 @@ Statistics that we use are accompanied by assumptions about the nature of variab
 
 Skew and kurtosis are indicators of non-normality. Skew refers to the degree to which the data is symmetrical. In the figure below, the symmetrical distribution in the center (the black line) would have no skewness. In contrast, the red figure whose curve (representing a majority of observations) in the left-most part of the graph (with the tail pulling to the right) would be positively skewed; the blue figure whose curve (representing a majority of cases) is in the right-most part of the graph (with the tail pulling to the left) would be negatively skewed.
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-60-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-61-1.pdf}
 Kurtosis refers to the degree to which the distribution of data is flat or peaked. Mesokurtic distributions are considered to be closest to normal. Leptokurtic distributions are peaked and platykurtic distributions are flat.
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-61-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-62-1.pdf}
 The \emph{describe()} function in the \emph{psych} package is one of the most common ways to obtain information on skew and kurtosis, as well as other descriptive information.
 
 For just a quick view, call the psych package, add two colons, use the \emph{describe()} function, and indicate the df.
@@ -2192,7 +2213,7 @@ To obtain the covariance, adding the next part of the formula suggests that we m
 [1] 0.3735836
 \end{verbatim}
 
-The covariance between negative affect and psychological distress is 0.353.
+The covariance between negative affect and psychological distress is 0.373.
 
 We now engage the second part of the formula to standardize it.
 
@@ -2211,7 +2232,7 @@ We will use our covariance value in the numerator. The denominator involves the 
 [1] 0.2690291
 \end{verbatim}
 
-Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? That really depends on what you are studying. The traditional values of .10, .30, and .50 are used as small, medium, and large \citep{cohen_applied_2003}. Hence, when \emph{r} = 0.25, we can say that it is (more-or-less) medium.
+Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? That really depends on what you are studying. The traditional values of .10, .30, and .50 are used as small, medium, and large \citep{cohen_applied_2003}. Hence, when \emph{r} = 0.27, we can say that it is (more-or-less) medium.
 
 Is it statistically significant? Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the \emph{cor.test()} function in base R to check our math and retrieve the \emph{p} value associated with the correlation coefficient.
 
@@ -2270,7 +2291,7 @@ To provide a simple demonstration this, I will use our df with three variables o
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-72-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-73-1.pdf}
 What do we observe?
 
 \begin{itemize}
@@ -2363,7 +2384,7 @@ Below is an example of how I might write up these preliminary results:
 \textbf{Preliminary Results}
 
 \begin{quote}
-Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Visual inspection of the three variables of interest (negative affect, microaggressions, drinking problems) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that the correlation between negative affect and microaggressions was moderate (\emph{r} = 0.25); correlations between remaining variables were smaller.
+Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Visual inspection of the three variables of interest (negative affect, microaggressions, drinking problems) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that the correlation between negative affect and microaggressions was moderate (\emph{r} = 0.27); correlations between remaining variables were smaller.
 \end{quote}
 
 \hypertarget{practice-problems}{%
@@ -2462,7 +2483,7 @@ In addition to a conceptual presentation of of each statistic, each lesson inclu
 \hypertarget{tOneSample}{%
 \chapter{\texorpdfstring{One Sample \emph{t}-tests}{One Sample t-tests}}\label{tOneSample}}
 
-\href{link\%20here}{Screencasted Lecture Link}
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c029edfb-4215-44be-972d-af0100365877}{Screencasted Lecture Link}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2475,7 +2496,7 @@ Researchers and program evaluators, may wish to know if their data differs from 
 \hypertarget{navigating-this-lesson-2}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-2}}
 
-There is about \# hour and \#\# minutes of lecture. If you work through the materials with me it would be plan for an additional TIME.
+There is just over one hour of lecture. If you work through the materials with me it would be plan for an additional hour-and-a-half.
 
 While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://github.com/lhbikos/ReCenterPsychStats}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \protect\hyperlink{ReCintro}{introduction}
 
@@ -2553,11 +2574,13 @@ The script below will (a) check to see if the following packages are installed o
 \begin{Highlighting}[]
 \CommentTok{\# will install the package if not already installed}
 \CommentTok{\# if(!require(psych))\{install.packages(\textquotesingle{}psych\textquotesingle{})\}}
-\CommentTok{\# if(!require(faux))\{install.packages(\textquotesingle{}faux\textquotesingle{})\}}
 \CommentTok{\# if(!require(tidyverse))\{install.packages(\textquotesingle{}tidyverse\textquotesingle{})\}}
 \CommentTok{\# if(!require(dplyr))\{install.packages(\textquotesingle{}dplyr\textquotesingle{})\}}
 \CommentTok{\# if(!require(lsr))\{install.packages(\textquotesingle{}lsr\textquotesingle{})\}}
 \CommentTok{\# if(!require(ggpubr))\{install.packages(\textquotesingle{}ggpubr\textquotesingle{})\}}
+\CommentTok{\# if(!require(knitr))\{install.packages(\textquotesingle{}knitr\textquotesingle{})\}}
+\CommentTok{\# if(!require(apaTables))\{install.packages(\textquotesingle{}apaTables\textquotesingle{})\}}
+\CommentTok{\# if(!require(pwr))\{install.packages(\textquotesingle{}pwr\textquotesingle{})\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2580,7 +2603,7 @@ The \emph{z} distribution is also known as the normal distribution, the bell cur
   99.7\% of the distribution falls within 3 standard deviations of the mean
 \end{itemize}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-78-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-79-1.pdf}
 \emph{z}-scores are transformations of raw scores, in standard deviation units. Using the following formula, so long as the mean and standard deviation are known, any set of continuously scaled scores can be transformed to a \emph{z}-scores equivalent:
 
 \[z=\frac{X-\bar{X}}{s}\]
@@ -2621,7 +2644,7 @@ Specifically, in this sample size of 200, our mean is 9.9 with a standard deviat
 \hypertarget{raw-scores-z-scores-and-proportions}{%
 \subsection{\texorpdfstring{Raw Scores, \emph{z}-scores, and Proportions}{Raw Scores, z-scores, and Proportions}}\label{raw-scores-z-scores-and-proportions}}
 
-With data in hand, let's ask, ``What is the range of time that physicians spend with patients that fall within 1 standard deviation of the mean?'' We would answer this question by applying th raw score formula (\(X = \bar{X} + z(s)\)) to +1 and -1 standard deviation.
+With data in hand, let's ask, ``What is the range of time that physicians spend with patients that fall within 1 standard deviation of the mean?'' We would answer this question by applying the raw score formula (\(X = \bar{X} + z(s)\)) to +1 and -1 standard deviation.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2714,7 +2737,7 @@ We learn that 9.9 minutes (the mean of the distribution of raw scores) correspon
 
 Next, we examine a \href{https://www.statology.org/z-table/}{table of critical \emph{z} values} where we see that a score of 0.0 corresponds to an area (probability) of .50. The directionality of our table is such that fewer minutes spent with patients are represented on the left (the shaded portion) and more minutes spent with patients are represented on the right (the unshaded portion). Our question asks, what is the probability that a physician spends \emph{at least} 9.9 minutes with a patient (i.e., 9.9 or more minutes) means that we should use the area on the right. Thus, the probability that a physician spends \emph{at least} 9.9 minutes with a patient is 50\%. In this case it is also true that the probability that a physician spends 9.9 minutes or less is also 50\%. This 50/50 result helps make the point that the area under the curve is equal to 1.0.
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-85-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-86-1.pdf}
 We can also obtain the probability value with the \emph{pnorm()} function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in \emph{z} score formula or from the raw scores.
 
 \begin{Shaded}
@@ -2772,7 +2795,7 @@ Second we locate the corresponding area under the normal curve. Examining the ta
 [1] 0.007142811
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-89-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-90-1.pdf}
 There is a .7\% (that is less than 1\%) probability that physicians spend less than 5 minutes with a patient. The inverse (1 - .7) indicates that we can be 99\% confident that patients receive 5 or more minutes with the ICU physician.
 
 What about operations at the other end of the curve? What is the probability that a patient receives less than 12 minutes with a physician? Again, we start with the calculation of the \emph{z}-score.
@@ -2799,7 +2822,7 @@ The 12 minute mark is 1.05 \emph{SD} above the mean. Checking the \emph{z} table
 [1] 0.1469
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-92-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-93-1.pdf}
 The probability of a physician spending 12 minutes \emph{or less} with a patient is 85\%; the probability of a physician spending 12 minutes or more with a patient is 15\%.
 
 \hypertarget{percentiles}{%
@@ -2821,6 +2844,7 @@ At this point, we have hand-calculated each score. It is easy to transform a set
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{PhysTime}\SpecialCharTok{$}\NormalTok{zMinutes }\OtherTok{\textless{}{-}}\NormalTok{ (PhysTime}\SpecialCharTok{$}\NormalTok{minutes }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(PhysTime}\SpecialCharTok{$}\NormalTok{minutes))}\SpecialCharTok{/}\FunctionTok{sd}\NormalTok{(PhysTime}\SpecialCharTok{$}\NormalTok{minutes)}
+
 \FunctionTok{head}\NormalTok{(PhysTime)}
 \end{Highlighting}
 \end{Shaded}
@@ -2867,7 +2891,7 @@ that could have caused the sample correlation (Cumming, 2014).
 \hypertarget{the-one-sample-z-test}{%
 \subsection{\texorpdfstring{The One-Sample \emph{z} test}{The One-Sample z test}}\label{the-one-sample-z-test}}
 
-The one-sample \emph{z} test is a common entry point to hypothesis testing. Let's imagine that we have reason to believe that an optimal physician/patient interaction in the ICU is 10.5 minutes. We want to use this value as a contrast to our own data and ask if the physician/patient interactions in our ICU are statistically significantly different. To test this hypothesis, we first set up null (\(H_0\)) and alternative (\(H_A\)) hypotheses. Our null hypothesis states that the population mean for physician/patient visits is equal to 12; the alternative hypothesis states that it is unequal to 12.
+The one-sample \emph{z} test is a common entry point to hypothesis testing. Let's imagine that we have reason to believe that an optimal physician/patient interaction in the ICU is 10.5 minutes. We want to use this value as a contrast to our own data and ask if the physician/patient interactions in our ICU are statistically significantly different. To test this hypothesis, we first set up null (\(H_0\)) and alternative (\(H_A\)) hypotheses. Our null hypothesis states that the population mean for physician/patient visits is equal to 10.5; the alternative hypothesis states that it is unequal to 10.5.
 
 As written, this question is \emph{two-tailed.} That is, the external mean could be larger or smaller, we are just curious to see if it is different.
 
@@ -2887,7 +2911,7 @@ H_A: & \mu < 10.5
 \]
 Whether the test is one- or two- sided makes a difference in the strictness with which we interpret the results and can impact whether or not the result is statistically significant. We will reject the \(H_0\) in favor of the alternative (\(H_A\)) if the resulting test statistic (a \emph{z} score) falls into the region of rejection (but that region shifts, depending on whether our test is one- or two- tailed..
 
-Statistician, Sir Ronald Fisher, popularized 5\% as the rejection of rejection. Specifically, if a probability value associated with a \emph{z}-score (or similar) falls into the tails of a distribution that represent 5\%, then the \(H_0\) is rejected, in favor of the \(H_A\).
+Statistician, Sir Ronald Fisher, popularized 5\% as the region of rejection. Specifically, if a probability value associated with a \emph{z}-score (or similar) falls into the tails of a distribution that represent 5\%, then the \(H_0\) is rejected, in favor of the \(H_A\).
 
 Stated another way
 
@@ -2913,8 +2937,8 @@ Stated another way
   \end{itemize}
 \end{itemize}
 
-If our hypothesis is two-sided, then we can divide the 5\% across both tails of the test. Inspecting a table of \emph{z} values shows that \(\pm 1.96\) would be the region of rejection of \(H_0\). In contrast, if the hypothesis is directionless (two-tailed),\(1.96\) would serve as the boundary for the region of rejection and the corresponding \emph{z}-test would have to have the same sign (+ or -) as the hypothesized tail of the distribution. So long as the hypothesis is consistent with the data, a one-sided test can be more powerful, that is, there is greater probability (defined as area under the curve) for rejecting the \(H_0\), if it is should be rejected.
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-95-1.pdf}
+If our hypothesis is two-sided, then we can divide the 5\% across both tails of the test. Inspecting a table of \emph{z} values shows that \(\pm 1.96\) would be the region of rejection of \(H_0\). In contrast, if the hypothesis is directionless (two-tailed),\(1.64\) would serve as the boundary for the region of rejection and the corresponding \emph{z}-test would have to have the same sign (+ or -) as the hypothesized tail of the distribution. So long as the hypothesis is consistent with the data, a one-sided test can be more powerful, that is, there is greater probability (defined as area under the curve) for rejecting the \(H_0\), if it is should be rejected.
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-96-1.pdf}
 
 The formula for a one-sample \emph{z}-test is as follows:
 
@@ -2939,7 +2963,7 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14
 \item
   Sample mean is 9.9
 \item
-  Population mean (the one we're comparing to) is 12
+  Population mean (the one we're comparing to) is 10.5
 \item
   Standard deviation is 2
 \item
@@ -3106,7 +3130,7 @@ Here is code for saving the data as a .csv and then reading it back into R. I ha
 \CommentTok{\# = \textquotesingle{}dfOneSample.csv\textquotesingle{}, sep = \textquotesingle{},\textquotesingle{}, col.names=TRUE, row.names=FALSE) at}
 \CommentTok{\# this point you could clear your environment and then bring the data}
 \CommentTok{\# back in as a .csv reading the data back in as a .csv file}
-\CommentTok{\# dfOneSample\textless{}{-} read.csv (\textquotesingle{}dfOneSample.csv\textquotesingle{}, header = TRUE)}
+\NormalTok{dfOneSample }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"dfOneSample.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3143,7 +3167,8 @@ Plotting the data is best practice to any data analysis. The \emph{ggpubr} packa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(dfOneSample, }\AttributeTok{x =} \StringTok{"PhysMins"}\NormalTok{, }\AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(dfOneSample, }\AttributeTok{x =} \StringTok{"PhysMins"}\NormalTok{, }\AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#993366"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3160,20 +3185,20 @@ Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
 Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-104-1.pdf}
 
-Although the histogram is not perfectly normal, we can see at least the suggestion of a normal distribution. With only a sample of 33, I'm encouraged..
+Although the histogram is not perfectly normal, we can see at least the suggestion of a normal distribution. With only a sample of 33, I'm encouraged.
 
 Another view of our data is with a boxplot. The box captures the middle 50\% of data with the horizontal bar at the median. The whiskers extend three standard deviations around the mean with dots beyond the whiskers representing outliers. I personally like the \emph{add=``jitter''} statement because it shows where each case falls.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(dfOneSample}\SpecialCharTok{$}\NormalTok{PhysMins, }\AttributeTok{ylab =} \StringTok{"Seconds with Patient"}\NormalTok{,}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(dfOneSample}\SpecialCharTok{$}\NormalTok{PhysMins, }\AttributeTok{ylab =} \StringTok{"Minutes with Patient"}\NormalTok{,}
     \AttributeTok{xlab =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{add =} \StringTok{"jitter"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-105-1.pdf}
 We can further evaluate normality by obtaining the descriptive statistics with the \emph{describe()} function from the \emph{psych} package.
 
 \begin{Shaded}
@@ -3218,10 +3243,10 @@ If we ask about \emph{statistical significance} then we are engaged in \emph{nul
 \[
 \begin{array}{ll}
 H_0: & \mu = 1.23 \\
-H_1: & \mu \neq 1.23
+H_A: & \mu \neq 1.23
 \end{array}
 \]
-In two parts, our null hypothesis (\(H_0\)) states that the population mean (\(H_0\)) for physician visits with palliative care patients is 1.23; the alternative \(\mu \neq\) states that it is not 1.2.
+In two parts, our null hypothesis (\(H_0\)) states that the population mean (\(H_0\)) for physician visits with palliative care patients is 1.23; the alternative \(\mu \neq\) states that it is not 1.23.
 
 When we calculated the \emph{t} test, we obtained a \emph{t} value. We can check the statistical significance by determining the test critical value from a \href{https://www.statology.org/t-distribution-table/}{table of critical values} for the \emph{t} distribution. There are many freely available on the internet. If our \emph{t} value exceeds the value(s) in the table of critical values, then we can claim that our sample mean is statistically significantly different from the hypothesized value.
 
@@ -3230,7 +3255,7 @@ Heading to the table of critical values we do the following:
 \begin{itemize}
 \tightlist
 \item
-  For the one-sample \emph{t} test, the degrees of freedom (DF) is equal to the sample size (33). The closest value in our table is 30, so we will use that row.
+  For the one-sample \emph{t} test, the degrees of freedom (DF) is equal to \emph{N} - 1 (32). The closest value in our table is 30, so we will use that row.
 \item
   A priorily, we did not specify if we thought the difference would be greater, or lower. Therefore, we will use a column that indicates \emph{two-tails}.
 \item
@@ -3239,21 +3264,21 @@ Heading to the table of critical values we do the following:
   Thus, if our \emph{t} value is lower than -2.042 or higher than 2.042 we know we have a statistically significant difference.
 \end{itemize}
 
-In our case, the \emph{t} value of 18.68 far exceeded the test critical value of 2.042. We would write the statistical string this way: \emph{t}(33) = 18.68, \emph{p} \textless{} .05.
+In our case, the \emph{t} value of 18.68 far exceeded the test critical value of 2.042. We would write the statistical string this way: \emph{t}(32) = 18.68, \emph{p} \textless{} .05.
 
-In base R, the \emph{qt()} function will look up a test critical value. For the one-sample \emph{t} test, degrees of freedom (df) is equal to the sample size. We ``divide the \emph{p} value by 2'' when we want a two-tailed test. Finally, the ``lower.tail'' command results in positive or negative values in the tail.
+In base R, the \emph{qt()} function will look up a test critical value. For the one-sample \emph{t} test, degrees of freedom (df) is equal to \(N-1\). We ``divide the \emph{p} value by 2'' when we want a two-tailed test. Finally, the ``lower.tail'' command results in positive or negative values in the tail.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{qt}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.05}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{df =} \DecValTok{33}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{qt}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.05}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{df =} \DecValTok{32}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-[1] 2.034515
+[1] 2.036933
 \end{verbatim}
 
-Not surprisingly, this value is quite similar to the value we saw in the table. The \emph{qt()} function is more accurate because it used df of 33 (not rounded down to 30).
+Not surprisingly, this value is quite similar to the value we saw in the table. The \emph{qt()} function is more accurate because it used df of 32 (not rounded down to 30).
 
 \hypertarget{confidence-intervals}{%
 \subsubsection{Confidence Intervals}\label{confidence-intervals}}
@@ -3312,7 +3337,7 @@ The resulting interval is the 95\% confidence interval around our sample mean. S
 \hypertarget{effect-size}{%
 \subsubsection{Effect size}\label{effect-size}}
 
-If you have heard someone say something like, ``I see there is statistical significance, but it the difference \emph{clinically significant},'' the person is probably asking about \emph{effect sizes.} Effect sizes provide an indication of the magnitude of the difference.
+If you have heard someone say something like, ``I see there is statistical significance, but is the difference \emph{clinically significant},'' the person is probably asking about \emph{effect sizes.} Effect sizes provide an indication of the magnitude of the difference.
 
 The \emph{d} statistic is commonly used with \emph{t} tests; \emph{d} assesses the degree that the mean on the test variable differs from the test value. Conveniently, \emph{d} represents standard deviation units. A \emph{d} value of 0 indicates that the mean of the sample equals the mean of the test value. As \emph{d} moves away from 0 (in either direction), we can interpret the effect size to be stronger. Conventionally, the absolute values of .2, .5, and .8, represent small, medium, and large effect sizes, respectfully.
 
@@ -3388,7 +3413,8 @@ This well-organized output has everything we need for an APA style presentation 
 Let's write up the results. I would probably choose to include the boxplot produced in the initial exploration of the data.
 
 \begin{quote}
-A one-sample \emph{t}-test was used to evaluate whether average amount of time that a sample of physicians (palliative care physicians in the ICU) enrolled in a research study on patient communication was statistically significantly different from the amount of time that ICU physicians spend with their patients, in general. The sample mean 10.008 (\emph{SD} = 2.7016) was significantly different from 1.23, \(t(33) = 18.672, p < .001., d = 3.25\). The effect size, (\emph{d}) indicates a very large effect. Figure 1 illustrates the distribution of time physicians in the research study spent with their patients. The results support the conclusion that physicians in the research study spent more time with their patients than ICU physicians in general.
+A one-sample \emph{t}-test was used to evaluate whether average amount of time that a sample of physicians (palliative care physicians in the ICU) enrolled in a research study on patient communication was statistically significantly different from the amount of time that ICU physicians spend with their patients, in general. The sample mean 10.008 (\emph{SD} = 2.7016) was significantly different from 1.23, \(t(32) = 18.672, p < .001., 95%CI (9.05, 10.97), d = 3.25
+\). The effect size, (\emph{d}) indicates a very large effect. Figure 1 illustrates the distribution of time physicians in the research study spent with their patients. The results support the conclusion that physicians in the research study spent more time with their patients than ICU physicians in general.
 \end{quote}
 
 \begin{Shaded}
@@ -3398,7 +3424,7 @@ A one-sample \emph{t}-test was used to evaluate whether average amount of time t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-112-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-113-1.pdf}
 
 Reflecting on these results, I must remind readers that this simulated data that is even further extrapolated. Although ``data'' informed both the amount of time spent by the physicians in the research study and data used as the test value, there are probably many reasons that the test value was not a good choice. For example, even though both contexts were ICU, palliative physicians may have a different standard of care than ICU physicians ``in general.''
 
@@ -3414,7 +3440,7 @@ In Champely's \emph{pwr} package, we can conduct a power analysis for a variety 
 \item
   Sample size, \emph{n} refers to the number of observations; our vignette had 33
 \item
-  \emph{d} refers to the difference between means divided by the pooled standard deviation; ours was (
+  \emph{d} refers to the difference between means divided by the pooled standard deviation; ours was (10.01-1.23)/2.7
 \item
   \emph{power} refers to the power of a statistical test; conventionally it is set at .80
 \item
@@ -3472,7 +3498,7 @@ Shockingly, this suggests that a sample size of 3 could result in a statisticall
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{220822}\NormalTok{)}
-\NormalTok{rdfOneSample }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{rPhysMins =} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{4}\NormalTok{, }\AttributeTok{mean=}\DecValTok{10}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.5}\NormalTok{))}
+\NormalTok{rdfOneSample }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{rPhysMins =} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{, }\AttributeTok{mean=}\DecValTok{10}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.5}\NormalTok{))}
 
 \FunctionTok{head}\NormalTok{(rdfOneSample)}
 \end{Highlighting}
@@ -3483,7 +3509,6 @@ Shockingly, this suggests that a sample size of 3 could result in a statisticall
 1  9.097343
 2 11.385558
 3  8.424395
-4  8.640534
 \end{verbatim}
 
 \begin{Shaded}
@@ -3500,24 +3525,24 @@ Data variable:   rdfOneSample$rPhysMins
 
 Descriptive statistics: 
             rPhysMins
-   mean         9.387
-   std dev.     1.362
+   mean         9.636
+   std dev.     1.552
 
 Hypotheses: 
    null:        population mean equals 1.23 
    alternative: population mean not equal to 1.23 
 
 Test results: 
-   t-statistic:  11.981 
-   degrees of freedom:  3 
-   p-value:  0.001 
+   t-statistic:  9.379 
+   degrees of freedom:  2 
+   p-value:  0.011 
 
 Other information: 
-   two-sided 95% confidence interval:  [7.22, 11.554] 
-   estimated effect size (Cohen's d):  5.991 
+   two-sided 95% confidence interval:  [5.78, 13.492] 
+   estimated effect size (Cohen's d):  5.415 
 \end{verbatim}
 
-In this case our difference between the sample data and the external data is so huge, that a sample of four still nets a statistically significant result. This is unusual. Here's the \emph{t} string: \(t(3) = 11.981, p = 0.001, d = 5.9915, 95%CI[7.22, 11.554]
+In this case our difference between the sample data and the external data is so huge, that a sample of three still nets a statistically significant result. This is unusual. Here's the \emph{t} string: \(t(2) = 9.379, p = 0.011, d = 5.415, 95%CI[5.78, 13.492]
 \).
 
 \hypertarget{practice-problems-1}{%
@@ -3569,7 +3594,7 @@ Points Earned
 \hypertarget{tIndSample}{%
 \chapter{\texorpdfstring{Independent Samples \emph{t} test}{Independent Samples t test}}\label{tIndSample}}
 
-\href{link\%20here}{Screencasted Lecture Link}
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=844ba297-e9ce-48cc-a49f-af01012b7900}{Screencasted Lecture Link}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3582,7 +3607,7 @@ Researchers may wish to know if there are differences on a given outcome variabl
 \hypertarget{navigating-this-lesson-3}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-3}}
 
-There is about \# hour and \#\# minutes of lecture. If you work through the materials with me it would be plan for an additional TIME.
+There is just less than one hour of lecture. If you work through the materials with me, plan for an additional hour
 
 While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://github.com/lhbikos/ReCenterPsychStats}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \protect\hyperlink{ReCintro}{introduction}
 
@@ -3598,7 +3623,7 @@ Learning objectives from this lecture include the following:
 \item
   Narrate the steps in conducting an independent samples \emph{t} test, beginning with testing the statistical assumptions through writing up an APA style results section.
 \item
-  Calculate an independent samples \emph{t} test in R (including effect sizes).
+  Calculate an independent samples \emph{t} test in R (including effect sizes and 95\%CIs).
 \item
   Interpret a 95\% confidence interval around a mean difference score.
 \item
@@ -3663,6 +3688,9 @@ The script below will (a) check to see if the following packages are installed o
 \CommentTok{\# if(!require(lsr))\{install.packages(\textquotesingle{}lsr\textquotesingle{})\}}
 \CommentTok{\# if(!require(ggpubr))\{install.packages(\textquotesingle{}ggpubr\textquotesingle{})\}}
 \CommentTok{\# if(!require(pwr))\{install.packages(\textquotesingle{}pwr\textquotesingle{})\}}
+\CommentTok{\# if(!require(car))\{install.packages(\textquotesingle{}car\textquotesingle{})\}}
+\CommentTok{\# if(!require(apaTables))\{install.packages(\textquotesingle{}apaTables\textquotesingle{})\}}
+\CommentTok{\# if(!require(knitr))\{install.packages(\textquotesingle{}knitr\textquotesingle{})\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3749,7 +3777,7 @@ In the data below, I have simulated the verbal and non-verbal communication vari
 \CommentTok{\# sample size, M, and SD for Black then White patients}
 \NormalTok{Verbal }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{33}\NormalTok{, }\AttributeTok{mean =} \FloatTok{8.37}\NormalTok{, }\AttributeTok{sd =} \FloatTok{3.36}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{33}\NormalTok{, }\AttributeTok{mean =} \FloatTok{8.41}\NormalTok{, }\AttributeTok{sd =} \FloatTok{3.21}\NormalTok{))}
 \CommentTok{\# set upper bound}
-\NormalTok{Verbal[Verbal }\SpecialCharTok{\textgreater{}} \DecValTok{27}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{3}
+\NormalTok{Verbal[Verbal }\SpecialCharTok{\textgreater{}} \DecValTok{27}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{27}
 \CommentTok{\# set lower bound}
 \NormalTok{Verbal[Verbal }\SpecialCharTok{\textless{}} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
 \CommentTok{\# sample size, M, and SD for Black then White patients}
@@ -3831,7 +3859,7 @@ The .rds form of saving variables preserves any formatting (e.g., creating order
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# saveRDS(dfIndSamples, \textquotesingle{}dfIndSamples.rds\textquotesingle{}) dfIndSamples \textless{}{-}}
-\CommentTok{\# readRDS(\textquotesingle{}dfIndSamples.rds\textquotesingle{})}
+\CommentTok{\# readRDS(\textquotesingle{}dfIndSamples.rds\textquotesingle{}) str(dfIndSamples)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3866,7 +3894,7 @@ I am also fond of plotting each case with the command, \emph{add = ``jitter''}. 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-127-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-128-1.pdf}
 The box of the boxplot covers the middle 50\% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots are outliers.
 
 We can begin to evaluate the assumption of normality by obtaining the descriptive statistics with the \emph{describe()} function from the \emph{psych} package.
@@ -3890,7 +3918,7 @@ If we feed the function the entire df, it will give us results for each level of
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(dfIndSamples, }\AttributeTok{group =}\NormalTok{ PatientRace, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(dfIndSamples, }\AttributeTok{group =} \StringTok{"PatientRace"}\NormalTok{, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3948,14 +3976,14 @@ The results of the Levene's test are presented as an \emph{F} statistic. We'll g
 \begin{itemize}
 \tightlist
 \item
-  Degrees of freedom are 1 and 74
+  Degrees of freedom are 1 and 64
 \item
   The value of the \emph{F} statistic is 0.142
 \item
-  We want our \emph{p} value to be \textless{} .05
+  We want our \emph{p} value to be \textgreater{} .05
 \end{itemize}
 
-Happily, our Levene's result is (\emph{F}{[}1, 64{]} = 0.142, \emph{p} = .707) not significant. Because \emph{p} is less than 05, we have not violated the homogeneity of variance assumption. That is to say, the variance in each of the patient race groups is not statistically significantly different. we can use the regular (Student's) formulation of the \emph{t} test for independent samples.
+Happily, our Levene's result is (\emph{F}{[}1, 64{]} = 0.142, \emph{p} = .707) not significant. Because \emph{p} is greater than 05, we have not violated the homogeneity of variance assumption. That is to say, the variance in each of the patient race groups is not statistically significantly different. we can use the regular (Student's) formulation of the \emph{t} test for independent samples.
 
 \hypertarget{hand-calculations-1}{%
 \subsection{Hand-Calculations}\label{hand-calculations-1}}
@@ -4013,7 +4041,7 @@ H_A: & \mu_1 \neq \mu_2
 \]
 Although still used, NHST has its critiques. Among the critiques are the layers of logic and confusing language as we interpret the results.
 
-Our \emph{t}-value was -1.675. We compare this value to the test critical value in a table of \emph{t} critical values. In-so-doing we must know our degrees of freedom. In the test that involves two levels of a grouping value, we will use \emph{N} -1 as the value for degrees of freedom. We must also specify the \emph{p} value (in our case .05) and whether-or-not our hypothesis is unidirectional or bi-directional. Our question only asked, ``Are the verbal communication levels different?'' In this case, the test is two-tailed, or bi-directional.
+Our \emph{t}-value was -1.675. We compare this value to the test critical value in a table of \emph{t} critical values. In-so-doing we must know our degrees of freedom. In the test that involves two levels of a grouping value, we will use \(N -1\) as the value for degrees of freedom. We must also specify the \emph{p} value (in our case .05) and whether-or-not our hypothesis is unidirectional or bi-directional. Our question only asked, ``Are the verbal communication levels different?'' In this case, the test is two-tailed, or bi-directional.
 
 Let's return to the \href{https://www.statology.org/t-distribution-table/}{table of critical values} for the \emph{t} distribution to compare our \emph{t}-value (-1.675) to the column that is appropriate for our:
 
@@ -4039,7 +4067,7 @@ Let's return to the \href{https://www.statology.org/t-distribution-table/}{table
   \end{itemize}
 \end{itemize}
 
-In the linked table, when the degrees of freedom reaches 30, there larger intervals. We will use the row representing degrees of freedom of 60. If our \emph{t} test value is lower than an absolute value of -1.675 or greater than the absolute value of 1.675, then our means are statistically significantly different from each other. In our case, we have not achieved statistical significance and we cannot say that the means are different. The \emph{t} string would look like this: \(t(64) = -1.675, p > .05\)
+In the linked table, when the degrees of freedom reaches 30, there larger intervals. We will use the row representing degrees of freedom of 60. If our \emph{t} test value is lower than an absolute value of -2 or greater than the absolute value of 2, then our means are statistically significantly different from each other. In our case, we have not achieved statistical significance and we cannot say that the means are different. The \emph{t} string would look like this: \(t(64) = -1.675, p > .05\)
 
 We can also use the \emph{qt()} function in base R. In the script below, I have indicated an alpha of .05. The ``2'' that follows indicates I want a two-tailed test. The 64 represents my degrees of freedom (\(N-2\)). In a two-tailed test, the regions of rejection will be below the lowerbound (lower.tail=TRUE) and above the upperbound (lower.tail=FALSE).
 
@@ -4063,7 +4091,7 @@ We can also use the \emph{qt()} function in base R. In the script below, I have 
 [1] 1.99773
 \end{verbatim}
 
-Given the large intervals, it makes sense that this test critical value is slightly different than the one fro the table.
+Given the large intervals, it makes sense that this test critical value is slightly different than the one from the table.
 
 \hypertarget{confidence-intervals-1}{%
 \subsubsection{Confidence Intervals}\label{confidence-intervals-1}}
@@ -4205,7 +4233,7 @@ Other information:
    estimated effect size (Cohen's d):  0.412 
 \end{verbatim}
 
-This well-organized output has everything we need for an APA style presentation of results. Identical to all the information we hand-calculated, we would write the \emph{t} string this way: \emph{t}(64) = -1.675, \emph{p} = .099, \emph{d} = 0.412. The \emph{lsr} output also includes confidence intervals. These represent the 95\% confidence interval of the true difference between the means. That is, we are 95\% confident that the true difference between means could be as large as -2.799 or as (small/medium/large) as 0.246. What is critically important is that this confidence interval crosses zero. There is an important link between the CI95\% and statistical significance. When the CI95\% includes zero, \emph{p} will not be lower than 0.05.
+This well-organized output has everything we need for an APA style presentation of results. Identical to all the information we hand-calculated, we would write the \emph{t} string this way: \(t(64) = -1.675, p = .099, d = 0.412\). The \emph{lsr} output also includes confidence intervals. These represent the 95\% confidence interval of the true difference between the means. That is, we are 95\% confident that the true difference between means could be as large as -2.799 or as (small/medium/large) as 0.246. What is critically important is that this confidence interval crosses zero. There is an important link between the CI95\% and statistical significance. When the CI95\% includes zero, \emph{p} will not be lower than 0.05.
 
 \hypertarget{what-if-we-had-violated-the-homogeneity-of-variance-assumption}{%
 \subsection{What if we had violated the homogeneity of variance assumption?}\label{what-if-we-had-violated-the-homogeneity-of-variance-assumption}}
@@ -4280,7 +4308,7 @@ Note. M and SD represent mean and standard deviation, respectively.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-141-1.pdf}
+\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-142-1.pdf}
 
 \hypertarget{power-in-independent-samples-t-tests-1}{%
 \section{\texorpdfstring{Power in Independent Samples \emph{t} tests}{Power in Independent Samples t tests}}\label{power-in-independent-samples-t-tests-1}}
@@ -4292,9 +4320,9 @@ In Champely's \emph{pwr} package, we can conduct a power analysis for a variety 
 \begin{itemize}
 \tightlist
 \item
-  Sample size, \emph{n} refers to the number of observations in each group; our vignette had 30
+  Sample size, \emph{n} refers to the number of observations in each group; our vignette had 33
 \item
-  \emph{d} refers to the difference between means divided by the pooled standard deviation; ours was (7.615 - 8.891) = -1.276
+  \emph{d} refers to the difference between means divided by the pooled standard deviation; we can add the final number or the elements required (and have R do the math for us)
 \item
   \emph{power} refers to the power of a statistical test; conventionally it is set at .80
 \item
@@ -4311,8 +4339,8 @@ When we conduct a ``power analysis'' (i.e., the likelihood of a hypothesis test 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \SpecialCharTok{{-}}\FloatTok{1.276}\NormalTok{, }\AttributeTok{n =} \DecValTok{33}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{,}
-    \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ (}\FloatTok{7.615} \SpecialCharTok{{-}} \FloatTok{8.891}\NormalTok{)}\SpecialCharTok{/}\FloatTok{0.762}\NormalTok{, }\AttributeTok{n =} \DecValTok{33}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+    \AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4321,20 +4349,20 @@ When we conduct a ``power analysis'' (i.e., the likelihood of a hypothesis test 
      Two-sample t test power calculation 
 
               n = 33
-              d = 1.276
+              d = 1.674541
       sig.level = 0.05
-          power = 0.9991669
+          power = 0.9999989
     alternative = two.sided
 
 NOTE: n is number in *each* group
 \end{verbatim}
 
-Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set \emph{n} to \emph{NULL}. Using the results from the simulation of our research vignette, you can see that we would have needed 11 individuals (per group; 22 total) for the \emph{p} value to be \textless{} .05.
+Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set \emph{n} to \emph{NULL}. Using the results from the simulation of our research vignette, you can see that we would have needed 7 individuals (per group; 14 total) for the \emph{p} value to be \textless{} .05.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \SpecialCharTok{{-}}\FloatTok{1.276}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{,}
-    \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ ((}\FloatTok{7.615} \SpecialCharTok{{-}} \FloatTok{8.891}\NormalTok{)}\SpecialCharTok{/}\FloatTok{0.762}\NormalTok{), }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+    \AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4342,8 +4370,8 @@ Researchers frequently use these tools to estimate the sample size required to o
 
      Two-sample t test power calculation 
 
-              n = 10.69247
-              d = 1.276
+              n = 6.709177
+              d = 1.674541
       sig.level = 0.05
           power = 0.8
     alternative = two.sided
@@ -4351,30 +4379,29 @@ Researchers frequently use these tools to estimate the sample size required to o
 NOTE: n is number in *each* group
 \end{verbatim}
 
-Let's see if this is true. Below I will re-simulate the data for the verbal scores and change only the sample size:
+Given that we had a non-significant result, this is surprising. None-the-less, let's try it again. Below I will re-simulate the data for the verbal scores and change only the sample size:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{220821}\NormalTok{)}
 \CommentTok{\# sample size, M, and SD for Black then White patients}
-\NormalTok{rVerbal }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{, }\AttributeTok{mean =} \FloatTok{8.37}\NormalTok{, }\AttributeTok{sd =} \FloatTok{3.36}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{, }\AttributeTok{mean =} \FloatTok{8.41}\NormalTok{,}
-    \AttributeTok{sd =} \FloatTok{3.21}\NormalTok{))}
+\NormalTok{rVerbal }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{7}\NormalTok{, }\AttributeTok{mean =} \FloatTok{8.37}\NormalTok{, }\AttributeTok{sd =} \FloatTok{3.36}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{7}\NormalTok{, }\AttributeTok{mean =} \FloatTok{8.41}\NormalTok{, }\AttributeTok{sd =} \FloatTok{3.21}\NormalTok{))}
 \CommentTok{\# set upper bound}
 \NormalTok{rVerbal[rVerbal }\SpecialCharTok{\textgreater{}} \DecValTok{27}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{3}
 \CommentTok{\# set lower bound}
 \NormalTok{rVerbal[rVerbal }\SpecialCharTok{\textless{}} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
 \CommentTok{\# sample size, M, and SD for Black then White patients}
-\NormalTok{rNonverbal }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{, }\AttributeTok{mean =} \FloatTok{2.68}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.84}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{, }\AttributeTok{mean =} \FloatTok{2.93}\NormalTok{,}
+\NormalTok{rNonverbal }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{7}\NormalTok{, }\AttributeTok{mean =} \FloatTok{2.68}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.84}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{7}\NormalTok{, }\AttributeTok{mean =} \FloatTok{2.93}\NormalTok{,}
     \AttributeTok{sd =} \FloatTok{0.77}\NormalTok{))}
 \CommentTok{\# set upper bound}
 \NormalTok{rNonverbal[rNonverbal }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{5}
 \CommentTok{\# set lower bound}
 \NormalTok{rNonverbal[rNonverbal }\SpecialCharTok{\textless{}} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
 
-\NormalTok{rID }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{22}\NormalTok{))}
+\NormalTok{rID }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{14}\NormalTok{))}
 \CommentTok{\# name factors and identify how many in each group; should be in same}
 \CommentTok{\# order as first row of script}
-\NormalTok{rPatientRace }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\DecValTok{11}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"White"}\NormalTok{, }\DecValTok{11}\NormalTok{))}
+\NormalTok{rPatientRace }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\DecValTok{7}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"White"}\NormalTok{, }\DecValTok{7}\NormalTok{))}
 \CommentTok{\# groups the 3 variables into a single df: ID\#, DV, condition}
 \NormalTok{rdfIndSamples }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(rID, rPatientRace, rVerbal, rNonverbal)}
 
@@ -4399,25 +4426,25 @@ Grouping variable:  rPatientRace
 
 Descriptive statistics: 
             Black White
-   mean     9.657 7.880
-   std dev. 3.147 4.094
+   mean     8.821 8.608
+   std dev. 3.645 4.718
 
 Hypotheses: 
    null:        population means equal for both groups
    alternative: different population means in each group
 
 Test results: 
-   t-statistic:  1.142 
-   degrees of freedom:  20 
-   p-value:  0.267 
+   t-statistic:  0.095 
+   degrees of freedom:  12 
+   p-value:  0.926 
 
 Other information: 
-   two-sided 95% confidence interval:  [-1.47, 5.025] 
-   estimated effect size (Cohen's d):  0.487 
+   two-sided 95% confidence interval:  [-4.696, 5.123] 
+   estimated effect size (Cohen's d):  0.051 
 \end{verbatim}
 
-Curiously, this did not result in a statistically significant result: \(t(20) = 1.142, p = 0.267, d = 0.487, CI95%[-1.47, 5.025]
-\)
+Not surprisingly, this did not result in a statistically significant result: \(t(12) = 0.095, p = 0.9267, d = 0.051, CI95%[-4.696, 5.123]
+\). It does show us, though, how power is infuenced by sample size. Holding all else equal, the larger the sample, the more likely we are to have a statistically significant result.
 
 \hypertarget{practice-problems-2}{%
 \section{Practice Problems}\label{practice-problems-2}}
@@ -4463,7 +4490,7 @@ Points Earned
 1. Narrate the research vignette, describing the variables and their role in the analysis & 5 & \_\_\_\_\_ \\
 2. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
 3. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-4. Conduct an independent samples \emph{t} test (with an effect size) & 5 & \_\_\_\_\_ \\
+4. Conduct an independent samples \emph{t} test (with an effect size and 95\%CIs) & 5 & \_\_\_\_\_ \\
 5. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
 6 Explanation to grader & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 30 & \_\_\_\_\_ \\
@@ -4473,20 +4500,14 @@ Points Earned
 \hypertarget{tPaired}{%
 \chapter{\texorpdfstring{Paired Samples \emph{t}-test}{Paired Samples t-test}}\label{tPaired}}
 
-\href{link\%20here}{Screencasted Lecture Link}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen =} \DecValTok{999}\NormalTok{)  }\CommentTok{\#eliminates scientific notation}
-\end{Highlighting}
-\end{Shaded}
+\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=08a90f4e-ce0d-4a5f-93f1-af0101625dbc}{Screencasted Lecture Link}
 
 Researchers are often interested in knowing if participants score differently on some outcome variable (like affective well-being) across two conditions. These conditions could be before and after an intervention; they could also be interventionless exposures such as scary versus funny movies. In these simple designs, the paired \emph{t} test can be used to test the researchers' hypotheses.
 
 \hypertarget{navigating-this-lesson-4}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-4}}
 
-There is about \# hour and \#\# minutes of lecture. If you work through the materials with me it would be plan for an additional TIME.
+There is about 45 minutes of lecture. If you work through the materials with me it would be plan for an additional hour
 
 While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://github.com/lhbikos/ReCenterPsychStats}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \protect\hyperlink{ReCintro}{introduction}
 
@@ -4568,6 +4589,8 @@ The script below will (a) check to see if the following packages are installed o
 \CommentTok{\# if(!require(lsr))\{install.packages(\textquotesingle{}lsr\textquotesingle{})\}}
 \CommentTok{\# if(!require(ggpubr))\{install.packages(\textquotesingle{}ggpubr\textquotesingle{})\}}
 \CommentTok{\# if(!require(pwr))\{install.packages(\textquotesingle{}pwr\textquotesingle{})\}}
+\CommentTok{\# if(!require(apaTables))\{install.packages(\textquotesingle{}apaTables\textquotesingle{})\}}
+\CommentTok{\# if(!require(knitr))\{install.packages(\textquotesingle{}knitr\textquotesingle{})\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4588,7 +4611,7 @@ A second common use is the assessment of a research participant in two competing
 In the formula for the paired samples \emph{t} test we see a \(\bar{D}\) in the numerator. This represents the \emph{difference} between the continuously scaled scores in the two conditions. The denominator involves a standard deviation of the difference scores (\(\hat\sigma_D\)) and the square root of the sample size.
 
 \[t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}\]
-Although these types of research design and analyses are quite handy, they have some limitations. First, the paired samples \emph{t}-test cannot establish causality because it lacks elements such as comparing conditions (e.g., treatment vs.~control) and random assignment to those conditions. If a research wants to compare pre-post change as a result of participating in more-than-one condition, a \protect\hyperlink{Mixed}{mixed design ANOVA} would be a better option. Second, the paired samples \emph{t}-test cannot accommodate more than two comparison conditions. If the researcher wants to copare three or or more time periods or conditions, they will want to consider \protect\hyperlink{Repeated}{repeated measures ANOVA} or \href{https://lhbikos.github.io/MultilevelModeling/}{multilevel/hierarchical linear modeling}.
+Although these types of research design and analyses are quite handy, they have some limitations. First, the paired samples \emph{t}-test cannot establish causality because it lacks elements such as comparing conditions (e.g., treatment vs.~control) and random assignment to those conditions. If a research wants to compare pre-post change as a result of participating in more-than-one condition, a \protect\hyperlink{Mixed}{mixed design ANOVA} would be a better option. Second, the paired samples \emph{t}-test cannot accommodate more than two comparison conditions. If the researcher wants to compare three or or more time periods or conditions, they will want to consider \protect\hyperlink{Repeated}{repeated measures ANOVA} or \href{https://lhbikos.github.io/MultilevelModeling/}{multilevel/hierarchical linear modeling}.
 
 \hypertarget{workflow-for-paired-samples-t-test}{%
 \section{\texorpdfstring{Workflow for Paired Samples \emph{t}-test}{Workflow for Paired Samples t-test}}\label{workflow-for-paired-samples-t-test}}
@@ -4766,7 +4789,7 @@ H_0: & \mu_D = 0  \\
 H_A: & \mu_D \neq 0
 \end{array}
 \]
-Notice the focus on a \emph{difference} score. Even thought the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.
+Notice the focus on a \emph{difference} score. Even though the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4915,7 +4938,7 @@ We can also use the \emph{qt()} function in base R. In the script below, I have 
 [1] 2.036933
 \end{verbatim}
 
-If our \emph{t} value is below the lowerbound (-2.04) or above the upper bound (2.04), then we have rejected the null hypothesis in favor of the alternative. As we demonstrated in the hand-calculations, we have not. The ratings of physicians verbal engagement with patients who are racially identified as Black and White are not statistically significant.
+If our \emph{t} value is below the lowerbound (-2.04) or above the upper bound (2.04), then we have rejected the null hypothesis in favor of the alternative. As we demonstrated in the hand-calculations, we have not. The ratings of physicians' verbal engagement with patients who are racially identified as Black and White are not statistically significant.
 
 \hypertarget{confidence-intervals-2}{%
 \subsubsection{Confidence Intervals}\label{confidence-intervals-2}}
@@ -5087,7 +5110,7 @@ This well-organized output has everything we need for an APA style presentation 
 \section{APA Style Results}\label{apa-style-results-2}}
 
 \begin{quote}
-An paired samples \emph{t}-test was conducted to evaluate the hypothesis that there would be differences in the degree of physicians' verbal engagement as a function of the patient's race (Black, White). The paired samples \emph{t}-test was nonsignificant, \emph{t}(32) = 0.133, \emph{p} = .911. The small magnitude of the effect size (\emph{d} = 0.02) was consistent with the nonsignificant result. The 95\% confidence interval for the difference in means was quite wide and included the value of zero (95\%CI{[}-1.386, 1.549{]}). Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
+A paired samples \emph{t}-test was conducted to evaluate the hypothesis that there would be differences in the degree of physicians' verbal engagement as a function of the patient's race (Black, White). The paired samples \emph{t}-test was nonsignificant, \emph{t}(32) = 0.133, \emph{p} = .911. The small magnitude of the effect size (\emph{d} = 0.02) was consistent with the nonsignificant result. The 95\% confidence interval for the difference in means was quite wide and included the value of zero (95\%CI{[}-1.386, 1.549{]}). Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
 \end{quote}
 
 \begin{Shaded}
@@ -5169,7 +5192,7 @@ When we conduct a ``power analysis'' (i.e., the likelihood of a hypothesis test 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ (}\DecValTok{0} \SpecialCharTok{{-}} \FloatTok{0.08}\NormalTok{)}\SpecialCharTok{/}\FloatTok{4.14}\NormalTok{, }\AttributeTok{n =} \DecValTok{33}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ (}\FloatTok{0.08}\NormalTok{)}\SpecialCharTok{/}\FloatTok{4.14}\NormalTok{, }\AttributeTok{n =} \DecValTok{33}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
     \AttributeTok{type =} \StringTok{"paired"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -5191,7 +5214,7 @@ Researchers frequently use these tools to estimate the sample size required to o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ (}\DecValTok{0} \SpecialCharTok{{-}} \FloatTok{0.08}\NormalTok{)}\SpecialCharTok{/}\FloatTok{4.14}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ (}\FloatTok{0.08}\NormalTok{)}\SpecialCharTok{/}\FloatTok{4.14}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
     \AttributeTok{type =} \StringTok{"paired"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -5313,7 +5336,7 @@ Points Earned
 1. Narrate the research vignette, describing the variables and their role in the analysis & 5 & \_\_\_\_\_ \\
 2. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
 3. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-4. Conduct a paired samples \emph{t} test (with an effect size) & 5 & \_\_\_\_\_ \\
+4. Conduct a paired samples \emph{t} test (with an effect size \& 95\%CIs) & 5 & \_\_\_\_\_ \\
 5. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
 6 Explanation to grader & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 30 & \_\_\_\_\_ \\
