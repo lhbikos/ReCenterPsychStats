@@ -1,0 +1,34 @@
+---
+title: "demo_intRavenous_qualtRix"
+author: "lhbikos"
+date: '2022-09-12'
+output: word_document
+---
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+```{r}
+surveys <- all_surveys() 
+#View this as an object (found in the right: Environment).  
+#Get survey id # for the next command
+#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.
+surveys
+```
+
+
+```{r}
+#obtained with the survey ID 
+#"surveyID" should be the ID from above
+#"verbose" prints messages to the R console
+#"label", when TRUE, imports data as text responses; if FALSE prints the data as numerical responses
+#"convert", when TRUE, attempts to convert certain question types to the "proper" data type in R; because I don't like guessing, I want to set up my own factors.
+#"force_request", when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)
+# "import_id", when TRUE includes the unique Qualtrics-assigned ID; since I have provided labels, I want false
+
+#Out of the blue, I started getting an error, that R couldn't find function "fetch_survey."  After trying a million things, adding qualtRics:: to the front of it solved the problem
+QTRX_df <-qualtRics::fetch_survey(surveyID = "SV_b2cClqAlLGQ6nLU", time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE, force_request = TRUE, import_id = FALSE)
+```
+
