@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-09-04" />
+<meta name="date" content="2022-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -835,20 +835,20 @@ AttWhite -0.37    -0.51 0.71
 Diff      0.03     0.00 1.09</code></pre>
 <p>Our analysis will use the difference score (Diff) as the dependent variable. Let’s look at this variable in its combinations of wave and condition.</p>
 <div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="Mixed.html#cb758-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Diff <span class="sc">~</span> Wave <span class="sc">+</span> COND, <span class="at">data =</span> Murrar_df, <span class="at">mat =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>    item   group1       group2 vars  n       mean       sd median    trimmed
-X11    1 Baseline      Friends    1 98  9.3064898 23.90867  8.804  8.9906625
-X12    2    Post1      Friends    1 98 15.9261327 26.41789 16.191 16.2309375
-X13    3    Post2      Friends    1 98 11.9540102 23.33602 10.882 11.8340000
-X14    4 Baseline LittleMosque    1 95  9.7331158 30.51895 10.797 10.5544156
-X15    5    Post1 LittleMosque    1 95 -0.1486632 26.96858 -1.280 -0.9402727
-X16    6    Post2 LittleMosque    1 95  3.6704737 23.66524  1.860  3.7857403
-         mad     min    max   range        skew    kurtosis       se
-X11 24.48143 -47.342 72.565 119.907  0.17600603 -0.35619536 2.415140
-X12 29.77135 -42.598 82.288 124.886 -0.04613379 -0.57456759 2.668609
-X13 24.59189 -46.528 75.014 121.542  0.13240007  0.06485450 2.357294
-X14 30.90480 -71.510 90.737 162.247 -0.20135358 -0.03033805 3.131178
-X15 23.93213 -65.259 83.367 148.626  0.32819576  0.54919109 2.766918
-X16 25.26054 -53.856 55.264 109.120 -0.06475209 -0.42366384 2.428002</code></pre>
+<pre><code>      item   group1       group2 vars  n       mean       sd median    trimmed
+Diff1    1 Baseline      Friends    1 98  9.3064898 23.90867  8.804  8.9906625
+Diff2    2    Post1      Friends    1 98 15.9261327 26.41789 16.191 16.2309375
+Diff3    3    Post2      Friends    1 98 11.9540102 23.33602 10.882 11.8340000
+Diff4    4 Baseline LittleMosque    1 95  9.7331158 30.51895 10.797 10.5544156
+Diff5    5    Post1 LittleMosque    1 95 -0.1486632 26.96858 -1.280 -0.9402727
+Diff6    6    Post2 LittleMosque    1 95  3.6704737 23.66524  1.860  3.7857403
+           mad     min    max   range        skew    kurtosis       se
+Diff1 24.48143 -47.342 72.565 119.907  0.17600603 -0.35619536 2.415140
+Diff2 29.77135 -42.598 82.288 124.886 -0.04613379 -0.57456759 2.668609
+Diff3 24.59189 -46.528 75.014 121.542  0.13240007  0.06485450 2.357294
+Diff4 30.90480 -71.510 90.737 162.247 -0.20135358 -0.03033805 3.131178
+Diff5 23.93213 -65.259 83.367 148.626  0.32819576  0.54919109 2.766918
+Diff6 25.26054 -53.856 55.264 109.120 -0.06475209 -0.42366384 2.428002</code></pre>
 <div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="Mixed.html#cb760-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note. Recently my students and I have been having intermittent</span></span>
 <span id="cb760-2"><a href="Mixed.html#cb760-2" aria-hidden="true" tabindex="-1"></a><span class="co"># struggles with the describeBy function in the psych package. We</span></span>
 <span id="cb760-3"><a href="Mixed.html#cb760-3" aria-hidden="true" tabindex="-1"></a><span class="co"># have noticed that it is problematic when using .rds files and when</span></span>
@@ -1000,15 +1000,8 @@ $`Sphericity Corrections`
 <blockquote>
 <p>Results of the omnibus ANOVA indicated a significant main effect for condition (<em>F</em>[1, 191] = 13.149, <em>p</em> &lt; .001, <span class="math inline">\(\eta^{2}\)</span> = 0.023), a non-significant main effect for wave (<em>F</em>[2, 382] = 0.273, <em>p</em> = .761, <span class="math inline">\(\eta^{2}\)</span> = 0.001), and a significant interaction effect (<em>F</em>[2, 382] = 5.008, <em>p</em> = 0.007, <span class="math inline">\(\eta^{2}\)</span> = 0.017). We note that according to Cohen et al.’s <span class="citation">(<a href="#ref-cohen_applied_2003" role="doc-biblioref">Cohen et al., 2003</a>)</span> guidelines, the effect size for the interaction term is small.</p>
 </blockquote>
-<p>In the output, the column labeled “ges” provides the value for the effect size, <span class="math inline">\(\eta^{2}\)</span>. Recall that <em>eta-squared</em> is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson’s <em>r</em>:</p>
-<ul>
-<li>0 = no relationship</li>
-<li>.02 = small</li>
-<li>.13 = medium</li>
-<li>.26 = large</li>
-<li>1 = a perfect (one-to-one) correspondence</li>
-</ul>
-<p>The effect size for our interaction effect (0.017) is small.</p>
+<p>In the output, the column labeled “ges” provides the value for the effect size, <span class="math inline">\(\eta^{2}\)</span>. Recall that <em>eta-squared</em> is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
+<p>You may see different values (.02, .13, .26) offered as small, medium, and large – these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
 <p>With a significant interaction effect, we would focus on interpreting one or both of the simple main effects. Let’s first look at the simple main effect of condition within wave option.</p>
 </div>
 </div>
@@ -1050,10 +1043,10 @@ Coefficient covariances computed by hccm()</code></pre>
 <p>F strings:</p>
 <ul>
 <li>Pre: <em>F</em> (1, 191) = 0.012, <em>p</em> = .914, <span class="math inline">\(\eta^{2}\)</span> = 0.000 (the effect size is zero)</li>
-<li>Post: <em>F</em> (1, 191) = 17.497, <em>p</em> &lt; .001, <span class="math inline">\(\eta^{2}\)</span> = 0.084 (approaching a moderate effect size)</li>
+<li>Post: <em>F</em> (1, 191) = 17.497, <em>p</em> &lt; .001, <span class="math inline">\(\eta^{2}\)</span> = 0.084 (a moderate effect size)</li>
 <li>Post2: <em>F</em> (1, 191) = 5.994, <em>p</em> = .015, <span class="math inline">\(\eta^{2}\)</span> = 0.030 (a small effect size)</li>
 </ul>
-<p>Recall, interpretation for the eta-squared are .02 ~ small, .13 ~ medium, and &gt;.26 ~ large</p>
+<p>Recall, interpretation for the eta-squared are .01 ~ small, .06 ~ medium, and &gt;.14 ~ large</p>
 <p>Because there are only two levels (Friends, Little Mosque) within each wave (baseline, post1, post2), this simple effects analysis is complete with the three pairwise comparisons.</p>
 <p>As always, we have several choices about how to manage Type I error. In a circumstance when the analysis of simple main effects (condition within wave) includes only three pairwise comparisons, we can use the LSD method <span class="citation">(<a href="#ref-green_using_2014" role="doc-biblioref">Green &amp; Salkind, 2014b</a>)</span>. This means that we can we can leave the alpha at 0.05. If we were to use a traditional Bonferroni, we would use <span class="math inline">\(\alpha\)</span> = .017 (.05/3). Although the more restrictive Bonferroni criteria comes close, in both cases we would still have one non-significant(baseline) and two significant (post1, post2) simple main effects.</p>
 <div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="Mixed.html#cb779-1" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span><span class="sc">/</span><span class="dv">3</span></span></code></pre></div>
@@ -1089,7 +1082,7 @@ Coefficient covariances computed by hccm()</code></pre>
 <p>Below are the <em>F</em> strings for the one-way ANOVAs the followed the omnibus, mixed design, ANOVA:</p>
 <ul>
 <li>Friends: <em>F</em> (2, 194) = 1.759, <em>p</em> = 0.175, <span class="math inline">\(\eta^{2}\)</span> = 0.012 (effect size indicates no relationship)</li>
-<li>Little Mosque: <em>F</em> (2, 188) = 3.392, <em>p</em> = 0.036, <span class="math inline">\(\eta^{2}\)</span> = 0.072 (a small-to-moderate effect size)</li>
+<li>Little Mosque: <em>F</em> (2, 188) = 3.392, <em>p</em> = 0.036, <span class="math inline">\(\eta^{2}\)</span> = 0.072 (a moderate effect size)</li>
 </ul>
 <p>Because each of these one-way ANOVAs has three levels, we need to follow with pairwise comparisons. However, we only need to conduct them for the Little Mosque condition. As you can see we generally work our way down to comparing chunks to each other to find the source(s) of significant differences.</p>
 <p>You will notice that we are saving the results of the pairwise comparisons as an object. This is not necessary, however we can use this object in combination with the boxplot we created earlier to embed results of our analysis in the resulting figure.</p>
@@ -1349,6 +1342,9 @@ Kline, R. B. (2016). <em>Principles and practice of structural equation modeling
 </div>
 <div id="ref-murrar_entertainment-education_2018" class="csl-entry">
 Murrar, S., &amp; Brauer, M. (2018). Entertainment-education effectively reduces prejudice. <em>Group Processes &amp; Intergroup Relations</em>, <em>21</em>(7), 1053–1077. <a href="https://doi.org/10.1177/1368430216682350">https://doi.org/10.1177/1368430216682350</a>
+</div>
+<div id="ref-watson_rules_2020" class="csl-entry">
+Watson, P. (2020). Rules of thumb on magnitudes of effect sizes. In <em>MRC Cognition and Brain Sciences Unit, University of Cambridge</em>. <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a>
 </div>
 </div>
             </section>

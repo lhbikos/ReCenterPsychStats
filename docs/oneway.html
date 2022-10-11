@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-09-04" />
+<meta name="date" content="2022-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1245,14 +1245,14 @@ X1    1 90  1.6 0.67   1.73    1.62 0.68   0   3     3 -0.28    -0.48 0.07</code
 <span id="cb410-15"><a href="oneway.html#cb410-15" aria-hidden="true" tabindex="-1"></a><span class="co"># appropriate formatting changes. displays the matrix object that we</span></span>
 <span id="cb410-16"><a href="oneway.html#cb410-16" aria-hidden="true" tabindex="-1"></a><span class="co"># just created</span></span>
 <span id="cb410-17"><a href="oneway.html#cb410-17" aria-hidden="true" tabindex="-1"></a>des.mat</span></code></pre></div>
-<pre><code>    item  group1 vars  n  mean    sd median trimmed   mad   min   max range
-X11    1 Control    1 30 1.756 0.460  1.893   1.767 0.392 0.781 2.745 1.964
-X12    2     Low    1 30 1.900 0.630  2.007   1.918 0.458 0.655 3.000 2.345
-X13    3    High    1 30 1.153 0.659  1.131   1.128 0.743 0.000 2.669 2.669
-      skew kurtosis    se
-X11 -0.275   -0.537 0.084
-X12 -0.378   -0.465 0.115
-X13  0.208   -0.690 0.120</code></pre>
+<pre><code>          item  group1 vars  n  mean    sd median trimmed   mad   min   max
+Accurate1    1 Control    1 30 1.756 0.460  1.893   1.767 0.392 0.781 2.745
+Accurate2    2     Low    1 30 1.900 0.630  2.007   1.918 0.458 0.655 3.000
+Accurate3    3    High    1 30 1.153 0.659  1.131   1.128 0.743 0.000 2.669
+          range   skew kurtosis    se
+Accurate1 1.964 -0.275   -0.537 0.084
+Accurate2 2.345 -0.378   -0.465 0.115
+Accurate3 2.669  0.208   -0.690 0.120</code></pre>
 <div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="oneway.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co"># optional to write it to a .csv file</span></span>
 <span id="cb412-2"><a href="oneway.html#cb412-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(des.mat, <span class="at">file =</span> <span class="st">&quot;Table1.csv&quot;</span>)</span></code></pre></div>
 <p>Skew and kurtosis speaks to normal distributions. The skew and kurtosis indices in the <em>psych</em> package are reported as <em>z</em> scores. Regarding skew, values greater than 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued to be anywhere greater 8 to 20 <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>.</p>
@@ -1344,15 +1344,8 @@ Control     Low    High
 <p>When the dots of the Q-Q plot map onto the diagonal, we have some indication of normality of the residuals (we want residuals to be normally distributed).</p>
 <div id="effect-size-for-the-one-way-anova" class="section level4 hasAnchor" number="7.6.2.1">
 <h4><span class="header-section-number">7.6.2.1</span> Effect size for the one-way ANOVA<a href="oneway.html#effect-size-for-the-one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><strong>Eta squared</strong> is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson’s <em>r</em>:</p>
-<ul>
-<li>0.0 = no relationship</li>
-<li>.02 = small</li>
-<li>.13 = medium</li>
-<li>.26 = large</li>
-<li>1.0 = a perfect (one-to-one) correspondence</li>
-</ul>
-<p>A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
+<p><strong>Eta squared</strong> is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
+<p>You may see different values (.02, .13, .26) offered as small, medium, and large – these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
 <p>The formula for <span class="math inline">\(\eta^2\)</span> is straightforward. If we think back to our hand-calculations of all the sums of squares, we can see that this is the proportion of variance that is accounted for by the model.</p>
 <p><span class="math display">\[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]</span>
 Hand calculation, then, is straightforward.:</p>

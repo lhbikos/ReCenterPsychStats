@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-09-04" />
+<meta name="date" content="2022-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -811,20 +811,20 @@ div.csl-indent {
 <div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="between.html#cb472-1" aria-hidden="true" tabindex="-1"></a>negative.descripts <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(Negative <span class="sc">~</span> Rater <span class="sc">+</span> Photo, <span class="at">mat =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb472-2"><a href="between.html#cb472-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> Ramdhani_df, <span class="at">digits =</span> <span class="dv">3</span>)  <span class="co">#digits allows us to round the output</span></span>
 <span id="cb472-3"><a href="between.html#cb472-3" aria-hidden="true" tabindex="-1"></a>negative.descripts</span></code></pre></div>
-<pre><code>    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298</code></pre>
+<pre><code>          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298</code></pre>
 <p>The <em>write.table()</em> function can be a helpful way to export output to .csv files so that you can manipulate it into tables.</p>
 <div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="between.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(negative.descripts, <span class="at">file =</span> <span class="st">&quot;NegativeDescripts.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
 <span id="cb474-2"><a href="between.html#cb474-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
@@ -902,20 +902,20 @@ Our grand (i.e., overall) mean is</p>
 <p>Let’s repeat some code we used before to obtain the cell-level means and cell sizes.</p>
 <div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="between.html#cb492-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Negative <span class="sc">~</span> Rater <span class="sc">+</span> Photo, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> Ramdhani_df,</span>
 <span id="cb492-2"><a href="between.html#cb492-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298</code></pre>
+<pre><code>          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298</code></pre>
 <div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="between.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note. Recently my students and I have been having intermittent</span></span>
 <span id="cb494-2"><a href="between.html#cb494-2" aria-hidden="true" tabindex="-1"></a><span class="co"># struggles with the describeBy function in the psych package. We</span></span>
 <span id="cb494-3"><a href="between.html#cb494-3" aria-hidden="true" tabindex="-1"></a><span class="co"># have noticed that it is problematic when using .rds files and when</span></span>
@@ -940,20 +940,20 @@ Here’s another configuration of the same:</p>
 <p>Again, the formula is in six chunks – but this time the calculations are <em>within-group</em>. We need the variance (the standard deviation squared) for the calculation. Let’s take another look at our descriptives.</p>
 <div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="between.html#cb499-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Negative <span class="sc">~</span> Rater <span class="sc">+</span> Photo, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> Ramdhani_df,</span>
 <span id="cb499-2"><a href="between.html#cb499-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298</code></pre>
+<pre><code>          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298</code></pre>
 <p>Calculating <span class="math inline">\(SS_R\)</span></p>
 <div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="between.html#cb501-1" aria-hidden="true" tabindex="-1"></a>((<span class="fl">0.768</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">17</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">0.742</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">1.03</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb501-2"><a href="between.html#cb501-2" aria-hidden="true" tabindex="-1"></a>    ((<span class="fl">0.156</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">0.637</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">1.332</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">20</span> <span class="sc">-</span></span>
@@ -984,14 +984,14 @@ In our case:</p>
 <p>Reminder of the formula: <span class="math inline">\(SS_{a:Rater}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\)</span></p>
 <p>There are three cells involved in the calculation of <span class="math inline">\(SS_a:Rater\)</span>.</p>
 <div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="between.html#cb507-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Negative <span class="sc">~</span> Rater, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> Ramdhani_df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>    item    group1 vars  n  mean    sd median trimmed   mad   min   max range
-X11    1 Dayaknese    1 35 2.492 0.856  2.900   2.561 0.480 0.706 3.453 2.747
-X12    2  Javanese    1 37 3.007 0.831  2.913   2.986 0.984 1.406 4.664 3.258
-X13    3  Madurese    1 39 3.299 1.179  3.116   3.288 1.588 1.211 5.641 4.430
-      skew kurtosis    se
-X11 -0.682   -1.132 0.145
-X12  0.239   -0.923 0.137
-X13  0.117   -1.036 0.189</code></pre>
+<pre><code>          item    group1 vars  n  mean    sd median trimmed   mad   min   max
+Negative1    1 Dayaknese    1 35 2.492 0.856  2.900   2.561 0.480 0.706 3.453
+Negative2    2  Javanese    1 37 3.007 0.831  2.913   2.986 0.984 1.406 4.664
+Negative3    3  Madurese    1 39 3.299 1.179  3.116   3.288 1.588 1.211 5.641
+          range   skew kurtosis    se
+Negative1 2.747 -0.682   -1.132 0.145
+Negative2 3.258  0.239   -0.923 0.137
+Negative3 4.430  0.117   -1.036 0.189</code></pre>
 <p>Again, we need the grand mean.</p>
 <div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="between.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Ramdhani_df<span class="sc">$</span>Negative)</span></code></pre></div>
 <pre><code>[1] 2.947369</code></pre>
@@ -1005,12 +1005,12 @@ X13  0.117   -1.036 0.189</code></pre>
 <p>Reminder of the formula: <span class="math inline">\(SS_{a:Photo}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\)</span>.</p>
 <p>With Photo, we have only two cells.</p>
 <div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="between.html#cb513-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Negative <span class="sc">~</span> Photo, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> Ramdhani_df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>    item    group1 vars  n  mean    sd median trimmed   mad   min   max range
-X11    1 Dayaknese    1 54 2.575 1.043  2.449   2.516 0.921 0.706 4.854 4.148
-X12    2  Madurese    1 57 3.300 0.871  3.166   3.280 0.667 1.211 5.641 4.430
-    skew kurtosis    se
-X11 0.47   -0.555 0.142
-X12 0.35    0.581 0.115</code></pre>
+<pre><code>          item    group1 vars  n  mean    sd median trimmed   mad   min   max
+Negative1    1 Dayaknese    1 54 2.575 1.043  2.449   2.516 0.921 0.706 4.854
+Negative2    2  Madurese    1 57 3.300 0.871  3.166   3.280 0.667 1.211 5.641
+          range skew kurtosis    se
+Negative1 4.148 0.47   -0.555 0.142
+Negative2 4.430 0.35    0.581 0.115</code></pre>
 <p>Again, we need the grand mean.</p>
 <div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="between.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Ramdhani_df<span class="sc">$</span>Negative)</span></code></pre></div>
 <pre><code>[1] 2.947369</code></pre>
@@ -1304,20 +1304,20 @@ Rater       Dayaknese Madurese
 <p>Let’s start by analyzing <strong>skew</strong> and <strong>kurtosis</strong>.</p>
 <div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="between.html#cb549-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Negative <span class="sc">~</span> Rater <span class="sc">+</span> Photo, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> Ramdhani_df,</span>
 <span id="cb549-2"><a href="between.html#cb549-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298</code></pre>
+<pre><code>          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298</code></pre>
 <p>Using guidelines from Kline <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span> our values for skewness should fall below 3.0 (they do) and all values for kurtosis should fall below 8 to 20 (ours do).</p>
 <p>In a factorial design, the Shapiro-Wilk test is applied to residuals from the model itself. Examination of those residuals can give us a good indication of normality.</p>
 <p>First, we extract the residuals (i.e., that which is left-over/unexplained) from the model. We can examine their distribution with a plot.</p>
@@ -1415,14 +1415,8 @@ Rater       Dayaknese Madurese
 <p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-288-1.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-288-2.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-288-3.png" width="672" /><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-288-4.png" width="672" /></p>
 <div id="effect-sizes" class="section level4 hasAnchor" number="8.5.2.1">
 <h4><span class="header-section-number">8.5.2.1</span> Effect sizes<a href="between.html#effect-sizes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><strong>Eta squared</strong> is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IVs/predictors. Traditional interpretive values are similar to the Pearson’s <em>r</em>:</p>
-<ul>
-<li>0 = no relationship</li>
-<li>.02 = small</li>
-<li>.13 = medium</li>
-<li>.26 = large</li>
-<li>1.0 = a perfect (one-to-one) correspondence</li>
-</ul>
+<p><strong>Eta squared</strong> is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IVs/predictors. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
+<p>You may see different values (.02, .13, .26) offered as small, medium, and large – these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
 <p>The formula for <span class="math inline">\(\eta ^{2}\)</span> is straightforward:</p>
 <p><span class="math display">\[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]</span>
 We can apply the <em>etaSquared()</em> function from the <em>lsr</em> package to our ANOVA object to retrieve $^{2}.</p>
@@ -2322,6 +2316,9 @@ Navarro, D. (2020). Chapter 14: <span>Comparing</span> <span>Several</span> <spa
 </div>
 <div id="ref-ramdhani_affective_2018" class="csl-entry">
 Ramdhani, N., Thontowi, H. B., &amp; Ancok, D. (2018). Affective <span>Reactions</span> <span>Among</span> <span>Students</span> <span>Belonging</span> to <span>Ethnic</span> <span>Groups</span> <span>Engaged</span> in <span>Prior</span> <span>Conflict</span>. <em>Journal of Pacific Rim Psychology</em>, <em>12</em>, e2. <a href="https://doi.org/10.1017/prp.2017.22">https://doi.org/10.1017/prp.2017.22</a>
+</div>
+<div id="ref-watson_rules_2020" class="csl-entry">
+Watson, P. (2020). Rules of thumb on magnitudes of effect sizes. In <em>MRC Cognition and Brain Sciences Unit, University of Cambridge</em>. <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a>
 </div>
 </div>
             </section>

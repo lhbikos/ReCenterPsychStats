@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-09-04" />
+<meta name="date" content="2022-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -973,7 +973,8 @@ Coefficients:
 <p><em>Order of variable entry</em> matters in ANCOVA. Thinking of the <em>controlling for</em> language associate with covariates, we want to remove the effect of the covariate before we run the one-way ANOVA. With this ANCOVA we are asking the question, “Does the condition (Friends or Little Mosque) contribute to more positive attitudes toward Arabs, when controlling for the pre-test score?”</p>
 <p>In repeated measures projects, we expect there to be dependency in the data. That is, in most cases prior waves will have significant prediction on later waves. When ANCOVA uses a prior asssessment or wave as a covariate, that variable “claims” as much variance as possible and the subsequent variable can capture what is left over.</p>
 <p>In the code below, we are predicting attitudes toward Arabs at post1 from the condition (Friends or Little Mosque), controlling for attitudes toward Arabs at baseline.</p>
-<p>The <em>ges</em> column provides the effect size, <span class="math inline">\(\eta^2\)</span> where a general rule-of-thumb for interpretation is .02 (small), .13 (medium), and .26 (large) <span class="citation">(<a href="#ref-lakens_calculating_2013" role="doc-biblioref">Lakens, 2013</a>)</span>.</p>
+<p>The <em>ges</em> column provides the effect size, <span class="math inline">\(\eta^2\)</span>. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
+<p>You may see different values (.02, .13, .26) offered as small, medium, and large – these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
 <div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="ANCOVA.html#cb821-1" aria-hidden="true" tabindex="-1"></a>MurrarB_ANCOVA <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
 <span id="cb821-2"><a href="ANCOVA.html#cb821-2" aria-hidden="true" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> AttArabB <span class="sc">+</span> COND)</span></code></pre></div>
 <pre><code>Coefficient covariances computed by hccm()</code></pre>
@@ -1008,12 +1009,12 @@ Coefficients:
 <div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="ANCOVA.html#cb829-1" aria-hidden="true" tabindex="-1"></a>descripts_P1 <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">data =</span> Murrar_wide,</span>
 <span id="cb829-2"><a href="ANCOVA.html#cb829-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">mat =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb829-3"><a href="ANCOVA.html#cb829-3" aria-hidden="true" tabindex="-1"></a>descripts_P1</span></code></pre></div>
-<pre><code>    item       group1 vars  n     mean       sd  median  trimmed      mad   min
-X11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306 23.67045 8.297
-X12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858 15.98984 6.137
-    max  range       skew   kurtosis       se
-X11 100 91.703 -0.0518848 -0.6252126 2.187005
-X12 100 93.863 -0.9798189  1.6335325 1.899170</code></pre>
+<pre><code>           item       group1 vars  n     mean       sd  median  trimmed
+AttArabP11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306
+AttArabP12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858
+                mad   min max  range       skew   kurtosis       se
+AttArabP11 23.67045 8.297 100 91.703 -0.0518848 -0.6252126 2.187005
+AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170</code></pre>
 <div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="ANCOVA.html#cb831-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note. Recently my students and I have been having intermittent</span></span>
 <span id="cb831-2"><a href="ANCOVA.html#cb831-2" aria-hidden="true" tabindex="-1"></a><span class="co"># struggles with the describeBy function in the psych package. We</span></span>
 <span id="cb831-3"><a href="ANCOVA.html#cb831-3" aria-hidden="true" tabindex="-1"></a><span class="co"># have noticed that it is problematic when using .rds files and when</span></span>
@@ -1135,7 +1136,7 @@ that could have caused the sample correlation (Cumming, 2014).
 <p>A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, condition, had two levels: Friends, Little Mosque. The dependent variable was attitudes towards Arabs expressed by the participant at post-test and covariate was the baseline assessment of the same variable. Descriptive statistics are presented in Table 1. A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable differed significantly as a function of the independent variable, <em>F</em> (1, 189) = 4.297, <em>p</em> = .040, <span class="math inline">\(\eta^2\)</span> = 0.022. Regarding the assumption that the dependent variable is normally distributed in the population for any specific value of the covariate and for any one level of a factor, results of the Shapiro-Wilk test of normality on the model residuals was also significant,<em>W</em> = 0.984, <em>p</em> = .026. Only one datapoint (in the Little Mosque condition) had a standardized residual (-3.37) that exceeded an absolute value of 3.0. A non-significant Levene’s test indicated no violation of the homogeneity of the residual variances for all groups, <em>F</em>(1, 191) = 3.515 <em>p</em> = .062.</p>
 </blockquote>
 <blockquote>
-<p>There was a non-significant effect of the baseline covariate on the post-test (<em>F</em>[1, 190] = 0.665, <em>p</em> = .416, <span class="math inline">\(\eta^2\)</span> = 0.003). After controlling for the baseline attitudes toward Arabs, there was a statistically significant effect of condition on post-test attitudes toward Arabs, <em>F</em>(1,190) = 26.361, <em>p</em> &lt; .001, <span class="math inline">\(\eta^2\)</span> = 0.122. This appears to be moderate in size. Given there were only two conditions, no further follow-up was required. As illustrated in Figure 1, results suggest that those in the Little Mosque condition (<em>M</em> = 73.92, <em>SD</em> = 18.51) had more favorable attitudes toward Arabs than those in the Friends condition (<em>M</em> = 59.02, <em>SD</em> = 21.65). Means and covariate-adjusted means are presented in Table 1b.</p>
+<p>There was a non-significant effect of the baseline covariate on the post-test (<em>F</em>[1, 190] = 0.665, <em>p</em> = .416, <span class="math inline">\(\eta^2\)</span> = 0.003). After controlling for the baseline attitudes toward Arabs, there was a statistically significant effect of condition on post-test attitudes toward Arabs, <em>F</em>(1,190) = 26.361, <em>p</em> &lt; .001, <span class="math inline">\(\eta^2\)</span> = 0.122. This effect appears to be moderately large. Given there were only two conditions, no further follow-up was required. As illustrated in Figure 1, results suggest that those in the Little Mosque condition (<em>M</em> = 73.92, <em>SD</em> = 18.51) had more favorable attitudes toward Arabs than those in the Friends condition (<em>M</em> = 59.02, <em>SD</em> = 21.65). Means and covariate-adjusted means are presented in Table 1b.</p>
 </blockquote>
 </div>
 </div>
@@ -1301,12 +1302,12 @@ With the script below we can obtain the covariate-adjusted marginal means. These
 <div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="ANCOVA.html#cb862-1" aria-hidden="true" tabindex="-1"></a>descripts_cond <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">data =</span> Murrar_wide,</span>
 <span id="cb862-2"><a href="ANCOVA.html#cb862-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">mat =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb862-3"><a href="ANCOVA.html#cb862-3" aria-hidden="true" tabindex="-1"></a>descripts_cond</span></code></pre></div>
-<pre><code>    item       group1 vars  n     mean       sd  median  trimmed      mad   min
-X11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306 23.67045 8.297
-X12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858 15.98984 6.137
-    max  range       skew   kurtosis       se
-X11 100 91.703 -0.0518848 -0.6252126 2.187005
-X12 100 93.863 -0.9798189  1.6335325 1.899170</code></pre>
+<pre><code>           item       group1 vars  n     mean       sd  median  trimmed
+AttArabP11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306
+AttArabP12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858
+                mad   min max  range       skew   kurtosis       se
+AttArabP11 23.67045 8.297 100 91.703 -0.0518848 -0.6252126 2.187005
+AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170</code></pre>
 </div>
 <div id="toward-an-apa-style-results-section-1" class="section level3 hasAnchor" number="11.5.5">
 <h3><span class="header-section-number">11.5.5</span> Toward an APA style results section<a href="ANCOVA.html#toward-an-apa-style-results-section-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1536,6 +1537,9 @@ Lakens, D. (2013). Calculating and reporting effect sizes to facilitate cumulati
 </div>
 <div id="ref-murrar_entertainment-education_2018" class="csl-entry">
 Murrar, S., &amp; Brauer, M. (2018). Entertainment-education effectively reduces prejudice. <em>Group Processes &amp; Intergroup Relations</em>, <em>21</em>(7), 1053–1077. <a href="https://doi.org/10.1177/1368430216682350">https://doi.org/10.1177/1368430216682350</a>
+</div>
+<div id="ref-watson_rules_2020" class="csl-entry">
+Watson, P. (2020). Rules of thumb on magnitudes of effect sizes. In <em>MRC Cognition and Brain Sciences Unit, University of Cambridge</em>. <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a>
 </div>
 </div>
             </section>

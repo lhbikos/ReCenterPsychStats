@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-09-04" />
+<meta name="date" content="2022-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -896,24 +896,24 @@ Degrees of freedom for <span class="math inline">\(SS_T\)</span> is <em>N</em> -
 <p><span class="math display">\[SS_W = s_{person1}^{2}(n_{1}-1)+s_{person2}^{2}(n_{2}-1)+s_{person3}^{2}(n_{3}-1)+...+s_{personk}^{2}(n_{k}-1)\]</span>
 The degrees of freedom (df) within is <em>N - k</em>; or the summation of the df for each of the persons.</p>
 <div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="Repeated.html#cb689-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Resilience <span class="sc">~</span> ID, <span class="at">data =</span> Amodeo_long, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>    item group1 vars n  mean    sd median trimmed   mad   min   max range
-X11    1      1    1 3 5.901 0.605  5.928   5.901 0.836 5.283 6.492 1.209
-X12    2      2    1 3 5.188 0.760  5.187   5.188 1.124 4.429 5.948 1.520
-X13    3      3    1 3 5.912 0.992  6.430   5.912 0.160 4.768 6.537 1.769
-X14    4      4    1 3 6.370 0.568  6.191   6.370 0.414 5.913 7.005 1.092
-X15    5      5    1 3 5.787 0.824  6.240   5.787 0.064 4.836 6.283 1.447
-X16    6      6    1 3 5.744 0.146  5.693   5.744 0.095 5.629 5.908 0.279
-X17    7      7    1 3 6.627 0.248  6.597   6.627 0.300 6.395 6.889 0.494
-X18    8      8    1 3 6.612 0.533  6.708   6.612 0.565 6.038 7.090 1.052
-      skew kurtosis    se
-X11 -0.044   -2.333 0.349
-X12  0.002   -2.333 0.439
-X13 -0.380   -2.333 0.573
-X14  0.283   -2.333 0.328
-X15 -0.384   -2.333 0.475
-X16  0.304   -2.333 0.084
-X17  0.118   -2.333 0.143
-X18 -0.175   -2.333 0.307</code></pre>
+<pre><code>            item group1 vars n  mean    sd median trimmed   mad   min   max
+Resilience1    1      1    1 3 5.901 0.605  5.928   5.901 0.836 5.283 6.492
+Resilience2    2      2    1 3 5.188 0.760  5.187   5.188 1.124 4.429 5.948
+Resilience3    3      3    1 3 5.912 0.992  6.430   5.912 0.160 4.768 6.537
+Resilience4    4      4    1 3 6.370 0.568  6.191   6.370 0.414 5.913 7.005
+Resilience5    5      5    1 3 5.787 0.824  6.240   5.787 0.064 4.836 6.283
+Resilience6    6      6    1 3 5.744 0.146  5.693   5.744 0.095 5.629 5.908
+Resilience7    7      7    1 3 6.627 0.248  6.597   6.627 0.300 6.395 6.889
+Resilience8    8      8    1 3 6.612 0.533  6.708   6.612 0.565 6.038 7.090
+            range   skew kurtosis    se
+Resilience1 1.209 -0.044   -2.333 0.349
+Resilience2 1.520  0.002   -2.333 0.439
+Resilience3 1.769 -0.380   -2.333 0.573
+Resilience4 1.092  0.283   -2.333 0.328
+Resilience5 1.447 -0.384   -2.333 0.475
+Resilience6 0.279  0.304   -2.333 0.084
+Resilience7 0.494  0.118   -2.333 0.143
+Resilience8 1.052 -0.175   -2.333 0.307</code></pre>
 <p>With 8 people, there will be 8 chunks of the analysis, in each:</p>
 <ul>
 <li>SD squared (to get the variance)</li>
@@ -1100,14 +1100,14 @@ The package <em>rstatix</em> has features that allow us to identify outliers.</p
 <h4><span class="header-section-number">9.5.1.4</span> Assessing normality<a href="Repeated.html#assessing-normality" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can obtain skew and kurtosis values for each cell in our model with the <em>psych::describeBy()</em> function.</p>
 <div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="Repeated.html#cb720-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(Resilience <span class="sc">~</span> Wave, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> Amodeo_long)</span></code></pre></div>
-<pre><code>    item   group1 vars n     mean        sd   median  trimmed       mad
-X11    1      Pre    1 8 5.587693 0.8217561 5.770952 5.587693 1.1471137
-X12    2     Post    1 8 6.327615 0.6550520 6.356491 6.327615 0.8751431
-X13    3 FollowUp    1 8 6.136916 0.4729432 6.215983 6.136916 0.4416578
-         min      max    range       skew   kurtosis        se
-X11 4.428839 6.597214 2.168376 -0.1437061 -1.8118551 0.2905347
-X12 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
-X13 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107</code></pre>
+<pre><code>            item   group1 vars n     mean        sd   median  trimmed       mad
+Resilience1    1      Pre    1 8 5.587693 0.8217561 5.770952 5.587693 1.1471137
+Resilience2    2     Post    1 8 6.327615 0.6550520 6.356491 6.327615 0.8751431
+Resilience3    3 FollowUp    1 8 6.136916 0.4729432 6.215983 6.136916 0.4416578
+                 min      max    range       skew   kurtosis        se
+Resilience1 4.428839 6.597214 2.168376 -0.1437061 -1.8118551 0.2905347
+Resilience2 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
+Resilience3 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107</code></pre>
 <p>Our skew and kurtosis values fall below the thresholds of concern <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>:</p>
 <ul>
 <li>&lt; 3 for skew</li>
@@ -1135,7 +1135,8 @@ X13 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107</code></pre>
 <div id="assumption-of-sphericity" class="section level4 hasAnchor" number="9.5.1.5">
 <h4><span class="header-section-number">9.5.1.5</span> Assumption of Sphericity<a href="Repeated.html#assumption-of-sphericity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The sphericity assumption is automatically checked with Mauchley’s test during the computation of the ANOVA when the <em>rstatix::anova_test()</em> function is used. When the <em>rstatix::get_anova_table()</em> function is used, the Greenhouse-Geisser sphericity correction is automatically applied to factors violating the sphericity assumption.</p>
-<p>The effect size, <span class="math inline">\(\eta^2\)</span> is reported in the column labeled “ges.”</p>
+<p>The effect size, <span class="math inline">\(\eta^2\)</span> is reported in the column labeled “ges.” Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
+<p>You may see different values (.02, .13, .26) offered as small, medium, and large – these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020" role="doc-biblioref">Watson, 2020</a>)</span>.</p>
 <p>Earlier in the lesson I noted that the evaluation of the sphericity assumption occurs at the same time that we evaluate the omnibus ANOVA. We are at that point in the analyses. The workflow points to our stage in the process.</p>
 <div class="figure">
 <img src="images/oneway_repeated/wf_rptd_omnibus.jpg" alt="" />
@@ -1507,6 +1508,9 @@ Kline, R. B. (2016). <em>Principles and practice of structural equation modeling
 </div>
 <div id="ref-wagnild_development_1993" class="csl-entry">
 Wagnild, G. M., &amp; Young, H. M. (1993). Development and psychometric evaluation of the <span>Resilience</span> <span>Scale</span>. <em>Journal of Nursing Measurement</em>, <em>1</em>(2), 165–178. <a href="https://ezproxy.spu.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip&amp;db=psyh&amp;AN=1996-05738-006&amp;site=ehost-live">https://ezproxy.spu.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip&amp;db=psyh&amp;AN=1996-05738-006&amp;site=ehost-live</a>
+</div>
+<div id="ref-watson_rules_2020" class="csl-entry">
+Watson, P. (2020). Rules of thumb on magnitudes of effect sizes. In <em>MRC Cognition and Brain Sciences Unit, University of Cambridge</em>. <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a>
 </div>
 </div>
             </section>

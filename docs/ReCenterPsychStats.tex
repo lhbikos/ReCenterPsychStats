@@ -126,7 +126,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{04 Sep 2022}
+\date{10 Oct 2022}
 
 \begin{document}
 \maketitle
@@ -163,7 +163,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 04 Sep 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 10 Oct 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -6560,14 +6560,14 @@ If we want descriptives for each level of the grouping variable (factor), we can
 \end{Shaded}
 
 \begin{verbatim}
-    item  group1 vars  n  mean    sd median trimmed   mad   min   max range
-X11    1 Control    1 30 1.756 0.460  1.893   1.767 0.392 0.781 2.745 1.964
-X12    2     Low    1 30 1.900 0.630  2.007   1.918 0.458 0.655 3.000 2.345
-X13    3    High    1 30 1.153 0.659  1.131   1.128 0.743 0.000 2.669 2.669
-      skew kurtosis    se
-X11 -0.275   -0.537 0.084
-X12 -0.378   -0.465 0.115
-X13  0.208   -0.690 0.120
+          item  group1 vars  n  mean    sd median trimmed   mad   min   max
+Accurate1    1 Control    1 30 1.756 0.460  1.893   1.767 0.392 0.781 2.745
+Accurate2    2     Low    1 30 1.900 0.630  2.007   1.918 0.458 0.655 3.000
+Accurate3    3    High    1 30 1.153 0.659  1.131   1.128 0.743 0.000 2.669
+          range   skew kurtosis    se
+Accurate1 1.964 -0.275   -0.537 0.084
+Accurate2 2.345 -0.378   -0.465 0.115
+Accurate3 2.669  0.208   -0.690 0.120
 \end{verbatim}
 
 \begin{Shaded}
@@ -6739,23 +6739,9 @@ When the dots of the Q-Q plot map onto the diagonal, we have some indication of 
 \hypertarget{effect-size-for-the-one-way-anova}{%
 \subsubsection{Effect size for the one-way ANOVA}\label{effect-size-for-the-one-way-anova}}
 
-\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson's \emph{r}:
+\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.
 
-\begin{itemize}
-\tightlist
-\item
-  0.0 = no relationship
-\item
-  .02 = small
-\item
-  .13 = medium
-\item
-  .26 = large
-\item
-  1.0 = a perfect (one-to-one) correspondence
-\end{itemize}
-
-A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
+You may see different values (.02, .13, .26) offered as small, medium, and large -- these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
 
 The formula for \(\eta^2\) is straightforward. If we think back to our hand-calculations of all the sums of squares, we can see that this is the proportion of variance that is accounted for by the model.
 
@@ -7992,20 +7978,20 @@ Let's first examine the descriptive statistics (e.g., means of the variable, Neg
 \end{Shaded}
 
 \begin{verbatim}
-    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298
+          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 \end{verbatim}
 
 The \emph{write.table()} function can be a helpful way to export output to .csv files so that you can manipulate it into tables.
@@ -8196,20 +8182,20 @@ Let's repeat some code we used before to obtain the cell-level means and cell si
 \end{Shaded}
 
 \begin{verbatim}
-    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298
+          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 \end{verbatim}
 
 \begin{Shaded}
@@ -8270,20 +8256,20 @@ Again, the formula is in six chunks -- but this time the calculations are \emph{
 \end{Shaded}
 
 \begin{verbatim}
-    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298
+          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 \end{verbatim}
 
 Calculating \(SS_R\)
@@ -8359,14 +8345,14 @@ There are three cells involved in the calculation of \(SS_a:Rater\).
 \end{Shaded}
 
 \begin{verbatim}
-    item    group1 vars  n  mean    sd median trimmed   mad   min   max range
-X11    1 Dayaknese    1 35 2.492 0.856  2.900   2.561 0.480 0.706 3.453 2.747
-X12    2  Javanese    1 37 3.007 0.831  2.913   2.986 0.984 1.406 4.664 3.258
-X13    3  Madurese    1 39 3.299 1.179  3.116   3.288 1.588 1.211 5.641 4.430
-      skew kurtosis    se
-X11 -0.682   -1.132 0.145
-X12  0.239   -0.923 0.137
-X13  0.117   -1.036 0.189
+          item    group1 vars  n  mean    sd median trimmed   mad   min   max
+Negative1    1 Dayaknese    1 35 2.492 0.856  2.900   2.561 0.480 0.706 3.453
+Negative2    2  Javanese    1 37 3.007 0.831  2.913   2.986 0.984 1.406 4.664
+Negative3    3  Madurese    1 39 3.299 1.179  3.116   3.288 1.588 1.211 5.641
+          range   skew kurtosis    se
+Negative1 2.747 -0.682   -1.132 0.145
+Negative2 3.258  0.239   -0.923 0.137
+Negative3 4.430  0.117   -1.036 0.189
 \end{verbatim}
 
 Again, we need the grand mean.
@@ -8409,12 +8395,12 @@ With Photo, we have only two cells.
 \end{Shaded}
 
 \begin{verbatim}
-    item    group1 vars  n  mean    sd median trimmed   mad   min   max range
-X11    1 Dayaknese    1 54 2.575 1.043  2.449   2.516 0.921 0.706 4.854 4.148
-X12    2  Madurese    1 57 3.300 0.871  3.166   3.280 0.667 1.211 5.641 4.430
-    skew kurtosis    se
-X11 0.47   -0.555 0.142
-X12 0.35    0.581 0.115
+          item    group1 vars  n  mean    sd median trimmed   mad   min   max
+Negative1    1 Dayaknese    1 54 2.575 1.043  2.449   2.516 0.921 0.706 4.854
+Negative2    2  Madurese    1 57 3.300 0.871  3.166   3.280 0.667 1.211 5.641
+          range skew kurtosis    se
+Negative1 4.148 0.47   -0.555 0.142
+Negative2 4.430 0.35    0.581 0.115
 \end{verbatim}
 
 Again, we need the grand mean.
@@ -8818,20 +8804,20 @@ Let's start by analyzing \textbf{skew} and \textbf{kurtosis}.
 \end{Shaded}
 
 \begin{verbatim}
-    item    group1    group2 vars  n  mean    sd median trimmed   mad   min
-X11    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694 0.706
-X12    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569 1.406
-X13    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294 1.406
-X14    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104 2.732
-X15    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767 2.456
-X16    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615 1.211
-      max range   skew kurtosis    se
-X11 3.453 2.747  0.513   -0.881 0.186
-X12 4.664 3.258  1.205    1.475 0.175
-X13 4.854 3.448 -0.126   -1.267 0.236
-X14 3.423 0.691 -0.623    0.481 0.037
-X15 4.631 2.175 -0.010   -1.307 0.146
-X16 5.641 4.430  0.215   -1.238 0.298
+          item    group1    group2 vars  n  mean    sd median trimmed   mad
+Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+            min   max range   skew kurtosis    se
+Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 \end{verbatim}
 
 Using guidelines from Kline \citeyearpar{kline_principles_2016} our values for skewness should fall below 3.0 (they do) and all values for kurtosis should fall below 8 to 20 (ours do).
@@ -9009,21 +8995,9 @@ The \emph{plot()} function provides some quick plots from the object created fro
 \hypertarget{effect-sizes}{%
 \subsubsection{Effect sizes}\label{effect-sizes}}
 
-\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IVs/predictors. Traditional interpretive values are similar to the Pearson's \emph{r}:
+\textbf{Eta squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the DV/outcome variable that can be explained in terms of the IVs/predictors. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.
 
-\begin{itemize}
-\tightlist
-\item
-  0 = no relationship
-\item
-  .02 = small
-\item
-  .13 = medium
-\item
-  .26 = large
-\item
-  1.0 = a perfect (one-to-one) correspondence
-\end{itemize}
+You may see different values (.02, .13, .26) offered as small, medium, and large -- these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
 
 The formula for \(\eta ^{2}\) is straightforward:
 
@@ -11084,24 +11058,24 @@ The degrees of freedom (df) within is \emph{N - k}; or the summation of the df f
 \end{Shaded}
 
 \begin{verbatim}
-    item group1 vars n  mean    sd median trimmed   mad   min   max range
-X11    1      1    1 3 5.901 0.605  5.928   5.901 0.836 5.283 6.492 1.209
-X12    2      2    1 3 5.188 0.760  5.187   5.188 1.124 4.429 5.948 1.520
-X13    3      3    1 3 5.912 0.992  6.430   5.912 0.160 4.768 6.537 1.769
-X14    4      4    1 3 6.370 0.568  6.191   6.370 0.414 5.913 7.005 1.092
-X15    5      5    1 3 5.787 0.824  6.240   5.787 0.064 4.836 6.283 1.447
-X16    6      6    1 3 5.744 0.146  5.693   5.744 0.095 5.629 5.908 0.279
-X17    7      7    1 3 6.627 0.248  6.597   6.627 0.300 6.395 6.889 0.494
-X18    8      8    1 3 6.612 0.533  6.708   6.612 0.565 6.038 7.090 1.052
-      skew kurtosis    se
-X11 -0.044   -2.333 0.349
-X12  0.002   -2.333 0.439
-X13 -0.380   -2.333 0.573
-X14  0.283   -2.333 0.328
-X15 -0.384   -2.333 0.475
-X16  0.304   -2.333 0.084
-X17  0.118   -2.333 0.143
-X18 -0.175   -2.333 0.307
+            item group1 vars n  mean    sd median trimmed   mad   min   max
+Resilience1    1      1    1 3 5.901 0.605  5.928   5.901 0.836 5.283 6.492
+Resilience2    2      2    1 3 5.188 0.760  5.187   5.188 1.124 4.429 5.948
+Resilience3    3      3    1 3 5.912 0.992  6.430   5.912 0.160 4.768 6.537
+Resilience4    4      4    1 3 6.370 0.568  6.191   6.370 0.414 5.913 7.005
+Resilience5    5      5    1 3 5.787 0.824  6.240   5.787 0.064 4.836 6.283
+Resilience6    6      6    1 3 5.744 0.146  5.693   5.744 0.095 5.629 5.908
+Resilience7    7      7    1 3 6.627 0.248  6.597   6.627 0.300 6.395 6.889
+Resilience8    8      8    1 3 6.612 0.533  6.708   6.612 0.565 6.038 7.090
+            range   skew kurtosis    se
+Resilience1 1.209 -0.044   -2.333 0.349
+Resilience2 1.520  0.002   -2.333 0.439
+Resilience3 1.769 -0.380   -2.333 0.573
+Resilience4 1.092  0.283   -2.333 0.328
+Resilience5 1.447 -0.384   -2.333 0.475
+Resilience6 0.279  0.304   -2.333 0.084
+Resilience7 0.494  0.118   -2.333 0.143
+Resilience8 1.052 -0.175   -2.333 0.307
 \end{verbatim}
 
 With 8 people, there will be 8 chunks of the analysis, in each:
@@ -11512,14 +11486,14 @@ We can obtain skew and kurtosis values for each cell in our model with the \emph
 \end{Shaded}
 
 \begin{verbatim}
-    item   group1 vars n     mean        sd   median  trimmed       mad
-X11    1      Pre    1 8 5.587693 0.8217561 5.770952 5.587693 1.1471137
-X12    2     Post    1 8 6.327615 0.6550520 6.356491 6.327615 0.8751431
-X13    3 FollowUp    1 8 6.136916 0.4729432 6.215983 6.136916 0.4416578
-         min      max    range       skew   kurtosis        se
-X11 4.428839 6.597214 2.168376 -0.1437061 -1.8118551 0.2905347
-X12 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
-X13 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107
+            item   group1 vars n     mean        sd   median  trimmed       mad
+Resilience1    1      Pre    1 8 5.587693 0.8217561 5.770952 5.587693 1.1471137
+Resilience2    2     Post    1 8 6.327615 0.6550520 6.356491 6.327615 0.8751431
+Resilience3    3 FollowUp    1 8 6.136916 0.4729432 6.215983 6.136916 0.4416578
+                 min      max    range       skew   kurtosis        se
+Resilience1 4.428839 6.597214 2.168376 -0.1437061 -1.8118551 0.2905347
+Resilience2 5.283057 7.089591 1.806534 -0.2307393 -1.6287654 0.2315959
+Resilience3 5.186767 6.708259 1.521491 -0.7204842 -0.6102953 0.1672107
 \end{verbatim}
 
 Our skew and kurtosis values fall below the thresholds of concern \citep{kline_principles_2016}:
@@ -11574,7 +11548,9 @@ Repeated measures ANOVA has several assumptions regarding outliers, normality, a
 
 The sphericity assumption is automatically checked with Mauchley's test during the computation of the ANOVA when the \emph{rstatix::anova\_test()} function is used. When the \emph{rstatix::get\_anova\_table()} function is used, the Greenhouse-Geisser sphericity correction is automatically applied to factors violating the sphericity assumption.
 
-The effect size, \(\eta^2\) is reported in the column labeled ``ges.''
+The effect size, \(\eta^2\) is reported in the column labeled ``ges.'' Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.
+
+You may see different values (.02, .13, .26) offered as small, medium, and large -- these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
 
 Earlier in the lesson I noted that the evaluation of the sphericity assumption occurs at the same time that we evaluate the omnibus ANOVA. We are at that point in the analyses. The workflow points to our stage in the process.
 
@@ -12510,20 +12486,20 @@ Our analysis will use the difference score (Diff) as the dependent variable. Let
 \end{Shaded}
 
 \begin{verbatim}
-    item   group1       group2 vars  n       mean       sd median    trimmed
-X11    1 Baseline      Friends    1 98  9.3064898 23.90867  8.804  8.9906625
-X12    2    Post1      Friends    1 98 15.9261327 26.41789 16.191 16.2309375
-X13    3    Post2      Friends    1 98 11.9540102 23.33602 10.882 11.8340000
-X14    4 Baseline LittleMosque    1 95  9.7331158 30.51895 10.797 10.5544156
-X15    5    Post1 LittleMosque    1 95 -0.1486632 26.96858 -1.280 -0.9402727
-X16    6    Post2 LittleMosque    1 95  3.6704737 23.66524  1.860  3.7857403
-         mad     min    max   range        skew    kurtosis       se
-X11 24.48143 -47.342 72.565 119.907  0.17600603 -0.35619536 2.415140
-X12 29.77135 -42.598 82.288 124.886 -0.04613379 -0.57456759 2.668609
-X13 24.59189 -46.528 75.014 121.542  0.13240007  0.06485450 2.357294
-X14 30.90480 -71.510 90.737 162.247 -0.20135358 -0.03033805 3.131178
-X15 23.93213 -65.259 83.367 148.626  0.32819576  0.54919109 2.766918
-X16 25.26054 -53.856 55.264 109.120 -0.06475209 -0.42366384 2.428002
+      item   group1       group2 vars  n       mean       sd median    trimmed
+Diff1    1 Baseline      Friends    1 98  9.3064898 23.90867  8.804  8.9906625
+Diff2    2    Post1      Friends    1 98 15.9261327 26.41789 16.191 16.2309375
+Diff3    3    Post2      Friends    1 98 11.9540102 23.33602 10.882 11.8340000
+Diff4    4 Baseline LittleMosque    1 95  9.7331158 30.51895 10.797 10.5544156
+Diff5    5    Post1 LittleMosque    1 95 -0.1486632 26.96858 -1.280 -0.9402727
+Diff6    6    Post2 LittleMosque    1 95  3.6704737 23.66524  1.860  3.7857403
+           mad     min    max   range        skew    kurtosis       se
+Diff1 24.48143 -47.342 72.565 119.907  0.17600603 -0.35619536 2.415140
+Diff2 29.77135 -42.598 82.288 124.886 -0.04613379 -0.57456759 2.668609
+Diff3 24.59189 -46.528 75.014 121.542  0.13240007  0.06485450 2.357294
+Diff4 30.90480 -71.510 90.737 162.247 -0.20135358 -0.03033805 3.131178
+Diff5 23.93213 -65.259 83.367 148.626  0.32819576  0.54919109 2.766918
+Diff6 25.26054 -53.856 55.264 109.120 -0.06475209 -0.42366384 2.428002
 \end{verbatim}
 
 \begin{Shaded}
@@ -12792,23 +12768,9 @@ If the \emph{p} vaue associated with Mauchly's test had been less than .05, we c
 Results of the omnibus ANOVA indicated a significant main effect for condition (\emph{F}{[}1, 191{]} = 13.149, \emph{p} \textless{} .001, \(\eta^{2}\) = 0.023), a non-significant main effect for wave (\emph{F}{[}2, 382{]} = 0.273, \emph{p} = .761, \(\eta^{2}\) = 0.001), and a significant interaction effect (\emph{F}{[}2, 382{]} = 5.008, \emph{p} = 0.007, \(\eta^{2}\) = 0.017). We note that according to Cohen et al.'s \citep{cohen_applied_2003} guidelines, the effect size for the interaction term is small.
 \end{quote}
 
-In the output, the column labeled ``ges'' provides the value for the effect size, \(\eta^{2}\). Recall that \emph{eta-squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Traditional interpretive values are similar to the Pearson's \emph{r}:
+In the output, the column labeled ``ges'' provides the value for the effect size, \(\eta^{2}\). Recall that \emph{eta-squared} is one of the most commonly used measures of effect. It refers to the proportion of variability in the dependent variable/outcome that can be explained in terms of the independent variable/predictor. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.
 
-\begin{itemize}
-\tightlist
-\item
-  0 = no relationship
-\item
-  .02 = small
-\item
-  .13 = medium
-\item
-  .26 = large
-\item
-  1 = a perfect (one-to-one) correspondence
-\end{itemize}
-
-The effect size for our interaction effect (0.017) is small.
+You may see different values (.02, .13, .26) offered as small, medium, and large -- these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
 
 With a significant interaction effect, we would focus on interpreting one or both of the simple main effects. Let's first look at the simple main effect of condition within wave option.
 
@@ -12882,12 +12844,12 @@ F strings:
 \item
   Pre: \emph{F} (1, 191) = 0.012, \emph{p} = .914, \(\eta^{2}\) = 0.000 (the effect size is zero)
 \item
-  Post: \emph{F} (1, 191) = 17.497, \emph{p} \textless{} .001, \(\eta^{2}\) = 0.084 (approaching a moderate effect size)
+  Post: \emph{F} (1, 191) = 17.497, \emph{p} \textless{} .001, \(\eta^{2}\) = 0.084 (a moderate effect size)
 \item
   Post2: \emph{F} (1, 191) = 5.994, \emph{p} = .015, \(\eta^{2}\) = 0.030 (a small effect size)
 \end{itemize}
 
-Recall, interpretation for the eta-squared are .02 \textasciitilde{} small, .13 \textasciitilde{} medium, and \textgreater.26 \textasciitilde{} large
+Recall, interpretation for the eta-squared are .01 \textasciitilde{} small, .06 \textasciitilde{} medium, and \textgreater.14 \textasciitilde{} large
 
 Because there are only two levels (Friends, Little Mosque) within each wave (baseline, post1, post2), this simple effects analysis is complete with the three pairwise comparisons.
 
@@ -12956,7 +12918,7 @@ Below are the \emph{F} strings for the one-way ANOVAs the followed the omnibus, 
 \item
   Friends: \emph{F} (2, 194) = 1.759, \emph{p} = 0.175, \(\eta^{2}\) = 0.012 (effect size indicates no relationship)
 \item
-  Little Mosque: \emph{F} (2, 188) = 3.392, \emph{p} = 0.036, \(\eta^{2}\) = 0.072 (a small-to-moderate effect size)
+  Little Mosque: \emph{F} (2, 188) = 3.392, \emph{p} = 0.036, \(\eta^{2}\) = 0.072 (a moderate effect size)
 \end{itemize}
 
 Because each of these one-way ANOVAs has three levels, we need to follow with pairwise comparisons. However, we only need to conduct them for the Little Mosque condition. As you can see we generally work our way down to comparing chunks to each other to find the source(s) of significant differences.
@@ -13944,7 +13906,9 @@ In repeated measures projects, we expect there to be dependency in the data. Tha
 
 In the code below, we are predicting attitudes toward Arabs at post1 from the condition (Friends or Little Mosque), controlling for attitudes toward Arabs at baseline.
 
-The \emph{ges} column provides the effect size, \(\eta^2\) where a general rule-of-thumb for interpretation is .02 (small), .13 (medium), and .26 (large) \citep{lakens_calculating_2013}.
+The \emph{ges} column provides the effect size, \(\eta^2\). Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.
+
+You may see different values (.02, .13, .26) offered as small, medium, and large -- these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found \href{https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize}{here} \citep{watson_rules_2020}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14023,12 +13987,12 @@ Note that the \emph{emmeans} process produces slightly different means than the 
 \end{Shaded}
 
 \begin{verbatim}
-    item       group1 vars  n     mean       sd  median  trimmed      mad   min
-X11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306 23.67045 8.297
-X12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858 15.98984 6.137
-    max  range       skew   kurtosis       se
-X11 100 91.703 -0.0518848 -0.6252126 2.187005
-X12 100 93.863 -0.9798189  1.6335325 1.899170
+           item       group1 vars  n     mean       sd  median  trimmed
+AttArabP11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306
+AttArabP12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858
+                mad   min max  range       skew   kurtosis       se
+AttArabP11 23.67045 8.297 100 91.703 -0.0518848 -0.6252126 2.187005
+AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170
 \end{verbatim}
 
 \begin{Shaded}
@@ -14174,7 +14138,7 @@ A one-way analysis of covariance (ANCOVA) was conducted. The independent variabl
 \end{quote}
 
 \begin{quote}
-There was a non-significant effect of the baseline covariate on the post-test (\emph{F}{[}1, 190{]} = 0.665, \emph{p} = .416, \(\eta^2\) = 0.003). After controlling for the baseline attitudes toward Arabs, there was a statistically significant effect of condition on post-test attitudes toward Arabs, \emph{F}(1,190) = 26.361, \emph{p} \textless{} .001, \(\eta^2\) = 0.122. This appears to be moderate in size. Given there were only two conditions, no further follow-up was required. As illustrated in Figure 1, results suggest that those in the Little Mosque condition (\emph{M} = 73.92, \emph{SD} = 18.51) had more favorable attitudes toward Arabs than those in the Friends condition (\emph{M} = 59.02, \emph{SD} = 21.65). Means and covariate-adjusted means are presented in Table 1b.
+There was a non-significant effect of the baseline covariate on the post-test (\emph{F}{[}1, 190{]} = 0.665, \emph{p} = .416, \(\eta^2\) = 0.003). After controlling for the baseline attitudes toward Arabs, there was a statistically significant effect of condition on post-test attitudes toward Arabs, \emph{F}(1,190) = 26.361, \emph{p} \textless{} .001, \(\eta^2\) = 0.122. This effect appears to be moderately large. Given there were only two conditions, no further follow-up was required. As illustrated in Figure 1, results suggest that those in the Little Mosque condition (\emph{M} = 73.92, \emph{SD} = 18.51) had more favorable attitudes toward Arabs than those in the Friends condition (\emph{M} = 59.02, \emph{SD} = 21.65). Means and covariate-adjusted means are presented in Table 1b.
 \end{quote}
 
 \hypertarget{scenario-2-controlling-for-a-confounding-or-covarying-variable}{%
@@ -14485,12 +14449,12 @@ As before, these means are usually different (even if only ever-so-slightly) tha
 \end{Shaded}
 
 \begin{verbatim}
-    item       group1 vars  n     mean       sd  median  trimmed      mad   min
-X11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306 23.67045 8.297
-X12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858 15.98984 6.137
-    max  range       skew   kurtosis       se
-X11 100 91.703 -0.0518848 -0.6252126 2.187005
-X12 100 93.863 -0.9798189  1.6335325 1.899170
+           item       group1 vars  n     mean       sd  median  trimmed
+AttArabP11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306
+AttArabP12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858
+                mad   min max  range       skew   kurtosis       se
+AttArabP11 23.67045 8.297 100 91.703 -0.0518848 -0.6252126 2.187005
+AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170
 \end{verbatim}
 
 \hypertarget{toward-an-apa-style-results-section-1}{%
