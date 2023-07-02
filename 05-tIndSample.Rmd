@@ -1,5 +1,5 @@
 
-# Independent Samples *t* test {#tIndSample}
+# Independent Samples *t*-test {#tIndSample}
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=844ba297-e9ce-48cc-a49f-af01012b7900) 
  
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
 options(scipen=999)#eliminates scientific notation
 ```
 
-Researchers may wish to know if there are differences on a given outcome variable as a result of a dichotomous grouping variable. For example, during the COVID-19 pandemic, my research team asked if there were differences in the percentage of time that individuals wore facemasks as a result of 2020 Presidential voting trends (Republican or Democratic) of their county of residence. In these simple designs, the independent samples *t* test could be used to test the researchers' hypotheses.
+Researchers may wish to know if there are differences on a given outcome variable as a result of a dichotomous grouping variable. For example, during the COVID-19 pandemic, my research team asked if there were differences in the percentage of time that individuals wore facemasks as a result of 2020 Presidential voting trends (Republican or Democratic) of their county of residence. In these simple designs, the independent samples *t*-test could be used to test the researchers' hypotheses.
 
 ## Navigating this Lesson
 
@@ -24,28 +24,28 @@ While the majority of R objects and data you will need are created within the R 
 
 Learning objectives from this lecture include the following:
 
-* Recognize the research questions for which utilization of the independent samples *t* test would be appropriate.
-* Narrate the steps in conducting an independent samples *t* test, beginning with testing the statistical assumptions through writing up an APA style results section.
-* Calculate an independent samples *t* test in R (including effect sizes and 95%CIs).
+* Recognize the research questions for which utilization of the independent samples *t*-test would be appropriate.
+* Narrate the steps in conducting an independent samples *t*-test, beginning with testing the statistical assumptions through writing up an APA style results section.
+* Calculate an independent samples *t*-test in R (including effect sizes and 95%CIs).
 * Interpret a 95% confidence interval around a mean difference score.
-* Produce an APA style results for an independent samples *t* test.
+* Produce an APA style results section for an independent samples *t*-test.
 * Determine a sample size that (given a set of parameters) would likely result in a statistically significant effect, if there was one. 
 
 ### Planning for Practice
 
 The suggestions for homework vary in degree of complexity. The more complete descriptions at the end of the chapter follow these suggestions.
 
-* Rework the independent samples *t* test in the lesson by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar.
-* Rework the independent samples *t* test in the lesson by changing something else about the simulation. For example, if you are interested in power, consider changing the sample size.
+* Rework the independent samples *t*-test in the lesson by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar.
+* Rework the independent samples *t*-test in the lesson by changing something else about the simulation. For example, if you are interested in power, consider changing the sample size.
 * Use the simulated data that is provided, but use the nonverbal variable, instead.
-* Conduct  an independent samples *t* test with data to which you have access and permission to use. This could include data you simulate on your own or from a published article.
+* Conduct  an independent samples *t*-test with data to which you have access and permission to use. This could include data you simulate on your own or from a published article.
 
 ### Readings & Resources
 
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
 * Navarro, D. (2020). Chapter 13: Comparing two means. In [Learning Statistics with R - A tutorial for Psychology Students and other Beginners](https://learningstatisticswithr.com/). Retrieved from https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Learning_Statistics_with_R_-_A_tutorial_for_Psychology_Students_and_other_Beginners_(Navarro)
-  - Navarro's OER includes a good mix of conceptual information about *t* tests as well as R code. My lesson integrates her approach as well as considering information from Field's [-@field_discovering_2012] and Green and Salkind's [-@green_using_2014] texts (as well as searching around on the internet).
+  - Navarro's OER includes a good mix of conceptual information about *t*-tests as well as R code. My lesson integrates her approach as well as considering information from Field's [-@field_discovering_2012] and Green and Salkind's [@green_using_2017] texts (as well as searching around on the internet).
 * Elliott, A. M., Alexander, S. C., Mescher, C. A., Mohan, D., & Barnato, A. E. (2016). Differences in Physicians’ Verbal and Nonverbal Communication With Black and White Patients at the End of Life. *Journal of Pain and Symptom Management, 51*(1), 1–8. https://doi.org/10.1016/j.jpainsymman.2015.07.008
   - The source of our research vignette.
 
@@ -57,17 +57,16 @@ The script below will (a) check to see if the following packages are installed o
 #if(!require(psych)){install.packages("psych")}
 #if(!require(tidyverse)){install.packages("tidyverse")}
 #if(!require(dplyr)){install.packages("dplyr")}
-#if(!require(lsr)){install.packages("lsr")}
 #if(!require(ggpubr)){install.packages("ggpubr")}
 #if(!require(pwr)){install.packages("pwr")}
-#if(!require(car)){install.packages("car")}
 #if(!require(apaTables)){install.packages("apaTables")}
 #if(!require(knitr)){install.packages("knitr")}
+#if(!require(rstatix)){install.packages("rstatix")}
 ```
 
-## Introducing the Independent Samples *t* Test
+## Introducing the Independent Samples *t*-Test
 
-The independent samples *t*-test assesses whether the population mean of the test variable for one group differs from the population mean of the test variable for a second group. This *t* test can only accommodate two levels of a grouping variable (e.g., teachers/students, volunteers/employees, treatment/control) and the participants must be different in each group.    
+The independent samples *t*-test assesses whether the population mean of the test variable for one group differs from the population mean of the test variable for a second group. This *t*-test can only accommodate two levels of a grouping variable (e.g., teachers/students, volunteers/employees, treatment/control) and the participants must be different in each group.    
 
 ![An image of a row with two boxes labeled Condition A (in light blue) and Condition B (in dark blue). This represents the use of an independent samples *t*-test to compare across conditions.](images/ttests/conditions_paired.jpg)
 
@@ -76,18 +75,18 @@ The comparison of two means is especially evident in the numerator of the formul
 $$t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}}$$
 If the researcher is interested in comparing the same participants' experiences across time or in different groups, they should consider using a [paired samples *t*-test](#tPaired). Further, the independent samples *t*-test is limited to a grouping variable with only two levels. If the researcher is interested in three or more levels, they should consider using a [one-way ANOVA](#oneway).
 
-### Workflow for Independent Samples *t* test
+### Workflow for Independent Samples *t*-Test
 
 The following is a proposed workflow for conducting a independent samples *t*-test.
 
-![A colorful image of a workflow for the one sample t test](images/ttests/IndSampleWrkFlw.jpg) 
-If the data meets the assumptions associated with the research design (e.g., independence of observations and a continuously scaled metric), these are the steps for the analysis of an independent samples *t* test:
+![A colorful image of a workflow for the one sample t-test](images/ttests/IndSampleWrkFlw.jpg) 
+If the data meets the assumptions associated with the research design (e.g., independence of observations and a continuously scaled metric), these are the steps for the analysis of an independent samples *t*-test:
 
 1. Prepare (upload) data.
 2. Explore data with
    - graphs
    - descriptive statistics
-3. Assess normality via skew and kurtosis
+3. Assess normality via skew, kurtosis, and the Shapiro-Wilk test of normality
 4. Consider the homogeneity of variance assumption and decide whether to use the Student's or Welch's formulation.
 5. Compute the independent samples *t*-test
 6. Compute an effect size (frequently the *d* or *eta* statistic)
@@ -96,7 +95,7 @@ If the data meets the assumptions associated with the research design (e.g., ind
 
 ## Research Vignette
 
-Empirically published articles where *t* tests are the primary statistic are difficult to locate. Having exhausted the psychology archives, I located this article in an interdisciplinary journal focused on palliative medicine. The research vignette for this lesson examined differences in physician's verbal and nonverbal communication with Black and White patients at the end of life [@elliott_differences_2016]. 
+Empirically published articles where *t*-tests are the primary statistic are difficult to locate. Having exhausted the psychology archives, I located this article in an interdisciplinary journal focused on palliative medicine. The research vignette for this lesson examined differences in physician's verbal and nonverbal communication with Black and White patients at the end of life [@elliott_differences_2016]. 
 
 Elliott and colleagues [-@elliott_differences_2016] were curious to know if hospital-based physicians (56% White, 26% Asian, 7.4% each Black and Hispanic) engaged in verbal and nonverbal communication differently with Black and White patients. Black and White patient participants were matched on characteristics deemed important to the researchers (e.g., critically and terminally ill, prognostically similar, expressed similar treatment preferences). Interactions in the intensive care unit were audio and video recorded and then coded on dimensions of verbal and nonverbal communication.
 
@@ -111,6 +110,8 @@ Because each physician saw a pair of patients (i.e., one Black patient and one W
 
 
 Although their design was more sophisticated (and, therefore, required the paired samples *t*-test), Elliott et al. [-@elliott_differences_2016] could have simply compared the outcome variables (e.g., verbal and nonverbal communication) as a function of their dichotomous variable, patient race (Black, White). 
+
+### Data Simulation
 
 In the data below, I have simulated the verbal and non-verbal communication variables using the means and standard deviations listed in the article. Further, I truncated them to fit within the assigned range. I created 33 sets each and assigned them to the Black or White level of the grouping variable.
 
@@ -156,7 +157,7 @@ The four variables of interest are now correctly formatted as *num* and *factor*
 
 Below is code for saving (and then importing) the data in .csv or .rds files. I make choices about saving data based on what I wish to do with the data. If I want to manipulate the data outside of R, I will save it as a .csv file. It is easy to open .csv files in Excel. A limitation of the .csv format is that it does not save any restructuring or reformatting of variables. For this lesson, this is not an issue. 
 
-Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.
+Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations. If you have simulated the data (above), you do not need to save and then re-import the data.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #writing the simulated data as a .csv 
 #write.table(dfIndSamples, file = "dfIndSamples.csv", sep = ',', col.names=TRUE, row.names=FALSE) 
@@ -173,7 +174,21 @@ The .rds form of saving variables preserves any formatting (e.g., creating order
 #str(dfIndSamples)
 ```
 
-## Working the Problem
+### Quick Peek at the Data
+
+Plotting the data is a helpful early step in any data analysis. Further, visualizing the data can help us with a conceptual notion of the statistic we are utilizing. The *ggpubr* package is one of my go-to-tools for quick and easy plots of data. Boxplots are terrific for data that is grouped. A helpful [tutorial](https://rpkgs.datanovia.com/ggpubr/) for boxplots (and related plots) can be found at datanovia.
+
+In the code below I introduced the colors by identifying the grouping variable and assigning colors. Those color codes are the "Hex" codes you find in the custom color palette in your word processing program.
+
+I am also fond of plotting each case with the command, *add = "jitter"*. To increase your comfort and confidence in creating figures (and with other tools) try deleting and adding back in different commands. This is how to distinguish between the essential and the elective elements of the code.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal", color = "PatientRace", palette =c("#00AFBB", "#FC4E07"), add = "jitter")
+```
+The box of the boxplot covers the middle 50% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots are outliers.
+
+
+## Working the Independent Samples *t*-Test (by hand)
 
 ### Stating the Hypothesis
 
@@ -186,51 +201,17 @@ H_A: & \mu_1 \neq \mu_2
 \end{array}
 $$
 
-### Preliminary Exploration
 
-Plotting the data is a helpful early step in any data analysis. The *ggpubr* package is one of my go-to-tools for quick and easy plots of data. Boxplots are terrific for data that is grouped. A helpful [tutorial](https://rpkgs.datanovia.com/ggpubr/) for boxplots (and related plots) can be found at datanovia.
 
-In the code below I introduced the colors by identifying the grouping variable and assigning colors. Those color codes are the "Hex" codes you find in the custom color palette in your word processing program.
 
-I am also fond of plotting each case with the command, *add = "jitter"*. To increase your comfort and confidence in creating figures (and with other tools) try deleting and adding back in different commands. This is how to distinguish between the essential and the elective.
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal", color = "PatientRace", palette =c("#00AFBB", "#FC4E07"), add = "jitter")
-```
-The box of the boxplot covers the middle 50% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots are outliers.
 
-We can begin to evaluate the assumption of normality by obtaining the descriptive statistics with the *describe()* function from the *psych* package.
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-psych::describe(dfIndSamples$Verbal)
-```
 
-From this, we learn that the overall verbal mean is 8.25 with a standard deviation of 3.14. The values for skew (0.43) and kurtosis (1.21) fall below the areas of concern (below the absolute value of 3 for skew; below the absolute values of 8 for kurtosis) identified by Kline [-@kline_principles_2016].
 
-Recall that one of the assumptions for independent samples *t*-test is that the variable of interest is normally distributed within each level of the grouping variable.  The *describeBy()* function in the *psych* package allows us to obtain these values for each level of the grouping variable.
 
-If we feed the function the entire df, it will give us results for each level of PatientRace for each variable, including variables for which such disaggregation is nonsensible (i.e., physID, PatientRace). If we had a large df, we might want to create a tiny df that only includes our variable(s) of interest. For now, it is not problematic to include all the variables.
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-psych::describeBy(dfIndSamples, group="PatientRace", mat=TRUE)
-```
-In this analysis we are interested in the verbal variable. We see that patients who are Black received verbal interactions from physicians that were quantified by a mean score of 7.61 (*SD* = 2.99); physicians' scores for White patients were 8.89 (*SD* = 3.20). Skew and kurtosis values for the verbal ratings with Black patients were -.35 and -.31, respectively. They were 1.02 and 1.27 for White patients. As before, these fall well below the absolute values of 3 (skew) and 8 (kurtosis) that are considered to be concerning.
 
-One of the assumptions of the independent samples *t*-test is that the variances of the dependent variable are similar for both levels of the grouping factor. We can use the Levene's test to do this. We want this value to be non-significant ($p$ > .05). If violated, we we can use the Welch's test because it is "robust to the violation of the homogeneity of variance."
-
-In R, Levene's test is found in the *car* package.
-
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-car::leveneTest (Verbal ~ PatientRace, dfIndSamples, center=mean)
-```
-The results of the Levene's test are presented as an *F* statistic. We'll get to *F* distributions in the next chapter. For now, it is just important to know how to report and interpret them: 
-
-* Degrees of freedom are 1 and 64 
-* The value of the *F* statistic is 0.142
-* We want our *p* value to be > .05
-
-Happily, our Levene's result is (*F*[1, 64] = 0.142, *p* = .707) not significant. Because *p* is greater than 05, we have not violated the homogeneity of variance assumption. That is to say, the variance in each of the patient race groups is not statistically significantly different. we can use the regular (Student's) formulation of the *t* test for independent samples.
-
-### Hand-Calculations
+### Calculating the *t*-Test
 
 Earlier I presented a formula for the independent samples *t*-test.
 
@@ -254,7 +235,7 @@ $$t = \frac{\bar{X_{1}} -\bar{X_{2}}}{SE}$$
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 (7.615 - 8.891)/0.762
 ```
-Hopefully, this hand-calculation provided an indication of how the means, standard deviation, and sample sizes contribute to the estimate of this *t* test value.  Now we ask, "But it is statistically significant?"
+Hopefully, this hand-calculation provided an indication of how the means, standard deviation, and sample sizes contribute to the estimate of this *t*-test value.  Now we ask, "But it is statistically significant?"
 
 #### Statistical Significance
 
@@ -278,7 +259,7 @@ Let's return to the [table of critical values](https://www.statology.org/t-distr
 * Specification as a one-tailed or two-tailed test
   - Our alternative hypothesis made no prediction about the direction of the difference; therefore we will use a two-tailed test
   
-In the linked table, when the degrees of freedom reaches 30, there larger intervals. We will use the row representing degrees of freedom of 60. If our *t* test value is lower than an absolute value of -2 or greater than the absolute value of 2, then our means are statistically significantly different from each other. In our case, we have not achieved statistical significance and we cannot say that the means are different. The *t* string would look like this:  $t(64) = -1.675, p > .05$
+In the above linked table of critical values, when the degrees of freedom reaches 30, there larger intervals. We will use the row representing degrees of freedom of 60. If our *t*-test value is lower than an absolute value of -2 or greater than the absolute value of 2, then our means are statistically significantly different from each other. In our case, we have not achieved statistical significance and we cannot say that the means are different. The *t* string would look like this:  $t(64) = -1.675, p > .05$
 
 We can also use the *qt()* function in base R. In the script below, I have indicated an alpha of .05. The "2" that follows indicates I want a two-tailed test. The 64 represents my degrees of freedom ($N-2$). In a two-tailed test, the regions of rejection will be below the lowerbound (lower.tail=TRUE) and above the upperbound (lower.tail=FALSE).
 
@@ -313,7 +294,6 @@ With this in hand, let's calculate the confidence intervals.
 ```
 These values indicate the range of scores in which we are 95% confident that our true mean difference ($\bar{X_{1}}-\bar{X_{2}}$) lies. Stated another way, we are 95% confident that the true mean difference lies between -2.80 and 0.25 Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant *p* value. For these types of statistics, the 95% confidence interval and *p* value will always be yoked together. 
 
-
 #### Effect Size
 
 Whereas *p* values address statistical significance, effect sizes address the magnitude of difference. There are two common effect sizes that are used with the independent samples *t*-test.  The first is the *d* statistic, which measures, in standard deviation units, the distance between the two means.  The simplest formula involves the *t* value and sample sizes:
@@ -338,89 +318,209 @@ Let's calculate it:
 Similarly, the $\eta^2$ is small-to-medium.
 
 
-## Computation in R
+## Working the Independent Samples *t*-Test with R Packages
 
-Navarro's *lsr* package makes the computation of the independent *t*-test easy and produces output that is commonly used in psychological science.
+Let's rework the problem in R. We start at the top of the flowchart, evaluating the statistical assumptions.
+
+### Evaluating the Statistical Assumptions
+
+With an eye on our data, we can begin to explore the statistical assumptions associated with the independent samples *t*-test. Here's where we are in the workflow:
+
+![The workflow for the one sample *t*-test highlighting the evaluation of assumptions section](images/ttests/IndSampleAssmptns.jpg)
+
+All statistical tests have some assumptions about the data. The independent-samples *t*-test has four:
+
+* The scores on the test variable as independent of each other. This is a research design issue and the independent-samples *t*-test is not robust to violating this assumption. 
+  - If physicians' verbal communication was evaluated and reported for more than one patient, this vignette would violate the assumption of the independent samples *t*-test. For the sake of simplicity, let's presume that each was evaluated on verbal communication for only one patient. If the research scenario was such that physicians contributed multiple datapoints a potential analytic choice that is robust to such a violation is [multilevel modeling](https://lhbikos.github.io/MultilevelModeling/).
+* The test variable should be continuously scaled. This is also a matter of research design and no statistical analysis is required.
+  - Our test variable is an evaluation of verbal interactions; this is continuously scaled and has the properties of *interval*-level data.
+* The test variable is normally distributed. We can check this several ways:
+  - visually with histograms (perhaps with superimposed curves) and boxplots,
+  - calculation of skew and kurtosis values,
+  - calculation of the Shapiro-Wilk test of normality
+* The variances of the normally distributed test variable for both levels of the grouping factor are equal. This is called the homogeneity of variance test and is easily calculated with a Levene's test of homogeneity of variance.
+
+#### Is the dependent variable normally distributed at each level of the grouping variable?
+
+We can begin to evaluate the assumption of normality by obtaining the descriptive statistics with the *describe()* function from the *psych* package.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+psych::describe(dfIndSamples$Verbal, type=1) #type=1 produces the type of skew and kurtosis associated with Kline's interpretive guidelines
+```
+
+From this, we learn that the overall verbal mean is 8.25 with a standard deviation of 3.14. The values for skew (0.44) and kurtosis (1.34) fall below the areas of concern (below the absolute value of 3 for skew; below the absolute values of 10 for kurtosis) identified by Kline [-@kline_data_2016].
+
+Recall that one of the assumptions for independent samples *t*-test is that the variable of interest is normally distributed within each level of the grouping variable.  The *describeBy()* function in the *psych* package allows us to obtain these skew and kurtosis at both levels of the grouping variable.
+
+If we feed the function the entire df, it will give us results for each level of PatientRace for each variable, including variables for which such disaggregation is nonsensible (i.e., ID, PatientRace). If we had a large df, we might want to create a tiny df that only includes our variable(s) of interest. For now, it is not problematic to include all the variables.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-lsr::independentSamplesTTest(
-  formula = Verbal ~PatientRace,
-  data = dfIndSamples,
-  var.equal=TRUE
-)
+psych::describeBy(dfIndSamples ~ PatientRace, mat=TRUE, type=1)
 ```
-This well-organized output has everything we need for an APA style presentation of results. Identical to all the information we hand-calculated, we would write the *t* string this way:  $t(64) = -1.675, p = .099, d = 0.412$. The *lsr* output also includes confidence intervals. These represent the 95% confidence interval of the true difference between the means. That is, we are 95% confident that the true difference between means could be as large as -2.799 or as (small/medium/large) as 0.246. What is critically important is that this confidence interval crosses zero. There is an important link between the CI95% and statistical significance. When the CI95% includes zero, *p* will not be lower than 0.05.  
+In this analysis we are interested in the verbal variable. We see that patients who are Black received verbal interactions from physicians that were quantified by a mean score of 7.61 (*SD* = 2.99); physicians' scores for White patients were 8.89 (*SD* = 3.20). Skew and kurtosis values for the verbal ratings with Black patients were -.37 and -.14, respectively. They were 1.07 and 1.54 for White patients. As before, these fall well below the absolute values of 3 (skew) and 10 (kurtosis) that are considered to be concerning.
+
+Beyond skew and kurtosis, we can formally test for deviations from normality with a Shapiro-Wilk. The script below first groups the data by PatientRace and then applies the *rstatix::shapiro_test()*. We want the results to be non-significant.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+library(tidyverse)#opening this package so I can use the pipes
+shapiro <- dfIndSamples %>%
+    group_by(PatientRace) %>%
+    rstatix::shapiro_test(Verbal)
+shapiro
+```
+The Shapiro-Wilk test of normality indicated that the dependent variable, evaluation of verbal interaction with the patient was normally distributed within Black patients $(W = 0.977, p = 0.677)$, but not within White patients $(W = 0.922, p = 0.020$. That is, the distribution of verbal communication scores for physicians attending to White patients was statistically significantly different from a normal distribution. 
+
+Should we be concerned? A general rule of thumb is that when cell sizes are larger than 15 the independent *t*-test should be relatively robust to violations of normality [@green_using_2017].
+
+#### Are the variances of the dependent variable similar across the levels of the grouping factor?
+
+One of the assumptions of the independent samples *t*-test is that the variances of the dependent variable (verbal communication) are similar for both levels of the PatientRace factor. We can use the Levene's test to do this. We want this value to be non-significant $(p > .05)$. If violated, we we can use the Welch's test because it is robust to the violation of the homogeneity of variance.
+
+Using *rstatix::levene_test()*, we simply need to point to the data, provide a "formula" in the form of "dependent variable by grouping variable," and specify about how to center the data. The median is a commonly used because it provides a more robust test.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+rstatix::levene_test(dfIndSamples, Verbal ~ PatientRace, center=median)
+```
+
+The results of the Levene's test are presented as an *F* statistic. We'll get to *F* distributions in the next chapter. For now, it is just important to know how to report and interpret them: 
+
+* Degrees of freedom are 1 and 64 
+* The value of the *F* statistic is 0.039
+* The *p* value is 0.843 (i.e., greater than .05)
+
+Happily, our Levene's result is $(F[1, 64] = 0.039, p = 0.843)$ not significant. Because *p* is greater than .05, we have not violated the homogeneity of variance assumption. That is to say, the variance in the patient race groups is not statistically significantly different from each other. We can use the regular (Student's) formulation of the *t*-test for independent samples.
+
+#### APA style write-up of testing the assumptions
+
+My practice is to create APA style drafts of the different sections of the analysis as I work along. Here's how I might capture our evaluation of the statistical assumptions:
+
+>We began by analyzing the data to see if it met the statistical assumptions for analysis with an independent samples *t*-test. One assumption is that the dependent variable be normally distributed within the both levels of the grouping variable. We evaluated skew and kurtosis using Kline's [-@kline_data_2016] guidelines  of the absolute values of 3 (skew) and 10 (kurtosis). Our results were well-within these boundary conditions. Specifically, the verbal ratings of physicians with Black patients were -.37 and -.14 for skew and kurtosis, respectively; they were 1.07 and 1.54 for White patients. The Shapiro-Wilk test of normality indicated that the dependent variable was normally distributed within Black patients $(W = 0.977, p = 0.677)$, but not within White patients $(W = 0.922, p = 0.020)$. That is, the distribution of verbal communication scores for physicians attending to White patients was statistically significantly different from a normal distribution. Results of Levene's homogeneity of variance test suggested that the variance in each of the patient race groups was not statistically significantly different from each other $(F[1, 64] = 0.039, p = 0.843)$. Because the independent samples *t*-test is relatively robust to violations of normality when samples sizes have at least 15 participants per cell [@green_using_2017] and there was no violation of the homogeneity of variance assumption we proceded with the Student's formulation of the *t*-test for independent samples. 
+
+Odds are, owing to space limitations in journals, you would not provide this much detail about an independent samples *t*-test in an empirical manuscript. I am encouraging you to do so as you work through these chapters because it is good practice for thinking through the logic and sequencing of statistics as well as writing results in APA style.
+
+### Computing the Independent Samples *t*-Test
+
+We are ready to compute the independent samples *t*-test.
+
+![A colorful image of a workflow for the paired samples *t*-test focusing on the computation of the t-test](images/ttests/IntSampT.jpg) 
+
+Calculating an independent samples *t*-test is possible through base R and a number of packages. Kassambara's [-@kassambara_pipe-friendly_nodate] *rstatix* package is one we can use for all of the *t*-test and ANOVA problems that we will work. I like it for several reasons. First, it was designed to be "pipe-friendly" in a manner that is consistent with the *tidyverse* approach to working in R and there are numerous tutorials. Additionally, *rstatix* objects work well with *ggpubr*, one of my favorite packages for graphing data and results.
+
+In the script below:
+
+* the first element points to the dataframe
+* the second element provides a "formula"
+  - we are predicting "Verbal" from "PatientRace" 
+* the third element, "var.equal=TRUE" means that we are using Student's formulation (because we did not violate the homogeneity of variance assumption) 
+* specifying "detailed = TRUE" will produce the 95% confidence interval around the difference in the two means
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+rstatix::t_test(dfIndSamples, Verbal~PatientRace, var.equal=TRUE, detailed=TRUE)
+```
+From this output we can start to draft our *t* string:  $t(64) = -1.675, p = 0.099, CI95(-2.80, 0.25)$.
+
+Separately, we must request the effect size. Earlier in the lesson we calculated both Cohen's *d* and eta-squared. Unfortunately, the *rstatix* package only offers the Cohen's *d* for *t*-tests. If you wanted an eta-squared, it would be easy enough to hand-calculate (or obtain from another R package).
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+rstatix::cohens_d(dfIndSamples, Verbal ~ PatientRace, var.equal = TRUE)
+```
+We can update our *t* string to include the effect size: $t(64) = -1.675, p = 0.099, CI95(-2.80, 0.25), d = -0.412$
+
+What does this mean? Our result is not-significant. Our estimate of the difference in verbal communication ratings when physicians interacted with Black and White patients was -1.675. We are 95% confident that that true mean difference is as low as -2.80 or as high as 0.25. Because the confidence interval crosses zero, we cannot be certain that the true difference is zero. This is consistent with the non-significant *p* value and effect size. Our output even tells us that the *d* of -0.41 is small.
 
 ### What if we had violated the homogeneity of variance assumption?
 
-Earlier we used the Levene's test to examine the homogeneity of variance assumption. If we had violated it, the Welch's formulation of the independent sample *t* test is available to us. Navarro's *lsr* package makes this easy. We simply change the *var.equal* to *FALSE*. This will produce the Welch's alternative, which takes into consideration violations of the homogeneity of variance assumption. Conveniently, "Student's" or "Welch's" will serve as the first row of the output.
+Earlier we used the Levene's test to examine the homogeneity of variance assumption. If we had violated it, the Welch's formulation of the independent sample *t*-test is available to us. The *rstatix* package makes this easy. We simply change the *var.equal* to *FALSE*. This will produce the Welch's alternative, which takes into consideration violations of the homogeneity of variance assumption. Conveniently, "Student's" or "Welch's" will serve as the first row of the output.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-lsr::independentSamplesTTest(
-  formula = Verbal ~PatientRace,
-  data = dfIndSamples,
-  var.equal=FALSE
-)
+rstatix::t_test(dfIndSamples, Verbal~PatientRace, var.equal=FALSE, detailed=TRUE)
 ```
 Likely because of the similarity of the standard deviations associated with each level of patient race and our equal cell sizes, this changes nothing about our conclusion. Note that the degrees of freedom in the Student's *t*-test analysis (the first one) was 64; in the Welch's version, the degrees of freedom is 63.685. It is this change that, when the homogeneity of variance assumption is violated, can make the Welch's results more conservative (i.e., less likely to have a statistically significant result).
 
 ## APA Style Results
 
->An independent samples *t*-test was conducted to evaluate the hypothesis that there would be differences between the quality of physicians' verbal communication depending on whether the patient's race (Black, White). Although the independent samples *t*-test was nonsignificant, *t*(64) = -1.675, *p* = .099, the effect size (*d* = 0.412) was somewhat moderate in size. The 95% confidence interval for the difference in means ranged from -2.799 to 0.246. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
+Putting it altogether, here is an APA Style results section:
+
+>An independent samples *t*-test was conducted to evaluate the hypothesis that there would be differences between the quality of physicians' verbal communication depending on whether the patient's race (Black, White).
+
+>We began by analyzing the data to see if it met the statistical assumptions for analysis with an independent samples *t*-test. One assumption is that the dependent variable be normally distributed within the both levels of the grouping variable. We evaluated skew and kurtosis using Kline's [-@kline_data_2016] guidelines  of the absolute values of 3 (skew) and 10 (kurtosis). Our results were well-within these boundary conditions. Specifically, the verbal ratings of physicians with Black patients were -.37 and -.14 for skew and kurtosis, respectively; they were 1.07 and 1.54 for White patients. The Shapiro-Wilk test of normality indicated that the dependent variable was normally distributed within Black patients $(W = 0.977, p = 0.677)$, but not within White patients $(W = 0.922, p = 0.020$. That is, the distribution of verbal communication scores for physicians attending to White patients was statistically significantly different from a normal distribution. Results of Levene's homogeneity of variance test suggested that the variance in each of the patient race groups was not statistically significantly different from each other $(F[1, 64] = 0.039, p = 0.843)$. Because the independent samples *t*-test is relatively robust to violations of normality when samples sizes have at least 15 participants per cell [@green_using_2017] and there was no violation of the homogeneity of variance assumption we proceded with the Student's formulation of the *t*-test for independent samples. 
+
+>Results of the independent samples *t*-test was nonsignificant, $t(64) = -1.675, p = .099, d = 0.412$. The 95% confidence interval for the difference in means ranged from -2.799 to 0.246. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 apaTables::apa.1way.table(PatientRace, Verbal, dfIndSamples)
 ```
+
+The figure we created earlier in the lesson would be sufficient for a journal article. However, using *rstatix* in combination with *ggpubbr* can be quite powerful. The result can be a figure that includes the *t*-test results and "significance bars." To do this, we first need to re-run the *rstatix::t_test*, but adding to it by
+
+* including "add_significance()" script after the pipe, and
+* saving it as an object, which I'm naming "pair.test."  
+
+We could have done this in the initial run (but I didn't want to make the test-statistic unnecessarily confusing).
+
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal", color = "PatientRace", palette =c("#00AFBB", "#FC4E07"), add = "jitter", title = "Figure 1. Physician Verbal Engagement as a Function of Patient Race")
+ind.test <- rstatix::t_test(dfIndSamples, Verbal~PatientRace, var.equal=TRUE, detailed=TRUE) %>%
+  rstatix::add_significance()
+ind.test
 ```
 
-## Power in Independent Samples *t* tests
+Next, we update the earlier boxplot code with the results from our statistical analyses:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ind.box <- ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal", color = "PatientRace", palette=c("#00AFBB", "#FC4E07"), add = "jitter",  title = "Figure 1. Physician Verbal Engagement as a Function of Patient Race") 
+ind.test <- ind.test %>% rstatix::add_xy_position(x = "PatientRace") #autocomputes p-value labels positions
+ind.box <- ind.box +
+  ggpubr::stat_pvalue_manual(ind.test, label = "p.signif", tip.length=.02, hide.ns = FALSE, y.position = c(18)) + 
+  labs(subtitle = rstatix::get_test_label(ind.test, detailed=TRUE)) #adds t-test results
+
+ind.box
+```
+Between the *rstatix* and *ggpubr* tools, there is a great deal of flexibility in creating figures. Determining which figure is best will likely depend on your outlet, your audience, your goals, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the "color" and "palette" arguments.
+
+## Power in Independent Samples *t*-tests
 
 Researchers often use power analysis packages to estimate the sample size needed to detect a statistically significant effect, if, in fact, there is one. Utilized another way, these tools allows us to determine the probability of detecting an effect of a given size with a given level of confidence. If the probability is unacceptably low, we may want to revise or stop. A helpful overview of power as well as guidelines for how to use the *pwr* package can be found at a [Quick-R website](https://www.statmethods.net/stats/power.html) [@kabacoff_power_2017].
 
-In Champely's *pwr* package, we can conduct a power analysis for a variety of designs, including the independent samples *t* test that we worked in this lesson. There are a number of interrelating elements of power:
+In Champely's *pwr* package, we can conduct a power analysis for a variety of designs, including the independent samples *t*-test that we worked in this lesson. There are a number of interrelating elements of power:
 
 * Sample size, *n* refers to the number of observations in each group; our vignette had 33
-* *d* refers to the difference between means divided by the pooled standard deviation; we can add the final number or the elements required (and have R do the math for us)
+* *d* refers to the difference between means divided by the pooled standard deviation; we can use the value of Cohen's *d* for this
 * *power* refers to the power of a statistical test; conventionally it is set at .80
 * *sig.level* refers to our desired alpha level; conventionally it is set at .05
 * *type* indicates the type of test we ran; this was "two.sample"
 * *alternative* refers to whether the hypothesis is non-directional/two-tailed ("two.sided") or directional/one-tailed("less" or "greater")
- 
+
 In this script, we must specify *all-but-one* parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.
 
-When we conduct a "power analysis" (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, "power=NULL". Using the data from our results, we learn from this first run, that our statistical power was 0.99. That is, given the value of the mean difference (1.276) we had a 99% chance of detecting a statistically significant effect if there was one.
-
+When we conduct a "power analysis" (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, "power=NULL". Using the data from our results, we learn from this first run, that our statistical power was 0.38. That is, given the value of the mean difference (1.276) we had a 38% chance of detecting a statistically significant effect if there was one. This is consistent with our non-significant result.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-pwr::pwr.t.test(d= (7.615 - 8.891)/0.762,n = 33, power=NULL,sig.level=0.05,type="two.sample",alternative="two.sided")
+pwr::pwr.t.test(d= -0.412,n = 33, power=NULL,sig.level=0.05,type="two.sample",alternative="two.sided")
 ```
-Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set *n* to *NULL*. Using the results from the simulation of our research vignette, you can see that we would have needed 7 individuals (per group; 14 total) for the *p* value to be < .05.
+Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set *n* to *NULL*. Using the results from the simulation of our research vignette, you can see that we would have needed 93 individuals (per group; 186 total) for the *p* value to be < .05.
+
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-pwr::pwr.t.test(d= ((7.615 - 8.891)/0.762),n = NULL, power=0.8,sig.level=0.05,type="two.sample",alternative="two.sided")
+pwr::pwr.t.test(d= -0.412,n = NULL, power=0.8,sig.level=0.05,type="two.sample",alternative="two.sided")
 ```
-Given that we had a non-significant result, this is surprising. None-the-less, let's try it again. Below I will re-simulate the data for the verbal scores and change only the sample size:
+Given that we had a non-significant result, this is not surprising. None-the-less, let's try it again. Below I will re-simulate the data for the verbal scores and change only the sample size:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-set.seed(220821)
+set.seed(230525)
 #sample size, M, and SD for Black then White patients
-rVerbal <- c(rnorm(7, mean=8.37, sd=3.36), rnorm(7, mean = 8.41, sd=3.21))
+rVerbal <- c(rnorm(93, mean=8.37, sd=3.36), rnorm(93, mean = 8.41, sd=3.21))
 #set upper bound 
 rVerbal[rVerbal>27]<-3
 #set lower bound 
 rVerbal[rVerbal<0]<-0
 #sample size, M, and SD for Black then White patients
-rNonverbal <- c(rnorm(7, mean=2.68, sd=.84), rnorm(7, mean = 2.93, sd=.77))
+rNonverbal <- c(rnorm(93, mean=2.68, sd=.84), rnorm(93, mean = 2.93, sd=.77))
 #set upper bound 
 rNonverbal[rNonverbal>5]<-5
 #set lower bound 
 rNonverbal[rNonverbal<0]<-0
 
-rID<-factor(seq(1,14)) 
+rID<-factor(seq(1,186)) 
 #name factors and identify how many in each group; should be in same order as first row of script
-rPatientRace<-c(rep("Black", 7), rep("White", 7))
+rPatientRace<-c(rep("Black", 93), rep("White", 93))
 #groups the 3 variables into a single df:  ID#, DV, condition
 rdfIndSamples <-data.frame(rID, rPatientRace, rVerbal, rNonverbal) 
 
@@ -428,17 +528,17 @@ rdfIndSamples$rPatientRace <- factor(rdfIndSamples$rPatientRace, levels = c("Bla
 ```
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-lsr::independentSamplesTTest(
-  formula = rVerbal ~rPatientRace,
-  data = rdfIndSamples,
-  var.equal=TRUE
-)
+rstatix::t_test(rdfIndSamples, rVerbal~rPatientRace, var.equal=TRUE, detailed=TRUE)
+rstatix::cohens_d(rdfIndSamples, rVerbal~rPatientRace, var.equal = TRUE)
 ```
-Not surprisingly, this did not result in a statistically significant result:  $t(12) = 0.095, p = 0.9267, d = 0.051, CI95%[-4.696, 5.123]$. It does show us, though, how power is infuenced by sample size. Holding all else equal, the larger the sample, the more likely we are to have a statistically significant result.
+
+Curiously, our result is still not statistically significant: $t(184) = 1.713, p = 0.088, d = 0.251, CI95[-0.129, 1.832]$. Given the closeness of our means (9.025, 8.173), this makes sense to me. Additionally, it does show us, though, how power is influenced by sample size. Holding all else equal, the larger the sample, the more likely we are to have a statistically significant result.
 
 ## Practice Problems
 
 The suggestions for homework differ in degree of complexity. I encourage you to start with a problem that feels "do-able" and then try at least one more problem that challenges you in some way. Regardless, your choices should meet you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands).
+
+Additionally, please complete at least one set of *hand calculations*, that is using the code demonstrated in the chapter to work through the formulas that compute the independent samples *t*-test that is the focus of this lesson. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest. 
 
 ### Problem #1: Rework the research vignette as demonstrated, but change the random seed
 
@@ -446,7 +546,7 @@ If this topic feels a bit overwhelming, simply change the random seed in the dat
 
 ### Problem #2:  Rework the research vignette, but change something about the simulation
 
-Rework the independent samples *t* test in the lesson by changing something else about the simulation. You might have noticed that my re-simulation of a smaller sample size did not produce a statistically significant result. You may wish to pick a value in between the primary lecture *N* and the re-simulation to see what it takes to achieve statistical significance. Alternatively, you could specify different means and/or standard deviations.
+Rework the independent samples *t*-test in the lesson by changing something else about the simulation. You might have noticed that my re-simulation of a smaller sample size did not produce a statistically significant result. You may wish to pick a value in between the primary lecture *N* and the re-simulation to see what it takes to achieve statistical significance. Alternatively, you could specify different means and/or standard deviations.
 
 ### Problem #3:  Rework the research vignette, but swap one or more variables
 
@@ -454,7 +554,10 @@ Use the simulated data, but select the nonverbal communication variables that we
 
 ### Problem #4:  Use other data that is available to you
 
-Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete an independent samples *t* test. 
+Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete an independent samples *t*-test. 
+
+
+### Grading Rubric
 
 Regardless which option(s) you chose, use the elements in the grading rubric to guide you through the practice.
 
@@ -463,10 +566,24 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |1. Narrate the research vignette, describing the variables and their role in the analysis | 5 |_____  |
 |2. Simulate (or import) and format data |      5            |_____  |           
 |3. Evaluate statistical assumptions     |      5            |_____  |
-|4. Conduct an independent samples *t* test (with an effect size and 95%CIs) |5 | _____  |  
+|4. Conduct an independent samples *t*-test (with an effect size and 95%CIs) |5 | _____  |  
 |5. APA style results with table(s) and figure  |    5  |_____  |       
-|6 Explanation to grader                 |      5        |_____  |
-|**Totals**                              |      30      |_____  |          
+|6. Conduct power analyses to determine the power of the current study and a recommended sample size  |      5        |_____  |
+|7. Explanation to grader                 |      5        |_____  |
+|**Totals**                              |      35      |_____  |          
+
+|Hand Calculations                         | Points Poss   | Points Earned
+|:-----------------------------------------|:-------------:|:--------------|
+|1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses|   2     |               
+|2. Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable | 4  |  |
+|3. Calulate the SE used in the denominator of the *t*-test |4 |  |
+|4. Calculate the independent samples *t*-test| 4 ||
+|5. Identify the degrees of freedom associated with your *t*-test |  2 |               
+|6. Locate the test critical value for your test  |2 |  |
+|7. Is the *t*-test statistically significant? Why or why not? | 2 |  |
+|8. What is the confidence interval around the difference in sample means? |4 |  |
+|9. Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test |4 |  |
+|**Totals* **                                  |     28        |             |
 
 ```{r include=FALSE}
 sessionInfo()

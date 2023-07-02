@@ -45,23 +45,23 @@ Because R is already on my machine (and because the instructions are sufficient)
   + In a separate step, SAVE this document (File/Save] into a NEW FILE FOLDER that will contain anything else you need for your project (e.g., the data).
   + *Packages* are at the heart of working in R. Installing and activating packages require writing script.
  
-**Note** If you have an enterprise-owned machine (e.g,. in my specific context, if you are a faculty/staff or have a lab with institution-issued laptops) there can be complications caused by how documents are stored. In recent years we have found that letting the computer choose where to load base R, R Studio, and the packages generally works. The trick, though, is to save R projects (i.e., folder with .rmd files and data) into the OneDrive folder that syncs to your computer. If you have difficulty knitting that is unrelated to code (verified by getting a classmates or colleague to successfully knit it), it is likely because you have saved the files to the local hard drive and not OneDrive. If you continue to have problems I recommend consulting with your computer and technology support office.
+**Note** If you are working on an *enterprise-owned machine* (e.g,. in my specific context, if you are a faculty/staff or have a lab with institution-issued laptops) there can be complications caused by how documents are stored. In recent years we have found that letting the computer choose where to load base R, R Studio, and the packages generally works. The trick is to save R projects (i.e., folder with .rmd files and data) into the OneDrive folder that syncs to your computer. If you have difficulty knitting that is unrelated to code/script (which you can evaluate by having a classmate or colleague successfully knit on their machine), it is likely because you have saved the files to the local hard drive and not OneDrive. If you continue to have problems I recommend consulting with your computer and technology support office.
  
 ### oRienting to R Studio (focusing only on the things we will be using first and most often)
 
-R Studio is organized around four panes. These can be sized and rearranged to suit your personal preferences.
+R Studio is organized around four panes. These can be re-sized and rearranged to suit your personal preferences.
 
 * Upper right window
   + Environment: lists the *objects* that are available to you (e.g., dataframes)
 * Lower right window
- + *Files*: Displays the file structure in your computer's environment. Make it a practice to (a) organize your work in small folders and (b) navigating to that small folder that is holding your project when you are working on it.
-  + *Packages*: Lists the packages that have been installed. If you navigate to it, you can see if it is "on." You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu. This information opens in the Help window.
+  + *Files*: Displays the file structure in your computer's environment. Make it a practice to (a) organize your work in small folders and (b) navigate to that small folder that is holding your project when you are working on it.
+  + *Packages*: Lists the packages that have been installed. If you navigate to a specific package, you will know if it is "on" because its box is checked. You can also access information about the package (e.g., available functions, examples of script used with the package) in this menu. This information opens in the "Help" window.
   + The *Viewer* and *Plots* tabs will be useful, later, in some advanced statistics when we can simultaneously examine output and script in windows that are side-by-side.
 * Upper left window
   + If you are using R Markdown, that file lives here and is composed of open space and chunks.
 * Lower left window
   + R Studio runs in the Console (the background). Very occasionally, I can find useful troubleshooting information here.
-  + More commonly, I open my R Markdown document so that it takes the whole screen.
+  + More commonly, I open my R Markdown document so that it takes up the whole screen.
 
 ## best pRactices
 
@@ -69,34 +69,34 @@ Many initial problems in R can be solved with good R hygiene. Here are some sugg
 
 ### Everything is documented in the .rmd file
 
-Although others do it differently, I put everything is in my .rmd file. That is, for uploading data I write the code in my .rmd file. For opening packages, I include the package in my script. I also use the .rmd file to make notes about what I was thinking and why I made the choices I did. I also keep a "bug log" -- noting what worked and what did not work. I will also begin my APA style results section directly in the .rmd file.
+Although others do it differently, I put *everything* in my .rmd file. That is, my R script includes code for importing data and opening packages. Additionally, I make notes about the choices I am making. Relatedly, I keep a "bug log" -- noting what worked and what did not work. I will also begin my APA style results section directly in the .rmd file.
 
 Why do I do all this? Because when I return to my project hours or years later, I have a permanent record of very critical things like (a) where my data is located, (b) what version I was using, and (c) what package was associated with the functions.
 
 ### Setting up the file
 
-File organization is a critical key to success:
+File organization is a critical key to success. In your computing environment:
 
 * Create a project file folder.
 * Put the data file in it.
 * Open an R Markdown file.
-* Save it in the same file folder.
-* When your data and .rmd files are in the same folder (not your desktop, but a shared folder) the data can be pulled into the .rmd file without creating a working directory.
+* Save it in the same file folder as the data.
+* When your data and .rmd files are in the same folder (not your desktop, but a specific folder) the data can be pulled into the .rmd file without creating a working directory.
 
 
 ### Script in chunks and everything else in the "inline text" sections
 
 The R Markdown document is an incredible tool for integrating text, tables, and analyses. This entire OER is written in R Markdown. A central feature of this is "chunks."
 
-The only thing in the chunks should be script for running R. You can also hashtag-out comments so they won't run.
+The only thing in the chunks should be script for running R. You can also hashtag comments so they won't run (but you can also write anything you want between chunks without using hashtags).
 
-You can put almost anything you want in the "inline text with simple formatting." Syntax for simple formatting in the text areas (e.g., using italics, making headings, bold) is found here: https://rmarkdown.rstudio.com/authoring_basics.html
+Syntax for simple formatting in the text (i.e., non-chunk) areas (e.g., using italics, making headings, bold) is found here: https://rmarkdown.rstudio.com/authoring_basics.html
 
-"Chunks" start and end with with three tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.
+"Chunks" start and end with with three tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear (and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.
 
 The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #hashtags let me write comments to remind myself what I did
 #here I am simply demonstrating arithmetic (but I would normally be running code)
 2021 - 1966
@@ -104,9 +104,9 @@ The easiest way to insert a chunk is to use the INSERT/R command at the top of t
 
 ### Managing packages
 
-As scientist-practitioners (and not coders), we will rely on *packages* to do much of the work. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, lavaan, apaTables).
+As scientist-practitioners (and not coders), we will rely on *packages* to do much of the work. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, rstatix, apaTables).
 
-Researchers treat packages differently. In these lectures, I list all the packages we will use in an opening chunk at the beginning of the lecture. When the hashtags are removed, the script will ask R to check to see if the package is installed. If it is, installation is skipped. If it is not, R installs it. Simply remove the hashtag to run the code the first time, then hashtag them back out so R is not always re-checking.
+Researchers treat packages differently. In these lectures, I list all the packages we will use in an opening chunk at the beginning of the lecture. When the hashtags are removed, the script will ask R to check to see if the package is installed on your machine. If it is, installation is skipped. If it is not, R installs it. Simply remove the hashtag to run the code the first time, then hashtag them back out so R is not always re-checking.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #will install the package if not already installed
@@ -126,14 +126,14 @@ The second way is to place a double colon between the package and function. This
 #psych::describe(mydata)
 ```
 
-There are exceptions. One is the *tidyverse* package. Some of my script uses pipes (%>%) and they require tidyverse to be activated this is why you will often see me call the tidyverse package with the *library()* function (as demonstrated above.)
+There are exceptions. One is the *tidyverse* package. Some of my script uses pipes (%>%) and pipes require *tidyverse* to be activated. This is why you will often see me call the *tidyverse* package with the *library()* function (as demonstrated above.)
 
 
 ### Upload the data 
 
 When imported (or simulated) properly, data will appear as an object in the global environment. 
 
-In the context of this OER, I will be simulating data right in each lesson for use in the lesson. This makes the web-based platform more *portable.* This means that when working the problems in the chapter we do not (a) write the data to a file and (b) import data from files. Because these are essential skills, I will demonstrate this process here -- starting with simulating data.
+In the context of this OER, I will be simulating data in each lesson for immediate use in the lesson. This makes this web-based OER more *portable.* This also means that when working the problems in the chapter we do notneed to (a) write the data to a file or (b) import data from files. Because these are essential skills, I will demonstrate this process here -- starting with simulating data.
 
 At this point, simulating data is beyond the learning goals I have established for the chapter. I do need to include the code so that we get some data. The data I am simulating is used in the [one-way ANOVA lesson](#oneway). The data is from the Tran and Lee [-@tran_you_2014] random clinical trial. 
 
@@ -221,9 +221,9 @@ Because "ID" is the case ID and COND is the factor (high, low, control), the onl
 
 One of the coolest things about R Markdown is its capacity to *knit* to HTML, PPT, or WORD. 
 
-* In this OER, I am writing the lessons in R markdown (.rmd files), with the package *bookdown* as a helper, and knitting the files to the .html format. In prior years, I knitted these documents to .doc formats. There are numerous possibilities!
+* In this OER, I am writing the lessons in R markdown (.rmd files), with the package *bookdown* as a helper, and knitting the files to .html, .doc, .pdf, and .epub formats. 
 * The package *papaja* is designed to prepare APA manuscripts where the writing, statistics, and references are all accomplished in a single file. This process contributes to replicability and reproducibility.
-* If you are using the PDF or ebook version of this OER you will realize that it is also possible to render to these formats. Albeit slighy more complicated, this is possible, too! More detailed instructions for this are provided in the [extRas](https://lhbikos.github.io/extRas/) mini-volume of [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html).
+* More detailed instructions for knitting to these formats are provided in the [extRas](https://lhbikos.github.io/extRas/) mini-volume of [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html).
 
 ## tRoubleshooting in R maRkdown
 
@@ -237,13 +237,13 @@ Hiccups are normal. Here are some ideas that I have found useful in getting unst
   + The package isn't loaded.
   + The .rmd file hasn't been saved yet, or isn't saved in the same folder as the data.
   + There are errors in punctuation or spelling.
-* Restart R (it's quick -- not like restarting your computer). I like to restart and clear my output and environment so that I can better track my order of operations.
+* Restart R (it's quick -- not like restarting your computer). I frequently restart and clear my output and environment so that I can better track my order of operations.
 * If you receive an error indicating that a function isn't working or recognized, and you have loaded the package, type the name of the package in front of the function with two colons (e.g., psych::describe(df)). If multiple packages are loaded with functions that have the same name, R can get confused.
 
 ## just *why* have we tRansitioned to R?
 
-* It (or at least it appears to be) is the futuRe.
-* SPSS site (and individual) licenses are increasingly expensive and limited (e.g., we need Mplus, AMOS, HLM, or R). As package development for R is exploding, we have tools to "do just about anything."
+* It is (or at least it appears to be) the futuRe.
+* SPSS individual and site licenses are increasingly expensive and limited; that is, Mplus, AMOS, HLM, or R tools may also be needed. As package development for R is exploding, we have tools to "do just about anything."
 * Most graduate psychology programs are scientist/practitioner in nature and include training in "high end" statistics. Yet, many of your employing organizations will not have SPSS. R is a free, universally accessible program, that our graduates can use anywhere.
 
 ## stRategies for success
@@ -251,10 +251,12 @@ Hiccups are normal. Here are some ideas that I have found useful in getting unst
 * Engage with R, but don't let it overwhelm you.
   + The *mechanical is also the conceptual*. Especially while it's *simpler*, do try to retype the script into your own .rmd file and run it. Track down the errors you are making and fix them.
   + If this stresses you out, move to simply copying the code into the .rmd file and running it. If you continue to have errors, you may have violated one of the best practices above (ask, "Is the package activated?" "Are the data and .rmd files in the same place?" "Is all the prerequisite script run?").
-  + Still overwhelmed? Keep moving forward by (retrieving the original.rmd file from the GitHub repository) opening a copy of the .rmd file and just "run it along" with the lecture. Spend your mental power trying to understand what each piece does so you can translate it for any homework assignments. My suggestions for practice aspire to be parallel to the lecture with no sneaky trix.
+  + Still overwhelmed? Keep moving forward by (retrieving the original .rmd file from the GitHub repository) opening a copy of the .rmd file and just "run it along" with the lecture. Spend your mental power trying to understand what each piece does so you can translate it for any homework assignments. My suggestions for practice are intended to be parallel to the lecture with no sneaky trix.
 * Copy script that works elsewhere and replace it with your datafile, variables, and so forth. 
 * The leaRning curve is steep, but not impossible. Gladwell [-@gladwell_outliers_2008] taught us that it takes about 10,000 hours to get great at something (2,000 to get reasonably competent). Practice. Practice. Practice.
-* Updates to R, R Studio, and the packages are necessary, but can also be problematic. Sometimes updates cause programs/script to fail (e.g., "X has been deprecated for version X.XX"). My personal practice is to update R, R Studio, and the packages a week or two before each academic term. I expect that prior scripts may need to be updated or revised with package updates and incongruencies between base R, R Studio, and the packages.
+* Updates to R, R Studio, and the packages are necessary, but can also be problematic. Sometimes updates cause programs/script to fail (e.g., "X has been deprecated for version X.XX"). My personal practice is to update R, R Studio, and the packages a week or two before each academic term. I expect that 
+  + prior scripts may need to be updated or revised with package updates, and 
+  + there will be incongruencies between base R, R Studio, and the packages.
 * Embrace your downward dog. And square breathing. Also, walk away, then come back.
  
 
@@ -278,7 +280,7 @@ LaTeX equation editor: https://www.codecogs.com/latex/eqneditor.php
 
 ## Practice Problems
 
-The suggestions for practice in this lesson are foundational for starting work in R. If you struggle with any of these steps, I encourage you to get consultation from a peer, instructor, or tutor.
+The suggestions for practice in this lesson are foundational for starting work in R. If you struggle with any of these steps, I encourage you to get consultation from a peer, instructor, or a tutor.
 
 |Assignment Component                    | Points Possible   | Points Earned|
 |:-------------------------------------- |:----------------: |:------------:|

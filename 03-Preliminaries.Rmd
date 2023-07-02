@@ -1,6 +1,4 @@
-# Preliminary Analyses {-}
-
-# Preliminary Results {#preliminaries}
+# Preliminary Analyses {#preliminaries}
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=97ec1420-3527-4204-8521-aeff0000afed) 
  
@@ -52,22 +50,23 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 #if(!require(knitr)){install.packages("knitr")}
 #if(!require(ggpubr)){install.packages("ggpubr")}
 #if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(pastecs)){install.packages("pastecs")}
 ``` 
 
 ## Research Vignette
 
 We will use data that has been simulated data from Lui [-@lui_racial_2020] as the research vignette. Controlling for overt discrimination, and neuroticism, Lui examined the degree to which racial microaggressions contributed to negative affect, alcohol consumption, and drinking problems in African American, Asian American, and Latinx American college students (*N* = 713).
 
-Using the means, standard deviations, correlation matrix, and group sizes (*n*) I simulated the data. While the process of simulation is beyond the learning goals of this lesson (you can skip that part), I include it here so that it is easy to work the rest of the script.
+Using the means, standard deviations, correlation matrix, and group sizes (*n*) I simulated the data. Although I provide some narration of what I did, process of simulation is beyond the learning goals of this lesson, so you are welcome to skip it. Simulating data within each chapter makes the lesson more "portable."
 
 ```{r warning=FALSE, message=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 set.seed(210807)#sets the random seed so that we consistently get the same results
-#for practice, you could change (or remove) the random seed and try to interpret the results (they should be quite similar)
-#There are probably more efficient ways to simulate data. Given the information available in the manuscript, my approach was to first create the datasets for each of the racial ethnic groups that were provided and then binding them together.
+#for practice, you could change (or remove) the random seed and try to interpret the results (they should be similar)
+#There are probably more efficient ways to simulate data. Given the information available in the manuscript, my approach was to first create separate datasets for each of the racial ethnic groups and then bind them together.
 
 #First, the data for the students who identified as Asian American
-Asian_mu <- c(1.52, 1.72, 2.69, 1.71, 2.14, 2.35, 2.42)
-Asian_stddev <- c(2.52, 2.04, 0.47, 0.70, 0.80, 2.41, 3.36)
+Asian_mu <- c(1.52, 1.72, 2.69, 1.71, 2.14, 2.35, 2.42) #creating an object containing the means
+Asian_stddev <- c(2.52, 2.04, 0.47, 0.70, 0.80, 2.41, 3.36) # creating an object containing thestandard deviations
 Asian_corMat <- matrix(c(1.00, 0.69, 0.19, 0.28, 0.32,  0.08,  0.23,
                           0.69,  1.00,  0.20,  0.29,  0.33,  0.13,  0.25,
                           0.19,  0.20,  1.00,  0.50,  0.50, -0.04,  0.09,
@@ -75,14 +74,15 @@ Asian_corMat <- matrix(c(1.00, 0.69, 0.19, 0.28, 0.32,  0.08,  0.23,
                           0.32,  0.33,  0.50,  0.76,  1.00,  0.10,  0.21,
                           0.08,  0.13, -0.04,  0.04,  0.10,  1.00,  0.42,
                           0.23,  0.25,  0.09,  0.18,  0.21,  0.42,  1.00),
-                        ncol=7)
-Asian_covMat <- Asian_stddev %*% t(Asian_stddev) * Asian_corMat
+                        ncol=7) # creating an object containing the correlation matrix
+Asian_covMat <- Asian_stddev %*% t(Asian_stddev) * Asian_corMat #creating a covariance matrix from the above objects
 
-Asian_dat <- MASS::mvrnorm(n = 398, mu = Asian_mu, Sigma = Asian_covMat, empirical = TRUE)
-Asian_df <- as.data.frame(Asian_dat)
+Asian_dat <- MASS::mvrnorm(n = 398, mu = Asian_mu, Sigma = Asian_covMat, empirical = TRUE) #creating the dataset 
+Asian_df <- as.data.frame(Asian_dat) #formatting the dataset as a data frame
 
 library(tidyverse)
-Asian_df <- rename(Asian_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7)
+#renaming the variables
+Asian_df <- rename(Asian_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7) 
 
 #set upper and lower bound for each variable
 Asian_df$OvDisc[Asian_df$OvDisc > 16] <- 16
@@ -187,10 +187,11 @@ Latinx_df$drProb[Latinx_df$drProb < 0] <- 0
 
 Latinx_df$RacEth <- "Latinx"
 
+#binding the datasets together
 Lui_sim_df <-bind_rows(Asian_df, Black_df, Latinx_df)
 ```
 
-If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created. In your own research you may wish to save data as a file. Although I will hashtag the code out (making it inoperable until the hashtags are removed), here is script to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we specified in R) files and then bring/import them back into R. For more complete instructions see the [Ready_Set_R](#Ready) lesson.
+If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created. In your own research you will likely work with a datafile stored on your computer. Although I will hashtag the code out (making it inoperable until the hashtags are removed), here is script to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we specified in R) files and then bring/import them back into R. For more complete instructions see the [Ready_Set_R](#Ready) lesson.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #write the simulated data as a .csv
@@ -214,7 +215,7 @@ You may have noticed a couple of things in each of these operations
 * Second, when you run the code, any updating *replaces* the prior object. 
   - While this is irrelevant today (we are saving the same data with different names), it points out the importance of creating a sensible and systematic *order of operations* in your .rmd files and then knowing where you are in the process.
  
-Because the data is simulated, I can simply use the data I created in the simulation, however, I will go ahead and use the convention of renaming it, "df", shich stands for *dataframe* and is the common term for a dataset for users of R.
+Because the data is simulated, I can simply use the data I created in the simulation, however, I will go ahead and use the convention of renaming it, "df", which (in this case) stands for *dataframe* and is the common term for a dataset for users of R. *A quick note: in statistics "df" is also an abbreviation for "degrees of freedom."*
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 df <- Lui_sim_df
@@ -222,28 +223,28 @@ df <- Lui_sim_df
 
 ## Variable Types (Scale of Measurement) 
 
-Starting with raw data always begins with inspecting the data preparing it for the planned analyses. The *type* of variables we have influences what statistics we choose to analyze our data. Further, the data must be formatted as that type in order for the statistic to properly execute. Variable types (or formats) are directly connected to the statistical concept of *measurement scale* (or *scale of measurement*). Researchers often thing of the *categorical versus continuous* distinction, but it's even more nuanced than that. 
+When working with raw data, we begin by inspecting and preparing it for the planned analyses. The *type* of variables we have influences what statistics we will utilize. Further, the data must be formatted as that type in order for the statistic to properly execute. Variable types (or formats) are directly connected to the statistical concept of *measurement scale* (or *scale of measurement*). Researchers often think of the *categorical versus continuous* distinction, but it's even more nuanced than that. 
 
 ### Measurement Scale
 
 **Categorical** variables name *discrete* or *distinct* entities where the categorization has no inherent value or order. When there are two categories, the variable type is **binary** (e.g., pregnant or not, treatment and control conditions). When there are more than two categories, the variable type is **nominal** (e.g., teacher, student, or parent; Republican, Democrat, or Independent).
 
-**Ordinal** variables are technically categorical variables where the score reflects a logical order or relative rank (e.g., the order of finishing in a race). A challenge with the ordinal scale is the inability to determine the distance between rankings. The percentile rank is a (sometimes surprising) example of the ordinal scale. Technically, Likert type scaling (e.g., providing ratings on a 1-to-5 scale) is considered to be ordinal because it is uncertain that the distance between each of the numbers is equal. Practically, though, most researchers treat the Likert type scale as interval. This is facilitated, in part, because most Likert-type scales have multiple items which are averaged into a single score. Navarro[-@navarro_book_2020] terms the Likert a **quasi-interval scale.**
+**Ordinal** variables are also categorical variables where the score reflects a logical order or relative rank (e.g., the order of finishing in a race). A challenge with the ordinal scale is the inability to determine the distance between rankings. The percentile rank is a (sometimes surprising) example of the ordinal scale. Technically, Likert type scaling (e.g., providing ratings on a 1-to-5 scale) is ordinal because it is uncertain that the distance between each of the anchors is equal. Practically, though, most researchers treat the Likert type scale as interval. This is facilitated, in part, because most Likert-type scales have multiple items which are averaged into a single score. Navarro[-@navarro_book_2020] uses the term, **quasi-interval** to describe Likert-type scaling.
 
-**Continuous** variables can take on any value in the measurement scale that is being used. **Interval** level data have equal distances between each unit on the scale. Two classic examples of interval level data are temperature and year. Whether using Fahrenheit or Celsius, the rating of 0 does not mean there is an absence of temperature, rather, it is simply a number along a continuum of temperature. Another interval example is calendrical time. In longitudinal research, we frequently note the date or year (e.g., 2019) of an event. It is highly unlikely that the value zero will appear in our research and if it did, it would not represent the absence of time. A researcher can feel confident that a variable is on the interval scale if the values can be meaningfully added and subtracted.
+**Continuous** variables can take on any value in the measurement scale that is being used. **Interval** level data has equal distances between each unit on the scale. Two classic examples of interval level data are temperature and year. Whether using Fahrenheit or Celsius, the rating of 0 does not mean there is an absence of temperature, rather, it is simply a number along a continuum of temperature. Another interval example is calendrical time. In longitudinal research, we frequently note the date or year (e.g., 2019) of an event. It is highly unlikely that the value zero will appear in our research and if it did, it would not represent the absence of time. A researcher can feel confident that a variable is on the interval scale if the values can be meaningfully added and subtracted.
 
-**Ratio** level data also has equal distances between each unit on the scale, plus it has a true zero point where the zero indicates an absence. Examples are behavioral counts (e.g., cigarettes smoked) and time-on-task (e.g., 90 seconds). Ratio data offers more manipulative power because researchers can add, subtract, multiply, and divide ratio level data.
+**Ratio** level data also has equal distances between each unit on the scale, plus it has a true zero point where the zero indicates absence. Examples are behavioral counts (e.g., cigarettes smoked) and time-on-task (e.g., 90 seconds). Ratio data offers more manipulative power because researchers can add, subtract, multiply, and divide ratio level data.
 
 ### Corresponding Variable Structure in R
 
 With these definitions in mind, we will see if R is reading our variables correctly. R will provide the following designations of variables:
 
-|Abbreviation |Unabbreviated| Used for                                |Scale of Measurement
-|:------------|:------------|:----------------------------------------|:---------------------------------|
-|num          |numerical    |numbers that allow decimals or fractional values|quasi-interval, interval, or ratio|
-|int          |integer      |whole numbers (no decimals)              |quasi-interval, interval, or ratio|
-|chr          |character    |sometimes termed "string" variables, these are interpreted as words|NA| 
-|Factor       |factor       |two or more categories; R imposes an alphabetical order; the user can re-specify the order based on the logic of the design|nominal| 
+|Abbreviation |Unabbreviated | Used for                                |Scale of Measurement
+|:------------|:-------------|:----------------------------------------|:---------------------------------|
+|num          |numerical     |numbers that allow decimals or fractional values|quasi-interval, interval, or ratio|
+|int          |integer       |whole numbers (no decimals)              |quasi-interval, interval, or ratio|
+|chr          |character     |sometimes termed "string" variables, these are interpreted as words|NA| 
+|Factor       |factor        |two or more categories; R imposes an alphabetical order; the user can re-specify the order based on the logic of the design|nominal| 
 
 Looking back at the Lui [-@lui_racial_2020] article we can determine what the scale of measurement is for each variable and what the corresponding R format for that variable should be:
 
@@ -266,8 +267,6 @@ str(df)
 Only Race/Ethnicity needs to be transformed from a character ("chr) variable to a factor. I will use the *mutate()* function in the *dplyr* package to convert the RacEth variable to be a factor with three levels.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-# A .csv file is uninformed -- it just holds data (and R guesses what it is); 
-#respecifying the type of variable will likely need to be completed each time the file is used.
 library(tidyverse)
 df <- df %>%
     dplyr::mutate(
@@ -280,7 +279,6 @@ Let's check the structure again. Below we see that the RacEth variable is now a 
 #checking the structure of the data
 str(df)
 ```
-It is possible to work with this data without restructuring them into a "tiny df." However, this function is often one of the first skills we want to use so I will demonstrate it here.
 
 ## Descriptive Statistics
 
@@ -290,8 +288,8 @@ Our research vignette contains a number of variables. Lui [-@lui_racial_2020] wa
 
 As we begin to explore the descriptive and distributional characteristics of this variable, it may be helpful to visualize it through a histogram.
 
-```{r}
-ggpubr::gghistogram(df$nAff, xlab="Negative Affect", ylab = "Frequency", add = "mean", rug=TRUE, color = "#00AFBB")
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), warning=FALSE}
+ggpubr::gghistogram(df$nAff, xlab="Negative Affect", ylab = "Frequency", add = "mean", rug=TRUE, color = "#00AFBB", title = "Frequencies of Negative Affect")
 ```
 
 ### Measures of Central Tendency
@@ -303,9 +301,9 @@ Describing data almost always begins with *measures of central tendency*:  the m
 The **mean** is simply a mathematical average of the non-missing data. The mathematical formula is frequently expressed this way:
 
 $$\bar{X} = \frac{X_{1} + X_{2} + X_{3}...+ X_{N}}{N}$$
-Because such a formula is clumsy to write, there is statistical shorthand to help us convey it more efficiently (not necessarily, more easily).
+Because this formula is clumsy to write, there is statistical shorthand to help us convey it more efficiently (not necessarily, more easily).
 
-Placing information below (where to start), above (where to stop), and to the right (what data to use) of the summation operator ($\sum$), provides instructions about the nature of the data. In the formula below, we learn from the notation to the right that we use the individual data in the vector X. We start with the first piece of data (*i* = 1) and stop with the *Nth* (or last) case. 
+Placing information below (where to start), above (where to stop), and to the right (what data to use) of the summation operator ($\sum$), provides information about the nature of the data. In the formula below, we learn from the notation to the right that we use the individual data in the vector X. We start with the first piece of data (*i* = 1) and stop with the *Nth* (or last) case. 
 
 $$\sum_{i=1}^{N}X_{i}$$ 
 The $\frac{1}{N}$ notation to the left tells us that we are calculating the mean.
@@ -327,7 +325,7 @@ I can use the base R function *mean()*. Inside the parentheses I point to the da
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 mean(toy$toy, na.rm=TRUE)
 ```
-Because of my simulation, we have no missing values, none-the-less, it is, perhaps a good habit to include the *na.rm=TRUE* specification in our code. Because we have an entire dataframe, we just point to the dataframe and the specific variable.
+In my simulation of the research vignette, we have no missing values, none-the-less, it is, perhaps a good habit to include the *na.rm=TRUE* specification in our code. Because we have an entire dataframe, we just point to the dataframe and the specific variable (i.e., negative affect).
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 mean(df$nAff, na.rm=TRUE)
@@ -343,11 +341,11 @@ The middle value in a set of values is the **median**. The easiest way to calcul
 
 And select the middle value. Because we have an odd number of values (*N* = 5), our median is 2. If we had an even number of values, we would take the average of the middle two numbers.
 
-We can use a base R function to calculate the median for us:
+We can use a base R function to calculate the median for us. Let's do it first with the toy data:
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 median(toy$toy, na.rm=TRUE)
 ```
-Let's also calculate it for our negative affect variable.
+Let's also calculate it for the negative affect variable from the research vignette.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 median(df$nAff, na.rm=TRUE)
 ```
@@ -382,12 +380,13 @@ lsr::modeOf(df$nAff, na.rm=TRUE)
 ```
 In our research vignette, the mean (1.81) is higher than the median (1.75) is higher than the mode (1.0).  This would suggest a positive skew. Here is a reminder of our histogram:
 
-```{r}
-ggpubr::gghistogram(df$nAff, xlab="Negative Affect", ylab = "Frequency", add = "mean", rug=TRUE, color = "#00AFBB")
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), warning=FALSE}
+ggpubr::gghistogram(df$nAff, xlab="Negative Affect", ylab = "Frequency", add = "mean", rug=TRUE, color = "#00AFBB", title = "Frequencies of Negative Affect")
 ```
+
 ## Variability
 
-Researchers are equality interested in the spread or dispersion of the scores.
+Researchers are critically interested in the spread or dispersion of the scores.
 
 ### Range
 
@@ -411,7 +410,7 @@ One limitation of the range is that it is easily influenced by extreme scores.
 
 ### Percentiles, Quantiles, Interquartile Range
 
-The **interquartile range** is middle 50% of data, or the scores that fall between 25th and 75th percentiles. Before calculating that, let's first define **quantiles** and **percentiles**.  **Quantiles** are values that split a data into equal portions. **Percentile** divide the data into 100 equal parts. Percentiles are commonly used in testing and assessment. You may have encountered them in standardized tests such as the SAT and GRE where both the score obtained and its associated percentile are reported. When graduate programs evaluate GRE scores, depending on their criteria and degree of competitiveness they may set a threshold based on percentiles (e.g., using a cut of of the 50th, 75th, or higher percentile for the verbal or quantitative GRE scores).
+The **interquartile range** is middle 50% of data, or the scores that fall between 25th and 75th percentiles. Before calculating that, let's first define **quantiles** and **percentiles**.  **Quantiles** are values that split a data into equal portions. **Percentiles** divide the data into 100 equal parts. Percentiles are commonly used in testing and assessment. You may have encountered them in standardized tests such as the SAT and GRE where both the score obtained and its associated percentile are reported. When graduate programs evaluate GRE scores, depending on their criteria and degree of competitiveness they may set a threshold based on percentiles (e.g., using a cut of of the 50th, 75th, or higher percentile for the verbal or quantitative GRE scores).
 
 We have already learned the value of the median. The median is also the 50th percentile. We can now use the *quantile()* function and indicate we want the value at the 50% percentile.
 
@@ -466,7 +465,7 @@ A first step in understanding mean deviation is to ask, "How far does each indiv
 First, I will create a variable representing the mean:
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #Dissecting the script, 
-#each variable is referenced by df_name$variable_name
+#each variable is referenced by df_nameDOLLARSIGNvariable_name
 toy$mean <- mean(toy$toy, na.rm=TRUE)
 head(toy)#displays the first 6 rows of the data
 ```
@@ -523,7 +522,7 @@ Although relatively intuitive, the absolute mean deviation is not all that usefu
 
 ### Variance
 
-Variance is considered to be an *average* dispersion calculated by summing the squared deviations and dividing by the number of observations (less 1; more on that in later lessons).
+Variance is considered to be an *average* dispersion calculated by summing the squared deviations and dividing by the number of observations (minus 1; more on that in later lessons).
 
 Our next step is to square the mean deviations. This value is also called the *sum of squared errors*, *sum of squared deviations around the mean*, or *sums of squares* and is abbreviated as *SS*. Below are common statistical representations:
 
@@ -569,9 +568,9 @@ sum(df_nAff$NAmd2, na.rm=TRUE)#sum of squared deviations
 Our sums of squared deviations around the mean is 283.44. When we divide it by *N* - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the *var()* function.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-283.44/(713-1)
-sum(df_nAff$NAmd2, na.rm=TRUE)/((nrow(df_nAff)-1))#variance
-var(df_nAff$nAff)
+283.44/(713-1)# calculating with the individual pre-calculated values
+sum(df_nAff$NAmd2, na.rm=TRUE)/((nrow(df_nAff)-1))#calculated with steps from separate R code
+var(df_nAff$nAff) #calculated using the base R function
 ```
 Unfortunately, because the mean deviations were squared, this doesn't interpret well. Hence, we move to the *standard deviation*.
 
@@ -633,9 +632,9 @@ sqrt(nAff_var)
 sd(df_nAff$nAff)
 ```
 
-In APA Style we use *M* and *SD* as abbreviations for mean and standard deviation, respectively. In APA Style, non-Greek statistical symbols such as these are italicized. Thus we could include *M* = 1.81(*SD* = 0.63) in a statistical string of results.
+In APA Style we use *M* and *SD* as abbreviations for mean and standard deviation, respectively. In APA Style, non-Greek statistical symbols such as these are italicized. Thus we would write *M* = 1.81(*SD* = 0.63) in a statistical string of results.
 
-We can examine the standard deviation in relation to its mean to understand how narrowly or broadly the data is distributed. Relative to a same-sized mean, a small standard deviation means that the mean represents the data well. A larger standard deviation, means there is more variability and the mean, alone, is a less valid representation of the score.  
+We can examine the standard deviation in relation to its mean to understand how narrowly or broadly the data is distributed. Relative to a same-sized mean, a small standard deviation means that the mean represents the data well. A larger standard deviation, conveys that there is greater variability and the mean, alone, is a less valid representation of the score.  
 
 In later lessons we will explore the standard deviation in more detail -- learning how we can use it in the determination of the significance and magnitude of relations and differences.
 
@@ -643,37 +642,7 @@ In later lessons we will explore the standard deviation in more detail -- learni
 
 Statistics that we use are accompanied by assumptions about the nature of variables in the dataset. A common assumption is that the data are *normally distributed*. That is, the data presumes a standard normal curve. 
 
-Skew and kurtosis are indicators of non-normality. Skew refers to the degree to which the data is symmetrical. In the figure below, the symmetrical distribution in the center (the black line) would have no skewness. In contrast, the red figure whose curve (representing a majority of observations) in the left-most part of the graph (with the tail pulling to the right) would be positively skewed; the blue figure whose curve (representing a majority of cases) is in the right-most part of the graph (with the tail pulling to the left) would be negatively skewed.
-
-
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70) , echo=FALSE}
-curve(dbeta(x,10,10), xlim=c(0,1), lwd=3)
-curve(dbeta(x,2, 5), add=T, col='red',lwd=3)
-curve(dbeta(x,5,2), add=T, col='blue',lwd=3)
-legend(par('usr')[2], par('usr')[4], xjust=1,
-       c('normal', 'positive skew', 'negative skew'),
-       lwd=c(3,3,1), lty=1,
-       col=c(par('fg'),'red','green'))
-title("Skew")
-```
-Kurtosis refers to the degree to which the distribution of data is flat or peaked. Mesokurtic distributions are considered to be closest to normal. Leptokurtic distributions are peaked and platykurtic distributions are flat.
-
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70) , echo=FALSE}
-#curve(dbeta(x,10,2), xlim=c(0,1), lwd=3)
-curve(dbeta(x,10,10), xlim=c(0,1), lwd=3)
-curve(dbeta(x,5, 5), add=T, col='red',lwd=3)
-curve(dbeta(x,2,2), add=T, col='blue',lwd=3)
-legend(par('usr')[2], par('usr')[4], xjust=1,
-       c('leptokurtic', 'mesokurtic', 'platykurtic'),
-       lwd=c(3,3,1), lty=1,
-       col=c(par('fg'),'red','green'))
-title("Kurtosis")
-```
-The *describe()* function in the *psych* package is one of the most common ways to obtain information on skew and kurtosis, as well as other descriptive information.
-
-For just a quick view, call the psych package, add two colons, use the *describe()* function, and indicate the df.
-
-For a simplified presentation, let me create a df with three variables of interest.
+For a streamlined presentation, let me create a df with three, continuously scaled, variables of interest.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #I have opened the tidyverse library so that I can use the pipe
@@ -681,39 +650,97 @@ library(tidyverse)
 df_3vars <- df%>%dplyr::select(nAff, mAggr, drProb)
 ```
 
+### Skew and Kurtosis
+
+Skew and kurtosis are indicators of non-normality. Skew refers to the degree to which the data is symmetrical. In the figure below, the symmetrical distribution in the center (the black line) has no apparent evidence of skew. In contrast, the red figure whose curve (representing a majority of observations) in the left-most part of the graph (with the tail pulling to the right) is positively skewed; the blue figure whose curve (representing a majority of cases) is in the right-most part of the graph (with the tail pulling to the left) is negatively skewed. 
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70) , echo=FALSE}
+curve(dbeta(x,10,10), xlim=c(0,1), lwd=3, yaxt="n", ylab="", xlab="", xaxt="n")
+curve(dbeta(x,2, 5), add=T, col='red',lwd=3, yaxt="n", ylab="", xlab="", xaxt="n")
+curve(dbeta(x,5,2), add=T, col='blue',lwd=3, yaxt="n", ylab="", xlab="", xaxt="n")
+legend(par('usr')[2], par('usr')[4], xjust=1,
+       c('normal', 'positive skew', 'negative skew'),
+       lwd=c(3,3,1), lty=1,
+       col=c(par('fg'),'red','green'))
+title("Positive, Normal, and Negative Skew")
+```
+Kurtosis refers to the degree to which the distribution of data is flat or peaked. Mesokurtic distributions are considered to be closest to normal. Leptokurtic distributions are peaked and platykurtic distributions are flat. As we will learn as we progress, visual observation of data is a legitimate component in evaluating skew and kurtosis.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70) , echo=FALSE}
+curve(dbeta(x,10,10), xlim=c(0,1), lwd=3, yaxt="n", ylab="", xlab="", xaxt="n")
+curve(dbeta(x,5, 5), add=T, col='red',lwd=3, yaxt="n", ylab="", xlab="", xaxt="n")
+curve(dbeta(x,2,2), add=T, col='blue',lwd=3, yaxt="n", ylab="", xlab="", xaxt="n")
+legend(par('usr')[2], par('usr')[4], xjust=1,
+       c('leptokurtic', 'mesokurtic', 'platykurtic'),
+       lwd=c(3,3,1), lty=1,
+       col=c(par('fg'),'red','green'))
+title("Kurtosis: Platykurtic, Mesokurtic, Leptokurtic")
+```
+There have been numerous approaches to calculating and interpreting skew and kurtosis. Consequently, different statistics packages calculate skew and kurtosis differently. The *psych* package (a go-to-for a variety of tasks) offers three different options for calculating skew and kurtosis. These are specified in the script as "type=#" (i.e., 1, 2, or 3 [the default]). Revelle [-@revelle_introduction_2021] refers readers to Joanes and Gill's [-@joanes_comparing_1998] article for detailed information about each. A very helpful resource to understand skew, kurtosis, and its interpretation is found in chapter four (Data Preparation and Psychometrics Review) of Kline's [-@kline_data_2016] SEM text is helpful in the interpretation of skew and kurtosis. Summarizing by simulation studies for structural equation modeling (i.e., multivariate statistics that are generally characterized as large sample studies using maximum likelihood estimation), Kline suggested that *type=1* skew  values greater than the absolute value of 3.0 are "severely" skewed. Regarding *type=1* kurtosis, Kline noted the literature has suggested that values from 8.0 to 20.0 have been described as severely kurtotic. As an interpretive framework, Kline suggested that absolute values greater than 10.0 are problematic and values greater than 20 are serious. He added that this rule-of-thumb errs on the conservative side. 
+
+The *psych::describe* specification of "type=1" results in the *skew index* and *kurtosis index*. For simplicity sake, I will refer to this specific variation of skew and kutosis as "type=1." This is a very quick way to obtain initial values.
+
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-psych::describe(df_3vars)
+psych::describe(df_3vars, type=1)
 ```
 
-If you will be needing to create a table of information in another application such as Word or Excel, save your descriptives as an object and then write them to a .csv file.
+Using Kline's [-@kline_data_2016]  guidelines for evaluation, a quick review of the type=1 output indicates that no skew value exceeded the absolute value of 3.0. That is, across the nAff, mAggr, and drProb variables the highest type=1 skew value was 0.93  Regarding kurtosis, no value had a greater magnitude then .59 and all fell below the absolute value of 10. A limitation of the type=1 output and Kline's interpretative guidelines is that the simulation studies that led to the interpretive guidelines were based on structural equation modeling. These statistics are multivariate in nature, they typically use maximum likelihood estimators, and are based on large samples.
+
+An alternative tool for identifying distributions that are severely skewed or kurtotic is the "skew.2SE" and "kurt.2SE" output from *pastecs::stat.desc*. 
+
+These values represent the type=1 skew (or kurtosis) value divided by two-times its respective standard error (i.e., the standard error of the skew or kurtosis distribution, not the *se* value associated with the variable). The result is a standardized value that, on its own, indicates statistical significance. In the case of skew.2SE and kurt2SE, values of 1 (*p* < .05), 1.29 (*p* < .01), and 1.65 (*p* < .001) represent statistically significant departures from symmetry (skew) and normal peakedness (kurtosis). Unfortunately, this tool is not without criticism. 
+
+$skew.2SE = \frac{S-0}{2*SE_{skewness}}$ and $kurt.2SE = \frac{S-0}{2*SE_{kurtosis}}$
+
+The skew.2SE and kurt.2SE values can be obtained with *pastecs::stat.desc* by adding the "norm = TRUE" statement. 
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-LuiDescripts <- psych::describe(df_3vars)
-write.csv (LuiDescripts, file="LuiDescripts.csv")
-#Once you create an object, the result won't automatically display; to see it simply type the name of the object
-LuiDescripts
+pastecs::stat.desc(df_3vars, norm=TRUE)
 ```
-To understand whether our data is normally distributed, we can look at skew and kurtosis.The skew and kurtosis indices in the *psych* package are reported as *z* scores. Positive skew values indicate positive skew; negative skew values represent negative skew. Skew values greater than 3.0 are generally considered to be "severely skewed" [@kline_principles_2016].
 
-Regarding kurtosis, positive values indicate the distribution is somewhat more peaked than a normal distribution (i.e., more leptokurtic); negative values indicate the distribution is flatter than a normal distribution (i.e., more platykurtic).  Regarding kurtosis, "severely kurtotic" is argued anywhere > 8 to 20 [@kline_principles_2016]. 
+Statisticians have noted that these standardized values are quite sensitive to sample size [@field_discovering_2012; @kline_data_2016]. In large samples even minor deviations from normality may appear as statistically significant. In contrast, small samples with lower power may be severely non-normal, but skew and kurtosis could go undetected. When sample sizes are smaller, using the 1.96 (or "2") criteria is acceptable in determining a significant skew or kurtosis, however, as the sample size increases, the probability of rejecting the hypothesis that skew (or kurtosis) also zero increases. Field [-@field_discovering_2012] noted that in such cases it is appropriate to relax the standard and evaluate skew or kurtosis against the 1.29 (*p* < .01) criteria. Further, when samples are larger than 200, it may be more appropriate to abandon the interpretation of the *z*-values and, instead, examine the shape of the distribution rather than to interpret these standardized values. 
 
-The values for all the variables in the research vignette are well below the regions of concern indicated by Kline [-@kline_principles_2016]
+Comparing the skewness and kurtosis type=1 values to the skew.2SE and kurt.2SE values, we can see the interpretive challenges.
+
+
+|Variable    |skewness  |skew.2SE  |kurtosis  |kurt.2SE
+|:-----------|:--------:|:--------:|:--------:|:--------:|
+|nAff        |0.575     |3.141***  |-0.176    |-0.481    |           
+|mAggr       |0.926     |5.059***  |0.575     |1.572**   |
+|drProb      |0.783     |4.278***  |-0.168    |-0.460    |
+
+Values in the "skewness" column are concerning when they are exceed the absolute value of 3.0; none are. Values in the "skew.2SE" column are statistically significant at $p < .001$ when they exceed 1.65. Here, the two approaches to interpreting skew both suggest positive skew (i.e., heavy distribution in the left with a long tail to the right), but only the "skew.2SE" results suggest that the degree of skewness is significant/concerning.
+
+Regarding kurtosis, values in the "kurtosis" column become concerning when they exceed  the absolute value of 10; none are. Values in the "kurt.2SE" become statistically significant when they exceed 1.0. The mAggr variable's value of 1.572 is statistically significant at $p < .01$.
+
+So how do we think about skewness and kurtosis in our data? First, I simulated a dataset with more than 700 cases. This far exceeds the "large" sample size of 200. Therefore, interpreting the type 1 skewness and kurtosis values according to Kline's [-@kline_data_2016]  criteria of less than the absolute values of 3 and 10, respectively, is probably most appropriate. Further, skewness and kurtosis are only two dimensions of assessing whether or not a distribution is normally distributed. Thus, I will keep these results in mind as I examine additional metrics (especially when we look at histograms with superimposed curve).
+
+In this OER, I will predominantly use the type=1 output from the *psych::describe* package and use Kline's [-@kline_data_2016]  interpretive criteria.  I do think the "skew.2SE" and "kurt.2SE" metrics can be useful when sample sizes are smaller (perhaps $N = 100$ or less) and ordinary least squares (such as used in ANOVA and regression models) statistics will be utilized. In any case, if I have significant concerns about normality, I always return to more extensive and authoritative sources to make my decisions about preparing my data for analysis.
+
+### Shapiro-Wilk Test of Normality
+
+In addition to skew and kurtosis, there are formal statistical tests that evaluate whether or not our data is statistically significantly different than a normal distribution. One of those is the Shapiro-Wilk test of normality. The output we obtained from *pastecs::stat.desc* included the Shapiro-Wilk test value and the associated *p* value. When $p < .05$, our data is statistically significantly different from a normal distribution.
+
+In our simulated data, all variables were statistically significantly different than a normal distribution ($nAff: W = 0.948, p < .001; mAggr: W = 0.913, p < .001; drProb: W = 0.900, p < .001$). 
+
+Just because data is skewed, kurtotic, or non-normally distributed does not (necessarily) mean that we cannot use it. As we move through the lessons in this OER we will evaluate the quality of the data according to the statistical assumptions associated with the statistic we are using. Often there are tools that we can use (e.g., variations of the statistic that are robust to violations of assumptions, deleting univariate or multivariate outliers) in spite of our data characteristics.
 
 ## Relations between Variables
 
-Preliminary investigation of data almost always includes a report of their bivariate relations, or correlations. Correlation coefficients express the magnitude of relationships on a scale ranging from -1 to +1. A correlation coefficient of 
+Preliminary investigation of data almost always includes a report of their bivariate relations. Correlation coefficients express the magnitude of relationships on a scale ranging from -1 to +1. A correlation coefficient of 
 
 * -1.0 implies a 1:1 inverse relationship, such that for every unit of increase in variable A, there is a similar decrease in variable B,
 * 0.0 implies no correspondence between two variables,
 * 1.0 implies that as A increases by one unit, so does B.
 
-Correlation coefficients are commonly represented in two formulas. In a manner that echoes the calculation of *variance*, the first part of the calculation estimates the covariation (i.e., *covariance*) of the two variables of interest. The problem is that the result is unstandardized and difficult to interpret. 
+Correlation coefficients are commonly represented in two formulas. In a manner that echoes the calculation of *variance*, the first part of the calculation estimates the covariation (i.e., *covariance*) of the two variables of interest. 
 
 $$
 \mbox{Cov}(X,Y) = \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right) \left( Y_i - \bar{Y} \right)
 $$
 
-The second significant calculation results in the standardization of the metric in the -1 to +1 scale.
+The problem is that the result is unstandardized and difficult to interpret. Therefore, the second part of the calculation of the correlation coefficient results in the standardization of the metric in the -1 to +1 scale.
 $$
 r_{XY}  = \frac{\mbox{Cov}(X,Y)}{ \hat{\sigma}_X \ \hat{\sigma}_Y}
 $$
@@ -724,16 +751,18 @@ Examining the first formula, some parts should look familiar:
 * $(X_i - \bar{X})$: We can see that we need to subtract the mean from the first(X) variable in involved in the correlation; we saw this when we calculated *mean deviations*. 
 * $(Y_i - \bar{Y})$: We repeat the *mean deviation* process for the second (Y) variable.
 
-Let's work this much of the problem. So that we can more easily see what we are doing with the variables, I will create a super tiny dataframe with the two variables of interest (negative affect and microaggressions):
+Let's work step-by-step through the calculation of a correlation coefficient. So that we can more easily see what we are doing with the variables, I will create a super tiny dataframe with the two variables of interest (negative affect and microaggressions):
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#just in case it turned off, I'm reopening tidyverse so that I can use the pipe ($>$)
+#just in case it turned off, I'm reopening tidyverse so that I can use the pipe 
 library(tidyverse) 
 #using the dplyr package to select the two variables in this tiny df
 df4corr <- df%>%dplyr::select(nAff, mAggr)
 #displaying the first 6 rows of df4corr ("dataframe for correlations" -- I made this up)
 head(df4corr)
 ```
+
+First we calculate the mean deviations for negative affect and microaggressions.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #calculating the mean deviation for negative affect
@@ -743,7 +772,7 @@ df4corr$MDmAggr <- df4corr$mAggr - mean(df4corr$mAggr)
 #displaying the first 6 rows of df4corr 
 head(df4corr)
 ```
-The next part of the formula $\sum_{i=1}^N \left( X_i - \bar{X} \right) \left( Y_i - \bar{Y} \right)$ suggests that we sum the cross-products of these mean deviations. That is, first we multiply the mean deviations and then sum them.
+The next part of the formula $\sum_{i=1}^N \left( X_i - \bar{X} \right) \left( Y_i - \bar{Y} \right)$ suggests that we sum the cross-products of these mean deviations. Here we multiply the mean deviations to create the "cross-product." 
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #Creating a crossproduct variabl by multiplying negative affect by psych distress
@@ -756,17 +785,18 @@ Next, we sum the column of cross-products.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 sum(df4corr$crossproductXY)
 ```
-To obtain the covariance, adding the next part of the formula suggests that we multiply the sum of cross-products $\frac{1}{N-1}$. I will do this in one step. 
+To obtain the covariance, the next part of the formula suggests that we multiply the sum of cross-products by $\frac{1}{N-1}$. I will do this in one step. 
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #I have created the object "cov" so I can use it in a calculation, later
+#The "nrow" function will count the number of rows and use that value
 cov <- 1/(nrow(df4corr) - 1)* sum(df4corr$crossproductXY)
 #Because I created an object, R markdown won't automatically display it; I have to request it by listing it
 cov
 ```
 The covariance between negative affect and psychological distress is 0.373.
 
-We now engage the second part of the formula to standardize it.
+We now move to the second part of the formula to create the interpretable, standardized, correlation coefficient.
 
 $$
 r_{XY}  = \frac{\mbox{Cov}(X,Y)}{ \hat{\sigma}_X \ \hat{\sigma}_Y}
@@ -776,9 +806,9 @@ We will use our covariance value in the numerator. The denominator involves the 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 cov/(sd(df4corr$nAff)*sd(df4corr$mAggr))
 ```
-Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? That really depends on what you are studying. The traditional values of .10, .30, and .50 are used as small, medium, and large [@cohen_applied_2003]. Hence, when *r* = 0.27, we can say that it is (more-or-less) medium.
+Our results suggest that the relationship between negative affect and psychological distress is positive, as one increases so does the other. Is it strong? This really depends on your field of scholarship. The traditional values of .10, .30, and .50 are interpreted as small, medium, and large [@cohen_applied_2003]. Hence, when *r* = 0.27, we can say that it is (more-or-less) medium.
 
-Is it statistically significant?  Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the *cor.test()* function in base R to check our math and retrieve the *p* value associated with the correlation coefficient.
+Is it statistically significant?  Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the *cor.test()* function in base R to check our prior math and retrieve the *p* value associated with the correlation coefficient.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 cor.test(df4corr$nAff, df4corr$mAggr)
@@ -787,7 +817,7 @@ In a statistical string we would report the result of this Pearson correlation c
 
 ## Shortcuts to Preliminary Analyses
 
-Unless you teach statistics (or take another statistics class), you may never need to work through all those individual steps again. Rather, a number of R packages make retrieval of these values simple and efficient.  
+Unless you teach statistics (or take another statistics class), you may never need to work through all those individual steps again. Rather, a number of R packages make retrieval of these values relatively simple and efficient.  
 
 ### SPLOM
 
@@ -797,7 +827,7 @@ The *pairs.panels()* function in the *psych* package produces a SPLOM (i.e., sca
 * scatterplots of each bivariate combination of variables (located below the diagonal), and
 * corrrelation coefficients of each bivariate combination of variables (located above the diagonal).
 
-To provide a simple demonstration this, I will use our df with three variables of interest:
+To provide a simple demonstration this, I will use our df with the three continuously scaled variables of interest:
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #in the code below, psych points to the package
@@ -808,19 +838,19 @@ psych::pairs.panels(df_3vars, pch = ".")
 ```
 What do we observe?
 
-* There is a more-or-less moderate correlation between negative affect and microaggressions (*r* = 0.27)
-* There is a small-to-moderate correlation between negative affect and drinking problems (*r* = 0.18)
-* There is a small correlation between microaggressions and drinking problems (*r* = 0.09)
-* All variables have a positive skew (with pile-up of scores on the lower end and tail pulling to the right)
+* There is a more-or-less moderate correlation between negative affect and microaggressions ($r = 0.27$)
+* There is a small-to-moderate correlation between negative affect and drinking problems ($r = 0.18$)
+* There is a small correlation between microaggressions and drinking problems ($r = 0.09$)
+* All variables have a positive skew (with pile-up of scores on the lower end and tail pulling to the right); this is consistent with the values we calculated earlier
 * The scatterplots can provide clues to relations that are not necessarily linear. 
   - Look at the relationship between negative affect and drinking problems. As negative affect hits around 2.75, there is a change in the relationship, such that drinking problems increase. 
   - Taking time to look at plots such as these can inform subsequent analyses. 
  
 ### apaTables
 
-Writing up an APA style results section frequently involves tables. A helpful package for doing this is *apaTables*. An instructional article notes the contributions of tools like this contributing to the *reproducibility* of science by reducing errors made when the author or analyst retypes or copies text from output to the manuscript. When the R script is shared through an open science framework, reproducibility is further enhanced [@stanley_reproducible_2018].
+Writing up an APA style results section frequently involves tables. A helpful package for doing this is *apaTables*. An instructional article notes the contributions of tools like this to the *reproducibility* of science by reducing errors made when the author or analyst retypes or copies text from output to the manuscript. When the R script is shared through an open science framework, reproducibility is further enhanced [@stanley_reproducible_2018].
 
-We pass the desired df to the *apa.cor.table()* function of the *apaTables* package. Commands allow us to specify what is included in the table and whether it should be displayed in the console or saved as a document to the project's folder.
+We pass the desired df to the *apaTables::apa.cor.table*. Commands allow us to specify what is included in the table and whether it should be displayed in the console or saved as a document to the project's folder.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #the apa.cor.table function removes any categorical variables that might be in the df
@@ -836,25 +866,27 @@ Because I added: *filename = "Table1_Cor.doc"*, a word version of the table will
 
 The statistics used in this lesson are often presented in the preliminary results portion of an empirical manuscript. Some of the results are written in text and some are presented in tables.  APA Style recommends that the narration of results not duplicate what is presented in the tables. Rather, the write-up only highlights and clarifies what is presented in the table(s).
 
-At the outset, let me note that a primary purpose of the Lui [-@lui_racial_2020] article was to compare the relations of variables between three racial/ethic groups in the U.S. identified as Asian American, Black, and Latinx. Because we did not run separate analyses for each of the groups, my write-up does not make these distinctions. I highly recommend that you examine the write-up of results and the accompanying tables in Lui's article. The presentation is clear and efficient (i.e., takes up as little space as possible).
+At the outset, let me note that a primary purpose of the Lui [-@lui_racial_2020] article was to compare the relations of variables between three racial/ethic groups in the U.S. identified as Asian American, Black, and Latinx. Because we did not run separate analyses for each of the groups, my write-up does not make these distinctions. I highly recommend that you examine the write-up of results and the accompanying tables in Lui's article. The presentation is clear and efficient (i.e., it conveys maximal information in as little space as possible).
 
 Below is an example of how I might write up these preliminary results:
 
 **Preliminary Results**
 
->Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Visual inspection of the three variables of interest (negative affect, microaggressions, drinking problems) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that the correlation between negative affect and microaggressions was moderate (*r* = 0.27); correlations between remaining variables were smaller.
+>Our sample included 713 participants who self-identified as Asian American, Black/African American, and Latinx American. Inspection of the characteristics of the three variables of interest (negative affect, microaggressions, drinking problems) indicated that all variables were positively skewed, however the values of skew and kurtosis did not exceed commonly used thressholds of concern [@kline_data_2016]. In contrast, Shapiro-Wilk tests of normality suggested that the distribution of all three variables were statistically significantly different than a normal distribution ($nAff: W = 0.948, p < .001$; $mAggr: W = 0.913, p < .001$; $drProb: W = 0.900, p < .001$). Means, standard deviations, and a correlation matrix are presented in Table 1. We noted that the correlation between negative affect and microaggressions was moderate $(r = 0.27)$; correlations between remaining variables were smaller.
 
 ## Practice Problems
 
 The three exercises described below are designed to "meet you where you are" and allow you to challenge your skills depending on your goals as well as your comfort with statistics and R.
 
-Regardless which you choose, you should:
+Regardless which you choose, work one or more of the problems with R packages:
 
-* Create a smaller df from a larger df selecting only continuously scaled variables
-* Calculate and interpret descriptives
+* Create a smaller df from a larger df selecting a minimum of three continuously scaled variables
+* Calculate and interpret descriptive statistics
 * Create the SPLOM (pairs.panels)
 * Use the *apaTables* package to make an APA style table with means, standard deviations, and correlations
-* Write up an APA Style results section for these preliminary analyses
+* Write an APA Style results section for these preliminary analyses
+
+Additionally, please complete at least one set of *hand calculations*, that is using the code demonstrated in the chapter to work through the formulas that compute the descriptive statistics that are the focus of this lesson. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.  
 
 ### Problem #1: Change the Random Seed
 
@@ -868,19 +900,34 @@ Use the simulated data from the Lui [-@lui_racial_2020] study. However, select t
 
 Use data for which you have permission and access. This could be IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; or data from other chapters in this OER.
 
-### Grading Rubric
+### Grading Rubrics
 
-Regardless which option(s) you chose, use the elements in the grading rubric to guide you through the practice.
+Regardless which option(s) you chose, use the elements in the grading rubrics to guide you through the practice. Worked examples are provided in the [Appendix]({#woRked}).
 
-|Element                                  | Points Poss   | Points Earned
-|:----------------------------------------|:-------------:|:--------------|
-|1. Create a df with 3 continuously scaled variables of interest|   3     |               | 
+
+|Working the problem with R and R packages | Points Poss   | Points Earned
+|:-----------------------------------------|:-------------:|:--------------|
+|1. Create a df with 3 continuously scaled variables of interest|   3     |               
 |2. Produce descriptive statistics          |      3        |             |
 |3. Produce SPLOM/pairs.panels              |      3        |             |
 |4. Produce an apaTables matrix             |      3        |             |
-|5. Produce an APA Style write-up of the preliminary analyses|      5     |               |
+|5. Produce an APA Style write-up of the preliminary analyses|      5     |               
 |6. Explanation/discussion with a grader    |      5        |             |
 |**Totals                                   |     22        |             |   
+
+|Hand Calculations                         | Points Poss   | Points Earned
+|:-----------------------------------------|:-------------:|:--------------|
+|1. Create a variable that represents the mean.|   2     |               
+|2. Create a variable that represents the mean deviation. | 2  |  |
+|3. What is the value of the *sum* of mean deviations? |2 |  |
+|4. Create a variable that represents the absolute mean deviation. What is the *sum* of the absolute mean deviation? What is the value of the *mean* of the absolute mean deviation?  What does this value tell you?| 4 ||
+|5. Create a variable that represents the mean deviation squared. |  2 |               
+|6. What are the values of the sum of squared deviations around the mean $SS$, variance $s^2$, and standard deviation ($s$)? |3 |  |
+|7. Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable. | 5 |  |
+|8. Create a variable that represents the *cross-product* (of the mean deviations). What is the sum of these cross-products? |2 |  |
+|9. Calculate the value of their covariance. |2 |  |
+|8. Calculate value of correlation coefficient. |2 |  |
+|**Totals                                   |     26        |             |   
 
 ```{r include=FALSE}
 sessionInfo()

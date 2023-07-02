@@ -43,7 +43,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 * *Repeated Measures ANOVA in R: The Ultimate Guide*. (n.d.). Datanovia. Retrieved October 19, 2020, from https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r 
   - This website is an excellent guide for both one-way repeated measures and mixed design ANOVA. A great resource for both the conceptual and procedural. This is the guide I have used for the basis of the lecture. Working through their example would be great additional practice.
-* Green, S. B., & Salkind, N. J. (2014). One-Way Repeated Measures Analysis of Variance (Lesson 29). In *Using SPSS for Windows and Macintosh: Analyzing and understanding data* (Seventh edition., pp. 209–217). Pearson.
+* Green, S. B., & Salkind, N. J. (2017). One-Way Repeated Measures Analysis of Variance (Lesson 29). In *Using SPSS for Windows and Macintosh: Analyzing and understanding data* (Eighth edition., pp. 209–217). Pearson.
   - For years I taught from the Green and Salkind text. Even though it was written for SPSS, the authors do a terrific job of walking the reader through the one-way repeated measures logic and process.
 * Amodeo, A. L., Picariello, S., Valerio, P., & Scandurra, C. (2018). Empowering transgender youths: Promoting resilience through a group training program. *Journal of Gay & Lesbian Mental Health, 22*(1), 3–19.
   - This mixed methods (qualitative and quantitative) includes a one-way repeated measures example. 
@@ -69,7 +69,7 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 There are a couple of typical use cases for one-way repeated measures ANOVA. In the first, the research participant is assessed in multiple conditions -- with no interested in change-over-time.
 
-An example of a research design using this approach occurred in the Green and Salkind [-@green_using_2014] statistics text, the one-way repeated measures vignette compared teachers' perception of stress when responding to parents, teachers, and school administrators.
+An example of a research design using this approach occurred in the Green and Salkind [-@green_one-way_2017-1] statistics text, the one-way repeated measures vignette compared teachers' perception of stress when responding to parents, teachers, and school administrators.
 
 ![Illustration of a research design appropriate for one-way repeated measures ANOVA](images/oneway_repeated/repeated_conditions.jpg)
 
@@ -93,7 +93,7 @@ Steps involved in analyzing the data include:
      + assessing normality via skew, kurtosis, Shapiro Wilks
      + checking or violation of the *sphericity* assumption with Mauchly's test; if violated interpret the corrected output or use a multivariate approach for the analysis
 4. Computing the omnibus ANOVA 
-5. Computing post-hoc comparisons, planned contrasts, or polynomial trends
+5. Computing post hoc comparisons, planned contrasts, or polynomial trends
 6. Managing Type I error
 7. Sample size/power analysis (which you should think about first -- but in the context of teaching ANOVA, it's more pedagogically sensible, here)
 
@@ -107,7 +107,7 @@ The within-subjects condition was wave, represented by T1, T2, and T3:
 
 * T1, beginning of training
 * Training, three 8-hour days, 
-  - content included identity and heterosexism, sociopolitical issues and minority stress, resilience and empowerment
+  - content included identity and heterosexism, sociopolitical issues and minority stress, resilience, and empowerment
 * T2, at the conclusion of the 3-day training
 * Follow-up session 3 months later
 * T3, at the conclusion of the +3 month follow-up session
@@ -116,7 +116,7 @@ The dependent variable (assessed at each wave) was a 14-item resilience scale [@
 
 ![Diagram of the research design for the Amodeo et al study](images/oneway_repeated/Amodio_design.jpg){#id .class width=1000 height=100px}
 
-### Code for simulating the data used today.
+### Data Simulation
 
 Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup).
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
@@ -135,7 +135,7 @@ Let's take a look at the structure of our variables. We want ID to be a factor, 
 ```{r}
 str(Amodeo_long)
 ```
-We just need to change Wave to be an ordered factor. Because R's default is to order factors alphabetically, we can use the levels command and identify our preferred order.
+We need to update Wave to be an ordered factor. Because R's default is to order factors alphabetically, we can use the levels command and identify our preferred order.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 Amodeo_long$Wave <- factor(Amodeo_long$Wave, levels = c("Pre", "Post", "FollowUp"))
@@ -146,7 +146,7 @@ We check the structure again.
 str(Amodeo_long)
 ```
 
-**Shape Shifters**
+##### Shape Shifters
 
 The form of our data matters. The simulation created a *long* form (formally called the *person-period* form) of data. That is, each observation for each person is listed in its own row. In this dataset where we have 8 people with 3 observation (pre, post, follow-up) each, we have 24 rows. This is convenient, because this is the form we need for repeated measures ANOVA. 
 
@@ -189,7 +189,7 @@ Another option is to write them as .csv files. The code for .csv will likely los
 
 ### Quick peek at the data
 
-As we work the problem we will switch between long and wide formats.Before we get into the statistic let's inspect our data. We can start with the long form.
+Before we get into the statistic let's inspect our data. As we work the problem we will switch between long and wide formats. We can start with the long form.
 ```{r}
 str(Amodeo_long)
 ```
@@ -209,8 +209,9 @@ Our means suggest that resilience increases from pre to post, then declines a bi
 
 Let's also take a quick look at a boxplot of our data. 
 
+
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-boxplot (Resilience ~ Wave, data = Amodeo_long, xlab = "Wave", ylab = "Resilience", n.label = TRUE)
+ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "jitter", color = "Wave", title = "Figure 9.1 Boxplots of Resilience Over Time")
 ```
 
 ## Working the One-Way Repeated Measures ANOVA (by hand)
@@ -346,6 +347,7 @@ The $SS_B$ is not used in our calculations today, but also calculated easily. Gi
 $SS_B$ = 5.02, *df* = 7
 
 ![Screenshot of the ANOVA source Table](images/oneway_repeated/SourceTable.jpg)
+
 Looking again at our sourcetable, we can move through the steps to calculate our *F* statistic.
 
 ### Mean Squares Model & Residual
@@ -384,7 +386,9 @@ qf(.05, 2, 14, lower.tail=FALSE)
 
 Our example has 2 (numerator) and 14 (denominator) degrees of freedom. If we use a table we find the corresponding degrees of freedom combinations for the column where $\alpha = .05$. We observe that any $F$ value > 3.73 will be statistically significant. Our $F$ = 3.87, so we have (just barely) exceeded the threshold. This is our *omnibus F*. We know there is at least 1 statistically significant difference between our pre, post, and follow-up conditions.
 
-## Working the One-Way ANOVA with R packages
+## Working the One-Way Repeated Measures ANOVA with R packages
+
+As usual, we will work through the testing of statistical assumptions, calculating the omnibus, and then (if the omnibus is significant), conducting follow-up tests.
 
 ### Testing the assumptions
 
@@ -398,6 +402,7 @@ There are several different ways to conduct a repeated measures ANOVA. Each has 
   - This is what we will use today.
 * multivariate statistics
   - Functionally similar to univariate, except the underlying algorithm does not require the sphericity assumption.
+  - An example of using a multivariate approach to working the problem (using the *car* package) is in the [appendix](#RMmultiv).
 * multi-level modeling/hierarchical linear modeling
   - This a different statistic altogether and is addressed in the [multilevel modeling OER](https://lhbikos.github.io/MultilevelModeling).
 
@@ -429,7 +434,50 @@ $$variance_{A-B} \approx variance_{A-C}\approx variance_{B-C}$$
 
 ![Demonstration of unequal variances](images/oneway_repeated/mauchly.jpg){#id .class width=500 height=250px}
 
-#### Any outliers?
+#### Is the data normally distributed? 
+
+We can obtain skew and kurtosis values for each cell in our model with the *psych::describeBy()* function.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+psych::describeBy(Resilience ~ Wave, mat=TRUE, type = 1, data = Amodeo_long)
+```
+
+Our skew and kurtosis values fall below the thresholds of concern [@kline_data_2016]:
+
+* < |3| for skew
+* < |10| for kurtosis
+
+The *Shapiro-Wilk* test evaluates the hypothesis that the distribution of the data deviates from a comparable normal distribution. If the test is non-significant (*p* >.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (*p* < .05), then the sample distribution is significantly different from a normal distribution. The *rstatix* package can conduct this test for us.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+Amodeo_long %>%
+  group_by(Wave) %>%
+  rstatix::shapiro_test(Resilience)
+```
+
+The *p* value is > .05 for each of the cells. This provides some assurance that we have not violated the assumption of normality at any level of the design.
+
+The $p$ values for the distributions of the dependent variable (Resilience) in each wave of the study are all well above .05. This tells us that the Resilience variable does not deviate from a statistically significant distribution at any level (Pre, $W = 0.929, p = 0.418$; Post, $p = 0.941, p = 0.617$; FellowUp, $W = 0.926, p = 0.430$). 
+
+Especially in the more simple "ANOVA's" I like this form of the Shapiro-Wilk test because it makes it clear that we expect normality within each of the grouping levels. This approach, however, is only appropriate when there are a low number of levels/groupings and there are many data points per group. As models become more complex, researchers should use the model-based option for assessing normality. To do this, we first create an object that tests our research model.
+
+Although that model (a regression model) has information about the results of our primary analysis, at this point we are only using it to investigate the assumption of normality. One product of the analysis is *residuals*. Residuals are the unexplained variance in the outcome (or dependent) variable after accounting for the predictor (or independent) variable. When we plot these "leftovers" against the values of x, we can visualize the fit of the model in a QQ plot. The dots represent the residuals. When they are relatively close to the line they not only suggest good fit of the model, but we know they are small and evenly distributed around zero (i.e., normally distributed). 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+RMres_model <- lm(Resilience ~ Wave, data = Amodeo_long)
+ggpubr::ggqqplot(residuals(RMres_model))
+```
+
+We can also use the model in a Shapiro-Wilk test. As before, we want a non-significant result.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+rstatix::shapiro_test(residuals(RMres_model))
+```
+These results are consistent with what we have already learned. That is, the non-significant *p* value associated with the model-based Shapiro-Wilk test of normality indicates that our distribution of residuals does not differ from a normal distribution ($W = 0.957, p = 0.385$). Given the space restrictions in journal articles and the higher priority of describing the results of the primary analyses, I am more likely to report model-level results than the results from the cell-based Shapiro-Wilk tests.
+
+There are limitations to the Shapiro-Wilk test. As the dataset being evaluated gets larger, the Shapiro-Wilk test becomes more sensitive to small deviations; this leads to a greater probability of rejecting the null hypothesis (null hypothesis being the values come from a normal distribution). Green and Salkind [-@green_using_2017] advised that ANOVA is relatively robust to violations of normality if there are at least 15 cases per cell and the design is reasonably balanced (i.e., equal cell sizes).
+
+#### Are there any outliers (and should we consider their removal)?
 
 The boxplot is one common way for identifying outliers. The boxplot uses the median and the lower (25th percentile) and upper (75th percentile) quartiles. The difference bewteen Q3 and Q1 is the *interquartile range* (IQR). Outliers are generally identified when values fall outside these lower and upper boundaries:
 
@@ -441,13 +489,12 @@ Extreme values occur when values fall outside these boundaries:
 * Q1 - 3xIQR
 * Q3 + 3xIQR
 
-Let's take a look at a boxplot.
+Let's take another look at the boxplot.  Swapping "jitter" for "point" may help with the visual inspection.
+
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#Note that we are creating an object (bxp) from our work. 
-#This script creates the basic boxplot, we will add to it (by using the object) later.
-bxp <- ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "point", xlab = "Assessment Wave", ylab = "Self-Perception of Resilience")
-bxp
+ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "point", color = "Wave", title = "Figure 9.2 Identifying Outliers with Boxplots")
 ```
+
 The package *rstatix* has features that allow us to identify outliers.
 ```{r }
 Amodeo_long %>%
@@ -459,41 +506,15 @@ Amodeo_long %>%
 
 The output, "0 rows" indicates there are no outliers.
 
-This is consistent with the visual inspection of boxplots (above), where all observed scores fell within the 1.5x the interquartile range. 
+This is consistent with the visual inspection of boxplots (above), where all observed scores fell within the 1.5x the interquartile range. If there were outliers and you chose to delete them, instructions for doing so are found in the parallel sections of the [one-way ANOVA](#oneway) and [factorial ANOVA](#between) lessons.
 
-#### Assessing normality 
+#### Summarizing results from the analysis of assumptions
 
-We can obtain skew and kurtosis values for each cell in our model with the *psych::describeBy()* function.
+Here's how I would write up the assumptions we have tested thus far:
 
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-psych::describeBy(Resilience ~ Wave, mat=TRUE, data = Amodeo_long)
-```
+Similarly, no extreme outliers were identified and results of a model-based Shapiro-Wilk test of normality, indicated that the model residuals did not did differ from a normal distribution $(W = 0.979, p = 0.15)$.
 
-Our skew and kurtosis values fall below the thresholds of concern [@kline_principles_2016]:
-
-* < 3 for skew
-* 8 - 20 indicates extreme skew for kurtosis
-
-We can use the Shapiro-Wilk test for a formal detection of normality. When *p* < .05, it indicates that the distribution is statistically significantly different than a normal one. Therefore, *p* > .05 indicates we did not violate the normal distribution assumption. The code below groups the DV by wave so that we can test normality for each cell in the model.
-
-```{r }
-Amodeo_long %>%
-  group_by(Wave) %>%
-  rstatix::shapiro_test(Resilience)
-```
-
-The *p* value is > .05 for each of the cells. This provides some assurance that we have not violated the assumption of normality at any level of the design.
-
-The Shapiro-Wilk test is sensitive to sample size [@datanovia_repeated_nodate]. Samples > 50 may lead to *p* values that are < .05, even when non-normality is not problematic. Therefore a second check with a Q-Q plot can be helpful. In a normal distribution the residuals will align along the line for each of the cells in the model.
-
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-ggpubr::ggqqplot(Amodeo_long, "Resilience", facet.by = "Wave")
-```
-
-
-**APA Assumption Write-up So Far**
-
->Repeated measures ANOVA has several assumptions regarding outliers, normality, and sphericity. Visual inspection of boxplots for each wave of the design, assisted by the *identify_outliers()* function in the *rstatix* package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis [@kline_principles_2016]. Additionally, the Shapiro-Wilk tests applied at each wave of the design were non-significant.
+>Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis [@kline_data_2016]. Additionally, results of a model-based Shapiro-Wilk test of normality indicated that the model residuals did not differ from a normal distribution ($W = 0.957, p = 0.385$). Visual inspection of boxplots for each wave of the design, assisted by the *identify_outliers()* function in the *rstatix* package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers.
 
 #### Assumption of Sphericity
 
@@ -507,7 +528,7 @@ Earlier in the lesson I noted that the evaluation of the sphericity assumption o
 
 ![Image of our position in the workflow for the one-way repeated measures ANOVA](images/oneway_repeated/wf_rptd_omnibus.jpg)
 
-### Omnibus Repeated Measures ANOVA
+### Computing the Test Statistic
 
 As we prepare to run the omnibus ANOVA it may be helpful to think again about our variables. Our DV, Resilience, should be a continuous variable. In R, its structure should be "num." Our predictor, Wave, should be categorical. In R case, Wave should be an ordered factor that is consistent with its timing: pre, post, follow-up. 
 
@@ -542,44 +563,54 @@ If we needed to write an *F* string that is corrected for violation of the spher
 You might be surprised that we are at follow-up already. 
 
 ![Image of our position in the workflow for the one-way repeated measures ANOVA](images/oneway_repeated/wf_rptd_pairwise.jpg)
+### Planning for the management of Type I Error
 
-### Follow-up
+In a one-way repeated measures ANOVA, managing Type I error can be relatively straightforward. 
+
+The LSD (least significant differences) method is especially appropriate in the one-way ANOVA scenario when there are only three levels in the factor. In this case, Green and Salkind [-@green_using_2017] have suggested that alpha can be retained at the alpha level for the "family" ($\alpha_{family}$), which is conventionally $p = .05$ and used both to evaluate the omnibus and, so long as they don't exceed three in number, the planned or pairwise comparisons that follow. Because there are only three levels (i.e., pre, post, follow-up) in this one-way repeated measures design this is what I will do.
+
+More information about options for managing Type I error is included in the [appendix](#type1).
+
+### Follow-up to Omnibus F
 
 Given the simplicity of our design, it makes sense to me to follow-up with post hoc, pairwise, comparisons. Note that when I am calculating these pairwise *t* tests, I am creating an object (named "pwc"). The object will be a helpful tool in creating a Figure and an APA Style table.
 
+Note that the script used to produced the figure will pull the symbols from the column labeled, "p.adj.signif." The *rstatix::pairwise_t_test* default is the traditional Bonferroni. Therefore, if we want to use the LSD approach, we must "p.adjust.method" as "none."
+
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 pwc <- Amodeo_long %>%
-  rstatix::pairwise_t_test(Resilience~Wave, paired = TRUE, p.adjust.method = "bonferroni")
+  rstatix::pairwise_t_test(Resilience~Wave, paired = TRUE, p.adjust.method = "none")
 pwc
 ```
 
-Although we had a statistically significant omnibus test, we did not obtain statistically significant results in an of the posthoc pairwise comparisons. Why not? 
+Although omnibus test had a statistically significant result, we did not obtain statistically significant results in an of the posthoc pairwise comparisons. Why not? 
 
 * Our omnibus *F* was right at the margins
   - a larger sample size (assuming that the effects would hold) would have been more powerful.
   - there could be significance if we compared pre to the combined effects of post and follow-up.
  
-How would we manage Type I error? With only three possible post-omnibus comparisons, I would cite the Tukey LSD approach and not adjust the alpha to a more conservative level [@green_using_2014].
+How would we manage Type I error? With only three possible post-omnibus comparisons, I would cite the Tukey LSD approach and not adjust the alpha to a more conservative level [@green_using_2017].
 
 We can combine information from the object we created ("bxp") from an earlier boxplot with the object we saved from the posthoc pairwise comparisons ("pwc) to enhance our boxplot with the *F* string and indications of pairwise significant (or, in our case, non-significance). 
+
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+RMbox <- ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "jitter", color = "Wave", title = "Figure 9.3 Resilience as a Function of Wave")
 pwc <- pwc %>% rstatix::add_xy_position(x = "Wave")
-bxp + 
-  ggpubr::stat_pvalue_manual(pwc) +
+RMbox <- RMbox+ 
+  ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.01, hide.ns = FALSE, step.increase = 0.05) +
   labs(
     subtitle = rstatix::get_test_label(RM_AOV, detailed = TRUE),
     caption = rstatix:: get_pwc_label(pwc)
   )
+RMbox
 ```
 Unfortunately, the *apaTables* package does not work with the *rstatix* package, so a table would need to be crafted by hand.
 
-### Results Section
+## APA Style Results
 
->Repeated measures ANOVA has several assumptions regarding outliers, normality, and sphericity. Visual inspection of boxplots for each wave of the design, assisted by the *rstatix::identify_outliers()* function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis [@kline_principles_2016]. Additionally, the Shapiro-Wilk tests applied at each wave of the design were non-significant. A non-significant Mauchley's test ($W = 0.566, p = .182$) indicated that the sphericity assumption was not violated. 
+>Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Regarding normality, no values of skew and kurtosis (at each wave of assessment) fell within cautionary ranges for skew and kurtosis [@kline_data_2016]. Additionally, results of a model-based Shapiro-Wilk test of normality indicated that the model residuals did not differ from a normal distribution ($W = 0.957, p = 0.385$). Visual inspection of boxplots for each wave of the design, assisted by the *identify_outliers()* function in the *rstatix* package (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated no outliers. A non-significant Mauchley's test ($W = 0.566, p = .182$) indicated that the sphericity assumption was not violated. 
 
->The omnibus ANOVA was significant: $F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203$. We followed up with all pairwise comparisons. Curiously, and in spite of a significant omnibus test, there were not statistically significant differences between any of the pairs. Regarding pre versus post, *t* = -2.15, *p*= .069. Regarding pre versus follow-up, *t* = -2.00, *p* = .068. Regarding post versus follow-up, *t* = 1.059, *p* = .325. Because there were only three pairwise comparisons subsequent to the omnibus test, alpha was retained at .05 [@green_using_2014]. While the trajectories from pre-to-post and pre-to-follow-up were in the expected direction, the small sample size likely contributed to a Type II error. Descriptive statistics are reported in Table 1 and the differences are illustrated in Figure 1.
-
-#### Creating an APA Style Table**
+>The omnibus ANOVA was significant: $F(2,14) = 3.91, p = 0.045, \eta^2 = 0.203$. We followed up with all pairwise comparisons. Curiously, and in spite of a significant omnibus test, there were not statistically significant differences between any of the pairs. Regarding pre versus post, $t = -2.15, p= .069$. Regarding pre versus follow-up, $t = -2.00, p = .068$. Regarding post versus follow-up, $t = 1.059, p = .325$. Because there were only three pairwise comparisons subsequent to the omnibus test, we used the LSD (least significant differences) approach to managing Type I error and alpha was retained at .05 [@green_using_2017]. While the trajectories from pre-to-post and pre-to-follow-up were in the expected direction, the small sample size likely contributed to a Type II error. Descriptive statistics are reported in Table 1 and the differences are illustrated in Figure 1.
 
 While I have not located a package that will take *rstatix* output to make an APA style table, we can use the *MASS* package to write the pwc object to a .csv file, then manually make our own table.
 
@@ -587,20 +618,19 @@ While I have not located a package that will take *rstatix* output to make an AP
 MASS::write.matrix(pwc, sep = ",", file = "PWC.csv")
 ```
 
-
-#### Comparison with Amodeo et al.[-@amodeo_empowering_2018]
+### Comparison with Amodeo et al.[-@amodeo_empowering_2018]
 
 How do our findings and our write-up from the simulated data compare with the original article?
 
-The *F* string is presented in the Table 1 note (*F*[1.612, 11.283]) = 6.390, *p* = 0.18, $\eta _{p}^{2}$). We can tell from the fractional degrees of freedom that the *p* value has been had a correction for violation of the sphericity assumption.
+In the published manuscript, the *F* string is presented in the Table 1 note ($F[1.612, 11.283]) = 6.390, p = 0.18, \eta _{p}^{2}$). We can tell from the fractional degrees of freedom that the *p* value has been had a correction for violation of the sphericity assumption.
 
-Table 1 also reports all of the post-hoc, pairwise comparisons. There is no mention of control for Type I error. Had they used a traditional Bonferroni, they would have needed to reduce the alpha to (k*(k-1)/2) and then divide .05 by that number.
+Table 1 also reports all of the post hoc, pairwise comparisons. There is no mention of control for Type I error. Had they used a traditional Bonferroni, they would have needed to reduce the alpha to (k*(k-1)/2) and then divide .05 by that number.
 
 ```{r }
 (3 * (3-1))/2
 .05/3
 ```
-Although they report 6 comparisons; 3 are repeated because they are merely in reverse. Yet, the revised alpha would be .016 and the one, lone, comparison would not have been statistically significant. That said, we can use the Tukey LSD because there are only 3 comparisons and holding alpha at .05 can be defended [@green_using_2014].
+Although Amodeo et al. report six comparisons; three are repeated because they are merely in reverse. Thus, the revised alpha would be .016 and the one, lone, comparison would not have been statistically significant. That said, the Tukey LSD is appropriate because there are only 3 comparisons and holding alpha at .05 can be defended [@green_using_2017].
 
 * Regarding the presentation of the results
   - there is no figure
@@ -612,28 +642,29 @@ Although they report 6 comparisons; 3 are repeated because they are merely in re
 
 ![Another peek at the research design for the Amodeo et al study](images/oneway_repeated/Amodio_design.jpg){#id .class width=1000 height=100px}
 
-## Power in Repeated Measures ANOVA
+## Power Analysis
 
-The package *wp.rmanova* was designed for power analysis in repeated measures ANOVA.
-
-Power analysis allows us to determine the probability of detecting an effect of a given size with a given level of confidence. Especially when we don't achieve significance, we may want to stop. 
+Power analysis allows us to determine the probability of detecting an effect of a given size with a given level of confidence. The package *wp.rmanova* was designed for power analysis in repeated measures ANOVA.
 
 In the *WebPower* package, we specify 6 of 7 interrelated elements; the package computes the missing one.
 
-* *n* = sample size (number of individuals in the whole study)
-* *ng* = number of groups
-* *nm* = number of measurements/conditions/waves
-* *f* = Cohen's *f* (an effect size; we can use a conversion calculator)
+* *n* = sample size (number of individuals in the whole study).
+* *ng* = number of groups.
+* *nm* = number of measurements/conditions/waves.
+* *f* = Cohen's *f* (an effect size; we can use an effect size converter to obtain this value)
+   - Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively.
 * *nscor* = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package's default; < 1 means some correction was applied. 
 * *alpha* = is the probability of Type I error; we traditionally set this at .05 
-* *power* = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)
+* *power* = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want).
 * *type* = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect. 
 
-I used *effectsize* packages converter to transform our $\eta^2$ to Cohen's *f*.
+I used *effectsize::eta2_to_f* packages convert our $\eta^2$ to Cohen's *f*.
 
 ```{r message=FALSE, warning=FALSE}
 effectsize::eta2_to_f(.203) 
 ```
+
+Retrieving the information about our study, we add it to all the arguments except the one we wish to calculate. For power analysis, we write "power = NULL."
 
 ```{r message=FALSE, warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 WebPower::wp.rmanova(n=8, ng=1, nm=3, f = .5047, nscor = .689, alpha = .05, power = NULL, type = 1)
@@ -641,20 +672,18 @@ WebPower::wp.rmanova(n=8, ng=1, nm=3, f = .5047, nscor = .689, alpha = .05, powe
 Here we learned that we were only powered at .16. That is, we had a 16% chance of finding a statistically significant effect if, in fact, it existed. This is low!
 
 In reverse, setting *power* at .80 (the traditional value) and changing *n* to *NULL* yields a recommended sample size.   
-In many cases we won't know some of the values in advance. We can make best guesses based on our review of the literature. In the script below:
-
-* *nscor* is the degree of violation of the sphericity assumption. If we think we won't violate it, we can enter 1.0 or leave it out (the wp.rmanova default is 1.0)
-* *f* is the effect size estimate; Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively. 
+In many cases we won't know some of the values in advance. We can make best guesses based on our review of the literature. 
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 WebPower::wp.rmanova(n=NULL, ng=1, nm=3, f = .5047, nscor = .689, alpha = .05, power = .80, type = 1)
 ```
 With these new values, we learn that we would need 50 individuals in order to feel confident in our ability to get a statistically significant result if, in fact, it existed.
 
-
 ## Practice Problems
 
-The suggestions for homework differ in degree of complexity. I encourage you to start with a problem that feels "do-able" and then try at least one more problem that challenges you in some way. Regardless, your choices should meet you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands). Whichever you choose, you will focus on these larger steps in one-way repeated measures/within-subjects ANOVA, including:
+The suggestions for homework differ in degree of complexity. I encourage you to start with a problem that feels "do-able" and then try at least one more problem that challenges you in some way. All problems attempted should have at least three levels in the independent variable. At least one problem should have a significant omnibus test and require follow-up. 
+
+Regardless, your choices should meet you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands). Whichever you choose, you will focus on these larger steps in one-way repeated measures/within-subjects ANOVA, including:
 
 * test the statistical assumptions
 * conduct a one-way, including
@@ -668,7 +697,7 @@ If repeated measures ANOVA is new to you, perhaps change the random seed and fol
 
 ### Problem #2: Increase *N*
 
-Our analysis of the Amodeo et al. [@amodeo_empowering_2018] data failed to find significant increases in resilience from pre-to-post through follow-up. Our power analysis suggested that a sample size of 50 would be sufficient to garner statistical significance. The script below resimulates the data by increasing the sample size to 50 (from 8). All else remains the same.
+Our analysis of the Amodeo et al. [@amodeo_empowering_2018] data failed to find significant increases in resilience from pre-to-post through follow-up. Our power analysis suggested that a sample size of 50 would be sufficient to garner statistical significance. The script below re-simulates the data by increasing the sample size to 50 (from 8). All else remains the same.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 set.seed(2022)
@@ -688,34 +717,17 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 |Assignment Component                    | Points Possible   | Points Earned|
 |:-------------------------------------- |:----------------: |:------------:|
-|1. Check and, if needed, format data |      5            |_____  |           
-|2. Evaluate statistical assumptions     |      5            |_____  |
-|3. Conduct omnibus ANOVA (w effect size)|      5           | _____  |  
-|4. Conduct all possible pairwise comparisons (like in the lecture)| 5 |_____  |               
-|5. Describe approach for managing Type I error|    5        |_____  |   
-|6. APA style results with table(s) and figure|    5        |_____  |       
-|7. Explanation to grader                 |      5        |_____  |
+|1. Narrate the research vignette, describing the IV and DV. The data you analyze should have at least 3 levels in the independent variable; at least one of the attempted problems should have a significant omnibus test so that follow-up is required) | 5 |_____  |
+|2. Check and, if needed, format data    |      5            |_____  |           
+|3. Evaluate statistical assumptions     |      5            |_____  |
+|4. Conduct omnibus ANOVA (w effect size)|      5           | _____  |  
+|5. Conduct all possible pairwise comparisons (like in the lecture)| 5 |_____  |               
+|6. Describe approach for managing Type I error|    5        |_____  |   
+|7. APA style results with table(s) and figure|    5        |_____  |       
+|8. Explanation to grader                 |      5        |_____  |
 |**Totals**                               |      35       |_____  |           
 
-## Bonus Reel: 
 
-![Image of a filmstrip](images/film-strip-1.jpg){#id .class width=620 height=211}
-
-
-Without the *rstatix* helper package, here is how the analysis would be run in the package, *car.*  Note that this package results in the multivariate output. The *p* value of the omnibus *F* was non-significant from the start (*p* = .213).
-
-
-```{r message=FALSE, warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-library(car)
-
-waveLevels <- c(1,2,3)
-waveFactor <- as.factor(waveLevels)
-waveFrame <- data.frame(waveFactor)
-waveBind <-cbind(Amodeo_wide$Pre, Amodeo_wide$Post, Amodeo_wide$FollowUp)
-waveModel<- lm(waveBind~1)
-analysis <-Anova(waveModel, idata=waveFrame, idesign=~waveFactor)
-summary(analysis)
-```
 
 ```{r include=FALSE}
 sessionInfo()
