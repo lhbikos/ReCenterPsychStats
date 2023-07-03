@@ -678,12 +678,12 @@ div.csl-indent {
 <li><span class="math inline">\(N_{g}\)</span> is the number of groups.</li>
 </ul>
 <p>In the one-way ANOVA research vignette, the COND factor had three levels: control, low, high. Thus, if we wanted to conduct all possible comparisons we would detrmine <span class="math inline">\(N_{pc}\)</span> this way:</p>
-<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="type1.html#cb905-1" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span>(<span class="dv">3-1</span>)<span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="type1.html#cb901-1" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span>(<span class="dv">3-1</span>)<span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>[1] 3</code></pre>
 <p>Subsequently, we would compute a new alpha that would be used for each comparison with this formula: <span class="math inline">\(\alpha_{pc}=\frac{\alpha_{family}}{N_{pc}}\)</span>.</p>
 <p>In the one-way ANOVA research vignette we would calculate it this way:</p>
-<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="type1.html#cb907-1" tabindex="-1"></a>.<span class="dv">05</span><span class="sc">/</span><span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 0.01666667</code></pre>
+<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="type1.html#cb903-1" tabindex="-1"></a>.<span class="dv">05</span><span class="sc">/</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>[1] 0.01666667</code></pre>
 <p>If we were to use the traditional Bonferroni to manage Type I error, the resultant <span class="math inline">\(p\)</span> value would need to be &lt; .017 in order for statistical significance to be claimed.</p>
 <p>Luckily, each of these options has been reverse-engineered so that we do not have to determine the more conservative alpha levels. Instead, when we specify these options (and, as you will see, more) in the script, the <em>p</em> value is adjusted and we can continue to use the customary <span class="math inline">\(p &lt; .05, p &lt; .01\)</span> and <span class="math inline">\(p &lt; .001\)</span> levels of interpretation. In the case of the traditional Bonferonni, the <em>p</em> value an be adjusted upward by multiplying it (i.e., the raw <em>p</em> values) by the number of comparisons being completed. This holds the <em>total</em> Type I error rate across these tests to be <span class="math inline">\(\alpha\)</span> (usually 0.05). Further, most <em>R</em> packages allow specification of one or more types of <em>p</em> values in the script. The result is the Type 1 error-adjusted <em>p</em> values.</p>
 <p>Although the traditional Bonferroni is easy-to-understand and computer, it has been criticized as being too restrictive. That is, it increases the risk of making a Type II error (i.e., failing to reject the null hypothesis when it is false). This is why the majority of follow-up options to ANOVA did not use the traditional Bonferroni.</p>

@@ -729,7 +729,7 @@ div.csl-indent {
 <li>95.4% of the distribution falls within 2 standard deviations of the mean</li>
 <li>99.7% of the distribution falls within 3 standard deviations of the mean</li>
 </ul>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-79-1.png" width="672" />
 <em>z</em>-scores are transformations of raw scores, in standard deviation units. Using the following formula, so long as the mean and standard deviation are known, any set of continuously scaled scores can be transformed to a <em>z</em>-scores equivalent:</p>
 <p><span class="math display">\[z=\frac{X-\bar{X}}{s}\]</span>
 We can rearrange the formula to find what raw score corresponds with the <em>z</em>-score.</p>
@@ -776,7 +776,7 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code
 <pre><code>[1] 0</code></pre>
 <p>We learn that 9.9 minutes (the mean of the distribution of raw scores) corresponds with 0 (the mean of the distribution of <em>z</em>-scores).</p>
 <p>Next, we examine a <a href="https://www.statology.org/z-table/">table of critical <em>z</em> values</a> where we see that a score of 0.0 corresponds to an area (probability) of .50. The directionality of our table is such that fewer minutes spent with patients are represented on the left (the shaded portion) and more minutes spent with patients are represented on the right (the unshaded portion). Our question asks, what is the probability that a physician spends <em>at least</em> 9.9 minutes with a patient (i.e., 9.9 or more minutes) means that we should use the area on the right. Thus, the probability that a physician spends <em>at least</em> 9.9 minutes with a patient is 50%. In this case it is also true that the probability that a physician spends 9.9 minutes or less is also 50%. This 50/50 result helps make the point that the area under the curve is equal to 1.0.</p>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-86-1.png" width="672" />
 We can also obtain the probability value with the <em>pnorm()</em> function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in <em>z</em> score formula or from the raw scores.</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="tOneSample.html#cb172-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">0</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 0.5</code></pre>
@@ -791,7 +791,7 @@ We can also obtain the probability value with the <em>pnorm()</em> function. We 
 <pre><code>[1] 0.007142811</code></pre>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="tOneSample.html#cb180-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)  <span class="co">#using raw data units</span></span></code></pre></div>
 <pre><code>[1] 0.007142811</code></pre>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-90-1.png" width="672" />
 There is a .7% (that is less than 1%) probability that physicians spend less than 5 minutes with a patient. The inverse (1 - .7) indicates that we can be 99% confident that patients receive 5 or more minutes with the ICU physician.</p>
 <p>What about operations at the other end of the curve? What is the probability that a patient receives less than 12 minutes with a physician? Again, we start with the calculation of the <em>z</em>-score.</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="tOneSample.html#cb182-1" tabindex="-1"></a>(<span class="dv">12</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 12 minutes</span></span></code></pre></div>
@@ -799,7 +799,7 @@ There is a .7% (that is less than 1%) probability that physicians spend less tha
 <p>The 12 minute mark is 1.05 <em>SD</em> above the mean. Checking the <em>z</em> table lets us know that an area of 0.8531 corresponds with a <em>z</em>-score of 1.05.</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="tOneSample.html#cb184-1" tabindex="-1"></a><span class="dv">1</span><span class="fl">-.8531</span></span></code></pre></div>
 <pre><code>[1] 0.1469</code></pre>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-93-1.png" width="672" />
 The probability of a physician spending 12 minutes <em>or less</em> with a patient is 85%; the probability of a physician spending 12 minutes or more with a patient is 15%.</p>
 </div>
 <div id="percentiles" class="section level3 hasAnchor" number="4.2.4">
@@ -875,7 +875,7 @@ Whether the test is one- or two- sided makes a difference in the strictness with
 </ul></li>
 </ul>
 <p>If our hypothesis is two-sided, then we can spread the 5% across both tails of the test. Inspecting a table of <em>z</em> values shows that <span class="math inline">\(\pm 1.96\)</span> would be the region of rejection of <span class="math inline">\(H_0\)</span>. In contrast, if the hypothesis is directionless (two-tailed), <span class="math inline">\(1.64\)</span> would serve as the boundary for the region of rejection and the corresponding <em>z</em>-test would require the same sign (+ or -) as the hypothesized tail of the distribution. So long as the hypothesis is consistent with the data, a one-sided test can be more powerful, that is, there is greater probability (defined as area under the curve) for rejecting the <span class="math inline">\(H_0\)</span>, if it is should be rejected.
-<img src="04-tOneSample_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>The formula for a one-sample <em>z</em>-test is as follows:</p>
 <p><span class="math display">\[
 z_{\bar{X}} =  \frac{\bar{X} - \mu_0}{\sigma / \sqrt{N}}
@@ -1016,12 +1016,12 @@ Although this statistic is straightforward, it is quite limited. If the research
 `bins`.</code></pre>
 <pre><code>Warning: `geom_vline()`: Ignoring `mapping` because `xintercept` was provided.</code></pre>
 <pre><code>Warning: `geom_vline()`: Ignoring `data` because `xintercept` was provided.</code></pre>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>Although the histogram is not perfectly normal, we can see at least the suggestion of a normal distribution. With only a sample of 33, I’m encouraged.</p>
 <p>Another view of our data is with a boxplot. The box captures the middle 50% of data with the horizontal bar at the median. The whiskers extend three standard deviations around the mean with dots beyond the whiskers representing outliers. I personally like the <em>add=“jitter”</em> statement because it shows where each case falls.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="tOneSample.html#cb206-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Minutes with Patient&quot;</span>,</span>
 <span id="cb206-2"><a href="tOneSample.html#cb206-2" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-105-1.png" width="672" />
 We can further evaluate normality by obtaining the descriptive statistics with the <em>describe()</em> function from the <em>psych</em> package.</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="tOneSample.html#cb207-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfOneSample<span class="sc">$</span>PhysMins)</span></code></pre></div>
 <pre><code>   vars  n  mean  sd median trimmed  mad  min   max range skew kurtosis   se
@@ -1218,7 +1218,7 @@ normtest.p     0.68198838</code></pre>
 </blockquote>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tOneSample.html#cb233-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Physician Minutes&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb233-2"><a href="tOneSample.html#cb233-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Time with Patients (in minutes)&quot;</span>)</span></code></pre></div>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>Reflecting on these results, I must remind readers that this simulated data that is even further extrapolated. Although “data” informed both the amount of time spent by the physicians in the research study and data used as the test value, there are probably many reasons that the test value was not a good choice. For example, even though both contexts were ICU, palliative physicians may have a different standard of care than ICU physicians “in general.”</p>
 </div>
 <div id="power-in-one-sample-t-tests" class="section level2 hasAnchor" number="4.8">
