@@ -1203,7 +1203,7 @@ As we begin to explore the descriptive and distributional characteristics of thi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{03-Preliminaries_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 \hypertarget{measures-of-central-tendency}{%
 \subsection{Measures of Central Tendency}\label{measures-of-central-tendency}}
@@ -1386,7 +1386,7 @@ In our research vignette, the mean (1.81) is higher than the median (1.75) is hi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{03-Preliminaries_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 \hypertarget{variability}{%
 \section{Variability}\label{variability}}
@@ -2045,9 +2045,9 @@ For a streamlined presentation, let me create a df with three, continuously scal
 
 Skew and kurtosis are indicators of non-normality. Skew refers to the degree to which the data is symmetrical. In the figure below, the symmetrical distribution in the center (the black line) has no apparent evidence of skew. In contrast, the red figure whose curve (representing a majority of observations) in the left-most part of the graph (with the tail pulling to the right) is positively skewed; the blue figure whose curve (representing a majority of cases) is in the right-most part of the graph (with the tail pulling to the left) is negatively skewed.
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-62-1.pdf} Kurtosis refers to the degree to which the distribution of data is flat or peaked. Mesokurtic distributions are considered to be closest to normal. Leptokurtic distributions are peaked and platykurtic distributions are flat. As we will learn as we progress, visual observation of data is a legitimate component in evaluating skew and kurtosis.
+\includegraphics{03-Preliminaries_files/figure-latex/unnamed-chunk-48-1.pdf} Kurtosis refers to the degree to which the distribution of data is flat or peaked. Mesokurtic distributions are considered to be closest to normal. Leptokurtic distributions are peaked and platykurtic distributions are flat. As we will learn as we progress, visual observation of data is a legitimate component in evaluating skew and kurtosis.
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-63-1.pdf} There have been numerous approaches to calculating and interpreting skew and kurtosis. Consequently, different statistics packages calculate skew and kurtosis differently. The \emph{psych} package (a go-to-for a variety of tasks) offers three different options for calculating skew and kurtosis. These are specified in the script as ``type=\#'' (i.e., 1, 2, or 3 {[}the default{]}). Revelle \citeyearpar{revelle_introduction_2021} refers readers to Joanes and Gill's \citeyearpar{joanes_comparing_1998} article for detailed information about each. A very helpful resource to understand skew, kurtosis, and its interpretation is found in chapter four (Data Preparation and Psychometrics Review) of Kline's \citeyearpar{kline_data_2016} SEM text is helpful in the interpretation of skew and kurtosis. Summarizing by simulation studies for structural equation modeling (i.e., multivariate statistics that are generally characterized as large sample studies using maximum likelihood estimation), Kline suggested that \emph{type=1} skew values greater than the absolute value of 3.0 are ``severely'' skewed. Regarding \emph{type=1} kurtosis, Kline noted the literature has suggested that values from 8.0 to 20.0 have been described as severely kurtotic. As an interpretive framework, Kline suggested that absolute values greater than 10.0 are problematic and values greater than 20 are serious. He added that this rule-of-thumb errs on the conservative side.
+\includegraphics{03-Preliminaries_files/figure-latex/unnamed-chunk-49-1.pdf} There have been numerous approaches to calculating and interpreting skew and kurtosis. Consequently, different statistics packages calculate skew and kurtosis differently. The \emph{psych} package (a go-to-for a variety of tasks) offers three different options for calculating skew and kurtosis. These are specified in the script as ``type=\#'' (i.e., 1, 2, or 3 {[}the default{]}). Revelle \citeyearpar{revelle_introduction_2021} refers readers to Joanes and Gill's \citeyearpar{joanes_comparing_1998} article for detailed information about each. A very helpful resource to understand skew, kurtosis, and its interpretation is found in chapter four (Data Preparation and Psychometrics Review) of Kline's \citeyearpar{kline_data_2016} SEM text is helpful in the interpretation of skew and kurtosis. Summarizing by simulation studies for structural equation modeling (i.e., multivariate statistics that are generally characterized as large sample studies using maximum likelihood estimation), Kline suggested that \emph{type=1} skew values greater than the absolute value of 3.0 are ``severely'' skewed. Regarding \emph{type=1} kurtosis, Kline noted the literature has suggested that values from 8.0 to 20.0 have been described as severely kurtotic. As an interpretive framework, Kline suggested that absolute values greater than 10.0 are problematic and values greater than 20 are serious. He added that this rule-of-thumb errs on the conservative side.
 
 The \emph{psych::describe} specification of ``type=1'' results in the \emph{skew index} and \emph{kurtosis index}. For simplicity sake, I will refer to this specific variation of skew and kutosis as ``type=1.'' This is a very quick way to obtain initial values.
 
@@ -2375,7 +2375,7 @@ To provide a simple demonstration this, I will use our df with the three continu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-73-1.pdf} What do we observe?
+\includegraphics{03-Preliminaries_files/figure-latex/unnamed-chunk-59-1.pdf} What do we observe?
 
 \begin{itemize}
 \tightlist
@@ -2721,7 +2721,7 @@ The \emph{z} distribution is also known as the normal distribution, the bell cur
   99.7\% of the distribution falls within 3 standard deviations of the mean
 \end{itemize}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-79-1.pdf} \emph{z}-scores are transformations of raw scores, in standard deviation units. Using the following formula, so long as the mean and standard deviation are known, any set of continuously scaled scores can be transformed to a \emph{z}-scores equivalent:
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-4-1.pdf} \emph{z}-scores are transformations of raw scores, in standard deviation units. Using the following formula, so long as the mean and standard deviation are known, any set of continuously scaled scores can be transformed to a \emph{z}-scores equivalent:
 
 \[z=\frac{X-\bar{X}}{s}\] We can rearrange the formula to find what raw score corresponds with the \emph{z}-score.
 
@@ -2853,7 +2853,7 @@ We learn that 9.9 minutes (the mean of the distribution of raw scores) correspon
 
 Next, we examine a \href{https://www.statology.org/z-table/}{table of critical \emph{z} values} where we see that a score of 0.0 corresponds to an area (probability) of .50. The directionality of our table is such that fewer minutes spent with patients are represented on the left (the shaded portion) and more minutes spent with patients are represented on the right (the unshaded portion). Our question asks, what is the probability that a physician spends \emph{at least} 9.9 minutes with a patient (i.e., 9.9 or more minutes) means that we should use the area on the right. Thus, the probability that a physician spends \emph{at least} 9.9 minutes with a patient is 50\%. In this case it is also true that the probability that a physician spends 9.9 minutes or less is also 50\%. This 50/50 result helps make the point that the area under the curve is equal to 1.0.
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-86-1.pdf} We can also obtain the probability value with the \emph{pnorm()} function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in \emph{z} score formula or from the raw scores.
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-11-1.pdf} We can also obtain the probability value with the \emph{pnorm()} function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in \emph{z} score formula or from the raw scores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2910,7 +2910,7 @@ Second we locate the corresponding area under the normal curve. Examining the ta
 [1] 0.007142811
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-90-1.pdf} There is a .7\% (that is less than 1\%) probability that physicians spend less than 5 minutes with a patient. The inverse (1 - .7) indicates that we can be 99\% confident that patients receive 5 or more minutes with the ICU physician.
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-15-1.pdf} There is a .7\% (that is less than 1\%) probability that physicians spend less than 5 minutes with a patient. The inverse (1 - .7) indicates that we can be 99\% confident that patients receive 5 or more minutes with the ICU physician.
 
 What about operations at the other end of the curve? What is the probability that a patient receives less than 12 minutes with a physician? Again, we start with the calculation of the \emph{z}-score.
 
@@ -2936,7 +2936,7 @@ The 12 minute mark is 1.05 \emph{SD} above the mean. Checking the \emph{z} table
 [1] 0.1469
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-93-1.pdf} The probability of a physician spending 12 minutes \emph{or less} with a patient is 85\%; the probability of a physician spending 12 minutes or more with a patient is 15\%.
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-18-1.pdf} The probability of a physician spending 12 minutes \emph{or less} with a patient is 85\%; the probability of a physician spending 12 minutes or more with a patient is 15\%.
 
 \hypertarget{percentiles}{%
 \subsection{Percentiles}\label{percentiles}}
@@ -3048,7 +3048,7 @@ Stated another way
   \end{itemize}
 \end{itemize}
 
-If our hypothesis is two-sided, then we can spread the 5\% across both tails of the test. Inspecting a table of \emph{z} values shows that \(\pm 1.96\) would be the region of rejection of \(H_0\). In contrast, if the hypothesis is directionless (two-tailed), \(1.64\) would serve as the boundary for the region of rejection and the corresponding \emph{z}-test would require the same sign (+ or -) as the hypothesized tail of the distribution. So long as the hypothesis is consistent with the data, a one-sided test can be more powerful, that is, there is greater probability (defined as area under the curve) for rejecting the \(H_0\), if it is should be rejected. \includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-96-1.pdf}
+If our hypothesis is two-sided, then we can spread the 5\% across both tails of the test. Inspecting a table of \emph{z} values shows that \(\pm 1.96\) would be the region of rejection of \(H_0\). In contrast, if the hypothesis is directionless (two-tailed), \(1.64\) would serve as the boundary for the region of rejection and the corresponding \emph{z}-test would require the same sign (+ or -) as the hypothesized tail of the distribution. So long as the hypothesis is consistent with the data, a one-sided test can be more powerful, that is, there is greater probability (defined as area under the curve) for rejecting the \(H_0\), if it is should be rejected. \includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 The formula for a one-sample \emph{z}-test is as follows:
 
@@ -3280,7 +3280,7 @@ Warning: `geom_vline()`: Ignoring `mapping` because `xintercept` was provided.
 Warning: `geom_vline()`: Ignoring `data` because `xintercept` was provided.
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 Although the histogram is not perfectly normal, we can see at least the suggestion of a normal distribution. With only a sample of 33, I'm encouraged.
 
@@ -3293,7 +3293,7 @@ Another view of our data is with a boxplot. The box captures the middle 50\% of 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-105-1.pdf} We can further evaluate normality by obtaining the descriptive statistics with the \emph{describe()} function from the \emph{psych} package.
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-30-1.pdf} We can further evaluate normality by obtaining the descriptive statistics with the \emph{describe()} function from the \emph{psych} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3675,7 +3675,7 @@ A one-sample \emph{t}-test was used to evaluate whether average amount of time t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-117-1.pdf}
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 Reflecting on these results, I must remind readers that this simulated data that is even further extrapolated. Although ``data'' informed both the amount of time spent by the physicians in the research study and data used as the test value, there are probably many reasons that the test value was not a good choice. For example, even though both contexts were ICU, palliative physicians may have a different standard of care than ICU physicians ``in general.''
 
@@ -4163,7 +4163,7 @@ I am also fond of plotting each case with the command, \emph{add = ``jitter''}. 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-132-1.pdf} The box of the boxplot covers the middle 50\% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots are outliers.
+\includegraphics{05-tIndSample_files/figure-latex/unnamed-chunk-10-1.pdf} The box of the boxplot covers the middle 50\% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots are outliers.
 
 \hypertarget{working-the-independent-samples-t-test-by-hand}{%
 \section{\texorpdfstring{Working the Independent Samples \emph{t}-Test (by hand)}{Working the Independent Samples t-Test (by hand)}}\label{working-the-independent-samples-t-test-by-hand}}
@@ -4502,6 +4502,24 @@ Beyond skew and kurtosis, we can formally test for deviations from normality wit
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)  }\CommentTok{\#opening this package so I can use the pipes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.2     v readr     2.1.4
+v forcats   1.0.0     v stringr   1.5.0
+v ggplot2   3.4.2     v tibble    3.2.1
+v lubridate 1.9.2     v tidyr     1.3.0
+v purrr     1.0.1     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{shapiro }\OtherTok{\textless{}{-}}\NormalTok{ dfIndSamples }\SpecialCharTok{\%\textgreater{}\%}
     \FunctionTok{group\_by}\NormalTok{(PatientRace) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{shapiro\_test}\NormalTok{(Verbal)}
@@ -4741,7 +4759,7 @@ Next, we update the earlier boxplot code with the results from our statistical a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-149-1.pdf} Between the \emph{rstatix} and \emph{ggpubr} tools, there is a great deal of flexibility in creating figures. Determining which figure is best will likely depend on your outlet, your audience, your goals, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the ``color'' and ``palette'' arguments.
+\includegraphics{05-tIndSample_files/figure-latex/unnamed-chunk-27-1.pdf} Between the \emph{rstatix} and \emph{ggpubr} tools, there is a great deal of flexibility in creating figures. Determining which figure is best will likely depend on your outlet, your audience, your goals, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the ``color'' and ``palette'' arguments.
 
 \hypertarget{power-in-independent-samples-t-tests}{%
 \section{\texorpdfstring{Power in Independent Samples \emph{t}-tests}{Power in Independent Samples t-tests}}\label{power-in-independent-samples-t-tests}}
@@ -5162,6 +5180,24 @@ In the lesson, we will compare verbal communication scores. The nonverbal commun
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.2     v readr     2.1.4
+v forcats   1.0.0     v stringr   1.5.0
+v ggplot2   3.4.2     v tibble    3.2.1
+v lubridate 1.9.2     v tidyr     1.3.0
+v purrr     1.0.1     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Setting the seed. If you choose this practice option, change the}
 \CommentTok{\# number below to something different.}
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{220817}\NormalTok{)}
@@ -5267,7 +5303,7 @@ Especially unique about this function is that the lines connect the scores of ea
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-161-1.pdf} The box of the boxplot covers the middle 50\% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots beyond the whiskers are outliers.
+\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-7-1.pdf} The box of the boxplot covers the middle 50\% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots beyond the whiskers are outliers.
 
 \hypertarget{working-the-paired-samples-t-test-by-hand}{%
 \section{\texorpdfstring{Working the Paired Samples \emph{t}-Test (by hand)}{Working the Paired Samples t-Test (by hand)}}\label{working-the-paired-samples-t-test-by-hand}}
@@ -5831,7 +5867,7 @@ Next, we create boxplot code with the long form of our data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-181-1.pdf} The tools available offer a great deal of flexibility. Determining which figure is best will likely depend on your outlet, your audience, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the ``fill = PtRace'' argument.
+\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-27-1.pdf} The tools available offer a great deal of flexibility. Determining which figure is best will likely depend on your outlet, your audience, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the ``fill = PtRace'' argument.
 
 \hypertarget{power-in-paired-samples-t-tests}{%
 \section{\texorpdfstring{Power in Paired Samples \emph{t}-Tests}{Power in Paired Samples t-Tests}}\label{power-in-paired-samples-t-tests}}
@@ -6514,7 +6550,7 @@ Graphing data is a best practice for early exploration and inspection of the dat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-202-1.pdf} In boxplots the center value is the median. The box spans the \emph{interquartile range} and ranges from the 25th to the 75th percentile. The whiskers cover 1.5 times the interquartile range. When this does not capture the entire range, outliers are represented with dots.
+\includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-15-1.pdf} In boxplots the center value is the median. The box spans the \emph{interquartile range} and ranges from the 25th to the 75th percentile. The whiskers cover 1.5 times the interquartile range. When this does not capture the entire range, outliers are represented with dots.
 
 From both the boxplot and the linegraph with error bars, we can see that participants in the low racial loading condition have the highest accuracy ratings. This is followed by the control and then high racial loading conditions. Are these differences statistically significant? This is why we need the one-way ANOVA.
 
@@ -6549,14 +6585,14 @@ Navarro \citeyearpar{navarro_book_2020} offers a set of useful figures to compar
 
 \begin{figure}
 \centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-203-1.pdf}
-\caption{\label{fig:unnamed-chunk-203}Graphical illustration of ``between groups'' variation}
+\includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-16-1.pdf}
+\caption{\label{fig:unnamed-chunk-16}Graphical illustration of ``between groups'' variation}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-204-1.pdf}
-\caption{\label{fig:unnamed-chunk-204}Graphical illustration of ``within groups'' variation}
+\includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-17-1.pdf}
+\caption{\label{fig:unnamed-chunk-17}Graphical illustration of ``within groups'' variation}
 \end{figure}
 
 When between-group variance (i.e,. model variance) is greater than within-group variance (i.e., residual variance) there may be support to suggest that there are statistically significant differences between groups.
@@ -7410,7 +7446,7 @@ Although that model (a regression model) has information about our primary stati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-232-1.pdf} We can also use the model in a Shapiro-Wilk test. As before, we want a non-significant result.
+\includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-45-1.pdf} We can also use the model in a Shapiro-Wilk test. As before, we want a non-significant result.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7701,7 +7737,7 @@ Below is an augmentation of the figure that appeared at the beginning of the cha
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 Although it would not make a difference in this research vignette, the LSD (least significant differences) method is commonly used for controlling Type I error in the follow-up to a one-way ANOVA. The LSD method is appropriate in the one-way ANOVA scenario when there are only three levels in the factor. In this case, Green and Salkind \citeyearpar{green_using_2017} have suggested that alpha could be retained at the alpha level for the ``family'' (\(\alpha_{family}\)), which is conventionally \(p = .05\) and used both to evaluate the omnibus and, so long as they don't exceed three in number, the planned or pairwise comparisons that follow.
 
@@ -7784,7 +7820,7 @@ Below is an augmentation of the figure that appeared at the beginning of the cha
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-245-1.pdf} In this particular research vignette, I probably would not compute nor report the non-orthogonal option. The statistically significant difference pattern from the post hoc pairwise comparisons (Option 1) was straightforward. Using the non-orthogonal planned comparisons to aid in the control of Type I error way (a) does not change the result (i.e., does not increase the power) and (b) provides a less complete picture of the results.
+\includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-58-1.pdf} In this particular research vignette, I probably would not compute nor report the non-orthogonal option. The statistically significant difference pattern from the post hoc pairwise comparisons (Option 1) was straightforward. Using the non-orthogonal planned comparisons to aid in the control of Type I error way (a) does not change the result (i.e., does not increase the power) and (b) provides a less complete picture of the results.
 
 \hypertarget{option-3-orthogonal-planned-contrasts}{%
 \subsubsection{OPTION \#3: Orthogonal planned contrasts}\label{option-3-orthogonal-planned-contrasts}}
@@ -8196,7 +8232,7 @@ Results of the omnibus ANOVA indicated a significant effect of COND on accuracy 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-256-1.pdf}
+\includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-69-1.pdf}
 
 \hypertarget{power-analysis}{%
 \section{Power Analysis}\label{power-analysis}}
@@ -8870,7 +8906,7 @@ At this stage, it would be useful to plot our data. Figures can assist in the co
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-270-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 Narrating results is sometimes made easier if variables are switched. There is usually not a right or wrong answer. Here is another view, switching the Rater and Photo predictors.
 
@@ -8882,7 +8918,7 @@ Narrating results is sometimes made easier if variables are switched. There is u
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-271-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 Yet another option plots the raw data as bubbles, the means as lines, and denotes differences in the moderator with color.
 
@@ -8894,7 +8930,7 @@ Yet another option plots the raw data as bubbles, the means as lines, and denote
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-272-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-12-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8924,7 +8960,7 @@ Caused by error in `get()`:
 ! object 'mean_se_' of mode 'function' was not found
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-273-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 \hypertarget{working-the-factorial-anova-by-hand}{%
 \section{Working the Factorial ANOVA (by hand)}\label{working-the-factorial-anova-by-hand}}
@@ -9723,7 +9759,7 @@ Next, we can take a ``look'' them with a couple of plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-298-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 So far so good -- our distribution of \emph{residuals} (i.e., what is leftover after the model is applied) resembles a normal distribution.
 
@@ -9735,7 +9771,7 @@ The Q-Q plot provides another view. The dots represent the residuals. When they 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-299-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 Additionally, we can formally test the distribution of the residuals with a Shapiro test. We want the associated \emph{p} value to be greater than 0.05.
 
@@ -10068,7 +10104,7 @@ Because we used the \emph{rstatix} functions, we can easily integrate them into 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-309-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-49-1.pdf}
 
 \hypertarget{option-2-the-simple-main-effect-of-ethnicity-of-rater-within-photo-stimulus.}{%
 \subsubsection{Option \#2 the simple main effect of ethnicity of rater within photo stimulus.}\label{option-2-the-simple-main-effect-of-ethnicity-of-rater-within-photo-stimulus.}}
@@ -10186,7 +10222,7 @@ Let's create a figure that reflects the results of this simple main effect of ra
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-313-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 Here's how I would update the APA style reporting of results:
 
@@ -10300,7 +10336,7 @@ A boxplot representing this main effect may help convey how the main effect of R
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-316-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 \hypertarget{option-1-post-hoc-paired-comparisons}{%
 \subsubsection{Option \#1 post hoc paired comparisons}\label{option-1-post-hoc-paired-comparisons}}
@@ -10369,7 +10405,7 @@ Below is an augmentation of the figure that appeared at the beginning of the cha
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-318-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-58-1.pdf}
 
 \hypertarget{option-2-planned-orthogonal-contrasts}{%
 \subsubsection{Option \#2 planned orthogonal contrasts}\label{option-2-planned-orthogonal-contrasts}}
@@ -10518,7 +10554,7 @@ I am not aware of script that would effectively display this in a figure. Theref
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-323-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-63-1.pdf}
 
 \hypertarget{option-3-trendpolynomial-analysis}{%
 \subsubsection{Option \#3 trend/polynomial analysis}\label{option-3-trendpolynomial-analysis}}
@@ -10598,7 +10634,7 @@ A line plot might be a useful choice in conveying the linear trend.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-326-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-66-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10640,7 +10676,7 @@ We can simply call the Figure we created before:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-327-1.pdf}
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11536,7 +11572,7 @@ Let's also take a quick look at a boxplot of our data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-352-1.pdf}
+\includegraphics{09-OneWayRepeated_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 \hypertarget{working-the-one-way-repeated-measures-anova-by-hand}{%
 \section{Working the One-Way Repeated Measures ANOVA (by hand)}\label{working-the-one-way-repeated-measures-anova-by-hand}}
@@ -12104,7 +12140,7 @@ Although that model (a regression model) has information about the results of ou
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-372-1.pdf}
+\includegraphics{09-OneWayRepeated_files/figure-latex/unnamed-chunk-33-1.pdf}
 
 We can also use the model in a Shapiro-Wilk test. As before, we want a non-significant result.
 
@@ -12157,7 +12193,7 @@ Let's take another look at the boxplot. Swapping ``jitter'' for ``point'' may he
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-374-1.pdf}
+\includegraphics{09-OneWayRepeated_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 The package \emph{rstatix} has features that allow us to identify outliers.
 
@@ -12351,7 +12387,7 @@ We can combine information from the object we created (``bxp'') from an earlier 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-379-1.pdf} Unfortunately, the \emph{apaTables} package does not work with the \emph{rstatix} package, so a table would need to be crafted by hand.
+\includegraphics{09-OneWayRepeated_files/figure-latex/unnamed-chunk-40-1.pdf} Unfortunately, the \emph{apaTables} package does not work with the \emph{rstatix} package, so a table would need to be crafted by hand.
 
 \hypertarget{apa-style-results-5}{%
 \section{APA Style Results}\label{apa-style-results-5}}
@@ -13076,7 +13112,7 @@ At this stage, it would be useful to plot our data. Figures can assist in the co
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-398-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-12-1.pdf}
 
 Narrating results is sometimes made easier if variables are switched. There is usually not a right or wrong answer. Here is another view, switching the Rater and Photo predictors.
 
@@ -13088,7 +13124,7 @@ Narrating results is sometimes made easier if variables are switched. There is u
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-399-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 Yet another option plots the raw data as bubbles, the means as lines, and denotes differences in the moderator with color.
 
@@ -13100,7 +13136,7 @@ Yet another option plots the raw data as bubbles, the means as lines, and denote
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-400-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13119,7 +13155,7 @@ We can reverse this to see if it assists with our conceptualization.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-401-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \hypertarget{working-the-mixed-design-anova-with-r-packages}{%
 \section{Working the Mixed Design ANOVA with R packages}\label{working-the-mixed-design-anova-with-r-packages}}
@@ -13278,7 +13314,7 @@ We can visually inspect the distribution of the residuals with a couple of plots
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-405-1.pdf} So far so good -- our distribution of \emph{residuals} (i.e., what is leftover after the model is applied) resembles a normal distribution.
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-19-1.pdf} So far so good -- our distribution of \emph{residuals} (i.e., what is leftover after the model is applied) resembles a normal distribution.
 
 The Q-Q plot provides another view. The dots represent the residuals. When they are relatively close to the line they not only suggest good fit of the model, but we know they are small and evenly distributed around zero (i.e., normally distributed).
 
@@ -13288,7 +13324,7 @@ The Q-Q plot provides another view. The dots represent the residuals. When they 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-406-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 Finally, we can formally evaluate whether or not the distribution of residuals is statistically significantly different from a normal distribution with a Shapiro test. We want the associated \emph{p} value to be greater than 0.05.
 
@@ -13321,7 +13357,7 @@ The boxplot is one common way for identifying outliers. The boxplot uses the med
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-408-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 The distributions look relatively normal with the mean well-centered. Given that we simulated the data from means and standard deviations, this is somewhat expected.
 
@@ -13673,7 +13709,7 @@ Producing a figure can be helpful in conceptualizing what we have first done. Be
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-418-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 If we were to write up this simple main effect of condition within wave:
 
@@ -13817,7 +13853,7 @@ Let's create a figure to illustrate what we've just learned.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-422-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-36-1.pdf}
 
 If we were to write up this result:
 
@@ -13882,7 +13918,7 @@ Here is a figure to represent this analysis.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-424-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \hypertarget{apa-style-write-up-of-the-results}{%
 \subsection{APA Style Write-up of the Results}\label{apa-style-write-up-of-the-results}}
@@ -13918,7 +13954,7 @@ As illustrated in Figure 1 difference scores were comparable at baseline. After 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-425-1.pdf}
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 The following code can be used to write output to .csv files. From there it is easy(er) to manipulate them into tables for use in an empirical manuscript.
 
@@ -14618,7 +14654,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 generated.
 \end{verbatim}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-440-1.pdf} As in not surprising (because we tested a similar set of variables in the mixed design chapter), this relationship look like an interaction effect. Let's continue our exploration.
+\includegraphics{11-ANCOVA_files/figure-latex/unnamed-chunk-10-1.pdf} As in not surprising (because we tested a similar set of variables in the mixed design chapter), this relationship look like an interaction effect. Let's continue our exploration.
 
 \hypertarget{homogeneity-of-regression-slopes}{%
 \subsubsection{Homogeneity of regression slopes}\label{homogeneity-of-regression-slopes}}
@@ -14995,7 +15031,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-454-1.pdf} \textbf{Results}
+\includegraphics{11-ANCOVA_files/figure-latex/unnamed-chunk-24-1.pdf} \textbf{Results}
 
 \begin{quote}
 A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, condition, had two levels: Friends, Little Mosque. The dependent variable was attitudes towards Arabs expressed by the participant at post-test and covariate was the baseline assessment of the same variable. Descriptive statistics are presented in Table 1. A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable differed significantly as a function of the independent variable, \(F (1, 189) = 4.297, p = .040, \eta^2 = 0.022\). Regarding the assumption that the dependent variable is normally distributed in the population for any specific value of the covariate and for any one level of a factor, results of the Shapiro-Wilk test of normality on the model residuals was also significant,\(W = 0.984, p = .026\). Only one datapoint (in the Little Mosque condition) had a standardized residual (-3.37) that exceeded an absolute value of 3.0. A non-significant Levene's test indicated no violation of the homogeneity of the residual variances for all groups, \(F(1, 191) = 3.515 p = .062\).
@@ -15073,7 +15109,7 @@ We can create a scatterplot (with regression lines) between the covariate (attit
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-455-1.pdf} As we look at this scatterplot, we are trying to determine if there is an interaction effect (rather than a covarying effect). The linearity here, looks reasonable and not terribly ``interacting'' (to help us decide whether empathy should be a covariate or a moderator). More testing can help us make this distinction.
+\includegraphics{11-ANCOVA_files/figure-latex/unnamed-chunk-25-1.pdf} As we look at this scatterplot, we are trying to determine if there is an interaction effect (rather than a covarying effect). The linearity here, looks reasonable and not terribly ``interacting'' (to help us decide whether empathy should be a covariate or a moderator). More testing can help us make this distinction.
 
 \hypertarget{homogeneity-of-regression-slopes-1}{%
 \subsubsection{Homogeneity of regression slopes}\label{homogeneity-of-regression-slopes-1}}
@@ -15398,7 +15434,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-468-1.pdf} \textbf{Results}
+\includegraphics{11-ANCOVA_files/figure-latex/unnamed-chunk-38-1.pdf} \textbf{Results}
 
 \begin{quote}
 A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, sitcom condition, had two levels: Friends, Little Mosque. The dependent variable was attitudes towards Arabs at pre-test. We controlled for attitudes toward Whites. Preliminary analyses which tested the assumptions of ANCOVA were mixed. Results suggesting that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable \((F [1, 189] = 1.886, p = .171, \eta^2 = 0.010)\) provided evidence that we did not violate the homogeneity-of-slopes assumption. In contrast, the Shapiro-Wilk test of normality on the model residuals was statistically significant \((W = 0.984, p = .029)\). This means that we likely violated the assumption that the dependent variable is normally distributed in the population for any specific value of the covariate and for any one level of a factor. Regarding outliers, one datapoint (-3.38) had a standardized residual that exceeded an absolute value of 3.0. Further, a statistically significant Levene's test indicated a violation of the homogeneity of the residual variances for all groups, \((F[1, 191] = 4.539, p = .034)\).
@@ -15578,7 +15614,7 @@ In the one-way ANOVA research vignette, the COND factor had three levels: contro
 \end{Shaded}
 
 \begin{verbatim}
-[1] 3
+## [1] 3
 \end{verbatim}
 
 Subsequently, we would compute a new alpha that would be used for each comparison with this formula: \(\alpha_{pc}=\frac{\alpha_{family}}{N_{pc}}\).
@@ -15592,7 +15628,7 @@ In the one-way ANOVA research vignette we would calculate it this way:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.01666667
+## [1] 0.01666667
 \end{verbatim}
 
 If we were to use the traditional Bonferroni to manage Type I error, the resultant \(p\) value would need to be \textless{} .017 in order for statistical significance to be claimed.
@@ -15952,7 +15988,7 @@ I am not aware of an integration of packages that would represent this type of o
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-486-1.pdf}
+\includegraphics{13-moReTwoWay_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \hypertarget{analysis-of-simple-main-effects-with-a-polynomial-trend}{%
 \section*{Analysis of Simple Main Effects with a Polynomial Trend}\label{analysis-of-simple-main-effects-with-a-polynomial-trend}}
@@ -16074,7 +16110,7 @@ The figure we have been using would be appropriate to illustrate the significant
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReCenterPsychStats_files/figure-latex/unnamed-chunk-490-1.pdf}
+\includegraphics{13-moReTwoWay_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \hypertarget{all-possible-post-hoc-comparisons}{%
 \section*{All Possible Post Hoc Comparisons}\label{all-possible-post-hoc-comparisons}}

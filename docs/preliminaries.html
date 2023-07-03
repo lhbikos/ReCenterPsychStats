@@ -1021,7 +1021,7 @@ div.csl-indent {
 <p>As we begin to explore the descriptive and distributional characteristics of this variable, it may be helpful to visualize it through a histogram.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="preliminaries.html#cb23-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(df<span class="sc">$</span>nAff, <span class="at">xlab =</span> <span class="st">&quot;Negative Affect&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
 <span id="cb23-2"><a href="preliminaries.html#cb23-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;#00AFBB&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Frequencies of Negative Affect&quot;</span>)</span></code></pre></div>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="03-Preliminaries_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <div id="measures-of-central-tendency" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Measures of Central Tendency<a href="preliminaries.html#measures-of-central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Describing data almost always begins with <em>measures of central tendency</em>: the mean, median, and mode.</p>
@@ -1097,7 +1097,7 @@ R is an incredible tool in that we can type out mathematical operations, use fun
 <p>In our research vignette, the mean (1.81) is higher than the median (1.75) is higher than the mode (1.0). This would suggest a positive skew. Here is a reminder of our histogram:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="preliminaries.html#cb45-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(df<span class="sc">$</span>nAff, <span class="at">xlab =</span> <span class="st">&quot;Negative Affect&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
 <span id="cb45-2"><a href="preliminaries.html#cb45-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;#00AFBB&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Frequencies of Negative Affect&quot;</span>)</span></code></pre></div>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="03-Preliminaries_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -1356,9 +1356,9 @@ Repeated below are each of the six steps for the toy data:</p>
 <div id="skew-and-kurtosis" class="section level3 hasAnchor" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> Skew and Kurtosis<a href="preliminaries.html#skew-and-kurtosis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Skew and kurtosis are indicators of non-normality. Skew refers to the degree to which the data is symmetrical. In the figure below, the symmetrical distribution in the center (the black line) has no apparent evidence of skew. In contrast, the red figure whose curve (representing a majority of observations) in the left-most part of the graph (with the tail pulling to the right) is positively skewed; the blue figure whose curve (representing a majority of cases) is in the right-most part of the graph (with the tail pulling to the left) is negatively skewed.</p>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-62-1.png" width="672" />
+<p><img src="03-Preliminaries_files/figure-html/unnamed-chunk-48-1.png" width="672" />
 Kurtosis refers to the degree to which the distribution of data is flat or peaked. Mesokurtic distributions are considered to be closest to normal. Leptokurtic distributions are peaked and platykurtic distributions are flat. As we will learn as we progress, visual observation of data is a legitimate component in evaluating skew and kurtosis.</p>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<p><img src="03-Preliminaries_files/figure-html/unnamed-chunk-49-1.png" width="672" />
 There have been numerous approaches to calculating and interpreting skew and kurtosis. Consequently, different statistics packages calculate skew and kurtosis differently. The <em>psych</em> package (a go-to-for a variety of tasks) offers three different options for calculating skew and kurtosis. These are specified in the script as “type=#” (i.e., 1, 2, or 3 [the default]). Revelle <span class="citation">(<a href="#ref-revelle_introduction_2021">2021</a>)</span> refers readers to Joanes and Gill’s <span class="citation">(<a href="#ref-joanes_comparing_1998">1998</a>)</span> article for detailed information about each. A very helpful resource to understand skew, kurtosis, and its interpretation is found in chapter four (Data Preparation and Psychometrics Review) of Kline’s <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span> SEM text is helpful in the interpretation of skew and kurtosis. Summarizing by simulation studies for structural equation modeling (i.e., multivariate statistics that are generally characterized as large sample studies using maximum likelihood estimation), Kline suggested that <em>type=1</em> skew values greater than the absolute value of 3.0 are “severely” skewed. Regarding <em>type=1</em> kurtosis, Kline noted the literature has suggested that values from 8.0 to 20.0 have been described as severely kurtotic. As an interpretive framework, Kline suggested that absolute values greater than 10.0 are problematic and values greater than 20 are serious. He added that this rule-of-thumb errs on the conservative side.</p>
 <p>The <em>psych::describe</em> specification of “type=1” results in the <em>skew index</em> and <em>kurtosis index</em>. For simplicity sake, I will refer to this specific variation of skew and kutosis as “type=1.” This is a very quick way to obtain initial values.</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="preliminaries.html#cb130-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(df_3vars, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
@@ -1586,7 +1586,7 @@ sample estimates:
 <span id="cb148-4"><a href="preliminaries.html#cb148-4" tabindex="-1"></a><span class="co"># df adding the pch command is optional and produces a finer</span></span>
 <span id="cb148-5"><a href="preliminaries.html#cb148-5" tabindex="-1"></a><span class="co"># resolution</span></span>
 <span id="cb148-6"><a href="preliminaries.html#cb148-6" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(df_3vars, <span class="at">pch =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
-<p><img src="ReCenterPsychStats_files/figure-html/unnamed-chunk-73-1.png" width="672" />
+<p><img src="03-Preliminaries_files/figure-html/unnamed-chunk-59-1.png" width="672" />
 What do we observe?</p>
 <ul>
 <li>There is a more-or-less moderate correlation between negative affect and microaggressions (<span class="math inline">\(r = 0.27\)</span>)</li>
