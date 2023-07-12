@@ -129,7 +129,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP (she/her)}
-\date{Last updated 03 Jul 2023}
+\date{Last updated 11 Jul 2023}
 
 \begin{document}
 \maketitle
@@ -165,7 +165,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 03 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 11 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=859e5312-abdb-4db8-8779-b00c00feae47}{Screencasted Lecture Link}
 
@@ -308,6 +308,121 @@ R can be oveRwhelming. Jumping right into advanced statistics might not be the e
 In the remaining lessons, I have attempted to provide complete code for every step of the process, starting with uploading the data. To help explain what R script is doing, I sometimes write it in the chapter text; sometimes leave hashtagged-comments in the chunks; and, particularly in the accompanying screencasted lectures, try to take time to narrate what the R script is doing.
 
 I've found that, somewhere on the internet, there's almost always a solution to what I'm trying to do. I am frequently stuck and stumped and have spent hours searching the internet for even the tiniest of tasks. When you watch my videos, you may notice that in my R studio, there is a ``scRiptuRe'' file. I take notes on the solutions and scripts here -- using keywords that are meaningful to me so that when I need to repeat the task, I can hopefully search my own prior solutions and find a fix or a hint. You may also find it useful to create a working document of your own tips and tricks.
+
+\hypertarget{introduction-to-the-data-set-used-for-homeworked-examples}{%
+\section{Introduction to the Data Set Used for Homeworked Examples}\label{introduction-to-the-data-set-used-for-homeworked-examples}}
+
+\href{}{Screencast Link}
+
+This section of the Appendix is designed as a streamlined example of working the primary statistic from each lesson. This section is intended to be helpful in two ways:
+
+\begin{itemize}
+\tightlist
+\item
+  The worked example focuses on the operations and interpretations and more closely mimics ``how you would work a problem in real life.''
+\item
+  The grading rubric from the end of each lesson serves as the outline for the process.
+\item
+  This dataset could be used for the practice problems. For homework that you submit for grading, please choose \emph{different variables} than the ones worked in the examples.
+\end{itemize}
+
+\hypertarget{the-data-set}{%
+\subsection{The Data Set}\label{the-data-set}}
+
+The dataset used in the ``homeworked'' examples is from my own research. Along long with the pre-registration and codebooks, it is publicly available on the Open Science Framework (OSF): \url{https://osf.io/z84kh/} I have also provided a copy of it in the GitHub repository that hosts the ReCentering Psych Stats OER.
+
+This data is from an IRB-approved study. The informed consent of the IRB specified that the data could be used in research as well as in teaching demonstrations and would be made available to the general public. You may notice there are student- and teacher- IDs. These numbers are *not** the institution's identification numbers. Rather, they have been further anonymized.
+
+The purpose of the research project was to evaluate efforts to recenter -- in a socially responsive way -- courses in the statistics and research methods sequence in scientist-practitioner psychology (PhD) programs. The recentering occurred in two phases: (a) a transition from SPSS to R and (b) an explicit recentering. Data were from end-of-course evaluations three courses I taught: Research Methods I: Analysis of Variance {[}ANOVA{]}, Research Methods III: Multivariate Modeling {[}multivariate{]}, and Research Methods IV: Psychometrics/Theory of Test Construction {[}psychometrics{]}) that were offered 2017 through 2022.
+
+Because students could contribute up to three course evaluations, each, multilevel modeling was used for the primary analyses. The nature of the data, though, allows me to demonstrate all of the statistics utilized the OER with this data. For each analysis, I have tried to derive a sensible question that \emph{could be} answered by the data. In-so-doing, I try to point out when the alignment of research question and statistic is less than ideal.
+
+The data file is titled \emph{ReC.rds} and can be retrieved with this code:
+
+The following can serve as a codebook:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1702}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5638}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2660}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition or Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scaling
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+deID & Anonymized identification for each student Each student could contribute up to three course evaluations & Nominal/factor \\
+CourseID & Unique number for each course taught (i.e., ANOVA has unique numbers across department and year). & Nominal/factor \\
+Dept & CPY (Clinical Psychology), ORG (Industrial Organizational Psychology) & Nominal/factor \\
+Course & ANOVA (analysis of variance), Multivariate (multivariate modeling), Psychometrics (psychometrics/theory of test construction), taught in that order & Nominal/factor \\
+StatsPkg & SPSS, R & Nominal/factor \\
+Centering & Pre (before explicit recentering), Re (included explicit recentering) & Nominal/factor \\
+Year & Calendar year in which the course was taught & Calendrical time \\
+Quarter & Academic term in which course was taught (fall, winter, spring) & Nominal/factor \\
+ProgramYear & A potential confound to the study. During the changes from SPSS to R and the explicit recentering, the program was also moving the stats sequence from the second to the first year of the doctoral program. First = course taken during first year; Second = course taken during second year; Transition = course taken during the transition period. & Nominal/factor \\
+SPFC.Decolonize.Opt.Out & Students were given the opportunity to exclude their data from analysis. Such data was removed prior to any analysis and not included in this set. & Character \\
+\end{longtable}
+
+COURSE EVALUATION ITEMS; 5-point Likert scaling from 1(\emph{strongly disagree}) to 5(\emph{strongly agree}). Higher scores are more favorable evaluations.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1905}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8095}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete Item
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+IncrInterest & My interest in the subject matter increased over the span of the course. \\
+IncrUnderstanding & My understanding of the subject matter increased over the span of the course. \\
+ValObjectives & This course has objectives that are valuable in furthering my education. \\
+ApprAssignments & This course has had an appropriate workload, given the course objectives. \\
+EffectiveAnswers & The instructor has effectively answered student questions. \\
+Respectful & The instructor has shown respect to students. \\
+ClearResponsibilities & The instructor has made student responsibilities clear. \\
+Feedback & The instructor has provided feedback to me about my learning progress. \\
+OvInstructor & My overall rating of this instructor for this course is: \\
+MultPerspectives & The instructor has helped students consider issues from multiple perspectives, where applicable. \\
+OvCourse & My overall rating of the course content is: \\
+InclsvClssrm & The instructor has been intentional in fostering an inclusive classroom for students with diverse backgrounds and abilities. \\
+DEIintegration & The instructor has, when appropriate, discussed the relationships between race/ethnicity/culture and course content. \\
+ClearPresentation & The instructor has presented course material clearly. \\
+ApprWorkload & This course has had an appropriate workload, given the course objectives. \\
+MyContribution & My overall rating of my contribution in this course is: \\
+InspiredInterest & The instructor has inspired student interest in the subject matter of this course. \\
+Faith & The instructor has, when appropriate, discussed the relationship between the Christian faith and course content. \\
+EquitableEval & The instructor used methods of evaluating student course work that were equitable. \\
+ClearOrganization & This course has had a clear overall organization. \\
+RegPrepare & I regularly read, reviewed, visited/logged on, or completed assigned readings and tasks. \\
+EffectiveLearning & This course has consisted of course activities/tasks that were effective in helping me learn (e.g., discussions, readings, assignments, labs, or other activities). \\
+AccessibleInstructor & The instructor has been accessible (e.g., discussion sessions, virtual office hours, phone, chat, email, online forum or conference, etc.). \\
+\end{longtable}
+
+From these variables, I created three scales to assess valued by the student (Valued), traditional pedagogy (TradPed), and socially responsive pedagogy (SRped). I will use these in the demonstrations.
+
+\begin{itemize}
+\item
+  \textbf{Valued by the student} includes the items: ValObjectives, IncrUnderstanding, IncrInterest
+\item
+  \textbf{Traditional pedagogy} includes the items: ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation
+\item
+  \textbf{Socially responsive pedagogy} includes the items: InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration
+\end{itemize}
+
+In the examples where the scale scores are used, I provide code for calculating the means.
+
+Here's how to import the data:
 
 \hypertarget{Ready}{%
 \chapter{Ready\_Set\_R}\label{Ready}}
@@ -797,6 +912,146 @@ Points Earned
 8. Demonstration/discussion with a grader. & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 40 & \_\_\_\_\_ \\
 \end{longtable}
+
+\hypertarget{homeworked-example}{%
+\section{Homeworked Example}\label{homeworked-example}}
+
+\href{}{Screencast Link}
+
+Several elements of the practice problems (i.e., download base R and R studio, open and save an r.rmd file) are not easily demonstrated and not replicated here. These are skipped.
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could simply change the seed -- again. For a greater challenge, you could adjust the simulation to have different sample sizes, means, or standard deviations.}
+
+\hypertarget{perform-a-simple-mathematical-operation}{%
+\subsection{Perform a simple mathematical operation:}\label{perform-a-simple-mathematical-operation}}
+
+In the .rmd file, open a chunk and perform a simple mathematical operation of your choice (e.g., subtract your birth year from this year).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2023} \SpecialCharTok{{-}} \DecValTok{1966}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 57
+\end{verbatim}
+
+\hypertarget{install-at-least-three-packages-we-will-commonly-use}{%
+\subsection{Install at least three packages we will commonly use:}\label{install-at-least-three-packages-we-will-commonly-use}}
+
+Below is code for installing three packages. Because continuous reinstallation can be problematic, I have hashtagged them so that they will not re-run.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("tidyverse")}
+\CommentTok{\#install.packages("ggpubr")}
+\CommentTok{\#install.packages("psych")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{copy-the-simulation-in-this-lesson-to-your-.rmd-file.-change-the-random-seed-and-run-the-simulation.}{%
+\subsection{Copy the simulation in this lesson to your .rmd file. Change the random seed and run the simulation.}\label{copy-the-simulation-in-this-lesson-to-your-.rmd-file.-change-the-random-seed-and-run-the-simulation.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
+\CommentTok{\# sample size, M and SD for each group}
+\NormalTok{Accurate }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \FloatTok{1.18}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.8}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \FloatTok{1.83}\NormalTok{,}
+    \AttributeTok{sd =} \FloatTok{0.58}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \FloatTok{1.76}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.56}\NormalTok{))}
+\CommentTok{\# set upper bound for DV}
+\NormalTok{Accurate[Accurate }\SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{3}
+\CommentTok{\# set lower bound for DV}
+\NormalTok{Accurate[Accurate }\SpecialCharTok{\textless{}} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\CommentTok{\# IDs for participants}
+\NormalTok{ID }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{90}\NormalTok{))}
+\CommentTok{\# name factors and identify how many in each group; should be in same}
+\CommentTok{\# order as first row of script}
+\NormalTok{COND }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\DecValTok{30}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{30}\NormalTok{))}
+\CommentTok{\# groups the 3 variables into a single df: ID, DV, condition}
+\NormalTok{Acc\_sim30B }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(ID, COND, Accurate)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{save-the-resulting-data-as-a-.csv-or-.rds-file-in-the-same-file-as-you-saved-the-.rmd-file.}{%
+\subsection{Save the resulting data as a .csv or .rds file in the same file as you saved the .rmd file.}\label{save-the-resulting-data-as-a-.csv-or-.rds-file-in-the-same-file-as-you-saved-the-.rmd-file.}}
+
+You only need to save it as a .csv or .rds file. I have demonstrated both.
+
+Saving as a .csv file
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{write.table}\NormalTok{(Acc\_sim30B, }\AttributeTok{file =} \StringTok{"to\_CSVb.csv"}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{, }\AttributeTok{col.names =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Saving as an .rds file
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{saveRDS}\NormalTok{(Acc\_sim30B, }\StringTok{"to\_RobjectB.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{clear-your-environment-broom-in-upper-right.}{%
+\subsection{Clear your environment (broom in upper right).}\label{clear-your-environment-broom-in-upper-right.}}
+
+You only need to import the .csv or .rds file; I have demonstrated both. Open the .csv file from my local drive.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{from\_CSV }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"to\_CSVb.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Open the .rds file from my local drive.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{from\_rds }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"to\_RobjectB.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{run-the-describe-function-from-the-psych-package-with-your-simulated-data-that-you-imported-from-your-local-drive.}{%
+\subsection{Run the describe() function from the psych package with your simulated data that you imported from your local drive.}\label{run-the-describe-function-from-the-psych-package-with-your-simulated-data-that-you-imported-from-your-local-drive.}}
+
+You only need to retrieve descriptives from the .csv or .rds file; I have demonstrated both.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(from\_CSV)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
+ID          1 90 45.50 26.12   45.5   45.50 33.36   1  90    89  0.00    -1.24
+COND*       2 90  2.00  0.82    2.0    2.00  1.48   1   3     2  0.00    -1.53
+Accurate    3 90  1.65  0.67    1.7    1.67  0.68   0   3     3 -0.29    -0.42
+           se
+ID       2.75
+COND*    0.09
+Accurate 0.07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(from\_rds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
+ID*         1 90 45.50 26.12   45.5   45.50 33.36   1  90    89  0.00    -1.24
+COND*       2 90  2.00  0.82    2.0    2.00  1.48   1   3     2  0.00    -1.53
+Accurate    3 90  1.65  0.67    1.7    1.67  0.68   0   3     3 -0.29    -0.42
+           se
+ID*      2.75
+COND*    0.09
+Accurate 0.07
+\end{verbatim}
 
 \hypertarget{preliminaries}{%
 \chapter{Preliminary Analyses}\label{preliminaries}}
@@ -2567,6 +2822,239 @@ Points Earned
 **Totals & 26 & \\
 \end{longtable}
 
+\hypertarget{homeworked-example-1}{%
+\section{Homeworked Example}\label{homeworked-example-1}}
+
+\href{}{Screencast Link}
+
+Preliminary analyses often consist of means, standard deviations, and correlations. These can be helpful in determining whether or not data are normally distribution. Correlations and pairs.panels also assess the relatedness of the variables.
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could (a) select a different course (i.e., Multivariate or Psychometrics) and/or (b) different variables.}
+
+\hypertarget{working-the-problem-with-r-and-r-packages}{%
+\subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages}}
+
+\hypertarget{create-a-df-with-3-continuously-scaled-variables-of-interest}{%
+\subsubsection{Create a df with 3 continuously scaled variables of interest}\label{create-a-df-with-3-continuously-scaled-variables-of-interest}}
+
+The ReC.rds is the entire dataset. Let's first open it.
+
+Recall that students (represented by the \emph{deID} variable) could contribute up to three course evaluations (i.e., ANOVA, psychometrics, multivariate) each. In many statistics, repeated observations creates dependencies that need to be accounted for statistically.
+
+To avoid this dependency and to practice an R skil, let's first filter the data, selecting only those students who took ANOVA.
+
+\hypertarget{create-a-df-with-3-continuously-scaled-variables-of-interest-1}{%
+\subsubsection{Create a df with 3 continuously scaled variables of interest}\label{create-a-df-with-3-continuously-scaled-variables-of-interest-1}}
+
+The assignment requires that we downsize to three variables. We could pick any three.
+
+\hypertarget{produce-descriptive-statistics}{%
+\subsubsection{Produce descriptive statistics}\label{produce-descriptive-statistics}}
+
+\begin{verbatim}
+               vars   n mean   sd median trimmed  mad min max range  skew
+OvInstructor      1 113 4.19 1.01      5    4.34 0.00   1   5     4 -0.98
+OvCourse          2 113 3.93 1.12      4    4.07 1.48   1   5     4 -0.72
+MyContribution    3 113 3.96 0.83      4    4.01 1.48   2   5     3 -0.39
+               kurtosis   se
+OvInstructor      -0.07 0.10
+OvCourse          -0.49 0.11
+MyContribution    -0.55 0.08
+\end{verbatim}
+
+\hypertarget{produce-splompairs.panels}{%
+\subsubsection{Produce SPLOM/pairs.panels}\label{produce-splompairs.panels}}
+
+\includegraphics{03-Preliminaries_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+\hypertarget{produce-an-apatables-matrix}{%
+\subsubsection{Produce an apaTables matrix}\label{produce-an-apatables-matrix}}
+
+\begin{verbatim}
+
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable          M    SD   1          2         
+  1. OvInstructor   4.19 1.01                      
+                                                   
+  2. OvCourse       3.93 1.12 .83**                
+                              [.76, .88]           
+                                                   
+  3. MyContribution 3.96 0.83 .49**      .60**     
+                              [.34, .62] [.46, .70]
+                                                   
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
+\end{verbatim}
+
+\hypertarget{produce-an-apa-style-write-up-of-the-preliminary-analyses}{%
+\subsubsection{Produce an APA Style write-up of the preliminary analyses}\label{produce-an-apa-style-write-up-of-the-preliminary-analyses}}
+
+Our sample included 113 doctoral students in Clinical and Industrial-Organizational psychology doctoral (PhD) programs who were completing a statistics class focused on analysis of variance. Visual inspection of three dimensions of course evaluation (overall instructor, overall course, my contributions) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. That is, skew values all fell below the absolute value of 3 and kurtosis values all fell below the absolute value of 10 \citep{kline_data_2016}. Means, standard deviations, and a correlation matrix are presented in Table 1. All three correlations were strong and statistically significant. We noted that the correlation between the overall instructor and overall course was especially high (\emph{r} = .83, \emph{p} \textless{} .001)
+
+\hypertarget{hand-calculations}{%
+\subsection{Hand Calculations}\label{hand-calculations}}
+
+Although these are termed ``hand calculations,'' you may use the code demonstrated in the chapter to work these problems.
+
+I am going to continue with the \emph{tiny3} dataset I used when I worked the problem with R and R packages. Given that this is for homework, let's avoid problems with missingness by deleting any rows with missing data:
+
+If you need to reimport data, here is a quick recap of the code explained earlier.
+
+To avoid problems in the code we are used that is caused by missingness, we will eliminate any rows with missing data.
+
+\hypertarget{create-a-variable-that-represents-the-mean.}{%
+\subsubsection{Create a variable that represents the mean.}\label{create-a-variable-that-represents-the-mean.}}
+
+I will start with the OvInstructor variable. Inspect the dataframe to see that this new variable exists.
+
+\hypertarget{create-a-variable-that-represents-the-mean-deviation.}{%
+\subsubsection{Create a variable that represents the mean deviation.}\label{create-a-variable-that-represents-the-mean-deviation.}}
+
+Inspect the dataframe to see that this new variable exists. Note that this functions to ``center'' the mean around zero.
+
+\hypertarget{what-is-the-value-of-the-sum-of-mean-deviations}{%
+\subsubsection{What is the value of the sum of mean deviations?}\label{what-is-the-value-of-the-sum-of-mean-deviations}}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+Yes, zero!
+
+\hypertarget{create-a-variable-that-represents-the-absolute-mean-deviation.}{%
+\subsubsection{Create a variable that represents the absolute mean deviation.}\label{create-a-variable-that-represents-the-absolute-mean-deviation.}}
+
+Inspect the dataframe to see that this new variable no longer has negative values.
+
+\textbf{What is the value of the sum of the absolute mean deviation?}
+
+\begin{verbatim}
+[1] 96.071
+\end{verbatim}
+
+\textbf{What is the value of the mean of the absolute mean deviation?}
+
+\begin{verbatim}
+[1] 0.85
+\end{verbatim}
+
+\textbf{What does this value tell you?}
+
+Average distance of each value from the mean.
+
+\hypertarget{create-a-variable-that-represents-the-mean-deviation-squared.}{%
+\subsubsection{Create a variable that represents the mean deviation squared.}\label{create-a-variable-that-represents-the-mean-deviation-squared.}}
+
+\textbf{What is the value of the sum of squared deviations around the mean (also known as sums of squares; sometimes abbreviated as \(SS\))?}
+
+\begin{verbatim}
+[1] 115.0973
+\end{verbatim}
+
+\textbf{What is the value of the variance (\(s^2\))?}
+
+There are at least two ways to do this with basic code (and then we can check our work).
+
+Here's how to do it with ``more code.''
+
+\begin{verbatim}
+[1] 1.027655
+\end{verbatim}
+
+Here's how to do it with the numbers that I calculated:
+
+\begin{verbatim}
+[1] 1.027654
+\end{verbatim}
+
+Checking my work with the \emph{var} function from base R. If it's wrong, I need to rework some of the previous steps.
+
+\begin{verbatim}
+[1] 1.027655
+\end{verbatim}
+
+\textbf{What is the value of the standard deviation (\(s\))?}
+
+There are two ways to calculate it with basic code; and then we can check it with more code from base R.
+
+\begin{verbatim}
+[1] 1.013733
+\end{verbatim}
+
+\begin{verbatim}
+[1] 1.013733
+\end{verbatim}
+
+\begin{verbatim}
+[1] 1.013733
+\end{verbatim}
+
+\hypertarget{using-the-same-general-approach-calculate-the-mean-deviation-and-standard-deviation-for-a-second-continuously-scaled-variable.}{%
+\subsubsection{Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable.}\label{using-the-same-general-approach-calculate-the-mean-deviation-and-standard-deviation-for-a-second-continuously-scaled-variable.}}
+
+My second variable is MyContribution
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{verbatim}
+[1] 0.8337652
+\end{verbatim}
+
+\hypertarget{create-a-variable-that-represents-the-cross-product-of-the-mean-deviations.-what-is-the-sum-of-these-cross-products}{%
+\subsubsection{\texorpdfstring{Create a variable that represents the \emph{cross-product} (of the mean deviations). What is the sum of these cross-products?}{Create a variable that represents the cross-product (of the mean deviations). What is the sum of these cross-products?}}\label{create-a-variable-that-represents-the-cross-product-of-the-mean-deviations.-what-is-the-sum-of-these-cross-products}}
+
+The sum of the crossproduct is:
+
+\begin{verbatim}
+[1] 46.74336
+\end{verbatim}
+
+\hypertarget{calculate-the-value-of-their-covariance.}{%
+\subsubsection{Calculate the value of their covariance.}\label{calculate-the-value-of-their-covariance.}}
+
+\begin{verbatim}
+[1] 0.4173514
+\end{verbatim}
+
+\hypertarget{calculate-value-of-correlation-coefficient.}{%
+\subsubsection{Calculate value of correlation coefficient.}\label{calculate-value-of-correlation-coefficient.}}
+
+\begin{verbatim}
+[1] 0.4937606
+\end{verbatim}
+
+And now I can check my work with a function from base R.
+
+\begin{verbatim}
+
+    Pearson's product-moment correlation
+
+data:  tiny3$OvInstructor and tiny3$MyContribution
+t = 5.9825, df = 111, p-value = 0.00000002737
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3400714 0.6217934
+sample estimates:
+      cor 
+0.4937812 
+\end{verbatim}
+
+The correlation between ratings of overall instructor and my contribution is 0.493, \(p < .001\).
+
 \hypertarget{t-tests}{%
 \chapter*{\texorpdfstring{\emph{t}-tests}{t-tests}}\label{t-tests}}
 
@@ -3874,6 +4362,292 @@ Points Earned
 \textbf{Totals} & 24 & \\
 \end{longtable}
 
+\hypertarget{homeworked-example-2}{%
+\section{Homeworked Example}\label{homeworked-example-2}}
+
+\href{}{Screencast Link}
+
+The one-sample test comes in handy when you want to compare your dataset to an external benchmark or standard. It can be a real helper in program evaluation
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could select a different course (i.e., Multivariate or Psychometrics) and/or compare the mean for the ORG department (\(M = 4.1\)).}
+
+\hypertarget{working-the-problem-with-r-and-r-packages-1}{%
+\subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-1}}
+
+\hypertarget{narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis}{%
+\subsubsection{Narrate the research vignette, describing the variables and their role in the analysis}\label{narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis}}
+
+From my course evaluation data, I want to ask the question, ``Are ratings for the Overall Instructor for the ANOVA course evals statistically significantly different from the overall departmental averages for that same item?'' In CPY the overall average for that specific item is 4.4.
+
+\hypertarget{simulate-or-import-and-format-data}{%
+\subsubsection{Simulate (or import) and format data}\label{simulate-or-import-and-format-data}}
+
+The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
+
+Let's first trim it to just students who took ANOVA
+
+And further trim to our variable of interest
+
+\begin{verbatim}
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.2     v readr     2.1.4
+v forcats   1.0.0     v stringr   1.5.0
+v ggplot2   3.4.2     v tibble    3.2.1
+v lubridate 1.9.2     v tidyr     1.3.0
+v purrr     1.0.1     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+And further trim to non-missing data
+
+\begin{itemize}
+\tightlist
+\item
+  Is the sample variable on a continuous scale of measurement and formatted as \emph{num} or \emph{int} in R?
+\item
+  Is the external score evaluated on the same continuous scale?
+\end{itemize}
+
+\begin{verbatim}
+ int [1:113] 5 4 4 3 5 3 5 4 3 5 ...
+\end{verbatim}
+
+Yes. The format for the OvInstructor variable is integer (which is numerical); the overall course evaluation is on an equivalent (1 to 5) scale.
+
+\hypertarget{evaluate-statistical-assumptions}{%
+\subsubsection{Evaluate statistical assumptions}\label{evaluate-statistical-assumptions}}
+
+\begin{itemize}
+\tightlist
+\item
+  Are the skew and kurtosis values within the range expected?
+\item
+  Does the distribution of the variable differ significantly from a normal distribution?
+\end{itemize}
+
+\begin{verbatim}
+               nbr.val               nbr.null                 nbr.na 
+113.000000000000000000   0.000000000000000000   0.000000000000000000 
+                   min                    max                  range 
+  1.000000000000000000   5.000000000000000000   4.000000000000000000 
+                   sum                 median                   mean 
+473.000000000000000000   5.000000000000000000   4.185840707964601393 
+               SE.mean           CI.mean.0.95                    var 
+  0.095363991425895162   0.188951524765374329   1.027654867256637239 
+               std.dev               coef.var               skewness 
+  1.013733134141642456   0.242181488706142922  -0.984495621273390964 
+              skew.2SE               kurtosis               kurt.2SE 
+ -2.164227168444894378  -0.074100280830601939  -0.082121112321619227 
+            normtest.W             normtest.p 
+  0.772806906937811733   0.000000000006195409 
+\end{verbatim}
+
+The skew value is -9.84 and far exceeds the absolute value of 3. The skew.2SE is -2.164 (larger than the absolute value of 2.0) is consistent. Thus, we might have some concern about skew.
+
+The kurtosis value is -7.410 and is below the absolute value of 10. The kurt.2SE value is -8.212 which is substantially larger than the absolute value of 2.0. Thus, we are similarly concerned about kurtosis.
+
+The Shapiro wilk test value is 7.728 (\emph{p} \textless{} 0.001). This significant value suggests a distribution that is not normally distributed.
+
+\hypertarget{conduct-a-one-sample-t-test-with-an-effect-size}{%
+\subsubsection{\texorpdfstring{Conduct a one sample \emph{t} test (with an effect size)}{Conduct a one sample t test (with an effect size)}}\label{conduct-a-one-sample-t-test-with-an-effect-size}}
+
+First, comparison to CPY
+
+\begin{verbatim}
+# A tibble: 1 x 12
+  estimate .y.     group1 group2     n statistic      p    df conf.low conf.high
+*    <dbl> <chr>   <chr>  <chr>  <int>     <dbl>  <dbl> <dbl>    <dbl>     <dbl>
+1     4.19 OvInst~ 1      null ~   113     -2.25 0.0267   112     4.00      4.37
+# i 2 more variables: method <chr>, alternative <chr>
+\end{verbatim}
+
+We can begin to create our \emph{t} string:
+
+\(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)\)
+
+Let's interpret the results. With 112 degrees of freedom, our \emph{t} value is -2.245. Because the \emph{p} value is less than .05, this is statistically significant. This means that my course evaluations in ANOVA were statistically significantly lower than the average for CPY. We are 95\% confident that the true course evaluation mean (for my courses) fell between 3.997 and 4.374.
+
+Let's calculate the effect size. we will use a Cohen's \emph{d} which is interpreted in standard deviation units.
+
+\begin{verbatim}
+# A tibble: 1 x 6
+  .y.          group1 group2     effsize     n magnitude
+* <chr>        <chr>  <chr>        <dbl> <int> <ord>    
+1 OvInstructor 1      null model  -0.211   113 small    
+\end{verbatim}
+
+Cohen's \emph{d} was 0.211. This is a small effect. We can add it to the \emph{t} string.
+
+\(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374), d = -0.211\)
+
+\hypertarget{apa-style-results-with-tables-and-figure}{%
+\subsubsection{APA style results with table(s) and figure}\label{apa-style-results-with-tables-and-figure}}
+
+\begin{itemize}
+\tightlist
+\item
+  t-test results should include t, df, p, d-or-eta, and CI95\%
+\item
+  Table
+\item
+  Figure
+\item
+  Grammar/style
+\end{itemize}
+
+\begin{quote}
+A one-sample \emph{t}-test was used to evaluate whether the \emph{overall instructor} course evaluation ratings from the ANOVA courses were statistically significant from the departmental averages for the Clinical (CPY; \emph{M} = 4.4) department. The sample mean for the ANOVA course evaluations was 4.186 (\emph{SD} = 1.013).Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, \(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)\), the effect size was quite small \((d = -0.211)\). A distribution of the ANOVA course ratings is found in Figure 1.
+\end{quote}
+
+\includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-57-1.pdf}
+
+\hypertarget{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size}{%
+\subsubsection{Conduct power analyses to determine the power of the current study and a recommended sample size}\label{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size}}
+
+A quick reminder that the \emph{d} in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen's d that we just calculated.
+
+\begin{verbatim}
+
+     One-sample t test power calculation 
+
+              n = 113
+              d = 0.211
+      sig.level = 0.05
+          power = 0.604022
+    alternative = two.sided
+\end{verbatim}
+
+For the comparison to the CPY departmental average, power was 60\%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60\% chance of detecting a statistically significant effect if there was one.
+
+\begin{verbatim}
+
+     One-sample t test power calculation 
+
+              n = 178.226
+              d = 0.211
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+\end{verbatim}
+
+For the CPY departmental comparison, the recommended sample size would be 178. This means there would need to be 178 individuals to find a statistically significant difference, if one existed.
+
+\hypertarget{hand-calculations-1}{%
+\subsection{Hand Calculations}\label{hand-calculations-1}}
+
+\hypertarget{using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses}{%
+\subsubsection{Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses}\label{using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses}}
+
+\[
+\begin{array}{ll}
+H_0: & \mu = 4.4 \\
+H_A: & \mu \neq 4.4
+\end{array}
+\]
+
+\hypertarget{calculate-the-mean-of-your-sample-identify-the-mean-of-your-benchmarking-sample}{%
+\subsubsection{Calculate the mean of your sample; identify the mean of your benchmarking sample}\label{calculate-the-mean-of-your-sample-identify-the-mean-of-your-benchmarking-sample}}
+
+I will continue with the \emph{tiny1} dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.
+
+\begin{verbatim}
+[1] 4.185841
+\end{verbatim}
+
+The mean of my benchmarking sample is 4.4. This number is a ``departmental standard'' and did not need to be calculated by me for this purpose.
+
+\hypertarget{using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared}{%
+\subsubsection{Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared}\label{using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared}}
+
+\begin{verbatim}
+[1] 1.027655
+\end{verbatim}
+
+\begin{verbatim}
+[1] 1.013733
+\end{verbatim}
+
+The variance is 1.028; the standard deviation is 1.014.
+
+\begin{verbatim}
+[1] 1.013733
+\end{verbatim}
+
+\hypertarget{calculate-the-one-sample-t-test}{%
+\subsubsection{\texorpdfstring{Calculate the one-sample \emph{t}-test}{Calculate the one-sample t-test}}\label{calculate-the-one-sample-t-test}}
+
+Here's the formula:
+
+\[
+t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
+\]
+
+\begin{verbatim}
+[1] -2.245701
+\end{verbatim}
+
+\hypertarget{identify-the-degrees-of-freedom-associated-with-your-t-test}{%
+\subsubsection{\texorpdfstring{Identify the degrees of freedom associated with your \emph{t}-test}{Identify the degrees of freedom associated with your t-test}}\label{identify-the-degrees-of-freedom-associated-with-your-t-test}}
+
+For the one-sample \emph{t}-test, \(df = N - 1\). In our case
+
+\begin{verbatim}
+[1] 112
+\end{verbatim}
+
+\hypertarget{locate-the-test-critical-value-for-your-test}{%
+\subsubsection{Locate the test critical value for your test}\label{locate-the-test-critical-value-for-your-test}}
+
+We can use a table of critical values for the one sample \emph{t}-test: \url{https://www.statology.org/t-distribution-table/}
+
+A 2-tail test, when p - .05, with \textasciitilde120 individuals is 1.98
+
+Or, this code:
+
+\begin{verbatim}
+[1] 1.98118
+\end{verbatim}
+
+\hypertarget{is-the-t-test-statistically-significant-why-or-why-not}{%
+\subsection{\texorpdfstring{Is the \emph{t}-test statistically significant? Why or why not?}{Is the t-test statistically significant? Why or why not?}}\label{is-the-t-test-statistically-significant-why-or-why-not}}
+
+Yes \emph{t} = -2.245701 exceeds the (absolute) test critical value of 1.98.
+
+\hypertarget{what-is-the-confidence-interval-around-your-sample-mean}{%
+\subsubsection{What is the confidence interval around your sample mean?}\label{what-is-the-confidence-interval-around-your-sample-mean}}
+
+Here is a reminder of the formula:
+
+\[\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})\]
+
+\begin{verbatim}
+[1] 3.996908
+\end{verbatim}
+
+\begin{verbatim}
+[1] 4.374774
+\end{verbatim}
+
+We are 95\% confident that the sample mean for the student in the ANOVA classes is between 3.997, 4.375.
+
+\hypertarget{calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test}{%
+\subsubsection{\texorpdfstring{Calculate the effect size (i.e., Cohen's \emph{d} associated with your \emph{t}-test}{Calculate the effect size (i.e., Cohen's d associated with your t-test}}\label{calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test}}
+
+A reminder of the two formula:
+
+\[d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}\]
+
+\begin{verbatim}
+[1] -0.2112578
+\end{verbatim}
+
+\begin{verbatim}
+[1] -0.2112578
+\end{verbatim}
+
 \hypertarget{tIndSample}{%
 \chapter{\texorpdfstring{Independent Samples \emph{t}-test}{Independent Samples t-test}}\label{tIndSample}}
 
@@ -4979,6 +5753,336 @@ Points Earned
 \textbf{Totals* } & 28 & \\
 \end{longtable}
 
+\hypertarget{homeworked-example-3}{%
+\section{Homeworked Example}\label{homeworked-example-3}}
+
+\href{}{Screencast Link}
+
+The independent-samples t-test is useful when you want to compare means across two different groups. That is, the people in the comparison groups must be different from each other.
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could change the course (i.e., Multivariate or Psychometrics) and/or change the dependent variable to one of the other scales}.
+
+\hypertarget{working-the-problem-with-r-and-r-packages-2}{%
+\subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-2}}
+
+\hypertarget{narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis-1}{%
+\subsubsection{Narrate the research vignette, describing the variables and their role in the analysis}\label{narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis-1}}
+
+I want to ask the question, ``Do the course evaluation ratings for the traditional pedagogy subscale differ for CPY and ORG students?''
+
+I will use the mean rating for the traditional pedagogy rating. As a mean, it retains its continuous, Likert scaling, ranging from 1 to 5 (with higher scores being more positive).
+
+My predictor variable will be department. It has two levels: CPY and ORG.
+
+\hypertarget{simulate-or-import-and-format-data-1}{%
+\subsubsection{Simulate (or import) and format data}\label{simulate-or-import-and-format-data-1}}
+
+First, bring in the dataset.
+
+To avoid ``dependency'' in the data, I will just use data from the ANOVA course. Let's first trim it to just students who took ANOVA
+
+I will create a mean score of completed items from the traditional pedagogy scale.
+
+To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
+
+And further trim to non-missing data
+
+Are the structures of the variables as follows: * Grouping variable: factor * Dependent variable: numerical or integer
+
+In our case we want Department to be a factor with two levels and the SCRPed variable to be integer or numerical.
+
+\begin{verbatim}
+Classes 'data.table' and 'data.frame':  112 obs. of  2 variables:
+ $ Dept   : chr  "CPY" "CPY" "CPY" "CPY" ...
+ $ TradPed: num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ - attr(*, "na.action")= 'omit' Named int [1:2] 74 84
+  ..- attr(*, "names")= chr [1:2] "202" "234"
+\end{verbatim}
+
+Since the Department is a character variable, we need to change it to be a factor.
+
+\begin{verbatim}
+ Factor w/ 2 levels "CPY","ORG": 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+Without further coding, R will order the factors alphabetically. This is fine. CPY will be the base/intercept and ORG will be the comparison (this becomes more important in regression).
+
+\hypertarget{evaluate-statistical-assumptions-1}{%
+\subsubsection{Evaluate statistical assumptions}\label{evaluate-statistical-assumptions-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Evaluate and report skew and kurtosis
+\item
+  Evaluate and correctly interpret homogeneity of variance (if Levene's \textless{} .05; use Welch's formulation)
+\end{itemize}
+
+\begin{verbatim}
+         item group1 vars  n     mean        sd median  trimmed     mad min max
+Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
+Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
+TradPed1    3    CPY    2 81 4.129630 0.7547259    4.2 4.210769 0.88956 1.8   5
+TradPed2    4    ORG    2 31 3.870968 1.0948953    4.0 4.040000 1.18608 1.0   5
+         range       skew  kurtosis         se
+Dept*1     0.0        NaN       NaN 0.00000000
+Dept*2     0.0        NaN       NaN 0.00000000
+TradPed1   3.2 -0.7630015 0.1555318 0.08385843
+TradPed2   4.0 -1.1832786 0.5826528 0.19664900
+\end{verbatim}
+
+Although I included Dept in the descriptives, it is a factor and therefore the values around distribution are rather senseless.
+
+TradPed, though, is a continuously scored variable:
+
+Skew = -0.763 (CPY) and -1.183 (ORG) falls below the \textbar3.0\textbar{} threshold of concern (Klein, 2016) Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the \textbar10.0\textbar{} threshold of concern (Klein, 2016)
+
+We can use the Shapiro Wilk test for a formal test of normality
+
+\begin{verbatim}
+# A tibble: 2 x 4
+  Dept  variable statistic         p
+  <fct> <chr>        <dbl>     <dbl>
+1 CPY   TradPed      0.918 0.0000731
+2 ORG   TradPed      0.851 0.000544 
+\end{verbatim}
+
+The Shapiro-Wilk test of normality indicated that the dependent variable, traditional pedagogy, differed significantly from a normal distribution for both CPY students \((W = 0.918, p < 0.001)\) and ORG students\((W = 0.851, p < 0.001)\).
+
+Should we be concerned? A general rule of thumb is that when cell sizes are larger than 15 the independent \emph{t}-test should be relatively robust to violations of normality \citep{green_using_2017}. Although there are more CPY than ORG students, we are well-powered.
+
+For fun (not required), let's produce a pairs.panels.
+
+\includegraphics{05-tIndSample_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+We can see that we'll have more CPY students than ORG students. Although our kurtosis was below \textbar10\textbar{} our distribution looks negatively skewed, with the majority of the scores being on the high end of the scale.
+
+And now for homogeneity of variance:
+
+\begin{verbatim}
+# A tibble: 1 x 4
+    df1   df2 statistic     p
+  <int> <int>     <dbl> <dbl>
+1     1   110      2.46 0.120
+\end{verbatim}
+
+Levene's test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance \((F[1, 110] = 2.460, p = 0.120)\). That is to say, the variance in each of the departments is not statistically significantly different from each other. We can use the regular (Student's) formulation of the \emph{t}-test for independent samples.
+
+\hypertarget{conduct-an-independent-samples-t-test-with-an-effect-size-and-95cis}{%
+\subsubsection{\texorpdfstring{Conduct an independent samples \emph{t}-test (with an effect size and 95\%CIs)}{Conduct an independent samples t-test (with an effect size and 95\%CIs)}}\label{conduct-an-independent-samples-t-test-with-an-effect-size-and-95cis}}
+
+Conduct the independent samples \emph{t}-test (with an effect size)
+
+\begin{verbatim}
+# A tibble: 1 x 16
+  estimate estimate1 estimate2 .y.     group1 group2    n1    n2 statistic     p
+     <dbl>     <dbl>     <dbl> <chr>   <chr>  <chr>  <int> <int>     <dbl> <dbl>
+1    0.259      4.13      3.87 TradPed CPY    ORG       81    31      1.42 0.158
+# i 6 more variables: df <dbl>, conf.low <dbl>, conf.high <dbl>, method <chr>,
+#   alternative <chr>, p.signif <chr>
+\end{verbatim}
+
+From this output we learn that the value of the \emph{t}-test is 1.423 and is non-significant \emph{p = 0.148}. We are 95\% confident that the mean diference falls between -0.102 and 0.618. Because this thresshold crosses zero, we cannot be certain that the true difference in means is not zero. Here's how I would represent these results in a statistical string: \(t(110) = 1.423, p = 0.158, CI95 (0.102, 0.619)\).
+
+Calculating the Cohen's \emph{d} as the effect size.
+
+\begin{verbatim}
+# A tibble: 1 x 7
+  .y.     group1 group2 effsize    n1    n2 magnitude
+* <chr>   <chr>  <chr>    <dbl> <int> <int> <ord>    
+1 TradPed CPY    ORG      0.300    81    31 small    
+\end{verbatim}
+
+The value of Cohen's \emph{d} statistic (interpreted in standard deviation units) is 0.300 and is small. We can add this value to the statistical string: \(t(110) = 1.423, p = 0.158, CI95 (0.102, 0.619), d = 0.300\).
+
+\hypertarget{apa-style-results-with-tables-and-figure-1}{%
+\subsubsection{APA style results with table(s) and figure}\label{apa-style-results-with-tables-and-figure-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Complete content of results (including t, df, p, d-or-eta, CI95\%)
+\item
+  Table
+\item
+  Figure
+\item
+  Grammar/formatting
+\end{itemize}
+
+\begin{quote}
+An independent samples \emph{t}-test was conducted to evaluate the hypothesis that there would be differences in course evaluation ratings of traditional pedagogy between academic departments (CPY, ORG).
+\end{quote}
+
+\begin{quote}
+We began by analyzing the data to see if it met the statistical assumptions for analysis with an independent samples \emph{t}-test. One assumption is that the dependent variable be normally distributed within the both levels of the grouping variable. We evaluated skew and kurtosis using Kline's \citeyearpar{kline_data_2016} guidelines of the absolute values of 3 (skew) and 10 (kurtosis). Our results were well-within these boundary conditions. Specifically, the traditional pedagogy ratings for CPY were -0.763 and 0.156 for skew and kurtosis, respectively; they were -1.183 and 0.583 for ORG. The Shapiro-Wilk test of normality indicated that the dependent variable, traditional pedagogy, differed significantly from a normal distribution for both CPY students \((W = 0.918, p < 0.001)\) and ORG students\((W = 0.851, p < 0.001)\). Levene's test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance \((F[1, 110] = 2.460, p = 0.120)\). That is to say, the variance in each of the departments is not statistically significantly different from each other. Because the independent samples \emph{t}-test is relatively robust to violations of normality when samples sizes have at least 15 participants per cell \citep{green_using_2017} and there was no violation of the homogeneity of variance assumption we proceded with the Student's formulation of the \emph{t}-test for independent samples.
+\end{quote}
+
+\begin{quote}
+The independent samples \emph{t}-test was nonsignificant, \(t(110) = 1.423, p = 0.158\), the effect size (d = 0.300) was small. The 95\% confidence interval for the difference in means ranged from -0.102 to 0.619. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
+\end{quote}
+
+We can use the \emph{apaTables} package to create a table of means and standard deviations.
+
+\begin{verbatim}
+
+
+Descriptive statistics for TradPed as a function of Dept.  
+
+ Dept    M   SD
+  CPY 4.13 0.75
+  ORG 3.87 1.09
+
+Note. M and SD represent mean and standard deviation, respectively.
+ 
+\end{verbatim}
+
+And now a figure.
+
+\includegraphics{05-tIndSample_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\hypertarget{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1}{%
+\subsubsection{Conduct power analyses to determine the power of the current study and a recommended sample size}\label{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1}}
+
+We can use Cohen's d in this specification of \emph{d}.
+
+\begin{verbatim}
+
+     Two-sample t test power calculation 
+
+              n = 112
+              d = 0.3
+      sig.level = 0.05
+          power = 0.6084749
+    alternative = two.sided
+
+NOTE: n is number in *each* group
+\end{verbatim}
+
+We were at 61\% power. That is, given the value of the mean difference (), we had a 61\% chance of detecting a statistically significant effect if there was one. How big of a sample would it take?
+
+\begin{verbatim}
+
+     Two-sample t test power calculation 
+
+              n = 175.3847
+              d = 0.3
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in *each* group
+\end{verbatim}
+
+To find a statistically significant difference, we would need 175 per group. This large size is consistent with the small effect -- that there isn't really a difference between the two groups..
+
+\hypertarget{hand-calculations-2}{%
+\subsection{Hand Calculations}\label{hand-calculations-2}}
+
+\emph{Note: While the values of the hand-calculations are close to those calculated with the R packages, they differ slightly.}
+
+\hypertarget{using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-1}{%
+\subsubsection{Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses}\label{using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-1}}
+
+\[H_0: \mu_1 = \mu_2\] \[H_A: \mu_1 \neq \mu_2\]
+
+\hypertarget{using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable}{%
+\subsubsection{Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable}\label{using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable}}
+
+\begin{verbatim}
+         item group1 vars  n     mean        sd median  trimmed     mad min max
+Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
+Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
+TradPed1    3    CPY    2 81 4.129630 0.7547259    4.2 4.210769 0.88956 1.8   5
+TradPed2    4    ORG    2 31 3.870968 1.0948953    4.0 4.040000 1.18608 1.0   5
+         range       skew  kurtosis         se
+Dept*1     0.0        NaN       NaN 0.00000000
+Dept*2     0.0        NaN       NaN 0.00000000
+TradPed1   3.2 -0.7630015 0.1555318 0.08385843
+TradPed2   4.0 -1.1832786 0.5826528 0.19664900
+\end{verbatim}
+
+CPY: \emph{M} = 4.130, \emph{SD} = 0.755 ORG: \emph{M} = 3.871, \emph{SD} = 1.095
+
+\hypertarget{calulate-the-se-used-in-the-denominator-of-the-t-test}{%
+\subsubsection{\texorpdfstring{Calulate the SE used in the denominator of the \emph{t}-test}{Calulate the SE used in the denominator of the t-test}}\label{calulate-the-se-used-in-the-denominator-of-the-t-test}}
+
+Just as a reminder, the SE is the denominator in the \emph{t}-test formula:
+
+\[t = \frac{\bar{X_{1}} -\bar{X_{2}}}{\sqrt{\frac{s_{1}^{2}}{N_{1}}+\frac{s_{2}^{2}}{N_{2}}}}\]
+
+\begin{verbatim}
+[1] 0.2137828
+\end{verbatim}
+
+The \emph{SE} = 0.214
+
+\hypertarget{calculate-the-independent-samples-t-test}{%
+\subsubsection{\texorpdfstring{Calculate the independent samples \emph{t}-test}{Calculate the independent samples t-test}}\label{calculate-the-independent-samples-t-test}}
+
+\begin{verbatim}
+[1] 1.209929
+\end{verbatim}
+
+\emph{I note that this hand calculation differs from the worked in R. I believe this is likely due to an unbalanced design with unequal cell sizes (81 and 31).}
+
+\hypertarget{identify-the-degrees-of-freedom-associated-with-your-t-test-1}{%
+\subsubsection{\texorpdfstring{Identify the degrees of freedom associated with your \emph{t}-test}{Identify the degrees of freedom associated with your t-test}}\label{identify-the-degrees-of-freedom-associated-with-your-t-test-1}}
+
+\(N - 2\) is the degrees of freedom: 112-2, df = 110
+
+\hypertarget{locate-the-test-critical-value-for-your-test-1}{%
+\subsubsection{Locate the test critical value for your test}\label{locate-the-test-critical-value-for-your-test-1}}
+
+We can look at a \href{https://www.statology.org/t-distribution-table/}{table of critical values}
+
+For a two-tailed test, with alpha of 0.05, and a sample size of 120 (close enough), the \emph{t}-statistic must be greater than 1.98.
+
+We could also obtain a \emph{t} critical value with this code:
+
+\begin{verbatim}
+[1] -1.981372
+\end{verbatim}
+
+\begin{verbatim}
+[1] 1.981372
+\end{verbatim}
+
+\hypertarget{is-the-t-test-statistically-significant-why-or-why-not-1}{%
+\subsubsection{\texorpdfstring{Is the \emph{t}-test statistically significant? Why or why not?}{Is the t-test statistically significant? Why or why not?}}\label{is-the-t-test-statistically-significant-why-or-why-not-1}}
+
+In a two-tailed test, if the \emph{t}-statistic falls outside the boundaries of -1.98 and 1.98 the means of the two groups are statistically significantly different from each other.
+
+My \emph{t} value of 1.209929 does not exceed these boundaries and therefore is not statistically significant.
+
+\hypertarget{calculate-the-confidence-interval-around-the-difference-in-sample-means}{%
+\subsubsection{Calculate the confidence interval around the difference in sample means}\label{calculate-the-confidence-interval-around-the-difference-in-sample-means}}
+
+Calculating a confidence interval around the difference in sample means requires the two-tailed test critical values. We can insert them into this formula:
+
+\[(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)\]
+
+\begin{verbatim}
+[1] -0.0000000094212
+\end{verbatim}
+
+\begin{verbatim}
+[1] 0.517324
+\end{verbatim}
+
+We are 95\% confident that the mean difference falls between -0.165 and 0.682. Because this interval passes through zero, we cannot be certain that the difference is 0. This is consistent with the non-significant \emph{p} value.
+
+\hypertarget{calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test-1}{%
+\subsubsection{\texorpdfstring{Calculate the effect size (i.e., Cohen's d associated with your \emph{t}-test}{Calculate the effect size (i.e., Cohen's d associated with your t-test}}\label{calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test-1}}
+
+Here is the formula for Cohen's \emph{d}:
+
+\[d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}\]
+
+\begin{verbatim}
+[1] 0.2555321
+\end{verbatim}
+
 \hypertarget{tPaired}{%
 \chapter{\texorpdfstring{Paired Samples \emph{t}-test}{Paired Samples t-test}}\label{tPaired}}
 
@@ -6071,6 +7175,205 @@ Points Earned
 6 Explanation to grader & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 30 & \_\_\_\_\_ \\
 \end{longtable}
+
+\hypertarget{homeworked-example-4}{%
+\section{Homeworked Example}\label{homeworked-example-4}}
+
+\href{}{Screencast Link}
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could compare a differenc combination of courses and/or score one of the other course evaluation subscales (e.g., socially responsive pedagogy or valued-by-me). }
+
+\hypertarget{working-the-problem-with-r-and-r-packages-3}{%
+\subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-3}}
+
+\hypertarget{narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis-2}{%
+\subsubsection{Narrate the research vignette, describing the variables and their role in the analysis}\label{narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis-2}}
+
+I want to ask the question, ``Do students' evaluations of traditional pedagogy (TradPed) change from ANOVA (the first course in the series) to Multivariate (the second course in the series)?.'' Unlike the independent samples \emph{t}-test where we compared students in two different departments, we are comparing \emph{the same} students across two different conditions. In this particular analysis, there is also an element of time. That is the ANOVA class always precedes the multivariate class (with a regression class, taught by a different instructor) in the intervening academic quarter.
+
+This research design has some clear limitations. Threats to internal validity are caused by issues like history and maturation. None-the-less, for the purpose of a statistical demonstration, this dataset works.
+
+Like most data, some manipulation is required before we can begin the analyses.
+
+\hypertarget{simulate-or-import-and-format-data-2}{%
+\subsubsection{Simulate (or import) and format data}\label{simulate-or-import-and-format-data-2}}
+
+Let's import the larger dataset.
+
+The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+From the ``larger'' data, let's select only the variable we will use in the analysis. I have included ``long'' in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.
+
+We need both ``long'' and ``wide'' forms to conduct the analyses required for both testing the statistical assumptions and performing the paired samples \emph{t}-test.
+
+From that reduced variable set, let's create a subset with students only from those two courses.
+
+Regarding the structure of the data, we want the conditions (ANOVA, multivariate) to be factors and the TradPed variable to be continuously scaled. The format of the deID variable can be any numerical or categorical format -- just not a ``chr'' (character) variable.
+
+\begin{verbatim}
+Classes 'data.table' and 'data.frame':  198 obs. of  3 variables:
+ $ deID   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course : Factor w/ 3 levels "Psychometrics",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ TradPed: num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+\end{verbatim}
+
+R correctly interpreted our variables.
+
+For analyzing the assumptions associated with the paired-samples \emph{t}-test, the format needs to be ``wide'' form (where each student has both observations on one row). Our data is presently in ``long'' form (where each observation is listed in each row). Here's how to reshape the data.
+
+Let's recheck the structure.
+
+\begin{verbatim}
+'data.frame':   119 obs. of  3 variables:
+ $ deID        : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ ANOVA       : num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ $ Multivariate: num  NA NA NA NA NA NA NA NA NA NA ...
+\end{verbatim}
+
+You will notice that there is a good deal of missingness in the Multivariate condition. This is caused because the most recent cohort of students had not yet taken the course. While managing missingness is more complex than this, for the sake of simplicity, I will create a dataframe with non-missing data.
+
+Doing so should also help with the hand-calculations later in the worked example.
+
+\hypertarget{evaluate-statistical-assumptions-2}{%
+\subsubsection{Evaluate statistical assumptions}\label{evaluate-statistical-assumptions-2}}
+
+We need to evaluate the \emph{distribution of the difference score} in terms of skew and kurtosis. We want this distribution of difference scores to be normally distributed.
+
+This means we need to create a difference score:
+
+We can use the \emph{psych::describe()} function to obtain skew and kurtosis.
+
+\begin{verbatim}
+             vars  n  mean    sd median trimmed   mad  min   max range  skew
+deID            1 77 62.27 35.43   60.0   59.54 34.10 11.0 142.0 131.0  0.63
+ANOVA           2 77  4.21  0.73    4.2    4.29  0.89  2.2   5.0   2.8 -0.79
+Multivariate    3 77  4.33  0.73    4.4    4.45  0.59  1.2   5.0   3.8 -1.90
+DIFF            4 77 -0.12  0.80   -0.2   -0.13  0.59 -2.4   3.2   5.6  0.56
+             kurtosis   se
+deID            -0.40 4.04
+ANOVA           -0.19 0.08
+Multivariate     5.00 0.08
+DIFF             3.15 0.09
+\end{verbatim}
+
+Regarding the DIFF score, the skew (0.56) and kurtosis (3.15) values were well below the threshholds of concern identified by Klein (2016).
+
+We can formally test for deviations from normality with a Shapiro-Wilk. We want the results to be non-significant.
+
+\begin{verbatim}
+# A tibble: 1 x 3
+  variable statistic       p
+  <chr>        <dbl>   <dbl>
+1 DIFF         0.943 0.00187
+\end{verbatim}
+
+Results of the Shapiro-Wilk test of normality are statistically significant \((W = 0.943, p = 0.002)\). This means that the distribution of difference scores are statistically significantly different from a normal distribution.
+
+although not required in the formal test of instructions, a \emph{pairs panel} of correlations and distributions can be useful in undersatnding our data.
+
+\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-46-1.pdf} Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
+
+Before moving forward, I want to capture my analysis of assumptions:
+
+\begin{quote}
+We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution \((W = 0.943, p = 0.002)\).
+\end{quote}
+
+\hypertarget{conduct-a-paired-samples-t-test-with-an-effect-size-95cis}{%
+\subsubsection{Conduct a paired samples t-test (with an effect size \& 95\%CIs)}\label{conduct-a-paired-samples-t-test-with-an-effect-size-95cis}}
+
+So this may be a bit tricky, but our original ``long'' form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples \emph{t} test requires the design to be balanced. When we used the \emph{na.omit()} function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let's restructure that wide format back to long format so that the design will be balanced.
+
+\begin{verbatim}
+   deID Course TradPed
+1:   11  ANOVA     4.0
+2:   12  ANOVA     4.2
+3:   13  ANOVA     3.6
+4:   14  ANOVA     3.6
+5:   15  ANOVA     3.4
+6:   16  ANOVA     2.2
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 1 x 13
+  estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
+*    <dbl> <chr>   <chr>  <chr>       <int> <int>     <dbl> <dbl> <dbl>    <dbl>
+1   -0.123 TradPed ANOVA  Multivaria~    77    77     -1.34 0.184    76   -0.305
+# i 3 more variables: conf.high <dbl>, method <chr>, alternative <chr>
+\end{verbatim}
+
+I'll begin the \emph{t} string with this output: \(t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069)\). The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.
+
+we calculate the Cohen's \emph{d} (the effect size) this way:
+
+\begin{verbatim}
+# A tibble: 1 x 7
+  .y.     group1 group2       effsize    n1    n2 magnitude 
+* <chr>   <chr>  <chr>          <dbl> <int> <int> <ord>     
+1 TradPed ANOVA  Multivariate  -0.153    77    77 negligible
+\end{verbatim}
+
+The value of -0.153 is quite small. We can add this value to our statistical string: \(t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069), d = -0.153\)
+
+\hypertarget{apa-style-results-with-tables-and-figure-2}{%
+\subsubsection{APA style results with table(s) and figure}\label{apa-style-results-with-tables-and-figure-2}}
+
+\begin{quote}
+A paired samples \emph{t}-test was conducted to evaluate the hypohtesis that there would be statistically significant differences in students' course evaluations of ANOVA and multivariate statistics classses.
+\end{quote}
+
+\begin{quote}
+We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution \$(W=0.943, p = 0.002)
+\end{quote}
+
+\begin{quote}
+Results of the paired samples \emph{t}-test suggested nonsignificant differences \(t(76) = -0.113, p = 0.184,d = -0.153\). The 95\% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.
+\end{quote}
+
+\begin{verbatim}
+
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable        M     SD   1          2           
+  1. ANOVA        4.21  0.73                        
+                                                    
+  2. Multivariate 4.33  0.73 .39**                  
+                             [.18, .56]             
+                                                    
+  3. DIFF         -0.12 0.80 .55**      -.55**      
+                             [.38, .69] [-.69, -.37]
+                                                    
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
+\end{verbatim}
+
+For the figure, let's re-run the paired samples \emph{t} test, save it as an object, and use the ``add\_significance'' function so that we can add it to our figure.
+
+\begin{verbatim}
+# A tibble: 1 x 14
+  estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
+     <dbl> <chr>   <chr>  <chr>       <int> <int>     <dbl> <dbl> <dbl>    <dbl>
+1   -0.123 TradPed ANOVA  Multivaria~    77    77     -1.34 0.184    76   -0.305
+# i 4 more variables: conf.high <dbl>, method <chr>, alternative <chr>,
+#   p.signif <chr>
+\end{verbatim}
+
+Next, we create boxplot:
+
+\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\hypertarget{hand-calculations-3}{%
+\subsection{Hand Calculations}\label{hand-calculations-3}}
 
 \hypertarget{analysis-of-variance}{%
 \chapter*{Analysis of Variance}\label{analysis-of-variance}}

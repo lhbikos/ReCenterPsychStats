@@ -1012,4 +1012,271 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 
 
+## Homeworked Example
+
+[Screencast Link]()
+
+The one-sample test comes in handy when you want to compare your dataset to an external benchmark or standard. It can be a real helper in program evaluation
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could select a different course (i.e., Multivariate or Psychometrics) and/or compare the mean for the ORG department ($M = 4.1$).*
+
+### Working the Problem with R and R Packages
+
+#### Narrate the research vignette, describing the variables and their role in the analysis
+
+From my course evaluation data, I want to ask the question, "Are ratings for the Overall Instructor for the ANOVA course evals statistically significantly different from the overall departmental averages for that same item?"  In CPY the overall average for that specific item is 4.4. 
+
+#### Simulate (or import) and format data
+
+The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
+
+
+
+Let's first trim it to just students who took ANOVA
+
+
+
+And further trim to our variable of interest
+
+
+```
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+And further trim to non-missing data
+
+
+
+
+* Is the sample variable on a continuous scale of measurement and formatted as *num* or *int* in R?
+* Is the external score evaluated on the same continuous scale?
+
+
+```
+ int [1:113] 5 4 4 3 5 3 5 4 3 5 ...
+```
+Yes. The format for the OvInstructor variable is integer (which is numerical); the overall course evaluation is on an equivalent (1 to 5) scale.
+
+
+#### Evaluate statistical assumptions
+
+* Are the skew and kurtosis values within the range expected?
+* Does the distribution of the variable differ significantly from a normal distribution?
+
+
+```
+               nbr.val               nbr.null                 nbr.na 
+113.000000000000000000   0.000000000000000000   0.000000000000000000 
+                   min                    max                  range 
+  1.000000000000000000   5.000000000000000000   4.000000000000000000 
+                   sum                 median                   mean 
+473.000000000000000000   5.000000000000000000   4.185840707964601393 
+               SE.mean           CI.mean.0.95                    var 
+  0.095363991425895162   0.188951524765374329   1.027654867256637239 
+               std.dev               coef.var               skewness 
+  1.013733134141642456   0.242181488706142922  -0.984495621273390964 
+              skew.2SE               kurtosis               kurt.2SE 
+ -2.164227168444894378  -0.074100280830601939  -0.082121112321619227 
+            normtest.W             normtest.p 
+  0.772806906937811733   0.000000000006195409 
+```
+The skew value is -9.84 and far exceeds the absolute value of 3. The skew.2SE is -2.164 (larger than the absolute value of 2.0) is consistent. Thus, we might have some concern about skew.
+
+The kurtosis value is -7.410 and is below the absolute value of 10. The kurt.2SE value is -8.212 which is substantially larger than the absolute value of 2.0. Thus, we are similarly concerned about kurtosis.
+
+The Shapiro wilk test value is 7.728 (*p* < 0.001). This significant value suggests a distribution that is not normally distributed.
+
+
+#### Conduct a one sample *t* test (with an effect size)
+
+First, comparison to CPY
+
+
+```
+# A tibble: 1 × 12
+  estimate .y.     group1 group2     n statistic      p    df conf.low conf.high
+*    <dbl> <chr>   <chr>  <chr>  <int>     <dbl>  <dbl> <dbl>    <dbl>     <dbl>
+1     4.19 OvInst… 1      null …   113     -2.25 0.0267   112     4.00      4.37
+# ℹ 2 more variables: method <chr>, alternative <chr>
+```
+We can begin to create our *t* string:
+
+$t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$  
+
+Let's interpret the results.  With 112 degrees of freedom, our *t* value is -2.245. Because the *p* value is less than .05, this is statistically significant. This means that my course evaluations in ANOVA were statistically significantly lower than the average for CPY.  We are 95% confident that the true course evaluation mean (for my courses) fell between 3.997 and 4.374.
+
+Let's calculate the effect size. we will use a Cohen's *d* which is interpreted in standard deviation units. 
+
+```
+# A tibble: 1 × 6
+  .y.          group1 group2     effsize     n magnitude
+* <chr>        <chr>  <chr>        <dbl> <int> <ord>    
+1 OvInstructor 1      null model  -0.211   113 small    
+```
+Cohen's *d* was 0.211. This is a small effect. We can add it to the *t* string. 
+
+$t(112) = -2.246, p = 0.027, CI95(3.997, 4.374), d = -0.211$
+
+
+#### APA style results with table(s) and figure
+
+* t-test results should include t, df, p, d-or-eta, and CI95%
+* Table
+* Figure
+* Grammar/style
+
+>A one-sample *t*-test was used to evaluate whether the *overall instructor* course evaluation ratings from the ANOVA courses were statistically significant from the departmental averages for the Clinical (CPY; *M* = 4.4) department.  The sample mean for the ANOVA course evaluations was 4.186 (*SD* = 1.013).Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$,  the effect size was quite small $(d = -0.211)$. A distribution of the ANOVA course ratings is found in Figure 1.
+
+![](04-tOneSample_files/figure-docx/unnamed-chunk-57-1.png)<!-- -->
+
+#### Conduct power analyses to determine the power of the current study and a recommended sample size
+
+A quick reminder that the *d* in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen's d that we just calculated.
+
+
+```
+
+     One-sample t test power calculation 
+
+              n = 113
+              d = 0.211
+      sig.level = 0.05
+          power = 0.604022
+    alternative = two.sided
+```
+
+For the comparison to the CPY departmental average, power was 60%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60% chance of detecting a statistically significant effect if there was one.
+
+
+```
+
+     One-sample t test power calculation 
+
+              n = 178.226
+              d = 0.211
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+```
+For the CPY departmental comparison, the recommended sample size would be 178. This means there would need to be 178 individuals to find a statistically significant difference, if one existed.
+
+### Hand Calculations
+
+#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses 
+
+$$
+\begin{array}{ll}
+H_0: & \mu = 4.4 \\
+H_A: & \mu \neq 4.4
+\end{array}
+$$
+
+#### Calculate the mean of your sample; identify the mean of your benchmarking sample
+
+I will continue with the *tiny1* dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.
+
+
+```
+[1] 4.185841
+```
+
+The mean of my benchmarking sample is 4.4. This number is a "departmental standard" and did not need to be calculated by me for this purpose.
+
+#### Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared
+
+
+```
+[1] 1.027655
+```
+
+```
+[1] 1.013733
+```
+The variance is 1.028; the standard deviation is 1.014.
+
+
+```
+[1] 1.013733
+```
+
+#### Calculate the one-sample *t*-test
+
+Here's the formula:  
+
+$$
+t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
+$$
+
+
+```
+[1] -2.245701
+```
+
+#### Identify the degrees of freedom associated with your *t*-test     
+
+For the one-sample *t*-test, $df = N - 1$. In our case
+
+
+```
+[1] 112
+```
+
+#### Locate the test critical value for your test
+We can use a table of critical values for the one sample *t*-test:  https://www.statology.org/t-distribution-table/
+
+A 2-tail test, when p - .05, with ~120 individuals is 1.98
+
+Or, this code:
+
+
+```
+[1] 1.98118
+```
+### Is the *t*-test statistically significant? Why or why not?
+
+Yes *t* = -2.245701 exceeds the (absolute) test critical value of 1.98.
+
+#### What is the confidence interval around your sample mean?
+
+Here is a reminder of the formula:
+
+$$\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})$$
+
+
+```
+[1] 3.996908
+```
+
+```
+[1] 4.374774
+```
+
+We are 95% confident that the sample mean for the student in the ANOVA classes is between 3.997, 4.375.
+
+#### Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test
+
+A reminder of the two formula:
+
+$$d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}$$
+
+```
+[1] -0.2112578
+```
+
+```
+[1] -0.2112578
+```
+
+
+
+
 

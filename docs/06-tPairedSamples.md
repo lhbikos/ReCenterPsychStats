@@ -848,6 +848,206 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 
 
+## Homeworked Example
+
+[Screencast Link]()
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could compare a differenc combination of courses and/or score one of the other course evaluation subscales (e.g., socially responsive pedagogy or valued-by-me). *
+
+### Working the Problem with R and R Packages
+
+#### Narrate the research vignette, describing the variables and their role in the analysis
+
+I want to ask the question, "Do students' evaluations of traditional pedagogy (TradPed) change from ANOVA (the first course in the series) to Multivariate (the second course in the series)?." Unlike the independent samples *t*-test where we compared students in two different departments, we are comparing *the same* students across two different conditions. In this particular analysis, there is also an element of time. That is the ANOVA class always precedes the multivariate class (with a regression class, taught by a different instructor) in the intervening academic quarter.  
+
+This research design has some clear limitations. Threats to internal validity are caused by issues like history and maturation. None-the-less, for the purpose of a statistical demonstration, this dataset works. 
+
+Like most data, some manipulation is required before we can begin the analyses.
+
+#### Simulate (or import) and format data
+
+Let's import the larger dataset. 
+
+
+The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+
+
+From the "larger" data, let's select only the variable we will use in the analysis. I have included "long" in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.
+
+We need both "long" and "wide" forms to conduct the analyses required for both testing the statistical assumptions and performing the paired samples *t*-test.
+
+
+From that reduced variable set, let's create a subset with students only from those two courses.
+
+
+Regarding the structure of the data, we want the conditions (ANOVA, multivariate) to be factors and the TradPed variable to be continuously scaled. The format of the deID variable can be any numerical or categorical format -- just not a "chr" (character) variable.
+
+
+```
+Classes 'data.table' and 'data.frame':	198 obs. of  3 variables:
+ $ deID   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course : Factor w/ 3 levels "Psychometrics",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ TradPed: num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+R correctly interpreted our variables.
+
+For analyzing the assumptions associated with the paired-samples *t*-test, the format needs to be "wide" form (where each student has both observations on one row). Our data is presently in "long" form (where each observation is listed in each row). Here's how to reshape the data.
+
+
+
+Let's recheck the structure.
+
+```
+'data.frame':	119 obs. of  3 variables:
+ $ deID        : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ ANOVA       : num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ $ Multivariate: num  NA NA NA NA NA NA NA NA NA NA ...
+```
+You will notice that there is a good deal of missingness in the Multivariate condition. This is caused because the most recent cohort of students had not yet taken the course. While managing missingness is more complex than this, for the sake of simplicity, I will create a dataframe with non-missing data.
+
+Doing so should also help with the hand-calculations later in the worked example.
+
+
+
+#### Evaluate statistical assumptions
+
+We need to evaluate the *distribution of the difference score* in terms of skew and kurtosis. We want this distribution of difference scores to be normally distributed.
+
+This means we need to create a difference score:  
+
+
+
+We can use the *psych::describe()* function to obtain skew and kurtosis. 
+
+```
+             vars  n  mean    sd median trimmed   mad  min   max range  skew
+deID            1 77 62.27 35.43   60.0   59.54 34.10 11.0 142.0 131.0  0.63
+ANOVA           2 77  4.21  0.73    4.2    4.29  0.89  2.2   5.0   2.8 -0.79
+Multivariate    3 77  4.33  0.73    4.4    4.45  0.59  1.2   5.0   3.8 -1.90
+DIFF            4 77 -0.12  0.80   -0.2   -0.13  0.59 -2.4   3.2   5.6  0.56
+             kurtosis   se
+deID            -0.40 4.04
+ANOVA           -0.19 0.08
+Multivariate     5.00 0.08
+DIFF             3.15 0.09
+```
+
+Regarding the DIFF score, the skew (0.56) and kurtosis (3.15) values were well below the threshholds of concern identified by Klein (2016). 
+
+We can formally test for deviations from normality with a Shapiro-Wilk. We want the results to be non-significant.
+
+
+```
+# A tibble: 1 × 3
+  variable statistic       p
+  <chr>        <dbl>   <dbl>
+1 DIFF         0.943 0.00187
+```
+Results of the Shapiro-Wilk test of normality are statistically significant $(W = 0.943, p = 0.002)$. This means that the distribution of difference scores are statistically significantly different from a normal distribution.
+
+although not required in the formal test of instructions, a *pairs panel* of correlations and distributions can be useful in undersatnding our data.
+
+![](06-tPairedSamples_files/figure-docx/unnamed-chunk-46-1.png)<!-- -->
+Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
+
+Before moving forward, I want to capture my analysis of assumptions:
+
+>We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were  below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution $(W = 0.943, p = 0.002)$. 
+
+#### Conduct a paired samples t-test (with an effect size & 95%CIs)
+
+So this may be a bit tricky, but our original "long" form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples *t* test requires the design to be balanced.  When we used the *na.omit()* function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let's restructure that wide format back to long format so that the design will be balanced.
+
+
+```
+   deID Course TradPed
+1:   11  ANOVA     4.0
+2:   12  ANOVA     4.2
+3:   13  ANOVA     3.6
+4:   14  ANOVA     3.6
+5:   15  ANOVA     3.4
+6:   16  ANOVA     2.2
+```
+
+
+```
+# A tibble: 1 × 13
+  estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
+*    <dbl> <chr>   <chr>  <chr>       <int> <int>     <dbl> <dbl> <dbl>    <dbl>
+1   -0.123 TradPed ANOVA  Multivaria…    77    77     -1.34 0.184    76   -0.305
+# ℹ 3 more variables: conf.high <dbl>, method <chr>, alternative <chr>
+```
+I'll begin the *t* string with this output:  $t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069)$. The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.
+
+we calculate the Cohen's *d* (the effect size) this way:
+
+
+```
+# A tibble: 1 × 7
+  .y.     group1 group2       effsize    n1    n2 magnitude 
+* <chr>   <chr>  <chr>          <dbl> <int> <int> <ord>     
+1 TradPed ANOVA  Multivariate  -0.153    77    77 negligible
+```
+ The value of -0.153 is quite small. We can add this value to our statistical string:  $t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069), d = -0.153$
+
+#### APA style results with table(s) and figure
+
+>A paired samples *t*-test was conducted to evaluate the hypohtesis that there would be statistically significant differences in students' course evaluations of ANOVA and multivariate statistics classses.
+
+>We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were  below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution $(W=0.943, p = 0.002)
+
+>Results of the paired samples *t*-test suggested nonsignificant differences $t(76) = -0.113, p = 0.184,d = -0.153$. The 95% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.
+
+
+```
+
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable        M     SD   1          2           
+  1. ANOVA        4.21  0.73                        
+                                                    
+  2. Multivariate 4.33  0.73 .39**                  
+                             [.18, .56]             
+                                                    
+  3. DIFF         -0.12 0.80 .55**      -.55**      
+                             [.38, .69] [-.69, -.37]
+                                                    
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
+```
+
+
+For the figure, let's re-run the paired samples *t* test, save it as an object, and use the "add_significance" function so that we can add it to our figure.
+
+
+```
+# A tibble: 1 × 14
+  estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
+     <dbl> <chr>   <chr>  <chr>       <int> <int>     <dbl> <dbl> <dbl>    <dbl>
+1   -0.123 TradPed ANOVA  Multivaria…    77    77     -1.34 0.184    76   -0.305
+# ℹ 4 more variables: conf.high <dbl>, method <chr>, alternative <chr>,
+#   p.signif <chr>
+```
+Next, we create boxplot:
+
+![](06-tPairedSamples_files/figure-docx/unnamed-chunk-52-1.png)<!-- -->
+
+
+### Hand Calculations
+
+
+
 
 
 

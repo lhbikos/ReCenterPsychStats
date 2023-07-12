@@ -1,0 +1,263 @@
+---
+title: "Independent & Paired Samples t-tests"
+author: "lhbikos"
+date: '2022-09-26'
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+options(scipen = 999)
+```
+
+# Independent Samples t-test
+
+The independent-samples t-test is useful when you want to compare means across two different groups. That is, the people in the comparison groups must be different from each other.
+
+I want to ask the question, do the course evaluation ratings differ for CPY and I-O students.
+
+##  Describe variables and their role in the analysis. Do the variables meet the research design criteria of:
+
+* being easily classified into one of 2 levels of a grouping variable
+* being independent of each other
+* being continuously scored
+
+The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
+
+This data is part of an IRB-approved study, with consent to use in teaching demonstrations and to be made available to the general public via the open science framework. Hence, it is appropriate to share in class.  You will notice there are student- and teacher- IDs. These numbers are not connected to the SPU student ID. Rather, the subcontractor who does the course evals for SPU creates a third, not-SPU-related identifier.
+```{r}
+big <- readRDS("TEPPout.rds")
+```
+
+Let's first trim it to just students who took ANOVA
+
+```{r}
+JustANOVA <- subset(big, Course == "ANOVA") 
+```
+
+To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
+
+```{r}
+Independent_t_df <-(dplyr::select (JustANOVA, Dept, SCRPed))
+```
+
+## Simulate (or import) and format data
+
+Are the structures of the variables as follows:
+* Grouping variable: factor
+* Dependent variable: numerical or integer
+
+In our case we want Department to be a factor with two levels and the SCRPed variable to be integer or numerical.
+
+```{r}
+str(Independent_t_df)
+```
+
+Since the Department is a character variable, we need to change it to be a factor.
+```{r}
+Independent_t_df$Dept <- factor(Independent_t_df$Dept)
+str(Independent_t_df$Dept)
+```
+
+Without further coding, R will order the factors alphabetically.  This is fine.  CPY will be the base/intercept and I-O will be the comparison (this becomes more important in regression).
+
+## Evaluate statistical assumptions
+
+* Evaluate and report skew and kurtosis
+* Evaluate and correctly interpret homogeneity of variance (if Levene's < .05; use Welch's formulation)
+
+```{r}
+psych::describe(Independent_t_df)
+```
+Although I included Dept in the descriptives, it's a factor and therefore the values around distribution are rather senseless.
+
+SCRPed, though, is a continuously scored variable:
+
+Skew = -1.93 and falls below the 3.0 threshold of concern (Klein, 2016)
+Kurtosis = 4.92 falls below the 8.0 threshold of concern (Klein, 2016)
+
+For fun (not required), let me pull a pairs.panels.
+
+```{r}
+psych::pairs.panels(Independent_t_df)
+```
+
+We can see that we'll have more CPY students than I-O students. We can also see that the SCRPed distribution is not normal, that it's negatively skewed, with the majority of the scores being on the high end of the scale.
+
+And now for homogeneity of variance:
+
+```{r}
+car::leveneTest(SCRPed ~ Dept, Independent_t_df, center = mean)
+```
+
+Levene's test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance $(F[1, 101] = 0.768, p = 0.383)$. That is to say, the variance in each of the departments is not statistically significantly different from each other. We can use the regular (Student's) formulation of the *t* test for independent samples.
+
+
+## Conduct the statistic
+
+Conduct the independent samples t-test (with an effect size)
+
+```{r}
+lsr::independentSamplesTTest(formula = SCRPed ~ Dept, data = Independent_t_df,
+    var.equal = TRUE)
+```
+
+The independent samples t-test was nonsignificant, $t(101) = -0.642, p = 0.522$, the effect size (d = 0.141) was quite small. The 95% confidence interval for the difference in means ranged from -0.358 to  0.183. 
+
+
+## APA style results
+
+* Complete content of results (including t, df, p, d-or-eta, CI95%)
+* Table
+* Figure
+* Grammar/formatting
+
+>>An independent samples t-test was conducted to evaluate the hypothesis that there would be differences in course evaluation ratings of socially and culturaly responsive teaching between academic departments (CPY, IOP). The independent samples t-test was nonsignificant, $t(101) = -0.642, p = 0.522$; this was consistent with a small effect size $(d = 0.141$). The 95% confidence interval for the difference in course evaluation means between the two departments ranged from -0.358 to  0.183. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
+
+
+```{r}
+apaTables::apa.1way.table(Dept, SCRPed, Independent_t_df)
+```
+
+```{r}
+ggpubr::ggboxplot(Independent_t_df, x = "Dept", y = "SCRPed", color = "Dept",
+    palette = c("#00AFBB", "#FC4E07"), add = "jitter", title = "Figure 1. Course Evaluation Ratings of Socially and Culturally Responsive Pedagogy as a Function of Department")
+```
+
+
+## Power Analysis
+
+```{r}
+pwr::pwr.t.test(d = 0.141, n = 101, power = NULL, sig.level = 0.05,
+    type = "two.sample", alternative = "two.sided")
+```
+
+We were at 17% power. That is, given the value of the mean difference (), we had a 17% chance of detecting a statistically significant effect if there was one. How big of a sample wouLd it take?
+
+```{r}
+pwr::pwr.t.test(d = 0.141, n = NULL, power = 0.8, sig.level = 0.05,
+    type = "two.sample", alternative = "two.sided")
+```
+
+To find a statistically significant difference, we would need 790 per group. This tells me...there isn't a difference.
+
+# Paired Samples t-test
+
+##Narrate research vignette
+
+* Describe variables and their role in the analysis. Are the two variables from the same case (pre/post or two conditions)?
+
+Sticking with the same data, do students' course evaluations change from ANOVA to Multivariate? Here we are not comparing two departments, but we are comparing *the same* students from time 1 to time 2.  This will require some data manipulation.
+
+The research design here, is admittedly questionable. We're not really comparing "course evals" because of the internal validity threat of history. But the data works for this demo...
+
+From the "big" data, let's draw down students in just those two courses.
+
+```{r}
+Paired_df <-(dplyr::select (big, StndtID, Course, SCRPed))
+Paired_df <- subset(Paired_df, Course == "ANOVA" | Course == "Multivariate") 
+```
+
+## Simulate (or import) and format data
+
+* Are there two variables, continuously (num or int format in R) scaled, representing two observations (repeated or different conditions) from the same case?
+
+```{r}
+str(Paired_df)
+```
+
+But it's trickier than that...this data is in "long" form (where each observation is listed in each row); we need it to be in "wide" form (where each student has both observations on one row).
+
+```{r}
+paired_wide <- reshape2::dcast(data = Paired_df, formula =StndtID~Course, value.var = "SCRPed")
+```
+
+
+```{r}
+str(paired_wide)
+```
+
+## Evaluate statistical assumptions
+
+* Interpret the *distribution of the difference score* in terms of skew, kurtosis. Is it normally distributed?
+
+This means we need to create a difference score:
+
+```{r}
+paired_wide$DIFF <- paired_wide$ANOVA - paired_wide$Multivariate
+```
+
+```{r}
+psych::describe(paired_wide)
+```
+Regarding the DIFF score:
+
+Skew = 0.11	 and falls below the 3.0 threshold of concern (Klein, 2016)
+Kurtosis = 2.18	 falls below the 8.0 threshold of concern (Klein, 2016)
+
+The skew (0.11) and kurtosis (2.18) values were well below the threshholds of concern identified by Klein (2016). 
+
+```{r}
+psych::pairs.panels(paired_wide)
+```
+Visual inspection of the distributions of the variables suggested they were negatively skewed, with values clustered at the high end of the course evaluation ratings.
+
+# Conduct the statistic
+
+* Conduct the paired samples t-test (with an effect size)
+
+```{r}
+lsr::pairedSamplesTTest(formula = ~ANOVA + Multivariate, data = paired_wide)
+```
+
+$t(60) = 0.397, p = 0.693$ is non-significant
+$d = 0.052$ is quite small
+We are 95% confident that the true mean difference falls between -0.132 and 0.198 
+
+
+## APA style results
+
+* Complete content of results (t, df, p, d-or-eta, CI95)
+* Table
+* Figure
+* Grammar/formatting
+
+>>A paired samples t-test was conducted to evaluate the hypothesis that there would be differences in  students' ratings of socially and culturally responsive pedagogy after courses in ANOVA and (two quarters later) Multivariate. Both courses were taught by the same instructor.  
+
+>>Paired samples *t*-tests hold the assumption that the distribution of the difference scores of the two variables of interest be normally distributed. Visual inspection of the distributions of the variables suggested that each were negatively skewed, with values clustered at the high end of the course evaluation ratings. That said, the skew (0.11) and kurtosis (2.18) values of the difference scores between the two repeated measures values fell below the thressholds of concern identified by Klein (2016). Thus, the distributional characteristics suggested that a paired-samples *t*-test is appropriate.
+
+>>The paired samples *t*-test was nonsignificant, $t(60) = 0.397, p = 0.693$. The small magnitude of the effect size ($d = 0.052$) was consistent with the nonsignificant result and the 95% confidence interval for the difference in means included the value of zero (95%CI[-0.132, 0.198]). Means and standard deviations are presented in Table 2; the results are illustrated in Figure 2.
+
+```{r}
+paired_descripts <- dplyr::select(paired_wide, ANOVA, Multivariate)
+apaTables::apa.cor.table(paired_descripts, table.number = 2, filename = "Tab2_PairedV.doc")
+```
+
+
+ 
+```{r}
+ggpubr::ggpaired(paired_wide, cond1 = "ANOVA", cond2 = "Multivariate",
+    color = "condition", line.color = "gray", palette = c("npg"), xlab = "Course",
+    ylab = "Socially & Culturally Responsive Pedagogy Rating")
+```
+
+## Power Analysis
+
+What kind of power did we have for this test?
+
+```{r}
+pwr::pwr.t.test(d = 0.051, n = 60, power = NULL, sig.level = 0.05,
+    type = "paired", alternative = "two.sided")
+```
+
+We had a 7% chance of detecting a statistically significant effect if there was one.
+
+```{r}
+pwr::pwr.t.test(d = 0.051, n = NULL, power = 0.8, sig.level = 0.05,
+    type = "paired", alternative = "two.sided")
+```
+
+Given the parameters of our data (a super small effect size), and our desired power and p value, we would need more than 3,000 pairs to detect a statistically significant difference.
