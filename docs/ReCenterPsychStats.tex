@@ -129,7 +129,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP (she/her)}
-\date{Last updated 11 Jul 2023}
+\date{Last updated 13 Jul 2023}
 
 \begin{document}
 \maketitle
@@ -165,7 +165,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 11 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 13 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=859e5312-abdb-4db8-8779-b00c00feae47}{Screencasted Lecture Link}
 
@@ -4286,7 +4286,7 @@ In this case our difference between the sample data and the external data is so 
 
 The suggestions for homework differ in degree of complexity. I encourage you to start with a problem that feels ``do-able'' and then try at least one more problem that challenges you in some way. Regardless, your choices should meet you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands). Using R packages, complete a one-sample \emph{t}-test.
 
-Additionally, please complete at least one set of \emph{hand calculations}, that is using the code demonstrated in the chapter to work through the formulas that compute the one-sample \emph{t}-test that is the focus of this lesson. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
+Additionally, please complete at least one set of \emph{hand calculations}, that is using the code demonstrated in the chapter to work through the formulas that compute the one-sample \emph{t}-test. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
 
 \hypertarget{problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed}{%
 \subsection{Problem \#1: Rework the research vignette as demonstrated, but change the random seed}\label{problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed}}
@@ -5672,7 +5672,7 @@ Curiously, our result is still not statistically significant: \(t(184) = 1.713, 
 
 The suggestions for homework differ in degree of complexity. I encourage you to start with a problem that feels ``do-able'' and then try at least one more problem that challenges you in some way. Regardless, your choices should meet you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands).
 
-Additionally, please complete at least one set of \emph{hand calculations}, that is using the code demonstrated in the chapter to work through the formulas that compute the independent samples \emph{t}-test that is the focus of this lesson. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
+Additionally, please complete at least one set of \emph{hand calculations}, that is using the code demonstrated in the chapter to work through the formulas that compute the independent samples \emph{t}-test. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
 
 \hypertarget{problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1}{%
 \subsection{Problem \#1: Rework the research vignette as demonstrated, but change the random seed}\label{problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1}}
@@ -6417,12 +6417,9 @@ Especially unique about this function is that the lines connect the scores of ea
 
 In this lesson, I will focus on differences in the verbal communication variable. Specifically, I hypothesize that physician verbal communication scores for Black and White patients will differ. In the hypotheses below, the null hypothesis (\(\mu_D\)) states that the difference score is zero; the alternative hypothesis (\(\mu_D\)) states that the difference score is different from zero.
 
-\[
-\begin{array}{ll}
-H_0: & \mu_D = 0  \\
-H_A: & \mu_D \neq 0
-\end{array}
-\] Notice the focus on a \emph{difference} score. Even though the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.
+\[H_{O}: \mu _{D} = 0\] \[H_{A}: \mu _{D} \neq 0\]
+
+Notice the focus on a \emph{difference} score. Even though the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6985,7 +6982,7 @@ In Champely's \emph{pwr} package, we can conduct a power analysis for a variety 
 \item
   Sample size, \emph{n} refers to the number of pairs; our vignette had 33
 \item
-  \emph{d} refers to the difference between means divided by the pooled standard deviation; using data from our vignette it would be (0-.08/4.14). We can obtain the pooled standard deviation from a \emph{psych::describe} run of the long-form data file.
+  \emph{d} refers to the difference between means divided by the pooled standard deviation; we can use the value of Cohen's \emph{d} for this
 \item
   \emph{power} refers to the power of a statistical test; conventionally it is set at .80
 \item
@@ -7000,23 +6997,10 @@ In this script, we must specify \emph{all-but-one} parameter; the remaining para
 
 When we conduct a ``power analysis'' (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, ``power=NULL''. Using the data from our results, we learn from this first run, that our statistical power was at 5\%. That is, given the low value of the mean difference (.08) and the relatively large standard deviation (4.14), we had only a 5\% chance of detecting a statistically significant effect if there was one.
 
-To obtain the pooled standard deviation:
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(df\_long}\SpecialCharTok{$}\NormalTok{Verbal)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-   vars  n mean   sd median trimmed  mad  min   max range  skew kurtosis   se
-X1    1 66 8.66 2.92   8.89    8.73 3.22 1.59 13.47 11.88 -0.24    -0.63 0.36
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ (}\FloatTok{0.08}\NormalTok{)}\SpecialCharTok{/}\FloatTok{2.92}\NormalTok{, }\AttributeTok{n =} \DecValTok{33}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
-    \AttributeTok{type =} \StringTok{"paired"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \FloatTok{0.02}\NormalTok{, }\AttributeTok{n =} \DecValTok{33}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"paired"}\NormalTok{,}
+    \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7025,20 +7009,22 @@ X1    1 66 8.66 2.92   8.89    8.73 3.22 1.59 13.47 11.88 -0.24    -0.63 0.36
      Paired t test power calculation 
 
               n = 33
-              d = 0.02739726
+              d = 0.02
       sig.level = 0.05
-          power = 0.05267602
+          power = 0.05142498
     alternative = two.sided
 
 NOTE: n is number of *pairs*
 \end{verbatim}
 
-Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set \emph{n} to \emph{NULL}. Using the results from the simulation of our research vignette, you can see that we would have needed 10458 individuals for the \emph{p} value to be \textless{} .05, if, in fact there were a significant difference.
+The results indicate that we were powered at 5\%. That is, we had a 5\% chance of finding a statistically significant difference, if in fact there was one.
+
+Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set \emph{n} to \emph{NULL}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =}\NormalTok{ (}\FloatTok{0.08}\NormalTok{)}\SpecialCharTok{/}\FloatTok{2.92}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
-    \AttributeTok{type =} \StringTok{"paired"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \FloatTok{0.02}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"paired"}\NormalTok{,}
+    \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7046,14 +7032,16 @@ Researchers frequently use these tools to estimate the sample size required to o
 
      Paired t test power calculation 
 
-              n = 10458.57
-              d = 0.02739726
+              n = 19624.07
+              d = 0.02
       sig.level = 0.05
           power = 0.8
     alternative = two.sided
 
 NOTE: n is number of *pairs*
 \end{verbatim}
+
+Using the results from the simulation of our research vignette, you can see that we would have needed 19624 individuals for the \emph{p} value to be \textless{} .05, if, in fact there were a significant difference.
 
 Let's see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:
 
@@ -7063,7 +7051,7 @@ Let's see if this is true. Below I will re-simulate the data for the verbal scor
 \CommentTok{\# These define the characteristics of the verbal variable. It is}
 \CommentTok{\# essential that the object names (e.g., A\_mean) are not changed}
 \CommentTok{\# because they will be fed to the function in the faux package.}
-\NormalTok{sub\_n }\OtherTok{\textless{}{-}} \DecValTok{10458}
+\NormalTok{sub\_n }\OtherTok{\textless{}{-}} \DecValTok{19624}
 \NormalTok{A\_mean }\OtherTok{\textless{}{-}} \FloatTok{8.37}
 \NormalTok{B\_mean }\OtherTok{\textless{}{-}} \FloatTok{8.41}
 \NormalTok{A\_sd }\OtherTok{\textless{}{-}} \FloatTok{3.36}
@@ -7100,7 +7088,7 @@ Now I will conduct the paired samples \emph{t}-test and corresponding effect siz
 # A tibble: 1 x 13
   estimate .y.    group1 group2    n1    n2 statistic     p    df conf.low
 *    <dbl> <chr>  <chr>  <chr>  <int> <int>     <dbl> <dbl> <dbl>    <dbl>
-1  -0.0349 Verbal Black  White  10458 10458    -0.913 0.361 10457   -0.110
+1  -0.0343 Verbal Black  White  19624 19624     -1.24 0.214 19623  -0.0885
 # i 3 more variables: conf.high <dbl>, method <chr>, alternative <chr>
 \end{verbatim}
 
@@ -7114,10 +7102,10 @@ Now I will conduct the paired samples \emph{t}-test and corresponding effect siz
 # A tibble: 1 x 7
   .y.    group1 group2  effsize    n1    n2 magnitude 
 * <chr>  <chr>  <chr>     <dbl> <int> <int> <ord>     
-1 Verbal Black  White  -0.00893 10458 10458 negligible
+1 Verbal Black  White  -0.00887 19624 19624 negligible
 \end{verbatim}
 
-The new results remain non-significant: \(t(10457) = -0.913, p = 0.361, d = -0.013, 95CI (-0.110, 0.040)\). This tells me these means are quite similar and this is not a function of being underpowered.
+The new results remain non-significant: \(t(19623) = -1.243, p = 0.241, d = -0.009, 95CI (-0.088, 0.020)\). This tells me these means are quite similar and this is not a function of being under powered.
 
 Conducting power analyses requires that researchers speculate about their values. In this case, in order to estimate sample size, the researcher would need to make some guesses about the difference scores means and standard deviations. These values could be estimated from prior literature or a pilot study.
 
@@ -7125,6 +7113,8 @@ Conducting power analyses requires that researchers speculate about their values
 \section{Practice Problems}\label{practice-problems-4}}
 
 The suggestions for homework differ in degree of complexity. I encourage you to start with a problem that feels ``do-able'' and then try at least one more problem that challenges you in some way. Regardless, your choices should meet you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands).
+
+Additionally, please complete at least one set of \emph{hand calculations}, that is use the code demonstrated in the chapter to work through the formulas that compute the paired samples \emph{t}-test. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
 
 \hypertarget{problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2}{%
 \subsection{Problem \#1: Rework the research vignette as demonstrated, but change the random seed}\label{problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2}}
@@ -7172,14 +7162,44 @@ Points Earned
 3. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
 4. Conduct a paired samples \emph{t}-test (with an effect size \& 95\%CIs) & 5 & \_\_\_\_\_ \\
 5. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-6 Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 30 & \_\_\_\_\_ \\
+6. Conduct power analyses to determine the power of the current study and a recommended sample size & 5 & \_\_\_\_\_ \\
+7. Explanation to grader & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 35 & \_\_\_\_\_ \\
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5833}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2083}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2083}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Hand Calculations
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Points Poss
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Points Earned
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses & 2 & \\
+2. Using an R package or functions in base R (and with data in the ``wide'' format), calculate the \emph{difference} score between the two observations of the dependent variable & 2 & \\
+3. Obtain the mean and standard deviation of the \emph{difference} score & 2 & \\
+4. Calculate the paired samples \emph{t}-test & 4 & \\
+5. Identify the degrees of freedom associated with your paired samples \emph{t}-test & 2 & \\
+6. Locate the test critical value for your paired samples \emph{t}-test & 2 & \\
+7. Is the paired samples \emph{t}-test statistically significant? Why or why not? & 2 & \\
+8. What is the confidence interval around the mean difference? & 4 & \\
+9. Calculate the effect size (i.e., Cohen's \emph{d} associated with your paired samples \emph{t}-test & 4 & \\
+10. Assemble the results into a statistical string & 4 & \\
+\textbf{Totals* } & 28 & \\
 \end{longtable}
 
 \hypertarget{homeworked-example-4}{%
 \section{Homeworked Example}\label{homeworked-example-4}}
 
-\href{}{Screencast Link}
+\href{link}{Screencast Link}
 
 \emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could compare a differenc combination of courses and/or score one of the other course evaluation subscales (e.g., socially responsive pedagogy or valued-by-me). }
 
@@ -7272,7 +7292,7 @@ Results of the Shapiro-Wilk test of normality are statistically significant \((W
 
 although not required in the formal test of instructions, a \emph{pairs panel} of correlations and distributions can be useful in undersatnding our data.
 
-\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-46-1.pdf} Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
+\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-45-1.pdf} Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
 
 Before moving forward, I want to capture my analysis of assumptions:
 
@@ -7280,8 +7300,8 @@ Before moving forward, I want to capture my analysis of assumptions:
 We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution \((W = 0.943, p = 0.002)\).
 \end{quote}
 
-\hypertarget{conduct-a-paired-samples-t-test-with-an-effect-size-95cis}{%
-\subsubsection{Conduct a paired samples t-test (with an effect size \& 95\%CIs)}\label{conduct-a-paired-samples-t-test-with-an-effect-size-95cis}}
+\hypertarget{conduct-a-paired-samples-t-test-with-an-effect-size-95-cis}{%
+\subsubsection{Conduct a paired samples t-test (with an effect size \& 95\% CIs)}\label{conduct-a-paired-samples-t-test-with-an-effect-size-95-cis}}
 
 So this may be a bit tricky, but our original ``long'' form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples \emph{t} test requires the design to be balanced. When we used the \emph{na.omit()} function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let's restructure that wide format back to long format so that the design will be balanced.
 
@@ -7303,7 +7323,7 @@ So this may be a bit tricky, but our original ``long'' form of the data has more
 # i 3 more variables: conf.high <dbl>, method <chr>, alternative <chr>
 \end{verbatim}
 
-I'll begin the \emph{t} string with this output: \(t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069)\). The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.
+I'll begin the \emph{t} string with this output: \(t(76) = -1.341, p = 0.184, CI95(-0.305, 0.069)\). The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.
 
 we calculate the Cohen's \emph{d} (the effect size) this way:
 
@@ -7314,7 +7334,7 @@ we calculate the Cohen's \emph{d} (the effect size) this way:
 1 TradPed ANOVA  Multivariate  -0.153    77    77 negligible
 \end{verbatim}
 
-The value of -0.153 is quite small. We can add this value to our statistical string: \(t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069), d = -0.153\)
+The value of -0.153 is quite small. We can add this value to our statistical string: \(t(76) = -1.341, p = 0.184, CI95(-0.305, 0.069), d = -0.153\)
 
 \hypertarget{apa-style-results-with-tables-and-figure-2}{%
 \subsubsection{APA style results with table(s) and figure}\label{apa-style-results-with-tables-and-figure-2}}
@@ -7328,7 +7348,7 @@ We began by analyzing the data to see if it met the statistical assumptions for 
 \end{quote}
 
 \begin{quote}
-Results of the paired samples \emph{t}-test suggested nonsignificant differences \(t(76) = -0.113, p = 0.184,d = -0.153\). The 95\% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.
+Results of the paired samples \emph{t}-test suggested nonsignificant differences \(t(76) = -1.341, p = 0.184,d = -0.153\). The 95\% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.
 \end{quote}
 
 \begin{verbatim}
@@ -7370,10 +7390,180 @@ For the figure, let's re-run the paired samples \emph{t} test, save it as an obj
 
 Next, we create boxplot:
 
-\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-52-1.pdf}
+\includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-51-1.pdf}
+
+\hypertarget{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-2}{%
+\subsubsection{Conduct power analyses to determine the power of the current study and a recommended sample size}\label{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-2}}
+
+Script for estimating current power:
+
+\begin{itemize}
+\tightlist
+\item
+  d is Cohen's \emph{d}
+\item
+  n is number of pairs, but set to NULL if we want to estimate sample size
+\item
+  power is conventionally set at .80, but left at NULL when we want to estimate power
+\item
+  sig.level is conventionlaly set at 0.05
+\item
+  type indicates the type of \emph{t}-test; in this example it is ``paired''
+\item
+  alternative indicates one or two.sided
+\end{itemize}
+
+\begin{verbatim}
+
+     Paired t test power calculation 
+
+              n = 77
+              d = 0.153
+      sig.level = 0.05
+          power = 0.2634404
+    alternative = two.sided
+
+NOTE: n is number of *pairs*
+\end{verbatim}
+
+We had a 26\% chance of finding a statistically significant result if, in fact, one existed.
+
+\begin{verbatim}
+
+     Paired t test power calculation 
+
+              n = 337.2182
+              d = 0.153
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number of *pairs*
+\end{verbatim}
+
+If we presumed power were at 80\%, we would need a sample size of 337.
 
 \hypertarget{hand-calculations-3}{%
 \subsection{Hand Calculations}\label{hand-calculations-3}}
+
+For these hand calculations I will used the ``paired\_wide'' dataframe that we had prepared for the homework assignment intended for R and R packages.
+
+\hypertarget{using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-2}{%
+\subsubsection{Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses}\label{using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-2}}
+
+The null hypotheses states that the true difference in means is zero. \(H_{O}: \mu _{D} = 0\)
+
+The alternative hypothesis states that the true difference in means is not zero. \(H_{A}: \mu _{D}\neq 0\)
+
+\hypertarget{using-an-r-package-or-functions-in-base-r-and-with-data-in-the-wide-format-calculate-the-difference-score-between-the-two-observations-of-the-dependent-variable}{%
+\subsubsection{\texorpdfstring{Using an R package or functions in base R (and with data in the ``wide'' format), calculate the \emph{difference} score between the two observations of the dependent variable}{Using an R package or functions in base R (and with data in the ``wide'' format), calculate the difference score between the two observations of the dependent variable}}\label{using-an-r-package-or-functions-in-base-r-and-with-data-in-the-wide-format-calculate-the-difference-score-between-the-two-observations-of-the-dependent-variable}}
+
+We had already calculated a difference score in the earlier assignment. Here it is again.
+
+\hypertarget{obtain-the-mean-and-standard-deviation-of-the-difference-score}{%
+\subsubsection{\texorpdfstring{Obtain the mean and standard deviation of the \emph{difference} score}{Obtain the mean and standard deviation of the difference score}}\label{obtain-the-mean-and-standard-deviation-of-the-difference-score}}
+
+We can obtain the mean and standard deviation for the difference score with this script.
+
+\begin{verbatim}
+   vars  n  mean  sd median trimmed  mad  min max range skew kurtosis   se
+X1    1 77 -0.12 0.8   -0.2   -0.13 0.59 -2.4 3.2   5.6 0.56     3.15 0.09
+\end{verbatim}
+
+The mean difference (\(\bar{D}\)) is -0.12; the standard deviation (\(\hat\sigma_D\)) of the difference score is 0.8.
+
+\hypertarget{calculate-the-paired-samples-t-test}{%
+\subsubsection{\texorpdfstring{Calculate the paired samples \emph{t}-test}{Calculate the paired samples t-test}}\label{calculate-the-paired-samples-t-test}}
+
+Here is the formula for the paired samples \emph{t}-test:
+
+\[t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}\] Using the values we located we can calculate the value of the \emph{t} statistic.
+
+\begin{verbatim}
+[1] -1.316245
+\end{verbatim}
+
+The value we calculated with the \emph{rstatix::t\_test()} function was -1.34. Considering rounding error, I think we got it!
+
+\hypertarget{identify-the-degrees-of-freedom-associated-with-your-paired-samples-t-test}{%
+\subsubsection{\texorpdfstring{Identify the degrees of freedom associated with your paired samples \emph{t}-test}{Identify the degrees of freedom associated with your paired samples t-test}}\label{identify-the-degrees-of-freedom-associated-with-your-paired-samples-t-test}}
+
+We have 77 pairs. The df for the paired samples \emph{t}-test is \(N - 1\). Therefore, df = 76.
+
+\hypertarget{locate-the-test-critical-value-for-your-paired-samples-t-test}{%
+\subsubsection{\texorpdfstring{Locate the test critical value for your paired samples \emph{t}-test}{Locate the test critical value for your paired samples t-test}}\label{locate-the-test-critical-value-for-your-paired-samples-t-test}}
+
+I could look at the \href{https://www.statology.org/t-distribution-table/}{table of critical values} for the \emph{t}-distribution. Because I have non-directional hypotheses, I would use the column for a \emph{p}-value of .05 for a two-tailed test. I roll down to the closest sample size (I'll pick 60). This suggests that my \emph{t}-test statistic would need to be greater than 2.0 in order to be statistically significant.
+
+I can also use the \emph{qt()} function in base R. This function requires that I specify the alpha level (0.05), whether the test is one- or two-tailed (2), and my degrees of freedom (76). Specifying ``TRUE'' and ``FALSE'' after the lower.tail command gives the positive and negative regions of rejection.
+
+\begin{verbatim}
+[1] -1.991673
+\end{verbatim}
+
+\begin{verbatim}
+[1] 1.991673
+\end{verbatim}
+
+It is not surprising that these values are a smidge lower than 2.0. Why? Because in the table we stopped at df of 60, when it is actually 76.
+
+\hypertarget{is-the-paired-samples-t-test-statistically-significant-why-or-why-not}{%
+\subsubsection{\texorpdfstring{Is the paired samples \emph{t}-test statistically significant? Why or why not?}{Is the paired samples t-test statistically significant? Why or why not?}}\label{is-the-paired-samples-t-test-statistically-significant-why-or-why-not}}
+
+The paired samples \emph{t}-test is not statistically significant because the \emph{t}-value of -1.316245 does not exceed -1.992.
+
+\hypertarget{what-is-the-confidence-interval-around-the-mean-difference}{%
+\subsubsection{What is the confidence interval around the mean difference?}\label{what-is-the-confidence-interval-around-the-mean-difference}}
+
+Here is the formula for hand-calculating the confidence interval.
+
+\[\bar{D}\pm t_{cv}(s_{d}/\sqrt{n})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{D}\) the mean difference score
+\item
+  \(t_{cv}\) the test critical value for a two-tailed model (even if the hypothesis was one-tailed) where \(\alpha = .05\) and the degrees of freedom are \(N-1\)
+\item
+  \(s_{d}\) the standard deviation of \(\bar{D}\)
+\item
+  \(N\) sample size
+\end{itemize}
+
+Let's calculate it:
+
+\begin{verbatim}
+[1] 0.06157776
+\end{verbatim}
+
+\begin{verbatim}
+[1] -0.3015778
+\end{verbatim}
+
+These values indicate the range of scores in which we are 95\% confident that our true \(\bar{D}\) lies. Stated another way, we are 95\% confident that the true mean difference lies between -0.302 and 0.062. Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant \emph{p} value. For these types of statistics, the 95\% confidence interval and \emph{p} value will always be yoked together.
+
+\hypertarget{calculate-the-effect-size-i.e.-cohens-d-associated-with-your-paired-samples-t-test}{%
+\subsubsection{\texorpdfstring{Calculate the effect size (i.e., Cohen's \emph{d} associated with your paired samples \emph{t}-test}{Calculate the effect size (i.e., Cohen's d associated with your paired samples t-test}}\label{calculate-the-effect-size-i.e.-cohens-d-associated-with-your-paired-samples-t-test}}
+
+Cohen's \emph{d} measures, in standard deviation units, the distance between the two means. Regardless of sign, values of .2, .5, and .8 are considered to be small, medium, and large, respectively.
+
+Because the paired samples \emph{t}-test used the difference score in the numerator, there are two easy options for calculating this effect:
+
+\[d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}\] Here's a demonstration of both:
+
+\begin{verbatim}
+[1] -0.15
+\end{verbatim}
+
+\begin{verbatim}
+[1] -0.15
+\end{verbatim}
+
+\hypertarget{assemble-the-results-into-a-statistical-string.}{%
+\subsubsection{Assemble the results into a statistical string.}\label{assemble-the-results-into-a-statistical-string.}}
+
+\(t(76) = -1.316, p > .05, CI95(-0.302, 0.062), d = -0.15\)
 
 \hypertarget{analysis-of-variance}{%
 \chapter*{Analysis of Variance}\label{analysis-of-variance}}

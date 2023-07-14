@@ -923,13 +923,9 @@ The box of the boxplot covers the middle 50% (the interquartile range). The hori
 <div id="stating-the-hypothesis-2" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Stating the Hypothesis<a href="tPaired.html#stating-the-hypothesis-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this lesson, I will focus on differences in the verbal communication variable. Specifically, I hypothesize that physician verbal communication scores for Black and White patients will differ. In the hypotheses below, the null hypothesis (<span class="math inline">\(\mu_D\)</span>) states that the difference score is zero; the alternative hypothesis (<span class="math inline">\(\mu_D\)</span>) states that the difference score is different from zero.</p>
-<p><span class="math display">\[
-\begin{array}{ll}
-H_0: &amp; \mu_D = 0  \\
-H_A: &amp; \mu_D \neq 0
-\end{array}
-\]</span>
-Notice the focus on a <em>difference</em> score. Even though the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.</p>
+<p><span class="math display">\[H_{O}: \mu _{D} = 0\]</span>
+<span class="math display">\[H_{A}: \mu _{D} \neq 0\]</span></p>
+<p>Notice the focus on a <em>difference</em> score. Even though the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="tPaired.html#cb381-1" tabindex="-1"></a><span class="co"># Creating the Verbal_D variable within the dfPairedSamples df Doing</span></span>
 <span id="cb381-2"><a href="tPaired.html#cb381-2" tabindex="-1"></a><span class="co"># the &#39;math&#39; that informs that variable</span></span>
 <span id="cb381-3"><a href="tPaired.html#cb381-3" tabindex="-1"></a>dfPairedSamples<span class="sc">$</span>Verbal_D <span class="ot">&lt;-</span> (dfPairedSamples<span class="sc">$</span>Verbal_BL <span class="sc">-</span> dfPairedSamples<span class="sc">$</span>Verbal_WH)</span>
@@ -1219,7 +1215,7 @@ The tools available offer a great deal of flexibility. Determining which figure 
 <p>In Champely’s <em>pwr</em> package, we can conduct a power analysis for a variety of designs, including the paired <em>t</em>-test that we worked in this chapter. There are a number of interrelating elements of power:</p>
 <ul>
 <li>Sample size, <em>n</em> refers to the number of pairs; our vignette had 33</li>
-<li><em>d</em> refers to the difference between means divided by the pooled standard deviation; using data from our vignette it would be (0-.08/4.14). We can obtain the pooled standard deviation from a <em>psych::describe</em> run of the long-form data file.</li>
+<li><em>d</em> refers to the difference between means divided by the pooled standard deviation; we can use the value of Cohen’s <em>d</em> for this</li>
 <li><em>power</em> refers to the power of a statistical test; conventionally it is set at .80</li>
 <li><em>sig.level</em> refers to our desired alpha level; conventionally it is set at .05</li>
 <li><em>type</em> indicates the type of test we ran; ours was “paired”</li>
@@ -1227,80 +1223,79 @@ The tools available offer a great deal of flexibility. Determining which figure 
 </ul>
 <p>In this script, we must specify <em>all-but-one</em> parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.</p>
 <p>When we conduct a “power analysis” (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, “power=NULL”. Using the data from our results, we learn from this first run, that our statistical power was at 5%. That is, given the low value of the mean difference (.08) and the relatively large standard deviation (4.14), we had only a 5% chance of detecting a statistically significant effect if there was one.</p>
-<p>To obtain the pooled standard deviation:</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="tPaired.html#cb424-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(df_long<span class="sc">$</span>Verbal)</span></code></pre></div>
-<pre><code>   vars  n mean   sd median trimmed  mad  min   max range  skew kurtosis   se
-X1    1 66 8.66 2.92   8.89    8.73 3.22 1.59 13.47 11.88 -0.24    -0.63 0.36</code></pre>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="tPaired.html#cb426-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> (<span class="fl">0.08</span>)<span class="sc">/</span><span class="fl">2.92</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb426-2"><a href="tPaired.html#cb426-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="tPaired.html#cb424-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.02</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb424-2"><a href="tPaired.html#cb424-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Paired t test power calculation 
 
               n = 33
-              d = 0.02739726
+              d = 0.02
       sig.level = 0.05
-          power = 0.05267602
+          power = 0.05142498
     alternative = two.sided
 
 NOTE: n is number of *pairs*</code></pre>
-<p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>. Using the results from the simulation of our research vignette, you can see that we would have needed 10458 individuals for the <em>p</em> value to be &lt; .05, if, in fact there were a significant difference.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="tPaired.html#cb428-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> (<span class="fl">0.08</span>)<span class="sc">/</span><span class="fl">2.92</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb428-2"><a href="tPaired.html#cb428-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<p>The results indicate that we were powered at 5%. That is, we had a 5% chance of finding a statistically significant difference, if in fact there was one.</p>
+<p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="tPaired.html#cb426-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.02</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb426-2"><a href="tPaired.html#cb426-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Paired t test power calculation 
 
-              n = 10458.57
-              d = 0.02739726
+              n = 19624.07
+              d = 0.02
       sig.level = 0.05
           power = 0.8
     alternative = two.sided
 
 NOTE: n is number of *pairs*</code></pre>
+<p>Using the results from the simulation of our research vignette, you can see that we would have needed 19624 individuals for the <em>p</em> value to be &lt; .05, if, in fact there were a significant difference.</p>
 <p>Let’s see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="tPaired.html#cb430-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220820</span>)</span>
-<span id="cb430-2"><a href="tPaired.html#cb430-2" tabindex="-1"></a><span class="co"># These define the characteristics of the verbal variable. It is</span></span>
-<span id="cb430-3"><a href="tPaired.html#cb430-3" tabindex="-1"></a><span class="co"># essential that the object names (e.g., A_mean) are not changed</span></span>
-<span id="cb430-4"><a href="tPaired.html#cb430-4" tabindex="-1"></a><span class="co"># because they will be fed to the function in the faux package.</span></span>
-<span id="cb430-5"><a href="tPaired.html#cb430-5" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">10458</span></span>
-<span id="cb430-6"><a href="tPaired.html#cb430-6" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">8.37</span></span>
-<span id="cb430-7"><a href="tPaired.html#cb430-7" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">8.41</span></span>
-<span id="cb430-8"><a href="tPaired.html#cb430-8" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">3.36</span></span>
-<span id="cb430-9"><a href="tPaired.html#cb430-9" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">3.21</span></span>
-<span id="cb430-10"><a href="tPaired.html#cb430-10" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
-<span id="cb430-11"><a href="tPaired.html#cb430-11" tabindex="-1"></a></span>
-<span id="cb430-12"><a href="tPaired.html#cb430-12" tabindex="-1"></a><span class="co"># the faux package can simulate a variety of data. This function</span></span>
-<span id="cb430-13"><a href="tPaired.html#cb430-13" tabindex="-1"></a><span class="co"># within the faux package will use the objects above to simulate</span></span>
-<span id="cb430-14"><a href="tPaired.html#cb430-14" tabindex="-1"></a><span class="co"># paired samples data</span></span>
-<span id="cb430-15"><a href="tPaired.html#cb430-15" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
-<span id="cb430-16"><a href="tPaired.html#cb430-16" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>))</span>
-<span id="cb430-17"><a href="tPaired.html#cb430-17" tabindex="-1"></a></span>
-<span id="cb430-18"><a href="tPaired.html#cb430-18" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> paired_V2 <span class="sc">%&gt;%</span></span>
-<span id="cb430-19"><a href="tPaired.html#cb430-19" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb430-20"><a href="tPaired.html#cb430-20" tabindex="-1"></a></span>
-<span id="cb430-21"><a href="tPaired.html#cb430-21" tabindex="-1"></a><span class="co"># restructuring data to the long form</span></span>
-<span id="cb430-22"><a href="tPaired.html#cb430-22" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">melt</span>(data.table<span class="sc">::</span><span class="fu">setDT</span>(paired_V2), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>),</span>
-<span id="cb430-23"><a href="tPaired.html#cb430-23" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>)))</span>
-<span id="cb430-24"><a href="tPaired.html#cb430-24" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_longV2, <span class="at">PatientRace =</span> variable, <span class="at">Verbal =</span> value)</span>
-<span id="cb430-25"><a href="tPaired.html#cb430-25" tabindex="-1"></a>df_longV2<span class="sc">$</span>PtRace <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(df_longV2<span class="sc">$</span>PatientRace, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>,</span>
-<span id="cb430-26"><a href="tPaired.html#cb430-26" tabindex="-1"></a>    <span class="st">&quot;Verbal_WH&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="tPaired.html#cb428-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220820</span>)</span>
+<span id="cb428-2"><a href="tPaired.html#cb428-2" tabindex="-1"></a><span class="co"># These define the characteristics of the verbal variable. It is</span></span>
+<span id="cb428-3"><a href="tPaired.html#cb428-3" tabindex="-1"></a><span class="co"># essential that the object names (e.g., A_mean) are not changed</span></span>
+<span id="cb428-4"><a href="tPaired.html#cb428-4" tabindex="-1"></a><span class="co"># because they will be fed to the function in the faux package.</span></span>
+<span id="cb428-5"><a href="tPaired.html#cb428-5" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">19624</span></span>
+<span id="cb428-6"><a href="tPaired.html#cb428-6" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">8.37</span></span>
+<span id="cb428-7"><a href="tPaired.html#cb428-7" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">8.41</span></span>
+<span id="cb428-8"><a href="tPaired.html#cb428-8" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">3.36</span></span>
+<span id="cb428-9"><a href="tPaired.html#cb428-9" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">3.21</span></span>
+<span id="cb428-10"><a href="tPaired.html#cb428-10" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb428-11"><a href="tPaired.html#cb428-11" tabindex="-1"></a></span>
+<span id="cb428-12"><a href="tPaired.html#cb428-12" tabindex="-1"></a><span class="co"># the faux package can simulate a variety of data. This function</span></span>
+<span id="cb428-13"><a href="tPaired.html#cb428-13" tabindex="-1"></a><span class="co"># within the faux package will use the objects above to simulate</span></span>
+<span id="cb428-14"><a href="tPaired.html#cb428-14" tabindex="-1"></a><span class="co"># paired samples data</span></span>
+<span id="cb428-15"><a href="tPaired.html#cb428-15" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
+<span id="cb428-16"><a href="tPaired.html#cb428-16" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>))</span>
+<span id="cb428-17"><a href="tPaired.html#cb428-17" tabindex="-1"></a></span>
+<span id="cb428-18"><a href="tPaired.html#cb428-18" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> paired_V2 <span class="sc">%&gt;%</span></span>
+<span id="cb428-19"><a href="tPaired.html#cb428-19" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb428-20"><a href="tPaired.html#cb428-20" tabindex="-1"></a></span>
+<span id="cb428-21"><a href="tPaired.html#cb428-21" tabindex="-1"></a><span class="co"># restructuring data to the long form</span></span>
+<span id="cb428-22"><a href="tPaired.html#cb428-22" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">melt</span>(data.table<span class="sc">::</span><span class="fu">setDT</span>(paired_V2), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>),</span>
+<span id="cb428-23"><a href="tPaired.html#cb428-23" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>)))</span>
+<span id="cb428-24"><a href="tPaired.html#cb428-24" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_longV2, <span class="at">PatientRace =</span> variable, <span class="at">Verbal =</span> value)</span>
+<span id="cb428-25"><a href="tPaired.html#cb428-25" tabindex="-1"></a>df_longV2<span class="sc">$</span>PtRace <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(df_longV2<span class="sc">$</span>PatientRace, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>,</span>
+<span id="cb428-26"><a href="tPaired.html#cb428-26" tabindex="-1"></a>    <span class="st">&quot;Verbal_WH&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
 <p>Now I will conduct the paired samples <em>t</em>-test and corresponding effect size.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="tPaired.html#cb431-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="tPaired.html#cb429-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 13
   estimate .y.    group1 group2    n1    n2 statistic     p    df conf.low
 *    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-1  -0.0349 Verbal Black  White  10458 10458    -0.913 0.361 10457   -0.110
+1  -0.0343 Verbal Black  White  19624 19624     -1.24 0.214 19623  -0.0885
 # ℹ 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="tPaired.html#cb433-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="tPaired.html#cb431-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.    group1 group2  effsize    n1    n2 magnitude 
 * &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
-1 Verbal Black  White  -0.00893 10458 10458 negligible</code></pre>
-<p>The new results remain non-significant: <span class="math inline">\(t(10457) = -0.913, p = 0.361, d = -0.013, 95CI (-0.110, 0.040)\)</span>. This tells me these means are quite similar and this is not a function of being underpowered.</p>
+1 Verbal Black  White  -0.00887 19624 19624 negligible</code></pre>
+<p>The new results remain non-significant: <span class="math inline">\(t(19623) = -1.243, p = 0.241, d = -0.009, 95CI (-0.088, 0.020)\)</span>. This tells me these means are quite similar and this is not a function of being under powered.</p>
 <p>Conducting power analyses requires that researchers speculate about their values. In this case, in order to estimate sample size, the researcher would need to make some guesses about the difference scores means and standard deviations. These values could be estimated from prior literature or a pilot study.</p>
 </div>
 <div id="practice-problems-4" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Practice Problems<a href="tPaired.html#practice-problems-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The suggestions for homework differ in degree of complexity. I encourage you to start with a problem that feels “do-able” and then try at least one more problem that challenges you in some way. Regardless, your choices should meet you where you are (e.g., in terms of your self-efficacy for statistics, your learning goals, and competing life demands).</p>
+<p>Additionally, please complete at least one set of <em>hand calculations</em>, that is use the code demonstrated in the chapter to work through the formulas that compute the paired samples <em>t</em>-test. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.</p>
 <div id="problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2" class="section level3 hasAnchor" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> Problem #1: Rework the research vignette as demonstrated, but change the random seed<a href="tPaired.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If this topic feels a bit overwhelming, simply change the random seed in the data simulation of the research vignette, then rework the problem. This should provide minor changes to the data (maybe even in the second or third decimal point), but the results will likely be very similar. That said, don’t be alarmed if what was non-significant in my working of the problem becomes significant. Our selection of <em>p</em> &lt; .05 (and the corresponding 95% confidence interval) means that 5% of the time there could be a difference in statistical significance.</p>
@@ -1360,14 +1355,90 @@ NOTE: n is number of *pairs*</code></pre>
 <td align="center">_____</td>
 </tr>
 <tr class="even">
-<td align="left">6 Explanation to grader</td>
+<td align="left">6. Conduct power analyses to determine the power of the current study and a recommended sample size</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>Totals</strong></td>
-<td align="center">30</td>
+<td align="left">7. Explanation to grader</td>
+<td align="center">5</td>
 <td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="58%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Hand Calculations</th>
+<th align="center">Points Poss</th>
+<th align="left">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses</td>
+<td align="center">2</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">2. Using an R package or functions in base R (and with data in the “wide” format), calculate the <em>difference</em> score between the two observations of the dependent variable</td>
+<td align="center">2</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3. Obtain the mean and standard deviation of the <em>difference</em> score</td>
+<td align="center">2</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4. Calculate the paired samples <em>t</em>-test</td>
+<td align="center">4</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5. Identify the degrees of freedom associated with your paired samples <em>t</em>-test</td>
+<td align="center">2</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">6. Locate the test critical value for your paired samples <em>t</em>-test</td>
+<td align="center">2</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">7. Is the paired samples <em>t</em>-test statistically significant? Why or why not?</td>
+<td align="center">2</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">8. What is the confidence interval around the mean difference?</td>
+<td align="center">4</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">9. Calculate the effect size (i.e., Cohen’s <em>d</em> associated with your paired samples <em>t</em>-test</td>
+<td align="center">4</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">10. Assemble the results into a statistical string</td>
+<td align="center">4</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals* </strong></td>
+<td align="center">28</td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
@@ -1375,7 +1446,7 @@ NOTE: n is number of *pairs*</code></pre>
 </div>
 <div id="homeworked-example-4" class="section level2 hasAnchor" number="6.9">
 <h2><span class="header-section-number">6.9</span> Homeworked Example<a href="tPaired.html#homeworked-example-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="">Screencast Link</a></p>
+<p><a href="link">Screencast Link</a></p>
 <p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could compare a differenc combination of courses and/or score one of the other course evaluation subscales (e.g., socially responsive pedagogy or valued-by-me). </em></p>
 <div id="working-the-problem-with-r-and-r-packages-3" class="section level3 hasAnchor" number="6.9.1">
 <h3><span class="header-section-number">6.9.1</span> Working the Problem with R and R Packages<a href="tPaired.html#working-the-problem-with-r-and-r-packages-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1431,15 +1502,15 @@ DIFF             3.15 0.09</code></pre>
 1 DIFF         0.943 0.00187</code></pre>
 <p>Results of the Shapiro-Wilk test of normality are statistically significant <span class="math inline">\((W = 0.943, p = 0.002)\)</span>. This means that the distribution of difference scores are statistically significantly different from a normal distribution.</p>
 <p>although not required in the formal test of instructions, a <em>pairs panel</em> of correlations and distributions can be useful in undersatnding our data.</p>
-<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.</p>
 <p>Before moving forward, I want to capture my analysis of assumptions:</p>
 <blockquote>
 <p>We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution <span class="math inline">\((W = 0.943, p = 0.002)\)</span>.</p>
 </blockquote>
 </div>
-<div id="conduct-a-paired-samples-t-test-with-an-effect-size-95cis" class="section level4 hasAnchor" number="6.9.1.4">
-<h4><span class="header-section-number">6.9.1.4</span> Conduct a paired samples t-test (with an effect size &amp; 95%CIs)<a href="tPaired.html#conduct-a-paired-samples-t-test-with-an-effect-size-95cis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="conduct-a-paired-samples-t-test-with-an-effect-size-95-cis" class="section level4 hasAnchor" number="6.9.1.4">
+<h4><span class="header-section-number">6.9.1.4</span> Conduct a paired samples t-test (with an effect size &amp; 95% CIs)<a href="tPaired.html#conduct-a-paired-samples-t-test-with-an-effect-size-95-cis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>So this may be a bit tricky, but our original “long” form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples <em>t</em> test requires the design to be balanced. When we used the <em>na.omit()</em> function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let’s restructure that wide format back to long format so that the design will be balanced.</p>
 <pre><code>   deID Course TradPed
 1:   11  ANOVA     4.0
@@ -1453,13 +1524,13 @@ Visual inspection of the distributions of the specific course variables were neg
 *    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 1   -0.123 TradPed ANOVA  Multivaria…    77    77     -1.34 0.184    76   -0.305
 # ℹ 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
-<p>I’ll begin the <em>t</em> string with this output: <span class="math inline">\(t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069)\)</span>. The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.</p>
+<p>I’ll begin the <em>t</em> string with this output: <span class="math inline">\(t(76) = -1.341, p = 0.184, CI95(-0.305, 0.069)\)</span>. The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.</p>
 <p>we calculate the Cohen’s <em>d</em> (the effect size) this way:</p>
 <pre><code># A tibble: 1 × 7
   .y.     group1 group2       effsize    n1    n2 magnitude 
 * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
 1 TradPed ANOVA  Multivariate  -0.153    77    77 negligible</code></pre>
-<p>The value of -0.153 is quite small. We can add this value to our statistical string: <span class="math inline">\(t(76) = -0.113, p = 0.184, CI95(-0.305, 0.069), d = -0.153\)</span></p>
+<p>The value of -0.153 is quite small. We can add this value to our statistical string: <span class="math inline">\(t(76) = -1.341, p = 0.184, CI95(-0.305, 0.069), d = -0.153\)</span></p>
 </div>
 <div id="apa-style-results-with-tables-and-figure-2" class="section level4 hasAnchor" number="6.9.1.5">
 <h4><span class="header-section-number">6.9.1.5</span> APA style results with table(s) and figure<a href="tPaired.html#apa-style-results-with-tables-and-figure-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1470,7 +1541,7 @@ Visual inspection of the distributions of the specific course variables were neg
 <p>We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution $(W=0.943, p = 0.002)</p>
 </blockquote>
 <blockquote>
-<p>Results of the paired samples <em>t</em>-test suggested nonsignificant differences <span class="math inline">\(t(76) = -0.113, p = 0.184,d = -0.153\)</span>. The 95% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.</p>
+<p>Results of the paired samples <em>t</em>-test suggested nonsignificant differences <span class="math inline">\(t(76) = -1.341, p = 0.184,d = -0.153\)</span>. The 95% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.</p>
 </blockquote>
 <pre><code>
 
@@ -1503,12 +1574,117 @@ that could have caused the sample correlation (Cumming, 2014).
 # ℹ 4 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;,
 #   p.signif &lt;chr&gt;</code></pre>
 <p>Next, we create boxplot:</p>
-<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+</div>
+<div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-2" class="section level4 hasAnchor" number="6.9.1.6">
+<h4><span class="header-section-number">6.9.1.6</span> Conduct power analyses to determine the power of the current study and a recommended sample size<a href="tPaired.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Script for estimating current power:</p>
+<ul>
+<li>d is Cohen’s <em>d</em></li>
+<li>n is number of pairs, but set to NULL if we want to estimate sample size</li>
+<li>power is conventionally set at .80, but left at NULL when we want to estimate power</li>
+<li>sig.level is conventionlaly set at 0.05</li>
+<li>type indicates the type of <em>t</em>-test; in this example it is “paired”</li>
+<li>alternative indicates one or two.sided</li>
+</ul>
+<pre><code>
+     Paired t test power calculation 
+
+              n = 77
+              d = 0.153
+      sig.level = 0.05
+          power = 0.2634404
+    alternative = two.sided
+
+NOTE: n is number of *pairs*</code></pre>
+<p>We had a 26% chance of finding a statistically significant result if, in fact, one existed.</p>
+<pre><code>
+     Paired t test power calculation 
+
+              n = 337.2182
+              d = 0.153
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number of *pairs*</code></pre>
+<p>If we presumed power were at 80%, we would need a sample size of 337.</p>
 </div>
 </div>
 <div id="hand-calculations-3" class="section level3 hasAnchor" number="6.9.2">
 <h3><span class="header-section-number">6.9.2</span> Hand Calculations<a href="tPaired.html#hand-calculations-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For these hand calculations I will used the “paired_wide” dataframe that we had prepared for the homework assignment intended for R and R packages.</p>
+<div id="using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-2" class="section level4 hasAnchor" number="6.9.2.1">
+<h4><span class="header-section-number">6.9.2.1</span> Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses<a href="tPaired.html#using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The null hypotheses states that the true difference in means is zero.
+<span class="math inline">\(H_{O}: \mu _{D} = 0\)</span></p>
+<p>The alternative hypothesis states that the true difference in means is not zero.
+<span class="math inline">\(H_{A}: \mu _{D}\neq 0\)</span></p>
+</div>
+<div id="using-an-r-package-or-functions-in-base-r-and-with-data-in-the-wide-format-calculate-the-difference-score-between-the-two-observations-of-the-dependent-variable" class="section level4 hasAnchor" number="6.9.2.2">
+<h4><span class="header-section-number">6.9.2.2</span> Using an R package or functions in base R (and with data in the “wide” format), calculate the <em>difference</em> score between the two observations of the dependent variable<a href="tPaired.html#using-an-r-package-or-functions-in-base-r-and-with-data-in-the-wide-format-calculate-the-difference-score-between-the-two-observations-of-the-dependent-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We had already calculated a difference score in the earlier assignment. Here it is again.</p>
+</div>
+<div id="obtain-the-mean-and-standard-deviation-of-the-difference-score" class="section level4 hasAnchor" number="6.9.2.3">
+<h4><span class="header-section-number">6.9.2.3</span> Obtain the mean and standard deviation of the <em>difference</em> score<a href="tPaired.html#obtain-the-mean-and-standard-deviation-of-the-difference-score" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can obtain the mean and standard deviation for the difference score with this script.</p>
+<pre><code>   vars  n  mean  sd median trimmed  mad  min max range skew kurtosis   se
+X1    1 77 -0.12 0.8   -0.2   -0.13 0.59 -2.4 3.2   5.6 0.56     3.15 0.09</code></pre>
+<p>The mean difference (<span class="math inline">\(\bar{D}\)</span>) is -0.12; the standard deviation (<span class="math inline">\(\hat\sigma_D\)</span>) of the difference score is 0.8.</p>
+</div>
+<div id="calculate-the-paired-samples-t-test" class="section level4 hasAnchor" number="6.9.2.4">
+<h4><span class="header-section-number">6.9.2.4</span> Calculate the paired samples <em>t</em>-test<a href="tPaired.html#calculate-the-paired-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here is the formula for the paired samples <em>t</em>-test:</p>
+<p><span class="math display">\[t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}\]</span>
+Using the values we located we can calculate the value of the <em>t</em> statistic.</p>
+<pre><code>[1] -1.316245</code></pre>
+<p>The value we calculated with the <em>rstatix::t_test()</em> function was -1.34. Considering rounding error, I think we got it!</p>
+</div>
+<div id="identify-the-degrees-of-freedom-associated-with-your-paired-samples-t-test" class="section level4 hasAnchor" number="6.9.2.5">
+<h4><span class="header-section-number">6.9.2.5</span> Identify the degrees of freedom associated with your paired samples <em>t</em>-test<a href="tPaired.html#identify-the-degrees-of-freedom-associated-with-your-paired-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We have 77 pairs. The df for the paired samples <em>t</em>-test is <span class="math inline">\(N - 1\)</span>. Therefore, df = 76.</p>
+</div>
+<div id="locate-the-test-critical-value-for-your-paired-samples-t-test" class="section level4 hasAnchor" number="6.9.2.6">
+<h4><span class="header-section-number">6.9.2.6</span> Locate the test critical value for your paired samples <em>t</em>-test<a href="tPaired.html#locate-the-test-critical-value-for-your-paired-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>I could look at the <a href="https://www.statology.org/t-distribution-table/">table of critical values</a> for the <em>t</em>-distribution. Because I have non-directional hypotheses, I would use the column for a <em>p</em>-value of .05 for a two-tailed test. I roll down to the closest sample size (I’ll pick 60). This suggests that my <em>t</em>-test statistic would need to be greater than 2.0 in order to be statistically significant.</p>
+<p>I can also use the <em>qt()</em> function in base R. This function requires that I specify the alpha level (0.05), whether the test is one- or two-tailed (2), and my degrees of freedom (76). Specifying “TRUE” and “FALSE” after the lower.tail command gives the positive and negative regions of rejection.</p>
+<pre><code>[1] -1.991673</code></pre>
+<pre><code>[1] 1.991673</code></pre>
+<p>It is not surprising that these values are a smidge lower than 2.0. Why? Because in the table we stopped at df of 60, when it is actually 76.</p>
+</div>
+<div id="is-the-paired-samples-t-test-statistically-significant-why-or-why-not" class="section level4 hasAnchor" number="6.9.2.7">
+<h4><span class="header-section-number">6.9.2.7</span> Is the paired samples <em>t</em>-test statistically significant? Why or why not?<a href="tPaired.html#is-the-paired-samples-t-test-statistically-significant-why-or-why-not" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The paired samples <em>t</em>-test is not statistically significant because the <em>t</em>-value of -1.316245 does not exceed -1.992.</p>
+</div>
+<div id="what-is-the-confidence-interval-around-the-mean-difference" class="section level4 hasAnchor" number="6.9.2.8">
+<h4><span class="header-section-number">6.9.2.8</span> What is the confidence interval around the mean difference?<a href="tPaired.html#what-is-the-confidence-interval-around-the-mean-difference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here is the formula for hand-calculating the confidence interval.</p>
+<p><span class="math display">\[\bar{D}\pm t_{cv}(s_{d}/\sqrt{n})\]</span></p>
+<ul>
+<li><span class="math inline">\(\bar{D}\)</span> the mean difference score</li>
+<li><span class="math inline">\(t_{cv}\)</span> the test critical value for a two-tailed model (even if the hypothesis was one-tailed) where <span class="math inline">\(\alpha = .05\)</span> and the degrees of freedom are <span class="math inline">\(N-1\)</span></li>
+<li><span class="math inline">\(s_{d}\)</span> the standard deviation of <span class="math inline">\(\bar{D}\)</span></li>
+<li><span class="math inline">\(N\)</span> sample size</li>
+</ul>
+<p>Let’s calculate it:</p>
+<pre><code>[1] 0.06157776</code></pre>
+<pre><code>[1] -0.3015778</code></pre>
+<p>These values indicate the range of scores in which we are 95% confident that our true <span class="math inline">\(\bar{D}\)</span> lies. Stated another way, we are 95% confident that the true mean difference lies between -0.302 and 0.062. Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant <em>p</em> value. For these types of statistics, the 95% confidence interval and <em>p</em> value will always be yoked together.</p>
+</div>
+<div id="calculate-the-effect-size-i.e.-cohens-d-associated-with-your-paired-samples-t-test" class="section level4 hasAnchor" number="6.9.2.9">
+<h4><span class="header-section-number">6.9.2.9</span> Calculate the effect size (i.e., Cohen’s <em>d</em> associated with your paired samples <em>t</em>-test<a href="tPaired.html#calculate-the-effect-size-i.e.-cohens-d-associated-with-your-paired-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Cohen’s <em>d</em> measures, in standard deviation units, the distance between the two means. Regardless of sign, values of .2, .5, and .8 are considered to be small, medium, and large, respectively.</p>
+<p>Because the paired samples <em>t</em>-test used the difference score in the numerator, there are two easy options for calculating this effect:</p>
+<p><span class="math display">\[d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}\]</span>
+Here’s a demonstration of both:</p>
+<pre><code>[1] -0.15</code></pre>
+<pre><code>[1] -0.15</code></pre>
+</div>
+<div id="assemble-the-results-into-a-statistical-string." class="section level4 hasAnchor" number="6.9.2.10">
+<h4><span class="header-section-number">6.9.2.10</span> Assemble the results into a statistical string.<a href="tPaired.html#assemble-the-results-into-a-statistical-string." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math inline">\(t(76) = -1.316, p &gt; .05, CI95(-0.302, 0.062), d = -0.15\)</span></p>
 
+</div>
 </div>
 </div>
 </div>
