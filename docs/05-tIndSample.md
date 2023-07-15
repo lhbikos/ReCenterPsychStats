@@ -846,14 +846,15 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |:-----------------------------------------|:-------------:|:--------------|
 |1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses|   2     |               
 |2. Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable | 4  |  |
-|3. Calulate the SE used in the denominator of the *t*-test |4 |  |
+|3. Calculate the SE used in the denominator of the *t*-test |4 |  |
 |4. Calculate the independent samples *t*-test| 4 ||
 |5. Identify the degrees of freedom associated with your *t*-test |  2 |               
 |6. Locate the test critical value for your test  |2 |  |
 |7. Is the *t*-test statistically significant? Why or why not? | 2 |  |
 |8. What is the confidence interval around the difference in sample means? |4 |  |
-|9. Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test |4 |  |
-|**Totals* **                                  |     28        |             |
+|9.Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test |4 |  |
+|10. Assemble the results into a statistical string |4 |  |
+|**Totals* **                                  |     32        |             |
 
 
 
@@ -1177,6 +1178,10 @@ $$d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}$$
 ```
 [1] 0.2555321
 ```
+
+#### Assemble the results into a statistical string
+
+$t(110) = 1.210, p > 0.05, CI95 (-0.000, 0.517), d = 0.256$
 
 
 
