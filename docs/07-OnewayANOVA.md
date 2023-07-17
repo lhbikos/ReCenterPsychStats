@@ -1779,6 +1779,8 @@ Regardless, your choices should meet you where you are (e.g., in terms of your s
   - follow-up (pairwise, planned comparisons, polynomial trends)
 * writing a results section to include a figure and tables
 
+Additionally, please complete at least one set of *hand calculations*, that is use the code demonstrated in the chapter to work through the formulas that compute the one-way ANOVA. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
+
 ### Problem #1: Play around with this simulation.
 
 If one-way ANOVA is new to you, perhaps you just change the number in "set.seed(2021)" from 2021 to something else. Your results should parallel those obtained in the lecture, making it easier for you to check your work as you go. 
@@ -1817,7 +1819,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |3. Calculate the sums of squares for the model (SSM). A necessary step in this equation is to calculate group means.  |4 |  |
 |4. Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group. | 4 ||
 |5. Calculate the mean square model, mean square residual, and *F*-test. |  2 |  |             
-|6. What are the degrees of freedom for your numerator an denominator? |  2 |  |
+|6. What are the degrees of freedom for your numerator and denominator? |  2 |  |
 |7. Locate the test critical value for your one-way ANOVA.  |2 |  |
 |8. Is the *F*-test statistically significant? Why or why not? | 2 |  |
 |9. Calculate and interpret the $\eta^2$ effect size | 2 |  |
@@ -1829,7 +1831,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 ## Homeworked Example
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could... *
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
 ### Working the Problem with R and R Packages
 
@@ -1846,10 +1848,16 @@ This is not a variable that was included in the dataset posted to the OSF reposi
 #### Simulate (or import) and format data.  
 
 
+```r
+big <- readRDS("ReC.rds")
+```
 
 This df includes course evaluations from ANOVA, multivariate, and psychometrics. To include up to three evaluations per student would violate the assumption of independence, therefore, I will only select the students in ANOVA course.
 
 
+```r
+big <- subset(big, Course == "ANOVA") 
+```
 
 
 Let's first create the "Stage" variable that represents the three levels of transition.
@@ -1857,8 +1865,15 @@ Let's first create the "Stage" variable that represents the three levels of tran
 First I will map the years to the three levels (factors).
 
 
+```r
+big$Stage <- plyr::mapvalues(big$Year, from = c(2017, 2018, 2019, 2020, 2021), to = c("Stable", "Transition", "Transition", "Resettled", "Resettled"))
+```
 
 Then check the structure.
+
+```r
+str(big$Stage)
+```
 
 ```
  chr [1:114] "Resettled" "Resettled" "Resettled" "Resettled" "Resettled" ...
@@ -1866,9 +1881,16 @@ Then check the structure.
 R is reading the variable as a character, so I need to make it to be an ordered factor.
 
 
+```r
+big$Stage <- factor(big$Stage, levels = c("Stable", "Transition", "Resettled"))
+```
 
 Let's check the structure again:
 
+
+```r
+str(big$Stage)
+```
 
 ```
  Factor w/ 3 levels "Stable","Transition",..: 3 3 3 3 3 3 3 3 3 3 ...
@@ -1877,19 +1899,36 @@ Let's check the structure again:
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
+```r
+#Creates a list of the variables that belong to that scale
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)
+```
 
 With our variables properly formatted, let's trim it to just the variables we need.
 
+```r
+OneWay_df <-(dplyr::select (big, Stage, TradPed))
+```
 
 Although we would handle missing data more carefully in a "real study," I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
 
 
+```r
+df <- na.omit(OneWay_df)
+```
 
 
 #### Evaluate statistical assumptions. 
 
 **Is the dependent variable normally distributed across levels of the factor?**
 
+
+```r
+psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, type = 1)
+```
 
 ```
          item     group1 vars  n  mean    sd median trimmed   mad min max range
@@ -1907,6 +1946,11 @@ We'll use Kline's (2016) threshholds of the absolute values of 3 (skew) and 10 (
 the Shapiro-wilk test is a formal assessment of normality. It is a 2-part test that begins with creating an ANOVA model from which we can extract residuals, then testing the residuals.  
 
 
+```r
+TradPed_res <- lm(TradPed ~ Stage, data = OneWay_df)
+rstatix::shapiro_test(residuals(TradPed_res))
+```
+
 ```
 # A tibble: 1 × 3
   variable               statistic    p.value
@@ -1917,6 +1961,11 @@ The Shapiro-Wilk test suggests that the our distribution of residuals is statist
 
 It is possible to plot the residuals to see how and where they deviate from the line.
 
+
+```r
+ggpubr::ggqqplot(residuals(TradPed_res))
+```
+
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-86-1.png)<!-- -->
 Ooof!  at the ends of the distribution they really deviate. 
 
@@ -1924,6 +1973,12 @@ Ooof!  at the ends of the distribution they really deviate.
 
 The *rstatix::identify_outliers()* function identifies outlers and extreme outliers.
 
+
+```r
+library(tidyverse)
+OneWay_df %>%
+  rstatix::identify_outliers(TradPed)
+```
 
 ```
        Stage TradPed is.outlier is.extreme
@@ -1939,6 +1994,10 @@ There are 4 cases identified with outliers; none of those is extreme. I also not
 
 We want the results of the Levene's homogeneity of variance test to be non-significant. This would support the notion that the TradPed variance is equivalent across the three stages of the transition.
 
+
+```r
+rstatix::levene_test(OneWay_df, TradPed ~ Stage)
+```
 
 ```
 # A tibble: 1 × 4
@@ -1958,9 +2017,17 @@ Before moving on, I will capture our findings in an APA style write-up of the te
 The *rstatix::anova_test()* function calculates the one-way ANOVA and includes the effect size, $\eta^2$ in the column, *ges*. Values of .01, .07, and .14 are considered to be small, medium, and large. The value of .05 would be small-to-medium.
 
 
+```r
+omnibus1w <- rstatix::anova_test(OneWay_df, TradPed ~ Stage, detailed = FALSE)
+```
+
 ```
 Warning: NA detected in rows: 74,84.
 Removing this rows before the analysis.
+```
+
+```r
+omnibus1w
 ```
 
 ```
@@ -1977,6 +2044,11 @@ Normally, the researcher would stop here. However, because the homework requires
 
 I will simply calculate post-hoc comparisons. That is, all possible pairwise comparisons. I will specify the traditional Bonferroni as the approach to managing Type I error.
 
+
+```r
+phoc <- rstatix::t_test(OneWay_df, TradPed ~ Stage, p.adjust.method = "bonferroni", detailed = TRUE)
+phoc
+```
 
 ```
 # A tibble: 3 × 17
@@ -2004,6 +2076,11 @@ We used the Bonferroni. The Bonferroni divides the overall alpha (.05) by the nu
 >Results of the omnibus ANOVA indicated a non-significant effect of stage on students assessments of traditional pedagogy, $F(2, 109) = 2.61, p = 0.078, \eta^2 = 0.046$. The effect size was small-to-medium.  We followed up the non-significant omnibus with all possible pairwise comparisons. We controlled for Type I error with the traditional Bonferroni adjustment. Curiously, results suggested that there were statistically significant differences between the transition and resettled $(Mdiff=0.511, p = 0.009)$ stages, but not between stable and transition $(Mdiff=0.374,p = 0.181)$ or transition and resettled $(Mdiff=−.137,p = 1.000)$. Given that the doctoral programs are unlikely to transition back to SPSS or into the second year, the instructor(s) are advised to consider ways that could result in greater student satisfaction. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
 
 
+```r
+apaTables::apa.1way.table(iv = Stage, dv = TradPed, show.conf.interval = TRUE,
+    data = OneWay_df, table.number = 1, filename = "1wayHWTable.doc")
+```
+
 ```
 
 
@@ -2024,6 +2101,11 @@ have caused a sample mean (Cumming, 2014).
 ```
 
 
+```r
+omnibus1wHW_b <- aov(TradPed ~ Stage, data = OneWay_df)
+apaTables::apa.aov.table(omnibus1wHW_b, table.number = 2, filename = "1wayHWTable2.doc")
+```
+
 ```
 
 
@@ -2040,6 +2122,16 @@ ANOVA results using TradPed as the dependent variable
 Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared 
 ```
 
+
+```r
+phoc <- phoc %>%
+    rstatix::add_xy_position(x = "Stage")
+
+ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
+    color = "Stage", title = "Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition") +
+    ggpubr::stat_pvalue_manual(phoc, label = "p.adj.signif", tip.length = 0.02,
+        hide.ns = TRUE, y.position = c(5.5))
+```
 
 ```
 Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).
@@ -2067,6 +2159,10 @@ In the script below, we simply add our values. So long as we have four values, t
 Because this calculator requires the effect size in the metric of Cohen's *f* (this is not the same as the *F* ratio), we need to convert it. The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
 
+```r
+effectsize::eta2_to_f(0.046)
+```
+
 ```
 [1] 0.219586
 ```
@@ -2076,6 +2172,10 @@ First let's ask what our level of power was?  Our goal would be 80%.
 
 Given that our design was unbalanced (21, 44, 47 across the three stages), I used 38 (114/3).
 
+
+```r
+pwr::pwr.anova.test(k = 3, f = 0.219586, sig.level = 0.05, n = 38)
+```
 
 ```
 
@@ -2091,6 +2191,10 @@ NOTE: n is number in each group
 ```
 Our power was 0.53. That is, we had 53% chance to find a statistically significant result if one existed. In the next power analysis, let's see what sample size is recommended.
 
+
+```r
+pwr::pwr.anova.test(k = 3, f = 0.219586, sig.level = 0.05, power = 0.8)
+```
 
 ```
 
@@ -2129,6 +2233,10 @@ $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}$$
 I will use the *psych::describe()* function to obtain the overall mean:
 
 
+```r
+psych::describe(OneWay_df)
+```
+
 ```
         vars   n mean   sd median trimmed  mad min max range  skew kurtosis
 Stage*     1 114 2.23 0.75    2.0    2.28 1.48   1   3     2 -0.39    -1.17
@@ -2141,11 +2249,23 @@ TradPed 0.08
 Next, I will subtract this value from each person's TradPed value. This will create a mean deviation.
 
 
+```r
+str(OneWay_df$TradPed)
+```
+
 ```
  num [1:114] 4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
 ```
 
 
+
+```r
+OneWay_df$mdevTP <- OneWay_df$TradPed - 4.06
+#I could also calculate it by using the "mean" function
+#I had to include an na.rm=TRUE; this appears to be connected to missingness
+OneWay_df$mdevTPb <- OneWay_df$TradPed - mean(OneWay_df$TradPed, na.rm=TRUE)
+head(OneWay_df)
+```
 
 ```
       Stage TradPed mdevTP     mdevTPb
@@ -2158,6 +2278,15 @@ Next, I will subtract this value from each person's TradPed value. This will cre
 ```
 
 
+```r
+library(tidyverse)
+OneWay_df <- OneWay_df %>% 
+  dplyr::mutate(m_devSQTP = mdevTP^2)
+
+#so we can see this in the textbook
+head(OneWay_df)
+```
+
 ```
       Stage TradPed mdevTP     mdevTPb m_devSQTP
 1 Resettled     4.4   0.34  0.34196429    0.1156
@@ -2169,6 +2298,11 @@ Next, I will subtract this value from each person's TradPed value. This will cre
 ```
 
 I will ask for a sum of the mean deviation squared column. The function was not running, sometimes this occurs when there is missing data. While I didn't think that was true, adding "na.rm = TRUE" solved the problem.
+
+```r
+SST <- sum(OneWay_df$m_devSQTP, na.rm = TRUE)
+SST
+```
 
 ```
 [1] 83.0332
@@ -2188,6 +2322,10 @@ We will need:
 We can obtain the group means several ways. I think the *psych::describeBy()* function is one of the easiest.
 
 
+```r
+psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, type = 1)
+```
+
 ```
          item     group1 vars  n  mean    sd median trimmed   mad min max range
 TradPed1    1     Stable    1 21 4.419 0.544    4.6   4.482 0.593 3.2   5   1.8
@@ -2201,6 +2339,11 @@ TradPed3 -0.601   -0.041 0.113
 
 Now we can pop these values into the formula.
 
+
+```r
+SSM <- 21 * (4.419 -4.06)^2 + 44 * (4.045 - 4.06)^2 + 30 * (3.909 - 4.06)^2
+SSM
+```
 
 ```
 [1] 3.400431
@@ -2220,6 +2363,11 @@ We will need:
 We can obtain these values from the previous run of the *psych::describeBy()* function.
 
 
+```r
+SSR <- (0.544^2)*(21 - 1) + (1.029^2)*(44 - 1) + (0.778^2)*(47-1)
+SSR
+```
+
 ```
 [1] 79.29195
 ```
@@ -2234,6 +2382,11 @@ The formula for mean square model is $$MS_M = \frac{SS_{M}}{df{_{M}}}$$
 * $df_M$ is *k* - 1 (where *k* is number of groups/levels)
 
 
+```r
+MSM <- 3.400/2
+MSM
+```
+
 ```
 [1] 1.7
 ```
@@ -2244,12 +2397,22 @@ The formula for mean square residual is $$MS_R = \frac{SS_{R}}{df{_{R}}}$$
 * $df_R$ is $N - k$ (114 - 3 = 111)
 
 
+```r
+MSR = 79.292/111
+MSR
+```
+
 ```
 [1] 0.7143423
 ```
 
 The formula for the *F* ratio is $$F = \frac{MS_{M}}{MS_{R}}$$
 
+
+```r
+F <- 1.7/0.714
+F
+```
 
 ```
 [1] 2.380952
@@ -2258,7 +2421,7 @@ The formula for the *F* ratio is $$F = \frac{MS_{M}}{MS_{R}}$$
 
 This "isn't exactly" what we found for the same data using R and R packages. However, the algorithms for those packages would take into consideration the unbalanced design (i.e., unequal cell sizes). Such a characteristic is a limitation, but is beyond this lesson.
 
-#### What are the degrees of freedom for your numerator an denominator? 
+#### What are the degrees of freedom for your numerator and denominator? 
 
 Numerator or $df_M$:  2
 Denominator or $df_R$:  111
@@ -2270,6 +2433,10 @@ We could use use a [table of critical values](https://www.statology.org/how-to-r
 The closest *N* in the table I am using is 120. If we set alpha at 0.05, our test value would need to exceeed the absolute value of 3.0718.
 
 We can also use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
+
+```r
+qf(0.05, 2, 111, lower.tail = FALSE)
+```
 
 ```
 [1] 3.078057
@@ -2287,6 +2454,11 @@ The formula to calculate the effect size is $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 * $SS_M$ was 3.400
 * $SS_R$ was 79.292
 
+
+```r
+etaSQ <- 3.400/79.292
+etaSQ
+```
 
 ```
 [1] 0.04287948

@@ -874,21 +874,41 @@ Like most data, some manipulation is required before we can begin the analyses.
 
 Let's import the larger dataset. 
 
+```r
+larger <- readRDS("ReC.rds")
+```
 
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
+```r
+#Creates a list of the variables that belong to that scale
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+larger$TradPed <- sjstats::mean_n(larger[, ..TradPed_vars], .75)
+```
 
 From the "larger" data, let's select only the variable we will use in the analysis. I have included "long" in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.
 
 We need both "long" and "wide" forms to conduct the analyses required for both testing the statistical assumptions and performing the paired samples *t*-test.
 
+```r
+paired_long <-(dplyr::select (larger, deID, Course, TradPed))
+```
 
 From that reduced variable set, let's create a subset with students only from those two courses.
 
+```r
+paired_long <- subset(paired_long, Course == "ANOVA" | Course == "Multivariate") 
+```
 
 Regarding the structure of the data, we want the conditions (ANOVA, multivariate) to be factors and the TradPed variable to be continuously scaled. The format of the deID variable can be any numerical or categorical format -- just not a "chr" (character) variable.
 
+
+```r
+str(paired_long)
+```
 
 ```
 Classes 'data.table' and 'data.frame':	198 obs. of  3 variables:
@@ -902,8 +922,15 @@ R correctly interpreted our variables.
 For analyzing the assumptions associated with the paired-samples *t*-test, the format needs to be "wide" form (where each student has both observations on one row). Our data is presently in "long" form (where each observation is listed in each row). Here's how to reshape the data.
 
 
+```r
+paired_wide <- reshape2::dcast(data = paired_long, formula =deID ~ Course, value.var = "TradPed")
+```
 
 Let's recheck the structure.
+
+```r
+str(paired_wide)
+```
 
 ```
 'data.frame':	119 obs. of  3 variables:
@@ -916,6 +943,9 @@ You will notice that there is a good deal of missingness in the Multivariate con
 Doing so should also help with the hand-calculations later in the worked example.
 
 
+```r
+paired_wide <- na.omit(paired_wide)
+```
 
 #### Evaluate statistical assumptions
 
@@ -924,8 +954,15 @@ We need to evaluate the *distribution of the difference score* in terms of skew 
 This means we need to create a difference score:  
 
 
+```r
+paired_wide$DIFF <- paired_wide$ANOVA - paired_wide$Multivariate
+```
 
 We can use the *psych::describe()* function to obtain skew and kurtosis. 
+
+```r
+psych::describe(paired_wide)
+```
 
 ```
              vars  n  mean    sd median trimmed   mad  min   max range  skew
@@ -945,6 +982,10 @@ Regarding the DIFF score, the skew (0.56) and kurtosis (3.15) values were well b
 We can formally test for deviations from normality with a Shapiro-Wilk. We want the results to be non-significant.
 
 
+```r
+rstatix::shapiro_test(paired_wide, DIFF)
+```
+
 ```
 # A tibble: 1 × 3
   variable statistic       p
@@ -954,6 +995,11 @@ We can formally test for deviations from normality with a Shapiro-Wilk. We want 
 Results of the Shapiro-Wilk test of normality are statistically significant $(W = 0.943, p = 0.002)$. This means that the distribution of difference scores are statistically significantly different from a normal distribution.
 
 although not required in the formal test of instructions, a *pairs panel* of correlations and distributions can be useful in undersatnding our data.
+
+
+```r
+psych::pairs.panels(paired_wide)
+```
 
 ![](06-tPairedSamples_files/figure-docx/unnamed-chunk-45-1.png)<!-- -->
 Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
@@ -967,6 +1013,15 @@ Before moving forward, I want to capture my analysis of assumptions:
 So this may be a bit tricky, but our original "long" form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples *t* test requires the design to be balanced.  When we used the *na.omit()* function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let's restructure that wide format back to long format so that the design will be balanced.
 
 
+```r
+paired_long2 <- data.table::melt(data.table::setDT(paired_wide), id.vars = c("deID"),
+    measure.vars = list(c("ANOVA", "Multivariate")))
+
+paired_long2 <- dplyr::rename(paired_long2, Course = variable, TradPed = value)
+
+head(paired_long2)
+```
+
 ```
    deID Course TradPed
 1:   11  ANOVA     4.0
@@ -977,6 +1032,10 @@ So this may be a bit tricky, but our original "long" form of the data has more A
 6:   16  ANOVA     2.2
 ```
 
+
+```r
+rstatix::t_test(paired_long2, TradPed ~ Course, paired = TRUE, detailed = TRUE)
+```
 
 ```
 # A tibble: 1 × 13
@@ -989,6 +1048,10 @@ I'll begin the *t* string with this output:  $t(76) = -1.341, p = 0.184, CI95(-0
 
 we calculate the Cohen's *d* (the effect size) this way:
 
+
+```r
+rstatix::cohens_d(paired_long2, TradPed ~ Course, paired = TRUE)
+```
 
 ```
 # A tibble: 1 × 7
@@ -1006,6 +1069,18 @@ we calculate the Cohen's *d* (the effect size) this way:
 
 >Results of the paired samples *t*-test suggested nonsignificant differences $t(76) = -1.341, p = 0.184,d = -0.153$. The 95% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.
 
+
+```r
+library(tidyverse)  #needed to use the pipe 
+# Creating a smaller df to include only the variables I want in the
+# table
+Descripts_paired <- paired_wide %>%
+    select(ANOVA, Multivariate, DIFF)
+# using the apa.cor.table function for means, standard deviations,
+# and correlations the filename command will write the table as a
+# word document to your file
+apaTables::apa.cor.table(Descripts_paired, table.number = 1, filename = "Tab1_PairedT.doc")
+```
 
 ```
 
@@ -1037,6 +1112,12 @@ that could have caused the sample correlation (Cumming, 2014).
 For the figure, let's re-run the paired samples *t* test, save it as an object, and use the "add_significance" function so that we can add it to our figure.
 
 
+```r
+paired_T <- rstatix::t_test(paired_long2, TradPed ~ Course, paired = TRUE, detailed = TRUE)%>%
+  rstatix::add_significance()
+paired_T
+```
+
 ```
 # A tibble: 1 × 14
   estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
@@ -1046,6 +1127,22 @@ For the figure, let's re-run the paired samples *t* test, save it as an object, 
 #   p.signif <chr>
 ```
 Next, we create boxplot:
+
+
+```r
+pairT.box <- ggpubr::ggpaired(paired_long2, x = "Course", y = "TradPed", order = c("ANOVA",
+    "Multivariate"), line.color = "gray", palette = c("npg"), color = "Course",
+    ylab = "Traditional Pedagogy", xlab = "Statistics Course", title = "Figure 1. Evaluation of Traditional Pedagogy as a Function of Course")
+
+paired_T <- paired_T %>%
+    rstatix::add_xy_position(x = "Course")  #autocomputes p-value labels positions
+
+pairT.box <- pairT.box + ggpubr::stat_pvalue_manual(paired_T, tip.length = 0.01,
+    y.position = c(5.5)) + labs(subtitle = rstatix::get_test_label(paired_T,
+    detailed = TRUE))
+
+pairT.box
+```
 
 ![](06-tPairedSamples_files/figure-docx/unnamed-chunk-51-1.png)<!-- -->
 
@@ -1061,6 +1158,11 @@ Script for estimating current power:
 * alternative indicates one or two.sided
 
 
+```r
+pwr::pwr.t.test(d = -0.153, n = 77, power = NULL, sig.level = 0.05, type = "paired",
+    alternative = "two.sided")
+```
+
 ```
 
      Paired t test power calculation 
@@ -1075,6 +1177,11 @@ NOTE: n is number of *pairs*
 ```
 We had a 26% chance of finding a statistically significant result if, in fact, one existed.
 
+
+```r
+pwr::pwr.t.test(d = -0.153, n = NULL, power = 0.8, sig.level = 0.05, type = "paired",
+    alternative = "two.sided")
+```
 
 ```
 
@@ -1107,12 +1214,19 @@ $H_{A}: \mu _{D}\neq 0$
 
 We had already calculated a difference score in the earlier assignment. Here it is again. 
 
+```r
+paired_wide$DIFF <- paired_wide$ANOVA - paired_wide$Multivariate
+```
 
 
 #### Obtain the mean and standard deviation of the *difference* score 
 
 We can obtain the mean and standard deviation for the difference score with this script.
 
+
+```r
+psych::describe(paired_wide$DIFF)
+```
 
 ```
    vars  n  mean  sd median trimmed  mad  min max range skew kurtosis   se
@@ -1130,6 +1244,10 @@ Using the values we located we can calculate the value of the *t* statistic.
 
 
 
+```r
+-0.12/(0.8/sqrt(77))
+```
+
 ```
 [1] -1.316245
 ```
@@ -1146,8 +1264,16 @@ I could look at the [table of critical values](https://www.statology.org/t-distr
 I can also use the *qt()* function in base R. This function requires that I specify the alpha level (0.05), whether the test is one- or two-tailed (2), and my degrees of freedom (76). Specifying "TRUE" and "FALSE" after the lower.tail command gives the positive and negative regions of rejection.
 
 
+```r
+qt(0.05/2, 76, lower.tail = TRUE)
+```
+
 ```
 [1] -1.991673
+```
+
+```r
+qt(0.05/2, 76, lower.tail = FALSE)
 ```
 
 ```
@@ -1173,8 +1299,16 @@ $$\bar{D}\pm t_{cv}(s_{d}/\sqrt{n})$$
 Let's calculate it:
 
 
+```r
+-0.12 - (-1.991673 * ((0.8/(sqrt(77)))))
+```
+
 ```
 [1] 0.06157776
+```
+
+```r
+-0.12 + (-1.991673 * ((0.8/sqrt(77))))
 ```
 
 ```
@@ -1193,8 +1327,16 @@ $$d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}$$
 Here's a demonstration of both:
 
 
+```r
+-0.12/.8
+```
+
 ```
 [1] -0.15
+```
+
+```r
+-1.316245/sqrt(77)
 ```
 
 ```

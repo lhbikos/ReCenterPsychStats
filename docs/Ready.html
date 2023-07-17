@@ -512,6 +512,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.9.3" data-path="between.html"><a href="between.html#problem-3-try-something-entirely-new.-1"><i class="fa fa-check"></i><b>8.9.3</b> Problem #3: Try something entirely new.</a></li>
 <li class="chapter" data-level="8.9.4" data-path="between.html"><a href="between.html#grading-rubric-4"><i class="fa fa-check"></i><b>8.9.4</b> Grading Rubric</a></li>
 </ul></li>
+<li class="chapter" data-level="8.10" data-path="between.html"><a href="between.html#homeworked-example-6"><i class="fa fa-check"></i><b>8.10</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="between.html"><a href="between.html#working-the-problem-with-r-and-r-packages-5"><i class="fa fa-check"></i><b>8.10.1</b> Working the Problem with R and R Packages</a></li>
+<li class="chapter" data-level="8.10.2" data-path="between.html"><a href="between.html#hand-calculations-5"><i class="fa fa-check"></i><b>8.10.2</b> Hand Calculations</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="Repeated.html"><a href="Repeated.html"><i class="fa fa-check"></i><b>9</b> One-Way Repeated Measures ANOVA</a>
 <ul>
@@ -791,23 +796,23 @@ div.csl-indent {
 <p>Syntax for simple formatting in the text (i.e., non-chunk) areas (e.g., using italics, making headings, bold) is found here: <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="uri">https://rmarkdown.rstudio.com/authoring_basics.html</a></p>
 <p>“Chunks” start and end with with three tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear (and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.</p>
 <p>The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Ready.html#cb1-1" tabindex="-1"></a><span class="co"># hashtags let me write comments to remind myself what I did here I</span></span>
-<span id="cb1-2"><a href="Ready.html#cb1-2" tabindex="-1"></a><span class="co"># am simply demonstrating arithmetic (but I would normally be running</span></span>
-<span id="cb1-3"><a href="Ready.html#cb1-3" tabindex="-1"></a><span class="co"># code)</span></span>
-<span id="cb1-4"><a href="Ready.html#cb1-4" tabindex="-1"></a><span class="dv">2021</span> <span class="sc">-</span> <span class="dv">1966</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Ready.html#cb3-1" tabindex="-1"></a><span class="co"># hashtags let me write comments to remind myself what I did here I</span></span>
+<span id="cb3-2"><a href="Ready.html#cb3-2" tabindex="-1"></a><span class="co"># am simply demonstrating arithmetic (but I would normally be running</span></span>
+<span id="cb3-3"><a href="Ready.html#cb3-3" tabindex="-1"></a><span class="co"># code)</span></span>
+<span id="cb3-4"><a href="Ready.html#cb3-4" tabindex="-1"></a><span class="dv">2021</span> <span class="sc">-</span> <span class="dv">1966</span></span></code></pre></div>
 <pre><code>[1] 55</code></pre>
 </div>
 <div id="managing-packages" class="section level3 hasAnchor" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> Managing packages<a href="Ready.html#managing-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As scientist-practitioners (and not coders), we will rely on <em>packages</em> to do much of the work. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, rstatix, apaTables).</p>
 <p>Researchers treat packages differently. In these lectures, I list all the packages we will use in an opening chunk at the beginning of the lecture. When the hashtags are removed, the script will ask R to check to see if the package is installed on your machine. If it is, installation is skipped. If it is not, R installs it. Simply remove the hashtag to run the code the first time, then hashtag them back out so R is not always re-checking.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Ready.html#cb3-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
-<span id="cb3-2"><a href="Ready.html#cb3-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Ready.html#cb5-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
+<span id="cb5-2"><a href="Ready.html#cb5-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span></code></pre></div>
 <p>To make a package operable, you need to open it. There are two primary ways to do this. The first is to use the library function.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Ready.html#cb4-1" tabindex="-1"></a><span class="co">#install.packages (&quot;psych&quot;)</span></span>
-<span id="cb4-2"><a href="Ready.html#cb4-2" tabindex="-1"></a><span class="fu">library</span> (psych)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Ready.html#cb6-1" tabindex="-1"></a><span class="co">#install.packages (&quot;psych&quot;)</span></span>
+<span id="cb6-2"><a href="Ready.html#cb6-2" tabindex="-1"></a><span class="fu">library</span> (psych)</span></code></pre></div>
 <p>The second way is to place a double colon between the package and function. This second method has become my preferred practice because it helps me remember what package goes with each function. It can also prevent R hiccups when there are identical function names and R does not know which package to use. Below is an example where I might ask for descriptives from the psych package. Because I have not yet uploaded data, I have hashtagged it out, making the command inoperable.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Ready.html#cb5-1" tabindex="-1"></a><span class="co">#psych::describe(mydata)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Ready.html#cb7-1" tabindex="-1"></a><span class="co">#psych::describe(mydata)</span></span></code></pre></div>
 <p>There are exceptions. One is the <em>tidyverse</em> package. Some of my script uses pipes (%&gt;%) and pipes require <em>tidyverse</em> to be activated. This is why you will often see me call the <em>tidyverse</em> package with the <em>library()</em> function (as demonstrated above.)</p>
 </div>
 <div id="upload-the-data" class="section level3 hasAnchor" number="2.3.5">
@@ -816,63 +821,63 @@ div.csl-indent {
 <p>In the context of this OER, I will be simulating data in each lesson for immediate use in the lesson. This makes this web-based OER more <em>portable.</em> This also means that when working the problems in the chapter we do notneed to (a) write the data to a file or (b) import data from files. Because these are essential skills, I will demonstrate this process here – starting with simulating data.</p>
 <p>At this point, simulating data is beyond the learning goals I have established for the chapter. I do need to include the code so that we get some data. The data I am simulating is used in the <a href="oneway.html#oneway">one-way ANOVA lesson</a>. The data is from the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014">2014</a>)</span> random clinical trial.</p>
 <p>In this simulation, I am simply creating an ID number, a condition (High, Low, Control), and a score on the dependent variable, “Accurate.” More information about this study is included in the <a href="oneway.html#oneway">one-way ANOVA chapter</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Ready.html#cb6-1" tabindex="-1"></a><span class="co"># Note, this simulation results in a different datset than is in the</span></span>
-<span id="cb6-2"><a href="Ready.html#cb6-2" tabindex="-1"></a><span class="co"># OnewayANOVA lesson sets a random seed so that we get the same</span></span>
-<span id="cb6-3"><a href="Ready.html#cb6-3" tabindex="-1"></a><span class="co"># results each time</span></span>
-<span id="cb6-4"><a href="Ready.html#cb6-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>)</span>
-<span id="cb6-5"><a href="Ready.html#cb6-5" tabindex="-1"></a><span class="co"># sample size, M and SD for each group</span></span>
-<span id="cb6-6"><a href="Ready.html#cb6-6" tabindex="-1"></a>Accurate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.18</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.83</span>,</span>
-<span id="cb6-7"><a href="Ready.html#cb6-7" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.58</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.76</span>, <span class="at">sd =</span> <span class="fl">0.56</span>))</span>
-<span id="cb6-8"><a href="Ready.html#cb6-8" tabindex="-1"></a><span class="co"># set upper bound for DV</span></span>
-<span id="cb6-9"><a href="Ready.html#cb6-9" tabindex="-1"></a>Accurate[Accurate <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb6-10"><a href="Ready.html#cb6-10" tabindex="-1"></a><span class="co"># set lower bound for DV</span></span>
-<span id="cb6-11"><a href="Ready.html#cb6-11" tabindex="-1"></a>Accurate[Accurate <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb6-12"><a href="Ready.html#cb6-12" tabindex="-1"></a><span class="co"># IDs for participants</span></span>
-<span id="cb6-13"><a href="Ready.html#cb6-13" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">90</span>))</span>
-<span id="cb6-14"><a href="Ready.html#cb6-14" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
-<span id="cb6-15"><a href="Ready.html#cb6-15" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
-<span id="cb6-16"><a href="Ready.html#cb6-16" tabindex="-1"></a>COND <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>))</span>
-<span id="cb6-17"><a href="Ready.html#cb6-17" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID, DV, condition</span></span>
-<span id="cb6-18"><a href="Ready.html#cb6-18" tabindex="-1"></a>Acc_sim30 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, COND, Accurate)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Ready.html#cb8-1" tabindex="-1"></a><span class="co"># Note, this simulation results in a different datset than is in the</span></span>
+<span id="cb8-2"><a href="Ready.html#cb8-2" tabindex="-1"></a><span class="co"># OnewayANOVA lesson sets a random seed so that we get the same</span></span>
+<span id="cb8-3"><a href="Ready.html#cb8-3" tabindex="-1"></a><span class="co"># results each time</span></span>
+<span id="cb8-4"><a href="Ready.html#cb8-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>)</span>
+<span id="cb8-5"><a href="Ready.html#cb8-5" tabindex="-1"></a><span class="co"># sample size, M and SD for each group</span></span>
+<span id="cb8-6"><a href="Ready.html#cb8-6" tabindex="-1"></a>Accurate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.18</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.83</span>,</span>
+<span id="cb8-7"><a href="Ready.html#cb8-7" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.58</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.76</span>, <span class="at">sd =</span> <span class="fl">0.56</span>))</span>
+<span id="cb8-8"><a href="Ready.html#cb8-8" tabindex="-1"></a><span class="co"># set upper bound for DV</span></span>
+<span id="cb8-9"><a href="Ready.html#cb8-9" tabindex="-1"></a>Accurate[Accurate <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb8-10"><a href="Ready.html#cb8-10" tabindex="-1"></a><span class="co"># set lower bound for DV</span></span>
+<span id="cb8-11"><a href="Ready.html#cb8-11" tabindex="-1"></a>Accurate[Accurate <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-12"><a href="Ready.html#cb8-12" tabindex="-1"></a><span class="co"># IDs for participants</span></span>
+<span id="cb8-13"><a href="Ready.html#cb8-13" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">90</span>))</span>
+<span id="cb8-14"><a href="Ready.html#cb8-14" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
+<span id="cb8-15"><a href="Ready.html#cb8-15" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
+<span id="cb8-16"><a href="Ready.html#cb8-16" tabindex="-1"></a>COND <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>))</span>
+<span id="cb8-17"><a href="Ready.html#cb8-17" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID, DV, condition</span></span>
+<span id="cb8-18"><a href="Ready.html#cb8-18" tabindex="-1"></a>Acc_sim30 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, COND, Accurate)</span></code></pre></div>
 <p>At this point, this data lives only in this .rmd file after the above code is run. Although there are numerous ways to export and import data, I have a preference for two.</p>
 <div id="to-and-from-.csv-files" class="section level4 hasAnchor" number="2.3.5.1">
 <h4><span class="header-section-number">2.3.5.1</span> To and from .csv files<a href="Ready.html#to-and-from-.csv-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The first is to write the data to a .csv file. In your computer’s environment (outside of R), these files are easily manipulated in Excel. I think of them as being “Excel lite” because although Excel can operate them, they lack some of the more advanced features of an Excel spreadsheet.</p>
 <p>In the code below, I identify the R object “Acc_sim30” and give it a file name, “to_CSV.csv”. This file name must have the .csv extension. I also indicate that it should preserve the column names (but ignore row names; since we don’t have row names).</p>
 <p>This file will save in the same folder as wherever you are using this .rmd file.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Ready.html#cb7-1" tabindex="-1"></a><span class="co"># to write it to an outfile as a .csv</span></span>
-<span id="cb7-2"><a href="Ready.html#cb7-2" tabindex="-1"></a><span class="fu">write.table</span>(Acc_sim30, <span class="at">file =</span> <span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-3"><a href="Ready.html#cb7-3" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Ready.html#cb9-1" tabindex="-1"></a><span class="co"># to write it to an outfile as a .csv</span></span>
+<span id="cb9-2"><a href="Ready.html#cb9-2" tabindex="-1"></a><span class="fu">write.table</span>(Acc_sim30, <span class="at">file =</span> <span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-3"><a href="Ready.html#cb9-3" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Importing this object back into the R environment can be accomplished with some simple code. For the sake of demonstration,</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Ready.html#cb8-1" tabindex="-1"></a><span class="co"># to save the df as an .csv (think &#39;Excel lite&#39;) file on your</span></span>
-<span id="cb8-2"><a href="Ready.html#cb8-2" tabindex="-1"></a><span class="co"># computer; it should save in the same file as the .rmd file you are</span></span>
-<span id="cb8-3"><a href="Ready.html#cb8-3" tabindex="-1"></a><span class="co"># working with</span></span>
-<span id="cb8-4"><a href="Ready.html#cb8-4" tabindex="-1"></a>from_CSV <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Ready.html#cb10-1" tabindex="-1"></a><span class="co"># to save the df as an .csv (think &#39;Excel lite&#39;) file on your</span></span>
+<span id="cb10-2"><a href="Ready.html#cb10-2" tabindex="-1"></a><span class="co"># computer; it should save in the same file as the .rmd file you are</span></span>
+<span id="cb10-3"><a href="Ready.html#cb10-3" tabindex="-1"></a><span class="co"># working with</span></span>
+<span id="cb10-4"><a href="Ready.html#cb10-4" tabindex="-1"></a>from_CSV <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The advantage of working with .csv files is that it is then easy to inspect and manipulate them outside of the R environment. The disadvantage of .csv files is that each time they are imported they lose any formatting you may have meticulously assigned to them.</p>
 </div>
 <div id="to-and-from-.rds-files" class="section level4 hasAnchor" number="2.3.5.2">
 <h4><span class="header-section-number">2.3.5.2</span> To and from .rds files<a href="Ready.html#to-and-from-.rds-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>While it is easy enough to rerun the code (or copy it from data prep .rmd and paste it into an .rmd you are using for advanced analysis), there is a better way! Saving the data as an R object preserves all of its characteristics.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Ready.html#cb9-1" tabindex="-1"></a><span class="co"># to save the df as an .rds file on your computer; it should save in</span></span>
-<span id="cb9-2"><a href="Ready.html#cb9-2" tabindex="-1"></a><span class="co"># the same file as the .rmd file you are working with</span></span>
-<span id="cb9-3"><a href="Ready.html#cb9-3" tabindex="-1"></a><span class="fu">saveRDS</span>(Acc_sim30, <span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Ready.html#cb11-1" tabindex="-1"></a><span class="co"># to save the df as an .rds file on your computer; it should save in</span></span>
+<span id="cb11-2"><a href="Ready.html#cb11-2" tabindex="-1"></a><span class="co"># the same file as the .rmd file you are working with</span></span>
+<span id="cb11-3"><a href="Ready.html#cb11-3" tabindex="-1"></a><span class="fu">saveRDS</span>(Acc_sim30, <span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
 <p>This file will save to your computer (and you can send it to colleagues). However, it is not easy to “just open it” in Excel. To open an .rds file and use it (whether you created it or it is sent to you by a colleague), use the following code:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Ready.html#cb10-1" tabindex="-1"></a>from_rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Ready.html#cb12-1" tabindex="-1"></a>from_rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
 <p>If you are the recipient of an R object, but want to view it as a .csv, simply import the .rds then use the above code to export it as a .csv.</p>
 </div>
 <div id="from-spss-files" class="section level4 hasAnchor" number="2.3.5.3">
 <h4><span class="header-section-number">2.3.5.3</span> From SPSS files<a href="Ready.html#from-spss-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Your data may come to you in a variety of ways. One of the most common is SPSS. The <em>foreign</em> package is popular for importing SPSS data. Below is code which would import an SPSS file <em>if I had created one</em>. You’ll see that this script is hashtagged out because I rarely use SPSS and do not have a handy file to demo.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Ready.html#cb11-1" tabindex="-1"></a><span class="co"># opening an SPSS file requires the foreign package which I opened</span></span>
-<span id="cb11-2"><a href="Ready.html#cb11-2" tabindex="-1"></a><span class="co"># earlier from_SPSS &lt;- foreign::read.spss (&#39;SPSSdata.sav&#39;,</span></span>
-<span id="cb11-3"><a href="Ready.html#cb11-3" tabindex="-1"></a><span class="co"># use.value.labels = TRUE, to.data.frame = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Ready.html#cb13-1" tabindex="-1"></a><span class="co"># opening an SPSS file requires the foreign package which I opened</span></span>
+<span id="cb13-2"><a href="Ready.html#cb13-2" tabindex="-1"></a><span class="co"># earlier from_SPSS &lt;- foreign::read.spss (&#39;SPSSdata.sav&#39;,</span></span>
+<span id="cb13-3"><a href="Ready.html#cb13-3" tabindex="-1"></a><span class="co"># use.value.labels = TRUE, to.data.frame = TRUE)</span></span></code></pre></div>
 </div>
 </div>
 </div>
 <div id="quick-demonstration" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> quick demonstRation<a href="Ready.html#quick-demonstration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s run some simple descriptives. In the script below, I am using the <em>psych</em> package. Descriptive statistics will appear for all the data in the dataframe and the output will be rounded to three spaces. Note that rather than opening the psych package with the library function, I have used the double colon convention.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Ready.html#cb12-1" tabindex="-1"></a><span class="fu">round</span>(psych<span class="sc">::</span><span class="fu">describe</span>(Acc_sim30), <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Ready.html#cb14-1" tabindex="-1"></a><span class="fu">round</span>(psych<span class="sc">::</span><span class="fu">describe</span>(Acc_sim30), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
 ID*         1 90 45.50 26.12  45.50   45.50 33.36   1  90    89  0.00    -1.24
 COND*       2 90  2.00  0.82   2.00    2.00  1.48   1   3     2  0.00    -1.53
@@ -1023,55 +1028,55 @@ Accurate 0.07</code></pre>
 <div id="perform-a-simple-mathematical-operation" class="section level3 hasAnchor" number="2.11.1">
 <h3><span class="header-section-number">2.11.1</span> Perform a simple mathematical operation:<a href="Ready.html#perform-a-simple-mathematical-operation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the .rmd file, open a chunk and perform a simple mathematical operation of your choice (e.g., subtract your birth year from this year).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Ready.html#cb14-1" tabindex="-1"></a><span class="dv">2023</span> <span class="sc">-</span> <span class="dv">1966</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Ready.html#cb16-1" tabindex="-1"></a><span class="dv">2023</span> <span class="sc">-</span> <span class="dv">1966</span></span></code></pre></div>
 <pre><code>[1] 57</code></pre>
 </div>
 <div id="install-at-least-three-packages-we-will-commonly-use" class="section level3 hasAnchor" number="2.11.2">
 <h3><span class="header-section-number">2.11.2</span> Install at least three packages we will commonly use:<a href="Ready.html#install-at-least-three-packages-we-will-commonly-use" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is code for installing three packages. Because continuous reinstallation can be problematic, I have hashtagged them so that they will not re-run.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Ready.html#cb16-1" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;)</span></span>
-<span id="cb16-2"><a href="Ready.html#cb16-2" tabindex="-1"></a><span class="co">#install.packages(&quot;ggpubr&quot;)</span></span>
-<span id="cb16-3"><a href="Ready.html#cb16-3" tabindex="-1"></a><span class="co">#install.packages(&quot;psych&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Ready.html#cb18-1" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;)</span></span>
+<span id="cb18-2"><a href="Ready.html#cb18-2" tabindex="-1"></a><span class="co">#install.packages(&quot;ggpubr&quot;)</span></span>
+<span id="cb18-3"><a href="Ready.html#cb18-3" tabindex="-1"></a><span class="co">#install.packages(&quot;psych&quot;)</span></span></code></pre></div>
 </div>
 <div id="copy-the-simulation-in-this-lesson-to-your-.rmd-file.-change-the-random-seed-and-run-the-simulation." class="section level3 hasAnchor" number="2.11.3">
 <h3><span class="header-section-number">2.11.3</span> Copy the simulation in this lesson to your .rmd file. Change the random seed and run the simulation.<a href="Ready.html#copy-the-simulation-in-this-lesson-to-your-.rmd-file.-change-the-random-seed-and-run-the-simulation." class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Ready.html#cb17-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
-<span id="cb17-2"><a href="Ready.html#cb17-2" tabindex="-1"></a><span class="co"># sample size, M and SD for each group</span></span>
-<span id="cb17-3"><a href="Ready.html#cb17-3" tabindex="-1"></a>Accurate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.18</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.83</span>,</span>
-<span id="cb17-4"><a href="Ready.html#cb17-4" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.58</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.76</span>, <span class="at">sd =</span> <span class="fl">0.56</span>))</span>
-<span id="cb17-5"><a href="Ready.html#cb17-5" tabindex="-1"></a><span class="co"># set upper bound for DV</span></span>
-<span id="cb17-6"><a href="Ready.html#cb17-6" tabindex="-1"></a>Accurate[Accurate <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb17-7"><a href="Ready.html#cb17-7" tabindex="-1"></a><span class="co"># set lower bound for DV</span></span>
-<span id="cb17-8"><a href="Ready.html#cb17-8" tabindex="-1"></a>Accurate[Accurate <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb17-9"><a href="Ready.html#cb17-9" tabindex="-1"></a><span class="co"># IDs for participants</span></span>
-<span id="cb17-10"><a href="Ready.html#cb17-10" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">90</span>))</span>
-<span id="cb17-11"><a href="Ready.html#cb17-11" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
-<span id="cb17-12"><a href="Ready.html#cb17-12" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
-<span id="cb17-13"><a href="Ready.html#cb17-13" tabindex="-1"></a>COND <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>))</span>
-<span id="cb17-14"><a href="Ready.html#cb17-14" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID, DV, condition</span></span>
-<span id="cb17-15"><a href="Ready.html#cb17-15" tabindex="-1"></a>Acc_sim30B <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, COND, Accurate)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Ready.html#cb19-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb19-2"><a href="Ready.html#cb19-2" tabindex="-1"></a><span class="co"># sample size, M and SD for each group</span></span>
+<span id="cb19-3"><a href="Ready.html#cb19-3" tabindex="-1"></a>Accurate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.18</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.83</span>,</span>
+<span id="cb19-4"><a href="Ready.html#cb19-4" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.58</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.76</span>, <span class="at">sd =</span> <span class="fl">0.56</span>))</span>
+<span id="cb19-5"><a href="Ready.html#cb19-5" tabindex="-1"></a><span class="co"># set upper bound for DV</span></span>
+<span id="cb19-6"><a href="Ready.html#cb19-6" tabindex="-1"></a>Accurate[Accurate <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb19-7"><a href="Ready.html#cb19-7" tabindex="-1"></a><span class="co"># set lower bound for DV</span></span>
+<span id="cb19-8"><a href="Ready.html#cb19-8" tabindex="-1"></a>Accurate[Accurate <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-9"><a href="Ready.html#cb19-9" tabindex="-1"></a><span class="co"># IDs for participants</span></span>
+<span id="cb19-10"><a href="Ready.html#cb19-10" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">90</span>))</span>
+<span id="cb19-11"><a href="Ready.html#cb19-11" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
+<span id="cb19-12"><a href="Ready.html#cb19-12" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
+<span id="cb19-13"><a href="Ready.html#cb19-13" tabindex="-1"></a>COND <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>))</span>
+<span id="cb19-14"><a href="Ready.html#cb19-14" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID, DV, condition</span></span>
+<span id="cb19-15"><a href="Ready.html#cb19-15" tabindex="-1"></a>Acc_sim30B <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, COND, Accurate)</span></code></pre></div>
 </div>
 <div id="save-the-resulting-data-as-a-.csv-or-.rds-file-in-the-same-file-as-you-saved-the-.rmd-file." class="section level3 hasAnchor" number="2.11.4">
 <h3><span class="header-section-number">2.11.4</span> Save the resulting data as a .csv or .rds file in the same file as you saved the .rmd file.<a href="Ready.html#save-the-resulting-data-as-a-.csv-or-.rds-file-in-the-same-file-as-you-saved-the-.rmd-file." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You only need to save it as a .csv or .rds file. I have demonstrated both.</p>
 <p>Saving as a .csv file</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Ready.html#cb18-1" tabindex="-1"></a><span class="fu">write.table</span>(Acc_sim30B, <span class="at">file =</span> <span class="st">&quot;to_CSVb.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-2"><a href="Ready.html#cb18-2" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Ready.html#cb20-1" tabindex="-1"></a><span class="fu">write.table</span>(Acc_sim30B, <span class="at">file =</span> <span class="st">&quot;to_CSVb.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-2"><a href="Ready.html#cb20-2" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Saving as an .rds file</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Ready.html#cb19-1" tabindex="-1"></a><span class="fu">saveRDS</span>(Acc_sim30B, <span class="st">&quot;to_RobjectB.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Ready.html#cb21-1" tabindex="-1"></a><span class="fu">saveRDS</span>(Acc_sim30B, <span class="st">&quot;to_RobjectB.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="clear-your-environment-broom-in-upper-right." class="section level3 hasAnchor" number="2.11.5">
 <h3><span class="header-section-number">2.11.5</span> Clear your environment (broom in upper right).<a href="Ready.html#clear-your-environment-broom-in-upper-right." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You only need to import the .csv or .rds file; I have demonstrated both.
 Open the .csv file from my local drive.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Ready.html#cb20-1" tabindex="-1"></a>from_CSV <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;to_CSVb.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Ready.html#cb22-1" tabindex="-1"></a>from_CSV <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;to_CSVb.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Open the .rds file from my local drive.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Ready.html#cb21-1" tabindex="-1"></a>from_rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;to_RobjectB.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Ready.html#cb23-1" tabindex="-1"></a>from_rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;to_RobjectB.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="run-the-describe-function-from-the-psych-package-with-your-simulated-data-that-you-imported-from-your-local-drive." class="section level3 hasAnchor" number="2.11.6">
 <h3><span class="header-section-number">2.11.6</span> Run the describe() function from the psych package with your simulated data that you imported from your local drive.<a href="Ready.html#run-the-describe-function-from-the-psych-package-with-your-simulated-data-that-you-imported-from-your-local-drive." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You only need to retrieve descriptives from the .csv or .rds file; I have demonstrated both.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Ready.html#cb22-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(from_CSV)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Ready.html#cb24-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(from_CSV)</span></code></pre></div>
 <pre><code>         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
 ID          1 90 45.50 26.12   45.5   45.50 33.36   1  90    89  0.00    -1.24
 COND*       2 90  2.00  0.82    2.0    2.00  1.48   1   3     2  0.00    -1.53
@@ -1080,7 +1085,7 @@ Accurate    3 90  1.65  0.67    1.7    1.67  0.68   0   3     3 -0.29    -0.42
 ID       2.75
 COND*    0.09
 Accurate 0.07</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Ready.html#cb24-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(from_rds)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Ready.html#cb26-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(from_rds)</span></code></pre></div>
 <pre><code>         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
 ID*         1 90 45.50 26.12   45.5   45.50 33.36   1  90    89  0.00    -1.24
 COND*       2 90  2.00  0.82    2.0    2.00  1.48   1   3     2  0.00    -1.53

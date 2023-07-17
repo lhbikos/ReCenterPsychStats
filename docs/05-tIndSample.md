@@ -881,22 +881,41 @@ My predictor variable will be department. It has two levels: CPY and ORG.
 First, bring in the dataset.
 
 
+```r
+big <- readRDS("ReC.rds")
+```
 
 To avoid "dependency" in the data, I will just use data from the ANOVA course.  Let's first trim it to just students who took ANOVA
 
 
+```r
+JustANOVA <- subset(big, Course == "ANOVA") 
+```
 
 I will create a mean score of completed items from the traditional pedagogy scale.
 
 
+```r
+#Creates a list of the variables that belong to that scale
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, TradPed_vars], .75)
+```
 
 To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
 
 
+```r
+IndT_df <-(dplyr::select (JustANOVA, Dept, TradPed))
+```
 
 And further trim to non-missing data
 
 
+```r
+IndT_df <- na.omit(IndT_df)
+```
 
 Are the structures of the variables as follows:
 * Grouping variable: factor
@@ -904,6 +923,10 @@ Are the structures of the variables as follows:
 
 In our case we want Department to be a factor with two levels and the SCRPed variable to be integer or numerical.
 
+
+```r
+str(IndT_df)
+```
 
 ```
 Classes 'data.table' and 'data.frame':	112 obs. of  2 variables:
@@ -914,6 +937,11 @@ Classes 'data.table' and 'data.frame':	112 obs. of  2 variables:
 ```
 
 Since the Department is a character variable, we need to change it to be a factor.
+
+```r
+IndT_df$Dept <- factor(IndT_df$Dept)
+str(IndT_df$Dept)
+```
 
 ```
  Factor w/ 2 levels "CPY","ORG": 1 1 1 1 1 1 1 1 1 1 ...
@@ -926,6 +954,10 @@ Without further coding, R will order the factors alphabetically.  This is fine. 
 * Evaluate and report skew and kurtosis
 * Evaluate and correctly interpret homogeneity of variance (if Levene's < .05; use Welch's formulation)
 
+
+```r
+psych::describeBy(IndT_df ~ Dept,  type =1, mat=TRUE)
+```
 
 ```
          item group1 vars  n     mean        sd median  trimmed     mad min max
@@ -949,6 +981,14 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 We can use the Shapiro Wilk test for a formal test of normality
 
 
+```r
+library(tidyverse)#opening this package so I can use the pipes
+shapiro <- IndT_df%>%
+    group_by(Dept) %>%
+    rstatix::shapiro_test(TradPed)
+shapiro
+```
+
 ```
 # A tibble: 2 × 4
   Dept  variable statistic         p
@@ -963,12 +1003,21 @@ Should we be concerned? A general rule of thumb is that when cell sizes are larg
 
 For fun (not required), let's produce a pairs.panels.
 
+
+```r
+psych::pairs.panels(IndT_df)
+```
+
 ![](05-tIndSample_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
 
 We can see that we'll have more CPY students than ORG students. Although our kurtosis was below |10| our distribution looks negatively skewed, with the majority of the scores being on the high end of the scale.
 
 And now for homogeneity of variance:
 
+
+```r
+rstatix::levene_test(IndT_df, TradPed ~ Dept, center = median)
+```
 
 ```
 # A tibble: 1 × 4
@@ -985,6 +1034,13 @@ Levene's test for homogeneity of variance indicated that we did not violate the 
 Conduct the independent samples *t*-test (with an effect size)
 
 
+```r
+indT.test <- rstatix::t_test(IndT_df, TradPed ~ Dept, var.equal = TRUE,
+    detailed = TRUE) %>%
+    rstatix::add_significance()
+indT.test
+```
+
 ```
 # A tibble: 1 × 16
   estimate estimate1 estimate2 .y.     group1 group2    n1    n2 statistic     p
@@ -998,6 +1054,10 @@ From this output we learn that the value of the *t*-test is 1.423 and is non-sig
 
 
 Calculating the Cohen's *d* as the effect size.
+
+```r
+rstatix::cohens_d(IndT_df, TradPed ~ Dept, var.equal = TRUE)
+```
 
 ```
 # A tibble: 1 × 7
@@ -1024,6 +1084,10 @@ The value of Cohen's *d* statistic (interpreted in standard deviation units) is 
 We can use the *apaTables* package to create a table of means and standard deviations. 
 
 
+```r
+apaTables::apa.1way.table(Dept, TradPed, IndT_df)
+```
+
 ```
 
 
@@ -1038,6 +1102,19 @@ Note. M and SD represent mean and standard deviation, respectively.
 ```
 And now a figure.
 
+
+```r
+indT.box <- ggpubr::ggboxplot(IndT_df, x = "Dept", y = "TradPed", color = "Dept",
+    palette = c("#00AFBB", "#FC4E07"), add = "jitter", title = "Figure 1. Traditional Pedagogy as a Function of Academic Department")
+ind.testT <- indT.test %>%
+    rstatix::add_xy_position(x = "Dept")  #autocomputes p-value labels positions
+indT.box <- indT.box + ggpubr::stat_pvalue_manual(ind.testT, label = "p.signif",
+    tip.length = 0.02, hide.ns = FALSE, y.position = c(6)) + labs(subtitle = rstatix::get_test_label(indT.test,
+    detailed = TRUE))  #adds t-test results
+
+indT.box
+```
+
 ![](05-tIndSample_files/figure-docx/unnamed-chunk-48-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size 
@@ -1045,6 +1122,11 @@ And now a figure.
 
 We can use Cohen's d in this specification of *d*.
 
+
+```r
+pwr::pwr.t.test(d = 0.30, n = 112, power = NULL, sig.level = 0.05,
+    type = "two.sample", alternative = "two.sided")
+```
 
 ```
 
@@ -1061,6 +1143,11 @@ NOTE: n is number in *each* group
 
 We were at 61% power. That is, given the value of the mean difference (), we had a 61% chance of detecting a statistically significant effect if there was one. How big of a sample would it take?
 
+
+```r
+pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05,
+    type = "two.sample", alternative = "two.sided")
+```
 
 ```
 
@@ -1089,6 +1176,10 @@ $$H_A: \mu_1 \neq \mu_2$$
 #### Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable
 
 
+```r
+psych::describeBy(IndT_df ~ Dept, type =1, mat=TRUE)
+```
+
 ```
          item group1 vars  n     mean        sd median  trimmed     mad min max
 Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
@@ -1111,6 +1202,10 @@ Just as a reminder, the SE is the denominator in the *t*-test formula:
 
 $$t = \frac{\bar{X_{1}} -\bar{X_{2}}}{\sqrt{\frac{s_{1}^{2}}{N_{1}}+\frac{s_{2}^{2}}{N_{2}}}}$$
 
+```r
+sqrt((0.7547259^2/81) + (1.0948953^2/31))
+```
+
 ```
 [1] 0.2137828
 ```
@@ -1118,6 +1213,10 @@ The *SE* = 0.214
 
 #### Calculate the independent samples *t*-test
 
+
+```r
+(4.12963 - 3.870968)/0.2137828
+```
 
 ```
 [1] 1.209929
@@ -1138,8 +1237,16 @@ For a two-tailed test, with alpha of 0.05, and a sample size of 120 (close enoug
 We could also obtain a *t* critical value with this code:
 
 
+```r
+qt(0.05/2, 112, lower.tail = TRUE)
+```
+
 ```
 [1] -1.981372
+```
+
+```r
+qt(0.05/2, 112, lower.tail = FALSE)
 ```
 
 ```
@@ -1159,8 +1266,16 @@ Calculating a confidence interval around the difference in sample means requires
 $$(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)$$
 
 
+```r
+(4.129630 - 3.870968) - (1.209929 * 0.2137828)
+```
+
 ```
 [1] -0.0000000094212
+```
+
+```r
+(4.129630 - 3.870968) + (1.209929 * 0.2137828)
 ```
 
 ```
@@ -1174,6 +1289,10 @@ Here is the formula for Cohen's *d*:
 
 $$d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}$$
 
+
+```r
+1.209929 * (sqrt((81 + 31)/(81 * 31)))
+```
 
 ```
 [1] 0.2555321

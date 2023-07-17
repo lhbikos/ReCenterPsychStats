@@ -129,7 +129,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP (she/her)}
-\date{Last updated 15 Jul 2023}
+\date{Last updated 16 Jul 2023}
 
 \begin{document}
 \maketitle
@@ -165,7 +165,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 15 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 16 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=859e5312-abdb-4db8-8779-b00c00feae47}{Screencasted Lecture Link}
 
@@ -339,6 +339,12 @@ Because students could contribute up to three course evaluations, each, multilev
 
 The data file is titled \emph{ReC.rds} and can be retrieved with this code:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfReC }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 The following can serve as a codebook:
 
 \begin{longtable}[]{@{}
@@ -423,6 +429,12 @@ From these variables, I created three scales to assess valued by the student (Va
 In the examples where the scale scores are used, I provide code for calculating the means.
 
 Here's how to import the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ReCdf }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{Ready}{%
 \chapter{Ready\_Set\_R}\label{Ready}}
@@ -2839,17 +2851,43 @@ Preliminary analyses often consist of means, standard deviations, and correlatio
 
 The ReC.rds is the entire dataset. Let's first open it.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ReCdf }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 Recall that students (represented by the \emph{deID} variable) could contribute up to three course evaluations (i.e., ANOVA, psychometrics, multivariate) each. In many statistics, repeated observations creates dependencies that need to be accounted for statistically.
 
 To avoid this dependency and to practice an R skil, let's first filter the data, selecting only those students who took ANOVA.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{JustANOVA }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(ReCdf, Course }\SpecialCharTok{==} \StringTok{"ANOVA"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{create-a-df-with-3-continuously-scaled-variables-of-interest-1}{%
 \subsubsection{Create a df with 3 continuously scaled variables of interest}\label{create-a-df-with-3-continuously-scaled-variables-of-interest-1}}
 
 The assignment requires that we downsize to three variables. We could pick any three.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{tiny3 }\OtherTok{\textless{}{-}}\NormalTok{ JustANOVA }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (OvInstructor, OvCourse, MyContribution)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{produce-descriptive-statistics}{%
 \subsubsection{Produce descriptive statistics}\label{produce-descriptive-statistics}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(tiny3)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
                vars   n mean   sd median trimmed  mad min max range  skew
@@ -2865,10 +2903,22 @@ MyContribution    -0.55 0.08
 \hypertarget{produce-splompairs.panels}{%
 \subsubsection{Produce SPLOM/pairs.panels}\label{produce-splompairs.panels}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{pairs.panels}\NormalTok{(tiny3)}
+\end{Highlighting}
+\end{Shaded}
+
 \includegraphics{03-Preliminaries_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 \hypertarget{produce-an-apatables-matrix}{%
 \subsubsection{Produce an apaTables matrix}\label{produce-an-apatables-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(tiny3)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -2908,20 +2958,55 @@ I am going to continue with the \emph{tiny3} dataset I used when I worked the pr
 
 If you need to reimport data, here is a quick recap of the code explained earlier.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ReCdf }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\NormalTok{JustANOVA }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(ReCdf, Course }\SpecialCharTok{==} \StringTok{"ANOVA"}\NormalTok{) }
+
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{tiny3 }\OtherTok{\textless{}{-}}\NormalTok{ JustANOVA }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (OvInstructor, OvCourse, MyContribution)}
+\end{Highlighting}
+\end{Shaded}
+
 To avoid problems in the code we are used that is caused by missingness, we will eliminate any rows with missing data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny3 }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(tiny3)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{create-a-variable-that-represents-the-mean.}{%
 \subsubsection{Create a variable that represents the mean.}\label{create-a-variable-that-represents-the-mean.}}
 
 I will start with the OvInstructor variable. Inspect the dataframe to see that this new variable exists.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{M\_OvI }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{OvInstructor, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{create-a-variable-that-represents-the-mean-deviation.}{%
 \subsubsection{Create a variable that represents the mean deviation.}\label{create-a-variable-that-represents-the-mean-deviation.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_OvI }\OtherTok{\textless{}{-}}\NormalTok{ (tiny3}\SpecialCharTok{$}\NormalTok{OvInstructor}\SpecialCharTok{{-}}\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{M\_OvI)}
+\end{Highlighting}
+\end{Shaded}
 
 Inspect the dataframe to see that this new variable exists. Note that this functions to ``center'' the mean around zero.
 
 \hypertarget{what-is-the-value-of-the-sum-of-mean-deviations}{%
 \subsubsection{What is the value of the sum of mean deviations?}\label{what-is-the-value-of-the-sum-of-mean-deviations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_OvI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0
@@ -2932,15 +3017,33 @@ Yes, zero!
 \hypertarget{create-a-variable-that-represents-the-absolute-mean-deviation.}{%
 \subsubsection{Create a variable that represents the absolute mean deviation.}\label{create-a-variable-that-represents-the-absolute-mean-deviation.}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{abslt\_mOvI }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_OvI)}
+\end{Highlighting}
+\end{Shaded}
+
 Inspect the dataframe to see that this new variable no longer has negative values.
 
 \textbf{What is the value of the sum of the absolute mean deviation?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{abslt\_mOvI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 96.071
 \end{verbatim}
 
 \textbf{What is the value of the mean of the absolute mean deviation?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{abslt\_mOvI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0.85
@@ -2953,7 +3056,19 @@ Average distance of each value from the mean.
 \hypertarget{create-a-variable-that-represents-the-mean-deviation-squared.}{%
 \subsubsection{Create a variable that represents the mean deviation squared.}\label{create-a-variable-that-represents-the-mean-deviation-squared.}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{mdev2\_OvI }\OtherTok{\textless{}{-}}\NormalTok{ (tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_OvI }\SpecialCharTok{*}\NormalTok{ tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_OvI)}
+\end{Highlighting}
+\end{Shaded}
+
 \textbf{What is the value of the sum of squared deviations around the mean (also known as sums of squares; sometimes abbreviated as \(SS\))?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{mdev2\_OvI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 115.0973
@@ -2965,17 +3080,36 @@ There are at least two ways to do this with basic code (and then we can check ou
 
 Here's how to do it with ``more code.''
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{var\_OvI }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{mdev2\_OvI}\SpecialCharTok{/}\NormalTok{((}\FunctionTok{nrow}\NormalTok{(tiny3) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)))}
+\NormalTok{var\_OvI}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 1.027655
 \end{verbatim}
 
 Here's how to do it with the numbers that I calculated:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{115.0973}\SpecialCharTok{/}\NormalTok{(}\DecValTok{113{-}1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 1.027654
 \end{verbatim}
 
 Checking my work with the \emph{var} function from base R. If it's wrong, I need to rework some of the previous steps.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{OvInstructor, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\#checking my work}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.027655
@@ -2985,13 +3119,32 @@ Checking my work with the \emph{var} function from base R. If it's wrong, I need
 
 There are two ways to calculate it with basic code; and then we can check it with more code from base R.
 
-\begin{verbatim}
-[1] 1.013733
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sd\_OvI }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(var\_OvI)}\CommentTok{\#calculating with the object I created}
+\NormalTok{sd\_OvI}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.013733
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{ (}\FloatTok{1.027655}\NormalTok{)}\CommentTok{\#calculated with the actual numbers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1.013733
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{OvInstructor)}\CommentTok{\#checking my work with the code from baseR}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.013733
@@ -3002,13 +3155,40 @@ There are two ways to calculate it with basic code; and then we can check it wit
 
 My second variable is MyContribution
 
-\begin{verbatim}
-[1] 0
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#first the mean}
+\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{M\_MyC }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{MyContribution, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\#second the mean deviation}
+\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_MyC }\OtherTok{\textless{}{-}}\NormalTok{ (tiny3}\SpecialCharTok{$}\NormalTok{MyContribution}\SpecialCharTok{{-}}\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{M\_MyC)}
+
+\CommentTok{\#fourth the variance}
+\NormalTok{var\_MyC }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{mdev2\_MyC}\SpecialCharTok{/}\NormalTok{((}\FunctionTok{nrow}\NormalTok{(tiny3) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)))}
+\NormalTok{var\_MyC}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#finally the standard deviation}
+\NormalTok{sd\_MyC }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(var\_MyC)}
+\NormalTok{sd\_MyC}\CommentTok{\#checking my work}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{MyContribution)}\CommentTok{\#checking my work}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0.8337652
@@ -3017,7 +3197,20 @@ My second variable is MyContribution
 \hypertarget{create-a-variable-that-represents-the-cross-product-of-the-mean-deviations.-what-is-the-sum-of-these-cross-products}{%
 \subsubsection{\texorpdfstring{Create a variable that represents the \emph{cross-product} (of the mean deviations). What is the sum of these cross-products?}{Create a variable that represents the cross-product (of the mean deviations). What is the sum of these cross-products?}}\label{create-a-variable-that-represents-the-cross-product-of-the-mean-deviations.-what-is-the-sum-of-these-cross-products}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny3}\SpecialCharTok{$}\NormalTok{crossproduct }\OtherTok{\textless{}{-}}\NormalTok{ (tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_OvI }\SpecialCharTok{*}\NormalTok{ tiny3}\SpecialCharTok{$}\NormalTok{Mdev\_MyC)}
+\end{Highlighting}
+\end{Shaded}
+
 The sum of the crossproduct is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xp\_sum }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{crossproduct)}
+\NormalTok{xp\_sum}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 46.74336
@@ -3026,6 +3219,13 @@ The sum of the crossproduct is:
 \hypertarget{calculate-the-value-of-their-covariance.}{%
 \subsubsection{Calculate the value of their covariance.}\label{calculate-the-value-of-their-covariance.}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cov }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{113{-}1}\NormalTok{)) }\SpecialCharTok{*} \FloatTok{46.74336}
+\NormalTok{cov}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 0.4173514
 \end{verbatim}
@@ -3033,11 +3233,23 @@ The sum of the crossproduct is:
 \hypertarget{calculate-value-of-correlation-coefficient.}{%
 \subsubsection{Calculate value of correlation coefficient.}\label{calculate-value-of-correlation-coefficient.}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{0.4173514}\SpecialCharTok{/}\NormalTok{(}\FloatTok{1.013733}\SpecialCharTok{*}\FloatTok{0.8338}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 0.4937606
 \end{verbatim}
 
 And now I can check my work with a function from base R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor.test}\NormalTok{(tiny3}\SpecialCharTok{$}\NormalTok{OvInstructor, tiny3}\SpecialCharTok{$}\NormalTok{MyContribution)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -4384,9 +4596,27 @@ From my course evaluation data, I want to ask the question, ``Are ratings for th
 
 The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ReCdf }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 Let's first trim it to just students who took ANOVA
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{JustANOVA }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(ReCdf, Course }\SpecialCharTok{==} \StringTok{"ANOVA"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
 And further trim to our variable of interest
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
@@ -4401,7 +4631,20 @@ x dplyr::lag()    masks stats::lag()
 i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny1 }\OtherTok{\textless{}{-}}\NormalTok{ JustANOVA }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (OvInstructor)}
+\end{Highlighting}
+\end{Shaded}
+
 And further trim to non-missing data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tiny1 }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(tiny1)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{itemize}
 \tightlist
@@ -4410,6 +4653,12 @@ And further trim to non-missing data
 \item
   Is the external score evaluated on the same continuous scale?
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(tiny1}\SpecialCharTok{$}\NormalTok{OvInstructor)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  int [1:113] 5 4 4 3 5 3 5 4 3 5 ...
@@ -4427,6 +4676,12 @@ Yes. The format for the OvInstructor variable is integer (which is numerical); t
 \item
   Does the distribution of the variable differ significantly from a normal distribution?
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pastecs}\SpecialCharTok{::}\FunctionTok{stat.desc}\NormalTok{(tiny1}\SpecialCharTok{$}\NormalTok{OvInstructor, }\AttributeTok{norm=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
                nbr.val               nbr.null                 nbr.na 
@@ -4456,6 +4711,12 @@ The Shapiro wilk test value is 7.728 (\emph{p} \textless{} 0.001). This signific
 
 First, comparison to CPY
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{t\_test}\NormalTok{(tiny1, OvInstructor }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{, }\AttributeTok{mu =} \FloatTok{4.4}\NormalTok{, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 # A tibble: 1 x 12
   estimate .y.     group1 group2     n statistic      p    df conf.low conf.high
@@ -4471,6 +4732,12 @@ We can begin to create our \emph{t} string:
 Let's interpret the results. With 112 degrees of freedom, our \emph{t} value is -2.245. Because the \emph{p} value is less than .05, this is statistically significant. This means that my course evaluations in ANOVA were statistically significantly lower than the average for CPY. We are 95\% confident that the true course evaluation mean (for my courses) fell between 3.997 and 4.374.
 
 Let's calculate the effect size. we will use a Cohen's \emph{d} which is interpreted in standard deviation units.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{cohens\_d}\NormalTok{(tiny1, OvInstructor }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{, }\AttributeTok{ref.group =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{mu =} \FloatTok{4.4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 1 x 6
@@ -4502,12 +4769,26 @@ Cohen's \emph{d} was 0.211. This is a small effect. We can add it to the \emph{t
 A one-sample \emph{t}-test was used to evaluate whether the \emph{overall instructor} course evaluation ratings from the ANOVA courses were statistically significant from the departmental averages for the Clinical (CPY; \emph{M} = 4.4) department. The sample mean for the ANOVA course evaluations was 4.186 (\emph{SD} = 1.013).Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, \(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)\), the effect size was quite small \((d = -0.211)\). A distribution of the ANOVA course ratings is found in Figure 1.
 \end{quote}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(tiny1}\SpecialCharTok{$}\NormalTok{OvInstructor, }\AttributeTok{ylab =} \StringTok{"Course Evaluation Ratings"}\NormalTok{, }\AttributeTok{xlab =} \ConstantTok{FALSE}\NormalTok{,}
+    \AttributeTok{add =} \StringTok{"jitter"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Figure 1. Overall Instructor Ratings for ANOVA"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \includegraphics{04-tOneSample_files/figure-latex/unnamed-chunk-57-1.pdf}
 
 \hypertarget{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size}{%
 \subsubsection{Conduct power analyses to determine the power of the current study and a recommended sample size}\label{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size}}
 
 A quick reminder that the \emph{d} in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen's d that we just calculated.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \SpecialCharTok{{-}}\FloatTok{0.211}\NormalTok{  , }\AttributeTok{n =} \DecValTok{113}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+    \AttributeTok{type =} \StringTok{"one.sample"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -4521,6 +4802,13 @@ A quick reminder that the \emph{d} in the power analysis is the difference betwe
 \end{verbatim}
 
 For the comparison to the CPY departmental average, power was 60\%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60\% chance of detecting a statistically significant effect if there was one.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \SpecialCharTok{{-}}\FloatTok{0.211}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+    \AttributeTok{type =} \StringTok{"one.sample"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -4553,6 +4841,12 @@ H_A: & \mu \neq 4.4
 
 I will continue with the \emph{tiny1} dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(tiny1}\SpecialCharTok{$}\NormalTok{OvInstructor, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 4.185841
 \end{verbatim}
@@ -4562,15 +4856,43 @@ The mean of my benchmarking sample is 4.4. This number is a ``departmental stand
 \hypertarget{using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared}{%
 \subsubsection{Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared}\label{using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#first the mean}
+\NormalTok{tiny1}\SpecialCharTok{$}\NormalTok{M\_OvInst }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(tiny1}\SpecialCharTok{$}\NormalTok{OvInstructor, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\#second the mean deviation}
+\NormalTok{tiny1}\SpecialCharTok{$}\NormalTok{Mdev\_OvInst }\OtherTok{\textless{}{-}}\NormalTok{ (tiny1}\SpecialCharTok{$}\NormalTok{OvInstructor}\SpecialCharTok{{-}}\NormalTok{tiny1}\SpecialCharTok{$}\NormalTok{M\_OvInst)}
+\CommentTok{\#third the mean deviation squared}
+\NormalTok{tiny1}\SpecialCharTok{$}\NormalTok{mdev2\_OvInst }\OtherTok{\textless{}{-}}\NormalTok{ (tiny1}\SpecialCharTok{$}\NormalTok{Mdev\_OvInst  }\SpecialCharTok{*}\NormalTok{ tiny1}\SpecialCharTok{$}\NormalTok{Mdev\_OvInst)}
+\CommentTok{\#fourth the variance}
+\NormalTok{var\_OvInst }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(tiny1}\SpecialCharTok{$}\NormalTok{mdev2\_OvInst }\SpecialCharTok{/}\NormalTok{((}\FunctionTok{nrow}\NormalTok{(tiny1) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)))}
+\NormalTok{var\_OvInst}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 1.027655
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#finally the standard deviation}
+\NormalTok{sd\_OvInst }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(var\_OvInst)}
+\NormalTok{sd\_OvInst}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.013733
 \end{verbatim}
 
 The variance is 1.028; the standard deviation is 1.014.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(tiny1}\SpecialCharTok{$}\NormalTok{OvInstructor)}\CommentTok{\#checking my work}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.013733
@@ -4585,6 +4907,12 @@ Here's the formula:
 t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 \]
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FloatTok{4.185841} \SpecialCharTok{{-}} \FloatTok{4.4}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\FloatTok{1.013733}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{113}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] -2.245701
 \end{verbatim}
@@ -4593,6 +4921,12 @@ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 \subsubsection{\texorpdfstring{Identify the degrees of freedom associated with your \emph{t}-test}{Identify the degrees of freedom associated with your t-test}}\label{identify-the-degrees-of-freedom-associated-with-your-t-test}}
 
 For the one-sample \emph{t}-test, \(df = N - 1\). In our case
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{113} \SpecialCharTok{{-}} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 112
@@ -4606,6 +4940,12 @@ We can use a table of critical values for the one sample \emph{t}-test: \url{htt
 A 2-tail test, when p - .05, with \textasciitilde120 individuals is 1.98
 
 Or, this code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.05}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{df =} \DecValTok{113}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.98118
@@ -4623,9 +4963,21 @@ Here is a reminder of the formula:
 
 \[\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})\]
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FloatTok{4.185841}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ ((}\FloatTok{1.98118}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ (}\FloatTok{1.013733}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{113}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 3.996908
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FloatTok{4.185841}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ((}\FloatTok{1.98118}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ (}\FloatTok{1.013733}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{113}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 4.374774
@@ -4640,9 +4992,23 @@ A reminder of the two formula:
 
 \[d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}\]
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First formula}
+\NormalTok{(}\FloatTok{4.185841} \SpecialCharTok{{-}} \FloatTok{4.4}\NormalTok{)}\SpecialCharTok{/}\FloatTok{1.013733}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] -0.2112578
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Second formula}
+\SpecialCharTok{{-}}\FloatTok{2.245701}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{113}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] -0.2112578
@@ -5780,17 +6146,57 @@ My predictor variable will be department. It has two levels: CPY and ORG.
 
 First, bring in the dataset.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 To avoid ``dependency'' in the data, I will just use data from the ANOVA course. Let's first trim it to just students who took ANOVA
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{JustANOVA }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(big, Course }\SpecialCharTok{==} \StringTok{"ANOVA"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
 
 I will create a mean score of completed items from the traditional pedagogy scale.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creates a list of the variables that belong to that scale}
+\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ClearResponsibilities\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}EffectiveAnswers\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Feedback\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ClearOrganization\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}ClearPresentation\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Calculates a mean if at least 75\% of the items are non{-}missing; adjusts the calculating when there is missingness}
+\NormalTok{JustANOVA}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(JustANOVA[, TradPed\_vars], .}\DecValTok{75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IndT\_df }\OtherTok{\textless{}{-}}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (JustANOVA, Dept, TradPed))}
+\end{Highlighting}
+\end{Shaded}
+
 And further trim to non-missing data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IndT\_df }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(IndT\_df)}
+\end{Highlighting}
+\end{Shaded}
 
 Are the structures of the variables as follows: * Grouping variable: factor * Dependent variable: numerical or integer
 
 In our case we want Department to be a factor with two levels and the SCRPed variable to be integer or numerical.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(IndT\_df)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 Classes 'data.table' and 'data.frame':  112 obs. of  2 variables:
@@ -5801,6 +6207,13 @@ Classes 'data.table' and 'data.frame':  112 obs. of  2 variables:
 \end{verbatim}
 
 Since the Department is a character variable, we need to change it to be a factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IndT\_df}\SpecialCharTok{$}\NormalTok{Dept }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(IndT\_df}\SpecialCharTok{$}\NormalTok{Dept)}
+\FunctionTok{str}\NormalTok{(IndT\_df}\SpecialCharTok{$}\NormalTok{Dept)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  Factor w/ 2 levels "CPY","ORG": 1 1 1 1 1 1 1 1 1 1 ...
@@ -5818,6 +6231,12 @@ Without further coding, R will order the factors alphabetically. This is fine. C
 \item
   Evaluate and correctly interpret homogeneity of variance (if Levene's \textless{} .05; use Welch's formulation)
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(IndT\_df }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Dept,  }\AttributeTok{type =}\DecValTok{1}\NormalTok{, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
          item group1 vars  n     mean        sd median  trimmed     mad min max
@@ -5840,6 +6259,16 @@ Skew = -0.763 (CPY) and -1.183 (ORG) falls below the \textbar3.0\textbar{} thres
 
 We can use the Shapiro Wilk test for a formal test of normality
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}\CommentTok{\#opening this package so I can use the pipes}
+\NormalTok{shapiro }\OtherTok{\textless{}{-}}\NormalTok{ IndT\_df}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(Dept) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{shapiro\_test}\NormalTok{(TradPed)}
+\NormalTok{shapiro}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 # A tibble: 2 x 4
   Dept  variable statistic         p
@@ -5854,11 +6283,23 @@ Should we be concerned? A general rule of thumb is that when cell sizes are larg
 
 For fun (not required), let's produce a pairs.panels.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{pairs.panels}\NormalTok{(IndT\_df)}
+\end{Highlighting}
+\end{Shaded}
+
 \includegraphics{05-tIndSample_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 We can see that we'll have more CPY students than ORG students. Although our kurtosis was below \textbar10\textbar{} our distribution looks negatively skewed, with the majority of the scores being on the high end of the scale.
 
 And now for homogeneity of variance:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{levene\_test}\NormalTok{(IndT\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Dept, }\AttributeTok{center =}\NormalTok{ median)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 1 x 4
@@ -5874,6 +6315,15 @@ Levene's test for homogeneity of variance indicated that we did not violate the 
 
 Conduct the independent samples \emph{t}-test (with an effect size)
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{indT.test }\OtherTok{\textless{}{-}}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{t\_test}\NormalTok{(IndT\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Dept, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{add\_significance}\NormalTok{()}
+\NormalTok{indT.test}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 # A tibble: 1 x 16
   estimate estimate1 estimate2 .y.     group1 group2    n1    n2 statistic     p
@@ -5886,6 +6336,12 @@ Conduct the independent samples \emph{t}-test (with an effect size)
 From this output we learn that the value of the \emph{t}-test is 1.423 and is non-significant \emph{p = 0.148}. We are 95\% confident that the mean diference falls between -0.102 and 0.618. Because this thresshold crosses zero, we cannot be certain that the true difference in means is not zero. Here's how I would represent these results in a statistical string: \(t(110) = 1.423, p = 0.158, CI95 (0.102, 0.619)\).
 
 Calculating the Cohen's \emph{d} as the effect size.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{cohens\_d}\NormalTok{(IndT\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Dept, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 1 x 7
@@ -5925,6 +6381,12 @@ The independent samples \emph{t}-test was nonsignificant, \(t(110) = 1.423, p = 
 
 We can use the \emph{apaTables} package to create a table of means and standard deviations.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.1way.table}\NormalTok{(Dept, TradPed, IndT\_df)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 
 
@@ -5940,12 +6402,33 @@ Note. M and SD represent mean and standard deviation, respectively.
 
 And now a figure.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{indT.box }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(IndT\_df, }\AttributeTok{x =} \StringTok{"Dept"}\NormalTok{, }\AttributeTok{y =} \StringTok{"TradPed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Dept"}\NormalTok{,}
+    \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#00AFBB"}\NormalTok{, }\StringTok{"\#FC4E07"}\NormalTok{), }\AttributeTok{add =} \StringTok{"jitter"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Figure 1. Traditional Pedagogy as a Function of Academic Department"}\NormalTok{)}
+\NormalTok{ind.testT }\OtherTok{\textless{}{-}}\NormalTok{ indT.test }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Dept"}\NormalTok{)  }\CommentTok{\#autocomputes p{-}value labels positions}
+\NormalTok{indT.box }\OtherTok{\textless{}{-}}\NormalTok{ indT.box }\SpecialCharTok{+}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_pvalue\_manual}\NormalTok{(ind.testT, }\AttributeTok{label =} \StringTok{"p.signif"}\NormalTok{,}
+    \AttributeTok{tip.length =} \FloatTok{0.02}\NormalTok{, }\AttributeTok{hide.ns =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{y.position =} \FunctionTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{subtitle =}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{get\_test\_label}\NormalTok{(indT.test,}
+    \AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{))  }\CommentTok{\#adds t{-}test results}
+
+\NormalTok{indT.box}
+\end{Highlighting}
+\end{Shaded}
+
 \includegraphics{05-tIndSample_files/figure-latex/unnamed-chunk-48-1.pdf}
 
 \hypertarget{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1}{%
 \subsubsection{Conduct power analyses to determine the power of the current study and a recommended sample size}\label{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1}}
 
 We can use Cohen's d in this specification of \emph{d}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \FloatTok{0.30}\NormalTok{, }\AttributeTok{n =} \DecValTok{112}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+    \AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -5961,6 +6444,13 @@ NOTE: n is number in *each* group
 \end{verbatim}
 
 We were at 61\% power. That is, given the value of the mean difference (), we had a 61\% chance of detecting a statistically significant effect if there was one. How big of a sample would it take?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+    \AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -5990,6 +6480,12 @@ To find a statistically significant difference, we would need 175 per group. Thi
 \hypertarget{using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable}{%
 \subsubsection{Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable}\label{using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(IndT\_df }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Dept, }\AttributeTok{type =}\DecValTok{1}\NormalTok{, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
          item group1 vars  n     mean        sd median  trimmed     mad min max
 Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
@@ -6012,6 +6508,12 @@ Just as a reminder, the SE is the denominator in the \emph{t}-test formula:
 
 \[t = \frac{\bar{X_{1}} -\bar{X_{2}}}{\sqrt{\frac{s_{1}^{2}}{N_{1}}+\frac{s_{2}^{2}}{N_{2}}}}\]
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{((}\FloatTok{0.7547259}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\DecValTok{81}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.0948953}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\DecValTok{31}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 0.2137828
 \end{verbatim}
@@ -6020,6 +6522,12 @@ The \emph{SE} = 0.214
 
 \hypertarget{calculate-the-independent-samples-t-test}{%
 \subsubsection{\texorpdfstring{Calculate the independent samples \emph{t}-test}{Calculate the independent samples t-test}}\label{calculate-the-independent-samples-t-test}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FloatTok{4.12963} \SpecialCharTok{{-}} \FloatTok{3.870968}\NormalTok{)}\SpecialCharTok{/}\FloatTok{0.2137828}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.209929
@@ -6041,9 +6549,21 @@ For a two-tailed test, with alpha of 0.05, and a sample size of 120 (close enoug
 
 We could also obtain a \emph{t} critical value with this code:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.05}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{112}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] -1.981372
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.05}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{112}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.981372
@@ -6063,9 +6583,21 @@ Calculating a confidence interval around the difference in sample means requires
 
 \[(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)\]
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FloatTok{4.129630} \SpecialCharTok{{-}} \FloatTok{3.870968}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ (}\FloatTok{1.209929} \SpecialCharTok{*} \FloatTok{0.2137828}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] -0.0000000094212
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FloatTok{4.129630} \SpecialCharTok{{-}} \FloatTok{3.870968}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.209929} \SpecialCharTok{*} \FloatTok{0.2137828}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0.517324
@@ -6079,6 +6611,12 @@ We are 95\% confident that the mean difference falls between -0.165 and 0.682. B
 Here is the formula for Cohen's \emph{d}:
 
 \[d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{1.209929} \SpecialCharTok{*}\NormalTok{ (}\FunctionTok{sqrt}\NormalTok{((}\DecValTok{81} \SpecialCharTok{+} \DecValTok{31}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{81} \SpecialCharTok{*} \DecValTok{31}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0.2555321
@@ -7226,15 +7764,49 @@ Like most data, some manipulation is required before we can begin the analyses.
 
 Let's import the larger dataset.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{larger }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creates a list of the variables that belong to that scale}
+\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ClearResponsibilities\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}EffectiveAnswers\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Feedback\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ClearOrganization\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}ClearPresentation\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Calculates a mean if at least 75\% of the items are non{-}missing; adjusts the calculating when there is missingness}
+\NormalTok{larger}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(larger[, ..TradPed\_vars], .}\DecValTok{75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 From the ``larger'' data, let's select only the variable we will use in the analysis. I have included ``long'' in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.
 
 We need both ``long'' and ``wide'' forms to conduct the analyses required for both testing the statistical assumptions and performing the paired samples \emph{t}-test.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_long }\OtherTok{\textless{}{-}}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (larger, deID, Course, TradPed))}
+\end{Highlighting}
+\end{Shaded}
+
 From that reduced variable set, let's create a subset with students only from those two courses.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_long }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(paired\_long, Course }\SpecialCharTok{==} \StringTok{"ANOVA"} \SpecialCharTok{|}\NormalTok{ Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
 Regarding the structure of the data, we want the conditions (ANOVA, multivariate) to be factors and the TradPed variable to be continuously scaled. The format of the deID variable can be any numerical or categorical format -- just not a ``chr'' (character) variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(paired\_long)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 Classes 'data.table' and 'data.frame':  198 obs. of  3 variables:
@@ -7248,7 +7820,19 @@ R correctly interpreted our variables.
 
 For analyzing the assumptions associated with the paired-samples \emph{t}-test, the format needs to be ``wide'' form (where each student has both observations on one row). Our data is presently in ``long'' form (where each observation is listed in each row). Here's how to reshape the data.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_wide }\OtherTok{\textless{}{-}}\NormalTok{ reshape2}\SpecialCharTok{::}\FunctionTok{dcast}\NormalTok{(}\AttributeTok{data =}\NormalTok{ paired\_long, }\AttributeTok{formula =}\NormalTok{deID }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Course, }\AttributeTok{value.var =} \StringTok{"TradPed"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 Let's recheck the structure.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(paired\_wide)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 'data.frame':   119 obs. of  3 variables:
@@ -7261,6 +7845,12 @@ You will notice that there is a good deal of missingness in the Multivariate con
 
 Doing so should also help with the hand-calculations later in the worked example.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_wide }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(paired\_wide)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{evaluate-statistical-assumptions-2}{%
 \subsubsection{Evaluate statistical assumptions}\label{evaluate-statistical-assumptions-2}}
 
@@ -7268,7 +7858,19 @@ We need to evaluate the \emph{distribution of the difference score} in terms of 
 
 This means we need to create a difference score:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_wide}\SpecialCharTok{$}\NormalTok{DIFF }\OtherTok{\textless{}{-}}\NormalTok{ paired\_wide}\SpecialCharTok{$}\NormalTok{ANOVA }\SpecialCharTok{{-}}\NormalTok{ paired\_wide}\SpecialCharTok{$}\NormalTok{Multivariate}
+\end{Highlighting}
+\end{Shaded}
+
 We can use the \emph{psych::describe()} function to obtain skew and kurtosis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(paired\_wide)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
              vars  n  mean    sd median trimmed   mad  min   max range  skew
@@ -7287,6 +7889,12 @@ Regarding the DIFF score, the skew (0.56) and kurtosis (3.15) values were well b
 
 We can formally test for deviations from normality with a Shapiro-Wilk. We want the results to be non-significant.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{shapiro\_test}\NormalTok{(paired\_wide, DIFF)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 # A tibble: 1 x 3
   variable statistic       p
@@ -7297,6 +7905,12 @@ We can formally test for deviations from normality with a Shapiro-Wilk. We want 
 Results of the Shapiro-Wilk test of normality are statistically significant \((W = 0.943, p = 0.002)\). This means that the distribution of difference scores are statistically significantly different from a normal distribution.
 
 although not required in the formal test of instructions, a \emph{pairs panel} of correlations and distributions can be useful in undersatnding our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{pairs.panels}\NormalTok{(paired\_wide)}
+\end{Highlighting}
+\end{Shaded}
 
 \includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-45-1.pdf} Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
 
@@ -7311,6 +7925,17 @@ We began by analyzing the data to see if it met the statistical assumptions for 
 
 So this may be a bit tricky, but our original ``long'' form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples \emph{t} test requires the design to be balanced. When we used the \emph{na.omit()} function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let's restructure that wide format back to long format so that the design will be balanced.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_long2 }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{melt}\NormalTok{(data.table}\SpecialCharTok{::}\FunctionTok{setDT}\NormalTok{(paired\_wide), }\AttributeTok{id.vars =} \FunctionTok{c}\NormalTok{(}\StringTok{"deID"}\NormalTok{),}
+    \AttributeTok{measure.vars =} \FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"ANOVA"}\NormalTok{, }\StringTok{"Multivariate"}\NormalTok{)))}
+
+\NormalTok{paired\_long2 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(paired\_long2, }\AttributeTok{Course =}\NormalTok{ variable, }\AttributeTok{TradPed =}\NormalTok{ value)}
+
+\FunctionTok{head}\NormalTok{(paired\_long2)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
    deID Course TradPed
 1:   11  ANOVA     4.0
@@ -7320,6 +7945,12 @@ So this may be a bit tricky, but our original ``long'' form of the data has more
 5:   15  ANOVA     3.4
 6:   16  ANOVA     2.2
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{t\_test}\NormalTok{(paired\_long2, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Course, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 1 x 13
@@ -7332,6 +7963,12 @@ So this may be a bit tricky, but our original ``long'' form of the data has more
 I'll begin the \emph{t} string with this output: \(t(76) = -1.341, p = 0.184, CI95(-0.305, 0.069)\). The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.
 
 we calculate the Cohen's \emph{d} (the effect size) this way:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{cohens\_d}\NormalTok{(paired\_long2, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Course, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 1 x 7
@@ -7356,6 +7993,20 @@ We began by analyzing the data to see if it met the statistical assumptions for 
 \begin{quote}
 Results of the paired samples \emph{t}-test suggested nonsignificant differences \(t(76) = -1.341, p = 0.184,d = -0.153\). The 95\% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.
 \end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)  }\CommentTok{\#needed to use the pipe }
+\CommentTok{\# Creating a smaller df to include only the variables I want in the}
+\CommentTok{\# table}
+\NormalTok{Descripts\_paired }\OtherTok{\textless{}{-}}\NormalTok{ paired\_wide }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(ANOVA, Multivariate, DIFF)}
+\CommentTok{\# using the apa.cor.table function for means, standard deviations,}
+\CommentTok{\# and correlations the filename command will write the table as a}
+\CommentTok{\# word document to your file}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(Descripts\_paired, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Tab1\_PairedT.doc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -7385,6 +8036,14 @@ that could have caused the sample correlation (Cumming, 2014).
 
 For the figure, let's re-run the paired samples \emph{t} test, save it as an object, and use the ``add\_significance'' function so that we can add it to our figure.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_T }\OtherTok{\textless{}{-}}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{t\_test}\NormalTok{(paired\_long2, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Course, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{add\_significance}\NormalTok{()}
+\NormalTok{paired\_T}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 # A tibble: 1 x 14
   estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
@@ -7395,6 +8054,23 @@ For the figure, let's re-run the paired samples \emph{t} test, save it as an obj
 \end{verbatim}
 
 Next, we create boxplot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pairT.box }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggpaired}\NormalTok{(paired\_long2, }\AttributeTok{x =} \StringTok{"Course"}\NormalTok{, }\AttributeTok{y =} \StringTok{"TradPed"}\NormalTok{, }\AttributeTok{order =} \FunctionTok{c}\NormalTok{(}\StringTok{"ANOVA"}\NormalTok{,}
+    \StringTok{"Multivariate"}\NormalTok{), }\AttributeTok{line.color =} \StringTok{"gray"}\NormalTok{, }\AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"npg"}\NormalTok{), }\AttributeTok{color =} \StringTok{"Course"}\NormalTok{,}
+    \AttributeTok{ylab =} \StringTok{"Traditional Pedagogy"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Statistics Course"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Figure 1. Evaluation of Traditional Pedagogy as a Function of Course"}\NormalTok{)}
+
+\NormalTok{paired\_T }\OtherTok{\textless{}{-}}\NormalTok{ paired\_T }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Course"}\NormalTok{)  }\CommentTok{\#autocomputes p{-}value labels positions}
+
+\NormalTok{pairT.box }\OtherTok{\textless{}{-}}\NormalTok{ pairT.box }\SpecialCharTok{+}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_pvalue\_manual}\NormalTok{(paired\_T, }\AttributeTok{tip.length =} \FloatTok{0.01}\NormalTok{,}
+    \AttributeTok{y.position =} \FunctionTok{c}\NormalTok{(}\FloatTok{5.5}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{subtitle =}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{get\_test\_label}\NormalTok{(paired\_T,}
+    \AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{))}
+
+\NormalTok{pairT.box}
+\end{Highlighting}
+\end{Shaded}
 
 \includegraphics{06-tPairedSamples_files/figure-latex/unnamed-chunk-51-1.pdf}
 
@@ -7419,6 +8095,13 @@ Script for estimating current power:
   alternative indicates one or two.sided
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \SpecialCharTok{{-}}\FloatTok{0.153}\NormalTok{, }\AttributeTok{n =} \DecValTok{77}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"paired"}\NormalTok{,}
+    \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 
      Paired t test power calculation 
@@ -7433,6 +8116,13 @@ NOTE: n is number of *pairs*
 \end{verbatim}
 
 We had a 26\% chance of finding a statistically significant result if, in fact, one existed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.t.test}\NormalTok{(}\AttributeTok{d =} \SpecialCharTok{{-}}\FloatTok{0.153}\NormalTok{, }\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"paired"}\NormalTok{,}
+    \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -7466,10 +8156,22 @@ The alternative hypothesis states that the true difference in means is not zero.
 
 We had already calculated a difference score in the earlier assignment. Here it is again.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_wide}\SpecialCharTok{$}\NormalTok{DIFF }\OtherTok{\textless{}{-}}\NormalTok{ paired\_wide}\SpecialCharTok{$}\NormalTok{ANOVA }\SpecialCharTok{{-}}\NormalTok{ paired\_wide}\SpecialCharTok{$}\NormalTok{Multivariate}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{obtain-the-mean-and-standard-deviation-of-the-difference-score}{%
 \subsubsection{\texorpdfstring{Obtain the mean and standard deviation of the \emph{difference} score}{Obtain the mean and standard deviation of the difference score}}\label{obtain-the-mean-and-standard-deviation-of-the-difference-score}}
 
 We can obtain the mean and standard deviation for the difference score with this script.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(paired\_wide}\SpecialCharTok{$}\NormalTok{DIFF)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
    vars  n  mean  sd median trimmed  mad  min max range skew kurtosis   se
@@ -7484,6 +8186,12 @@ The mean difference (\(\bar{D}\)) is -0.12; the standard deviation (\(\hat\sigma
 Here is the formula for the paired samples \emph{t}-test:
 
 \[t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}\] Using the values we located we can calculate the value of the \emph{t} statistic.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\FloatTok{0.12}\SpecialCharTok{/}\NormalTok{(}\FloatTok{0.8}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{77}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] -1.316245
@@ -7503,9 +8211,21 @@ I could look at the \href{https://www.statology.org/t-distribution-table/}{table
 
 I can also use the \emph{qt()} function in base R. This function requires that I specify the alpha level (0.05), whether the test is one- or two-tailed (2), and my degrees of freedom (76). Specifying ``TRUE'' and ``FALSE'' after the lower.tail command gives the positive and negative regions of rejection.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.05}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{76}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] -1.991673
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.05}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{76}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 1.991673
@@ -7539,9 +8259,21 @@ Here is the formula for hand-calculating the confidence interval.
 
 Let's calculate it:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\FloatTok{0.12} \SpecialCharTok{{-}}\NormalTok{ (}\SpecialCharTok{{-}}\FloatTok{1.991673} \SpecialCharTok{*}\NormalTok{ ((}\FloatTok{0.8}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{77}\NormalTok{)))))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 0.06157776
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\FloatTok{0.12} \SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\FloatTok{1.991673} \SpecialCharTok{*}\NormalTok{ ((}\FloatTok{0.8}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{77}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] -0.3015778
@@ -7558,9 +8290,21 @@ Because the paired samples \emph{t}-test used the difference score in the numera
 
 \[d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}\] Here's a demonstration of both:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\FloatTok{0.12}\SpecialCharTok{/}\NormalTok{.}\DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] -0.15
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\FloatTok{1.316245}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{77}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] -0.15
@@ -9907,6 +10651,8 @@ Regardless, your choices should meet you where you are (e.g., in terms of your s
   writing a results section to include a figure and tables
 \end{itemize}
 
+Additionally, please complete at least one set of \emph{hand calculations}, that is use the code demonstrated in the chapter to work through the formulas that compute the one-way ANOVA. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
+
 \hypertarget{problem-1-play-around-with-this-simulation.}{%
 \subsection{Problem \#1: Play around with this simulation.}\label{problem-1-play-around-with-this-simulation.}}
 
@@ -9978,7 +10724,7 @@ Points Earned
 3. Calculate the sums of squares for the model (SSM). A necessary step in this equation is to calculate group means. & 4 & \\
 4. Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group. & 4 & \\
 5. Calculate the mean square model, mean square residual, and \emph{F}-test. & 2 & \\
-6. What are the degrees of freedom for your numerator an denominator? & 2 & \\
+6. What are the degrees of freedom for your numerator and denominator? & 2 & \\
 7. Locate the test critical value for your one-way ANOVA. & 2 & \\
 8. Is the \emph{F}-test statistically significant? Why or why not? & 2 & \\
 9. Calculate and interpret the \(\eta^2\) effect size & 2 & \\
@@ -9991,7 +10737,7 @@ Points Earned
 
 \href{}{Screencast Link}
 
-\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could\ldots{} }
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.}
 
 \hypertarget{working-the-problem-with-r-and-r-packages-4}{%
 \subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-4}}
@@ -10016,13 +10762,37 @@ This is not a variable that was included in the dataset posted to the OSF reposi
 \hypertarget{simulate-or-import-and-format-data.}{%
 \subsubsection{Simulate (or import) and format data.}\label{simulate-or-import-and-format-data.}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 This df includes course evaluations from ANOVA, multivariate, and psychometrics. To include up to three evaluations per student would violate the assumption of independence, therefore, I will only select the students in ANOVA course.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(big, Course }\SpecialCharTok{==} \StringTok{"ANOVA"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
 
 Let's first create the ``Stage'' variable that represents the three levels of transition.
 
 First I will map the years to the three levels (factors).
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{Stage }\OtherTok{\textless{}{-}}\NormalTok{ plyr}\SpecialCharTok{::}\FunctionTok{mapvalues}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Year, }\AttributeTok{from =} \FunctionTok{c}\NormalTok{(}\DecValTok{2017}\NormalTok{, }\DecValTok{2018}\NormalTok{, }\DecValTok{2019}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2021}\NormalTok{), }\AttributeTok{to =} \FunctionTok{c}\NormalTok{(}\StringTok{"Stable"}\NormalTok{, }\StringTok{"Transition"}\NormalTok{, }\StringTok{"Transition"}\NormalTok{, }\StringTok{"Resettled"}\NormalTok{, }\StringTok{"Resettled"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 Then check the structure.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Stage)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  chr [1:114] "Resettled" "Resettled" "Resettled" "Resettled" "Resettled" ...
@@ -10030,7 +10800,19 @@ Then check the structure.
 
 R is reading the variable as a character, so I need to make it to be an ordered factor.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{Stage }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Stage, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Stable"}\NormalTok{, }\StringTok{"Transition"}\NormalTok{, }\StringTok{"Resettled"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 Let's check the structure again:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Stage)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
  Factor w/ 3 levels "Stable","Transition",..: 3 3 3 3 3 3 3 3 3 3 ...
@@ -10038,14 +10820,42 @@ Let's check the structure again:
 
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creates a list of the variables that belong to that scale}
+\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ClearResponsibilities\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}EffectiveAnswers\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Feedback\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ClearOrganization\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}ClearPresentation\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Calculates a mean if at least 75\% of the items are non{-}missing; adjusts the calculating when there is missingness}
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, TradPed\_vars], .}\DecValTok{75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 With our variables properly formatted, let's trim it to just the variables we need.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OneWay\_df }\OtherTok{\textless{}{-}}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (big, Stage, TradPed))}
+\end{Highlighting}
+\end{Shaded}
+
 Although we would handle missing data more carefully in a ``real study,'' I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(OneWay\_df)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{evaluate-statistical-assumptions.}{%
 \subsubsection{Evaluate statistical assumptions.}\label{evaluate-statistical-assumptions.}}
 
 \textbf{Is the dependent variable normally distributed across levels of the factor?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{, }\AttributeTok{data =}\NormalTok{ OneWay\_df, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
          item     group1 vars  n  mean    sd median trimmed   mad min max range
@@ -10062,6 +10872,13 @@ We'll use Kline's (2016) threshholds of the absolute values of 3 (skew) and 10 (
 
 the Shapiro-wilk test is a formal assessment of normality. It is a 2-part test that begins with creating an ANOVA model from which we can extract residuals, then testing the residuals.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TradPed\_res }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage, }\AttributeTok{data =}\NormalTok{ OneWay\_df)}
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{shapiro\_test}\NormalTok{(}\FunctionTok{residuals}\NormalTok{(TradPed\_res))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 # A tibble: 1 x 3
   variable               statistic    p.value
@@ -10073,11 +10890,25 @@ The Shapiro-Wilk test suggests that the our distribution of residuals is statist
 
 It is possible to plot the residuals to see how and where they deviate from the line.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggqqplot}\NormalTok{(}\FunctionTok{residuals}\NormalTok{(TradPed\_res))}
+\end{Highlighting}
+\end{Shaded}
+
 \includegraphics{07-OnewayANOVA_files/figure-latex/unnamed-chunk-86-1.pdf} Ooof! at the ends of the distribution they really deviate.
 
 \textbf{Should we remove outliers?}
 
 The \emph{rstatix::identify\_outliers()} function identifies outlers and extreme outliers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{OneWay\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{identify\_outliers}\NormalTok{(TradPed)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
        Stage TradPed is.outlier is.extreme
@@ -10092,6 +10923,12 @@ There are 4 cases identified with outliers; none of those is extreme. I also not
 \textbf{Are the variances of the dependent variable similar across the levels of the grouping factor?}
 
 We want the results of the Levene's homogeneity of variance test to be non-significant. This would support the notion that the TradPed variance is equivalent across the three stages of the transition.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{levene\_test}\NormalTok{(OneWay\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 1 x 4
@@ -10113,10 +10950,22 @@ Regarding the assumption of normality, skew and kurtosis values at each of the l
 
 The \emph{rstatix::anova\_test()} function calculates the one-way ANOVA and includes the effect size, \(\eta^2\) in the column, \emph{ges}. Values of .01, .07, and .14 are considered to be small, medium, and large. The value of .05 would be small-to-medium.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{omnibus1w }\OtherTok{\textless{}{-}}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{anova\_test}\NormalTok{(OneWay\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage, }\AttributeTok{detailed =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 Warning: NA detected in rows: 74,84.
 Removing this rows before the analysis.
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{omnibus1w}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ANOVA Table (type II tests)
@@ -10133,6 +10982,13 @@ Normally, the researcher would stop here. However, because the homework requires
 \subsubsection{Conduct one set of follow-up tests; narrate your choice.}\label{conduct-one-set-of-follow-up-tests-narrate-your-choice.}}
 
 I will simply calculate post-hoc comparisons. That is, all possible pairwise comparisons. I will specify the traditional Bonferroni as the approach to managing Type I error.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phoc }\OtherTok{\textless{}{-}}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{t\_test}\NormalTok{(OneWay\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage, }\AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{phoc}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 3 x 17
@@ -10167,6 +11023,13 @@ We began by testing the statistical assumptions associated with one-way ANOVA. R
 Results of the omnibus ANOVA indicated a non-significant effect of stage on students assessments of traditional pedagogy, \(F(2, 109) = 2.61, p = 0.078, \eta^2 = 0.046\). The effect size was small-to-medium. We followed up the non-significant omnibus with all possible pairwise comparisons. We controlled for Type I error with the traditional Bonferroni adjustment. Curiously, results suggested that there were statistically significant differences between the transition and resettled \((Mdiff=0.511, p = 0.009)\) stages, but not between stable and transition \((Mdiff=0.374,p = 0.181)\) or transition and resettled \((Mdiff=−.137,p = 1.000)\). Given that the doctoral programs are unlikely to transition back to SPSS or into the second year, the instructor(s) are advised to consider ways that could result in greater student satisfaction. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
 \end{quote}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.1way.table}\NormalTok{(}\AttributeTok{iv =}\NormalTok{ Stage, }\AttributeTok{dv =}\NormalTok{ TradPed, }\AttributeTok{show.conf.interval =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{data =}\NormalTok{ OneWay\_df, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{filename =} \StringTok{"1wayHWTable.doc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 
 
@@ -10186,6 +11049,13 @@ The confidence interval is a plausible range of population means that could
 have caused a sample mean (Cumming, 2014). 
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{omnibus1wHW\_b }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage, }\AttributeTok{data =}\NormalTok{ OneWay\_df)}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.aov.table}\NormalTok{(omnibus1wHW\_b, }\AttributeTok{table.number =} \DecValTok{2}\NormalTok{, }\AttributeTok{filename =} \StringTok{"1wayHWTable2.doc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 
 
@@ -10201,6 +11071,18 @@ ANOVA results using TradPed as the dependent variable
 
 Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared 
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phoc }\OtherTok{\textless{}{-}}\NormalTok{ phoc }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Stage"}\NormalTok{)}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(OneWay\_df, }\AttributeTok{x =} \StringTok{"Stage"}\NormalTok{, }\AttributeTok{y =} \StringTok{"TradPed"}\NormalTok{, }\AttributeTok{add =} \StringTok{"jitter"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Stage"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition"}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{    ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_pvalue\_manual}\NormalTok{(phoc, }\AttributeTok{label =} \StringTok{"p.adj.signif"}\NormalTok{, }\AttributeTok{tip.length =} \FloatTok{0.02}\NormalTok{,}
+        \AttributeTok{hide.ns =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{y.position =} \FunctionTok{c}\NormalTok{(}\FloatTok{5.5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).
@@ -10241,6 +11123,12 @@ In the script below, we simply add our values. So long as we have four values, t
 
 Because this calculator requires the effect size in the metric of Cohen's \emph{f} (this is not the same as the \emph{F} ratio), we need to convert it. The \emph{effectsize} package has a series of converters. We can use the \emph{eta2\_to\_f()} function.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.046}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 0.219586
 \end{verbatim}
@@ -10250,6 +11138,12 @@ We simply plug this value into the ``f =''.
 First let's ask what our level of power was? Our goal would be 80\%.
 
 Given that our design was unbalanced (21, 44, 47 across the three stages), I used 38 (114/3).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.anova.test}\NormalTok{(}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =} \FloatTok{0.219586}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{n =} \DecValTok{38}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -10265,6 +11159,12 @@ NOTE: n is number in each group
 \end{verbatim}
 
 Our power was 0.53. That is, we had 53\% chance to find a statistically significant result if one existed. In the next power analysis, let's see what sample size is recommended.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.anova.test}\NormalTok{(}\AttributeTok{k =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =} \FloatTok{0.219586}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -10306,6 +11206,12 @@ I will use this approach to calculating sums of squares total:
 
 I will use the \emph{psych::describe()} function to obtain the overall mean:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(OneWay\_df)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
         vars   n mean   sd median trimmed  mad min max range  skew kurtosis
 Stage*     1 114 2.23 0.75    2.0    2.28 1.48   1   3     2 -0.39    -1.17
@@ -10317,9 +11223,25 @@ TradPed 0.08
 
 Next, I will subtract this value from each person's TradPed value. This will create a mean deviation.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(OneWay\_df}\SpecialCharTok{$}\NormalTok{TradPed)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
  num [1:114] 4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OneWay\_df}\SpecialCharTok{$}\NormalTok{mdevTP }\OtherTok{\textless{}{-}}\NormalTok{ OneWay\_df}\SpecialCharTok{$}\NormalTok{TradPed }\SpecialCharTok{{-}} \FloatTok{4.06}
+\CommentTok{\#I could also calculate it by using the "mean" function}
+\CommentTok{\#I had to include an na.rm=TRUE; this appears to be connected to missingness}
+\NormalTok{OneWay\_df}\SpecialCharTok{$}\NormalTok{mdevTPb }\OtherTok{\textless{}{-}}\NormalTok{ OneWay\_df}\SpecialCharTok{$}\NormalTok{TradPed }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(OneWay\_df}\SpecialCharTok{$}\NormalTok{TradPed, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(OneWay\_df)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
       Stage TradPed mdevTP     mdevTPb
@@ -10330,6 +11252,17 @@ Next, I will subtract this value from each person's TradPed value. This will cre
 5 Resettled     4.8   0.74  0.74196429
 6 Resettled     3.5  -0.56 -0.55803571
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{OneWay\_df }\OtherTok{\textless{}{-}}\NormalTok{ OneWay\_df }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{m\_devSQTP =}\NormalTok{ mdevTP}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\#so we can see this in the textbook}
+\FunctionTok{head}\NormalTok{(OneWay\_df)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
       Stage TradPed mdevTP     mdevTPb m_devSQTP
@@ -10342,6 +11275,13 @@ Next, I will subtract this value from each person's TradPed value. This will cre
 \end{verbatim}
 
 I will ask for a sum of the mean deviation squared column. The function was not running, sometimes this occurs when there is missing data. While I didn't think that was true, adding ``na.rm = TRUE'' solved the problem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SST }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(OneWay\_df}\SpecialCharTok{$}\NormalTok{m\_devSQTP, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{SST}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 83.0332
@@ -10368,6 +11308,12 @@ We will need:
 
 We can obtain the group means several ways. I think the \emph{psych::describeBy()} function is one of the easiest.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{, }\AttributeTok{data =}\NormalTok{ OneWay\_df, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
          item     group1 vars  n  mean    sd median trimmed   mad min max range
 TradPed1    1     Stable    1 21 4.419 0.544    4.6   4.482 0.593 3.2   5   1.8
@@ -10380,6 +11326,13 @@ TradPed3 -0.601   -0.041 0.113
 \end{verbatim}
 
 Now we can pop these values into the formula.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSM }\OtherTok{\textless{}{-}} \DecValTok{21} \SpecialCharTok{*}\NormalTok{ (}\FloatTok{4.419} \SpecialCharTok{{-}}\FloatTok{4.06}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{44} \SpecialCharTok{*}\NormalTok{ (}\FloatTok{4.045} \SpecialCharTok{{-}} \FloatTok{4.06}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{30} \SpecialCharTok{*}\NormalTok{ (}\FloatTok{3.909} \SpecialCharTok{{-}} \FloatTok{4.06}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{SSM}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 3.400431
@@ -10404,6 +11357,13 @@ We will need:
 
 We can obtain these values from the previous run of the \emph{psych::describeBy()} function.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSR }\OtherTok{\textless{}{-}}\NormalTok{ (}\FloatTok{0.544}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{21} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.029}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{44} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.778}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{47{-}1}\NormalTok{)}
+\NormalTok{SSR}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 79.29195
 \end{verbatim}
@@ -10423,6 +11383,13 @@ The formula for mean square model is \[MS_M = \frac{SS_{M}}{df{_{M}}}\]
   \(df_M\) is \emph{k} - 1 (where \emph{k} is number of groups/levels)
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MSM }\OtherTok{\textless{}{-}} \FloatTok{3.400}\SpecialCharTok{/}\DecValTok{2}
+\NormalTok{MSM}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 1.7
 \end{verbatim}
@@ -10437,11 +11404,25 @@ The formula for mean square residual is \[MS_R = \frac{SS_{R}}{df{_{R}}}\]
   \(df_R\) is \(N - k\) (114 - 3 = 111)
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MSR }\OtherTok{=} \FloatTok{79.292}\SpecialCharTok{/}\DecValTok{111}
+\NormalTok{MSR}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] 0.7143423
 \end{verbatim}
 
 The formula for the \emph{F} ratio is \[F = \frac{MS_{M}}{MS_{R}}\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F }\OtherTok{\textless{}{-}} \FloatTok{1.7}\SpecialCharTok{/}\FloatTok{0.714}
+\NormalTok{F}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 2.380952
@@ -10451,8 +11432,8 @@ The formula for the \emph{F} ratio is \[F = \frac{MS_{M}}{MS_{R}}\]
 
 This ``isn't exactly'' what we found for the same data using R and R packages. However, the algorithms for those packages would take into consideration the unbalanced design (i.e., unequal cell sizes). Such a characteristic is a limitation, but is beyond this lesson.
 
-\hypertarget{what-are-the-degrees-of-freedom-for-your-numerator-an-denominator}{%
-\subsubsection{What are the degrees of freedom for your numerator an denominator?}\label{what-are-the-degrees-of-freedom-for-your-numerator-an-denominator}}
+\hypertarget{what-are-the-degrees-of-freedom-for-your-numerator-and-denominator}{%
+\subsubsection{What are the degrees of freedom for your numerator and denominator?}\label{what-are-the-degrees-of-freedom-for-your-numerator-and-denominator}}
 
 Numerator or \(df_M\): 2 Denominator or \(df_R\): 111
 
@@ -10464,6 +11445,12 @@ We could use use a \href{https://www.statology.org/how-to-read-the-f-distributio
 The closest \emph{N} in the table I am using is 120. If we set alpha at 0.05, our test value would need to exceeed the absolute value of 3.0718.
 
 We can also use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qf}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{111}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 3.078057
@@ -10488,6 +11475,13 @@ The formula to calculate the effect size is \[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]
 \item
   \(SS_R\) was 79.292
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{etaSQ }\OtherTok{\textless{}{-}} \FloatTok{3.400}\SpecialCharTok{/}\FloatTok{79.292}
+\NormalTok{etaSQ}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] 0.04287948
@@ -13130,6 +14124,8 @@ Regardless, your choices should meet you where you are (e.g., in terms of your s
   write a results section to include a figure and tables
 \end{itemize}
 
+Additionally, please complete at least one set of \emph{hand calculations}, that is use the code demonstrated in the chapter to work through the formulas that compute the factorial ANOVA. At this stage in your learning, you may ignore any missingness in your dataset by excluding all rows with missing data in your variables of interest.
+
 \hypertarget{problem-1-play-around-with-this-simulation.-1}{%
 \subsection{Problem \#1: Play around with this simulation.}\label{problem-1-play-around-with-this-simulation.-1}}
 
@@ -13177,15 +14173,696 @@ Points Earned
 \bottomrule\noalign{}
 \endlastfoot
 1. Narrate the research vignette, describing the IV and DV. Miniminally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required. & 5 & \_\_\_\_\_ \\
-2. Simulate (or import) and format data & 5 & \_\_\_\_\_ \\
-3. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-4. Conduct omnibus ANOVA (w effect size) & 5 & \_\_\_\_\_ \\
-5. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
-6. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
-7. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-8 Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 40 & \_\_\_\_\_ \\
+2. Simulate (or import) and format data. & 5 & \_\_\_\_\_ \\
+3. Evaluate statistical assumptions. & 5 & \_\_\_\_\_ \\
+4. Conduct omnibus ANOVA (w effect size). & 5 & \_\_\_\_\_ \\
+5. Conduct one set of follow-up tests; narrate your choice. & 5 & \_\_\_\_\_ \\
+6. Describe approach for managing Type I error. & 5 & \_\_\_\_\_ \\
+7. APA style results with table(s) and figure. & 5 & \_\_\_\_\_ \\
+8. Conduct power analyses to determine the power of the current study and a recommended sample size. & 5 & \_\_\_\_\_ \\
+9. Explanation to grader. & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 45 & \_\_\_\_\_ \\
 \end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5833}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2083}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2083}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Hand Calculations
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Points Poss
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Points Earned
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. & 4 & \\
+3. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design. & 4 & \\
+4. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group. & 4 & \\
+5. Calculate sums of squares total (SST) for each of the factors in the model. & 4 & \\
+6. Calculate the sums of squares for the model (SSM) for each of the factors in the model. & 4 & \\
+7. Calculate the sums of squares residual (SSR) for each of the factors in the model. & 4 & \\
+8. Calculate the mean square models, mean square residuals, and \emph{F}-tests for the main and interaction effects. & 2 & \\
+9. What are the degrees of freedom for your numerator and denominator for the main effects and interaction effect? & 2 & \\
+10. Locate the test critical values for your main effects and interaction effect. & 2 & \\
+11. Are the \emph{F}-tests for the main and interaction effects statistically significant? Why or why not? & 2 & \\
+12. Calculate and interpret the \(\eta^2\) effect sizes for the main and interaction effects. & 2 & \\
+13. Assemble the results into a statistical string. & 4 & \\
+\textbf{Totals* } & 28 & \\
+\end{longtable}
+
+\hypertarget{homeworked-example-6}{%
+\section{Homeworked Example}\label{homeworked-example-6}}
+
+\href{}{Screencast Link}
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.}
+
+\hypertarget{working-the-problem-with-r-and-r-packages-5}{%
+\subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-5}}
+
+\hypertarget{narrate-the-research-vignette-describing-the-iv-and-dv.-miniminally-the-data-should-allow-the-analysis-of-a-2-x-3-or-3-x-2-design.-at-least-one-of-the-problems-you-work-should-have-a-significant-interaction-effect-so-that-follow-up-is-required.}{%
+\subsubsection{Narrate the research vignette, describing the IV and DV. Miniminally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required.}\label{narrate-the-research-vignette-describing-the-iv-and-dv.-miniminally-the-data-should-allow-the-analysis-of-a-2-x-3-or-3-x-2-design.-at-least-one-of-the-problems-you-work-should-have-a-significant-interaction-effect-so-that-follow-up-is-required.}}
+
+I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students in the ANOVA class as a function of:
+
+\begin{itemize}
+\tightlist
+\item
+  stage in the revision (Stable, Transitioning, Resettled), and
+\item
+  Department (CPY vs ORG)
+\end{itemize}
+
+\hypertarget{simulate-or-import-and-format-data.-1}{%
+\subsubsection{Simulate (or import) and format data.}\label{simulate-or-import-and-format-data.-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's first create the ``Stage'' variable that represents the three levels of transition.
+
+First I will map the years to the three levels (factors).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{Stage }\OtherTok{\textless{}{-}}\NormalTok{ plyr}\SpecialCharTok{::}\FunctionTok{mapvalues}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Year, }\AttributeTok{from =} \FunctionTok{c}\NormalTok{(}\DecValTok{2017}\NormalTok{, }\DecValTok{2018}\NormalTok{, }\DecValTok{2019}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2021}\NormalTok{), }\AttributeTok{to =} \FunctionTok{c}\NormalTok{(}\StringTok{"Stable"}\NormalTok{, }\StringTok{"Transition"}\NormalTok{, }\StringTok{"Transition"}\NormalTok{, }\StringTok{"Resettled"}\NormalTok{, }\StringTok{"Resettled"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Then check the structure.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Stage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ chr [1:310] "Resettled" "Resettled" "Resettled" "Resettled" "Resettled" ...
+\end{verbatim}
+
+R is reading the variable as a character, so I need to make it to be an ordered factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{Stage }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Stage, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Stable"}\NormalTok{, }\StringTok{"Transition"}\NormalTok{, }\StringTok{"Resettled"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Let's check the structure again:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(big}\SpecialCharTok{$}\NormalTok{Stage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ Factor w/ 3 levels "Stable","Transition",..: 3 3 3 3 3 3 3 3 3 3 ...
+\end{verbatim}
+
+The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creates a list of the variables that belong to that scale}
+\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ClearResponsibilities\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}EffectiveAnswers\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Feedback\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ClearOrganization\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}ClearPresentation\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Calculates a mean if at least 75\% of the items are non{-}missing; adjusts the calculating when there is missingness}
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, TradPed\_vars], .}\DecValTok{75}\NormalTok{)}
+
+\CommentTok{\#if the scoring script won\textquotesingle{}t run, try this one:}
+\CommentTok{\#big$TradPed \textless{}{-} sjstats::mean\_n(big[, ..TradPed\_vars], .75)}
+\end{Highlighting}
+\end{Shaded}
+
+Each student in the dataset could contribute up to three course evaluations (i.e., one each for ANOVA, multivariate, psychometrics). Including all three would introduce \emph{dependency} into the dataset and violate the assumption of independence. With our variables properly formatted let's create a subset with just the students who took ANOVA.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TwoWay\_df }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(big, Course }\SpecialCharTok{==} \StringTok{"ANOVA"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+Next, let's trim it to just the variables we need.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TwoWay\_df }\OtherTok{\textless{}{-}}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (TwoWay\_df, Stage, Dept, TradPed))}
+\end{Highlighting}
+\end{Shaded}
+
+Although we would handle missing data more carefully in a ``real study,'' I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(TwoWay\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+Before we continue, this data has a hiccup that makes it less than ideal for a 2 x 3 ANOVA. In 2017 everyone enrolled in the CPY section of the course. That is, there was no distinction between CPY and ORG students. In this dataset I do not have another variable with three levels. I will recode some data which MAKES THE STORY UNTRUE, but will allow me to demo 2-way ANOVA (sighhhh). For your homework, you are very welcome to engage in such practices (it's actually good for learning!) however, we would never do so in the analysis of real data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TwoWay\_df }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(TwoWay\_df) }\CommentTok{\#the next operation required non{-}missing data}
+\NormalTok{TwoWay\_df[TwoWay\_df}\SpecialCharTok{$}\NormalTok{Stage }\SpecialCharTok{==} \StringTok{"Stable"} \SpecialCharTok{\&}\NormalTok{ TwoWay\_df}\SpecialCharTok{$}\NormalTok{TradPed }\SpecialCharTok{\textless{}} \FloatTok{4.3}\NormalTok{, }\StringTok{"Dept"}\NormalTok{]}\OtherTok{\textless{}{-}} \StringTok{"ORG"}
+\end{Highlighting}
+\end{Shaded}
+
+Although the homework assignment doesn't require it, I think it's useful to create a figure that shows what I intend to do.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Box2way}\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(TwoWay\_df, }\AttributeTok{x =} \StringTok{"Dept"}\NormalTok{, }\AttributeTok{y =} \StringTok{"TradPed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Stage"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Academic Department"}\NormalTok{,}
+    \AttributeTok{ylab =} \StringTok{"Students\textquotesingle{} Evaluations of Traditional Pedagogy"}\NormalTok{, }\AttributeTok{add =} \StringTok{"jitter"}\NormalTok{,}
+    \AttributeTok{title =} \StringTok{"Course Evaluations as a Function of Department and Stage in Transition"}\NormalTok{)}
+\NormalTok{Box2way}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\hypertarget{evaluate-statistical-assumptions.-1}{%
+\subsubsection{Evaluate statistical assumptions.}\label{evaluate-statistical-assumptions.-1}}
+
+\textbf{Is the dependent variable normally disributed at all levels of the combinations of the levels within the grouping variables?}
+
+I'll start with an inspection of skew and kurtosis for all combinations of the levels of the two grouping variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage }\SpecialCharTok{+}\NormalTok{ Dept, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data =}\NormalTok{ TwoWay\_df, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         item     group1 group2 vars  n  mean    sd median trimmed   mad min
+TradPed1    1     Stable    CPY    1 12 4.817 0.217    4.9   4.840 0.148 4.4
+TradPed2    2 Transition    CPY    1 24 4.317 0.700    4.4   4.400 0.890 2.8
+TradPed3    3  Resettled    CPY    1 36 3.836 0.805    3.9   3.897 0.741 1.8
+TradPed4    4     Stable    ORG    1  9 3.889 0.348    4.0   3.889 0.000 3.2
+TradPed5    5 Transition    ORG    1 20 3.720 1.264    4.1   3.875 1.038 1.0
+TradPed6    6  Resettled    ORG    1 11 4.145 0.658    4.0   4.200 0.593 2.8
+         max range   skew kurtosis    se
+TradPed1 5.0   0.6 -0.615   -1.043 0.063
+TradPed2 5.0   2.2 -0.700   -0.442 0.143
+TradPed3 5.0   3.2 -0.553   -0.181 0.134
+TradPed4 4.2   1.0 -1.185   -0.106 0.116
+TradPed5 5.0   4.0 -0.926   -0.412 0.283
+TradPed6 5.0   2.2 -0.437   -0.377 0.198
+\end{verbatim}
+
+Following Kline's (2016) recommendations, skew for each combination of levels of the two IVs are \textless{} \textbar3.0\textbar. Kurtosis for each combination of levels of the two IVs are \textless{} \textbar10.0\textbar.
+
+The Shapiro-Wilk examines residuals from the ANOVA model. We can quickly/preliminarily run the two-way ANOVA. We do this to produce an object that holds the \emph{model residuals.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TwoWay\_TradPed }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage }\SpecialCharTok{*}\NormalTok{ Dept, TwoWay\_df)}
+\FunctionTok{summary}\NormalTok{(TwoWay\_TradPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+             Df Sum Sq Mean Sq F value Pr(>F)  
+Stage         2   3.79  1.8974   2.868 0.0612 .
+Dept          1   3.07  3.0739   4.647 0.0334 *
+Stage:Dept    2   6.04  3.0215   4.567 0.0125 *
+Residuals   106  70.12  0.6615                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+The \emph{residuals()} function serves to extract the residuals. We can apply the model-baesd \emph{shapiro.test()} function from base R to see if the model residuals are non-normally distributed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resid\_TradPed }\OtherTok{\textless{}{-}} \FunctionTok{residuals}\NormalTok{(TwoWay\_TradPed)}
+\FunctionTok{shapiro.test}\NormalTok{(resid\_TradPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Shapiro-Wilk normality test
+
+data:  resid_TradPed
+W = 0.94245, p-value = 0.0001119
+\end{verbatim}
+
+A statistically significant Shapiro-Wilks' test of normality suggests that we violated the assumption \(W = 0.942, p = 0.001\).
+
+Let's plot the residuals
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(resid\_TradPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-95-1.pdf} The histogram does look somewhat different (negatively skewed) from a normal distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(resid\_TradPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-96-1.pdf}
+
+The dots stray from the expected diagonal; this also visualizes the non-normality of the data.
+
+Summary so far:
+
+\begin{quote}
+Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution \(W = 0.942, p = 0.001\).
+\end{quote}
+
+\textbf{Are there outliers?}
+
+Given the non-normality of the data, we can use the following procedure to see if there are outliers that could be transformed, truncated, or removed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{TwoWay\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{identify\_outliers}\NormalTok{(TradPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+       Stage Dept TradPed is.outlier is.extreme
+1  Resettled  CPY     1.8       TRUE      FALSE
+2 Transition  ORG     1.0       TRUE      FALSE
+3 Transition  ORG     1.4       TRUE      FALSE
+4 Transition  ORG     1.6       TRUE      FALSE
+\end{verbatim}
+
+There are four outliers; none are extreme. Given that these are all on the low-side (of a negatively skewed distribution where most scores are higher), I feel it is important to retain them as they reflect more students' experiences. If this were for something other than a homework demonstration, I might also take a look at the case to see if there was evidence of inattention or something else.
+
+\textbf{Are the variances of the dependent variable similar across the all combinations of the levels within the grouping variables?}
+
+We can evaluate the homogeneity of variance test with Levene's test for the equality of error variances.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{levene\_test}\NormalTok{(TwoWay\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Dept }\SpecialCharTok{*}\NormalTok{ Stage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1 x 4
+    df1   df2 statistic        p
+  <int> <int>     <dbl>    <dbl>
+1     5   106      4.55 0.000851
+\end{verbatim}
+
+Levene's test has indicated a violation of the homogeneity of variance assumption \((F[5, 106] = 4.5489, p < .001)\). This is not surprising. The boxplots shows some widely varying variances.
+
+Do we have to stop? If cell sizes are reasonably large (e.g., at least 15) and balanced (equal), ANOVA is a relatively robust to violations of normality. Unfortunately, we don't have 15 in all cells AND our cells are unequal AND this was not an experiment. So\ldots..this probably isn't the best approach (but it'll work for a class demo).
+
+\begin{quote}
+A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and on traditional pedagogy course evaluation ratings. Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution \(W = 0.942, p = 0.001\). Further, Levene's test has indicated a violation of the homogeneity of variance assumption \((F[5, 106] = 4.5489, p < .001)\). Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+\end{quote}
+
+\hypertarget{conduct-omnibus-anova-w-effect-size.-1}{%
+\subsubsection{Conduct omnibus ANOVA (w effect size).}\label{conduct-omnibus-anova-w-effect-size.-1}}
+
+We can use the \emph{rstatix::anova\_test()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{omnibus2w }\OtherTok{\textless{}{-}}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{anova\_test}\NormalTok{(TwoWay\_df, TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Dept }\SpecialCharTok{*}\NormalTok{ Stage, }\AttributeTok{type =} \StringTok{"2"}\NormalTok{, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{omnibus2w}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ANOVA Table (type II tests)
+
+      Effect   SSn    SSd DFn DFd     F     p p<.05   ges
+1       Dept 3.074 70.121   1 106 4.647 0.033     * 0.042
+2      Stage 4.784 70.121   2 106 3.616 0.030     * 0.064
+3 Dept:Stage 6.043 70.121   2 106 4.567 0.013     * 0.079
+\end{verbatim}
+
+Let's write the F strings from the above table:
+
+\begin{itemize}
+\tightlist
+\item
+  Department main effect: \(F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042\)
+\item
+  Stage main effect: \(F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064\)
+\item
+  Interaction effect: \(F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079\)
+\end{itemize}
+
+So far we have statistically significant effects for the main and interaction effects. Here are the results so far:
+
+\begin{quote}
+Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, \(F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042\); the main effect for stage in transition, in transition \(F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064\), and the interaction effect, \(F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079\).
+\end{quote}
+
+\hypertarget{conduct-one-set-of-follow-up-tests-narrate-your-choice.-1}{%
+\subsubsection{Conduct one set of follow-up tests; narrate your choice.}\label{conduct-one-set-of-follow-up-tests-narrate-your-choice.-1}}
+
+There are so many choices for following up a significant interaction effect. Regardless, we always follow a statistically significant interaction effect with an analysis of simple main effects. I think I am interested in the simple main effects for stage within department. This means I will conduct one-way ANOVAS for CPY and ORG, separately. And, if either is significant, I will look for differences across the stages.
+
+Although we could do something more complicated (like orthogonal contrast coding), given that those completing homework are often having early experiences with ANOVA, I will choose a more streamlined path by examining the the simple main effect of stage within department.
+
+Functionally, this computes three one-way ANOVAs, comparing the three stages within each of the departments within each of the three stages of transition. Functionally, this will produce two one-way ANOVAs. If the result is statistically significant, we will need to follow-up with more testing.
+
+The \emph{rstatix::anova\_test} does not allow me to specify a control for Type I error. Therefore, if I wanted to do so, I would need to monitor it outside of the R package. I could evaluate each of the \emph{p} values for the two one-way ANOVAs at 0.025 (05/2). Rather than tracking Type I error at this level, I will wait and do so when I get to the pairwise comparisons that follow a statistically significant one-way ANOVA.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TwoWay\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{group\_by}\NormalTok{(Dept)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{anova\_test}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 2 x 8
+  Dept  Effect   DFn   DFd     F        p `p<.05`   ges
+* <chr> <chr>  <dbl> <dbl> <dbl>    <dbl> <chr>   <dbl>
+1 CPY   Stage      2    69 9.55  0.000218 "*"     0.217
+2 ORG   Stage      2    37 0.668 0.519    ""      0.035
+\end{verbatim}
+
+Results suggest statistically significant differences in department across the stages within the CPY department, but not the ORG department:
+
+\begin{itemize}
+\tightlist
+\item
+  For CPY: \(F(2, 69) = 9.548, p < 0.001, \eta^2 = 0.217\)
+\item
+  For ORG: \(F(2, 37) = 0.668, p = 0.519, \eta^2 = 0.315\)
+\end{itemize}
+
+I would write up this stage of the analysis this way:
+
+\begin{quote}
+To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent (\(F[2, 69] = 9.548, p < 0.001, \eta^2 = 0.217\)), but not for the ORG department (\(F[2, 37] = 0.668, p = 0.519, \eta^2 = 0.315\)).
+\end{quote}
+
+Because there are three stages of transition, we need to followup with pairwise comparisons to see where the differences lie. Because I want to results from the significance tests to update the figure, I will save the output as an object.
+
+Although we only needed to compare 3 pairwise tests, this test (and figure) will compute them all. The Holm's Sequential Bonferroni is a very reasonable approach (balancing Type I error with sensibility) and so I will use it to evaluate the six pairwise comparisons that will be produced.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwTRwiDP }\OtherTok{\textless{}{-}}\NormalTok{ TwoWay\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{group\_by}\NormalTok{(Dept) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{emmeans\_test}\NormalTok{(TradPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Stage, }\AttributeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{)}
+\NormalTok{pwTRwiDP}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 10
+  Dept  term  .y.     group1 group2    df statistic       p   p.adj p.adj.signif
+* <fct> <chr> <chr>   <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
+1 CPY   Stage TradPed Stable Trans~   106     1.74  8.50e-2 0.0850  ns          
+2 CPY   Stage TradPed Stable Reset~   106     3.62  4.59e-4 0.00138 **          
+3 CPY   Stage TradPed Trans~ Reset~   106     2.24  2.70e-2 0.0541  ns          
+4 ORG   Stage TradPed Stable Trans~   106     0.517 6.06e-1 0.969   ns          
+5 ORG   Stage TradPed Stable Reset~   106    -0.702 4.84e-1 0.969   ns          
+6 ORG   Stage TradPed Trans~ Reset~   106    -1.39  1.66e-1 0.499   ns          
+\end{verbatim}
+
+Consistent with the significant one-way ANOVA for the ORG factor, there were non-significant differences between all pairs of stages. Within the CPY student evaluations, there were statistically significant differences between stable and resettled. Had we not controlled for Type I error, there would have also been significant differences between transition and resettled.
+
+Let's update our figure with a representation of these pairwise comparisons.
+
+Here'w how I would assemble the entire APA style results:
+
+\begin{quote}
+A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and on traditional pedagogy course evaluation ratings. Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution \(W = 0.942, p = 0.001\). Further, Levene's test has indicated a violation of the homogeneity of variance assumption \((F[5, 106] = 4.5489, p < .001)\). Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+\end{quote}
+
+\begin{quote}
+Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, \(F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042\); the main effect for stage in transition, in transition \(F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064\), and the interaction effect, \(F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079\).
+\end{quote}
+
+\begin{quote}
+To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent (\(F[2, 69] = 9.548, p < 0.001, \eta^2 = 0.217\)), but not for the ORG department (\(F[2, 37] = 0.668, p = 0.519, \eta^2 = 0.315\)).
+\end{quote}
+
+\begin{quote}
+We followed the significant one-way ANOVA with pairwise comparisons between the groups using the estimated marginal means. We specified the Holm's sequential Bonferroni for managing Type I error. Only the comparison between the stable and resettled conditions within CPY students were statistically significantly different \(t(106) = 3.6167765, p = 0.001\). Cell and marginal means and standard deviations are presented in Table 1; results are illustrated in Figure 1.
+\end{quote}
+
+\hypertarget{describe-approach-for-managing-type-i-error.-1}{%
+\subsubsection{Describe approach for managing Type I error.}\label{describe-approach-for-managing-type-i-error.-1}}
+
+I managed Type I error with the Holm's sequential Bonferroni. The Holm's is less conservative than the traditional Bonferroni because it adjusts the thresshold for statistical significance in a stepwise manner that takes into consideration the rank order of the \emph{p} values and the number of comparisons made.
+
+\hypertarget{apa-style-results-with-tables-and-figure.-1}{%
+\subsubsection{APA style results with table(s) and figure.}\label{apa-style-results-with-tables-and-figure.-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.2way.table}\NormalTok{(Dept, Stage, TradPed, }\AttributeTok{data =}\NormalTok{ TwoWay\_df, }\AttributeTok{filename =} \StringTok{"2Way.doc"}\NormalTok{, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.marginal.means =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{landscape =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+
+Table 1 
+
+Means and standard deviations for TradPed as a function of a 2(Dept) X 3(Stage) design 
+
+           Stage                                                  
+          Stable      Transition      Resettled      Marginal     
+     Dept      M   SD          M   SD         M   SD        M   SD
+      CPY   4.82 0.22       4.32 0.70      3.84 0.81     4.16 0.79
+      ORG   3.89 0.35       3.72 1.26      4.15 0.66     3.88 0.97
+ Marginal   4.42 0.54       4.05 1.03      3.91 0.78              
+
+Note. M and SD represent mean and standard deviation, respectively. 
+Marginal indicates the means and standard deviations pertaining to main effects. 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwTRwiDP }\OtherTok{\textless{}{-}}\NormalTok{ pwTRwiDP }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Dept"}\NormalTok{)  }\CommentTok{\#x should be whatever the variable was used in the group\_by argument }
+\NormalTok{Box2way }\OtherTok{\textless{}{-}}\NormalTok{ Box2way }\SpecialCharTok{+}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_pvalue\_manual}\NormalTok{(pwTRwiDP, }\AttributeTok{label =} \StringTok{"p.adj.signif"}\NormalTok{, }\AttributeTok{tip.length =} \FloatTok{0.02}\NormalTok{, }\AttributeTok{hide.ns =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{y.position =} \FunctionTok{c}\NormalTok{(}\FloatTok{5.3}\NormalTok{))}
+\NormalTok{Box2way}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{08-FactorialANOVA_files/figure-latex/unnamed-chunk-103-1.pdf} \#\#\#\# Conduct power analyses to determine the power of the current study and a recommended sample size.
+
+The \emph{pwr.2way()} and \emph{ss.2way()} functions require the following:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{a} number of groups in Factor A
+\item
+  \textbf{b} number of groups in Factor B
+\item
+  \textbf{alpha} significant level (Type I error probability)
+\item
+  \textbf{beta} Type II error probability (Power = 1 - beta; traditionally set at .1 or .2)
+\item
+  \textbf{f.A} the \emph{f} effect size of Factor A
+\item
+  \textbf{f.B} the \emph{f} effect size of Factor B
+\item
+  \textbf{B} Iteration times, default is 100
+\end{itemize}
+
+We need to convert our effect size (\(\eta^2\)) for the \emph{interaction} to \(f\) effect size (this is not the same as the \emph{F} test). The \emph{effectsize} package has a series of converters. We can use the \emph{eta2\_to\_f()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.042}\NormalTok{)  }\CommentTok{\#FactorA {-}{-} Dept}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.2093832
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.064}\NormalTok{)  }\CommentTok{\#Factor B {-}{-} Stage}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.2614882
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.013}\NormalTok{)  }\CommentTok{\#interaction}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.114766
+\end{verbatim}
+
+The size.A and size.B are the sample size per group within the factor. Because ours differ, i divided the N by the number of groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{12}\SpecialCharTok{+}\DecValTok{24}\SpecialCharTok{+}\DecValTok{36}\SpecialCharTok{+}\DecValTok{9}\SpecialCharTok{+}\DecValTok{20}\SpecialCharTok{+}\DecValTok{11}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 112
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{12}\SpecialCharTok{+}\DecValTok{24}\SpecialCharTok{+}\DecValTok{36}\SpecialCharTok{+}\DecValTok{9}\SpecialCharTok{+}\DecValTok{20}\SpecialCharTok{+}\DecValTok{11}\NormalTok{)}\SpecialCharTok{/}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 37.33333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{12}\SpecialCharTok{+}\DecValTok{24}\SpecialCharTok{+}\DecValTok{36}\SpecialCharTok{+}\DecValTok{9}\SpecialCharTok{+}\DecValTok{20}\SpecialCharTok{+}\DecValTok{11}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 56
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr2}\SpecialCharTok{::}\FunctionTok{pwr.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{2}\NormalTok{, }\AttributeTok{b =} \DecValTok{3}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{size.A =} \DecValTok{37}\NormalTok{, }\AttributeTok{size.B =} \DecValTok{56}\NormalTok{, }\AttributeTok{f.A =} \FloatTok{0.042}\NormalTok{, }\AttributeTok{f.B =} \FloatTok{0.063}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+     Balanced two-way analysis of variance power calculation 
+
+              a = 2
+              b = 3
+            n.A = 37
+            n.B = 56
+      sig.level = 0.05
+        power.A = 0.0955199
+        power.B = 0.1618335
+          power = 0.0955199
+
+NOTE: power is the minimum power among two factors
+\end{verbatim}
+
+At 10\% (Dept), 16\% (Stage), and 10\% (interaction), our power to detect statistically significant main and interaction effects was low.
+
+I will use a different function to estimate what sample size would be sufficiently powerful. In this syntax:
+
+\begin{itemize}
+\tightlist
+\item
+  beta is the Type II error probability (Power = 1-beta); usually set at 80
+\item
+  B is the iteration times, the default is 100
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr2}\SpecialCharTok{::}\FunctionTok{ss.2way}\NormalTok{(}\AttributeTok{a =} \DecValTok{2}\NormalTok{, }\AttributeTok{b =} \DecValTok{3}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{beta =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{f.A =} \FloatTok{0.042}\NormalTok{, }\AttributeTok{f.B =} \FloatTok{0.063}\NormalTok{, }\AttributeTok{B =} \DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+     Balanced two-way analysis of variance sample size adjustment 
+
+              a = 2
+              b = 3
+      sig.level = 0.05
+          power = 0.2
+              n = 101
+
+NOTE: n is number in each group, total sample = 606
+\end{verbatim}
+
+This recommends a sample size of 606; 100 in each group.
+
+\hypertarget{hand-calculations-5}{%
+\subsection{Hand Calculations}\label{hand-calculations-5}}
+
+\hypertarget{calculate-sums-of-squares-total-sst-for-the-omnibus-anova.-steps-in-this-calculation-must-include-calculating-a-grand-mean-and-creating-variables-representing-the-mean-deviation-and-mean-deviation-squared.}{%
+\subsubsection{Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.}\label{calculate-sums-of-squares-total-sst-for-the-omnibus-anova.-steps-in-this-calculation-must-include-calculating-a-grand-mean-and-creating-variables-representing-the-mean-deviation-and-mean-deviation-squared.}}
+
+Here is the formula I will use for calculating the sums of squares total: \[SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}\]
+
+I will use \emph{psych::describe()} to obtain the overall mean:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(TwoWay\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        vars   n mean   sd median trimmed  mad min max range  skew kurtosis
+Stage*     1 112 2.23 0.75    2.0    2.29 1.48   1   3     2 -0.40    -1.14
+Dept*      2 112 1.36 0.48    1.0    1.32 0.00   1   2     1  0.59    -1.67
+TradPed    3 112 4.06 0.86    4.2    4.17 0.89   1   5     4 -1.14     1.25
+          se
+Stage*  0.07
+Dept*   0.05
+TradPed 0.08
+\end{verbatim}
+
+\hypertarget{calculate-the-sums-of-squares-for-the-model-ssm-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-group-means-for-all-combinations-of-the-levels-in-the-factorial-design.}{%
+\subsubsection{Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.}\label{calculate-the-sums-of-squares-for-the-model-ssm-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-group-means-for-all-combinations-of-the-levels-in-the-factorial-design.}}
+
+\hypertarget{calculate-the-sums-of-squares-residual-ssr-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-the-variance-for-each-group.}{%
+\subsubsection{Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.}\label{calculate-the-sums-of-squares-residual-ssr-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-the-variance-for-each-group.}}
+
+\hypertarget{calculate-sums-of-squares-total-sst-for-each-of-the-factors-in-the-model.}{%
+\subsubsection{Calculate sums of squares total (SST) for each of the factors in the model.}\label{calculate-sums-of-squares-total-sst-for-each-of-the-factors-in-the-model.}}
+
+\hypertarget{calculate-the-sums-of-squares-for-the-model-ssm-for-each-of-the-factors-in-the-model.}{%
+\subsubsection{Calculate the sums of squares for the model (SSM) for each of the factors in the model.}\label{calculate-the-sums-of-squares-for-the-model-ssm-for-each-of-the-factors-in-the-model.}}
+
+\hypertarget{calculate-the-sums-of-squares-residual-ssr-for-each-of-the-factors-in-the-model.}{%
+\subsubsection{Calculate the sums of squares residual (SSR) for each of the factors in the model.}\label{calculate-the-sums-of-squares-residual-ssr-for-each-of-the-factors-in-the-model.}}
+
+\hypertarget{calculate-the-mean-square-models-mean-square-residuals-and-f-tests-for-the-main-and-interaction-effects.}{%
+\subsubsection{\texorpdfstring{Calculate the mean square models, mean square residuals, and \emph{F}-tests for the main and interaction effects.}{Calculate the mean square models, mean square residuals, and F-tests for the main and interaction effects.}}\label{calculate-the-mean-square-models-mean-square-residuals-and-f-tests-for-the-main-and-interaction-effects.}}
+
+\hypertarget{what-are-the-degrees-of-freedom-for-your-numerator-and-denominator-for-the-main-effects-and-interaction-effect}{%
+\subsubsection{What are the degrees of freedom for your numerator and denominator for the main effects and interaction effect?}\label{what-are-the-degrees-of-freedom-for-your-numerator-and-denominator-for-the-main-effects-and-interaction-effect}}
+
+\hypertarget{locate-the-test-critical-values-for-your-main-effects-and-interaction-effect.}{%
+\subsubsection{Locate the test critical values for your main effects and interaction effect.}\label{locate-the-test-critical-values-for-your-main-effects-and-interaction-effect.}}
+
+\hypertarget{are-the-f-tests-for-the-main-and-interaction-effects-statistically-significant-why-or-why-not}{%
+\subsubsection{\texorpdfstring{Are the \emph{F}-tests for the main and interaction effects statistically significant? Why or why not?}{Are the F-tests for the main and interaction effects statistically significant? Why or why not?}}\label{are-the-f-tests-for-the-main-and-interaction-effects-statistically-significant-why-or-why-not}}
+
+\hypertarget{calculate-and-interpret-the-eta2-effect-sizes-for-the-main-and-interaction-effects.}{%
+\subsubsection{\texorpdfstring{Calculate and interpret the \(\eta^2\) effect sizes for the main and interaction effects.}{Calculate and interpret the \textbackslash eta\^{}2 effect sizes for the main and interaction effects.}}\label{calculate-and-interpret-the-eta2-effect-sizes-for-the-main-and-interaction-effects.}}
+
+\hypertarget{assemble-the-results-into-a-statistical-string.-2}{%
+\subsubsection{Assemble the results into a statistical string.}\label{assemble-the-results-into-a-statistical-string.-2}}
 
 \hypertarget{Repeated}{%
 \chapter{One-Way Repeated Measures ANOVA}\label{Repeated}}

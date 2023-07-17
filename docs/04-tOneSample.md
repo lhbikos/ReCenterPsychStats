@@ -1031,13 +1031,23 @@ From my course evaluation data, I want to ask the question, "Are ratings for the
 The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
 
 
+```r
+ReCdf <- readRDS("ReC.rds")
+```
 
 Let's first trim it to just students who took ANOVA
 
 
+```r
+JustANOVA <- subset(ReCdf, Course == "ANOVA") 
+```
 
 And further trim to our variable of interest
 
+
+```r
+library(tidyverse)
+```
 
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -1052,14 +1062,26 @@ And further trim to our variable of interest
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
+```r
+tiny1 <- JustANOVA %>%
+    dplyr::select (OvInstructor)
+```
+
 And further trim to non-missing data
 
 
+```r
+tiny1 <- na.omit(tiny1)
+```
 
 
 * Is the sample variable on a continuous scale of measurement and formatted as *num* or *int* in R?
 * Is the external score evaluated on the same continuous scale?
 
+
+```r
+str(tiny1$OvInstructor)
+```
 
 ```
  int [1:113] 5 4 4 3 5 3 5 4 3 5 ...
@@ -1072,6 +1094,10 @@ Yes. The format for the OvInstructor variable is integer (which is numerical); t
 * Are the skew and kurtosis values within the range expected?
 * Does the distribution of the variable differ significantly from a normal distribution?
 
+
+```r
+pastecs::stat.desc(tiny1$OvInstructor, norm=TRUE)
+```
 
 ```
                nbr.val               nbr.null                 nbr.na 
@@ -1101,6 +1127,10 @@ The Shapiro wilk test value is 7.728 (*p* < 0.001). This significant value sugge
 First, comparison to CPY
 
 
+```r
+rstatix::t_test(tiny1, OvInstructor ~ 1, mu = 4.4, detailed = TRUE)
+```
+
 ```
 # A tibble: 1 × 12
   estimate .y.     group1 group2     n statistic      p    df conf.low conf.high
@@ -1115,6 +1145,10 @@ $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$
 Let's interpret the results.  With 112 degrees of freedom, our *t* value is -2.245. Because the *p* value is less than .05, this is statistically significant. This means that my course evaluations in ANOVA were statistically significantly lower than the average for CPY.  We are 95% confident that the true course evaluation mean (for my courses) fell between 3.997 and 4.374.
 
 Let's calculate the effect size. we will use a Cohen's *d* which is interpreted in standard deviation units. 
+
+```r
+rstatix::cohens_d(tiny1, OvInstructor ~ 1, ref.group = NULL, mu = 4.4)
+```
 
 ```
 # A tibble: 1 × 6
@@ -1136,12 +1170,23 @@ $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374), d = -0.211$
 
 >A one-sample *t*-test was used to evaluate whether the *overall instructor* course evaluation ratings from the ANOVA courses were statistically significant from the departmental averages for the Clinical (CPY; *M* = 4.4) department.  The sample mean for the ANOVA course evaluations was 4.186 (*SD* = 1.013).Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$,  the effect size was quite small $(d = -0.211)$. A distribution of the ANOVA course ratings is found in Figure 1.
 
+
+```r
+ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings", xlab = FALSE,
+    add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
+```
+
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-57-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size
 
 A quick reminder that the *d* in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen's d that we just calculated.
 
+
+```r
+pwr::pwr.t.test(d = -0.211	, n = 113, power = NULL, sig.level = 0.05,
+    type = "one.sample", alternative = "two.sided")
+```
 
 ```
 
@@ -1156,6 +1201,11 @@ A quick reminder that the *d* in the power analysis is the difference between th
 
 For the comparison to the CPY departmental average, power was 60%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60% chance of detecting a statistically significant effect if there was one.
 
+
+```r
+pwr::pwr.t.test(d = -0.211, n = NULL, power = 0.8, sig.level = 0.05,
+    type = "one.sample", alternative = "two.sided")
+```
 
 ```
 
@@ -1185,6 +1235,10 @@ $$
 I will continue with the *tiny1* dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.
 
 
+```r
+mean(tiny1$OvInstructor, na.rm=TRUE)
+```
+
 ```
 [1] 4.185841
 ```
@@ -1194,8 +1248,26 @@ The mean of my benchmarking sample is 4.4. This number is a "departmental standa
 #### Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared
 
 
+```r
+#first the mean
+tiny1$M_OvInst <- mean(tiny1$OvInstructor, na.rm=TRUE)
+#second the mean deviation
+tiny1$Mdev_OvInst <- (tiny1$OvInstructor-tiny1$M_OvInst)
+#third the mean deviation squared
+tiny1$mdev2_OvInst <- (tiny1$Mdev_OvInst  * tiny1$Mdev_OvInst)
+#fourth the variance
+var_OvInst <- sum(tiny1$mdev2_OvInst /((nrow(tiny1) - 1)))
+var_OvInst
+```
+
 ```
 [1] 1.027655
+```
+
+```r
+#finally the standard deviation
+sd_OvInst <- sqrt(var_OvInst)
+sd_OvInst
 ```
 
 ```
@@ -1203,6 +1275,10 @@ The mean of my benchmarking sample is 4.4. This number is a "departmental standa
 ```
 The variance is 1.028; the standard deviation is 1.014.
 
+
+```r
+sd(tiny1$OvInstructor)#checking my work
+```
 
 ```
 [1] 1.013733
@@ -1217,6 +1293,10 @@ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 $$
 
 
+```r
+(4.185841 - 4.4)/(1.013733/sqrt(113))
+```
+
 ```
 [1] -2.245701
 ```
@@ -1225,6 +1305,10 @@ $$
 
 For the one-sample *t*-test, $df = N - 1$. In our case
 
+
+```r
+113 - 1
+```
 
 ```
 [1] 112
@@ -1237,6 +1321,10 @@ A 2-tail test, when p - .05, with ~120 individuals is 1.98
 
 Or, this code:
 
+
+```r
+qt(p = 0.05/2, df = 113, lower.tail = FALSE)
+```
 
 ```
 [1] 1.98118
@@ -1252,8 +1340,16 @@ Here is a reminder of the formula:
 $$\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})$$
 
 
+```r
+(4.185841) - ((1.98118) * (1.013733/sqrt(113)))
+```
+
 ```
 [1] 3.996908
+```
+
+```r
+(4.185841) + ((1.98118) * (1.013733/sqrt(113)))
 ```
 
 ```
@@ -1268,8 +1364,18 @@ A reminder of the two formula:
 
 $$d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}$$
 
+```r
+# First formula
+(4.185841 - 4.4)/1.013733
+```
+
 ```
 [1] -0.2112578
+```
+
+```r
+# Second formula
+-2.245701/sqrt(113)
 ```
 
 ```

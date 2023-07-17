@@ -512,6 +512,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.9.3" data-path="between.html"><a href="between.html#problem-3-try-something-entirely-new.-1"><i class="fa fa-check"></i><b>8.9.3</b> Problem #3: Try something entirely new.</a></li>
 <li class="chapter" data-level="8.9.4" data-path="between.html"><a href="between.html#grading-rubric-4"><i class="fa fa-check"></i><b>8.9.4</b> Grading Rubric</a></li>
 </ul></li>
+<li class="chapter" data-level="8.10" data-path="between.html"><a href="between.html#homeworked-example-6"><i class="fa fa-check"></i><b>8.10</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="between.html"><a href="between.html#working-the-problem-with-r-and-r-packages-5"><i class="fa fa-check"></i><b>8.10.1</b> Working the Problem with R and R Packages</a></li>
+<li class="chapter" data-level="8.10.2" data-path="between.html"><a href="between.html#hand-calculations-5"><i class="fa fa-check"></i><b>8.10.2</b> Hand Calculations</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="Repeated.html"><a href="Repeated.html"><i class="fa fa-check"></i><b>9</b> One-Way Repeated Measures ANOVA</a>
 <ul>
@@ -718,32 +723,32 @@ div.csl-indent {
 <div id="data-simulation-7" class="section level3 unnumbered hasAnchor">
 <h3>Data Simulation<a href="RMmultiv.html#data-simulation-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup). The sript produces “long” and “wide” forms are created.</p>
-<div class="sourceCode" id="cb1067"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1067-1"><a href="RMmultiv.html#cb1067-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
-<span id="cb1067-2"><a href="RMmultiv.html#cb1067-2" tabindex="-1"></a><span class="co"># gives me 8 numbers, assigning each number 3 consecutive spots, in</span></span>
-<span id="cb1067-3"><a href="RMmultiv.html#cb1067-3" tabindex="-1"></a><span class="co"># sequence</span></span>
-<span id="cb1067-4"><a href="RMmultiv.html#cb1067-4" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="at">each =</span> <span class="dv">3</span>)))</span>
-<span id="cb1067-5"><a href="RMmultiv.html#cb1067-5" tabindex="-1"></a><span class="co"># gives me a column of 24 numbers with the specified Ms and SD</span></span>
-<span id="cb1067-6"><a href="RMmultiv.html#cb1067-6" tabindex="-1"></a>Resilience <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">24</span>, <span class="at">mean =</span> <span class="fu">c</span>(<span class="fl">5.7</span>, <span class="fl">6.21</span>, <span class="fl">6.26</span>), <span class="at">sd =</span> <span class="fu">c</span>(<span class="fl">0.88</span>, <span class="fl">0.79</span>, <span class="fl">0.37</span>))</span>
-<span id="cb1067-7"><a href="RMmultiv.html#cb1067-7" tabindex="-1"></a><span class="co"># repeats pre, post, follow-up once each, 8 times</span></span>
-<span id="cb1067-8"><a href="RMmultiv.html#cb1067-8" tabindex="-1"></a>Wave <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>, <span class="st">&quot;FollowUp&quot;</span>), <span class="at">each =</span> <span class="dv">1</span>, <span class="dv">8</span>)</span>
-<span id="cb1067-9"><a href="RMmultiv.html#cb1067-9" tabindex="-1"></a>Amodeo_long <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Wave, Resilience)</span>
-<span id="cb1067-10"><a href="RMmultiv.html#cb1067-10" tabindex="-1"></a></span>
-<span id="cb1067-11"><a href="RMmultiv.html#cb1067-11" tabindex="-1"></a>Amodeo_long<span class="sc">$</span>Wave <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_long<span class="sc">$</span>Wave, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>,</span>
-<span id="cb1067-12"><a href="RMmultiv.html#cb1067-12" tabindex="-1"></a>    <span class="st">&quot;FollowUp&quot;</span>))</span>
-<span id="cb1067-13"><a href="RMmultiv.html#cb1067-13" tabindex="-1"></a></span>
-<span id="cb1067-14"><a href="RMmultiv.html#cb1067-14" tabindex="-1"></a><span class="co"># Create a new df (Amodeo_wide) Identify the original df We are</span></span>
-<span id="cb1067-15"><a href="RMmultiv.html#cb1067-15" tabindex="-1"></a><span class="co"># telling it to connect the values of the Resilience variable its</span></span>
-<span id="cb1067-16"><a href="RMmultiv.html#cb1067-16" tabindex="-1"></a><span class="co"># respective Wave designation</span></span>
-<span id="cb1067-17"><a href="RMmultiv.html#cb1067-17" tabindex="-1"></a>Amodeo_wide <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Amodeo_long, <span class="at">formula =</span> ID <span class="sc">~</span> Wave,</span>
-<span id="cb1067-18"><a href="RMmultiv.html#cb1067-18" tabindex="-1"></a>    <span class="at">value.var =</span> <span class="st">&quot;Resilience&quot;</span>)</span>
-<span id="cb1067-19"><a href="RMmultiv.html#cb1067-19" tabindex="-1"></a><span class="co"># doublecheck to see if they did what you think</span></span>
-<span id="cb1067-20"><a href="RMmultiv.html#cb1067-20" tabindex="-1"></a><span class="fu">str</span>(Amodeo_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb1264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1264-1"><a href="RMmultiv.html#cb1264-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
+<span id="cb1264-2"><a href="RMmultiv.html#cb1264-2" tabindex="-1"></a><span class="co"># gives me 8 numbers, assigning each number 3 consecutive spots, in</span></span>
+<span id="cb1264-3"><a href="RMmultiv.html#cb1264-3" tabindex="-1"></a><span class="co"># sequence</span></span>
+<span id="cb1264-4"><a href="RMmultiv.html#cb1264-4" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="at">each =</span> <span class="dv">3</span>)))</span>
+<span id="cb1264-5"><a href="RMmultiv.html#cb1264-5" tabindex="-1"></a><span class="co"># gives me a column of 24 numbers with the specified Ms and SD</span></span>
+<span id="cb1264-6"><a href="RMmultiv.html#cb1264-6" tabindex="-1"></a>Resilience <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">24</span>, <span class="at">mean =</span> <span class="fu">c</span>(<span class="fl">5.7</span>, <span class="fl">6.21</span>, <span class="fl">6.26</span>), <span class="at">sd =</span> <span class="fu">c</span>(<span class="fl">0.88</span>, <span class="fl">0.79</span>, <span class="fl">0.37</span>))</span>
+<span id="cb1264-7"><a href="RMmultiv.html#cb1264-7" tabindex="-1"></a><span class="co"># repeats pre, post, follow-up once each, 8 times</span></span>
+<span id="cb1264-8"><a href="RMmultiv.html#cb1264-8" tabindex="-1"></a>Wave <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>, <span class="st">&quot;FollowUp&quot;</span>), <span class="at">each =</span> <span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb1264-9"><a href="RMmultiv.html#cb1264-9" tabindex="-1"></a>Amodeo_long <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Wave, Resilience)</span>
+<span id="cb1264-10"><a href="RMmultiv.html#cb1264-10" tabindex="-1"></a></span>
+<span id="cb1264-11"><a href="RMmultiv.html#cb1264-11" tabindex="-1"></a>Amodeo_long<span class="sc">$</span>Wave <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_long<span class="sc">$</span>Wave, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>,</span>
+<span id="cb1264-12"><a href="RMmultiv.html#cb1264-12" tabindex="-1"></a>    <span class="st">&quot;FollowUp&quot;</span>))</span>
+<span id="cb1264-13"><a href="RMmultiv.html#cb1264-13" tabindex="-1"></a></span>
+<span id="cb1264-14"><a href="RMmultiv.html#cb1264-14" tabindex="-1"></a><span class="co"># Create a new df (Amodeo_wide) Identify the original df We are</span></span>
+<span id="cb1264-15"><a href="RMmultiv.html#cb1264-15" tabindex="-1"></a><span class="co"># telling it to connect the values of the Resilience variable its</span></span>
+<span id="cb1264-16"><a href="RMmultiv.html#cb1264-16" tabindex="-1"></a><span class="co"># respective Wave designation</span></span>
+<span id="cb1264-17"><a href="RMmultiv.html#cb1264-17" tabindex="-1"></a>Amodeo_wide <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Amodeo_long, <span class="at">formula =</span> ID <span class="sc">~</span> Wave,</span>
+<span id="cb1264-18"><a href="RMmultiv.html#cb1264-18" tabindex="-1"></a>    <span class="at">value.var =</span> <span class="st">&quot;Resilience&quot;</span>)</span>
+<span id="cb1264-19"><a href="RMmultiv.html#cb1264-19" tabindex="-1"></a><span class="co"># doublecheck to see if they did what you think</span></span>
+<span id="cb1264-20"><a href="RMmultiv.html#cb1264-20" tabindex="-1"></a><span class="fu">str</span>(Amodeo_wide)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   8 obs. of  4 variables:
  $ ID      : Factor w/ 8 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8
  $ Pre     : num  6.49 4.43 4.77 5.91 4.84 ...
  $ Post    : num  5.28 5.95 6.43 7 6.28 ...
  $ FollowUp: num  5.93 5.19 6.54 6.19 6.24 ...</code></pre>
-<div class="sourceCode" id="cb1069"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1069-1"><a href="RMmultiv.html#cb1069-1" tabindex="-1"></a>Amodeo_wide<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_wide<span class="sc">$</span>ID)</span></code></pre></div>
+<div class="sourceCode" id="cb1266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1266-1"><a href="RMmultiv.html#cb1266-1" tabindex="-1"></a>Amodeo_wide<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_wide<span class="sc">$</span>ID)</span></code></pre></div>
 </div>
 </div>
 <div id="computing-the-omnibus-f" class="section level2 unnumbered hasAnchor">
@@ -757,13 +762,13 @@ div.csl-indent {
 <li>waveBind column-binds (i.e., cbind) the pre, post, and follow-up variables from the wide form of the Amodeo dataset</li>
 <li>waveModel calculates the intercept (i.e., the means) of the pre, post, and follow-up levels</li>
 </ul>
-<div class="sourceCode" id="cb1070"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1070-1"><a href="RMmultiv.html#cb1070-1" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb1070-2"><a href="RMmultiv.html#cb1070-2" tabindex="-1"></a>waveLevels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb1070-3"><a href="RMmultiv.html#cb1070-3" tabindex="-1"></a>waveFactor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(waveLevels)</span>
-<span id="cb1070-4"><a href="RMmultiv.html#cb1070-4" tabindex="-1"></a>waveFrame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(waveFactor)</span>
-<span id="cb1070-5"><a href="RMmultiv.html#cb1070-5" tabindex="-1"></a>waveBind <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Amodeo_wide<span class="sc">$</span>Pre, Amodeo_wide<span class="sc">$</span>Post, Amodeo_wide<span class="sc">$</span>FollowUp)</span>
-<span id="cb1070-6"><a href="RMmultiv.html#cb1070-6" tabindex="-1"></a>waveModel <span class="ot">&lt;-</span> <span class="fu">lm</span>(waveBind <span class="sc">~</span> <span class="dv">1</span>)</span>
-<span id="cb1070-7"><a href="RMmultiv.html#cb1070-7" tabindex="-1"></a>waveModel</span></code></pre></div>
+<div class="sourceCode" id="cb1267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1267-1"><a href="RMmultiv.html#cb1267-1" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb1267-2"><a href="RMmultiv.html#cb1267-2" tabindex="-1"></a>waveLevels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb1267-3"><a href="RMmultiv.html#cb1267-3" tabindex="-1"></a>waveFactor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(waveLevels)</span>
+<span id="cb1267-4"><a href="RMmultiv.html#cb1267-4" tabindex="-1"></a>waveFrame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(waveFactor)</span>
+<span id="cb1267-5"><a href="RMmultiv.html#cb1267-5" tabindex="-1"></a>waveBind <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Amodeo_wide<span class="sc">$</span>Pre, Amodeo_wide<span class="sc">$</span>Post, Amodeo_wide<span class="sc">$</span>FollowUp)</span>
+<span id="cb1267-6"><a href="RMmultiv.html#cb1267-6" tabindex="-1"></a>waveModel <span class="ot">&lt;-</span> <span class="fu">lm</span>(waveBind <span class="sc">~</span> <span class="dv">1</span>)</span>
+<span id="cb1267-7"><a href="RMmultiv.html#cb1267-7" tabindex="-1"></a>waveModel</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = waveBind ~ 1)
@@ -777,9 +782,9 @@ Coefficients:
 <li>waveFrame is assigned to the <em>idata</em> command,</li>
 <li>waveFactor is assigned to the <em>idata</em> command</li>
 </ul>
-<div class="sourceCode" id="cb1072"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1072-1"><a href="RMmultiv.html#cb1072-1" tabindex="-1"></a>analysis <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Anova</span>(waveModel, <span class="at">idata =</span> waveFrame, <span class="at">idesign =</span> <span class="sc">~</span>waveFactor)</span></code></pre></div>
+<div class="sourceCode" id="cb1269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1269-1"><a href="RMmultiv.html#cb1269-1" tabindex="-1"></a>analysis <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Anova</span>(waveModel, <span class="at">idata =</span> waveFrame, <span class="at">idesign =</span> <span class="sc">~</span>waveFactor)</span></code></pre></div>
 <pre><code>Note: model has only an intercept; equivalent type-III tests substituted.</code></pre>
-<div class="sourceCode" id="cb1074"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1074-1"><a href="RMmultiv.html#cb1074-1" tabindex="-1"></a><span class="fu">summary</span>(analysis)</span></code></pre></div>
+<div class="sourceCode" id="cb1271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1271-1"><a href="RMmultiv.html#cb1271-1" tabindex="-1"></a><span class="fu">summary</span>(analysis)</span></code></pre></div>
 <pre><code>
 Type III Repeated Measures MANOVA Tests:
 

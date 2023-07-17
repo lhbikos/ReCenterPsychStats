@@ -75,6 +75,9 @@ Because students could contribute up to three course evaluations, each, multilev
 The data file is titled *ReC.rds* and can be retrieved with this code:
 
 
+```r
+dfReC <- readRDS("ReC.rds")
+```
 
 The following can serve as a codebook:
 
@@ -132,6 +135,9 @@ In the examples where the scale scores are used, I provide code for calculating 
 Here's how to import the data:
 
 
+```r
+ReCdf <- readRDS("ReC.rds")
+```
 
 
 

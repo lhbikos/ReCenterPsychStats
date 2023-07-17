@@ -1,0 +1,418 @@
+---
+title: "Two-way (factorial) ANOVA"
+author: "lhbikos"
+date: '2022-10-16'
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+options(scipen = 999)
+```
+
+
+# Two-Way ANOVA
+
+The two-way ANOVA is useful for experiments (or arguably closely related designs). It requires:
+
+* two factors that are categorical in nature
+  - participants should be classified in distinct dimensions on both factors
+* a continuous DV
+
+I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students in the ANOVA class as a function of:
+
+* stage in the revision (Stable, Transitioning, Resettled), and
+* Department (CPY vs ORG) 
+
+## Properly format data/variables
+
+The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
+
+This data is part of an IRB-approved study, with consent to use in teaching demonstrations and to be made available to the general public via the open science framework. Hence, it is appropriate to share in class.  You will notice there are student- and teacher- IDs. These numbers are not connected to the SPU student ID. Rather, the subcontractor who does the course evals for SPU creates a third, not-SPU-related identifier.
+
+##  Describe variables and their role in the analysis. Do the variables meet the research design criteria of:
+
+* being easily classified into one of 2 (or more) levels of a grouping variable THAT ARE INTERPRETABLE
+* being independent of each other
+* being continuously scored
+
+```{r}
+big <- readRDS("TEPPout.rds")
+```
+
+Let's first trim it to just students who took ANOVA
+
+```{r}
+JustANOVA <- subset(big, Course == "ANOVA") 
+```
+
+To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variables.
+
+```{r}
+TwoWay_df <-(dplyr::select (JustANOVA, Year, Dept, TradPed))
+```
+
+The ANOVA evaluations occur during a period of tremendous transition in our statistics classes.
+
+* STABLE:  2017 represents the last year of "stability during the old way" when we taught with SPSS and during the 2nd year of the doctoral programs.
+* TRANSITION:  2018 & 2019 represent the transition to R, when the classes were 30% larger because each of the IOP and CPY departments were transitioning to the 1st year (they did it separately, so as not to double the classes)
+* RESETTLED:  2020 and 2021 represent the "resettled" phase where the transition to R was fairly complete and the class size returned to normal because the classes were offered in the first year.
+
+In my one-way demo, we asked if the TradPed ratings for the students in the ANOVA class were different as a function of the stage in the transition. This week, let's add Department to see if there's an interaction effect. That is, maybe CPY and ORG students experienced this differently.
+
+## Proper formatting of data
+
+Are the structures of the variables as follows:
+* Grouping variables: factors
+* Dependent variable: numerical or integer
+
+```{r}
+str(TwoWay_df)
+```
+
+In our case we want 
+
+* the "Stage" variable to be a factor with three levels, 
+* the "Dept" variable to be a factor with two levels, and 
+* the TradPed variable to be integer or numerical.
+
+We need to create a factor from those years, representing the Stable, Transition, and Resettled periods.
+
+```{r}
+TwoWay_df$Stage <- plyr::mapvalues(TwoWay_df$Year, from = c(2017, 2018, 2019, 2020, 2021), to = c("Stable", "Transition", "Transition", "Resettled", "Resettled"))
+```
+I also want these factors to be reordered.
+
+```{r}
+TwoWay_df$Stage <- factor(TwoWay_df$Stage, levels = c("Stable", "Transition", "Resettled"))
+```
+
+Let's check it.
+
+```{r}
+str(TwoWay_df)
+```
+
+Now to factor the Dept:
+
+```{r}
+TwoWay_df$Dept <- factor(TwoWay_df$Dept) #I didn't order them because it doesn't really matter to me and I'm happy enough with the alphabetical ordering that will put CPY first
+str(TwoWay_df)
+```
+
+Before we even start, let's get a plot of what's happening:
+
+```{r}
+ggpubr::ggboxplot(TwoWay_df, x = "Stage", y = "TradPed", color = "Dept",
+    xlab = "Stage in Transition", ylab = "Traditional Pedagogy Course Eval Ratings")
+```
+The best laid plans of mice, men, and stats instructors.  I totally forgot that in 2017 everyone enrolled in the CPY section of the course.  But I still want to use this as an ANOVA....so, let me just recode some data which MAKES THE STORY UNTRUE, but will allow me to demo 2-way ANOVA (sighhhh).
+
+I can kind of see a trend (that should get us a significant interaction) that maybe the Departments were further apart on their course evals and came together. 
+
+```{r}
+#if var1 is 0 and var2 is not zero, then var1 becomes 0.5
+TwoWay_df <- na.omit(TwoWay_df) #the next operation required non-missing data
+TwoWay_df[TwoWay_df$Stage == "Stable" & TwoWay_df$TradPed < 4.3, "Dept"]<- "ORG"
+#Y1L[Y1L$Submissions == 0 & Y1L$PgViews !=0, "Submissions"]<- 0.5
+```
+
+JUST TO BE CLEAR -- THE STABLE PHASE IS NON-RANDOMLY, FICTIOUSLY, ASSIGNED TO HIGH AND LO
+```{r}
+ggpubr::ggboxplot(TwoWay_df, x = "Stage", y = "TradPed", color = "Dept", add="point",,
+    xlab = "Stage in Transition", ylab = "Traditional Pedagogy Course Eval Ratings")
+```
+
+## Evaluate statistical assumptions
+
+### DV is normally distributed for each combination of levels of the population (skew, kurtosis, Shapiro Wilks); 
+
+```{r}
+psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df,
+    digits = 3)
+```
+Skew for each combination of levels of the two IVs are < 3.0.
+Kurtosis for each combination of levels of the two IVs are < 8.0
+
+The Shapiro-Wilk examines residuals from the ANOVA model. We can quickly/preliminarily run the two-way ANOVA and apply the Shapiro-Wilk to the residuals:
+
+```{r}
+TwoWay_TradPed <- aov(TradPed ~ Stage * Dept, TwoWay_df)
+summary(TwoWay_TradPed)
+```
+
+
+```{r}
+resid_TradPed <- residuals(TwoWay_TradPed)
+shapiro.test(resid_TradPed)
+```
+
+A statistically significant Shapiro-Wilks' test of normality suggests that we violated the assumption $W = 0.944, p < 0.001$.
+
+Let's plot the residuals
+
+```{r}
+hist(resid_TradPed)
+```
+
+```{r}
+qqnorm(resid_TradPed)
+```
+
+Summary so far:
+
+Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.944, p < 0.001$.
+
+### Homogeneity of variance for each of the populations (cells; Levene's).
+
+```{r}
+car::leveneTest(TradPed ~ Dept * Stage, data = TwoWay_df)
+```
+
+Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 4.279, p = .001)$. This is not surprising. The boxplots shows some widely varying variances.
+
+
+Do we have to stop?  If cell sizes are reasonably large (e.g., at least 15) and balanced (equal), ANOVA is a relatively robust to violations of normality.  Unfortunately, we don't have 15 in all cells AND our cells are unequal AND this was not an experiment. So.....this probably isn't the best approach (but it'll work for a class demo).
+
+## Conduct omnibus ANOVA (with effect size)
+
+```{r}
+TwoWay_TradPed <- aov(TradPed ~ Stage * Dept, TwoWay_df)
+summary(TwoWay_TradPed)
+```
+
+Let's write the F strings from the above table:
+
+* Stage main effect:  $F(2, 106) = 1.305, p = 0.275$
+* Department main effect:  $F(1, 106) = 6.528, p = 0.012$
+* Interaction effect:  $F(2, 106) = 3.652, p = 0.029$
+
+Effect size:
+
+```{r}
+lsr::etaSquared(TwoWay_TradPed)
+```
+
+Let's update the F strings with the eta-squared.  Recall that values of .01, 06, and .14 are small, medium, and large, respectively:
+
+* Stage main effect:  $F(2, 106) = 1.305, p = 0.275, \eta^2 = 0.03$
+* Department main effect:  $F(1, 106) = 6.528, p = 0.012, \eta^2 = 0.05$
+* Interaction effect:  $F(2, 106) = 3.652, p = 0.029, \eta^2 = 0.05$
+
+So -- we have medium effects for the stage main effect and interaction effects.
+
+Results so far:
+
+A 3 X 2 ANOVA was conducted to evaluate the effects of stage of transition (3 levels, Stable, Transitioning, Resettled) and academic department (2 levels, CPY and ORG,) on traditional pedagogy course evaluation ratings. 
+Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.944, p < 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption (F[5, 106] = 4.279, p = .001). Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+
+Computing sums of squares with a Type II approach, the results for the ANOVA indicated a non-significant main effect for stage in transition ($F[2, 106] = 1.305, p = 0.275, \eta^2 = 0.05$), a significant main effect for academic department, ($F[1, 106] = 6.528, p = 0.012, \eta^2 = 0.03$), and a significant interaction effect ($F[2, 106] = 3.652, p = 0.029, \eta^2 = 0.05$).
+
+## Conduct one set of follow-up tests; narrate your choice
+
+With a significant interaction effect, we will want to follow-up with an analysis of simple main effects. I think I am interested in the simple main effects for stage within department.  This means I will conduct one-way ANOVAS for CPY and ORG, separately. And, if either is significant, I will look for differences across the stages.
+
+It's important to plan ahead -- I want to do orthogonal contrast coding.
+
+```{r}
+contrasts(TwoWay_df$Stage)
+```
+
+I want to compare the 
+
+* Stable to the Transition and Resettled, combined, then
+* Transition to Resettled
+
+```{r}
+c1 <- c(-2, 1, 1)
+c2 <- c(0, -1, 1)
+mat <- cbind(c1, c2)  #combine the above bits
+contrasts(TwoWay_df$Stage) <- mat  # attach the contrasts to the variable
+```
+
+Let's check:
+
+```{r}
+contrasts(TwoWay_df$Stage)
+```
+
+Yes, in the first contrast, we are comparing stable to transition + resettled; in the second we are comparing transition to resettled.
+
+```{r}
+CPY_df <- subset(TwoWay_df, Dept == "CPY")
+# change df to subset, new model name
+CPY_simple <- aov(TradPed ~ Stage, data = CPY_df)
+# output for simple main effect
+summary(CPY_simple)
+```
+
+```{r}
+lsr::etaSquared(CPY_simple, anova = FALSE)
+```
+
+Essentially, we have conducted a one-way ANOVA with just the CPY students:  $F(2, 70) = 6.294, p = 0.003, \eta^2 = 0.15$
+
+```{r}
+ggpubr::ggboxplot(CPY_df, x = "Stage", y = "TradPed",  add="point",,
+    xlab = "Stage in Transition", ylab = "Traditional Pedagogy Course Eval Ratings")
+```
+
+
+We know that within CPY students there were statistically significant different ratings of traditional pedagogy across the stages, looking at our contrasts will help us determine where?
+
+```{r}
+summary.aov(CPY_simple, split = list(Stage = list ('Stable v Transitioning and Resettled' = 1, 'Transitioning v Resettled' = 2)))
+```
+
+The simple main effect of stage in the transition within the CPY department was statistically significant: $F(2, 70) = 6.294, p = 0.003, \eta^2 = 0.15$. Follow-up testing indicated significant differences when the ratings from the Stable courses compared to the Transitioning and Resettled courses, combined $(F [1, 70] = 8.673, p = .004)$. In contrast, there was a non-significant difference when Transition and Resettled phases were compared $(F [1, 70] = 3.736, p = 0.057)$.
+
+Now we repeat the process for the ORG students.
+
+```{r}
+ORG_df <- subset(TwoWay_df, Dept == "ORG")
+# change df to subset, new model name
+ORG_simple <- aov(TradPed ~ Stage, data = ORG_df)
+# output for simple main effect
+summary(ORG_simple)
+```
+```{r}
+lsr::etaSquared(ORG_simple, anova = FALSE)
+```
+
+There is a non-significant evaluation of traditional pedagogy for ORG students $(F[2, 36] = 0.504, p = .608, \eta^2 = 0.027)$.
+
+```{r}
+ggpubr::ggboxplot(ORG_df, x = "Stage", y = "TradPed",  add="point",,
+    xlab = "Stage in Transition", ylab = "Traditional Pedagogy Course Eval Ratings")
+```
+
+We can stop here!
+
+## Describe approach for managing Type I error
+
+In this analysis I conduct the:
+
+* Omnibus -- with *p* value criteria at 0.05
+* After a significant interaction, two one-way ANOVAs to examine the simple main effects of stage (3 levels) within each academic department (2 levels); I will retain *p* at 0.05
+* Only one of those (CPY) was significant. Because of orthogonal contrasts, I have two follow-up tests; I will retain *p* at 0.05.
+  - At this stage, I could decide to take a more conservative approach, divide *p* by two, and test each at 0.025. I would come to the same conclusion.
+
+## APA Style results with table(s) and figure(s)
+
+A 3 X 2 ANOVA was conducted to evaluate the effects of stage of transition (3 levels, Stable, Transitioning, Resettled) and academic department (2 levels, CPY and ORG,) on traditional pedagogy course evaluation ratings. 
+Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.944, p < 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption (F[5, 106] = 4.279, p = .001). Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+
+Computing sums of squares with a Type II approach, the results for the ANOVA indicated a non-significant main effect for stage in transition ($F[2, 106] = 1.305, p = 0.275, \eta^2 = 0.05$), a significant main effect for academic department, ($F[1, 106] = 6.528, p = 0.012, \eta^2 = 0.03$), and a significant interaction effect ($F[2, 106] = 3.652, p = 0.029, \eta^2 = 0.05$).
+
+We followed up the significant interaction effect with tests of simple main effect of stage within each department. The simple main effect of stage in the transition within the CPY department was statistically significant: $F(2, 70) = 6.294, p = 0.003, \eta^2 = 0.15$. Follow-up testing indicated significant differences when the ratings from the ratings from the Stable courses compared to the Transitioning and Resettled courses, combined $(F [1, 70] = 8.673, p = .004)$. In contrast, there was a non-significant difference when Transition and Resettled phases were compared $(F [1, 70] = 3.736, p = 0.057)$. In contrast, there was a non-significant evaluation of traditional pedagogy for ORG students $(F[2, 36] = 0.504, p = .608, \eta^2 = 0.027)$. As illustrated in Figure 1 CPY students rated aspects of traditional pedagogy highest in the Stable (pre-transition) period. These ratings dropped and did not differ from each other in the Transition and Resettled periods. In contrast, the ratings of ORG students did not differ over the stages of the transition.
+
+```{r}
+apaTables::apa.2way.table(iv1 = Stage, iv2 = Dept, dv = TradPed, data = TwoWay_df,
+    landscape = TRUE, table.number = 1, filename = "Table_1_MeansSDs.doc")
+```
+
+
+```{r}
+apaTables::apa.aov.table(TwoWay_TradPed, table.number = 2, filename = "Table2.doc")
+```
+This is probably the better representation of what we have just done.
+
+```{r}
+ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage", add="point",
+    xlab = "Stage in Transition", ylab = "Traditional Pedagogy Course Eval Ratings")
+```
+
+## Power
+
+In this specification:
+
+    a: number of groups for Factor A (Rater)
+    b: number of groups for Factor B (Photo)
+    alpha: significance level (Type I error probability); usually .05
+    beta: Type II error probability (Power = 1-beta); usually .80
+    f.A: Effect size (f) of Factor A (this time we know; other times we can guess from previously published literature)
+    f.A.: Effect size (f) of Factor B
+    B: iteration times, default number is 100
+
+First we need to get the effect sizes (Cohen's *f*) to plug into this equation. Let's quickly rerun the lsr::etaSquared to get the $\eta^2$ values:
+
+```{r}
+lsr::etaSquared(TwoWay_TradPed, anova = TRUE)
+```
+
+Next we convert them to Cohen's *f* values:
+
+```{r}
+effectsize::eta2_to_f(0.0533)  #FactorA -- Dept
+effectsize::eta2_to_f(0.0299)  #FactorA -- Stage
+```
+
+
+```{r}
+pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.237, f.B = 0.176,
+    B = 100)
+```
+
+This thinks our differences are powerful enough to have 8 in each group, for a total sample of 48.  
+
+We can also use power analysis to calculate the power in our model:
+
+```{r}
+pwr2::pwr.2way(a = 3, b = 2, alpha = 0.05, size.A = 56, size.B = 37, f.A = 0.237, f.B = 0.176,)
+```
+
+To find a main effect for department, we had 98% power; to find a main effect for stage, we had 74% power; to find a significant interaction effect we were at 74% power.
+
+
+## Because someone will want to know...
+
+What if I ran the simple main effects of department within stage. This would mean conducting one-way ANOVAs (or independent t-tests) comparing CPY to ORG within each stage.
+
+```{r}
+# subset data
+Stable_df <- subset(TwoWay_df, Stage == "Stable")
+# change df to subset, new model name
+Stable_simple <- aov(TradPed ~ Dept, data = Stable_df)
+# output for simple main effect
+summary(Stable_simple)
+
+lsr::etaSquared(Stable_simple, anova = FALSE)
+```
+
+Within the Stable stage, there was a statistically significant difference between CPY and ORG student ratings $F(1, 19) = 55.3, p < 0.001, \eta^2 = 0.074$.
+
+```{r}
+# subset data
+Transition_df <- subset(TwoWay_df, Stage == "Transition")
+# change df to subset, new model name
+Transition_simple <- aov(TradPed ~ Dept, data = Transition_df)
+# output for simple main effect
+summary(Transition_simple)
+
+lsr::etaSquared(Transition_simple, anova = FALSE)
+```
+
+Within the Stable stage, there was a statistically significant difference between CPY and ORG student ratings $F(1, 42) = 3.364, p < 0.074, \eta^2 = 0.074$.
+
+```{r}
+# subset data
+Resettled_df <- subset(TwoWay_df, Stage == "Resettled")
+# change df to subset, new model name
+Resettled_simple <- aov(TradPed ~ Dept, data = Resettled_df)
+# output for simple main effect
+summary(Resettled_simple)
+
+lsr::etaSquared(Resettled_simple, anova = FALSE)
+```
+
+Within the Stable stage, there was a statistically significant difference between CPY and ORG student ratings $F(1, 45) = 0.2, p < 0.657, \eta^2 = 0.004$.
+
+This is probably the better representation of what we have just done.
+
+```{r}
+ggpubr::ggboxplot(TwoWay_df, x = "Stage", y = "TradPed", color = "Dept", add="point",
+    xlab = "Stage in Transition", ylab = "Traditional Pedagogy Course Eval Ratings")
+```

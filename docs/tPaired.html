@@ -512,6 +512,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.9.3" data-path="between.html"><a href="between.html#problem-3-try-something-entirely-new.-1"><i class="fa fa-check"></i><b>8.9.3</b> Problem #3: Try something entirely new.</a></li>
 <li class="chapter" data-level="8.9.4" data-path="between.html"><a href="between.html#grading-rubric-4"><i class="fa fa-check"></i><b>8.9.4</b> Grading Rubric</a></li>
 </ul></li>
+<li class="chapter" data-level="8.10" data-path="between.html"><a href="between.html#homeworked-example-6"><i class="fa fa-check"></i><b>8.10</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="between.html"><a href="between.html#working-the-problem-with-r-and-r-packages-5"><i class="fa fa-check"></i><b>8.10.1</b> Working the Problem with R and R Packages</a></li>
+<li class="chapter" data-level="8.10.2" data-path="between.html"><a href="between.html#hand-calculations-5"><i class="fa fa-check"></i><b>8.10.2</b> Hand Calculations</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="Repeated.html"><a href="Repeated.html"><i class="fa fa-check"></i><b>9</b> One-Way Repeated Measures ANOVA</a>
 <ul>
@@ -746,16 +751,16 @@ div.csl-indent {
 <div id="packages-2" class="section level3 hasAnchor" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Packages<a href="tPaired.html#packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="tPaired.html#cb372-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
-<span id="cb372-2"><a href="tPaired.html#cb372-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
-<span id="cb372-3"><a href="tPaired.html#cb372-3" tabindex="-1"></a><span class="co"># if(!require(faux)){install.packages(&#39;faux&#39;)}</span></span>
-<span id="cb372-4"><a href="tPaired.html#cb372-4" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
-<span id="cb372-5"><a href="tPaired.html#cb372-5" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
-<span id="cb372-6"><a href="tPaired.html#cb372-6" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)}</span></span>
-<span id="cb372-7"><a href="tPaired.html#cb372-7" tabindex="-1"></a><span class="co"># if(!require(pwr)){install.packages(&#39;pwr&#39;)}</span></span>
-<span id="cb372-8"><a href="tPaired.html#cb372-8" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span>
-<span id="cb372-9"><a href="tPaired.html#cb372-9" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
-<span id="cb372-10"><a href="tPaired.html#cb372-10" tabindex="-1"></a><span class="co"># if(!require(rstatix)){install.packages(&#39;rstatix&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="tPaired.html#cb452-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
+<span id="cb452-2"><a href="tPaired.html#cb452-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
+<span id="cb452-3"><a href="tPaired.html#cb452-3" tabindex="-1"></a><span class="co"># if(!require(faux)){install.packages(&#39;faux&#39;)}</span></span>
+<span id="cb452-4"><a href="tPaired.html#cb452-4" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
+<span id="cb452-5"><a href="tPaired.html#cb452-5" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
+<span id="cb452-6"><a href="tPaired.html#cb452-6" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)}</span></span>
+<span id="cb452-7"><a href="tPaired.html#cb452-7" tabindex="-1"></a><span class="co"># if(!require(pwr)){install.packages(&#39;pwr&#39;)}</span></span>
+<span id="cb452-8"><a href="tPaired.html#cb452-8" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span>
+<span id="cb452-9"><a href="tPaired.html#cb452-9" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
+<span id="cb452-10"><a href="tPaired.html#cb452-10" tabindex="-1"></a><span class="co"># if(!require(rstatix)){install.packages(&#39;rstatix&#39;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="introducing-the-paired-samples-t-test" class="section level2 hasAnchor" number="6.2">
@@ -836,7 +841,7 @@ Although these types of research design and analyses are quite handy, they have 
 <h3><span class="header-section-number">6.3.1</span> Simulating Data for the Paired Samples <em>t</em>-test<a href="tPaired.html#simulating-data-for-the-paired-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is the code I used to simulate the data. The following code assumes 33 physician participants who had separate interactions with critically ill, end-of-life stage patients, who were identified as Black and White. The Elliott et al. <span class="citation">(<a href="#ref-elliott_differences_2016">2016</a>)</span> manuscript describe the process for coding verbal and nonverbal communication for video/audio recordings of the physician/patient interactions. Using that data, I simulate verbal and nonverbal communication scores for 33 physicians who rate patients who identify as Black and White, respectively. This creates four variables.</p>
 <p>In the lesson, we will compare verbal communication scores. The nonverbal communication score is available as an option for practice.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="tPaired.html#cb373-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="tPaired.html#cb453-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -847,52 +852,52 @@ Although these types of research design and analyses are quite handy, they have 
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="tPaired.html#cb375-1" tabindex="-1"></a><span class="co"># Setting the seed. If you choose this practice option, change the</span></span>
-<span id="cb375-2"><a href="tPaired.html#cb375-2" tabindex="-1"></a><span class="co"># number below to something different.</span></span>
-<span id="cb375-3"><a href="tPaired.html#cb375-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220817</span>)</span>
-<span id="cb375-4"><a href="tPaired.html#cb375-4" tabindex="-1"></a><span class="co"># These define the characteristics of the verbal variable. It is</span></span>
-<span id="cb375-5"><a href="tPaired.html#cb375-5" tabindex="-1"></a><span class="co"># essential that the object names (e.g., A_mean) are not changed</span></span>
-<span id="cb375-6"><a href="tPaired.html#cb375-6" tabindex="-1"></a><span class="co"># because they will be fed to the function in the faux package.</span></span>
-<span id="cb375-7"><a href="tPaired.html#cb375-7" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">33</span></span>
-<span id="cb375-8"><a href="tPaired.html#cb375-8" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">8.37</span></span>
-<span id="cb375-9"><a href="tPaired.html#cb375-9" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">8.41</span></span>
-<span id="cb375-10"><a href="tPaired.html#cb375-10" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">3.36</span></span>
-<span id="cb375-11"><a href="tPaired.html#cb375-11" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">3.21</span></span>
-<span id="cb375-12"><a href="tPaired.html#cb375-12" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
-<span id="cb375-13"><a href="tPaired.html#cb375-13" tabindex="-1"></a></span>
-<span id="cb375-14"><a href="tPaired.html#cb375-14" tabindex="-1"></a><span class="co"># the faux package can simulate a variety of data. This function</span></span>
-<span id="cb375-15"><a href="tPaired.html#cb375-15" tabindex="-1"></a><span class="co"># within the faux package will use the objects above to simulate</span></span>
-<span id="cb375-16"><a href="tPaired.html#cb375-16" tabindex="-1"></a><span class="co"># paired samples data</span></span>
-<span id="cb375-17"><a href="tPaired.html#cb375-17" tabindex="-1"></a>paired_V <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
-<span id="cb375-18"><a href="tPaired.html#cb375-18" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>))</span>
-<span id="cb375-19"><a href="tPaired.html#cb375-19" tabindex="-1"></a></span>
-<span id="cb375-20"><a href="tPaired.html#cb375-20" tabindex="-1"></a>paired_V <span class="ot">&lt;-</span> paired_V <span class="sc">%&gt;%</span></span>
-<span id="cb375-21"><a href="tPaired.html#cb375-21" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb375-22"><a href="tPaired.html#cb375-22" tabindex="-1"></a></span>
-<span id="cb375-23"><a href="tPaired.html#cb375-23" tabindex="-1"></a><span class="co"># Here, I repeated the process for the nonverbal variable.</span></span>
-<span id="cb375-24"><a href="tPaired.html#cb375-24" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">33</span></span>
-<span id="cb375-25"><a href="tPaired.html#cb375-25" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">2.68</span></span>
-<span id="cb375-26"><a href="tPaired.html#cb375-26" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">2.93</span></span>
-<span id="cb375-27"><a href="tPaired.html#cb375-27" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">0.84</span></span>
-<span id="cb375-28"><a href="tPaired.html#cb375-28" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">0.77</span></span>
-<span id="cb375-29"><a href="tPaired.html#cb375-29" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
-<span id="cb375-30"><a href="tPaired.html#cb375-30" tabindex="-1"></a></span>
-<span id="cb375-31"><a href="tPaired.html#cb375-31" tabindex="-1"></a>paired_NV <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
-<span id="cb375-32"><a href="tPaired.html#cb375-32" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;NVerb_BL&quot;</span>, <span class="st">&quot;NVerb_WH&quot;</span>))</span>
-<span id="cb375-33"><a href="tPaired.html#cb375-33" tabindex="-1"></a></span>
-<span id="cb375-34"><a href="tPaired.html#cb375-34" tabindex="-1"></a><span class="co"># This code produced an ID number for each physician</span></span>
-<span id="cb375-35"><a href="tPaired.html#cb375-35" tabindex="-1"></a>paired_NV <span class="ot">&lt;-</span> paired_NV <span class="sc">%&gt;%</span></span>
-<span id="cb375-36"><a href="tPaired.html#cb375-36" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb375-37"><a href="tPaired.html#cb375-37" tabindex="-1"></a></span>
-<span id="cb375-38"><a href="tPaired.html#cb375-38" tabindex="-1"></a><span class="co"># This data joined the two sets of data.  Note, I did not write any</span></span>
-<span id="cb375-39"><a href="tPaired.html#cb375-39" tabindex="-1"></a><span class="co"># code that assumed tha the verbal and nonverbal data came from the</span></span>
-<span id="cb375-40"><a href="tPaired.html#cb375-40" tabindex="-1"></a><span class="co"># same physician.  Full confession: I&#39;m not quite sure how to do that</span></span>
-<span id="cb375-41"><a href="tPaired.html#cb375-41" tabindex="-1"></a><span class="co"># just yet.</span></span>
-<span id="cb375-42"><a href="tPaired.html#cb375-42" tabindex="-1"></a>dfPairedSamples <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(paired_V, paired_NV, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>))</span>
-<span id="cb375-43"><a href="tPaired.html#cb375-43" tabindex="-1"></a>dfPairedSamples <span class="ot">&lt;-</span> dfPairedSamples <span class="sc">%&gt;%</span></span>
-<span id="cb375-44"><a href="tPaired.html#cb375-44" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(PhysID, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="tPaired.html#cb455-1" tabindex="-1"></a><span class="co"># Setting the seed. If you choose this practice option, change the</span></span>
+<span id="cb455-2"><a href="tPaired.html#cb455-2" tabindex="-1"></a><span class="co"># number below to something different.</span></span>
+<span id="cb455-3"><a href="tPaired.html#cb455-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220817</span>)</span>
+<span id="cb455-4"><a href="tPaired.html#cb455-4" tabindex="-1"></a><span class="co"># These define the characteristics of the verbal variable. It is</span></span>
+<span id="cb455-5"><a href="tPaired.html#cb455-5" tabindex="-1"></a><span class="co"># essential that the object names (e.g., A_mean) are not changed</span></span>
+<span id="cb455-6"><a href="tPaired.html#cb455-6" tabindex="-1"></a><span class="co"># because they will be fed to the function in the faux package.</span></span>
+<span id="cb455-7"><a href="tPaired.html#cb455-7" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">33</span></span>
+<span id="cb455-8"><a href="tPaired.html#cb455-8" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">8.37</span></span>
+<span id="cb455-9"><a href="tPaired.html#cb455-9" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">8.41</span></span>
+<span id="cb455-10"><a href="tPaired.html#cb455-10" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">3.36</span></span>
+<span id="cb455-11"><a href="tPaired.html#cb455-11" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">3.21</span></span>
+<span id="cb455-12"><a href="tPaired.html#cb455-12" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb455-13"><a href="tPaired.html#cb455-13" tabindex="-1"></a></span>
+<span id="cb455-14"><a href="tPaired.html#cb455-14" tabindex="-1"></a><span class="co"># the faux package can simulate a variety of data. This function</span></span>
+<span id="cb455-15"><a href="tPaired.html#cb455-15" tabindex="-1"></a><span class="co"># within the faux package will use the objects above to simulate</span></span>
+<span id="cb455-16"><a href="tPaired.html#cb455-16" tabindex="-1"></a><span class="co"># paired samples data</span></span>
+<span id="cb455-17"><a href="tPaired.html#cb455-17" tabindex="-1"></a>paired_V <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
+<span id="cb455-18"><a href="tPaired.html#cb455-18" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>))</span>
+<span id="cb455-19"><a href="tPaired.html#cb455-19" tabindex="-1"></a></span>
+<span id="cb455-20"><a href="tPaired.html#cb455-20" tabindex="-1"></a>paired_V <span class="ot">&lt;-</span> paired_V <span class="sc">%&gt;%</span></span>
+<span id="cb455-21"><a href="tPaired.html#cb455-21" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb455-22"><a href="tPaired.html#cb455-22" tabindex="-1"></a></span>
+<span id="cb455-23"><a href="tPaired.html#cb455-23" tabindex="-1"></a><span class="co"># Here, I repeated the process for the nonverbal variable.</span></span>
+<span id="cb455-24"><a href="tPaired.html#cb455-24" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">33</span></span>
+<span id="cb455-25"><a href="tPaired.html#cb455-25" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">2.68</span></span>
+<span id="cb455-26"><a href="tPaired.html#cb455-26" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">2.93</span></span>
+<span id="cb455-27"><a href="tPaired.html#cb455-27" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">0.84</span></span>
+<span id="cb455-28"><a href="tPaired.html#cb455-28" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">0.77</span></span>
+<span id="cb455-29"><a href="tPaired.html#cb455-29" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb455-30"><a href="tPaired.html#cb455-30" tabindex="-1"></a></span>
+<span id="cb455-31"><a href="tPaired.html#cb455-31" tabindex="-1"></a>paired_NV <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
+<span id="cb455-32"><a href="tPaired.html#cb455-32" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;NVerb_BL&quot;</span>, <span class="st">&quot;NVerb_WH&quot;</span>))</span>
+<span id="cb455-33"><a href="tPaired.html#cb455-33" tabindex="-1"></a></span>
+<span id="cb455-34"><a href="tPaired.html#cb455-34" tabindex="-1"></a><span class="co"># This code produced an ID number for each physician</span></span>
+<span id="cb455-35"><a href="tPaired.html#cb455-35" tabindex="-1"></a>paired_NV <span class="ot">&lt;-</span> paired_NV <span class="sc">%&gt;%</span></span>
+<span id="cb455-36"><a href="tPaired.html#cb455-36" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb455-37"><a href="tPaired.html#cb455-37" tabindex="-1"></a></span>
+<span id="cb455-38"><a href="tPaired.html#cb455-38" tabindex="-1"></a><span class="co"># This data joined the two sets of data.  Note, I did not write any</span></span>
+<span id="cb455-39"><a href="tPaired.html#cb455-39" tabindex="-1"></a><span class="co"># code that assumed tha the verbal and nonverbal data came from the</span></span>
+<span id="cb455-40"><a href="tPaired.html#cb455-40" tabindex="-1"></a><span class="co"># same physician.  Full confession: I&#39;m not quite sure how to do that</span></span>
+<span id="cb455-41"><a href="tPaired.html#cb455-41" tabindex="-1"></a><span class="co"># just yet.</span></span>
+<span id="cb455-42"><a href="tPaired.html#cb455-42" tabindex="-1"></a>dfPairedSamples <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(paired_V, paired_NV, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>))</span>
+<span id="cb455-43"><a href="tPaired.html#cb455-43" tabindex="-1"></a>dfPairedSamples <span class="ot">&lt;-</span> dfPairedSamples <span class="sc">%&gt;%</span></span>
+<span id="cb455-44"><a href="tPaired.html#cb455-44" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(PhysID, <span class="fu">everything</span>())</span></code></pre></div>
 <p>Before beginning our analysis, let’s check the format of the variables to see if they are consistent with the scale of measurement of the variables. In our case, we expect to see four variables representing the verbal and nonverbal communication of the physicians with the patients who are identified as Black and White. Each of the variables should be continuously scaled and, therefore, should be formatted as <em>num</em> (numerical).</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="tPaired.html#cb376-1" tabindex="-1"></a><span class="fu">str</span>(dfPairedSamples)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="tPaired.html#cb456-1" tabindex="-1"></a><span class="fu">str</span>(dfPairedSamples)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   33 obs. of  5 variables:
  $ PhysID   : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Verbal_BL: num  8.19 3.3 6.18 4.85 6.91 ...
@@ -902,23 +907,23 @@ Although these types of research design and analyses are quite handy, they have 
 <p>The four variables of interest are correctly formatted as <em>num</em>. Because PhysID (physician ID) will not be used in our analysis, its structure is irrelevant.</p>
 <p>Below is code for saving (and then importing) the data in .csv or .rds files. I make choices about saving data based on what I wish to do with the data. If I want to manipulate the data outside of R, I will save it as a .csv file. It is easy to open .csv files in Excel. A limitation of the .csv format is that it does not save any restructuring or reformatting of variables. For this lesson, this is not an issue.</p>
 <p>Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="tPaired.html#cb378-1" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfPairedSamples,</span></span>
-<span id="cb378-2"><a href="tPaired.html#cb378-2" tabindex="-1"></a><span class="co"># file = &#39;dfPairedSamples.csv&#39;, sep = &#39;,&#39;, col.names=TRUE,</span></span>
-<span id="cb378-3"><a href="tPaired.html#cb378-3" tabindex="-1"></a><span class="co"># row.names=FALSE) at this point you could clear your environment and</span></span>
-<span id="cb378-4"><a href="tPaired.html#cb378-4" tabindex="-1"></a><span class="co"># then bring the data back in as a .csv reading the data back in as a</span></span>
-<span id="cb378-5"><a href="tPaired.html#cb378-5" tabindex="-1"></a><span class="co"># .csv file dfPairedSamples&lt;- read.csv (&#39;dfPairedSamples.csv&#39;, header</span></span>
-<span id="cb378-6"><a href="tPaired.html#cb378-6" tabindex="-1"></a><span class="co"># = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="tPaired.html#cb458-1" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfPairedSamples,</span></span>
+<span id="cb458-2"><a href="tPaired.html#cb458-2" tabindex="-1"></a><span class="co"># file = &#39;dfPairedSamples.csv&#39;, sep = &#39;,&#39;, col.names=TRUE,</span></span>
+<span id="cb458-3"><a href="tPaired.html#cb458-3" tabindex="-1"></a><span class="co"># row.names=FALSE) at this point you could clear your environment and</span></span>
+<span id="cb458-4"><a href="tPaired.html#cb458-4" tabindex="-1"></a><span class="co"># then bring the data back in as a .csv reading the data back in as a</span></span>
+<span id="cb458-5"><a href="tPaired.html#cb458-5" tabindex="-1"></a><span class="co"># .csv file dfPairedSamples&lt;- read.csv (&#39;dfPairedSamples.csv&#39;, header</span></span>
+<span id="cb458-6"><a href="tPaired.html#cb458-6" tabindex="-1"></a><span class="co"># = TRUE)</span></span></code></pre></div>
 <p>The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="tPaired.html#cb379-1" tabindex="-1"></a><span class="co"># saveRDS(dfPairedSamples, &#39;dfPairedSamples.rds&#39;) dfPairedSamples &lt;-</span></span>
-<span id="cb379-2"><a href="tPaired.html#cb379-2" tabindex="-1"></a><span class="co"># readRDS(&#39;dfPairedSamples.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="tPaired.html#cb459-1" tabindex="-1"></a><span class="co"># saveRDS(dfPairedSamples, &#39;dfPairedSamples.rds&#39;) dfPairedSamples &lt;-</span></span>
+<span id="cb459-2"><a href="tPaired.html#cb459-2" tabindex="-1"></a><span class="co"># readRDS(&#39;dfPairedSamples.rds&#39;)</span></span></code></pre></div>
 </div>
 <div id="quick-peek-at-the-data-2" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Quick Peek at the Data<a href="tPaired.html#quick-peek-at-the-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plotting the data is a helpful early step in any data analysis. Further, visualizing the data can help us with a conceptual notion of the statistic we are utilizing. The <em>ggpubr</em> package is one of my go-to-tools for quick and easy plots of data. The <em>ggpaired()</em> function is especially appropriate for paired data. A <a href="https://rpkgs.datanovia.com/ggpubr/reference/ggpaired.html">tutorial</a> is available at datanovia.</p>
 <p>Especially unique about this function is that the lines connect the scores of each person across time or conditions. In this research scenario, the lines present the amount of time the physicians spent with each of the two patients they treated.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="tPaired.html#cb380-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggpaired</span>(dfPairedSamples, <span class="at">cond1 =</span> <span class="st">&quot;Verbal_BL&quot;</span>, <span class="at">cond2 =</span> <span class="st">&quot;Verbal_WH&quot;</span>,</span>
-<span id="cb380-2"><a href="tPaired.html#cb380-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;condition&quot;</span>, <span class="at">line.color =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;npg&quot;</span>), <span class="at">xlab =</span> <span class="st">&quot;Patient Race&quot;</span>,</span>
-<span id="cb380-3"><a href="tPaired.html#cb380-3" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Verbal Communication Rating&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="tPaired.html#cb460-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggpaired</span>(dfPairedSamples, <span class="at">cond1 =</span> <span class="st">&quot;Verbal_BL&quot;</span>, <span class="at">cond2 =</span> <span class="st">&quot;Verbal_WH&quot;</span>,</span>
+<span id="cb460-2"><a href="tPaired.html#cb460-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;condition&quot;</span>, <span class="at">line.color =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;npg&quot;</span>), <span class="at">xlab =</span> <span class="st">&quot;Patient Race&quot;</span>,</span>
+<span id="cb460-3"><a href="tPaired.html#cb460-3" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Verbal Communication Rating&quot;</span>)</span></code></pre></div>
 <p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 The box of the boxplot covers the middle 50% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots beyond the whiskers are outliers.</p>
 </div>
@@ -931,12 +936,12 @@ The box of the boxplot covers the middle 50% (the interquartile range). The hori
 <p><span class="math display">\[H_{O}: \mu _{D} = 0\]</span>
 <span class="math display">\[H_{A}: \mu _{D} \neq 0\]</span></p>
 <p>Notice the focus on a <em>difference</em> score. Even though the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="tPaired.html#cb381-1" tabindex="-1"></a><span class="co"># Creating the Verbal_D variable within the dfPairedSamples df Doing</span></span>
-<span id="cb381-2"><a href="tPaired.html#cb381-2" tabindex="-1"></a><span class="co"># the &#39;math&#39; that informs that variable</span></span>
-<span id="cb381-3"><a href="tPaired.html#cb381-3" tabindex="-1"></a>dfPairedSamples<span class="sc">$</span>Verbal_D <span class="ot">&lt;-</span> (dfPairedSamples<span class="sc">$</span>Verbal_BL <span class="sc">-</span> dfPairedSamples<span class="sc">$</span>Verbal_WH)</span>
-<span id="cb381-4"><a href="tPaired.html#cb381-4" tabindex="-1"></a><span class="co"># Displaying the first six rows of the df to show that the difference</span></span>
-<span id="cb381-5"><a href="tPaired.html#cb381-5" tabindex="-1"></a><span class="co"># score now exists</span></span>
-<span id="cb381-6"><a href="tPaired.html#cb381-6" tabindex="-1"></a><span class="fu">head</span>(dfPairedSamples)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="tPaired.html#cb461-1" tabindex="-1"></a><span class="co"># Creating the Verbal_D variable within the dfPairedSamples df Doing</span></span>
+<span id="cb461-2"><a href="tPaired.html#cb461-2" tabindex="-1"></a><span class="co"># the &#39;math&#39; that informs that variable</span></span>
+<span id="cb461-3"><a href="tPaired.html#cb461-3" tabindex="-1"></a>dfPairedSamples<span class="sc">$</span>Verbal_D <span class="ot">&lt;-</span> (dfPairedSamples<span class="sc">$</span>Verbal_BL <span class="sc">-</span> dfPairedSamples<span class="sc">$</span>Verbal_WH)</span>
+<span id="cb461-4"><a href="tPaired.html#cb461-4" tabindex="-1"></a><span class="co"># Displaying the first six rows of the df to show that the difference</span></span>
+<span id="cb461-5"><a href="tPaired.html#cb461-5" tabindex="-1"></a><span class="co"># score now exists</span></span>
+<span id="cb461-6"><a href="tPaired.html#cb461-6" tabindex="-1"></a><span class="fu">head</span>(dfPairedSamples)</span></code></pre></div>
 <pre><code>  PhysID Verbal_BL Verbal_WH  NVerb_BL NVerb_WH  Verbal_D
 1      1  8.190342  4.625680 3.0991101 2.742055  3.564663
 2      2  3.297486 12.851362 4.2338398 5.024047 -9.553876
@@ -956,7 +961,7 @@ We can use the data from our preliminary exploration in the calculation.</p>
 <li>The standard deviation of that difference was 4.14</li>
 <li>The sample size is 33</li>
 </ul>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="tPaired.html#cb383-1" tabindex="-1"></a><span class="fl">0.08</span><span class="sc">/</span>(<span class="fl">4.14</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="tPaired.html#cb463-1" tabindex="-1"></a><span class="fl">0.08</span><span class="sc">/</span>(<span class="fl">4.14</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
 <pre><code>[1] 0.111006</code></pre>
 <p>The resultant <em>t</em> value is 0.111</p>
 <p>Hopefully, this hand-calculation provided an indication of how the means, standard deviation, and sample sizes contribute to the estimate of this <em>t</em>-test value. Now we ask, “But it is statistically significant?”</p>
@@ -974,9 +979,9 @@ We can use the data from our preliminary exploration in the calculation.</p>
 </ul>
 <p>In the linked table, when the degrees of freedom reaches 30, there larger intervals. We will use the row representing degrees of freedom of 30. If our <em>t</em>-test value is lower than an absolute value of -2.042 or greater than the absolute value of 2.042, then our means are statistically significantly different from each other. In our case, we have not achieved statistical significance and we cannot say that the means are different. The <em>t</em> string would look like this: <span class="math inline">\(t(32) = 0.111, p &gt; .05\)</span></p>
 <p>We can also use the <em>qt()</em> function in base R. In the script below, I have indicated an alpha of .05. The “2” that follows indicates I want a two-tailed test. The 32 represents my degrees of freedom (<span class="math inline">\(N-1\)</span>). In a two-tailed test, the regions of rejection will be below the lowerbound (lower.tail=TRUE) and above the upperbound (lower.tail=FALSE).</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="tPaired.html#cb385-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="tPaired.html#cb465-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] -2.036933</code></pre>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="tPaired.html#cb387-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="tPaired.html#cb467-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 2.036933</code></pre>
 <p>If our <em>t</em> value is below the lowerbound (-2.04) or above the upper bound (2.04), then we have rejected the null hypothesis in favor of the alternative. As we demonstrated in the hand-calculations, we have not. The ratings of physicians’ verbal engagement with patients who are racially identified as Black and White are not statistically significant.</p>
 </div>
@@ -992,13 +997,13 @@ We can use the data from our preliminary exploration in the calculation.</p>
 <p><span class="math display">\[\bar{D}\pm t_{cv}(s_{d}/\sqrt{n})\]</span>
 Let’s calculate it:</p>
 <p>First, let’s get the proper <em>t</em> critical value:</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="tPaired.html#cb389-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="tPaired.html#cb469-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] -2.036933</code></pre>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="tPaired.html#cb391-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="tPaired.html#cb471-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 2.036933</code></pre>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="tPaired.html#cb393-1" tabindex="-1"></a><span class="fl">0.08</span> <span class="sc">-</span> (<span class="fl">2.037</span> <span class="sc">*</span> ((<span class="fl">4.14</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">33</span>)))))</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="tPaired.html#cb473-1" tabindex="-1"></a><span class="fl">0.08</span> <span class="sc">-</span> (<span class="fl">2.037</span> <span class="sc">*</span> ((<span class="fl">4.14</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">33</span>)))))</span></code></pre></div>
 <pre><code>[1] -1.388028</code></pre>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="tPaired.html#cb395-1" tabindex="-1"></a><span class="fl">0.08</span> <span class="sc">+</span> (<span class="fl">2.037</span> <span class="sc">*</span> ((<span class="fl">4.14</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="tPaired.html#cb475-1" tabindex="-1"></a><span class="fl">0.08</span> <span class="sc">+</span> (<span class="fl">2.037</span> <span class="sc">*</span> ((<span class="fl">4.14</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))))</span></code></pre></div>
 <pre><code>[1] 1.548028</code></pre>
 <p>These values indicate the range of scores in which we are 95% confident that our true <span class="math inline">\(\bar{D}\)</span> lies. Stated another way, we are 95% confident that the true mean difference lies between -1.39 and 1.55. Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant <em>p</em> value. For these types of statistics, the 95% confidence interval and <em>p</em> value will always be yoked together.</p>
 </div>
@@ -1008,19 +1013,19 @@ Let’s calculate it:</p>
 <p>Because the paired samples <em>t</em>-test used the difference score in the numerator, there are two easy options for calculating this effect:</p>
 <p><span class="math display">\[d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}\]</span></p>
 <p>The first is to use the mean and standard deviation associated with the difference score:</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="tPaired.html#cb397-1" tabindex="-1"></a><span class="fl">0.08</span><span class="sc">/</span><span class="fl">4.14</span></span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="tPaired.html#cb477-1" tabindex="-1"></a><span class="fl">0.08</span><span class="sc">/</span><span class="fl">4.14</span></span></code></pre></div>
 <pre><code>[1] 0.01932367</code></pre>
 <p>The formula uses the <em>t</em> value and <em>N</em>.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="tPaired.html#cb399-1" tabindex="-1"></a><span class="fl">0.111</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="tPaired.html#cb479-1" tabindex="-1"></a><span class="fl">0.111</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
 <pre><code>[1] 0.01932262</code></pre>
 <p>Within rounding error, both calculations result in a value (<span class="math inline">\(d = 0.02\)</span>) that is quite small.</p>
 <p>Eta squared, <span class="math inline">\(\eta^2\)</span> is the proportion of variance of a test variable that is a function of the grouping variable. A value of 0 indicates that mean of the difference scores is equal to 0, where a value of 1 indicates that the difference scores in the sample are all the same nonzero value, and the test scores do not differ within each group. The following equation can be used to compute <span class="math inline">\(\eta^2\)</span>. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
 <p><span class="math display">\[\eta^{2} =\frac{N(\bar{D}^{2})}{N(\bar{D}^{2}+(N-1)(\hat\sigma_D^{^{2}})}=\frac{t^{2}}{t^{2}+(N_{1}-1)}\]</span>
 The first calculation option uses the N and the mean difference score:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="tPaired.html#cb401-1" tabindex="-1"></a>(<span class="dv">33</span> <span class="sc">*</span> (<span class="fl">0.08</span><span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>((<span class="dv">33</span> <span class="sc">*</span> (<span class="fl">0.08</span><span class="sc">^</span><span class="dv">2</span>)) <span class="sc">+</span> ((<span class="dv">33</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fl">4.14</span><span class="sc">^</span><span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="tPaired.html#cb481-1" tabindex="-1"></a>(<span class="dv">33</span> <span class="sc">*</span> (<span class="fl">0.08</span><span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>((<span class="dv">33</span> <span class="sc">*</span> (<span class="fl">0.08</span><span class="sc">^</span><span class="dv">2</span>)) <span class="sc">+</span> ((<span class="dv">33</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fl">4.14</span><span class="sc">^</span><span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>[1] 0.0003849249</code></pre>
 <p>The second calculation option uses the <em>t</em> values and sample size:</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="tPaired.html#cb403-1" tabindex="-1"></a>(<span class="fl">0.111</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>((<span class="fl">0.111</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (<span class="dv">33</span> <span class="sc">-</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="tPaired.html#cb483-1" tabindex="-1"></a>(<span class="fl">0.111</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>((<span class="fl">0.111</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (<span class="dv">33</span> <span class="sc">-</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>[1] 0.0003848831</code></pre>
 <p>Within rounding errors, and similar to our <em>d</em> statistic, the <span class="math inline">\(\eta^2\)</span> value (0.0004) is quite small.</p>
 </div>
@@ -1050,7 +1055,7 @@ All statistical tests have some assumptions about the data. The paired-samples <
 <div id="are-the-difference-scores-of-the-test-variable-normally-distributed" class="section level4 hasAnchor" number="6.5.1.1">
 <h4><span class="header-section-number">6.5.1.1</span> Are the difference scores of the test variable normally distributed?<a href="tPaired.html#are-the-difference-scores-of-the-test-variable-normally-distributed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can begin to evaluate normality by obtaining the descriptive statistics with the <em>describe()</em> function from the <em>psych</em> package.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="tPaired.html#cb405-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfPairedSamples, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="tPaired.html#cb485-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfPairedSamples, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>          vars  n  mean   sd median trimmed   mad   min   max range  skew
 PhysID       1 33 17.00 9.67  17.00   17.00 11.86  1.00 33.00 32.00  0.00
 Verbal_BL    2 33  8.70 2.80   9.09    8.80  3.10  1.94 13.34 11.40 -0.35
@@ -1068,7 +1073,7 @@ Verbal_D     -0.54 0.72</code></pre>
 <p>We observe that the skew and kurtosis values for Verbal_BL and Verbal_WH are well below the areas of concern (below the absolute value of 3 for skew; below the absolute values of 10 for kurtosis) identified by Kline <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span>.</p>
 <p>Recall, though that the normality assumption for the paired samples <em>t</em>-test concerns the <em>difference score</em> (Verbal_D). We see that the mean difference is 0.08 (<em>SD</em> = 4.14). Its skew (-0.42) and kurtosis (-0.54) are also well-below the thresholds of concern.</p>
 <p>Beyond skew and kurtosis, we can formally test for deviations from normality with a Shapiro-Wilk. We want the results to be non-significant.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="tPaired.html#cb407-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(dfPairedSamples, Verbal_D)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="tPaired.html#cb487-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(dfPairedSamples, Verbal_D)</span></code></pre></div>
 <pre><code># A tibble: 1 × 3
   variable statistic     p
   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
@@ -1093,9 +1098,9 @@ Verbal_D     -0.54 0.72</code></pre>
 <p>Calculating a paired samples <em>t</em>-test is possible through base R and a number of packages. Kassambara’s <span class="citation">(<a href="#ref-kassambara_pipe-friendly_nodate">n.d.-b</a>)</span> <em>rstatix</em> package is one we can use for all of the <em>t</em>-test and ANOVA problems that we will work.</p>
 <p>A challenge in evaluating within-persons data is the <em>shape</em> of the data. The simulation resulted in a <em>wide</em> (also termed person-level or multivariate) format, where each of the 33 physicians has the verbal and non-verbal communication scores with Black and White patients. We need to reshape the data to a long (also termed person-period or univariate) format. Although it may seem a bit tricky at first, this is a skill you will return to in many longitudinal or repeated measures analyses.</p>
 <p>In the script below we are using the <em>melt()</em> and <em>setDT</em> functions from the <em>data.table</em> package. We put stable (i.e., time-invarient, “one-per-person”) variables in a concatonated variable list of “id.vars.” We create separate lists of the variables that change over time. In this case, each physician saw one Black patient and one White patient. Therefore, every physician will have two rows of data. For each variable collected at both points, we create concatonated lists.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="tPaired.html#cb409-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">melt</span>(data.table<span class="sc">::</span><span class="fu">setDT</span>(dfPairedSamples), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>),</span>
-<span id="cb409-2"><a href="tPaired.html#cb409-2" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;NVerb_BL&quot;</span>, <span class="st">&quot;NVerb_WH&quot;</span>)))</span>
-<span id="cb409-3"><a href="tPaired.html#cb409-3" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="tPaired.html#cb489-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">melt</span>(data.table<span class="sc">::</span><span class="fu">setDT</span>(dfPairedSamples), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>),</span>
+<span id="cb489-2"><a href="tPaired.html#cb489-2" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;NVerb_BL&quot;</span>, <span class="st">&quot;NVerb_WH&quot;</span>)))</span>
+<span id="cb489-3"><a href="tPaired.html#cb489-3" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
 <pre><code>   PhysID variable    value1    value2
 1:      1        1  8.190342 3.0991101
 2:      2        1  3.297486 4.2338398
@@ -1104,9 +1109,9 @@ Verbal_D     -0.54 0.72</code></pre>
 5:      5        1  6.911155 3.7035910
 6:      6        1 11.965831 1.5369696</code></pre>
 <p>While that code performed the magic, it did not name the variables. We must provide that in separate code.</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="tPaired.html#cb411-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_long, <span class="at">PatientRace =</span> variable, <span class="at">Verbal =</span> value1, <span class="at">Nonverbal =</span> value2)</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="tPaired.html#cb491-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_long, <span class="at">PatientRace =</span> variable, <span class="at">Verbal =</span> value1, <span class="at">Nonverbal =</span> value2)</span></code></pre></div>
 <p>After the reshaping, let’s recheck the structure of our data:</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="tPaired.html#cb412-1" tabindex="-1"></a><span class="fu">str</span>(df_long)</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="tPaired.html#cb492-1" tabindex="-1"></a><span class="fu">str</span>(df_long)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  66 obs. of  4 variables:
  $ PhysID     : int  1 2 3 4 5 6 7 8 9 10 ...
  $ PatientRace: Factor w/ 2 levels &quot;1&quot;,&quot;2&quot;: 1 1 1 1 1 1 1 1 1 1 ...
@@ -1114,8 +1119,8 @@ Verbal_D     -0.54 0.72</code></pre>
  $ Nonverbal  : num  3.099 4.234 0.429 1.835 3.704 ...
  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
 <p>The dependent variables Verbal and Nonverbal are continuously scaled, so the <em>num</em> designation is appropriate. Similarly, PatientRace is categorical, so <em>Factor</em> is appropriate. Because labels (instead of numbers) can minimize misinterpretation (or forgetting), I would prefer to use “Black” and “White” as opposed to “1” and “2”. To further reduce the possibility of error, it is easy enough to create a second, parallel, variable.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="tPaired.html#cb414-1" tabindex="-1"></a>df_long<span class="sc">$</span>PtRace <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(df_long<span class="sc">$</span>PatientRace, <span class="at">from =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb414-2"><a href="tPaired.html#cb414-2" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="tPaired.html#cb494-1" tabindex="-1"></a>df_long<span class="sc">$</span>PtRace <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(df_long<span class="sc">$</span>PatientRace, <span class="at">from =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb494-2"><a href="tPaired.html#cb494-2" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
 <p>We are now ready to perform the paired samples <em>t</em>-test. In the script below:</p>
 <ul>
 <li>the first element points to the dataframe</li>
@@ -1125,7 +1130,7 @@ Verbal_D     -0.54 0.72</code></pre>
 </ul></li>
 <li>specifying “detailed = TRUE” will produce the 95% confidence interval around the difference</li>
 </ul>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="tPaired.html#cb415-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_long, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="tPaired.html#cb495-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_long, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 13
   estimate .y.    group1 group2    n1    n2 statistic     p    df conf.low
 *    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -1133,7 +1138,7 @@ Verbal_D     -0.54 0.72</code></pre>
 # ℹ 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
 <p>This output provides information to get us started in drafting the APA style results. Identical to all the information we hand-calculated, we would write the <em>t</em> string this way: <span class="math inline">\(t(32) = 0.113, p = .911, CI95(-1.39, 1.55)\)</span>. Our results show that the mean difference in physician verbal communication scores with Black and White patients was 0.081. Taking a look at the confidence interval, we are 95% confident that the true difference in means falls between the values of -1.386 and 1.549. What is critically important is that this confidence interval crosses zero. There is an important link between the CI95% and statistical significance. When the CI95% includes zero, <em>p</em> will not be lower than 0.05.</p>
 <p>We still need to calculate the effect size.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="tPaired.html#cb417-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(df_long, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="tPaired.html#cb497-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(df_long, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.    group1 group2 effsize    n1    n2 magnitude 
 * &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
@@ -1150,15 +1155,15 @@ Verbal_D     -0.54 0.72</code></pre>
 <blockquote>
 <p>A paired samples <em>t</em>-test was conducted to evaluate the hypothesis that there would be differences in the degree of physicians’ verbal engagement as a function of the patient’s race (Black, White). The paired samples <em>t</em>-test was nonsignificant, <em>t</em>(32) = 0.133, <em>p</em> = .911. The small magnitude of the effect size (<em>d</em> = 0.02) was consistent with the nonsignificant result. The 95% confidence interval for the difference in means was quite wide and included the value of zero (95%CI[-1.386, 1.549]). Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.</p>
 </blockquote>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="tPaired.html#cb419-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#needed to use the pipe </span></span>
-<span id="cb419-2"><a href="tPaired.html#cb419-2" tabindex="-1"></a><span class="co"># Creating a smaller df to include only the variables I want in the</span></span>
-<span id="cb419-3"><a href="tPaired.html#cb419-3" tabindex="-1"></a><span class="co"># table</span></span>
-<span id="cb419-4"><a href="tPaired.html#cb419-4" tabindex="-1"></a>PairedDescripts <span class="ot">&lt;-</span> dfPairedSamples <span class="sc">%&gt;%</span></span>
-<span id="cb419-5"><a href="tPaired.html#cb419-5" tabindex="-1"></a>    <span class="fu">select</span>(Verbal_BL, Verbal_WH, Verbal_D)</span>
-<span id="cb419-6"><a href="tPaired.html#cb419-6" tabindex="-1"></a><span class="co"># using the apa.cor.table function for means, standard deviations,</span></span>
-<span id="cb419-7"><a href="tPaired.html#cb419-7" tabindex="-1"></a><span class="co"># and correlations the filename command will write the table as a</span></span>
-<span id="cb419-8"><a href="tPaired.html#cb419-8" tabindex="-1"></a><span class="co"># word document to your file</span></span>
-<span id="cb419-9"><a href="tPaired.html#cb419-9" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(PairedDescripts, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">filename =</span> <span class="st">&quot;Tab1_PairedV.doc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="tPaired.html#cb499-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#needed to use the pipe </span></span>
+<span id="cb499-2"><a href="tPaired.html#cb499-2" tabindex="-1"></a><span class="co"># Creating a smaller df to include only the variables I want in the</span></span>
+<span id="cb499-3"><a href="tPaired.html#cb499-3" tabindex="-1"></a><span class="co"># table</span></span>
+<span id="cb499-4"><a href="tPaired.html#cb499-4" tabindex="-1"></a>PairedDescripts <span class="ot">&lt;-</span> dfPairedSamples <span class="sc">%&gt;%</span></span>
+<span id="cb499-5"><a href="tPaired.html#cb499-5" tabindex="-1"></a>    <span class="fu">select</span>(Verbal_BL, Verbal_WH, Verbal_D)</span>
+<span id="cb499-6"><a href="tPaired.html#cb499-6" tabindex="-1"></a><span class="co"># using the apa.cor.table function for means, standard deviations,</span></span>
+<span id="cb499-7"><a href="tPaired.html#cb499-7" tabindex="-1"></a><span class="co"># and correlations the filename command will write the table as a</span></span>
+<span id="cb499-8"><a href="tPaired.html#cb499-8" tabindex="-1"></a><span class="co"># word document to your file</span></span>
+<span id="cb499-9"><a href="tPaired.html#cb499-9" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(PairedDescripts, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">filename =</span> <span class="st">&quot;Tab1_PairedV.doc&quot;</span>)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -1188,10 +1193,10 @@ that could have caused the sample correlation (Cumming, 2014).
 <li>saving it as an object, which I’m naming “pair.test.”</li>
 </ul>
 <p>We could have done this in the initial run (but I didn’t want to make the test-statistic unnecessarily confusing).</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="tPaired.html#cb421-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb421-2"><a href="tPaired.html#cb421-2" tabindex="-1"></a>pair.test <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_long, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb421-3"><a href="tPaired.html#cb421-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
-<span id="cb421-4"><a href="tPaired.html#cb421-4" tabindex="-1"></a>pair.test</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="tPaired.html#cb501-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb501-2"><a href="tPaired.html#cb501-2" tabindex="-1"></a>pair.test <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_long, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb501-3"><a href="tPaired.html#cb501-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
+<span id="cb501-4"><a href="tPaired.html#cb501-4" tabindex="-1"></a>pair.test</span></code></pre></div>
 <pre><code># A tibble: 1 × 14
   estimate .y.    group1 group2    n1    n2 statistic     p    df conf.low
      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -1199,18 +1204,18 @@ that could have caused the sample correlation (Cumming, 2014).
 # ℹ 4 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;,
 #   p.signif &lt;chr&gt;</code></pre>
 <p>Next, we create boxplot code with the long form of our data:</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="tPaired.html#cb423-1" tabindex="-1"></a>pair.box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggpaired</span>(df_long, <span class="at">x =</span> <span class="st">&quot;PtRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
-<span id="cb423-2"><a href="tPaired.html#cb423-2" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>), <span class="at">line.color =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;npg&quot;</span>), <span class="at">color =</span> <span class="st">&quot;PtRace&quot;</span>,</span>
-<span id="cb423-3"><a href="tPaired.html#cb423-3" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Verbal Communication Rating&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Patient Race&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Verbal Engagement as a Function of Patient Race&quot;</span>)</span>
-<span id="cb423-4"><a href="tPaired.html#cb423-4" tabindex="-1"></a></span>
-<span id="cb423-5"><a href="tPaired.html#cb423-5" tabindex="-1"></a>pair.test <span class="ot">&lt;-</span> pair.test <span class="sc">%&gt;%</span></span>
-<span id="cb423-6"><a href="tPaired.html#cb423-6" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;PtRace&quot;</span>)  <span class="co">#autocomputes p-value labels positions</span></span>
-<span id="cb423-7"><a href="tPaired.html#cb423-7" tabindex="-1"></a></span>
-<span id="cb423-8"><a href="tPaired.html#cb423-8" tabindex="-1"></a>pair.box <span class="ot">&lt;-</span> pair.box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pair.test, <span class="at">tip.length =</span> <span class="fl">0.01</span>,</span>
-<span id="cb423-9"><a href="tPaired.html#cb423-9" tabindex="-1"></a>    <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">15</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> rstatix<span class="sc">::</span><span class="fu">get_test_label</span>(pair.test,</span>
-<span id="cb423-10"><a href="tPaired.html#cb423-10" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb423-11"><a href="tPaired.html#cb423-11" tabindex="-1"></a></span>
-<span id="cb423-12"><a href="tPaired.html#cb423-12" tabindex="-1"></a>pair.box</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="tPaired.html#cb503-1" tabindex="-1"></a>pair.box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggpaired</span>(df_long, <span class="at">x =</span> <span class="st">&quot;PtRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
+<span id="cb503-2"><a href="tPaired.html#cb503-2" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>), <span class="at">line.color =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;npg&quot;</span>), <span class="at">color =</span> <span class="st">&quot;PtRace&quot;</span>,</span>
+<span id="cb503-3"><a href="tPaired.html#cb503-3" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Verbal Communication Rating&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Patient Race&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Verbal Engagement as a Function of Patient Race&quot;</span>)</span>
+<span id="cb503-4"><a href="tPaired.html#cb503-4" tabindex="-1"></a></span>
+<span id="cb503-5"><a href="tPaired.html#cb503-5" tabindex="-1"></a>pair.test <span class="ot">&lt;-</span> pair.test <span class="sc">%&gt;%</span></span>
+<span id="cb503-6"><a href="tPaired.html#cb503-6" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;PtRace&quot;</span>)  <span class="co">#autocomputes p-value labels positions</span></span>
+<span id="cb503-7"><a href="tPaired.html#cb503-7" tabindex="-1"></a></span>
+<span id="cb503-8"><a href="tPaired.html#cb503-8" tabindex="-1"></a>pair.box <span class="ot">&lt;-</span> pair.box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pair.test, <span class="at">tip.length =</span> <span class="fl">0.01</span>,</span>
+<span id="cb503-9"><a href="tPaired.html#cb503-9" tabindex="-1"></a>    <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">15</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> rstatix<span class="sc">::</span><span class="fu">get_test_label</span>(pair.test,</span>
+<span id="cb503-10"><a href="tPaired.html#cb503-10" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb503-11"><a href="tPaired.html#cb503-11" tabindex="-1"></a></span>
+<span id="cb503-12"><a href="tPaired.html#cb503-12" tabindex="-1"></a>pair.box</span></code></pre></div>
 <p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 The tools available offer a great deal of flexibility. Determining which figure is best will likely depend on your outlet, your audience, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the “fill = PtRace” argument.</p>
 </div>
@@ -1228,8 +1233,8 @@ The tools available offer a great deal of flexibility. Determining which figure 
 </ul>
 <p>In this script, we must specify <em>all-but-one</em> parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.</p>
 <p>When we conduct a “power analysis” (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, “power=NULL”. Using the data from our results, we learn from this first run, that our statistical power was at 5%. That is, given the low value of the mean difference (.08) and the relatively large standard deviation (4.14), we had only a 5% chance of detecting a statistically significant effect if there was one.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="tPaired.html#cb424-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.02</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
-<span id="cb424-2"><a href="tPaired.html#cb424-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="tPaired.html#cb504-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.02</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb504-2"><a href="tPaired.html#cb504-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Paired t test power calculation 
 
@@ -1242,8 +1247,8 @@ The tools available offer a great deal of flexibility. Determining which figure 
 NOTE: n is number of *pairs*</code></pre>
 <p>The results indicate that we were powered at 5%. That is, we had a 5% chance of finding a statistically significant difference, if in fact there was one.</p>
 <p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="tPaired.html#cb426-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.02</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
-<span id="cb426-2"><a href="tPaired.html#cb426-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="tPaired.html#cb506-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.02</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb506-2"><a href="tPaired.html#cb506-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Paired t test power calculation 
 
@@ -1256,40 +1261,40 @@ NOTE: n is number of *pairs*</code></pre>
 NOTE: n is number of *pairs*</code></pre>
 <p>Using the results from the simulation of our research vignette, you can see that we would have needed 19624 individuals for the <em>p</em> value to be &lt; .05, if, in fact there were a significant difference.</p>
 <p>Let’s see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="tPaired.html#cb428-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220820</span>)</span>
-<span id="cb428-2"><a href="tPaired.html#cb428-2" tabindex="-1"></a><span class="co"># These define the characteristics of the verbal variable. It is</span></span>
-<span id="cb428-3"><a href="tPaired.html#cb428-3" tabindex="-1"></a><span class="co"># essential that the object names (e.g., A_mean) are not changed</span></span>
-<span id="cb428-4"><a href="tPaired.html#cb428-4" tabindex="-1"></a><span class="co"># because they will be fed to the function in the faux package.</span></span>
-<span id="cb428-5"><a href="tPaired.html#cb428-5" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">19624</span></span>
-<span id="cb428-6"><a href="tPaired.html#cb428-6" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">8.37</span></span>
-<span id="cb428-7"><a href="tPaired.html#cb428-7" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">8.41</span></span>
-<span id="cb428-8"><a href="tPaired.html#cb428-8" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">3.36</span></span>
-<span id="cb428-9"><a href="tPaired.html#cb428-9" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">3.21</span></span>
-<span id="cb428-10"><a href="tPaired.html#cb428-10" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
-<span id="cb428-11"><a href="tPaired.html#cb428-11" tabindex="-1"></a></span>
-<span id="cb428-12"><a href="tPaired.html#cb428-12" tabindex="-1"></a><span class="co"># the faux package can simulate a variety of data. This function</span></span>
-<span id="cb428-13"><a href="tPaired.html#cb428-13" tabindex="-1"></a><span class="co"># within the faux package will use the objects above to simulate</span></span>
-<span id="cb428-14"><a href="tPaired.html#cb428-14" tabindex="-1"></a><span class="co"># paired samples data</span></span>
-<span id="cb428-15"><a href="tPaired.html#cb428-15" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
-<span id="cb428-16"><a href="tPaired.html#cb428-16" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>))</span>
-<span id="cb428-17"><a href="tPaired.html#cb428-17" tabindex="-1"></a></span>
-<span id="cb428-18"><a href="tPaired.html#cb428-18" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> paired_V2 <span class="sc">%&gt;%</span></span>
-<span id="cb428-19"><a href="tPaired.html#cb428-19" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb428-20"><a href="tPaired.html#cb428-20" tabindex="-1"></a></span>
-<span id="cb428-21"><a href="tPaired.html#cb428-21" tabindex="-1"></a><span class="co"># restructuring data to the long form</span></span>
-<span id="cb428-22"><a href="tPaired.html#cb428-22" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">melt</span>(data.table<span class="sc">::</span><span class="fu">setDT</span>(paired_V2), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>),</span>
-<span id="cb428-23"><a href="tPaired.html#cb428-23" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>)))</span>
-<span id="cb428-24"><a href="tPaired.html#cb428-24" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_longV2, <span class="at">PatientRace =</span> variable, <span class="at">Verbal =</span> value)</span>
-<span id="cb428-25"><a href="tPaired.html#cb428-25" tabindex="-1"></a>df_longV2<span class="sc">$</span>PtRace <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(df_longV2<span class="sc">$</span>PatientRace, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>,</span>
-<span id="cb428-26"><a href="tPaired.html#cb428-26" tabindex="-1"></a>    <span class="st">&quot;Verbal_WH&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="tPaired.html#cb508-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220820</span>)</span>
+<span id="cb508-2"><a href="tPaired.html#cb508-2" tabindex="-1"></a><span class="co"># These define the characteristics of the verbal variable. It is</span></span>
+<span id="cb508-3"><a href="tPaired.html#cb508-3" tabindex="-1"></a><span class="co"># essential that the object names (e.g., A_mean) are not changed</span></span>
+<span id="cb508-4"><a href="tPaired.html#cb508-4" tabindex="-1"></a><span class="co"># because they will be fed to the function in the faux package.</span></span>
+<span id="cb508-5"><a href="tPaired.html#cb508-5" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">19624</span></span>
+<span id="cb508-6"><a href="tPaired.html#cb508-6" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="fl">8.37</span></span>
+<span id="cb508-7"><a href="tPaired.html#cb508-7" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="fl">8.41</span></span>
+<span id="cb508-8"><a href="tPaired.html#cb508-8" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">3.36</span></span>
+<span id="cb508-9"><a href="tPaired.html#cb508-9" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">3.21</span></span>
+<span id="cb508-10"><a href="tPaired.html#cb508-10" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb508-11"><a href="tPaired.html#cb508-11" tabindex="-1"></a></span>
+<span id="cb508-12"><a href="tPaired.html#cb508-12" tabindex="-1"></a><span class="co"># the faux package can simulate a variety of data. This function</span></span>
+<span id="cb508-13"><a href="tPaired.html#cb508-13" tabindex="-1"></a><span class="co"># within the faux package will use the objects above to simulate</span></span>
+<span id="cb508-14"><a href="tPaired.html#cb508-14" tabindex="-1"></a><span class="co"># paired samples data</span></span>
+<span id="cb508-15"><a href="tPaired.html#cb508-15" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(<span class="at">n =</span> sub_n, <span class="at">vars =</span> <span class="dv">2</span>, <span class="at">r =</span> AB_r, <span class="at">mu =</span> <span class="fu">c</span>(A_mean,</span>
+<span id="cb508-16"><a href="tPaired.html#cb508-16" tabindex="-1"></a>    B_mean), <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>))</span>
+<span id="cb508-17"><a href="tPaired.html#cb508-17" tabindex="-1"></a></span>
+<span id="cb508-18"><a href="tPaired.html#cb508-18" tabindex="-1"></a>paired_V2 <span class="ot">&lt;-</span> paired_V2 <span class="sc">%&gt;%</span></span>
+<span id="cb508-19"><a href="tPaired.html#cb508-19" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">PhysID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb508-20"><a href="tPaired.html#cb508-20" tabindex="-1"></a></span>
+<span id="cb508-21"><a href="tPaired.html#cb508-21" tabindex="-1"></a><span class="co"># restructuring data to the long form</span></span>
+<span id="cb508-22"><a href="tPaired.html#cb508-22" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">melt</span>(data.table<span class="sc">::</span><span class="fu">setDT</span>(paired_V2), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;PhysID&quot;</span>),</span>
+<span id="cb508-23"><a href="tPaired.html#cb508-23" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>, <span class="st">&quot;Verbal_WH&quot;</span>)))</span>
+<span id="cb508-24"><a href="tPaired.html#cb508-24" tabindex="-1"></a>df_longV2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_longV2, <span class="at">PatientRace =</span> variable, <span class="at">Verbal =</span> value)</span>
+<span id="cb508-25"><a href="tPaired.html#cb508-25" tabindex="-1"></a>df_longV2<span class="sc">$</span>PtRace <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(df_longV2<span class="sc">$</span>PatientRace, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Verbal_BL&quot;</span>,</span>
+<span id="cb508-26"><a href="tPaired.html#cb508-26" tabindex="-1"></a>    <span class="st">&quot;Verbal_WH&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
 <p>Now I will conduct the paired samples <em>t</em>-test and corresponding effect size.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="tPaired.html#cb429-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="tPaired.html#cb509-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 13
   estimate .y.    group1 group2    n1    n2 statistic     p    df conf.low
 *    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 1  -0.0343 Verbal Black  White  19624 19624     -1.24 0.214 19623  -0.0885
 # ℹ 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="tPaired.html#cb431-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="tPaired.html#cb511-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(df_longV2, Verbal <span class="sc">~</span> PtRace, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.    group1 group2  effsize    n1    n2 magnitude 
 * &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
@@ -1464,11 +1469,20 @@ NOTE: n is number of *pairs*</code></pre>
 <div id="simulate-or-import-and-format-data-2" class="section level4 hasAnchor" number="6.9.1.2">
 <h4><span class="header-section-number">6.9.1.2</span> Simulate (or import) and format data<a href="tPaired.html#simulate-or-import-and-format-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s import the larger dataset.</p>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="tPaired.html#cb513-1" tabindex="-1"></a>larger <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="tPaired.html#cb514-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
+<span id="cb514-2"><a href="tPaired.html#cb514-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ClearResponsibilities&#39;</span>, <span class="st">&#39;EffectiveAnswers&#39;</span>,<span class="st">&#39;Feedback&#39;</span>, <span class="st">&#39;ClearOrganization&#39;</span>,<span class="st">&#39;ClearPresentation&#39;</span>)</span>
+<span id="cb514-3"><a href="tPaired.html#cb514-3" tabindex="-1"></a></span>
+<span id="cb514-4"><a href="tPaired.html#cb514-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
+<span id="cb514-5"><a href="tPaired.html#cb514-5" tabindex="-1"></a>larger<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(larger[, ..TradPed_vars], .<span class="dv">75</span>)</span></code></pre></div>
 <p>From the “larger” data, let’s select only the variable we will use in the analysis. I have included “long” in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.</p>
 <p>We need both “long” and “wide” forms to conduct the analyses required for both testing the statistical assumptions and performing the paired samples <em>t</em>-test.</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="tPaired.html#cb515-1" tabindex="-1"></a>paired_long <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span> (larger, deID, Course, TradPed))</span></code></pre></div>
 <p>From that reduced variable set, let’s create a subset with students only from those two courses.</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="tPaired.html#cb516-1" tabindex="-1"></a>paired_long <span class="ot">&lt;-</span> <span class="fu">subset</span>(paired_long, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span> <span class="sc">|</span> Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>) </span></code></pre></div>
 <p>Regarding the structure of the data, we want the conditions (ANOVA, multivariate) to be factors and the TradPed variable to be continuously scaled. The format of the deID variable can be any numerical or categorical format – just not a “chr” (character) variable.</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="tPaired.html#cb517-1" tabindex="-1"></a><span class="fu">str</span>(paired_long)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  198 obs. of  3 variables:
  $ deID   : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Course : Factor w/ 3 levels &quot;Psychometrics&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
@@ -1476,19 +1490,24 @@ NOTE: n is number of *pairs*</code></pre>
  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
 <p>R correctly interpreted our variables.</p>
 <p>For analyzing the assumptions associated with the paired-samples <em>t</em>-test, the format needs to be “wide” form (where each student has both observations on one row). Our data is presently in “long” form (where each observation is listed in each row). Here’s how to reshape the data.</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="tPaired.html#cb519-1" tabindex="-1"></a>paired_wide <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> paired_long, <span class="at">formula =</span>deID <span class="sc">~</span> Course, <span class="at">value.var =</span> <span class="st">&quot;TradPed&quot;</span>)</span></code></pre></div>
 <p>Let’s recheck the structure.</p>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="tPaired.html#cb520-1" tabindex="-1"></a><span class="fu">str</span>(paired_wide)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   119 obs. of  3 variables:
  $ deID        : int  1 2 3 4 5 6 7 8 9 10 ...
  $ ANOVA       : num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
  $ Multivariate: num  NA NA NA NA NA NA NA NA NA NA ...</code></pre>
 <p>You will notice that there is a good deal of missingness in the Multivariate condition. This is caused because the most recent cohort of students had not yet taken the course. While managing missingness is more complex than this, for the sake of simplicity, I will create a dataframe with non-missing data.</p>
 <p>Doing so should also help with the hand-calculations later in the worked example.</p>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="tPaired.html#cb522-1" tabindex="-1"></a>paired_wide <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(paired_wide)</span></code></pre></div>
 </div>
 <div id="evaluate-statistical-assumptions-2" class="section level4 hasAnchor" number="6.9.1.3">
 <h4><span class="header-section-number">6.9.1.3</span> Evaluate statistical assumptions<a href="tPaired.html#evaluate-statistical-assumptions-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We need to evaluate the <em>distribution of the difference score</em> in terms of skew and kurtosis. We want this distribution of difference scores to be normally distributed.</p>
 <p>This means we need to create a difference score:</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="tPaired.html#cb523-1" tabindex="-1"></a>paired_wide<span class="sc">$</span>DIFF <span class="ot">&lt;-</span> paired_wide<span class="sc">$</span>ANOVA <span class="sc">-</span> paired_wide<span class="sc">$</span>Multivariate</span></code></pre></div>
 <p>We can use the <em>psych::describe()</em> function to obtain skew and kurtosis.</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="tPaired.html#cb524-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(paired_wide)</span></code></pre></div>
 <pre><code>             vars  n  mean    sd median trimmed   mad  min   max range  skew
 deID            1 77 62.27 35.43   60.0   59.54 34.10 11.0 142.0 131.0  0.63
 ANOVA           2 77  4.21  0.73    4.2    4.29  0.89  2.2   5.0   2.8 -0.79
@@ -1501,12 +1520,14 @@ Multivariate     5.00 0.08
 DIFF             3.15 0.09</code></pre>
 <p>Regarding the DIFF score, the skew (0.56) and kurtosis (3.15) values were well below the threshholds of concern identified by Klein (2016).</p>
 <p>We can formally test for deviations from normality with a Shapiro-Wilk. We want the results to be non-significant.</p>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="tPaired.html#cb526-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(paired_wide, DIFF)</span></code></pre></div>
 <pre><code># A tibble: 1 × 3
   variable statistic       p
   &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
 1 DIFF         0.943 0.00187</code></pre>
 <p>Results of the Shapiro-Wilk test of normality are statistically significant <span class="math inline">\((W = 0.943, p = 0.002)\)</span>. This means that the distribution of difference scores are statistically significantly different from a normal distribution.</p>
 <p>although not required in the formal test of instructions, a <em>pairs panel</em> of correlations and distributions can be useful in undersatnding our data.</p>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="tPaired.html#cb528-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(paired_wide)</span></code></pre></div>
 <p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.</p>
 <p>Before moving forward, I want to capture my analysis of assumptions:</p>
@@ -1517,6 +1538,12 @@ Visual inspection of the distributions of the specific course variables were neg
 <div id="conduct-a-paired-samples-t-test-with-an-effect-size-95-cis" class="section level4 hasAnchor" number="6.9.1.4">
 <h4><span class="header-section-number">6.9.1.4</span> Conduct a paired samples t-test (with an effect size &amp; 95% CIs)<a href="tPaired.html#conduct-a-paired-samples-t-test-with-an-effect-size-95-cis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>So this may be a bit tricky, but our original “long” form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples <em>t</em> test requires the design to be balanced. When we used the <em>na.omit()</em> function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let’s restructure that wide format back to long format so that the design will be balanced.</p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="tPaired.html#cb529-1" tabindex="-1"></a>paired_long2 <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">melt</span>(data.table<span class="sc">::</span><span class="fu">setDT</span>(paired_wide), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;deID&quot;</span>),</span>
+<span id="cb529-2"><a href="tPaired.html#cb529-2" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;ANOVA&quot;</span>, <span class="st">&quot;Multivariate&quot;</span>)))</span>
+<span id="cb529-3"><a href="tPaired.html#cb529-3" tabindex="-1"></a></span>
+<span id="cb529-4"><a href="tPaired.html#cb529-4" tabindex="-1"></a>paired_long2 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(paired_long2, <span class="at">Course =</span> variable, <span class="at">TradPed =</span> value)</span>
+<span id="cb529-5"><a href="tPaired.html#cb529-5" tabindex="-1"></a></span>
+<span id="cb529-6"><a href="tPaired.html#cb529-6" tabindex="-1"></a><span class="fu">head</span>(paired_long2)</span></code></pre></div>
 <pre><code>   deID Course TradPed
 1:   11  ANOVA     4.0
 2:   12  ANOVA     4.2
@@ -1524,6 +1551,7 @@ Visual inspection of the distributions of the specific course variables were neg
 4:   14  ANOVA     3.6
 5:   15  ANOVA     3.4
 6:   16  ANOVA     2.2</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="tPaired.html#cb531-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(paired_long2, TradPed <span class="sc">~</span> Course, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 13
   estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
 *    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -1531,6 +1559,7 @@ Visual inspection of the distributions of the specific course variables were neg
 # ℹ 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
 <p>I’ll begin the <em>t</em> string with this output: <span class="math inline">\(t(76) = -1.341, p = 0.184, CI95(-0.305, 0.069)\)</span>. The difference in course evaluations is not statistically significantly difference. We are 955 confident that the true difference in means is as low as -0.301 or as high as 0.060.</p>
 <p>we calculate the Cohen’s <em>d</em> (the effect size) this way:</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="tPaired.html#cb533-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(paired_long2, TradPed <span class="sc">~</span> Course, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.     group1 group2       effsize    n1    n2 magnitude 
 * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
@@ -1548,6 +1577,15 @@ Visual inspection of the distributions of the specific course variables were neg
 <blockquote>
 <p>Results of the paired samples <em>t</em>-test suggested nonsignificant differences <span class="math inline">\(t(76) = -1.341, p = 0.184,d = -0.153\)</span>. The 95% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.</p>
 </blockquote>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="tPaired.html#cb535-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#needed to use the pipe </span></span>
+<span id="cb535-2"><a href="tPaired.html#cb535-2" tabindex="-1"></a><span class="co"># Creating a smaller df to include only the variables I want in the</span></span>
+<span id="cb535-3"><a href="tPaired.html#cb535-3" tabindex="-1"></a><span class="co"># table</span></span>
+<span id="cb535-4"><a href="tPaired.html#cb535-4" tabindex="-1"></a>Descripts_paired <span class="ot">&lt;-</span> paired_wide <span class="sc">%&gt;%</span></span>
+<span id="cb535-5"><a href="tPaired.html#cb535-5" tabindex="-1"></a>    <span class="fu">select</span>(ANOVA, Multivariate, DIFF)</span>
+<span id="cb535-6"><a href="tPaired.html#cb535-6" tabindex="-1"></a><span class="co"># using the apa.cor.table function for means, standard deviations,</span></span>
+<span id="cb535-7"><a href="tPaired.html#cb535-7" tabindex="-1"></a><span class="co"># and correlations the filename command will write the table as a</span></span>
+<span id="cb535-8"><a href="tPaired.html#cb535-8" tabindex="-1"></a><span class="co"># word document to your file</span></span>
+<span id="cb535-9"><a href="tPaired.html#cb535-9" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Descripts_paired, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">filename =</span> <span class="st">&quot;Tab1_PairedT.doc&quot;</span>)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -1572,6 +1610,9 @@ that could have caused the sample correlation (Cumming, 2014).
  * indicates p &lt; .05. ** indicates p &lt; .01.
  </code></pre>
 <p>For the figure, let’s re-run the paired samples <em>t</em> test, save it as an object, and use the “add_significance” function so that we can add it to our figure.</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="tPaired.html#cb537-1" tabindex="-1"></a>paired_T <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(paired_long2, TradPed <span class="sc">~</span> Course, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb537-2"><a href="tPaired.html#cb537-2" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
+<span id="cb537-3"><a href="tPaired.html#cb537-3" tabindex="-1"></a>paired_T</span></code></pre></div>
 <pre><code># A tibble: 1 × 14
   estimate .y.     group1 group2         n1    n2 statistic     p    df conf.low
      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -1579,6 +1620,18 @@ that could have caused the sample correlation (Cumming, 2014).
 # ℹ 4 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;,
 #   p.signif &lt;chr&gt;</code></pre>
 <p>Next, we create boxplot:</p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="tPaired.html#cb539-1" tabindex="-1"></a>pairT.box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggpaired</span>(paired_long2, <span class="at">x =</span> <span class="st">&quot;Course&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TradPed&quot;</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&quot;ANOVA&quot;</span>,</span>
+<span id="cb539-2"><a href="tPaired.html#cb539-2" tabindex="-1"></a>    <span class="st">&quot;Multivariate&quot;</span>), <span class="at">line.color =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;npg&quot;</span>), <span class="at">color =</span> <span class="st">&quot;Course&quot;</span>,</span>
+<span id="cb539-3"><a href="tPaired.html#cb539-3" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Traditional Pedagogy&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Statistics Course&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Evaluation of Traditional Pedagogy as a Function of Course&quot;</span>)</span>
+<span id="cb539-4"><a href="tPaired.html#cb539-4" tabindex="-1"></a></span>
+<span id="cb539-5"><a href="tPaired.html#cb539-5" tabindex="-1"></a>paired_T <span class="ot">&lt;-</span> paired_T <span class="sc">%&gt;%</span></span>
+<span id="cb539-6"><a href="tPaired.html#cb539-6" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Course&quot;</span>)  <span class="co">#autocomputes p-value labels positions</span></span>
+<span id="cb539-7"><a href="tPaired.html#cb539-7" tabindex="-1"></a></span>
+<span id="cb539-8"><a href="tPaired.html#cb539-8" tabindex="-1"></a>pairT.box <span class="ot">&lt;-</span> pairT.box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(paired_T, <span class="at">tip.length =</span> <span class="fl">0.01</span>,</span>
+<span id="cb539-9"><a href="tPaired.html#cb539-9" tabindex="-1"></a>    <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.5</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> rstatix<span class="sc">::</span><span class="fu">get_test_label</span>(paired_T,</span>
+<span id="cb539-10"><a href="tPaired.html#cb539-10" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb539-11"><a href="tPaired.html#cb539-11" tabindex="-1"></a></span>
+<span id="cb539-12"><a href="tPaired.html#cb539-12" tabindex="-1"></a>pairT.box</span></code></pre></div>
 <p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-2" class="section level4 hasAnchor" number="6.9.1.6">
@@ -1592,6 +1645,8 @@ that could have caused the sample correlation (Cumming, 2014).
 <li>type indicates the type of <em>t</em>-test; in this example it is “paired”</li>
 <li>alternative indicates one or two.sided</li>
 </ul>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="tPaired.html#cb540-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.153</span>, <span class="at">n =</span> <span class="dv">77</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb540-2"><a href="tPaired.html#cb540-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Paired t test power calculation 
 
@@ -1603,6 +1658,8 @@ that could have caused the sample correlation (Cumming, 2014).
 
 NOTE: n is number of *pairs*</code></pre>
 <p>We had a 26% chance of finding a statistically significant result if, in fact, one existed.</p>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="tPaired.html#cb542-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.153</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb542-2"><a href="tPaired.html#cb542-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Paired t test power calculation 
 
@@ -1629,10 +1686,12 @@ NOTE: n is number of *pairs*</code></pre>
 <div id="using-an-r-package-or-functions-in-base-r-and-with-data-in-the-wide-format-calculate-the-difference-score-between-the-two-observations-of-the-dependent-variable" class="section level4 hasAnchor" number="6.9.2.2">
 <h4><span class="header-section-number">6.9.2.2</span> Using an R package or functions in base R (and with data in the “wide” format), calculate the <em>difference</em> score between the two observations of the dependent variable<a href="tPaired.html#using-an-r-package-or-functions-in-base-r-and-with-data-in-the-wide-format-calculate-the-difference-score-between-the-two-observations-of-the-dependent-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We had already calculated a difference score in the earlier assignment. Here it is again.</p>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="tPaired.html#cb544-1" tabindex="-1"></a>paired_wide<span class="sc">$</span>DIFF <span class="ot">&lt;-</span> paired_wide<span class="sc">$</span>ANOVA <span class="sc">-</span> paired_wide<span class="sc">$</span>Multivariate</span></code></pre></div>
 </div>
 <div id="obtain-the-mean-and-standard-deviation-of-the-difference-score" class="section level4 hasAnchor" number="6.9.2.3">
 <h4><span class="header-section-number">6.9.2.3</span> Obtain the mean and standard deviation of the <em>difference</em> score<a href="tPaired.html#obtain-the-mean-and-standard-deviation-of-the-difference-score" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can obtain the mean and standard deviation for the difference score with this script.</p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="tPaired.html#cb545-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(paired_wide<span class="sc">$</span>DIFF)</span></code></pre></div>
 <pre><code>   vars  n  mean  sd median trimmed  mad  min max range skew kurtosis   se
 X1    1 77 -0.12 0.8   -0.2   -0.13 0.59 -2.4 3.2   5.6 0.56     3.15 0.09</code></pre>
 <p>The mean difference (<span class="math inline">\(\bar{D}\)</span>) is -0.12; the standard deviation (<span class="math inline">\(\hat\sigma_D\)</span>) of the difference score is 0.8.</p>
@@ -1642,6 +1701,7 @@ X1    1 77 -0.12 0.8   -0.2   -0.13 0.59 -2.4 3.2   5.6 0.56     3.15 0.09</code
 <p>Here is the formula for the paired samples <em>t</em>-test:</p>
 <p><span class="math display">\[t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}\]</span>
 Using the values we located we can calculate the value of the <em>t</em> statistic.</p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="tPaired.html#cb547-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.12</span><span class="sc">/</span>(<span class="fl">0.8</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">77</span>))</span></code></pre></div>
 <pre><code>[1] -1.316245</code></pre>
 <p>The value we calculated with the <em>rstatix::t_test()</em> function was -1.34. Considering rounding error, I think we got it!</p>
 </div>
@@ -1653,7 +1713,9 @@ Using the values we located we can calculate the value of the <em>t</em> statist
 <h4><span class="header-section-number">6.9.2.6</span> Locate the test critical value for your paired samples <em>t</em>-test<a href="tPaired.html#locate-the-test-critical-value-for-your-paired-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I could look at the <a href="https://www.statology.org/t-distribution-table/">table of critical values</a> for the <em>t</em>-distribution. Because I have non-directional hypotheses, I would use the column for a <em>p</em>-value of .05 for a two-tailed test. I roll down to the closest sample size (I’ll pick 60). This suggests that my <em>t</em>-test statistic would need to be greater than 2.0 in order to be statistically significant.</p>
 <p>I can also use the <em>qt()</em> function in base R. This function requires that I specify the alpha level (0.05), whether the test is one- or two-tailed (2), and my degrees of freedom (76). Specifying “TRUE” and “FALSE” after the lower.tail command gives the positive and negative regions of rejection.</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="tPaired.html#cb549-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">76</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] -1.991673</code></pre>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="tPaired.html#cb551-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">76</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 1.991673</code></pre>
 <p>It is not surprising that these values are a smidge lower than 2.0. Why? Because in the table we stopped at df of 60, when it is actually 76.</p>
 </div>
@@ -1672,7 +1734,9 @@ Using the values we located we can calculate the value of the <em>t</em> statist
 <li><span class="math inline">\(N\)</span> sample size</li>
 </ul>
 <p>Let’s calculate it:</p>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="tPaired.html#cb553-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.12</span> <span class="sc">-</span> (<span class="sc">-</span><span class="fl">1.991673</span> <span class="sc">*</span> ((<span class="fl">0.8</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">77</span>)))))</span></code></pre></div>
 <pre><code>[1] 0.06157776</code></pre>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="tPaired.html#cb555-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.12</span> <span class="sc">+</span> (<span class="sc">-</span><span class="fl">1.991673</span> <span class="sc">*</span> ((<span class="fl">0.8</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">77</span>))))</span></code></pre></div>
 <pre><code>[1] -0.3015778</code></pre>
 <p>These values indicate the range of scores in which we are 95% confident that our true <span class="math inline">\(\bar{D}\)</span> lies. Stated another way, we are 95% confident that the true mean difference lies between -0.302 and 0.062. Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant <em>p</em> value. For these types of statistics, the 95% confidence interval and <em>p</em> value will always be yoked together.</p>
 </div>
@@ -1682,7 +1746,9 @@ Using the values we located we can calculate the value of the <em>t</em> statist
 <p>Because the paired samples <em>t</em>-test used the difference score in the numerator, there are two easy options for calculating this effect:</p>
 <p><span class="math display">\[d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}\]</span>
 Here’s a demonstration of both:</p>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="tPaired.html#cb557-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.12</span><span class="sc">/</span>.<span class="dv">8</span></span></code></pre></div>
 <pre><code>[1] -0.15</code></pre>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="tPaired.html#cb559-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">1.316245</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">77</span>)</span></code></pre></div>
 <pre><code>[1] -0.15</code></pre>
 </div>
 <div id="assemble-the-results-into-a-statistical-string." class="section level4 hasAnchor" number="6.9.2.10">
