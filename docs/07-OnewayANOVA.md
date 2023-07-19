@@ -2212,6 +2212,12 @@ In order to be at 80% power to find a statistically significant result if there 
 
 ### Hand Calculations
 
+Before we continue: 
+
+>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations utilizes an  approach to calculating the sums of squares that presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the Type II package in *rstatix::anova_test* will produce different result.
+
+> Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
+
 I will use the same example (and same dataset) for hand calculations. Because of the unbalanced design (e.g., unequal cell sizes across stages), my hand calculations will likely be different from the results from the *rstatix::anova_test()* function.
 
 #### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses.
@@ -2419,7 +2425,7 @@ F
 ```
 *F* = 2.381
 
-This "isn't exactly" what we found for the same data using R and R packages. However, the algorithms for those packages would take into consideration the unbalanced design (i.e., unequal cell sizes). Such a characteristic is a limitation, but is beyond this lesson.
+As I noted before we started the hand calculations, this "isn't exactly" what we found for the same data using R and R packages. However, the algorithms for those packages would take into consideration the unbalanced design (i.e., unequal cell sizes). Such a characteristic is a limitation, but is beyond this lesson.
 
 #### What are the degrees of freedom for your numerator and denominator? 
 

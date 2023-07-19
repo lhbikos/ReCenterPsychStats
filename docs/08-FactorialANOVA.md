@@ -801,6 +801,11 @@ What have we learned?
 
 In the face of this significant interaction effect, we would follow-up by investigating the interaction effect. Why? The significant interaction effect means that findings (e.g., the story of the results) are more complex than group identity or photo stimulus, alone, can explain.
 
+>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations utilizes an  approach to calculating the sums of squares that presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the Type II package in *rstatix::anova_test* will produce different result.
+
+> Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
+
+
 ## Working the Factorial ANOVA with R Packages
 
 ### Evaluating the statistical assumptions
@@ -2013,18 +2018,14 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |Hand Calculations                         | Points Poss   | Points Earned
 |:-----------------------------------------|:-------------:|:--------------|
 |1.  Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |  |
-|3. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.  |4 |  |
-|4. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group. | 4 ||
-|5.  Calculate sums of squares total (SST) for each of the factors in the model.  | 4  |  |
-|6. Calculate the sums of squares for the model (SSM) for each of the factors in the model. |4 |  |
-|7. Calculate the sums of squares residual (SSR) for each of the factors in the model. | 4 ||
-|8. Calculate the mean square models, mean square residuals, and *F*-tests for the main and interaction effects. |  2 |  |             
-|9. What are the degrees of freedom for your numerator and denominator for the main effects and interaction effect? |  2 |  |
-|10. Locate the test critical values for your main effects and interaction effect.  |2 |  |
-|11. Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? | 2 |  |
-|12. Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. | 2 |  |
-|13. Assemble the results into a statistical string. |4 |  |
-|**Totals* **                                  |     28        |             |
+|2. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.  |4 |  |
+|3. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group. | 4 ||
+|4.  Calculate sums of squares model (SSM) for each of the factors in the model.  | 4  |  |
+|5. Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values |8 |  |
+|6. Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? | 2 |  |
+|7. Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. | 4 |  |
+|8. Assemble the results into their statistical strings. |4 |  |
+|**Totals* **                                  |     34      |             |
 
 
 ## Homeworked Example
@@ -2523,6 +2524,12 @@ This recommends a sample size of 606; 100 in each group.
 
 ### Hand Calculations
 
+Before we continue: 
+
+>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations utilizes an  approach to calculating the sums of squares that presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the Type II package in *rstatix::anova_test* will produce different result.
+
+> Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
+
 #### Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.
 
 Here is the formula I will use for calculating the sums of squares total:  $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}$$
@@ -2545,31 +2552,404 @@ Dept*   0.05
 TradPed 0.08
 ```
 
+The overall (grand) mean is 4.06.
+
+I will create a variable that represents the mean deviation:
 
 
+```r
+TwoWay_df <- TwoWay_df %>%
+  dplyr::mutate(m_dev = TradPed - 4.06)
+
+head(TwoWay_df)
+```
+
+```
+      Stage Dept TradPed m_dev
+1 Resettled  CPY     4.4  0.34
+2 Resettled  CPY     3.8 -0.26
+3 Resettled  CPY     4.0 -0.06
+4 Resettled  CPY     3.0 -1.06
+5 Resettled  CPY     4.8  0.74
+6 Resettled  CPY     3.5 -0.56
+```
+
+Now I will square the mean deviation:
+
+
+```r
+TwoWay_df <- TwoWay_df %>%
+    mutate(m_devSQ = m_dev^2)
+head(TwoWay_df)
+```
+
+```
+      Stage Dept TradPed m_dev m_devSQ
+1 Resettled  CPY     4.4  0.34  0.1156
+2 Resettled  CPY     3.8 -0.26  0.0676
+3 Resettled  CPY     4.0 -0.06  0.0036
+4 Resettled  CPY     3.0 -1.06  1.1236
+5 Resettled  CPY     4.8  0.74  0.5476
+6 Resettled  CPY     3.5 -0.56  0.3136
+```
+
+SST is the sum of the mean deviation squared values:
+
+
+```r
+SST <- sum(TwoWay_df$m_devSQ, na.rm=TRUE)
+SST
+```
+
+```
+[1] 83.0332
+```
+Our sums of squares total is 83.0332
 
 
 #### Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.
 
+Here is the formula for calculating SSM:  $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
+
+The formula indicates that we need:
+
+* *n* (sample size for each group)
+* Group means
+* Grand mean (earlier we learned it was 4.06)
+
+I will obtain group means and $n$s with *psych::desribeBy*.
+
+```r
+psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df, digits = 3)
+```
+
+```
+         item group1     group2 vars  n  mean    sd median trimmed   mad min
+TradPed1    1    CPY     Stable    1 12 4.817 0.217    4.9   4.840 0.148 4.4
+TradPed2    2    ORG     Stable    1  9 3.889 0.348    4.0   3.889 0.000 3.2
+TradPed3    3    CPY Transition    1 24 4.317 0.700    4.4   4.400 0.890 2.8
+TradPed4    4    ORG Transition    1 20 3.720 1.264    4.1   3.875 1.038 1.0
+TradPed5    5    CPY  Resettled    1 36 3.836 0.805    3.9   3.897 0.741 1.8
+TradPed6    6    ORG  Resettled    1 11 4.145 0.658    4.0   4.200 0.593 2.8
+         max range   skew kurtosis    se
+TradPed1 5.0   0.6 -0.539   -1.356 0.063
+TradPed2 4.2   1.0 -0.993   -0.714 0.116
+TradPed3 5.0   2.2 -0.657   -0.651 0.143
+TradPed4 5.0   4.0 -0.857   -0.664 0.283
+TradPed5 5.0   3.2 -0.530   -0.336 0.134
+TradPed6 5.0   2.2 -0.379   -0.832 0.198
+```
+
+To calculate it:
+
+
+```r
+SSM <- 12 * (4.817 - 4.06)^2 + 9 * (3.889 - 4.06)^2 + 24 * (4.317 - 4.06)^2 +
+    20 * (3.720 - 4.06)^2 + 36 * (3.836 - 4.06)^2 + 11 * (4.145 - 4.06)^2
+SSM
+```
+
+```
+[1] 12.92274
+```
+Sums of squares for the model is 12.92274.
+
 #### Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.
 
-#### Calculate sums of squares total (SST) for each of the factors in the model.
+I will use the following formula to calculate SSR: $$SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1) + s_{group4}^{2}(n-1) + s_{group5}^{2}(n-1) + s_{group6}^{2}(n-1))$$
 
-#### Calculate the sums of squares for the model (SSM) for each of the factors in the model. 
+This requires:
 
-#### Calculate the sums of squares residual (SSR) for each of the factors in the model.
+* *n* (sample size for each group)
+* group variance (I can square the standard deviation for each group)
 
-#### Calculate the mean square models, mean square residuals, and *F*-tests for the main and interaction effects. 
 
-#### What are the degrees of freedom for your numerator and denominator for the main effects and interaction effect?
+```r
+SSR <- ((0.217^2) * (12 - 1)) + ((0.348^2) * (9 - 1)) + ((0.7^2) * (24 -
+    1)) + ((1.264^2) * (20 - 1)) + ((0.805^2) * (36 - 1)) + ((0.658^2) *
+    (11 - 1))
+SSR
+```
 
-#### Locate the test critical values for your main effects and interaction effect.
+```
+[1] 70.12355
+```
+Our sums of squares for the residual is 70.124.
+
+#### Calculate sums of squares model (SSM) for each of the factors in the model.
+
+**SSM for the Department main effect:**
+
+Earlier I learned the grand mean = 4.06
+
+
+```r
+psych::describeBy(TradPed ~ Dept, mat=TRUE, data = TwoWay_df, digits=3)
+```
+
+```
+         item group1 vars  n  mean    sd median trimmed   mad min max range
+TradPed1    1    CPY    1 72 4.160 0.787    4.3   4.253 1.038 1.8   5   3.2
+TradPed2    2    ORG    1 40 3.875 0.973    4.0   4.019 0.741 1.0   5   4.0
+           skew kurtosis    se
+TradPed1 -0.821    0.003 0.093
+TradPed2 -1.264    1.195 0.154
+```
+
+```r
+SSM_dept <- 72 * (4.160 - 4.06)^2 + 40 * (3.875 - 4.06)^2
+SSM_dept
+```
+
+```
+[1] 2.089
+```
+Sums of squares model for the department factor is 2.089.
+
+**SSM for the Stage main effect:**
+
+
+```r
+psych::describeBy(TradPed ~ Stage, mat=TRUE, data = TwoWay_df, digits=3)
+```
+
+```
+         item     group1 vars  n  mean    sd median trimmed   mad min max range
+TradPed1    1     Stable    1 21 4.419 0.544    4.6   4.482 0.593 3.2   5   1.8
+TradPed2    2 Transition    1 44 4.045 1.029    4.3   4.206 1.038 1.0   5   4.0
+TradPed3    3  Resettled    1 47 3.909 0.778    4.0   3.967 0.890 1.8   5   3.2
+           skew kurtosis    se
+TradPed1 -0.579   -0.725 0.119
+TradPed2 -1.267    0.989 0.155
+TradPed3 -0.582   -0.165 0.113
+```
+
+
+```r
+SSM_stage <- 21 * (4.419 - 4.06)^2 + 44 * (4.045 - 4.06)^2 + 47 * (3.909 - 4.06)^2
+SSM_stage
+```
+
+```
+[1] 3.788048
+```
+Sums of squares model for the stage factor is 3.788048.
+
+**SSM for the Department x Stage interaction term:**
+
+I can calculate the SSM for the interaction term with this formula:  $SS_{axb} = SS_M - (SS_a + SS_b)$
+
+
+
+```r
+SSM_int <- 12.923 - (2.089 + 3.788)
+SSM_int
+```
+
+```
+[1] 7.046
+```
+
+#### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values. 
+
+It is easiest for me when I put these in a table.
+
+|Summary ANOVA for TradPed as a Function of Dept & Stage
+|:-------------------------------------------------------|
+
+|Source    |SS       |df         |$MS = \frac{SS}{df}$ |$F = \frac{MS_{source}}{MS_{resid}}$ |$F_{CV}$|
+|:---------|:--------|:----------|:------|:------|:------|
+|Model     |12.923   |5          |2.585  |3.905  |2.300  |
+|a:Dept    |2.089    |1          |2.089  |3.156  |3.931  |
+|b:Stage   |3.788    |2          |1.894  |2.861  |3.082  |
+|aXb       |7.046    |2          |3.523  |5.322  |3.082  |
+|Residual  |70.124   |106        |0.662  |0.009  |       |
+|Total     |83.033   |           |       |       |       |
+
+Main effect for department: $F(1, 106) = 2.089, p > 0.05$ 
+Main effect for stage: $F(2, 106) = 1.894, p > 0.05$
+Interaction effect: $F(2, 106) = 3.523, p < 0.05$
+
+You may notice that these calculations don't exactly follow the rules of the lecture.  For example, The "model and "residual" should equal the total. I believe this is because there are different cell sizes which causes an unbalanced design and throws off the otherwise perfect calculations. This issue of unbalanced design is an important one in ANOVA.
+
+Checing to see if my sums of squares a, b, and axb equal the SSM; and that SSM + SSR = SST.
+
+```r
+12.923 + 70.124
+```
+
+```
+[1] 83.047
+```
+
+```r
+(2.089 + 3.788 + 7.046) + 70.124
+```
+
+```
+[1] 83.047
+```
+
+```r
+2.089 + 3.788 + 7.046
+```
+
+```
+[1] 12.923
+```
+Below are the calculations for the mean square values:
+
+```r
+12.923/5
+```
+
+```
+[1] 2.5846
+```
+
+```r
+2.089/1
+```
+
+```
+[1] 2.089
+```
+
+```r
+3.788/2
+```
+
+```
+[1] 1.894
+```
+
+```r
+7.046/2
+```
+
+```
+[1] 3.523
+```
+
+```r
+70.124/106
+```
+
+```
+[1] 0.6615472
+```
+Below are the calculations for the *F* tests:
+
+
+```r
+2.585/0.662
+```
+
+```
+[1] 3.904834
+```
+
+```r
+2.089/0.662
+```
+
+```
+[1] 3.155589
+```
+
+```r
+1.894/0.662
+```
+
+```
+[1] 2.861027
+```
+
+```r
+3.523/0.662
+```
+
+```
+[1] 5.321752
+```
+Looking up the *F* critical values (requires alpha level and degrees of freedom for the numerator and denominator [model and residual]):
+
+
+```r
+qf(0.05, 5, 106, lower.tail = FALSE)  #omnibus
+```
+
+```
+[1] 2.300053
+```
+
+```r
+qf(0.05, 1, 106, lower.tail = FALSE)  #Dept main effect
+```
+
+```
+[1] 3.930692
+```
+
+```r
+qf(0.05, 2, 106, lower.tail = FALSE)  #Stage main effect
+```
+
+```
+[1] 3.082015
+```
+
+```r
+qf(0.05, 2, 106, lower.tail = FALSE)  #interaction term
+```
+
+```
+[1] 3.082015
+```
 
 #### Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? 
 
+In the hand calculations, only the interaction effect is statistically significant. It is significant when the *F* value exceeds the *F* critical value.
+
 #### Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. 
 
-#### Assemble the results into a statistical string.
+The formula for eta squared is:
+
+$$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
+
+The values of .01, .06, and .14 are considered small, medium, and large in ANOVA models.
+
+
+```r
+2.089/83.033 #eta squared for department main effect
+```
+
+```
+[1] 0.02515867
+```
+
+```r
+3.788/80.033 #eta squared for stage main effect
+```
+
+```
+[1] 0.04733048
+```
+
+```r
+7.046/80.033 #eta squared for interaction effect
+```
+
+```
+[1] 0.08803868
+```
+The eta squared values are 0.02 (small), 0.05 (small-to-medium), and 0.09 (medium-to-large) for the department, stage, and interaction effects, respectively. 
+
+#### Assemble the results into their statistical strings.
+
+Main effect for department: $F(1, 106) = 2.089, p > 0.05, \eta ^{2} = 0.03$ 
+Main effect for stage: $F(2, 106) = 1.894, p > 0.05, \eta ^{2} = 0.05$
+Interaction effect: $F(2, 106) = 3.523, p < 0.05, \eta ^{2} = 0.09$
 
 
 

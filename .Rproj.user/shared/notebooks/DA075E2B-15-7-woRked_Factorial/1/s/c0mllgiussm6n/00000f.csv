@@ -2,4 +2,7 @@
 "0","TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')"
 "0",""
 "0","#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness"
-"0","big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)"
+"0","big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)"
+"0",""
+"0","#if the scoring script won't run, try this one:"
+"0","#big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)"

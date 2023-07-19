@@ -1370,6 +1370,12 @@ Negative2 4.430 0.35    0.581 0.115</code></pre>
 <li>there is a significant interaction effect</li>
 </ul>
 <p>In the face of this significant interaction effect, we would follow-up by investigating the interaction effect. Why? The significant interaction effect means that findings (e.g., the story of the results) are more complex than group identity or photo stimulus, alone, can explain.</p>
+<blockquote>
+<p>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations utilizes an approach to calculating the sums of squares that presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the Type II package in <em>rstatix::anova_test</em> will produce different result.</p>
+</blockquote>
+<blockquote>
+<p>Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.</p>
+</blockquote>
 </div>
 </div>
 <div id="working-the-factorial-anova-with-r-packages" class="section level2 hasAnchor" number="8.5">
@@ -2319,63 +2325,43 @@ NOTE: n is number in each group, total sample = 180</code></pre>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">3. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.</td>
+<td align="left">2. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.</td>
 <td align="center">4</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">4. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.</td>
+<td align="left">3. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.</td>
 <td align="center">4</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">5. Calculate sums of squares total (SST) for each of the factors in the model.</td>
+<td align="left">4. Calculate sums of squares model (SSM) for each of the factors in the model.</td>
 <td align="center">4</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">6. Calculate the sums of squares for the model (SSM) for each of the factors in the model.</td>
+<td align="left">5. Create a source table that includes the sums of squares, degrees of freedom, mean squares, <em>F</em> values, and <em>F</em> critical values</td>
+<td align="center">8</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">6. Are the <em>F</em>-tests for the main and interaction effects statistically significant? Why or why not?</td>
+<td align="center">2</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">7. Calculate and interpret the <span class="math inline">\(\eta^2\)</span> effect sizes for the main and interaction effects.</td>
 <td align="center">4</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">7. Calculate the sums of squares residual (SSR) for each of the factors in the model.</td>
-<td align="center">4</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">8. Calculate the mean square models, mean square residuals, and <em>F</em>-tests for the main and interaction effects.</td>
-<td align="center">2</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">9. What are the degrees of freedom for your numerator and denominator for the main effects and interaction effect?</td>
-<td align="center">2</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">10. Locate the test critical values for your main effects and interaction effect.</td>
-<td align="center">2</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">11. Are the <em>F</em>-tests for the main and interaction effects statistically significant? Why or why not?</td>
-<td align="center">2</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">12. Calculate and interpret the <span class="math inline">\(\eta^2\)</span> effect sizes for the main and interaction effects.</td>
-<td align="center">2</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">13. Assemble the results into a statistical string.</td>
+<td align="left">8. Assemble the results into their statistical strings.</td>
 <td align="center">4</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Totals* </strong></td>
-<td align="center">28</td>
+<td align="center">34</td>
 <td align="left"></td>
 </tr>
 </tbody>
@@ -2673,6 +2659,13 @@ NOTE: n is number in each group, total sample = 606</code></pre>
 </div>
 <div id="hand-calculations-5" class="section level3 hasAnchor" number="8.10.2">
 <h3><span class="header-section-number">8.10.2</span> Hand Calculations<a href="between.html#hand-calculations-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we continue:</p>
+<blockquote>
+<p>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations utilizes an approach to calculating the sums of squares that presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the Type II package in <em>rstatix::anova_test</em> will produce different result.</p>
+</blockquote>
+<blockquote>
+<p>Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.</p>
+</blockquote>
 <div id="calculate-sums-of-squares-total-sst-for-the-omnibus-anova.-steps-in-this-calculation-must-include-calculating-a-grand-mean-and-creating-variables-representing-the-mean-deviation-and-mean-deviation-squared." class="section level4 hasAnchor" number="8.10.2.1">
 <h4><span class="header-section-number">8.10.2.1</span> Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.<a href="between.html#calculate-sums-of-squares-total-sst-for-the-omnibus-anova.-steps-in-this-calculation-must-include-calculating-a-grand-mean-and-creating-variables-representing-the-mean-deviation-and-mean-deviation-squared." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Here is the formula I will use for calculating the sums of squares total: <span class="math display">\[SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}\]</span></p>
@@ -2686,39 +2679,263 @@ TradPed    3 112 4.06 0.86    4.2    4.17 0.89   1   5     4 -1.14     1.25
 Stage*  0.07
 Dept*   0.05
 TradPed 0.08</code></pre>
+<p>The overall (grand) mean is 4.06.</p>
+<p>I will create a variable that represents the mean deviation:</p>
+<div class="sourceCode" id="cb996"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb996-1"><a href="between.html#cb996-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> TwoWay_df <span class="sc">%&gt;%</span></span>
+<span id="cb996-2"><a href="between.html#cb996-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">m_dev =</span> TradPed <span class="sc">-</span> <span class="fl">4.06</span>)</span>
+<span id="cb996-3"><a href="between.html#cb996-3" tabindex="-1"></a></span>
+<span id="cb996-4"><a href="between.html#cb996-4" tabindex="-1"></a><span class="fu">head</span>(TwoWay_df)</span></code></pre></div>
+<pre><code>      Stage Dept TradPed m_dev
+1 Resettled  CPY     4.4  0.34
+2 Resettled  CPY     3.8 -0.26
+3 Resettled  CPY     4.0 -0.06
+4 Resettled  CPY     3.0 -1.06
+5 Resettled  CPY     4.8  0.74
+6 Resettled  CPY     3.5 -0.56</code></pre>
+<p>Now I will square the mean deviation:</p>
+<div class="sourceCode" id="cb998"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb998-1"><a href="between.html#cb998-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> TwoWay_df <span class="sc">%&gt;%</span></span>
+<span id="cb998-2"><a href="between.html#cb998-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">m_devSQ =</span> m_dev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb998-3"><a href="between.html#cb998-3" tabindex="-1"></a><span class="fu">head</span>(TwoWay_df)</span></code></pre></div>
+<pre><code>      Stage Dept TradPed m_dev m_devSQ
+1 Resettled  CPY     4.4  0.34  0.1156
+2 Resettled  CPY     3.8 -0.26  0.0676
+3 Resettled  CPY     4.0 -0.06  0.0036
+4 Resettled  CPY     3.0 -1.06  1.1236
+5 Resettled  CPY     4.8  0.74  0.5476
+6 Resettled  CPY     3.5 -0.56  0.3136</code></pre>
+<p>SST is the sum of the mean deviation squared values:</p>
+<div class="sourceCode" id="cb1000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1000-1"><a href="between.html#cb1000-1" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fu">sum</span>(TwoWay_df<span class="sc">$</span>m_devSQ, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1000-2"><a href="between.html#cb1000-2" tabindex="-1"></a>SST</span></code></pre></div>
+<pre><code>[1] 83.0332</code></pre>
+<p>Our sums of squares total is 83.0332</p>
 </div>
 <div id="calculate-the-sums-of-squares-for-the-model-ssm-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-group-means-for-all-combinations-of-the-levels-in-the-factorial-design." class="section level4 hasAnchor" number="8.10.2.2">
 <h4><span class="header-section-number">8.10.2.2</span> Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.<a href="between.html#calculate-the-sums-of-squares-for-the-model-ssm-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-group-means-for-all-combinations-of-the-levels-in-the-factorial-design." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here is the formula for calculating SSM: <span class="math display">\[SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\]</span></p>
+<p>The formula indicates that we need:</p>
+<ul>
+<li><em>n</em> (sample size for each group)</li>
+<li>Group means</li>
+<li>Grand mean (earlier we learned it was 4.06)</li>
+</ul>
+<p>I will obtain group means and <span class="math inline">\(n\)</span>s with <em>psych::desribeBy</em>.</p>
+<div class="sourceCode" id="cb1002"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1002-1"><a href="between.html#cb1002-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Dept <span class="sc">+</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>         item group1     group2 vars  n  mean    sd median trimmed   mad min
+TradPed1    1    CPY     Stable    1 12 4.817 0.217    4.9   4.840 0.148 4.4
+TradPed2    2    ORG     Stable    1  9 3.889 0.348    4.0   3.889 0.000 3.2
+TradPed3    3    CPY Transition    1 24 4.317 0.700    4.4   4.400 0.890 2.8
+TradPed4    4    ORG Transition    1 20 3.720 1.264    4.1   3.875 1.038 1.0
+TradPed5    5    CPY  Resettled    1 36 3.836 0.805    3.9   3.897 0.741 1.8
+TradPed6    6    ORG  Resettled    1 11 4.145 0.658    4.0   4.200 0.593 2.8
+         max range   skew kurtosis    se
+TradPed1 5.0   0.6 -0.539   -1.356 0.063
+TradPed2 4.2   1.0 -0.993   -0.714 0.116
+TradPed3 5.0   2.2 -0.657   -0.651 0.143
+TradPed4 5.0   4.0 -0.857   -0.664 0.283
+TradPed5 5.0   3.2 -0.530   -0.336 0.134
+TradPed6 5.0   2.2 -0.379   -0.832 0.198</code></pre>
+<p>To calculate it:</p>
+<div class="sourceCode" id="cb1004"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1004-1"><a href="between.html#cb1004-1" tabindex="-1"></a>SSM <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="sc">*</span> (<span class="fl">4.817</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">9</span> <span class="sc">*</span> (<span class="fl">3.889</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">24</span> <span class="sc">*</span> (<span class="fl">4.317</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb1004-2"><a href="between.html#cb1004-2" tabindex="-1"></a>    <span class="dv">20</span> <span class="sc">*</span> (<span class="fl">3.720</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">36</span> <span class="sc">*</span> (<span class="fl">3.836</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">11</span> <span class="sc">*</span> (<span class="fl">4.145</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1004-3"><a href="between.html#cb1004-3" tabindex="-1"></a>SSM</span></code></pre></div>
+<pre><code>[1] 12.92274</code></pre>
+<p>Sums of squares for the model is 12.92274.</p>
 </div>
 <div id="calculate-the-sums-of-squares-residual-ssr-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-the-variance-for-each-group." class="section level4 hasAnchor" number="8.10.2.3">
 <h4><span class="header-section-number">8.10.2.3</span> Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.<a href="between.html#calculate-the-sums-of-squares-residual-ssr-for-the-omnibus-anova.-a-necessary-step-in-this-equation-is-to-calculate-the-variance-for-each-group." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>I will use the following formula to calculate SSR: <span class="math display">\[SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1) + s_{group4}^{2}(n-1) + s_{group5}^{2}(n-1) + s_{group6}^{2}(n-1))\]</span></p>
+<p>This requires:</p>
+<ul>
+<li><em>n</em> (sample size for each group)</li>
+<li>group variance (I can square the standard deviation for each group)</li>
+</ul>
+<div class="sourceCode" id="cb1006"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1006-1"><a href="between.html#cb1006-1" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> ((<span class="fl">0.217</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">12</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">0.348</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">9</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">0.7</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">24</span> <span class="sc">-</span></span>
+<span id="cb1006-2"><a href="between.html#cb1006-2" tabindex="-1"></a>    <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">1.264</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">20</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">0.805</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">36</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">+</span> ((<span class="fl">0.658</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span></span>
+<span id="cb1006-3"><a href="between.html#cb1006-3" tabindex="-1"></a>    (<span class="dv">11</span> <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb1006-4"><a href="between.html#cb1006-4" tabindex="-1"></a>SSR</span></code></pre></div>
+<pre><code>[1] 70.12355</code></pre>
+<p>Our sums of squares for the residual is 70.124.</p>
 </div>
-<div id="calculate-sums-of-squares-total-sst-for-each-of-the-factors-in-the-model." class="section level4 hasAnchor" number="8.10.2.4">
-<h4><span class="header-section-number">8.10.2.4</span> Calculate sums of squares total (SST) for each of the factors in the model.<a href="between.html#calculate-sums-of-squares-total-sst-for-each-of-the-factors-in-the-model." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="calculate-sums-of-squares-model-ssm-for-each-of-the-factors-in-the-model." class="section level4 hasAnchor" number="8.10.2.4">
+<h4><span class="header-section-number">8.10.2.4</span> Calculate sums of squares model (SSM) for each of the factors in the model.<a href="between.html#calculate-sums-of-squares-model-ssm-for-each-of-the-factors-in-the-model." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>SSM for the Department main effect:</strong></p>
+<p>Earlier I learned the grand mean = 4.06</p>
+<div class="sourceCode" id="cb1008"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1008-1"><a href="between.html#cb1008-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Dept, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>         item group1 vars  n  mean    sd median trimmed   mad min max range
+TradPed1    1    CPY    1 72 4.160 0.787    4.3   4.253 1.038 1.8   5   3.2
+TradPed2    2    ORG    1 40 3.875 0.973    4.0   4.019 0.741 1.0   5   4.0
+           skew kurtosis    se
+TradPed1 -0.821    0.003 0.093
+TradPed2 -1.264    1.195 0.154</code></pre>
+<div class="sourceCode" id="cb1010"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1010-1"><a href="between.html#cb1010-1" tabindex="-1"></a>SSM_dept <span class="ot">&lt;-</span> <span class="dv">72</span> <span class="sc">*</span> (<span class="fl">4.160</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">40</span> <span class="sc">*</span> (<span class="fl">3.875</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1010-2"><a href="between.html#cb1010-2" tabindex="-1"></a>SSM_dept</span></code></pre></div>
+<pre><code>[1] 2.089</code></pre>
+<p>Sums of squares model for the department factor is 2.089.</p>
+<p><strong>SSM for the Stage main effect:</strong></p>
+<div class="sourceCode" id="cb1012"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1012-1"><a href="between.html#cb1012-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>         item     group1 vars  n  mean    sd median trimmed   mad min max range
+TradPed1    1     Stable    1 21 4.419 0.544    4.6   4.482 0.593 3.2   5   1.8
+TradPed2    2 Transition    1 44 4.045 1.029    4.3   4.206 1.038 1.0   5   4.0
+TradPed3    3  Resettled    1 47 3.909 0.778    4.0   3.967 0.890 1.8   5   3.2
+           skew kurtosis    se
+TradPed1 -0.579   -0.725 0.119
+TradPed2 -1.267    0.989 0.155
+TradPed3 -0.582   -0.165 0.113</code></pre>
+<div class="sourceCode" id="cb1014"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1014-1"><a href="between.html#cb1014-1" tabindex="-1"></a>SSM_stage <span class="ot">&lt;-</span> <span class="dv">21</span> <span class="sc">*</span> (<span class="fl">4.419</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">44</span> <span class="sc">*</span> (<span class="fl">4.045</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">47</span> <span class="sc">*</span> (<span class="fl">3.909</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1014-2"><a href="between.html#cb1014-2" tabindex="-1"></a>SSM_stage</span></code></pre></div>
+<pre><code>[1] 3.788048</code></pre>
+<p>Sums of squares model for the stage factor is 3.788048.</p>
+<p><strong>SSM for the Department x Stage interaction term:</strong></p>
+<p>I can calculate the SSM for the interaction term with this formula: <span class="math inline">\(SS_{axb} = SS_M - (SS_a + SS_b)\)</span></p>
+<div class="sourceCode" id="cb1016"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1016-1"><a href="between.html#cb1016-1" tabindex="-1"></a>SSM_int <span class="ot">&lt;-</span> <span class="fl">12.923</span> <span class="sc">-</span> (<span class="fl">2.089</span> <span class="sc">+</span> <span class="fl">3.788</span>)</span>
+<span id="cb1016-2"><a href="between.html#cb1016-2" tabindex="-1"></a>SSM_int</span></code></pre></div>
+<pre><code>[1] 7.046</code></pre>
 </div>
-<div id="calculate-the-sums-of-squares-for-the-model-ssm-for-each-of-the-factors-in-the-model." class="section level4 hasAnchor" number="8.10.2.5">
-<h4><span class="header-section-number">8.10.2.5</span> Calculate the sums of squares for the model (SSM) for each of the factors in the model.<a href="between.html#calculate-the-sums-of-squares-for-the-model-ssm-for-each-of-the-factors-in-the-model." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="create-a-source-table-that-includes-the-sums-of-squares-degrees-of-freedom-mean-squares-f-values-and-f-critical-values." class="section level4 hasAnchor" number="8.10.2.5">
+<h4><span class="header-section-number">8.10.2.5</span> Create a source table that includes the sums of squares, degrees of freedom, mean squares, <em>F</em> values, and <em>F</em> critical values.<a href="between.html#create-a-source-table-that-includes-the-sums-of-squares-degrees-of-freedom-mean-squares-f-values-and-f-critical-values." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>It is easiest for me when I put these in a table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Summary ANOVA for TradPed as a Function of Dept &amp; Stage</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="17%" />
+<col width="21%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">SS</th>
+<th align="left">df</th>
+<th align="left"><span class="math inline">\(MS = \frac{SS}{df}\)</span></th>
+<th align="left"><span class="math inline">\(F = \frac{MS_{source}}{MS_{resid}}\)</span></th>
+<th align="left"><span class="math inline">\(F_{CV}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Model</td>
+<td align="left">12.923</td>
+<td align="left">5</td>
+<td align="left">2.585</td>
+<td align="left">3.905</td>
+<td align="left">2.300</td>
+</tr>
+<tr class="even">
+<td align="left">a:Dept</td>
+<td align="left">2.089</td>
+<td align="left">1</td>
+<td align="left">2.089</td>
+<td align="left">3.156</td>
+<td align="left">3.931</td>
+</tr>
+<tr class="odd">
+<td align="left">b:Stage</td>
+<td align="left">3.788</td>
+<td align="left">2</td>
+<td align="left">1.894</td>
+<td align="left">2.861</td>
+<td align="left">3.082</td>
+</tr>
+<tr class="even">
+<td align="left">aXb</td>
+<td align="left">7.046</td>
+<td align="left">2</td>
+<td align="left">3.523</td>
+<td align="left">5.322</td>
+<td align="left">3.082</td>
+</tr>
+<tr class="odd">
+<td align="left">Residual</td>
+<td align="left">70.124</td>
+<td align="left">106</td>
+<td align="left">0.662</td>
+<td align="left">0.009</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left">83.033</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Main effect for department: <span class="math inline">\(F(1, 106) = 2.089, p &gt; 0.05\)</span>
+Main effect for stage: <span class="math inline">\(F(2, 106) = 1.894, p &gt; 0.05\)</span>
+Interaction effect: <span class="math inline">\(F(2, 106) = 3.523, p &lt; 0.05\)</span></p>
+<p>You may notice that these calculations don’t exactly follow the rules of the lecture. For example, The “model and”residual” should equal the total. I believe this is because there are different cell sizes which causes an unbalanced design and throws off the otherwise perfect calculations. This issue of unbalanced design is an important one in ANOVA.</p>
+<p>Checing to see if my sums of squares a, b, and axb equal the SSM; and that SSM + SSR = SST.</p>
+<div class="sourceCode" id="cb1018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1018-1"><a href="between.html#cb1018-1" tabindex="-1"></a><span class="fl">12.923</span> <span class="sc">+</span> <span class="fl">70.124</span></span></code></pre></div>
+<pre><code>[1] 83.047</code></pre>
+<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="between.html#cb1020-1" tabindex="-1"></a>(<span class="fl">2.089</span> <span class="sc">+</span> <span class="fl">3.788</span> <span class="sc">+</span> <span class="fl">7.046</span>) <span class="sc">+</span> <span class="fl">70.124</span></span></code></pre></div>
+<pre><code>[1] 83.047</code></pre>
+<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="between.html#cb1022-1" tabindex="-1"></a><span class="fl">2.089</span> <span class="sc">+</span> <span class="fl">3.788</span> <span class="sc">+</span> <span class="fl">7.046</span></span></code></pre></div>
+<pre><code>[1] 12.923</code></pre>
+<p>Below are the calculations for the mean square values:</p>
+<div class="sourceCode" id="cb1024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1024-1"><a href="between.html#cb1024-1" tabindex="-1"></a><span class="fl">12.923</span><span class="sc">/</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>[1] 2.5846</code></pre>
+<div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="between.html#cb1026-1" tabindex="-1"></a><span class="fl">2.089</span><span class="sc">/</span><span class="dv">1</span></span></code></pre></div>
+<pre><code>[1] 2.089</code></pre>
+<div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="between.html#cb1028-1" tabindex="-1"></a><span class="fl">3.788</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>[1] 1.894</code></pre>
+<div class="sourceCode" id="cb1030"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1030-1"><a href="between.html#cb1030-1" tabindex="-1"></a><span class="fl">7.046</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>[1] 3.523</code></pre>
+<div class="sourceCode" id="cb1032"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1032-1"><a href="between.html#cb1032-1" tabindex="-1"></a><span class="fl">70.124</span><span class="sc">/</span><span class="dv">106</span></span></code></pre></div>
+<pre><code>[1] 0.6615472</code></pre>
+<p>Below are the calculations for the <em>F</em> tests:</p>
+<div class="sourceCode" id="cb1034"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1034-1"><a href="between.html#cb1034-1" tabindex="-1"></a><span class="fl">2.585</span><span class="sc">/</span><span class="fl">0.662</span></span></code></pre></div>
+<pre><code>[1] 3.904834</code></pre>
+<div class="sourceCode" id="cb1036"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1036-1"><a href="between.html#cb1036-1" tabindex="-1"></a><span class="fl">2.089</span><span class="sc">/</span><span class="fl">0.662</span></span></code></pre></div>
+<pre><code>[1] 3.155589</code></pre>
+<div class="sourceCode" id="cb1038"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1038-1"><a href="between.html#cb1038-1" tabindex="-1"></a><span class="fl">1.894</span><span class="sc">/</span><span class="fl">0.662</span></span></code></pre></div>
+<pre><code>[1] 2.861027</code></pre>
+<div class="sourceCode" id="cb1040"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1040-1"><a href="between.html#cb1040-1" tabindex="-1"></a><span class="fl">3.523</span><span class="sc">/</span><span class="fl">0.662</span></span></code></pre></div>
+<pre><code>[1] 5.321752</code></pre>
+<p>Looking up the <em>F</em> critical values (requires alpha level and degrees of freedom for the numerator and denominator [model and residual]):</p>
+<div class="sourceCode" id="cb1042"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1042-1"><a href="between.html#cb1042-1" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>, <span class="dv">5</span>, <span class="dv">106</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)  <span class="co">#omnibus</span></span></code></pre></div>
+<pre><code>[1] 2.300053</code></pre>
+<div class="sourceCode" id="cb1044"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1044-1"><a href="between.html#cb1044-1" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="dv">106</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)  <span class="co">#Dept main effect</span></span></code></pre></div>
+<pre><code>[1] 3.930692</code></pre>
+<div class="sourceCode" id="cb1046"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1046-1"><a href="between.html#cb1046-1" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>, <span class="dv">2</span>, <span class="dv">106</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)  <span class="co">#Stage main effect</span></span></code></pre></div>
+<pre><code>[1] 3.082015</code></pre>
+<div class="sourceCode" id="cb1048"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1048-1"><a href="between.html#cb1048-1" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>, <span class="dv">2</span>, <span class="dv">106</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)  <span class="co">#interaction term</span></span></code></pre></div>
+<pre><code>[1] 3.082015</code></pre>
 </div>
-<div id="calculate-the-sums-of-squares-residual-ssr-for-each-of-the-factors-in-the-model." class="section level4 hasAnchor" number="8.10.2.6">
-<h4><span class="header-section-number">8.10.2.6</span> Calculate the sums of squares residual (SSR) for each of the factors in the model.<a href="between.html#calculate-the-sums-of-squares-residual-ssr-for-each-of-the-factors-in-the-model." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="are-the-f-tests-for-the-main-and-interaction-effects-statistically-significant-why-or-why-not" class="section level4 hasAnchor" number="8.10.2.6">
+<h4><span class="header-section-number">8.10.2.6</span> Are the <em>F</em>-tests for the main and interaction effects statistically significant? Why or why not?<a href="between.html#are-the-f-tests-for-the-main-and-interaction-effects-statistically-significant-why-or-why-not" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In the hand calculations, only the interaction effect is statistically significant. It is significant when the <em>F</em> value exceeds the <em>F</em> critical value.</p>
 </div>
-<div id="calculate-the-mean-square-models-mean-square-residuals-and-f-tests-for-the-main-and-interaction-effects." class="section level4 hasAnchor" number="8.10.2.7">
-<h4><span class="header-section-number">8.10.2.7</span> Calculate the mean square models, mean square residuals, and <em>F</em>-tests for the main and interaction effects.<a href="between.html#calculate-the-mean-square-models-mean-square-residuals-and-f-tests-for-the-main-and-interaction-effects." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="calculate-and-interpret-the-eta2-effect-sizes-for-the-main-and-interaction-effects." class="section level4 hasAnchor" number="8.10.2.7">
+<h4><span class="header-section-number">8.10.2.7</span> Calculate and interpret the <span class="math inline">\(\eta^2\)</span> effect sizes for the main and interaction effects.<a href="between.html#calculate-and-interpret-the-eta2-effect-sizes-for-the-main-and-interaction-effects." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The formula for eta squared is:</p>
+<p><span class="math display">\[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]</span></p>
+<p>The values of .01, .06, and .14 are considered small, medium, and large in ANOVA models.</p>
+<div class="sourceCode" id="cb1050"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1050-1"><a href="between.html#cb1050-1" tabindex="-1"></a><span class="fl">2.089</span><span class="sc">/</span><span class="fl">83.033</span> <span class="co">#eta squared for department main effect</span></span></code></pre></div>
+<pre><code>[1] 0.02515867</code></pre>
+<div class="sourceCode" id="cb1052"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1052-1"><a href="between.html#cb1052-1" tabindex="-1"></a><span class="fl">3.788</span><span class="sc">/</span><span class="fl">80.033</span> <span class="co">#eta squared for stage main effect</span></span></code></pre></div>
+<pre><code>[1] 0.04733048</code></pre>
+<div class="sourceCode" id="cb1054"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1054-1"><a href="between.html#cb1054-1" tabindex="-1"></a><span class="fl">7.046</span><span class="sc">/</span><span class="fl">80.033</span> <span class="co">#eta squared for interaction effect</span></span></code></pre></div>
+<pre><code>[1] 0.08803868</code></pre>
+<p>The eta squared values are 0.02 (small), 0.05 (small-to-medium), and 0.09 (medium-to-large) for the department, stage, and interaction effects, respectively.</p>
 </div>
-<div id="what-are-the-degrees-of-freedom-for-your-numerator-and-denominator-for-the-main-effects-and-interaction-effect" class="section level4 hasAnchor" number="8.10.2.8">
-<h4><span class="header-section-number">8.10.2.8</span> What are the degrees of freedom for your numerator and denominator for the main effects and interaction effect?<a href="between.html#what-are-the-degrees-of-freedom-for-your-numerator-and-denominator-for-the-main-effects-and-interaction-effect" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-<div id="locate-the-test-critical-values-for-your-main-effects-and-interaction-effect." class="section level4 hasAnchor" number="8.10.2.9">
-<h4><span class="header-section-number">8.10.2.9</span> Locate the test critical values for your main effects and interaction effect.<a href="between.html#locate-the-test-critical-values-for-your-main-effects-and-interaction-effect." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-<div id="are-the-f-tests-for-the-main-and-interaction-effects-statistically-significant-why-or-why-not" class="section level4 hasAnchor" number="8.10.2.10">
-<h4><span class="header-section-number">8.10.2.10</span> Are the <em>F</em>-tests for the main and interaction effects statistically significant? Why or why not?<a href="between.html#are-the-f-tests-for-the-main-and-interaction-effects-statistically-significant-why-or-why-not" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-<div id="calculate-and-interpret-the-eta2-effect-sizes-for-the-main-and-interaction-effects." class="section level4 hasAnchor" number="8.10.2.11">
-<h4><span class="header-section-number">8.10.2.11</span> Calculate and interpret the <span class="math inline">\(\eta^2\)</span> effect sizes for the main and interaction effects.<a href="between.html#calculate-and-interpret-the-eta2-effect-sizes-for-the-main-and-interaction-effects." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-<div id="assemble-the-results-into-a-statistical-string.-2" class="section level4 hasAnchor" number="8.10.2.12">
-<h4><span class="header-section-number">8.10.2.12</span> Assemble the results into a statistical string.<a href="between.html#assemble-the-results-into-a-statistical-string.-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="assemble-the-results-into-their-statistical-strings." class="section level4 hasAnchor" number="8.10.2.8">
+<h4><span class="header-section-number">8.10.2.8</span> Assemble the results into their statistical strings.<a href="between.html#assemble-the-results-into-their-statistical-strings." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Main effect for department: <span class="math inline">\(F(1, 106) = 2.089, p &gt; 0.05, \eta ^{2} = 0.03\)</span>
+Main effect for stage: <span class="math inline">\(F(2, 106) = 1.894, p &gt; 0.05, \eta ^{2} = 0.05\)</span>
+Interaction effect: <span class="math inline">\(F(2, 106) = 3.523, p &lt; 0.05, \eta ^{2} = 0.09\)</span></p>
 
 </div>
 </div>
