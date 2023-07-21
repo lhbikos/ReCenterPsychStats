@@ -566,7 +566,7 @@ HEre is the formula for mean square residual.
 
 And $MS_R=$
 $$MS_R = \frac{SS_{R}}{df^{_{R}}}$$
-Recall, degrees of freedom for the residual is $N - k$. In our case that is 90 - 3.
+Recall, degrees of freedom for the residual is $df_w - df_m$. In our case that is 16-2.
 
 
 ```r
@@ -603,6 +603,10 @@ qf(.05, 2, 14, lower.tail=FALSE)
 ```
 
 Our example has 2 (numerator) and 14 (denominator) degrees of freedom. If we use a table we find the corresponding degrees of freedom combinations for the column where $\alpha = .05$. We observe that any $F$ value > 3.73 will be statistically significant. Our $F$ = 3.87, so we have (just barely) exceeded the threshold. This is our *omnibus F*. We know there is at least 1 statistically significant difference between our pre, post, and follow-up conditions.
+
+>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. Hand calculations and those used in the R packages likely differ on how the sums of squares is calculated. While the results are "close-ish" they are not always identical. 
+
+> Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
 
 ## Working the One-Way Repeated Measures ANOVA with R packages
 
@@ -1070,10 +1074,837 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |4. Conduct omnibus ANOVA (w effect size)|      5           | _____  |  
 |5. Conduct all possible pairwise comparisons (like in the lecture)| 5 |_____  |               
 |6. Describe approach for managing Type I error|    5        |_____  |   
-|7. APA style results with table(s) and figure|    5        |_____  |       
-|8. Explanation to grader                 |      5        |_____  |
-|**Totals**                               |      35       |_____  |           
+|7. APA style results with figure|    5        |_____  | 
+|8. Conduct power analyses to determine the power of the current study and a recommended sample size.|    5        |_____  | 
+|9. Explanation to grader                 |      5        |_____  |
+|**Totals**                               |      40       |_____  |          
 
+
+|Hand Calculations                         | Points Poss   | Points Earned
+|:-----------------------------------------|:-------------:|:--------------|
+|1.  Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |  |
+|2. Calculate the sums of squares within (SSW) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each case (student). | 4 ||
+|3.  Calculate sums of squares model (SSM) for for the effect of time (or repeated measures).  | 4  |  |
+|4.  Calculate sums of squares residual (SSR).  | 4  |  |
+|5. Calculate the sums of squares between (SSB).  | 4  |  |
+|6. Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values |8 |  |
+|6. Is the *F*-tests statistically significant? Why or why not?  | 2 |  |
+|7. Assemble the results into a statistical strings |4 |  |
+|**Totals* **                                  |     26      |             |
+
+
+## Homeworked Example
+
+[Screencast Link]()
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
+
+### Working the Problem with R and R Packages
+
+#### Narrate the research vignette, describing the IV and DV. The data you analyze should have at least 3 levels in the independent variable; at least one of the attempted problems should have a significant omnibus test so that follow-up is required) 
+
+I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students across the ANOVA, Multivariate, and Psychometrics courses (in that order, because that's the order in which the students take the class.)
+
+The dependent variable is the evaluation of traditional pedagogy. The independent variable is course/time (i.e., each student offers course evaluations in each of the three classes).
+
+#### Check and, if needed, format data
+
+
+```r
+big <- readRDS("ReC.rds")
+```
+
+The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+
+```r
+#Creates a list of the variables that belong to that scale
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)
+
+#if the scoring script won't run, try this one:
+#big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)
+```
+
+This gets a little convoluted, here's why:
+* We need "long" and "wide" forms of the data, AND
+* In repeated measures ANOVA every case has to have non-missing data (i.e., to be included, a student must have contributed course evals to all three courses)
+
+The way the data comes to us is the "long" form -- where each student's course evaluation has its own row (i.e., each student has up to 3 rows of data).
+
+Let's trim it to just the variables of interest
+
+```r
+rm1w_df <- (dplyr::select (big, deID, Course, TradPed))
+head(rm1w_df)
+```
+
+```
+  deID Course TradPed
+1    1  ANOVA     4.4
+2    2  ANOVA     3.8
+3    3  ANOVA     4.0
+4    4  ANOVA     3.0
+5    5  ANOVA     4.8
+6    6  ANOVA     3.5
+```
+
+* Grouping variables: factors
+* Dependent variable: numerical or integer
+
+
+```r
+str(rm1w_df)
+```
+
+```
+Classes 'data.table' and 'data.frame':	310 obs. of  3 variables:
+ $ deID   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course : Factor w/ 3 levels "Psychometrics",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ TradPed: num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+
+
+```r
+rm1w_df$Course <- factor(rm1w_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
+str(rm1w_df)
+```
+
+```
+Classes 'data.table' and 'data.frame':	310 obs. of  3 variables:
+ $ deID   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course : Factor w/ 3 levels "ANOVA","Multivariate",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ TradPed: num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+
+We will also need to create the "wide" form -- where each student has one row of data with all three TradPed scores (ANOVA, Multivariate, Psychometrics) in one row.
+
+
+```r
+rm1wWIDE_df <- reshape2::dcast(data = rm1w_df, formula = deID ~ Course,
+    value.var = "TradPed")
+str(rm1wWIDE_df)
+```
+
+```
+'data.frame':	142 obs. of  4 variables:
+ $ deID         : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ ANOVA        : num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+ $ Multivariate : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ Psychometrics: num  NA NA NA NA NA NA NA NA NA NA ...
+```
+
+```r
+head(rm1wWIDE_df)
+```
+
+```
+  deID ANOVA Multivariate Psychometrics
+1    1   4.4           NA            NA
+2    2   3.8           NA            NA
+3    3   4.0           NA            NA
+4    4   3.0           NA            NA
+5    5   4.8           NA            NA
+6    6   3.5           NA            NA
+```
+
+Let's update the df to have only complete cases.
+
+
+```r
+rm1wWIDE_df <- na.omit(rm1wWIDE_df)
+nrow(rm1wWIDE_df)#counts number of rows (cases)
+```
+
+```
+[1] 70
+```
+Ooof!  It took us to 70 cases.
+
+Regarding missingness, I need the LONG file to have the same data. So let's update that.
+
+
+```r
+rm1wLONG_df <- (reshape2::melt(rm1wWIDE_df, id.vars = c("deID"), measure.vars = c("ANOVA", "Multivariate", "Psychometrics")))
+#This process  does not preserve the variable names, so we need to rename them
+rm1wLONG_df<-  dplyr::rename(rm1wLONG_df, Course = "variable", TradPed = "value")
+str(rm1wLONG_df)
+```
+
+```
+'data.frame':	210 obs. of  3 variables:
+ $ deID   : int  11 12 13 14 15 16 17 18 19 23 ...
+ $ Course : Factor w/ 3 levels "ANOVA","Multivariate",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ TradPed: num  4 4.2 3.6 3.6 3.4 2.2 4.8 4.8 3.4 4.2 ...
+```
+
+```r
+head(rm1wLONG_df)
+```
+
+```
+  deID Course TradPed
+1   11  ANOVA     4.0
+2   12  ANOVA     4.2
+3   13  ANOVA     3.6
+4   14  ANOVA     3.6
+5   15  ANOVA     3.4
+6   16  ANOVA     2.2
+```
+
+Before we even start, let's get a plot of what's happening:
+
+
+```r
+bxp <- ggpubr::ggboxplot(rm1wLONG_df, x = "Course", y = "TradPed", add = "point", color = "Course",
+    xlab = "Statistics Course", ylab = "Traditional Pedagogy Course Eval Ratings", title = "Course Evaluations across Doctoral Statistics Courses")
+bxp
+```
+
+![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-57-1.png)<!-- -->
+
+#### Evaluate statistical assumptions
+
+**Is the dependent variable normally distributed?**
+
+Given that this is a one-way repeated measures ANOVA model, the dependent variable must be normally distributed within each of the cells of the factor.
+
+We can examine skew and kurtosis in each of the levels of the TradPed variable with *psych::describeBy()*.
+
+
+```r
+psych::describeBy(TradPed ~ Course, mat = TRUE, type = 1, data = rm1wLONG_df)
+```
+
+```
+         item        group1 vars  n     mean        sd median  trimmed     mad
+TradPed1    1         ANOVA    1 70 4.211429 0.7108971    4.2 4.296429 0.88956
+TradPed2    2  Multivariate    1 70 4.332143 0.7267176    4.4 4.453571 0.59304
+TradPed3    3 Psychometrics    1 70 4.414286 0.6718535    4.6 4.532143 0.59304
+         min max range       skew     kurtosis         se
+TradPed1 2.2   5   2.8 -0.7864361 -0.008737723 0.08496846
+TradPed2 1.2   5   3.8 -2.0368575  5.752276032 0.08685937
+TradPed3 2.4   5   2.6 -1.3145875  1.306390888 0.08030186
+```
+
+Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016].
+
+I can formally test for normality with the Shaprio-Wilk test. If I use the residuals from an evaluated model, with one test, I can determine if TradPed is distributed normally within each of the courses.
+
+
+```r
+#running the model
+RMres_TradPed <- lm(TradPed ~ Course, data = rm1wLONG_df)
+summary(RMres_TradPed)
+```
+
+```
+
+Call:
+lm(formula = TradPed ~ Course, data = rm1wLONG_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.13214 -0.33214  0.06786  0.58571  0.78857 
+
+Coefficients:
+                    Estimate Std. Error t value            Pr(>|t|)    
+(Intercept)          4.21143    0.08409  50.083 <0.0000000000000002 ***
+CourseMultivariate   0.12071    0.11892   1.015              0.3112    
+CoursePsychometrics  0.20286    0.11892   1.706              0.0895 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7035 on 207 degrees of freedom
+Multiple R-squared:  0.01403,	Adjusted R-squared:  0.004501 
+F-statistic: 1.472 on 2 and 207 DF,  p-value: 0.2317
+```
+We will ignore this for now, but use the residuals in the formal Shapiro-Wilk test.
+
+
+```r
+rstatix::shapiro_test(residuals(RMres_TradPed))
+```
+
+```
+# A tibble: 1 × 3
+  variable                 statistic  p.value
+  <chr>                        <dbl>    <dbl>
+1 residuals(RMres_TradPed)     0.876 4.11e-12
+```
+The distribution of model residuals is statistically significantly different than a normal distribution $(W = 0.876, p < .001)$. Although we have violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each [@green_one-way_2017-1].
+
+Creating a QQ plot can let us know how badly the distribution departs from a normal one.
+
+```r
+ggpubr::ggqqplot(residuals(RMres_TradPed))
+```
+
+![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-61-1.png)<!-- -->
+
+We can identify outliers and see if they are reasonable or should be removed.
+
+
+```r
+library(tidyverse)
+rm1wLONG_df %>%
+  group_by(Course)%>%
+  rstatix::identify_outliers(TradPed)
+```
+
+```
+# A tibble: 6 × 5
+  Course         deID TradPed is.outlier is.extreme
+  <fct>         <int>   <dbl> <lgl>      <lgl>     
+1 ANOVA            16     2.2 TRUE       FALSE     
+2 ANOVA            29     2.4 TRUE       FALSE     
+3 Multivariate     51     1.2 TRUE       FALSE     
+4 Multivariate     61     1.6 TRUE       FALSE     
+5 Psychometrics    11     2.4 TRUE       FALSE     
+6 Psychometrics    16     2.4 TRUE       FALSE     
+```
+Outliers for the TradPed variable are among the lowest evaluations (these can be seen on the boxplot). Although there are six outliers identified, none are extreme. Although they contribute to non-normality, I think it's important that this sentiment be retained in the dataset.
+
+**Assumption of sphericity**
+
+We will need to evaluate and include information about violations related to sphericity. Because these are calculated at the same time as the ANOVA, itself, I will simply leave this here as a placeholder.
+
+Here's how I would write up the evaluation of assumptions so far:
+
+>We utilized one-way repeated measures ANOVA to determine if there were differences in students' evaluation of traditional pedagogy across three courses -- ANOVA, multivariate, and psychometrics -- taught in that order.
+
+>Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016]. We formally evaluated the normality assumption with the Shapiro-Wilk test. The distribution of model residuals was statistically significantly different than a normal distribution $(W = 0.876, p < .001)$. Although we violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each [@green_one-way_2017-1]. Although our data included six outliers, none were classified as extreme. Because they represented lower course evaluations, we believed it important to retain them in the dataset. PLACEHOLDER FOR SPHERICITY.
+
+
+#### Conduct omnibus ANOVA (w effect size)
+
+
+```r
+rmAOV <- rstatix::anova_test(data = rm1wLONG_df, dv = TradPed, wid = deID, within = Course)
+rmAOV
+```
+
+```
+ANOVA Table (type III tests)
+
+$ANOVA
+  Effect DFn DFd     F     p p<.05   ges
+1 Course   2 138 2.838 0.062       0.014
+
+$`Mauchly's Test for Sphericity`
+  Effect     W     p p<.05
+1 Course 0.878 0.012     *
+
+$`Sphericity Corrections`
+  Effect   GGe       DF[GG] p[GG] p[GG]<.05   HFe       DF[HF] p[HF] p[HF]<.05
+1 Course 0.891 1.78, 122.98 0.068           0.913 1.83, 126.02 0.067          
+```
+Let's start first with the sphericity test. Mauchly's test for sphericity was statistically significant, $(W = 0.878, p - 0.012)$. Had we not violated the assumption, our *F* string would have been created from the data in the ANOVA section of the output : $F(2, 138) = 2.838, p = 0.062, \eta^2 = 0.14$ However, because we violated the assumption, we need to use the degrees-of-freedom adjusted output under the "Sphericity Corrections" section; $F(1.87, 122.98) = 2.838, p = 0.068, ges = 0.014$.
+
+While the ANOVA is non-significant, because this is a homework demonstration, I will behave *as if* the test is significant and continue with the pairwise comparisons.
+
+#### Conduct all possible pairwise comparisons (like in the lecture)
+
+I will follow up with a test of all possible pairwise comparisons and adjust with the bonferroni.
+
+
+```r
+pwc <- rstatix::pairwise_t_test(TradPed ~ Course, paired = TRUE, p.adjust.method = "bonf", data = rm1wLONG_df)
+pwc
+```
+
+```
+# A tibble: 3 × 10
+  .y.     group1     group2    n1    n2 statistic    df     p p.adj p.adj.signif
+* <chr>   <chr>      <chr>  <int> <int>     <dbl> <dbl> <dbl> <dbl> <chr>       
+1 TradPed ANOVA      Multi…    70    70     -1.21    69 0.229 0.687 ns          
+2 TradPed ANOVA      Psych…    70    70     -2.54    69 0.014 0.04  *           
+3 TradPed Multivari… Psych…    70    70     -1.08    69 0.282 0.846 ns          
+```
+
+Even though the omnibus was non-significant, we did find a statistically significant difference between the ANOVA and psychometrics courses $(t[69] = -2.535, p = 0.040)$, but not between ANOVA and multivariate $(t[69] = 0.229, p = 0.687)$ or multivariate and psychometrics $(t[69] = -1.084, p = 0.846)$.
+
+#### Describe approach for managing Type I error
+
+I used a traditional Bonferroni for the three, follow-up, pairwise comparisons. What is curious is that even though there was a non-significant omnibus, and I applied a more conservative approach to managing Type I error, there was one statistically significant pairwise comparison.
+
+#### APA style results with figure
+
+>We utilized one-way repeated measures ANOVA to determine if there were differences in students' evaluation of traditional pedagogy across three courses -- ANOVA, multivariate, and psychometrics -- taught in that order.
+
+>Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016]. We formally evaluated the normality assumption with the Shapiro-Wilk test. The distribution of model residuals was statistically significantly different than a normal distribution $(W = 0.876, p < .001)$. Although we violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each [@green_one-way_2017-1]. Although our data included six outliers, none were classified as extreme. Because they represented lower course evaluations, we believed it important to retain them in the dataset. Mauchly's test indicated a violation of the sphericity assumption $(W = 0.878, p - 0.012)$.
+
+>Given the violation of the homogeneity of sphericity assumption, we are reporting the Greenhouse-Geyser adjusted values. Results of the omnibus ANOVA were not statistically significant $(F[1.87, 122.98] = 2.838, p = 0.068, ges = 0.014)$. 
+
+>Although we would normally not follow-up a non-significant omnibus ANOVA with more testing, because this is a homework demonstration, we will follow-up the ANOVA with pairwise comparisons and manage Type I error with the traditional Bonferroni approach. Results indicated a statistically significant difference between the ANOVA and psychometrics courses $(t[69] = -2.535, p = 0.040)$, but not between ANOVA and multivariate $(t[69] = 0.229, p = 0.687)$ or multivariate and psychometrics $(t[69] = -1.084, p = 0.846)$. Figure 1 provides an illustration of these results.
+
+I can update the figure to include star bars.
+
+
+```r
+library(tidyverse)
+pwc <- pwc %>%
+    rstatix::add_xy_position(x = "Course")
+bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3)) 
+bxp
+```
+
+![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-65-1.png)<!-- -->
+
+#### Conduct power analyses to determine the power of the current study and a recommended sample size.
+
+In the *WebPower* package, we specify 6 of 7 interrelated elements; the package computes the missing one.
+
+* *n* = sample size (number of individuals in the whole study).
+* *ng* = number of groups.
+* *nm* = number of measurements/conditions/waves.
+* *f* = Cohen's *f* (an effect size; we can use an effect size converter to obtain this value)
+   - Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively.
+* *nscor* = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package's default; < 1 means some correction was applied. 
+* *alpha* = is the probability of Type I error; we traditionally set this at .05 
+* *power* = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want).
+* *type* = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect. 
+
+I used *effectsize::eta2_to_f* packages convert our $\eta^2$ to Cohen's *f*.
+
+
+```r
+effectsize::eta2_to_f(.014) 
+```
+
+```
+[1] 0.1191586
+```
+
+Retrieving the information about our study, we add it to all the arguments except the one we wish to calculate. For power analysis, we write "power = NULL."
+
+
+```r
+WebPower::wp.rmanova(n = 70, ng = 1, nm = 3, f = 0.1192, nscor = 0.891,
+    alpha = 0.05, power = NULL, type = 1)
+```
+
+```
+Repeated-measures ANOVA analysis
+
+     n      f ng nm nscor alpha     power
+    70 0.1192  1  3 0.891  0.05 0.1256669
+
+NOTE: Power analysis for within-effect test
+URL: http://psychstat.org/rmanova
+```
+The study had a power of 13%. That is, we had a 13% probability of finding a statistically significant result if one existed.
+
+In reverse, setting *power* at .80 (the traditional value) and changing *n* to *NULL* yields a recommended sample size.   
+
+
+```r
+WebPower::wp.rmanova(n = NULL, ng = 1, nm = 3, f = 0.1192, nscor = 0.891,
+    alpha = 0.05, power = 0.8, type = 1)
+```
+
+```
+Repeated-measures ANOVA analysis
+
+           n      f ng nm nscor alpha power
+    736.7714 0.1192  1  3 0.891  0.05   0.8
+
+NOTE: Power analysis for within-effect test
+URL: http://psychstat.org/rmanova
+```
+With these new values, we learn that we would need 737 individuals in order to obtain a statistically significant result 80% of the time.
+
+### Hand Calculations
+
+For hand calculations, I will use the same dataframe (rm1wLONG_df) as I did for the calculations with R and R packages.Before we continue: 
+
+>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This was true in the lesson as well. Hand calculations and those used in the R packages likely differ on how the sums of squares is calculated. While the results are "close-ish" they are not always identical. 
+
+> Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
+
+#### Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.
+
+The formula for sums of squares total: $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}$$.
+
+We can use the mean function from base R to calculate the grand mean:
+
+
+```r
+mean(rm1wLONG_df$TradPed)
+```
+
+```
+[1] 4.319286
+```
+I will create a mean deviation variable by subtracting the mean from each score:
+
+
+```r
+rm1wLONG_df$mDev <- rm1wLONG_df$TradPed - 4.319286
+head(rm1wLONG_df)#shows first six rows of dataset
+```
+
+```
+  deID Course TradPed      mDev
+1   11  ANOVA     4.0 -0.319286
+2   12  ANOVA     4.2 -0.119286
+3   13  ANOVA     3.6 -0.719286
+4   14  ANOVA     3.6 -0.719286
+5   15  ANOVA     3.4 -0.919286
+6   16  ANOVA     2.2 -2.119286
+```
+
+Now I will square the mean deviation:
+
+
+```r
+rm1wLONG_df$mDev2 <- rm1wLONG_df$mDev * rm1wLONG_df$mDev
+head(rm1wLONG_df)#shows first six rows of dataset
+```
+
+```
+  deID Course TradPed      mDev      mDev2
+1   11  ANOVA     4.0 -0.319286 0.10194355
+2   12  ANOVA     4.2 -0.119286 0.01422915
+3   13  ANOVA     3.6 -0.719286 0.51737235
+4   14  ANOVA     3.6 -0.719286 0.51737235
+5   15  ANOVA     3.4 -0.919286 0.84508675
+6   16  ANOVA     2.2 -2.119286 4.49137315
+```
+
+Sums of squares total is the sum of the mean deviation squared scores.
+
+
+```r
+SST <- sum(rm1wLONG_df$mDev2)
+SST
+```
+
+```
+[1] 103.9144
+```
+The sums of squares total is 103.9144.
+
+#### Calculate the sums of squares within (SSW) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each student. 
+
+Here is the formula for sums of squares within:  
+
+$$SS_W = s_{person1}^{2}(n_{1}-1)+s_{person2}^{2}(n_{2}-1)+s_{person3}^{2}(n_{3}-1)+...+s_{personk}^{2}(n_{k}-1)$$
+
+I can get the use the *psych::describeBy()* to obtain the standard deviations for each student's three ratings. I can square each of those for the variance to enter into the formula.
+
+
+```r
+psych::describeBy(TradPed ~ deID, mat=TRUE, type = 1, data = rm1wLONG_df)
+```
+
+```
+          item group1 vars n     mean        sd median  trimmed     mad  min
+TradPed1     1     11    1 3 3.400000 0.8717798    3.8 3.400000 0.29652 2.40
+TradPed2     2     12    1 3 4.666667 0.4163332    4.8 4.666667 0.29652 4.20
+TradPed3     3     13    1 3 4.400000 0.6928203    4.8 4.400000 0.00000 3.60
+TradPed4     4     14    1 3 3.600000 0.4000000    3.6 3.600000 0.59304 3.20
+TradPed5     5     15    1 3 3.733333 0.4163332    3.6 3.733333 0.29652 3.40
+TradPed6     6     16    1 3 2.533333 0.4163332    2.4 2.533333 0.29652 2.20
+TradPed7     7     17    1 3 4.600000 0.5291503    4.8 4.600000 0.29652 4.00
+TradPed8     8     18    1 3 4.400000 0.5291503    4.6 4.400000 0.29652 3.80
+TradPed9     9     19    1 3 4.133333 0.7023769    4.2 4.133333 0.88956 3.40
+TradPed10   10     23    1 3 4.733333 0.4618802    5.0 4.733333 0.00000 4.20
+TradPed11   11     24    1 3 3.866667 0.4163332    4.0 3.866667 0.29652 3.40
+TradPed12   12     25    1 3 4.933333 0.1154701    5.0 4.933333 0.00000 4.80
+TradPed13   13     26    1 3 4.733333 0.3055050    4.8 4.733333 0.29652 4.40
+TradPed14   14     28    1 3 4.933333 0.1154701    5.0 4.933333 0.00000 4.80
+TradPed15   15     29    1 3 3.733333 1.2220202    4.0 3.733333 1.18608 2.40
+TradPed16   16     30    1 3 4.666667 0.4163332    4.8 4.666667 0.29652 4.20
+TradPed17   17     31    1 3 3.666667 0.9018500    3.6 3.666667 1.18608 2.80
+TradPed18   18     32    1 3 4.533333 0.5033223    4.6 4.533333 0.59304 4.00
+TradPed19   19     33    1 3 4.000000 0.0000000    4.0 4.000000 0.00000 4.00
+TradPed20   20     34    1 3 4.066667 0.9451631    4.4 4.066667 0.59304 3.00
+TradPed21   21     39    1 3 3.733333 1.0066446    3.6 3.733333 1.18608 2.80
+TradPed22   22     40    1 3 4.933333 0.1154701    5.0 4.933333 0.00000 4.80
+TradPed23   23     41    1 3 4.666667 0.3055050    4.6 4.666667 0.29652 4.40
+TradPed24   24     43    1 3 4.200000 0.3464102    4.4 4.200000 0.00000 3.80
+TradPed25   25     46    1 3 3.883333 0.5484828    4.2 3.883333 0.00000 3.25
+TradPed26   26     47    1 3 4.133333 0.1154701    4.2 4.133333 0.00000 4.00
+TradPed27   27     48    1 3 4.933333 0.1154701    5.0 4.933333 0.00000 4.80
+TradPed28   28     51    1 3 2.933333 1.6165808    3.2 2.933333 1.77912 1.20
+TradPed29   29     52    1 3 3.733333 0.1154701    3.8 3.733333 0.00000 3.60
+TradPed30   30     53    1 3 4.266667 0.3055050    4.2 4.266667 0.29652 4.00
+TradPed31   31     54    1 3 4.800000 0.3464102    5.0 4.800000 0.00000 4.40
+TradPed32   32     55    1 3 4.200000 0.9165151    4.4 4.200000 0.88956 3.20
+TradPed33   33     56    1 3 3.466667 0.4163332    3.6 3.466667 0.29652 3.00
+TradPed34   34     58    1 3 4.533333 0.4163332    4.4 4.533333 0.29652 4.20
+TradPed35   35     60    1 3 4.800000 0.3464102    5.0 4.800000 0.00000 4.40
+TradPed36   36     61    1 3 2.333333 0.6429101    2.6 2.333333 0.29652 1.60
+TradPed37   37     62    1 3 4.600000 0.3464102    4.4 4.600000 0.00000 4.40
+TradPed38   38     63    1 3 4.600000 0.5291503    4.8 4.600000 0.29652 4.00
+TradPed39   39     64    1 3 3.666667 0.1154701    3.6 3.666667 0.00000 3.60
+TradPed40   40     65    1 3 4.866667 0.2309401    5.0 4.866667 0.00000 4.60
+TradPed41   41     66    1 3 4.933333 0.1154701    5.0 4.933333 0.00000 4.80
+TradPed42   42     67    1 3 4.200000 0.9165151    4.4 4.200000 0.88956 3.20
+TradPed43   43     68    1 3 4.933333 0.1154701    5.0 4.933333 0.00000 4.80
+TradPed44   44     69    1 3 4.000000 0.5291503    4.2 4.000000 0.29652 3.40
+TradPed45   45     70    1 3 4.400000 0.5291503    4.2 4.400000 0.29652 4.00
+TradPed46   46     71    1 3 4.400000 0.5291503    4.2 4.400000 0.29652 4.00
+TradPed47   47     72    1 3 4.800000 0.3464102    5.0 4.800000 0.00000 4.40
+TradPed48   48     73    1 3 4.933333 0.1154701    5.0 4.933333 0.00000 4.80
+TradPed49   49     74    1 3 4.866667 0.2309401    5.0 4.866667 0.00000 4.60
+TradPed50   50     75    1 3 4.866667 0.2309401    5.0 4.866667 0.00000 4.60
+TradPed51   51     76    1 3 5.000000 0.0000000    5.0 5.000000 0.00000 5.00
+TradPed52   52     77    1 3 4.000000 0.2000000    4.0 4.000000 0.29652 3.80
+TradPed53   53     78    1 3 4.066667 0.1154701    4.0 4.066667 0.00000 4.00
+TradPed54   54     79    1 3 4.466667 0.5033223    4.4 4.466667 0.59304 4.00
+TradPed55   55     80    1 3 4.333333 0.3055050    4.4 4.333333 0.29652 4.00
+TradPed56   56     81    1 3 5.000000 0.0000000    5.0 5.000000 0.00000 5.00
+TradPed57   57     82    1 3 4.866667 0.2309401    5.0 4.866667 0.00000 4.60
+TradPed58   58     83    1 3 4.733333 0.4618802    5.0 4.733333 0.00000 4.20
+TradPed59   59     84    1 3 4.133333 0.4163332    4.0 4.133333 0.29652 3.80
+TradPed60   60     86    1 3 4.733333 0.3055050    4.8 4.733333 0.29652 4.40
+TradPed61   61     87    1 3 4.600000 0.4000000    4.6 4.600000 0.59304 4.20
+TradPed62   62    115    1 3 4.600000 0.3464102    4.8 4.600000 0.00000 4.20
+TradPed63   63    116    1 3 3.733333 0.8326664    4.0 3.733333 0.59304 2.80
+TradPed64   64    117    1 3 4.333333 0.5773503    4.0 4.333333 0.00000 4.00
+TradPed65   65    118    1 3 4.000000 0.0000000    4.0 4.000000 0.00000 4.00
+TradPed66   66    124    1 3 4.800000 0.2000000    4.8 4.800000 0.29652 4.60
+TradPed67   67    136    1 3 4.533333 0.3055050    4.6 4.533333 0.29652 4.20
+TradPed68   68    137    1 3 4.200000 0.3464102    4.0 4.200000 0.00000 4.00
+TradPed69   69    138    1 3 4.733333 0.4618802    5.0 4.733333 0.00000 4.20
+TradPed70   70    139    1 3 4.533333 0.3055050    4.6 4.533333 0.29652 4.20
+          max range               skew kurtosis         se
+TradPed1  4.0  1.60 -0.665468866123835     -1.5 0.50332230
+TradPed2  5.0  0.80 -0.528004979218190     -1.5 0.24037009
+TradPed3  4.8  1.20 -0.707106781186550     -1.5 0.40000000
+TradPed4  4.0  0.80  0.000000000000000     -1.5 0.23094011
+TradPed5  4.2  0.80  0.528004979218188     -1.5 0.24037009
+TradPed6  3.0  0.80  0.528004979218190     -1.5 0.24037009
+TradPed7  5.0  1.00 -0.595170064139495     -1.5 0.30550505
+TradPed8  4.8  1.00 -0.595170064139495     -1.5 0.30550505
+TradPed9  4.8  1.40 -0.172800544078648     -1.5 0.40551750
+TradPed10 5.0  0.80 -0.707106781186547     -1.5 0.26666667
+TradPed11 4.2  0.80 -0.528004979218188     -1.5 0.24037009
+TradPed12 5.0  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed13 5.0  0.60 -0.381801774160605     -1.5 0.17638342
+TradPed14 5.0  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed15 4.8  2.40 -0.381801774160607     -1.5 0.70553368
+TradPed16 5.0  0.80 -0.528004979218190     -1.5 0.24037009
+TradPed17 4.6  1.80  0.135061522784740     -1.5 0.52068331
+TradPed18 5.0  1.00 -0.239063146929544     -1.5 0.29059326
+TradPed19 4.0  0.00                NaN      NaN 0.00000000
+TradPed20 4.8  1.80 -0.567316577993728     -1.5 0.54569018
+TradPed21 4.8  2.00  0.239063146929544     -1.5 0.58118653
+TradPed22 5.0  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed23 5.0  0.60  0.381801774160605     -1.5 0.17638342
+TradPed24 4.4  0.60 -0.707106781186547     -1.5 0.20000000
+TradPed25 4.2  0.95 -0.707106781186547     -1.5 0.31666667
+TradPed26 4.2  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed27 5.0  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed28 4.4  3.20 -0.294799620144829     -1.5 0.93333333
+TradPed29 3.8  0.20 -0.707106781186552     -1.5 0.06666667
+TradPed30 4.6  0.60  0.381801774160605     -1.5 0.17638342
+TradPed31 5.0  0.60 -0.707106781186544     -1.5 0.20000000
+TradPed32 5.0  1.80 -0.381801774160607     -1.5 0.52915026
+TradPed33 3.8  0.80 -0.528004979218190     -1.5 0.24037009
+TradPed34 5.0  0.80  0.528004979218190     -1.5 0.24037009
+TradPed35 5.0  0.60 -0.707106781186544     -1.5 0.20000000
+TradPed36 2.8  1.20 -0.630903856710625     -1.5 0.37118429
+TradPed37 5.0  0.60  0.707106781186544     -1.5 0.20000000
+TradPed38 5.0  1.00 -0.595170064139495     -1.5 0.30550505
+TradPed39 3.8  0.20  0.707106781186552     -1.5 0.06666667
+TradPed40 5.0  0.40 -0.707106781186543     -1.5 0.13333333
+TradPed41 5.0  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed42 5.0  1.80 -0.381801774160607     -1.5 0.52915026
+TradPed43 5.0  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed44 4.4  1.00 -0.595170064139496     -1.5 0.30550505
+TradPed45 5.0  1.00  0.595170064139495     -1.5 0.30550505
+TradPed46 5.0  1.00  0.595170064139495     -1.5 0.30550505
+TradPed47 5.0  0.60 -0.707106781186544     -1.5 0.20000000
+TradPed48 5.0  0.20 -0.707106781186557     -1.5 0.06666667
+TradPed49 5.0  0.40 -0.707106781186543     -1.5 0.13333333
+TradPed50 5.0  0.40 -0.707106781186543     -1.5 0.13333333
+TradPed51 5.0  0.00                NaN      NaN 0.00000000
+TradPed52 4.2  0.40  0.000000000000000     -1.5 0.11547005
+TradPed53 4.2  0.20  0.707106781186557     -1.5 0.06666667
+TradPed54 5.0  1.00  0.239063146929544     -1.5 0.29059326
+TradPed55 4.6  0.60 -0.381801774160605     -1.5 0.17638342
+TradPed56 5.0  0.00                NaN      NaN 0.00000000
+TradPed57 5.0  0.40 -0.707106781186543     -1.5 0.13333333
+TradPed58 5.0  0.80 -0.707106781186547     -1.5 0.26666667
+TradPed59 4.6  0.80  0.528004979218190     -1.5 0.24037009
+TradPed60 5.0  0.60 -0.381801774160605     -1.5 0.17638342
+TradPed61 5.0  0.80  0.000000000000004     -1.5 0.23094011
+TradPed62 4.8  0.60 -0.707106781186544     -1.5 0.20000000
+TradPed63 4.4  1.60 -0.528004979218188     -1.5 0.48074017
+TradPed64 5.0  1.00  0.707106781186549     -1.5 0.33333333
+TradPed65 4.0  0.00                NaN      NaN 0.00000000
+TradPed66 5.0  0.40  0.000000000000000     -1.5 0.11547005
+TradPed67 4.8  0.60 -0.381801774160605     -1.5 0.17638342
+TradPed68 4.6  0.60  0.707106781186544     -1.5 0.20000000
+TradPed69 5.0  0.80 -0.707106781186547     -1.5 0.26666667
+TradPed70 4.8  0.60 -0.381801774160605     -1.5 0.17638342
+```
+
+Someone who codes in R could probably write a quick formula to do this -- in this case, I will take the time (and space) to copy each student's standard deviation into a formula that squares it, multiplies it by $n-1$ and then sums all 70 of those calculations.
+
+```r
+SSW <- (0.8717798^2 * (3 - 1)) + (0.4163332	^2 * (3 - 1)) + (0.6928203	^2 * (3 - 1)) + (0.4000000	^2 * (3 - 1)) +   (0.4163332^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) +   (0.7023769^2 * (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.2220202^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.9018500^2 * (3 - 1)) + (0.5033223^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) + (0.9451631^2 * (3 - 1)) + 
+(1.0066446^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5484828^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.6165808^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.6429101^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + 
+(0.1154701^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) +
+(0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) +
+(0.2309401^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) + (0.2000000^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5033223^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) +  (0.2309401^2 * (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) +   (0.4000000^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.8326664^2 * (3 - 1)) + (0.5773503^2 * (3 - 1)) +
+(0.0000000^2 * (3 - 1)) + (0.2000000^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) +
+(0.4618802^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) 
+
+SSW
+```
+
+```
+[1] 36.895
+```
+Our sums of squares within is 36.895.
+
+#### Calculate sums of squares model (SSM) for for the effect of time (or repeated measures). 
+
+The formula for the sums of squares model in repeated measures captures the effect of time (or the repeated measures nature of the design):  $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
+
+Earlier we learned that the grand mean is 4.319286. 
+
+I can obtain the means for each course with *psych::describeBy()*.
+
+
+```r
+psych::describeBy(TradPed ~ Course, mat = TRUE, digits = 3, type = 1, data = rm1wLONG_df)
+```
+
+```
+         item        group1 vars  n  mean    sd median trimmed   mad min max
+TradPed1    1         ANOVA    1 70 4.211 0.711    4.2   4.296 0.890 2.2   5
+TradPed2    2  Multivariate    1 70 4.332 0.727    4.4   4.454 0.593 1.2   5
+TradPed3    3 Psychometrics    1 70 4.414 0.672    4.6   4.532 0.593 2.4   5
+         range   skew kurtosis    se
+TradPed1   2.8 -0.786   -0.009 0.085
+TradPed2   3.8 -2.037    5.752 0.087
+TradPed3   2.6 -1.315    1.306 0.080
+```
+
+I can put it in the formula:
+
+
+```r
+(70 * (4.211 - 4.319286)^2) + (70 * (4.332 - 4.319286)^2) + (70 * (4.414 - 4.319286)^2)
+```
+
+```
+[1] 1.460077
+```
+Sums of squares model is 1.4601
+
+
+#### Calculate sums of squares residual (SSR). 
+
+In repeated measures ANOVA $SS_W = SS_M + SS_R$.  Knowing SSW (34.255) and SSM (1.460), we can do simple arithmetic to obtain SSR.
+
+
+```r
+SSR <- 36.895 - 1.460
+SSR
+```
+
+```
+[1] 35.435
+```
+Sums of squares residual is 35.435.
+
+
+
+#### Calculate the sums of squares between (SSB). 
+In repeated measures ANOVA $SS_T$ = $SS_W$ + $SS_B$.  Knowing SST (103.9144) and SSW (34.255), we can do simple arithmetic to obtain SSB.
+
+
+```r
+SSB <- 103.9144 - 35.435
+SSB
+```
+
+```
+[1] 68.4794
+```
+Sums of squares between is 69.6594.
+
+
+#### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values 
+
+|One Way Repeated Measures ANOVA Source Table
+|:--------------------------------------------------------------|
+
+|Source    |SS       |df                |$MS = \frac{SS}{df}$ |$F = \frac{MS_{source}}{MS_{resid}}$ |$F_{CV}$|
+|:---------|:--------|:-----------------|:------|:------|:------|
+|Within    |36.895   |(N-k) = 67        |       |       |       |
+|Model     |1.4601   |(k-1) = 2         |0.7301 |1.3391 |3.138  |
+|Residual  |35.435   |(dfw - dfm) = 65  |0.5452 |       |       |
+|Between   |68.4794  |(N-1) = 69        |       |       |       |
+|Total     |103.9144 |(cells-1) = 209   |       |       |       |
+
+
+```r
+#calculating degrees of freedom for the residual
+67-2
+```
+
+```
+[1] 65
+```
+Calculating mean square model and residual.
+
+```r
+1.4601/2#MSM
+```
+
+```
+[1] 0.73005
+```
+
+```r
+35.435/65#MSR
+```
+
+```
+[1] 0.5451538
+```
+Calculating the F ratio
+
+```r
+.7301/.5452
+```
+
+```
+[1] 1.339142
+```
+
+Obtaining the F critical value: 
+
+
+```r
+qf(.05, 2, 65, lower.tail = FALSE)
+```
+
+```
+[1] 3.138142
+```
+To achieve statistical significance, my F value has to exceed 3.138.
+
+We can see the same in an [F distribution table](https://www.statology.org/f-distribution-table/). 
+
+#### Is the *F*-tests statistically significant? Why or why not? 
+
+No. The *F* value did not exceed the *F* critical value.
+
+#### Assemble the results into a statistical string. 
+
+$F(2, 65) = 1.339, p > 0.05$
 
 
 
