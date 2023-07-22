@@ -129,7 +129,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP (she/her)}
-\date{Last updated 21 Jul 2023}
+\date{Last updated 22 Jul 2023}
 
 \begin{document}
 \maketitle
@@ -165,7 +165,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 21 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 22 Jul 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=859e5312-abdb-4db8-8779-b00c00feae47}{Screencasted Lecture Link}
 
@@ -14190,7 +14190,7 @@ Points Earned
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-1. Narrate the research vignette, describing the IV and DV. Miniminally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required. & 5 & \_\_\_\_\_ \\
+1. Narrate the research vignette, describing the IV and DV. Minimally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required. & 5 & \_\_\_\_\_ \\
 2. Simulate (or import) and format data. & 5 & \_\_\_\_\_ \\
 3. Evaluate statistical assumptions. & 5 & \_\_\_\_\_ \\
 4. Conduct omnibus ANOVA (w effect size). & 5 & \_\_\_\_\_ \\
@@ -19355,9 +19355,583 @@ Points Earned
 5. Conduct one set of follow-up tests; narrate your choice & 5 & \_\_\_\_\_ \\
 6. Describe approach for managing Type I error & 5 & \_\_\_\_\_ \\
 7. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-8 Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 40 & \_\_\_\_\_ \\
+8. Conduct power analyses to determine the power of the current study and a recommended sample size. & 5 & \_\_\_\_\_ \\
+9. Explanation to grader. & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 45 & \_\_\_\_\_ \\
 \end{longtable}
+
+\hypertarget{homeworked-example-8}{%
+\section{Homeworked Example}\label{homeworked-example-8}}
+
+\href{}{Screencast Link}
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.}
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could\ldots{} }
+
+\hypertarget{working-the-problem-with-r-and-r-packages-7}{%
+\subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-7}}
+
+\hypertarget{narrate-the-research-vignette-describing-the-iv-and-dv.}{%
+\subsubsection{Narrate the research vignette, describing the IV and DV.}\label{narrate-the-research-vignette-describing-the-iv-and-dv.}}
+
+\textbf{Minimally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required.}
+
+I want to ask the question, what are the effects of intentional recentering on students evaluations of socially responsive pedagogy as they progress through three doctoral courses in statistics. My design is a 3 x 2 ANOVA:
+
+\begin{itemize}
+\tightlist
+\item
+  Within-subjects factor: student as they progress through ANOVA, Multivariate, Psychometrics
+\item
+  Between-subjects factor: recentering status of the class (Pre, Re)
+\item
+  Continuous DV: SRPed (socially responsive pedagogy)
+\end{itemize}
+
+\hypertarget{simulate-or-import-and-format-data-3}{%
+\subsubsection{Simulate (or import) and format data}\label{simulate-or-import-and-format-data-3}}
+
+First I import the larger dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The SRPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creates a list of the variables that belong to that scale}
+\NormalTok{SRPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}InclusvClassrm\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}EquitableEval\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}MultPerspectives\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}DEIintegration\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Calculates a mean if at least 75\% of the items are non{-}missing; adjusts the calculating when there is missingness}
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, SRPed\_vars], .}\DecValTok{75}\NormalTok{)}
+
+\CommentTok{\#if the scoring script won\textquotesingle{}t run, try this one:}
+\CommentTok{\#big$SRPed \textless{}{-} sjstats::mean\_n(big[, ..SRPed\_vars], .75)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's trim it to just the variables of interest
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (big, deID, Course, Centering, SRPed))}
+\end{Highlighting}
+\end{Shaded}
+
+I want the course variable to be factor that is ordered by its sequence: ANOVA, multivariate, psychometrics.
+
+I want the centering variable to be ordered: Pre, Re
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(mixt\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Classes 'data.table' and 'data.frame':  310 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 3 levels "Psychometrics",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+\end{verbatim}
+
+Because R's default is to order alphabetically, the centering variable is correct. I just need to change the course variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_df}\SpecialCharTok{$}\NormalTok{Course }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(mixt\_df}\SpecialCharTok{$}\NormalTok{Course, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"ANOVA"}\NormalTok{, }\StringTok{"Multivariate"}\NormalTok{, }\StringTok{"Psychometrics"}\NormalTok{))}
+\FunctionTok{str}\NormalTok{(mixt\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Classes 'data.table' and 'data.frame':  310 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 3 levels "ANOVA","Multivariate",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+\end{verbatim}
+
+After checking the structure again, both are correct.
+
+I want all of my analyses (i.e., testing of assumptions, descriptives, omnibus F, follow-up) to be with the same dataset. Because each of these analyses will use listwise deletion (i.e., deleting cases, potentially differing numbers, when there is missing data), I will take care of this now. Because this is a longitudinal analysis, I will do it in two steps.
+
+The current dataset is is in \emph{long} form. This means each student has up to three rows of data. I will first delete rows that have any missing data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_df }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(mixt\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+This took me from 310 observations to 299.
+
+These analyses, though, require that students have completed evaluations for all three courses. In the chapter, I restructured the data from long, to wide, back to long again. While this was useful pedagogy in understanding the difference between the two datasets, there is also super quick code that will simply retain data that has at least three observations per student.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{mixt\_df }\OtherTok{\textless{}{-}}\NormalTok{ mixt\_df}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{group\_by}\NormalTok{(deID)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}\FunctionTok{n}\NormalTok{()}\SpecialCharTok{==}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This took the data to 198 observations. Since each student contributed 3 observations, we know \(N = 66\).
+
+Let's get an a priori peek at what we're doing:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_box }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggboxplot}\NormalTok{(mixt\_df, }\AttributeTok{x =} \StringTok{"Course"}\NormalTok{, }\AttributeTok{y =} \StringTok{"SRPed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Centering"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Statistics Sequence"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Socially and Culturally Responsive Pedagogy"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Socially Responsive Course Evaluations as a Function of Centering and Time"}
+\NormalTok{    )}
+\NormalTok{mixt\_box}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\hypertarget{evaluate-statistical-assumptions-4}{%
+\subsubsection{Evaluate statistical assumptions}\label{evaluate-statistical-assumptions-4}}
+
+\textbf{Is the dependent variable normally distributed in all combinations of the factors?}
+
+I can examine skew and kurtosis at the cell level with \emph{psych::describeBy()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(mixt\_df)}\CommentTok{\#my data was not reading as a df so I applied this function}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(SRPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Course }\SpecialCharTok{+}\NormalTok{ Centering, }\AttributeTok{data =}\NormalTok{ mixt\_df, }\AttributeTok{type =} \DecValTok{1}\NormalTok{, }\AttributeTok{mat =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+       item        group1 group2 vars  n  mean    sd median trimmed   mad  min
+SRPed1    1         ANOVA    Pre    1 42 4.522 0.639  4.875   4.630 0.185 2.25
+SRPed2    2  Multivariate    Pre    1 42 4.387 0.648  4.585   4.468 0.615 2.33
+SRPed3    3 Psychometrics    Pre    1 34 4.659 0.525  5.000   4.747 0.000 3.33
+SRPed4    4         ANOVA     Re    1 24 4.427 0.524  4.500   4.475 0.741 3.25
+SRPed5    5  Multivariate     Re    1 24 4.698 0.448  5.000   4.775 0.000 3.25
+SRPed6    6 Psychometrics     Re    1 32 4.523 0.636  4.750   4.654 0.371 2.25
+       max range   skew kurtosis    se
+SRPed1   5  2.75 -1.455    2.043 0.099
+SRPed2   5  2.67 -0.954    0.572 0.100
+SRPed3   5  1.67 -1.319    0.255 0.090
+SRPed4   5  1.75 -0.561   -0.627 0.107
+SRPed5   5  1.75 -1.622    2.477 0.092
+SRPed6   5  2.75 -1.909    3.680 0.112
+\end{verbatim}
+
+Across all 6 conditions:
+
+\begin{itemize}
+\tightlist
+\item
+  No skew exceeds the threshholds of concern (\textgreater3; Kline {[}2016{]})
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the most extreme skew is -1.909
+  \end{itemize}
+\item
+  No kurtosis exceeds the threshholds of concern (\textgreater10; Kline {[}2016{]})
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the most extreme kurtosis is 3.680
+  \end{itemize}
+\end{itemize}
+
+\textbf{Are the model residuals normally distributed?}
+
+I can use the Shapiro-Wilk test to formally investigate the normality assumption. Examining the distribution of the model resdiduals is one of the most efficient ways to do this. First, I need to run the model and extract the residuals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_mod }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(SRPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Course}\SpecialCharTok{*}\NormalTok{Centering, mixt\_df)}
+\FunctionTok{summary}\NormalTok{(mixt\_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                  Df Sum Sq Mean Sq F value Pr(>F)  
+Course             2   0.44  0.2216   0.639 0.5288  
+Centering          1   0.02  0.0239   0.069 0.7931  
+Course:Centering   2   1.90  0.9478   2.734 0.0675 .
+Residuals        192  66.56  0.3466                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+We won't look at this yet, but simply focus on testing the assumption of normality. The next step is to extract the residuals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_resid }\OtherTok{\textless{}{-}} \FunctionTok{residuals}\NormalTok{(mixt\_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+The formal test of normality is the Shapiro-Wilk test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(mixt\_resid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Shapiro-Wilk normality test
+
+data:  mixt_resid
+W = 0.85873, p-value = 0.000000000001378
+\end{verbatim}
+
+Our test result is \(W = 0.859, p < .001.\). The significant \emph{p} value indicates that we have violated the normality assumption. When cell sizes have at least 15 cases each and are roughly equivalent in size, ANOVA models are generally robust to this violation. None-the-less, we should keep it in mind.
+
+We can plot the residuals to ``see'' how bad it is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(mixt\_resid)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-58-1.pdf} Like the data itself, the residuals have a negative skew with a pile-up of scores on the ``high'' side.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(mixt\_resid)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-59-1.pdf} Similarly, we see that the residuals sharply deviate from the diagonal at the top.
+
+\textbf{Is there evidence of outliers? Are they extreme?}
+
+The \emph{rstatix::identify\_outliers()} function identifies outliers and extreme outliers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_df}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Course, Centering)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{identify\_outliers}\NormalTok{(SRPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 9 x 6
+  Course        Centering  deID SRPed is.outlier is.extreme
+  <fct>         <fct>     <int> <dbl> <lgl>      <lgl>     
+1 ANOVA         Pre          61  2.25 TRUE       FALSE     
+2 Multivariate  Pre          61  2.33 TRUE       FALSE     
+3 Multivariate  Re          116  3.25 TRUE       FALSE     
+4 Psychometrics Pre          51  3.33 TRUE       FALSE     
+5 Psychometrics Pre          58  3.75 TRUE       FALSE     
+6 Psychometrics Pre          61  3.67 TRUE       FALSE     
+7 Psychometrics Pre          64  3.5  TRUE       FALSE     
+8 Psychometrics Pre          77  3.75 TRUE       FALSE     
+9 Psychometrics Re           11  2.25 TRUE       FALSE     
+\end{verbatim}
+
+There are 9 rows of outlier; none are extreme. Cross-referencing back to the boxplot, these are on the low side of evaluations. As an instructor, it seems important to retain the voices that rated socially responsive pedagogy lower than the other students. Although they contribute to non-normality, to exclude them would bias the data in a positive direction.
+
+\textbf{Are the variances of the dependent variable equivalent across all combinations of the factors?}
+
+I can use the Levene's test with \emph{rstatix::levene\_test()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Course)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{levene\_test}\NormalTok{(SRPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Centering)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 5
+  Course          df1   df2 statistic      p
+  <fct>         <int> <int>     <dbl>  <dbl>
+1 ANOVA             1    64     0.176 0.676 
+2 Multivariate      1    64     4.79  0.0323
+3 Psychometrics     1    64     0.320 0.574 
+\end{verbatim}
+
+Levene's test indicated a violation of this assumption between the Pre and Re centering conditions in the multivariate class \((F[1, 64] = 4.787, p = 0.032)\). There was no indication of assumption violation for the ANOVA class \((F[1, 64] = 0.176, p = 0.676)\) nor the psychometrics class \((F[1, 64] = 0.320, p = 0.573)\).
+
+Before moving on I will write up the portion of the APA results section that evaluates the assumptions:
+
+\begin{quote}
+We conducted a 2 X 3 mixed design ANOVA to evaluate students' evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).
+\end{quote}
+
+\begin{quote}
+Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline \citeyearpar{kline_data_2016} there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was \(W = 0.859, p < .001.\)and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify\_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives.
+\end{quote}
+
+\begin{quote}
+Regardin the homogeneity of variance assumption, Levene's test indicated a violation between the pre- and re- centering conditions in the multivariate class \((F[1, 64] = 4.787, p = 0.032)\). There was no indication of assumption violation for the ANOVA class \((F[1, 64] = 0.176, p = 0.676)\) nor the psychometrics class \((F[1, 64] = 0.320, p = 0.573)\). PLACEHOLDER FOR SPHERICITY ASSUMPTION.
+\end{quote}
+
+\hypertarget{conduct-omnibus-anova-w-effect-size-1}{%
+\subsubsection{Conduct omnibus ANOVA (w effect size)}\label{conduct-omnibus-anova-w-effect-size-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{anova\_test}\NormalTok{(}\AttributeTok{data =}\NormalTok{ mixt\_df, }\AttributeTok{dv =}\NormalTok{ SRPed, }\AttributeTok{wid =}\NormalTok{ deID, }\AttributeTok{between =}\NormalTok{ Centering, }\AttributeTok{within =}\NormalTok{ Course)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning: The 'wid' column contains duplicate ids across between-subjects
+variables. Automatic unique id will be created
+\end{verbatim}
+
+\begin{verbatim}
+ANOVA Table (type III tests)
+
+$ANOVA
+            Effect DFn DFd        F        p p<.05        ges
+1        Centering   1  56 0.000219 0.988000       0.00000289
+2           Course   2 112 0.550000 0.578000       0.00300000
+3 Centering:Course   2 112 8.547000 0.000351     * 0.03900000
+
+$`Mauchly's Test for Sphericity`
+            Effect     W     p p<.05
+1           Course 0.919 0.098      
+2 Centering:Course 0.919 0.098      
+
+$`Sphericity Corrections`
+            Effect   GGe       DF[GG]    p[GG] p[GG]<.05   HFe    DF[HF]
+1           Course 0.925 1.85, 103.62 0.565000           0.955 1.91, 107
+2 Centering:Course 0.925 1.85, 103.62 0.000521         * 0.955 1.91, 107
+     p[HF] p[HF]<.05
+1 0.571000          
+2 0.000444         *
+\end{verbatim}
+
+Because Course is a repeated measures factor, we evaluate Mauchly's test for the main \((W = 0.919, p = 0.098)\) and interaction \((W = 0.919, p = 0.098)\) effects. Neither was statistically significant, meaning we did not violate the sphericity assumption.
+
+Let's write the F strings from the above table:
+
+\begin{itemize}
+\tightlist
+\item
+  Centering main effect: \(F(1, 56) = 0.000, p = 0.988, \eta^2 = 0.000\)
+\item
+  Course effect: \(F(2, 112) = 0.550, p = 0.578, \eta^2 = 0.003\)
+\item
+  Interaction effect: \(F(2, 112) = 8.547, p = 0.001, \eta^2 = 0.039\)
+\end{itemize}
+
+\begin{quote}
+Regarding the omnibus ANOVA, neither the main effect for centering stage \((F[1, 56] = 0.000, p = 0.988, \eta^2 = 0.000)\) nor course \((F[2, 112] = 0.550, p = 0.578, \eta^2 = 0.003)\). However there was a statistically significant centering x course interaction effect \((F[2, 112] = 8.547, p = 0.001, \eta^2 = 0.039)\).
+\end{quote}
+
+\hypertarget{conduct-one-set-of-follow-up-tests-narrate-your-choice}{%
+\subsubsection{Conduct one set of follow-up tests; narrate your choice}\label{conduct-one-set-of-follow-up-tests-narrate-your-choice}}
+
+With a significant interaction effect, we will want to follow-up with an analysis of simple main effects. I think I am interested in the simple main effects for centering within each of the courses. Because there are two levels of Centering (pre, re) within each of the courses, I can go straight to \emph{t}-tests.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Simple\_Course }\OtherTok{\textless{}{-}}\NormalTok{ mixt\_df}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Course)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{t\_test}\NormalTok{(SRPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Centering, }\AttributeTok{detailed =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{p.adjust.method =} \StringTok{"none"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{add\_significance}\NormalTok{()}
+\NormalTok{Simple\_Course}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 17
+  Course  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic
+  <fct>      <dbl>     <dbl>     <dbl> <chr> <chr>  <chr>  <int> <int>     <dbl>
+1 ANOVA     0.0948      4.52      4.43 SRPed Pre    Re        42    24     0.652
+2 Multiv~  -0.311       4.39      4.70 SRPed Pre    Re        42    24    -2.29 
+3 Psycho~   0.136       4.66      4.52 SRPed Pre    Re        34    32     0.944
+# i 7 more variables: p <dbl>, df <dbl>, conf.low <dbl>, conf.high <dbl>,
+#   method <chr>, alternative <chr>, p.signif <chr>
+\end{verbatim}
+
+I also want effect sizes (Cohen's \emph{d}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mixt\_df}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Course)}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{cohens\_d}\NormalTok{(SRPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Centering)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 8
+  .y.   group1 group2 effsize Course           n1    n2 magnitude 
+* <chr> <chr>  <chr>    <dbl> <fct>         <int> <int> <ord>     
+1 SRPed Pre    Re       0.162 ANOVA            42    24 negligible
+2 SRPed Pre    Re      -0.558 Multivariate     42    24 moderate  
+3 SRPed Pre    Re       0.233 Psychometrics    34    32 small     
+\end{verbatim}
+
+\begin{quote}
+We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green \& Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA \((MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)\) and psychometrics \((MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)\) courses, there was a statistically significant difference in the multivariate course \((MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)\) .
+\end{quote}
+
+\hypertarget{describe-approach-for-managing-type-i-error-1}{%
+\subsubsection{Describe approach for managing Type I error}\label{describe-approach-for-managing-type-i-error-1}}
+
+Because there were only three comparisons following the omnibus evaluation, I used the LSD method to control for Type I error and retained the alpha at .05 (Green \& Salkind, 2014b).
+
+\hypertarget{apa-style-results-with-tables-and-figure-3}{%
+\subsubsection{APA style results with table(s) and figure}\label{apa-style-results-with-tables-and-figure-3}}
+
+\begin{quote}
+We conducted a 2 X 3 mixed design ANOVA to evaluate students' evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).
+\end{quote}
+
+\begin{quote}
+Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline \citeyearpar{kline_data_2016} there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was \(W = 0.859, p < .001.\)and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify\_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives.
+\end{quote}
+
+\begin{quote}
+Regardin the homogeneity of variance assumption, Levene's test indicated a violation between the pre- and re- centering conditions in the multivariate class \((F[1, 64] = 4.787, p = 0.032)\). There was no indication of assumption violation for the ANOVA class \((F[1, 64] = 0.176, p = 0.676)\) nor the psychometrics class \((F[1, 64] = 0.320, p = 0.573)\). Mauchly's test indicated no violation of the sphericity asssumption \((W = 0.919, p = 0.098)\), therefore we proceeded normally.
+\end{quote}
+
+\begin{quote}
+Regarding the omnibus ANOVA, neither the main effect for centering stage \((F[1, 56] = 0.000, p = 0.988, \eta^2 = 0.000)\) nor course \((F[2, 112] = 0.550, p = 0.578, \eta^2 = 0.003)\). However there was a statistically significant centering x course interaction effect \((F[2, 112] = 8.547, p = 0.001, \eta^2 = 0.039)\).
+\end{quote}
+
+\begin{quote}
+We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green \& Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA \((MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)\) and psychometrics \((MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)\) courses, there was a statistically significant difference in the multivariate course \((MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)\) .
+\end{quote}
+
+A quick way to produce a table of means and standard deviations for mixed design ANOVA is this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.2way.table}\NormalTok{(}\AttributeTok{iv1=}\NormalTok{Course, }\AttributeTok{iv2=}\NormalTok{Centering, }\AttributeTok{dv=}\NormalTok{SRPed, }\AttributeTok{data=}\NormalTok{mixt\_df, }\AttributeTok{filename =} \StringTok{"Mixed\_Table.doc"}\NormalTok{, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+
+Table 1 
+
+Means and standard deviations for SRPed as a function of a 3(Course) X 2(Centering) design 
+
+               Centering               
+                     Pre        Re     
+        Course         M   SD    M   SD
+         ANOVA      4.52 0.64 4.43 0.52
+  Multivariate      4.39 0.65 4.70 0.45
+ Psychometrics      4.66 0.52 4.52 0.64
+
+Note. M and SD represent mean and standard deviation, respectively. 
+\end{verbatim}
+
+I can update my figure with star bars:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{Simple\_Course }\OtherTok{\textless{}{-}}\NormalTok{ Simple\_Course  }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Course"}\NormalTok{)}
+\NormalTok{mixt\_box }\OtherTok{\textless{}{-}}\NormalTok{ mixt\_box }\SpecialCharTok{+}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_pvalue\_manual}\NormalTok{(Simple\_Course, }\AttributeTok{label =} \StringTok{"p.signif"}\NormalTok{, }\AttributeTok{tip.length =} \FloatTok{0.02}\NormalTok{, }\AttributeTok{hide.ns =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{y.position =} \FunctionTok{c}\NormalTok{(}\FloatTok{5.3}\NormalTok{)) }
+\NormalTok{mixt\_box}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-MixedANOVA_files/figure-latex/unnamed-chunk-66-1.pdf}
+
+\hypertarget{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size.-2}{%
+\subsubsection{Conduct power analyses to determine the power of the current study and a recommended sample size.}\label{conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size.-2}}
+
+In the \emph{WebPower} package, we specify 6 of 7 interrelated elements; the package computes the missing element
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{n} = sample size (number of individuals in the whole study)
+\item
+  \emph{ng} = number of groups
+\item
+  \emph{nm} = number of repeated measurements (i.e., waves)
+\item
+  \emph{f} = Cohen's \emph{f} (an effect size; we can use a conversion calculator); Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively
+\item
+  \emph{nscor} = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package's default; \textless{} 1 means some correction was applied
+\item
+  \emph{alpha} = is the probability of Type I error; we traditionally set this at .05
+\item
+  \emph{power} = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)
+\item
+  \emph{type} = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect; in a mixed design ANOVA we will select ``2''
+\end{itemize}
+
+As in the prior lessons, we need to convert our effect size for the \emph{interaction} to \(f\) effect size (this is not the same as the \emph{F} test). The \emph{effectsize} package has a series of converters. We can use the \emph{eta2\_to\_f()} function to translate the \(\eta^{2}\) associated with the interaction effect to Cohen's \emph{f}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#include effect size from the interaction effect}
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{eta2\_to\_f}\NormalTok{(}\FloatTok{0.039}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.2014515
+\end{verbatim}
+
+We can now retrieve information from our study (including the Cohen's \emph{f} value we just calculated) and insert it into the script for the power analysis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{WebPower}\SpecialCharTok{::}\FunctionTok{wp.rmanova}\NormalTok{(}\AttributeTok{n=}\DecValTok{66}\NormalTok{, }\AttributeTok{ng=}\DecValTok{2}\NormalTok{, }\AttributeTok{nm=}\DecValTok{3}\NormalTok{, }\AttributeTok{f =} \FloatTok{0.2014515}\NormalTok{, }\AttributeTok{nscor =}\NormalTok{ .}\DecValTok{925}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{05}\NormalTok{, }\AttributeTok{power =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{type =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Repeated-measures ANOVA analysis
+
+     n         f ng nm nscor alpha     power
+    66 0.2014515  2  3 0.925  0.05 0.2737866
+
+NOTE: Power analysis for interaction-effect test
+URL: http://psychstat.org/rmanova
+\end{verbatim}
+
+We are powered at .274 (we have a 27\% of rejecting the null hypothesis, if it is true)
+
+In reverse, setting \emph{power} at .80 (the traditional value) and changing \emph{n} to \emph{NULL} yields a recommended sample size.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{WebPower}\SpecialCharTok{::}\FunctionTok{wp.rmanova}\NormalTok{(}\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{ng =} \DecValTok{2}\NormalTok{, }\AttributeTok{nm =} \DecValTok{3}\NormalTok{, }\AttributeTok{f =} \FloatTok{0.2014515}\NormalTok{, }\AttributeTok{nscor =} \FloatTok{0.925}\NormalTok{,}
+    \AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{type =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Repeated-measures ANOVA analysis
+
+           n         f ng nm nscor alpha power
+    252.2835 0.2014515  2  3 0.925  0.05   0.8
+
+NOTE: Power analysis for interaction-effect test
+URL: http://psychstat.org/rmanova
+\end{verbatim}
+
+Given our desire for strong power and our weak effect size, this power analysis suggests a sample size of 252 participants is required to be adequately powered (80\%) to detect a significant interaction effect.
 
 \hypertarget{ANCOVA}{%
 \chapter{Analysis of Covariance}\label{ANCOVA}}

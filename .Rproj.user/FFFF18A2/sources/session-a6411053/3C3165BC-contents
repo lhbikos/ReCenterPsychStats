@@ -1,0 +1,308 @@
+---
+title: "Mixed Design ANOVA"
+author: "lhbikos"
+date: '2022-10-29'
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+options(scipen = 999)
+```
+
+**Screencast link**:  https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=794d1da3-d185-4651-ad0e-af40001bc8a7 
+
+# Mixed Design ANOVA
+
+The mixed design ANOVA is useful for experiments. It requires:
+
+* a repeated measures factor that is categorical in nature, such as pre/post or pre/post/follow-up.
+* a between subjects factor that is categorical in nature such as treatment/control, or no/low/high dose
+* a continuous DV
+
+With the TEPPdf, I want to ask the question, I want to ask the question, do course evaluation ratings for the socially responsive pedagogy dimension differ for students as a function of:
+
+* stage the recentering (Pre, Re), and
+* course (ANOVA, Multivariate, Psychometrics) 
+
+
+The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
+
+This data is part of an IRB-approved study, with consent to use in teaching demonstrations and to be made available to the general public via the open science framework. Hence, it is appropriate to share in class.  You will notice there are student- and teacher- IDs. These numbers are not connected to the SPU student ID. Rather, the subcontractor who does the course evals for SPU creates a third, not-SPU-related identifier.
+
+##  Describe variables and their role in the analysis. Do the variables meet the research design criteria:
+
+A 3 x 2 ANOVA:
+
+* Within-subjects factor:  student as they progress through ANOVA, Multivariate, Psychometrics
+* Between-subjects factor: recentering status of the class (Pre, Re)
+* Continuous DV: SCRPed (socially and culturally responsive pedagogy)
+
+```{r}
+big <- readRDS("TEPPout.rds")
+```
+
+This gets a little convoluted, here's why:
+
+* We need "long" and "wide" forms of the data, AND
+* In repeated measures ANOVA every case has to have non-missing data (i.e., to be included, a student must have contributed course evals to all three courses)
+
+The way the data comes to us is the "long" form -- where each student's course evaluation has its own row (i.e., each student has up to 3 rows of data).
+
+Let's trim it to just the variables of interest
+```{r}
+mixt_df <- (dplyr::select (big, StndtID, Course, Centering, SCRPed))
+```
+
+Checking the structure, we want 
+* Course as ordered factor:  ANOVA, Multivariate, Psychometrics
+* Centering as ordered factor:  Re, Pre
+```{r}
+str(mixt_df)
+```
+We just need to order the Course factor.
+
+```{r}
+mixt_df$Course <- factor(mixt_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
+str(mixt_df)
+```
+Because mixed design ANOVA requires non-missing data across all waves/variables, one way to do that is to first create a wide version of the data, delete any cases with any missingness, and then return it to the long format for the analyses.
+
+We want ALL analyses (testing of assumptions, omnibus, follow-up) to be with the same dataset, so let's do that now.
+
+```{r}
+mixtWIDE_df <- reshape2::dcast(data = mixt_df, formula = StndtID + Centering ~ Course,
+    value.var = c("SCRPed"))
+str(mixtWIDE_df)
+```
+Let's update the df to have only complete cases.
+
+```{r}
+mixtWIDE_df <- na.omit(mixtWIDE_df)
+```
+Ooof!  It took us to 47 cases.
+
+We'll now convert that back to long and run ALL the analyses with the complete data.
+
+```{r}
+mixtLONG_df <- (data.table::melt(mixtWIDE_df, id.vars = c("StndtID", "Centering"), measure.vars = c("ANOVA", "Multivariate", "Psychometrics")))
+#This process  does not preserve the variable names, so we need to rename them
+mixtLONG_df<-  dplyr::rename(mixtLONG_df, Course = "variable", SCRPed = "value")
+
+#rechecking structure to make sure we didn't lose anything in the restructuring
+str(mixtLONG_df)
+```
+
+Let's get an a priori peek at what we're doing:
+
+```{r}
+ggpubr::ggboxplot(mixtLONG_df, x = "Course", y = "SCRPed", color = "Centering",
+    palette = "jco", xlab = "Statistics Sequence", ylab = "Socially and Culturally Responsive Pedagogy",
+    )
+
+```
+Another view
+
+```{r}
+ggpubr::ggboxplot(mixtLONG_df, x = "Centering", y = "SCRPed", color = "Course",
+    palette = "jco", xlab = "Statistics Sequence", ylab = "Socially and Culturally Responsive Pedagogy",
+    )
+```
+
+## Evaluate statistical assumptions
+
+### No significant outliers; 
+
+```{r}
+library(tidyverse)
+mixtLONG_df %>%
+    group_by(Course, Centering) %>%
+    rstatix::identify_outliers(SCRPed)
+```
+
+Oooh, we have some. If we thought they were problematic, we could get ride of the ones that are extreme. Stay tuned for multivariate where we use the Mahalanobis test to inspect for multivariate outliers.
+
+
+### DV is normally distributed (skew, kurtosis, Shapiro Wilks)
+
+```{r}
+psych::describeBy(SCRPed ~ Course + Centering, data = mixtLONG_df, mat = TRUE)
+```
+
+Across all 6 conditions:
+
+* No skew exceeds the threshholds of concern (>3; Kline [2016])
+* No kurtosis exceeds the threshholds of concern (>8; Kline [2016])
+
+```{r}
+mixtLONG_df %>%
+    group_by(Course, Centering) %>%
+    rstatix::shapiro_test(SCRPed)
+```
+Every single combination is violated. We can see why in the QQ plots.
+
+```{r}
+ggpubr::ggqqplot(mixtLONG_df, "SCRPed", ggtheme = theme_bw()) + facet_grid(Course ~
+    Centering)
+```
+
+### Homogeneity of variance (Levene's); 
+
+```{r}
+mixtLONG_df %>%
+    group_by(Course) %>%
+    rstatix::levene_test(SCRPed ~ Centering)
+```
+
+Levene’s test indicated no violation of this assumption between the Pre and Re conditions in any of the courses:  ANOVA (F [1, 45] = 0.023, p = .879); multivariate (F [1, 45] = 3.493, p = .068); and psychometrics (F [1, 45] = 0.650, p = .424).
+
+### Writeup So Far:
+
+Mixed design ANOVA has a number of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normally distributed at each level of design. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 14 outliers with 7 of these at the extreme level. Although there some indication of negative skew and kurtosis, none fell into the regions of concern. That is, all skew values were at or below the absolute value of 1.57 and all kurtosis values were below the absolute value of 1.41 (Kline, 2016)). There was evidence of non-normality within each of the combination of factors. Specifically, Shapiro-Wilks tests applied at each level of the design were statistically significant for each of the 6 combinations of course and centering. Because of the between-subjects aspect of the design, the homogeneity of variance assumption was evaluated. Levene’s test indicated no violation of this assumption between the Pre and Re conditions in any of the courses:  ANOVA (F [1, 45] = 0.023, p = .879); multivariate (F [1, 45] = 3.493, p = .068); and psychometrics (F [1, 45] = 0.650, p = .424).  LATER WE WILL ADD INFORMATION ABOUT THE SPHERICITY ASSUMPTION.
+
+
+### Sphericity assumption (Mauchly's)
+
+Hang tight...it is calculated during the omnibus.
+
+
+## Conduct omnibus ANOVA (with effect size)
+
+```{r}
+rstatix::anova_test(data = mixtLONG_df, dv = SCRPed, wid = StndtID,
+    between = Centering, within = Course)
+
+```
+Let's write the F strings from the above table:
+
+* Course effect: $F(2, 90) = 0.027, p = 0.974, \eta^2 = 0.000$ 
+* Centering main effect: $F(2, 45) = 0.101, p = 0.752, \eta^2 = 0.001$
+* Interaction effect: $F(2, 90) = 3.441, p = 0.036, \eta^2 = 0.027$ 
+
+We have an interaction effect with a small effect size.
+
+Results so far:
+
+A 2 X 3 ANOVA was conducted to evaluate the effects of stage of recentering (2 levels, Pre, Re) and course (3 levels, ANOVA, multivariate, psychometrics) on socially and culturally responsive pedagogy course evaluation ratings. 
+
+Mixed design ANOVA has a number of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normally distributed at each level of design. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 14 outliers with 7 of these at the extreme level. Although there some indication of negative skew and kurtosis, none fell into the regions of concern. That is, all skew values were at or below the absolute value of 1.57 and all kurtosis values were below the absolute value of 1.41 (Kline, 2016)). The Shapiro-Wilk tests applied at each level of the design were statistically significant for each of the 6 combinations of course and centering. Because of the between-subjects aspect of the design, the homogeneity of variance assumption was evaluated. Levene’s test indicated no violation of this assumption between the Pre and Re conditions in any of the courses:  ANOVA (F [1, 45] = 0.023, p = .879); multivariate (F [1, 45] = 3.493, p = .068); and psychometrics (F [1, 45] = 0.650, p = .424). Mauchly's test sphericity (applied to the repeated measures factor) indicated that the assumption was not violated ($W = .992, p = .531). 
+
+Computing sums of squares with a Type II approach, the results for the ANOVA indicated a non-significant main effect for stage in recentering ($F[2, 45] = 0.101, p = 0.752, \eta^2 = 0.001$), a non-significant main effect for course, ($F[2, 90] = 0.027, p = 0.974, \eta^2 = 0.000$ ), but a significant interaction effect ($F[2, 90] = 3.441, p = 0.036, \eta^2 = 0.027$).
+
+## Conduct one set of follow-up tests; narrate your choice
+
+With a significant interaction effect, we will want to follow-up with an analysis of simple main effects. I think I am interested in the simple main effects for centering within each of the courses.  This means I will conduct one-way ANOVAS for ANOVA, multivariate, and psychometrics, separately. 
+
+```{r}
+mixtLONG_df %>%
+    group_by(Course) %>%
+    rstatix::anova_test(dv = SCRPed, wid = StndtID, between = Centering) %>%
+    rstatix::get_anova_table() %>%
+    rstatix::adjust_pvalue(method = "bonferroni")
+```
+
+We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method to control for Type I error and left the alpha at .05 (Green & Salkind, 2014b). Curiously, there were non-statistically significant difference between centering conditions acrpss all three courses: ANOVA ($F[1, 45] = 0.023, p = 0.879, \eta^2 = 0.000$), multivariate $(F[1, 45] = 0.650, p = 0.042, \eta^2 = 0.014)$,and psychometrics ($F[1, 45] = 3.493, p = 0.068, \eta^2 = 0.084$). 
+
+## Describe approach for managing Type I error
+
+In this analysis I conduct the:
+
+* Omnibus -- with *p* value criteria at 0.05
+* After a significant interaction, three  one-way ANOVAs to examine the simple main effects of recentering stage (2 levels) within course (3 levels); I will retain *p* at 0.05
+* Because there are only 3 pairwise comparisons that follow, I can leave the p value at 0.05. Alternatively, I could have reported the Bonferroni adjustment. Either way, the results were the same.
+
+## APA Style results with table(s) and figure(s)
+
+A 2 X 3 ANOVA was conducted to evaluate the effects of stage of recentering (2 levels, Pre, Re) and course (3 levels, ANOVA, multivariate, psychometrics) on socially and culturally responsive pedagogy course evaluation ratings. 
+
+Mixed design ANOVA has a number of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normally distributed at each level of design. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 14 outliers with 7 of these at the extreme level. Although there some indication of negative skew and kurtosis, none fell into the regions of concern. That is, all skew values were at or below the absolute value of 1.57 and all kurtosis values were below the absolute value of 1.41 (Kline, 2016)). The Shapiro-Wilk tests applied at each level of the design were statistically significant for each of the 6 combinations of course and centering. Because of the between-subjects aspect of the design, the homogeneity of variance assumption was evaluated. Levene’s test indicated no violation of this assumption between the Pre and Re conditions in any of the courses:  ANOVA (F [1, 45] = 0.023, p = .879); multivariate (F [1, 45] = 3.493, p = .068); and psychometrics (F [1, 45] = 0.650, p = .424). Mauchly's test sphericity (applied to the repeated measures factor) indicated that the assumption was not violated ($W = .992, p = .531). 
+
+Computing sums of squares with a Type II approach, the results for the ANOVA indicated a non-significant main effect for stage in recentering ($F[2, 45] = 0.101, p = 0.752, \eta^2 = 0.001$), a non-significant main effect for course, ($F[2, 90] = 0.027, p = 0.974, \eta^2 = 0.000$ ), but a significant interaction effect ($F[2, 90] = 3.441, p = 0.036, \eta^2 = 0.027$).
+
+We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method to control for Type I error and left the alpha at .05 (Green & Salkind, 2014b). Curiously, there were non-statistically significant difference between centering conditions acrpss all three courses: ANOVA ($F[1, 45] = 0.023, p = 0.879, \eta^2 = 0.000$), multivariate $(F[1, 45] = 0.650, p = 0.042, \eta^2 = 0.014)$,and psychometrics ($F[1, 45] = 3.493, p = 0.068, \eta^2 = 0.084$). 
+
+
+Regarding tables and figures -- there is no apaTables function, so that could be created with the MASS package -- exported to CSV and made into a table.
+
+This is the figure I would use to illustrate a centering within course simple main effect. The simple main efect also gives us a sense of the problem of finding statistically significant differences between the means. The boxplot shows the median (we don't see themean) -- and they are all at the top end of the range.  It's the variability that differs...and while ANOVA prevents us from making statisticaly significant inferences with wild variability, it doesn't tell us anything official about the difference between variability across the combinations of factors.
+```{r}
+ggpubr::ggboxplot(mixtLONG_df, x = "Course", y = "SCRPed", color = "Centering",
+    palette = "jco", xlab = "Statistics Sequence", ylab = "Socially and Culturally Responsive Pedagogy",
+    )
+```
+
+## Power
+
+In the WebPower package, we specify 6 of 7 interrelated elements; the package computes the missing element
+
+* n = sample size (number of individuals in the whole study)
+* ng = number of groups
+* nm = number of repeated measurements (i.e., waves)
+* f = Cohen’s f (an effect size; we can use a conversion calculator); Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively
+* nscor = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package’s default; < 1 means some correction was applied
+* alpha = is the probability of Type I error; we traditionally set this at .05
+* power = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)
+* type = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect; in a mixed design ANOVA we will select “2”
+
+As in the prior lessons, we need to convert our effect size for the interaction to f
+effect size (this is not the same as the F test). The *effectsize* package has a series of converters. We can use the eta2_to_f() function to translate the $\eta^2$ associated with the interaction effect to Cohen’s f.
+
+```{r}
+#interaction effect
+effectsize::eta2_to_f(0.027) 
+```
+We can now retrieve information from our study (including the Cohen’s f value we just calculated) and insert it into the script for the power analysis.
+
+```{r}
+WebPower::wp.rmanova(n=47, ng=2, nm=3, f = .167, nscor = .972, alpha = .05, power = NULL, type = 2)
+```
+We were at 16% power to detect a statistically significant difference had there been one (we like to be around 80% power).
+
+```{r}
+WebPower::wp.rmanova(n=NULL, ng=2, nm=3, f = .167, nscor = .972, alpha = .05, power = .8, type = 2)
+```
+We would have needed 353 cases to achieve statistical significance.  
+
+## Because someone will want to know...
+
+What if I ran the simple main effects of course within recentering condition. 
+
+```{r}
+mixtLONG_df %>%
+    group_by(Centering) %>%
+    rstatix::anova_test(dv = SCRPed, wid = StndtID, within = Course) %>%
+    rstatix::get_anova_table() %>%
+    rstatix::adjust_pvalue(method = "bonferroni")
+```
+
+F-strings for:
+
+* Precentered courses:  $F[2, 44] = 1.991, p = 0.149, \eta^2 = 0.022$
+* Recentered courses: $F[2, 46] = 1.594, p = 0.214, \eta^2 = 0.0.428$
+
+The end of the APA-style write-up if this is the route we had followed:
+
+We followed the significant interaction effect with an evaluation of simple main effects of course within the recentering condition. Because there were only two one-way ANOVAs that followed the omnibus, we maintained alpha at 0.04 for these comparisons (Green & Salkind, 2014b). Curiously, there were for both follow-up tests. For a comparison of courses within the pre-centered condition, $F (2, 44) = 1.991, p = 0.149, \eta^2 = 0.022$. For a comparison of courses within the re-centered condition, $F(2, 46) = 1.594, p = 0.214, \eta^2 = 0.0.428$. Although there were three courses within each of these tests of simple main effect, because neither was statistically significant, we did not conduct further post-hoc analyses.
+
+
+...However, if one or more of them had been -- here's what I would have done.
+
+```{r}
+mixtLONG_df %>%
+    group_by(Centering) %>%
+    rstatix::pairwise_t_test(SCRPed ~ Course, paired = TRUE, detailed = TRUE,
+        p.adjust.method = "bonferroni")  #%>%
+# select(-df, -statistic, -p) # Remove details
+
+```
+
+The figure most appropriate for this analysis is:
+
+```{r}
+ggpubr::ggboxplot(mixtLONG_df, x = "Centering", y = "SCRPed", color = "Course",
+    palette = "jco", xlab = "Statistics Sequence", ylab = "Socially and Culturally Responsive Pedagogy",
+    )
+```

@@ -606,6 +606,10 @@ div.csl-indent {
 <li class="chapter" data-level="10.6.3" data-path="Mixed.html"><a href="Mixed.html#problem-3-try-something-entirely-new.-2"><i class="fa fa-check"></i><b>10.6.3</b> Problem #3: Try something entirely new.</a></li>
 <li class="chapter" data-level="10.6.4" data-path="Mixed.html"><a href="Mixed.html#grading-rubric-6"><i class="fa fa-check"></i><b>10.6.4</b> Grading Rubric</a></li>
 </ul></li>
+<li class="chapter" data-level="10.7" data-path="Mixed.html"><a href="Mixed.html#homeworked-example-8"><i class="fa fa-check"></i><b>10.7</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="Mixed.html"><a href="Mixed.html#working-the-problem-with-r-and-r-packages-7"><i class="fa fa-check"></i><b>10.7.1</b> Working the Problem with R and R Packages</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="ANCOVA.html"><a href="ANCOVA.html"><i class="fa fa-check"></i><b>11</b> Analysis of Covariance</a>
 <ul>
@@ -1613,18 +1617,342 @@ URL: http://psychstat.org/rmanova</code></pre>
 <td align="center">_____</td>
 </tr>
 <tr class="even">
-<td align="left">8 Explanation to grader</td>
+<td align="left">8. Conduct power analyses to determine the power of the current study and a recommended sample size.</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
 <tr class="odd">
+<td align="left">9. Explanation to grader.</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
 <td align="left"><strong>Totals</strong></td>
-<td align="center">40</td>
+<td align="center">45</td>
 <td align="center">_____</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div id="homeworked-example-8" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Homeworked Example<a href="Mixed.html#homeworked-example-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="">Screencast Link</a></p>
+<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.</em></p>
+<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could… </em></p>
+<div id="working-the-problem-with-r-and-r-packages-7" class="section level3 hasAnchor" number="10.7.1">
+<h3><span class="header-section-number">10.7.1</span> Working the Problem with R and R Packages<a href="Mixed.html#working-the-problem-with-r-and-r-packages-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="narrate-the-research-vignette-describing-the-iv-and-dv." class="section level4 hasAnchor" number="10.7.1.1">
+<h4><span class="header-section-number">10.7.1.1</span> Narrate the research vignette, describing the IV and DV.<a href="Mixed.html#narrate-the-research-vignette-describing-the-iv-and-dv." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Minimally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required.</strong></p>
+<p>I want to ask the question, what are the effects of intentional recentering on students evaluations of socially responsive pedagogy as they progress through three doctoral courses in statistics. My design is a 3 x 2 ANOVA:</p>
+<ul>
+<li>Within-subjects factor: student as they progress through ANOVA, Multivariate, Psychometrics</li>
+<li>Between-subjects factor: recentering status of the class (Pre, Re)</li>
+<li>Continuous DV: SRPed (socially responsive pedagogy)</li>
+</ul>
+</div>
+<div id="simulate-or-import-and-format-data-3" class="section level4 hasAnchor" number="10.7.1.2">
+<h4><span class="header-section-number">10.7.1.2</span> Simulate (or import) and format data<a href="Mixed.html#simulate-or-import-and-format-data-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>First I import the larger dataset.</p>
+<div class="sourceCode" id="cb1278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1278-1"><a href="Mixed.html#cb1278-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
+<p>The SRPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.</p>
+<div class="sourceCode" id="cb1279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1279-1"><a href="Mixed.html#cb1279-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
+<span id="cb1279-2"><a href="Mixed.html#cb1279-2" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;InclusvClassrm&#39;</span>, <span class="st">&#39;EquitableEval&#39;</span>,<span class="st">&#39;MultPerspectives&#39;</span>, <span class="st">&#39;DEIintegration&#39;</span>)</span>
+<span id="cb1279-3"><a href="Mixed.html#cb1279-3" tabindex="-1"></a></span>
+<span id="cb1279-4"><a href="Mixed.html#cb1279-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
+<span id="cb1279-5"><a href="Mixed.html#cb1279-5" tabindex="-1"></a>big<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, SRPed_vars], .<span class="dv">75</span>)</span>
+<span id="cb1279-6"><a href="Mixed.html#cb1279-6" tabindex="-1"></a></span>
+<span id="cb1279-7"><a href="Mixed.html#cb1279-7" tabindex="-1"></a><span class="co">#if the scoring script won&#39;t run, try this one:</span></span>
+<span id="cb1279-8"><a href="Mixed.html#cb1279-8" tabindex="-1"></a><span class="co">#big$SRPed &lt;- sjstats::mean_n(big[, ..SRPed_vars], .75)</span></span></code></pre></div>
+<p>Let’s trim it to just the variables of interest</p>
+<div class="sourceCode" id="cb1280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1280-1"><a href="Mixed.html#cb1280-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span> (big, deID, Course, Centering, SRPed))</span></code></pre></div>
+<p>I want the course variable to be factor that is ordered by its sequence: ANOVA, multivariate, psychometrics.</p>
+<p>I want the centering variable to be ordered: Pre, Re</p>
+<div class="sourceCode" id="cb1281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1281-1"><a href="Mixed.html#cb1281-1" tabindex="-1"></a><span class="fu">str</span>(mixt_df)</span></code></pre></div>
+<pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  310 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 3 levels &quot;Psychometrics&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+ - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
+<p>Because R’s default is to order alphabetically, the centering variable is correct. I just need to change the course variable.</p>
+<div class="sourceCode" id="cb1283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1283-1"><a href="Mixed.html#cb1283-1" tabindex="-1"></a>mixt_df<span class="sc">$</span>Course <span class="ot">&lt;-</span> <span class="fu">factor</span>(mixt_df<span class="sc">$</span>Course, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;ANOVA&quot;</span>, <span class="st">&quot;Multivariate&quot;</span>, <span class="st">&quot;Psychometrics&quot;</span>))</span>
+<span id="cb1283-2"><a href="Mixed.html#cb1283-2" tabindex="-1"></a><span class="fu">str</span>(mixt_df)</span></code></pre></div>
+<pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  310 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 3 levels &quot;ANOVA&quot;,&quot;Multivariate&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+ - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
+<p>After checking the structure again, both are correct.</p>
+<p>I want all of my analyses (i.e., testing of assumptions, descriptives, omnibus F, follow-up) to be with the same dataset. Because each of these analyses will use listwise deletion (i.e., deleting cases, potentially differing numbers, when there is missing data), I will take care of this now. Because this is a longitudinal analysis, I will do it in two steps.</p>
+<p>The current dataset is is in <em>long</em> form. This means each student has up to three rows of data. I will first delete rows that have any missing data:</p>
+<div class="sourceCode" id="cb1285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1285-1"><a href="Mixed.html#cb1285-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(mixt_df)</span></code></pre></div>
+<p>This took me from 310 observations to 299.</p>
+<p>These analyses, though, require that students have completed evaluations for all three courses. In the chapter, I restructured the data from long, to wide, back to long again. While this was useful pedagogy in understanding the difference between the two datasets, there is also super quick code that will simply retain data that has at least three observations per student.</p>
+<div class="sourceCode" id="cb1286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1286-1"><a href="Mixed.html#cb1286-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1286-2"><a href="Mixed.html#cb1286-2" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> mixt_df<span class="sc">%&gt;%</span></span>
+<span id="cb1286-3"><a href="Mixed.html#cb1286-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(deID)<span class="sc">%&gt;%</span></span>
+<span id="cb1286-4"><a href="Mixed.html#cb1286-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">n</span>()<span class="sc">==</span><span class="dv">3</span>)</span></code></pre></div>
+<p>This took the data to 198 observations. Since each student contributed 3 observations, we know <span class="math inline">\(N = 66\)</span>.</p>
+<p>Let’s get an a priori peek at what we’re doing:</p>
+<div class="sourceCode" id="cb1287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1287-1"><a href="Mixed.html#cb1287-1" tabindex="-1"></a>mixt_box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(mixt_df, <span class="at">x =</span> <span class="st">&quot;Course&quot;</span>, <span class="at">y =</span> <span class="st">&quot;SRPed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jco&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Statistics Sequence&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Socially and Culturally Responsive Pedagogy&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Socially Responsive Course Evaluations as a Function of Centering and Time&quot;</span></span>
+<span id="cb1287-2"><a href="Mixed.html#cb1287-2" tabindex="-1"></a>    )</span>
+<span id="cb1287-3"><a href="Mixed.html#cb1287-3" tabindex="-1"></a>mixt_box</span></code></pre></div>
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+</div>
+<div id="evaluate-statistical-assumptions-4" class="section level4 hasAnchor" number="10.7.1.3">
+<h4><span class="header-section-number">10.7.1.3</span> Evaluate statistical assumptions<a href="Mixed.html#evaluate-statistical-assumptions-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Is the dependent variable normally distributed in all combinations of the factors?</strong></p>
+<p>I can examine skew and kurtosis at the cell level with <em>psych::describeBy()</em>.</p>
+<div class="sourceCode" id="cb1288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1288-1"><a href="Mixed.html#cb1288-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mixt_df)<span class="co">#my data was not reading as a df so I applied this function</span></span>
+<span id="cb1288-2"><a href="Mixed.html#cb1288-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(SRPed <span class="sc">~</span> Course <span class="sc">+</span> Centering, <span class="at">data =</span> mixt_df, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>       item        group1 group2 vars  n  mean    sd median trimmed   mad  min
+SRPed1    1         ANOVA    Pre    1 42 4.522 0.639  4.875   4.630 0.185 2.25
+SRPed2    2  Multivariate    Pre    1 42 4.387 0.648  4.585   4.468 0.615 2.33
+SRPed3    3 Psychometrics    Pre    1 34 4.659 0.525  5.000   4.747 0.000 3.33
+SRPed4    4         ANOVA     Re    1 24 4.427 0.524  4.500   4.475 0.741 3.25
+SRPed5    5  Multivariate     Re    1 24 4.698 0.448  5.000   4.775 0.000 3.25
+SRPed6    6 Psychometrics     Re    1 32 4.523 0.636  4.750   4.654 0.371 2.25
+       max range   skew kurtosis    se
+SRPed1   5  2.75 -1.455    2.043 0.099
+SRPed2   5  2.67 -0.954    0.572 0.100
+SRPed3   5  1.67 -1.319    0.255 0.090
+SRPed4   5  1.75 -0.561   -0.627 0.107
+SRPed5   5  1.75 -1.622    2.477 0.092
+SRPed6   5  2.75 -1.909    3.680 0.112</code></pre>
+<p>Across all 6 conditions:</p>
+<ul>
+<li>No skew exceeds the threshholds of concern (&gt;3; Kline [2016])
+<ul>
+<li>the most extreme skew is -1.909</li>
+</ul></li>
+<li>No kurtosis exceeds the threshholds of concern (&gt;10; Kline [2016])
+<ul>
+<li>the most extreme kurtosis is 3.680</li>
+</ul></li>
+</ul>
+<p><strong>Are the model residuals normally distributed?</strong></p>
+<p>I can use the Shapiro-Wilk test to formally investigate the normality assumption. Examining the distribution of the model resdiduals is one of the most efficient ways to do this. First, I need to run the model and extract the residuals.</p>
+<div class="sourceCode" id="cb1290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1290-1"><a href="Mixed.html#cb1290-1" tabindex="-1"></a>mixt_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(SRPed <span class="sc">~</span> Course<span class="sc">*</span>Centering, mixt_df)</span>
+<span id="cb1290-2"><a href="Mixed.html#cb1290-2" tabindex="-1"></a><span class="fu">summary</span>(mixt_mod)</span></code></pre></div>
+<pre><code>                  Df Sum Sq Mean Sq F value Pr(&gt;F)  
+Course             2   0.44  0.2216   0.639 0.5288  
+Centering          1   0.02  0.0239   0.069 0.7931  
+Course:Centering   2   1.90  0.9478   2.734 0.0675 .
+Residuals        192  66.56  0.3466                 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We won’t look at this yet, but simply focus on testing the assumption of normality. The next step is to extract the residuals.</p>
+<div class="sourceCode" id="cb1292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1292-1"><a href="Mixed.html#cb1292-1" tabindex="-1"></a>mixt_resid <span class="ot">&lt;-</span> <span class="fu">residuals</span>(mixt_mod)</span></code></pre></div>
+<p>The formal test of normality is the Shapiro-Wilk test:</p>
+<div class="sourceCode" id="cb1293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1293-1"><a href="Mixed.html#cb1293-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(mixt_resid)</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
 
+data:  mixt_resid
+W = 0.85873, p-value = 0.000000000001378</code></pre>
+<p>Our test result is <span class="math inline">\(W = 0.859, p &lt; .001.\)</span>. The significant <em>p</em> value indicates that we have violated the normality assumption. When cell sizes have at least 15 cases each and are roughly equivalent in size, ANOVA models are generally robust to this violation. None-the-less, we should keep it in mind.</p>
+<p>We can plot the residuals to “see” how bad it is:</p>
+<div class="sourceCode" id="cb1295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1295-1"><a href="Mixed.html#cb1295-1" tabindex="-1"></a><span class="fu">hist</span>(mixt_resid)</span></code></pre></div>
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+Like the data itself, the residuals have a negative skew with a pile-up of scores on the “high” side.</p>
+<div class="sourceCode" id="cb1296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1296-1"><a href="Mixed.html#cb1296-1" tabindex="-1"></a><span class="fu">qqnorm</span>(mixt_resid)</span></code></pre></div>
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-59-1.png" width="672" />
+Similarly, we see that the residuals sharply deviate from the diagonal at the top.</p>
+<p><strong>Is there evidence of outliers? Are they extreme?</strong></p>
+<p>The <em>rstatix::identify_outliers()</em> function identifies outliers and extreme outliers.</p>
+<div class="sourceCode" id="cb1297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1297-1"><a href="Mixed.html#cb1297-1" tabindex="-1"></a>mixt_df<span class="sc">%&gt;%</span></span>
+<span id="cb1297-2"><a href="Mixed.html#cb1297-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Course, Centering)<span class="sc">%&gt;%</span></span>
+<span id="cb1297-3"><a href="Mixed.html#cb1297-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">identify_outliers</span>(SRPed)</span></code></pre></div>
+<pre><code># A tibble: 9 × 6
+  Course        Centering  deID SRPed is.outlier is.extreme
+  &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
+1 ANOVA         Pre          61  2.25 TRUE       FALSE     
+2 Multivariate  Pre          61  2.33 TRUE       FALSE     
+3 Multivariate  Re          116  3.25 TRUE       FALSE     
+4 Psychometrics Pre          51  3.33 TRUE       FALSE     
+5 Psychometrics Pre          58  3.75 TRUE       FALSE     
+6 Psychometrics Pre          61  3.67 TRUE       FALSE     
+7 Psychometrics Pre          64  3.5  TRUE       FALSE     
+8 Psychometrics Pre          77  3.75 TRUE       FALSE     
+9 Psychometrics Re           11  2.25 TRUE       FALSE     </code></pre>
+<p>There are 9 rows of outlier; none are extreme. Cross-referencing back to the boxplot, these are on the low side of evaluations. As an instructor, it seems important to retain the voices that rated socially responsive pedagogy lower than the other students. Although they contribute to non-normality, to exclude them would bias the data in a positive direction.</p>
+<p><strong>Are the variances of the dependent variable equivalent across all combinations of the factors?</strong></p>
+<p>I can use the Levene’s test with <em>rstatix::levene_test()</em>.</p>
+<div class="sourceCode" id="cb1299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1299-1"><a href="Mixed.html#cb1299-1" tabindex="-1"></a>mixt_df <span class="sc">%&gt;%</span></span>
+<span id="cb1299-2"><a href="Mixed.html#cb1299-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Course)<span class="sc">%&gt;%</span></span>
+<span id="cb1299-3"><a href="Mixed.html#cb1299-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">levene_test</span>(SRPed <span class="sc">~</span> Centering)</span></code></pre></div>
+<pre><code># A tibble: 3 × 5
+  Course          df1   df2 statistic      p
+  &lt;fct&gt;         &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+1 ANOVA             1    64     0.176 0.676 
+2 Multivariate      1    64     4.79  0.0323
+3 Psychometrics     1    64     0.320 0.574 </code></pre>
+<p>Levene’s test indicated a violation of this assumption between the Pre and Re centering conditions in the multivariate class <span class="math inline">\((F[1, 64] = 4.787, p = 0.032)\)</span>. There was no indication of assumption violation for the ANOVA class <span class="math inline">\((F[1, 64] = 0.176, p = 0.676)\)</span> nor the psychometrics class <span class="math inline">\((F[1, 64] = 0.320, p = 0.573)\)</span>.</p>
+<p>Before moving on I will write up the portion of the APA results section that evaluates the assumptions:</p>
+<blockquote>
+<p>We conducted a 2 X 3 mixed design ANOVA to evaluate students’ evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).</p>
+</blockquote>
+<blockquote>
+<p>Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span> there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was <span class="math inline">\(W = 0.859, p &lt; .001.\)</span>and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives.</p>
+</blockquote>
+<blockquote>
+<p>Regardin the homogeneity of variance assumption, Levene’s test indicated a violation between the pre- and re- centering conditions in the multivariate class <span class="math inline">\((F[1, 64] = 4.787, p = 0.032)\)</span>. There was no indication of assumption violation for the ANOVA class <span class="math inline">\((F[1, 64] = 0.176, p = 0.676)\)</span> nor the psychometrics class <span class="math inline">\((F[1, 64] = 0.320, p = 0.573)\)</span>. PLACEHOLDER FOR SPHERICITY ASSUMPTION.</p>
+</blockquote>
+</div>
+<div id="conduct-omnibus-anova-w-effect-size-1" class="section level4 hasAnchor" number="10.7.1.4">
+<h4><span class="header-section-number">10.7.1.4</span> Conduct omnibus ANOVA (w effect size)<a href="Mixed.html#conduct-omnibus-anova-w-effect-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1301-1"><a href="Mixed.html#cb1301-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">anova_test</span>(<span class="at">data =</span> mixt_df, <span class="at">dv =</span> SRPed, <span class="at">wid =</span> deID, <span class="at">between =</span> Centering, <span class="at">within =</span> Course)</span></code></pre></div>
+<pre><code>Warning: The &#39;wid&#39; column contains duplicate ids across between-subjects
+variables. Automatic unique id will be created</code></pre>
+<pre><code>ANOVA Table (type III tests)
+
+$ANOVA
+            Effect DFn DFd        F        p p&lt;.05        ges
+1        Centering   1  56 0.000219 0.988000       0.00000289
+2           Course   2 112 0.550000 0.578000       0.00300000
+3 Centering:Course   2 112 8.547000 0.000351     * 0.03900000
+
+$`Mauchly&#39;s Test for Sphericity`
+            Effect     W     p p&lt;.05
+1           Course 0.919 0.098      
+2 Centering:Course 0.919 0.098      
+
+$`Sphericity Corrections`
+            Effect   GGe       DF[GG]    p[GG] p[GG]&lt;.05   HFe    DF[HF]
+1           Course 0.925 1.85, 103.62 0.565000           0.955 1.91, 107
+2 Centering:Course 0.925 1.85, 103.62 0.000521         * 0.955 1.91, 107
+     p[HF] p[HF]&lt;.05
+1 0.571000          
+2 0.000444         *</code></pre>
+<p>Because Course is a repeated measures factor, we evaluate Mauchly’s test for the main <span class="math inline">\((W = 0.919, p = 0.098)\)</span> and interaction <span class="math inline">\((W = 0.919, p = 0.098)\)</span> effects. Neither was statistically significant, meaning we did not violate the sphericity assumption.</p>
+<p>Let’s write the F strings from the above table:</p>
+<ul>
+<li>Centering main effect: <span class="math inline">\(F(1, 56) = 0.000, p = 0.988, \eta^2 = 0.000\)</span></li>
+<li>Course effect: <span class="math inline">\(F(2, 112) = 0.550, p = 0.578, \eta^2 = 0.003\)</span></li>
+<li>Interaction effect: <span class="math inline">\(F(2, 112) = 8.547, p = 0.001, \eta^2 = 0.039\)</span></li>
+</ul>
+<blockquote>
+<p>Regarding the omnibus ANOVA, neither the main effect for centering stage <span class="math inline">\((F[1, 56] = 0.000, p = 0.988, \eta^2 = 0.000)\)</span> nor course <span class="math inline">\((F[2, 112] = 0.550, p = 0.578, \eta^2 = 0.003)\)</span>. However there was a statistically significant centering x course interaction effect <span class="math inline">\((F[2, 112] = 8.547, p = 0.001, \eta^2 = 0.039)\)</span>.</p>
+</blockquote>
+</div>
+<div id="conduct-one-set-of-follow-up-tests-narrate-your-choice" class="section level4 hasAnchor" number="10.7.1.5">
+<h4><span class="header-section-number">10.7.1.5</span> Conduct one set of follow-up tests; narrate your choice<a href="Mixed.html#conduct-one-set-of-follow-up-tests-narrate-your-choice" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>With a significant interaction effect, we will want to follow-up with an analysis of simple main effects. I think I am interested in the simple main effects for centering within each of the courses. Because there are two levels of Centering (pre, re) within each of the courses, I can go straight to <em>t</em>-tests.</p>
+<div class="sourceCode" id="cb1304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1304-1"><a href="Mixed.html#cb1304-1" tabindex="-1"></a>Simple_Course <span class="ot">&lt;-</span> mixt_df<span class="sc">%&gt;%</span></span>
+<span id="cb1304-2"><a href="Mixed.html#cb1304-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Course)<span class="sc">%&gt;%</span></span>
+<span id="cb1304-3"><a href="Mixed.html#cb1304-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">t_test</span>(SRPed <span class="sc">~</span> Centering, <span class="at">detailed =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb1304-4"><a href="Mixed.html#cb1304-4" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
+<span id="cb1304-5"><a href="Mixed.html#cb1304-5" tabindex="-1"></a>Simple_Course</span></code></pre></div>
+<pre><code># A tibble: 3 × 17
+  Course  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic
+  &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;
+1 ANOVA     0.0948      4.52      4.43 SRPed Pre    Re        42    24     0.652
+2 Multiv…  -0.311       4.39      4.70 SRPed Pre    Re        42    24    -2.29 
+3 Psycho…   0.136       4.66      4.52 SRPed Pre    Re        34    32     0.944
+# ℹ 7 more variables: p &lt;dbl&gt;, df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;,
+#   method &lt;chr&gt;, alternative &lt;chr&gt;, p.signif &lt;chr&gt;</code></pre>
+<p>I also want effect sizes (Cohen’s <em>d</em>):</p>
+<div class="sourceCode" id="cb1306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1306-1"><a href="Mixed.html#cb1306-1" tabindex="-1"></a>mixt_df<span class="sc">%&gt;%</span></span>
+<span id="cb1306-2"><a href="Mixed.html#cb1306-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Course)<span class="sc">%&gt;%</span></span>
+<span id="cb1306-3"><a href="Mixed.html#cb1306-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(SRPed <span class="sc">~</span> Centering)</span></code></pre></div>
+<pre><code># A tibble: 3 × 8
+  .y.   group1 group2 effsize Course           n1    n2 magnitude 
+* &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;fct&gt;         &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+1 SRPed Pre    Re       0.162 ANOVA            42    24 negligible
+2 SRPed Pre    Re      -0.558 Multivariate     42    24 moderate  
+3 SRPed Pre    Re       0.233 Psychometrics    34    32 small     </code></pre>
+<blockquote>
+<p>We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green &amp; Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA <span class="math inline">\((MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)\)</span> and psychometrics <span class="math inline">\((MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)\)</span> courses, there was a statistically significant difference in the multivariate course <span class="math inline">\((MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)\)</span> .</p>
+</blockquote>
+</div>
+<div id="describe-approach-for-managing-type-i-error-1" class="section level4 hasAnchor" number="10.7.1.6">
+<h4><span class="header-section-number">10.7.1.6</span> Describe approach for managing Type I error<a href="Mixed.html#describe-approach-for-managing-type-i-error-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Because there were only three comparisons following the omnibus evaluation, I used the LSD method to control for Type I error and retained the alpha at .05 (Green &amp; Salkind, 2014b).</p>
+</div>
+<div id="apa-style-results-with-tables-and-figure-3" class="section level4 hasAnchor" number="10.7.1.7">
+<h4><span class="header-section-number">10.7.1.7</span> APA style results with table(s) and figure<a href="Mixed.html#apa-style-results-with-tables-and-figure-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<blockquote>
+<p>We conducted a 2 X 3 mixed design ANOVA to evaluate students’ evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).</p>
+</blockquote>
+<blockquote>
+<p>Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span> there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was <span class="math inline">\(W = 0.859, p &lt; .001.\)</span>and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives.</p>
+</blockquote>
+<blockquote>
+<p>Regardin the homogeneity of variance assumption, Levene’s test indicated a violation between the pre- and re- centering conditions in the multivariate class <span class="math inline">\((F[1, 64] = 4.787, p = 0.032)\)</span>. There was no indication of assumption violation for the ANOVA class <span class="math inline">\((F[1, 64] = 0.176, p = 0.676)\)</span> nor the psychometrics class <span class="math inline">\((F[1, 64] = 0.320, p = 0.573)\)</span>. Mauchly’s test indicated no violation of the sphericity asssumption <span class="math inline">\((W = 0.919, p = 0.098)\)</span>, therefore we proceeded normally.</p>
+</blockquote>
+<blockquote>
+<p>Regarding the omnibus ANOVA, neither the main effect for centering stage <span class="math inline">\((F[1, 56] = 0.000, p = 0.988, \eta^2 = 0.000)\)</span> nor course <span class="math inline">\((F[2, 112] = 0.550, p = 0.578, \eta^2 = 0.003)\)</span>. However there was a statistically significant centering x course interaction effect <span class="math inline">\((F[2, 112] = 8.547, p = 0.001, \eta^2 = 0.039)\)</span>.</p>
+</blockquote>
+<blockquote>
+<p>We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green &amp; Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA <span class="math inline">\((MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)\)</span> and psychometrics <span class="math inline">\((MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)\)</span> courses, there was a statistically significant difference in the multivariate course <span class="math inline">\((MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)\)</span> .</p>
+</blockquote>
+<p>A quick way to produce a table of means and standard deviations for mixed design ANOVA is this:</p>
+<div class="sourceCode" id="cb1308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1308-1"><a href="Mixed.html#cb1308-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.2way.table</span>(<span class="at">iv1=</span>Course, <span class="at">iv2=</span>Centering, <span class="at">dv=</span>SRPed, <span class="at">data=</span>mixt_df, <span class="at">filename =</span> <span class="st">&quot;Mixed_Table.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>
+
+Table 1 
+
+Means and standard deviations for SRPed as a function of a 3(Course) X 2(Centering) design 
+
+               Centering               
+                     Pre        Re     
+        Course         M   SD    M   SD
+         ANOVA      4.52 0.64 4.43 0.52
+  Multivariate      4.39 0.65 4.70 0.45
+ Psychometrics      4.66 0.52 4.52 0.64
+
+Note. M and SD represent mean and standard deviation, respectively. </code></pre>
+<p>I can update my figure with star bars:</p>
+<div class="sourceCode" id="cb1310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1310-1"><a href="Mixed.html#cb1310-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1310-2"><a href="Mixed.html#cb1310-2" tabindex="-1"></a>Simple_Course <span class="ot">&lt;-</span> Simple_Course  <span class="sc">%&gt;%</span></span>
+<span id="cb1310-3"><a href="Mixed.html#cb1310-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Course&quot;</span>)</span>
+<span id="cb1310-4"><a href="Mixed.html#cb1310-4" tabindex="-1"></a>mixt_box <span class="ot">&lt;-</span> mixt_box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(Simple_Course, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.3</span>)) </span>
+<span id="cb1310-5"><a href="Mixed.html#cb1310-5" tabindex="-1"></a>mixt_box</span></code></pre></div>
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+</div>
+<div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size.-2" class="section level4 hasAnchor" number="10.7.1.8">
+<h4><span class="header-section-number">10.7.1.8</span> Conduct power analyses to determine the power of the current study and a recommended sample size.<a href="Mixed.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size.-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In the <em>WebPower</em> package, we specify 6 of 7 interrelated elements; the package computes the missing element</p>
+<ul>
+<li><em>n</em> = sample size (number of individuals in the whole study)</li>
+<li><em>ng</em> = number of groups</li>
+<li><em>nm</em> = number of repeated measurements (i.e., waves)</li>
+<li><em>f</em> = Cohen’s <em>f</em> (an effect size; we can use a conversion calculator); Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively</li>
+<li><em>nscor</em> = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package’s default; &lt; 1 means some correction was applied</li>
+<li><em>alpha</em> = is the probability of Type I error; we traditionally set this at .05</li>
+<li><em>power</em> = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)</li>
+<li><em>type</em> = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect; in a mixed design ANOVA we will select “2”</li>
+</ul>
+<p>As in the prior lessons, we need to convert our effect size for the <em>interaction</em> to <span class="math inline">\(f\)</span> effect size (this is not the same as the <em>F</em> test). The <em>effectsize</em> package has a series of converters. We can use the <em>eta2_to_f()</em> function to translate the <span class="math inline">\(\eta^{2}\)</span> associated with the interaction effect to Cohen’s <em>f</em>.</p>
+<div class="sourceCode" id="cb1311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1311-1"><a href="Mixed.html#cb1311-1" tabindex="-1"></a><span class="co">#include effect size from the interaction effect</span></span>
+<span id="cb1311-2"><a href="Mixed.html#cb1311-2" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta2_to_f</span>(<span class="fl">0.039</span>) </span></code></pre></div>
+<pre><code>[1] 0.2014515</code></pre>
+<p>We can now retrieve information from our study (including the Cohen’s <em>f</em> value we just calculated) and insert it into the script for the power analysis.</p>
+<div class="sourceCode" id="cb1313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1313-1"><a href="Mixed.html#cb1313-1" tabindex="-1"></a>WebPower<span class="sc">::</span><span class="fu">wp.rmanova</span>(<span class="at">n=</span><span class="dv">66</span>, <span class="at">ng=</span><span class="dv">2</span>, <span class="at">nm=</span><span class="dv">3</span>, <span class="at">f =</span> <span class="fl">0.2014515</span>, <span class="at">nscor =</span> .<span class="dv">925</span>, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>Repeated-measures ANOVA analysis
+
+     n         f ng nm nscor alpha     power
+    66 0.2014515  2  3 0.925  0.05 0.2737866
+
+NOTE: Power analysis for interaction-effect test
+URL: http://psychstat.org/rmanova</code></pre>
+<p>We are powered at .274 (we have a 27% of rejecting the null hypothesis, if it is true)</p>
+<p>In reverse, setting <em>power</em> at .80 (the traditional value) and changing <em>n</em> to <em>NULL</em> yields a recommended sample size.</p>
+<div class="sourceCode" id="cb1315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1315-1"><a href="Mixed.html#cb1315-1" tabindex="-1"></a>WebPower<span class="sc">::</span><span class="fu">wp.rmanova</span>(<span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">ng =</span> <span class="dv">2</span>, <span class="at">nm =</span> <span class="dv">3</span>, <span class="at">f =</span> <span class="fl">0.2014515</span>, <span class="at">nscor =</span> <span class="fl">0.925</span>,</span>
+<span id="cb1315-2"><a href="Mixed.html#cb1315-2" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>Repeated-measures ANOVA analysis
+
+           n         f ng nm nscor alpha power
+    252.2835 0.2014515  2  3 0.925  0.05   0.8
+
+NOTE: Power analysis for interaction-effect test
+URL: http://psychstat.org/rmanova</code></pre>
+<p>Given our desire for strong power and our weak effect size, this power analysis suggests a sample size of 252 participants is required to be adequately powered (80%) to detect a significant interaction effect.</p>
+
+</div>
 </div>
 </div>
 </div>

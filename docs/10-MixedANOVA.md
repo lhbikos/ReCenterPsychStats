@@ -1111,9 +1111,483 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |4. Conduct omnibus ANOVA (w effect size) |      5           | _____  |  
 |5. Conduct one set of follow-up tests; narrate your choice| 5 |_____  |               
 |6. Describe approach for managing Type I error |    5        |_____  |   
-|7. APA style results with table(s) and figure  |    5        |_____  |       
-|8 Explanation to grader                 |      5        |_____  |
-|**Totals**                               |      40       |_____  |          
+|7. APA style results with table(s) and figure  |    5        |_____  |     
+|8. Conduct power analyses to determine the power of the current study and a recommended sample size.|    5        |_____  | 
+|9. Explanation to grader.                 |      5        |_____  |
+|**Totals**                               |      45       |_____  |          
+
+
+## Homeworked Example
+
+[Screencast Link]()
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could... *
+
+
+### Working the Problem with R and R Packages
+
+
+#### Narrate the research vignette, describing the IV and DV. 
+
+**Minimally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required.**
+
+I want to ask the question, what are the effects of intentional recentering on students evaluations of socially responsive pedagogy as they progress through three doctoral courses in statistics.  My design is a 3 x 2 ANOVA:
+
+* Within-subjects factor:  student as they progress through ANOVA, Multivariate, Psychometrics
+* Between-subjects factor: recentering status of the class (Pre, Re)
+* Continuous DV: SRPed (socially responsive pedagogy)
+
+#### Simulate (or import) and format data
+
+First I import the larger dataset.
+
+```r
+big <- readRDS("ReC.rds")
+```
+
+The SRPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+
+```r
+#Creates a list of the variables that belong to that scale
+SRPed_vars <- c('InclusvClassrm', 'EquitableEval','MultPerspectives', 'DEIintegration')
+
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+big$SRPed <- sjstats::mean_n(big[, SRPed_vars], .75)
+
+#if the scoring script won't run, try this one:
+#big$SRPed <- sjstats::mean_n(big[, ..SRPed_vars], .75)
+```
+
+Let's trim it to just the variables of interest
+
+```r
+mixt_df <- (dplyr::select (big, deID, Course, Centering, SRPed))
+```
+
+I want the course variable to be factor that is ordered by its sequence:  ANOVA, multivariate, psychometrics.
+
+I want the centering variable to be ordered:  Pre, Re
+
+
+```r
+str(mixt_df)
+```
+
+```
+Classes 'data.table' and 'data.frame':	310 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 3 levels "Psychometrics",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+Because R's default is to order alphabetically, the centering variable is correct. I just need to change the course variable.
+
+
+```r
+mixt_df$Course <- factor(mixt_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
+str(mixt_df)
+```
+
+```
+Classes 'data.table' and 'data.frame':	310 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 3 levels "ANOVA","Multivariate",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+After checking the structure again, both are correct.
+
+I want all of my analyses (i.e., testing of assumptions, descriptives, omnibus F, follow-up) to be with the same dataset. Because each of these analyses will use listwise deletion (i.e., deleting cases, potentially differing numbers, when there is missing data), I will take care of this now.  Because this is a longitudinal analysis, I will do it in two steps.
+
+The current dataset is is in *long* form. This means each student has up to three rows of data. I will first delete rows that have any missing data:
+
+
+```r
+mixt_df <- na.omit(mixt_df)
+```
+
+This took me from 310 observations to 299.
+
+These analyses, though, require that students have completed evaluations for all three courses. In the chapter, I restructured the data from long, to wide, back to long again. While this was useful pedagogy in understanding the difference between the two datasets, there is also super quick code that will simply retain data that has at least three observations per student.
+
+
+```r
+library(tidyverse)
+mixt_df <- mixt_df%>%
+  dplyr::group_by(deID)%>%
+  dplyr::filter(n()==3)
+```
+
+This took the data to 198 observations. Since each student contributed 3 observations, we know  $N = 66$.
+
+Let's get an a priori peek at what we're doing:
+
+
+```r
+mixt_box <- ggpubr::ggboxplot(mixt_df, x = "Course", y = "SRPed", color = "Centering", palette = "jco", xlab = "Statistics Sequence", ylab = "Socially and Culturally Responsive Pedagogy", title = "Socially Responsive Course Evaluations as a Function of Centering and Time"
+    )
+mixt_box
+```
+
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-53-1.png)<!-- -->
+
+#### Evaluate statistical assumptions
+
+**Is the dependent variable normally distributed in all combinations of the factors?**
+
+I can examine skew and kurtosis at the cell level with *psych::describeBy()*.
+
+
+```r
+mixt_df <- as.data.frame(mixt_df)#my data was not reading as a df so I applied this function
+psych::describeBy(SRPed ~ Course + Centering, data = mixt_df, type = 1, mat = TRUE, digits = 3)
+```
+
+```
+       item        group1 group2 vars  n  mean    sd median trimmed   mad  min
+SRPed1    1         ANOVA    Pre    1 42 4.522 0.639  4.875   4.630 0.185 2.25
+SRPed2    2  Multivariate    Pre    1 42 4.387 0.648  4.585   4.468 0.615 2.33
+SRPed3    3 Psychometrics    Pre    1 34 4.659 0.525  5.000   4.747 0.000 3.33
+SRPed4    4         ANOVA     Re    1 24 4.427 0.524  4.500   4.475 0.741 3.25
+SRPed5    5  Multivariate     Re    1 24 4.698 0.448  5.000   4.775 0.000 3.25
+SRPed6    6 Psychometrics     Re    1 32 4.523 0.636  4.750   4.654 0.371 2.25
+       max range   skew kurtosis    se
+SRPed1   5  2.75 -1.455    2.043 0.099
+SRPed2   5  2.67 -0.954    0.572 0.100
+SRPed3   5  1.67 -1.319    0.255 0.090
+SRPed4   5  1.75 -0.561   -0.627 0.107
+SRPed5   5  1.75 -1.622    2.477 0.092
+SRPed6   5  2.75 -1.909    3.680 0.112
+```
+Across all 6 conditions:
+
+* No skew exceeds the threshholds of concern (>3; Kline [2016])
+  - the most extreme skew is -1.909
+* No kurtosis exceeds the threshholds of concern (>10; Kline [2016])
+  - the most extreme kurtosis is 3.680
+
+**Are the model residuals normally distributed?**
+
+I can use the Shapiro-Wilk test to formally investigate the normality assumption. Examining the distribution of the model resdiduals is one of the most efficient ways to do this. First, I need to run the model and extract the residuals.
+
+
+```r
+mixt_mod <- aov(SRPed ~ Course*Centering, mixt_df)
+summary(mixt_mod)
+```
+
+```
+                  Df Sum Sq Mean Sq F value Pr(>F)  
+Course             2   0.44  0.2216   0.639 0.5288  
+Centering          1   0.02  0.0239   0.069 0.7931  
+Course:Centering   2   1.90  0.9478   2.734 0.0675 .
+Residuals        192  66.56  0.3466                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+We won't look at this yet, but simply focus on testing the assumption of normality. The next step is to extract the residuals.
+
+
+```r
+mixt_resid <- residuals(mixt_mod)
+```
+
+The formal test of normality is the Shapiro-Wilk test:
+
+
+```r
+shapiro.test(mixt_resid)
+```
+
+```
+
+	Shapiro-Wilk normality test
+
+data:  mixt_resid
+W = 0.85873, p-value = 0.000000000001378
+```
+Our test result is $W = 0.859, p < .001.$.  The significant *p* value indicates that we have violated the normality assumption. When cell sizes have at least 15 cases each and are roughly equivalent in size, ANOVA models are generally robust to this violation. None-the-less, we should keep it in mind.
+
+We can plot the residuals to "see" how bad it is:
+
+
+```r
+hist(mixt_resid)
+```
+
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
+Like the data itself, the residuals have a negative skew with a pile-up of scores on the "high" side.
+
+
+```r
+qqnorm(mixt_resid)
+```
+
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-59-1.png)<!-- -->
+Similarly, we see that the residuals sharply deviate from the diagonal at the top.
+
+**Is there evidence of outliers?  Are they extreme?**
+
+The *rstatix::identify_outliers()* function identifies outliers and extreme outliers.
+
+
+```r
+mixt_df%>%
+  group_by(Course, Centering)%>%
+  rstatix::identify_outliers(SRPed)
+```
+
+```
+# A tibble: 9 × 6
+  Course        Centering  deID SRPed is.outlier is.extreme
+  <fct>         <fct>     <int> <dbl> <lgl>      <lgl>     
+1 ANOVA         Pre          61  2.25 TRUE       FALSE     
+2 Multivariate  Pre          61  2.33 TRUE       FALSE     
+3 Multivariate  Re          116  3.25 TRUE       FALSE     
+4 Psychometrics Pre          51  3.33 TRUE       FALSE     
+5 Psychometrics Pre          58  3.75 TRUE       FALSE     
+6 Psychometrics Pre          61  3.67 TRUE       FALSE     
+7 Psychometrics Pre          64  3.5  TRUE       FALSE     
+8 Psychometrics Pre          77  3.75 TRUE       FALSE     
+9 Psychometrics Re           11  2.25 TRUE       FALSE     
+```
+There are 9 rows of outlier; none are extreme. Cross-referencing back to the boxplot, these are on the low side of evaluations. As an instructor, it seems important to retain the voices that rated socially responsive pedagogy lower than the other students. Although they contribute to non-normality, to exclude them would bias the data in a positive direction.
+
+**Are the variances of the dependent variable equivalent across all combinations of the factors?**
+
+I can use the Levene's test with *rstatix::levene_test()*.
+
+
+```r
+mixt_df %>%
+  group_by(Course)%>%
+  rstatix::levene_test(SRPed ~ Centering)
+```
+
+```
+# A tibble: 3 × 5
+  Course          df1   df2 statistic      p
+  <fct>         <int> <int>     <dbl>  <dbl>
+1 ANOVA             1    64     0.176 0.676 
+2 Multivariate      1    64     4.79  0.0323
+3 Psychometrics     1    64     0.320 0.574 
+```
+Levene's test indicated a violation of this assumption between the Pre and Re centering conditions in the multivariate class $(F[1, 64] = 4.787, p = 0.032)$. There was no indication of assumption violation for the ANOVA class $(F[1, 64] = 0.176, p = 0.676)$ nor the psychometrics class $(F[1, 64] = 0.320, p = 0.573)$.
+
+Before moving on I will write up the portion of the APA results section that evaluates the assumptions:
+
+>We conducted a 2 X 3 mixed design ANOVA to evaluate students' evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).
+
+>Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline [-@kline_data_2016] there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was $W = 0.859, p < .001.$and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives. 
+
+> Regardin the homogeneity of variance assumption, Levene's test indicated a violation between the pre- and re- centering conditions in the multivariate class $(F[1, 64] = 4.787, p = 0.032)$. There was no indication of assumption violation for the ANOVA class $(F[1, 64] = 0.176, p = 0.676)$ nor the psychometrics class $(F[1, 64] = 0.320, p = 0.573)$. PLACEHOLDER FOR SPHERICITY ASSUMPTION.
+
+#### Conduct omnibus ANOVA (w effect size)
+
+
+```r
+rstatix::anova_test(data = mixt_df, dv = SRPed, wid = deID, between = Centering, within = Course)
+```
+
+```
+Warning: The 'wid' column contains duplicate ids across between-subjects
+variables. Automatic unique id will be created
+```
+
+```
+ANOVA Table (type III tests)
+
+$ANOVA
+            Effect DFn DFd        F        p p<.05        ges
+1        Centering   1  56 0.000219 0.988000       0.00000289
+2           Course   2 112 0.550000 0.578000       0.00300000
+3 Centering:Course   2 112 8.547000 0.000351     * 0.03900000
+
+$`Mauchly's Test for Sphericity`
+            Effect     W     p p<.05
+1           Course 0.919 0.098      
+2 Centering:Course 0.919 0.098      
+
+$`Sphericity Corrections`
+            Effect   GGe       DF[GG]    p[GG] p[GG]<.05   HFe    DF[HF]
+1           Course 0.925 1.85, 103.62 0.565000           0.955 1.91, 107
+2 Centering:Course 0.925 1.85, 103.62 0.000521         * 0.955 1.91, 107
+     p[HF] p[HF]<.05
+1 0.571000          
+2 0.000444         *
+```
+Because Course is a repeated measures factor, we evaluate Mauchly's test for the main $(W = 0.919, p = 0.098)$ and interaction $(W = 0.919, p = 0.098)$  effects.  Neither was statistically significant, meaning we did not violate the sphericity assumption.
+
+Let's write the F strings from the above table:
+
+* Centering main effect: $F(1, 56) = 0.000, p = 0.988, \eta^2 = 0.000$
+* Course effect: $F(2, 112) = 0.550, p = 0.578, \eta^2 = 0.003$ 
+* Interaction effect: $F(2, 112) = 8.547, p = 0.001, \eta^2 = 0.039$ 
+
+>Regarding the omnibus ANOVA, neither the main effect for centering stage $(F[1, 56] = 0.000, p = 0.988, \eta^2 = 0.000)$ nor course $(F[2, 112] = 0.550, p = 0.578, \eta^2 = 0.003)$. However there was a statistically significant centering x course interaction effect $(F[2, 112] = 8.547, p = 0.001, \eta^2 = 0.039)$.
+
+#### Conduct one set of follow-up tests; narrate your choice
+
+With a significant interaction effect, we will want to follow-up with an analysis of simple main effects. I think I am interested in the simple main effects for centering within each of the courses. Because there are two levels of Centering (pre, re) within each of the courses, I can go straight to *t*-tests. 
+
+
+```r
+Simple_Course <- mixt_df%>%
+  group_by(Course)%>%
+  rstatix::t_test(SRPed ~ Centering, detailed = TRUE, p.adjust.method = "none")%>%
+  rstatix::add_significance()
+Simple_Course
+```
+
+```
+# A tibble: 3 × 17
+  Course  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic
+  <fct>      <dbl>     <dbl>     <dbl> <chr> <chr>  <chr>  <int> <int>     <dbl>
+1 ANOVA     0.0948      4.52      4.43 SRPed Pre    Re        42    24     0.652
+2 Multiv…  -0.311       4.39      4.70 SRPed Pre    Re        42    24    -2.29 
+3 Psycho…   0.136       4.66      4.52 SRPed Pre    Re        34    32     0.944
+# ℹ 7 more variables: p <dbl>, df <dbl>, conf.low <dbl>, conf.high <dbl>,
+#   method <chr>, alternative <chr>, p.signif <chr>
+```
+
+I also want effect sizes (Cohen's *d*):
+
+
+```r
+mixt_df%>%
+  group_by(Course)%>%
+  rstatix::cohens_d(SRPed ~ Centering)
+```
+
+```
+# A tibble: 3 × 8
+  .y.   group1 group2 effsize Course           n1    n2 magnitude 
+* <chr> <chr>  <chr>    <dbl> <fct>         <int> <int> <ord>     
+1 SRPed Pre    Re       0.162 ANOVA            42    24 negligible
+2 SRPed Pre    Re      -0.558 Multivariate     42    24 moderate  
+3 SRPed Pre    Re       0.233 Psychometrics    34    32 small     
+```
+
+>We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green & Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA $(MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)$ and psychometrics $(MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)$ courses, there was a statistically significant difference in the multivariate course $(MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)$ . 
+
+#### Describe approach for managing Type I error 
+
+Because there were only three comparisons following the omnibus evaluation, I used the LSD method to control for Type I error and retained the alpha at .05 (Green & Salkind, 2014b).
+
+#### APA style results with table(s) and figure 
+
+>We conducted a 2 X 3 mixed design ANOVA to evaluate students' evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).
+
+>Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline [-@kline_data_2016] there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was $W = 0.859, p < .001.$and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives. 
+
+> Regardin the homogeneity of variance assumption, Levene's test indicated a violation between the pre- and re- centering conditions in the multivariate class $(F[1, 64] = 4.787, p = 0.032)$. There was no indication of assumption violation for the ANOVA class $(F[1, 64] = 0.176, p = 0.676)$ nor the psychometrics class $(F[1, 64] = 0.320, p = 0.573)$. Mauchly's test indicated no violation of the sphericity asssumption $(W = 0.919, p = 0.098)$, therefore we proceeded normally. 
+
+>Regarding the omnibus ANOVA, neither the main effect for centering stage $(F[1, 56] = 0.000, p = 0.988, \eta^2 = 0.000)$ nor course $(F[2, 112] = 0.550, p = 0.578, \eta^2 = 0.003)$. However there was a statistically significant centering x course interaction effect $(F[2, 112] = 8.547, p = 0.001, \eta^2 = 0.039)$.
+
+>We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green & Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA $(MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)$ and psychometrics $(MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)$ courses, there was a statistically significant difference in the multivariate course $(MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)$ . 
+
+A quick way to produce a table of means and standard deviations for mixed design ANOVA is this:
+
+
+```r
+apaTables::apa.2way.table(iv1=Course, iv2=Centering, dv=SRPed, data=mixt_df, filename = "Mixed_Table.doc", table.number = 1)
+```
+
+```
+
+
+Table 1 
+
+Means and standard deviations for SRPed as a function of a 3(Course) X 2(Centering) design 
+
+               Centering               
+                     Pre        Re     
+        Course         M   SD    M   SD
+         ANOVA      4.52 0.64 4.43 0.52
+  Multivariate      4.39 0.65 4.70 0.45
+ Psychometrics      4.66 0.52 4.52 0.64
+
+Note. M and SD represent mean and standard deviation, respectively. 
+```
+
+I can update my figure with star bars:
+
+
+```r
+library(tidyverse)
+Simple_Course <- Simple_Course  %>%
+    rstatix::add_xy_position(x = "Course")
+mixt_box <- mixt_box + ggpubr::stat_pvalue_manual(Simple_Course, label = "p.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3)) 
+mixt_box
+```
+
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-66-1.png)<!-- -->
+
+#### Conduct power analyses to determine the power of the current study and a recommended sample size.
+
+In the *WebPower* package, we specify 6 of 7 interrelated elements; the package computes the missing element
+
+* *n* = sample size (number of individuals in the whole study)
+* *ng* = number of groups
+* *nm* = number of repeated measurements (i.e., waves)
+* *f* = Cohen's *f* (an effect size; we can use a conversion calculator); Cohen suggests that f values of 0.1, 0.25, and 0.4 represent small, medium, and large effect sizes, respectively
+* *nscor* = the Greenhouse Geiser correction from our ouput; 1.0 means no correction was needed and is the package's default; < 1 means some correction was applied 
+* *alpha* = is the probability of Type I error; we traditionally set this at .05 
+* *power* = 1 - P(Type II error) we traditionally set this at .80 (so anything less is less than what we want)
+* *type* = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect; in a mixed design ANOVA we will select "2" 
+
+As in the prior lessons, we need to convert our effect size for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function to translate the $\eta^{2}$ associated with the interaction effect to Cohen's *f*. 
+
+
+
+```r
+#include effect size from the interaction effect
+effectsize::eta2_to_f(0.039) 
+```
+
+```
+[1] 0.2014515
+```
+We can now retrieve information from our study (including the Cohen's *f* value we just calculated) and insert it into the script for the power analysis.
+
+```r
+WebPower::wp.rmanova(n=66, ng=2, nm=3, f = 0.2014515, nscor = .925, alpha = .05, power = NULL, type = 2)
+```
+
+```
+Repeated-measures ANOVA analysis
+
+     n         f ng nm nscor alpha     power
+    66 0.2014515  2  3 0.925  0.05 0.2737866
+
+NOTE: Power analysis for interaction-effect test
+URL: http://psychstat.org/rmanova
+```
+We are powered at .274 (we have a 27% of rejecting the null hypothesis, if it is true)
+
+In reverse, setting *power* at .80 (the traditional value) and changing *n* to *NULL* yields a recommended sample size.  
+
+
+```r
+WebPower::wp.rmanova(n = NULL, ng = 2, nm = 3, f = 0.2014515, nscor = 0.925,
+    alpha = 0.05, power = 0.8, type = 2)
+```
+
+```
+Repeated-measures ANOVA analysis
+
+           n         f ng nm nscor alpha power
+    252.2835 0.2014515  2  3 0.925  0.05   0.8
+
+NOTE: Power analysis for interaction-effect test
+URL: http://psychstat.org/rmanova
+```
+Given our desire for strong power and our weak effect size, this power analysis suggests a sample size of 252 participants is required to be adequately powered (80%) to detect a significant interaction effect.
 
 
 

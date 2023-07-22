@@ -2004,7 +2004,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 |Assignment Component                    | Points Possible   | Points Earned|
 |:-------------------------------------- |:----------------: |:------------:|
-|1. Narrate the research vignette, describing the IV and DV. Miniminally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required. | 5 |_____  |
+|1. Narrate the research vignette, describing the IV and DV. Minimally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required. | 5 |_____  |
 |2. Simulate (or import) and format data.        |      5            |_____  |           
 |3. Evaluate statistical assumptions.            |      5            |_____  |
 |4. Conduct omnibus ANOVA (w effect size).       |      5           | _____  |  
