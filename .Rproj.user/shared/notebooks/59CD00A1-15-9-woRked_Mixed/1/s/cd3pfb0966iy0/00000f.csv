@@ -1,0 +1,8 @@
+"0","#Creates a list of the variables that belong to that scale"
+"0","SRPed_vars <- c('InclusvClassrm', 'EquitableEval','MultPerspectives', 'DEIintegration')"
+"0",""
+"0","#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness"
+"0","big$SRPed <- sjstats::mean_n(big[, SRPed_vars], .75)"
+"0",""
+"0","#if the scoring script won't run, try this one:"
+"0","#big$SRPed <- sjstats::mean_n(big[, ..SRPed_vars], .75)"

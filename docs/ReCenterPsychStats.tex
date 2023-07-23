@@ -220,7 +220,7 @@ Financial support for this project has been provided the following:
 \item
   \emph{Diversity Seed Grant}, Office of Inclusive Excellence and Advisory Council for Diversity and Reconciliation (ACDR), Seattle Pacific University.
 \item
-  \emph{ETM Open Textbook \& OER Development Funding}, Office of Education, Technology, \& Media, Seattle Pacific University.\texttt{\{r\ include=FALSE\}\ \#\ automatically\ create\ a\ bib\ database\ for\ R\ packages\ knitr::write\_bib(c(\ \ \ .packages(),\ \textquotesingle{}bookdown\textquotesingle{},\ \textquotesingle{}knitr\textquotesingle{},\ \textquotesingle{}rmarkdown\textquotesingle{}\ ),\ \textquotesingle{}packages.bib\textquotesingle{})}
+  \emph{ETM Open Textbook \& OER Development Funding}, Office of Education, Technology, \& Media, Seattle Pacific University.
 \end{itemize}
 
 \hypertarget{ReCintro}{%
@@ -19365,9 +19365,7 @@ Points Earned
 
 \href{}{Screencast Link}
 
-\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.}
-
-\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could\ldots{} }
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.}
 
 \hypertarget{working-the-problem-with-r-and-r-packages-7}{%
 \subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-7}}
@@ -21322,16 +21320,457 @@ Points Earned
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-1. Narrate the research vignette, describing the IV and DV. Miniminally, the data at least three levels in the independent variable. At least one of the problems you work should have a significant omnibus test so that follow-up is required. & 5 & \_\_\_\_\_ \\
-2. Check and, if needed, format data & 5 & \_\_\_\_\_ \\
-3. Evaluate statistical assumptions & 5 & \_\_\_\_\_ \\
-4. Conduct omnibus ANCOVA (w effect size) & 5 & \_\_\_\_\_ \\
-5. If the IV has three or more levels, conduct follow-up tests & 5 & \_\_\_\_\_ \\
-6. Present means and covariate-adjusted means; interpret them & 5 & \_\_\_\_\_ \\
-7. APA style results with table(s) and figure & 5 & \_\_\_\_\_ \\
-8. Explanation to grader & 5 & \_\_\_\_\_ \\
+1. Narrate the research vignette, describing the IV, DV, and COV. & 5 & \_\_\_\_\_ \\
+2. Simulate (or import) and format data. & 5 & \_\_\_\_\_ \\
+3. Evaluate statistical assumptions. & 5 & \_\_\_\_\_ \\
+4. Conduct omnibus ANCOVA (w effect size). & 5 & \_\_\_\_\_ \\
+5. If the IV has three or more levels, conduct follow-up tests. & 5 & \_\_\_\_\_ \\
+6. Present means and covariate-adjusted means; interpret them. & 5 & \_\_\_\_\_ \\
+7. APA style results with table(s) and figure. & 5 & \_\_\_\_\_ \\
+8. Explanation to grader. & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 35 & \_\_\_\_\_ \\
 \end{longtable}
+
+\hypertarget{homeworked-example-9}{%
+\section{Homeworked Example}\label{homeworked-example-9}}
+
+\href{}{Screencast Link}
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.}
+
+\hypertarget{working-the-problem-with-r-and-r-packages-8}{%
+\subsection{Working the Problem with R and R Packages}\label{working-the-problem-with-r-and-r-packages-8}}
+
+\hypertarget{narrate-the-research-vignette-describing-the-iv-dv-and-cov.}{%
+\subsubsection{Narrate the research vignette, describing the IV, DV, and COV.}\label{narrate-the-research-vignette-describing-the-iv-dv-and-cov.}}
+
+I want to ask the question, what are the effects of intentional recentering on students evaluations of socially responsive pedagogy in the multivariate (last) course as a function of centering status (i.e., pre versus re), controlling for the socially responsive evaluations in the ANOVA (first) course:
+
+\begin{itemize}
+\tightlist
+\item
+  Within-subjects factor: student as they progress through ANOVA, Multivariate, Psychometrics
+\item
+  Between-subjects factor: recentering status of the class (Pre, Re)
+\item
+  Continuous DV: SRPed (socially responsive pedagogy)
+\end{itemize}
+
+\hypertarget{simulate-or-import-and-format-data-4}{%
+\subsubsection{Simulate (or import) and format data}\label{simulate-or-import-and-format-data-4}}
+
+First I import the larger dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{big }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The SRPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creates a list of the variables that belong to that scale}
+\NormalTok{SRPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}InclusvClassrm\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}EquitableEval\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}MultPerspectives\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}DEIintegration\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Calculates a mean if at least 75\% of the items are non{-}missing; adjusts the calculating when there is missingness}
+\NormalTok{big}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, SRPed\_vars], .}\DecValTok{75}\NormalTok{)}
+
+\CommentTok{\#if the scoring script won\textquotesingle{}t run, try this one:}
+\CommentTok{\#big$SRPed \textless{}{-} sjstats::mean\_n(big[, ..SRPed\_vars], .75)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's trim it to just the variables of interest.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ANCOVA\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (big, deID, Course, Centering, SRPed))}
+\end{Highlighting}
+\end{Shaded}
+
+And further filter so that there are just evaluations of ANOVA and multivariate courses.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ANCOVA\_df }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(ANCOVA\_df, Course }\SpecialCharTok{==} \StringTok{"ANOVA"} \SpecialCharTok{|}\NormalTok{ Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{) }\CommentTok{\#multiple conditions}
+\end{Highlighting}
+\end{Shaded}
+
+I want the course variable to be factor that is ordered by its sequence: ANOVA, multivariate.
+
+I want the centering variable to be ordered: Pre, Re
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(ANCOVA\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Classes 'data.table' and 'data.frame':  198 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 3 levels "Psychometrics",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+\end{verbatim}
+
+Because R's default is to order alphabetically, the centering variable is correct. I just need to change the course variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ANCOVA\_df}\SpecialCharTok{$}\NormalTok{Course }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(ANCOVA\_df}\SpecialCharTok{$}\NormalTok{Course, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"ANOVA"}\NormalTok{, }\StringTok{"Multivariate"}\NormalTok{))}
+\FunctionTok{str}\NormalTok{(ANCOVA\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Classes 'data.table' and 'data.frame':  198 obs. of  4 variables:
+ $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Course   : Factor w/ 2 levels "ANOVA","Multivariate": 1 1 1 1 1 1 1 1 1 1 ...
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+\end{verbatim}
+
+After checking the structure again, both are correct.
+
+I want all of my analyses (i.e., testing of assumptions, descriptives, omnibus F, follow-up) to be with the same dataset. Because each of these analyses will use listwise deletion (i.e., deleting cases, potentially differing numbers, when there is missing data), I will take care of this now. Because this is a longitudinal analysis, I will do it in two steps.
+
+The current dataset is is in \emph{long} form. This means each student has up to three rows of data. I will first delete rows that have any missing data:
+
+My data is in the long (person-period) form. For this particular ANOVA I need it to be in the wide (person level) form.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ANCOVA\_wide}\OtherTok{\textless{}{-}}\NormalTok{ reshape2}\SpecialCharTok{::}\FunctionTok{dcast}\NormalTok{(}\AttributeTok{data =}\NormalTok{ ANCOVA\_df, }\AttributeTok{formula =}\NormalTok{ deID }\SpecialCharTok{+}\NormalTok{ Centering }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Course, }\AttributeTok{value.var =} \StringTok{"SRPed"}\NormalTok{)}
+\CommentTok{\# before restructuring a second variable, rename the first variable}
+\NormalTok{ANCOVA\_wide }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(ANCOVA\_wide, }\AttributeTok{SRPed\_ANV =} \StringTok{"ANOVA"}\NormalTok{, }\AttributeTok{SRPed\_MLTV =} \StringTok{"Multivariate"}\NormalTok{)}
+
+\FunctionTok{str}\NormalTok{(ANCOVA\_wide)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+'data.frame':   119 obs. of  4 variables:
+ $ deID      : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Centering : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ SRPed_ANV : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+ $ SRPed_MLTV: num  NA NA NA NA NA NA NA NA NA NA ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(ANCOVA\_wide)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  deID Centering SRPed_ANV SRPed_MLTV
+1    1        Re      5.00         NA
+2    2        Re      5.00         NA
+3    3        Re      4.25         NA
+4    4        Re      5.00         NA
+5    5        Re      5.00         NA
+6    6        Re      3.75         NA
+\end{verbatim}
+
+The \emph{head} function shows that the multivariate scores are missing. This design still has missingness for (a) some students who took ANOVA but haven't yet had multivariate and (b) others who may have skipped completing course evaluations. I'll take care of that next by requiring rows to have non-missing data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ANCOVA\_wide }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(ANCOVA\_wide)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{evaluate-statistical-assumptions-5}{%
+\subsubsection{Evaluate statistical assumptions}\label{evaluate-statistical-assumptions-5}}
+
+\textbf{Is there a linear relationship between the covariate and outcome at each level of the grouping variable?{}``}
+
+This would mean that there is linearity between the evaluation in the first course (covariate/ANOVA) and last course (outcome/Multivariate) at each of the independent variable (Centering status).
+
+We can get a visual of this with a scatterplot (with regression lines) betwen the covariae and outcome.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(ANCOVA\_wide, }\AttributeTok{x =} \StringTok{"SRPed\_ANV"}\NormalTok{, }\AttributeTok{y =} \StringTok{"SRPed\_MLTV"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Centering"}\NormalTok{, }\AttributeTok{add =} \StringTok{"reg.line"}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_regline\_equation}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste}\NormalTok{(..eq.label..,}
+\NormalTok{    ..rr.label.., }\AttributeTok{sep =} \StringTok{"\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}"}\NormalTok{), }\AttributeTok{color =}\NormalTok{ Centering))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{11-ANCOVA_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+The plot looks a little funny. This is likely because there are no values below 3(ish) for ANOVA when courses were re-centered. Although we are looking for a linear relationship, the angled lines suggest there could be an interaction effect. The previous lesson (when we included all three courses {[}ANOVA, psychometrics, multivariate{]}) showed that there was. Spoiler alert -- mixed design ANOVA is a better analysis for this question, but the data does allow me (statistically) to use it for a homework demonstration.
+
+\textbf{Are the regression lines formed by the covariate and the outcome variable the same for each group?}
+
+This would mean that there is no ineraction between the outcome and covariate. We can test this with an ANOVA model that specifies an interaction.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{ANCOVA\_wide }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{anova\_test}\NormalTok{(SRPed\_MLTV }\SpecialCharTok{\textasciitilde{}}\NormalTok{Centering}\SpecialCharTok{*}\NormalTok{SRPed\_ANV)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ANOVA Table (type II tests)
+
+               Effect DFn DFd      F            p p<.05   ges
+1           Centering   1  71 10.444 0.0020000000     * 0.128
+2           SRPed_ANV   1  71 40.234 0.0000000184     * 0.362
+3 Centering:SRPed_ANV   1  71  1.975 0.1640000000       0.027
+\end{verbatim}
+
+Curiously, the interaction term was not statistically significant \((F[1, 71] = 1.975, p = 0.100)\). This non-violation of the homogeneity of slopes assumption supports the use of ANCOVA.
+
+\textbf{Are the model residuals normally distributed and equal across groups?}
+
+First, I create a linear regression model
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SRPed\_mod }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(SRPed\_MLTV }\SpecialCharTok{\textasciitilde{}}\NormalTok{ SRPed\_ANV }\SpecialCharTok{+}\NormalTok{ Centering, }\AttributeTok{data =}\NormalTok{ ANCOVA\_wide) }
+\end{Highlighting}
+\end{Shaded}
+
+I will use \emph{broom::augment()} to add fitted values and residuals to the model I just created.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SRPed\_mod\_metrics }\OtherTok{\textless{}{-}}\NormalTok{ broom}\SpecialCharTok{::}\FunctionTok{augment}\NormalTok{(SRPed\_mod)}
+\FunctionTok{head}\NormalTok{(SRPed\_mod\_metrics)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 10
+  .rownames SRPed_MLTV SRPed_ANV Centering .fitted  .resid   .hat .sigma .cooksd
+  <chr>          <dbl>     <dbl> <fct>       <dbl>   <dbl>  <dbl>  <dbl>   <dbl>
+1 11              4.5       4.5  Re           4.73 -0.232  0.0357  0.459 3.31e-3
+2 12              5         4.5  Re           4.73  0.268  0.0357  0.459 4.41e-3
+3 13              5         4.75 Re           4.87  0.125  0.0382  0.460 1.03e-3
+4 14              5         4.25 Re           4.59  0.411  0.0382  0.457 1.11e-2
+5 15              4.75      4.5  Re           4.73  0.0179 0.0357  0.460 1.96e-5
+6 16              4.5       3.5  Re           4.16  0.339  0.0751  0.458 1.61e-2
+# i 1 more variable: .std.resid <dbl>
+\end{verbatim}
+
+I can now assess the normality of residuals with the Shapiro-Wilk test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{shapiro\_test}\NormalTok{(SRPed\_mod\_metrics}\SpecialCharTok{$}\NormalTok{.resid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1 x 3
+  variable                 statistic p.value
+  <chr>                        <dbl>   <dbl>
+1 SRPed_mod_metrics$.resid     0.972   0.101
+\end{verbatim}
+
+The Shapiro-Wilk test suggested that our residuals are not statistically significantly different from a normal distribution \((W = 0.972, p = 0.101)\).
+
+ANCOVA further presumes that the variances of the residuals is equal for all groups. I can check this with the Levene's test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SRPed\_mod\_metrics}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{levene\_test}\NormalTok{(.resid }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Centering)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1 x 4
+    df1   df2 statistic     p
+  <int> <int>     <dbl> <dbl>
+1     1    73      2.68 0.106
+\end{verbatim}
+
+A non-significant Levene's test indicated no violation of the homogeneity of the residual variances for the groups \((F[1, 73] = 2.675, p = 0.106)\).
+
+\textbf{Is there evidence of outliers? Are they extreme?}
+
+I can identify outliers by examining the standardized (or studentized) residuals. These are interpreted as the number of standard errors away from the regression line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SRPed\_mod\_metrics }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\FunctionTok{abs}\NormalTok{(.std.resid) }\SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+           \FunctionTok{as.data.frame}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] .rownames  SRPed_MLTV SRPed_ANV  Centering  .fitted    .resid    
+ [7] .hat       .sigma     .cooksd    .std.resid
+<0 rows> (or 0-length row.names)
+\end{verbatim}
+
+No outliers were identified.
+
+Here's write-up of what I've done so far:
+
+\begin{quote}
+A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, centering stage, had two levels: pre-centered, re-centered. The dependent variable was students' evaluation of socially responsive pedagogy during the last statistics course (multivariate) and the covariate was the students' evaluation of the same variable during the first statistics class (ANOVA).
+\end{quote}
+
+\begin{quote}
+A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable, \((F[1, 71] = 1.975, p = 0.100)\). Further, the non-significant Shapiro-Wilk test of normality on the model residuals \((W = 0.972, p = 0.101)\) indicated that the dependent variable was not statistically significantly different from a normal distribution and no outliers were identified. A non-significant Levene's test indicated no violation of the homogeneity of the residual variances for all groups \((F[1, 73] = 2.675, p = 0.106)\).
+\end{quote}
+
+\hypertarget{conduct-omnibus-anova-w-effect-size-2}{%
+\subsubsection{Conduct omnibus ANOVA (w effect size)}\label{conduct-omnibus-anova-w-effect-size-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ANCOVA\_mod }\OtherTok{\textless{}{-}}\NormalTok{ ANCOVA\_wide }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{anova\_test}\NormalTok{(SRPed\_MLTV }\SpecialCharTok{\textasciitilde{}}\NormalTok{ SRPed\_ANV }\SpecialCharTok{+}\NormalTok{ Centering)}
+\NormalTok{rstatix}\SpecialCharTok{::}\FunctionTok{get\_anova\_table}\NormalTok{(ANCOVA\_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ANOVA Table (type II tests)
+
+     Effect DFn DFd      F            p p<.05   ges
+1 SRPed_ANV   1  72 39.696 0.0000000209     * 0.355
+2 Centering   1  72 10.304 0.0020000000     * 0.125
+\end{verbatim}
+
+\begin{quote}
+There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course \((F [1,72] = 39.696, p < .001, \eta^2 = 0.355)\) as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class \((F]1,72) = 10.304, p = 0.002, \eta^2 = 0.125)\). Considering that we interpret values \(eta^2\) values of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results.
+\end{quote}
+
+\hypertarget{conduct-one-set-of-follow-up-tests-narrate-your-choice-1}{%
+\subsubsection{Conduct one set of follow-up tests; narrate your choice}\label{conduct-one-set-of-follow-up-tests-narrate-your-choice-1}}
+
+Because this design has only two levels (pre-centered, re-centered), follow-up tests will not tell us any more information. However, investigating the covariate-adjusted mean is useful.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emmeans\_MLTV }\OtherTok{\textless{}{-}}\NormalTok{ ANCOVA\_wide}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  rstatix}\SpecialCharTok{::}\FunctionTok{emmeans\_test}\NormalTok{(SRPed\_MLTV }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Centering, }\AttributeTok{covariate =}\NormalTok{ SRPed\_ANV, }\AttributeTok{p.adjust.method =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{emmeans\_MLTV}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1 x 9
+  term          .y.   group1 group2    df statistic       p   p.adj p.adj.signif
+* <chr>         <chr> <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
+1 SRPed_ANV*Ce~ SRPe~ Pre    Re        72     -3.21 0.00198 0.00198 **          
+\end{verbatim}
+
+Not surprisingly (since this single pairwise comparison is redundant with the omnibus ANCOVA), results suggest a statistically significant difference between the pre- and re-centered stages in the multivariate class.
+
+with this script I can obtain the covariate-adjusted (i.e., estimated marginal) means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emmeans\_list }\OtherTok{\textless{}{-}}\NormalTok{ rstatix}\SpecialCharTok{::}\FunctionTok{get\_emmeans}\NormalTok{(emmeans\_MLTV)}
+\NormalTok{emmeans\_list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 2 x 8
+  SRPed_ANV Centering emmean     se    df conf.low conf.high method      
+      <dbl> <fct>      <dbl>  <dbl> <dbl>    <dbl>     <dbl> <chr>       
+1      4.50 Pre         4.38 0.0666    72     4.25      4.51 Emmeans test
+2      4.50 Re          4.73 0.0863    72     4.56      4.90 Emmeans test
+\end{verbatim}
+
+We can compare these to the unadjusted means:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{descripts\_means }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{describeBy}\NormalTok{(SRPed\_MLTV }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Centering, }\AttributeTok{data =}\NormalTok{ ANCOVA\_wide, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{digits=}\DecValTok{6}\NormalTok{)}
+\NormalTok{descripts\_means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+            item group1 vars  n     mean       sd median  trimmed    mad  min
+SRPed_MLTV1    1    Pre    1 47 4.381277 0.632791    4.5 4.451026 0.7413 2.33
+SRPed_MLTV2    2     Re    1 28 4.732143 0.424529    5.0 4.802083 0.0000 3.25
+            max range      skew kurtosis       se
+SRPed_MLTV1   5  2.67 -0.870207  0.37849 0.092302
+SRPed_MLTV2   5  1.75 -1.730808  2.90925 0.080228
+\end{verbatim}
+
+While the differences are minor, they do exist.
+
+\hypertarget{describe-approach-for-managing-type-i-error-2}{%
+\subsubsection{Describe approach for managing Type I error}\label{describe-approach-for-managing-type-i-error-2}}
+
+Because we only needed to conduct the omnibus, there was no additional control of Type I error.
+
+\hypertarget{apa-style-results-with-tables-and-figure-4}{%
+\subsubsection{APA style results with table(s) and figure}\label{apa-style-results-with-tables-and-figure-4}}
+
+\begin{quote}
+A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, centering stage, had two levels: pre-centered, re-centered. The dependent variable was students' evaluation of socially responsive pedagogy during the last statistics course (multivariate) and the covariate was the students' evaluation of the same variable during the first statistics class (ANOVA).
+\end{quote}
+
+\begin{quote}
+A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable, \((F[1, 71] = 1.975, p = 0.100)\). Further, the non-significant Shapiro-Wilk test of normality on the model residuals \((W = 0.972, p = 0.101)\) indicated that the dependent variable was not statistically significantly different from a normal distribution and no outliers were identified. A non-significant Levene's test indicated no violation of the homogeneity of the residual variances for all groups \((F[1, 73] = 2.675, p = 0.106)\).
+\end{quote}
+
+\begin{quote}
+There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course \((F [1,72] = 39.696, p < .001, \eta^2 = 0.355)\) as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class \((F]1,72) = 10.304, p = 0.002, \eta^2 = 0.125)\). Considering that we interpret values \(eta^2\) values of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results. As illustrated in Figure 1, results suggested that those in the multivariate condition had more favorable ratings of socially responsive pedagogy than those in the ANOVA class. Table 1 provides unadjusted and covariate-adjusted means for the dependent variable.
+\end{quote}
+
+In the case of ANCOVA, a table that compares unadjusted and covariate-adjusted means can be helpful. The lesson contains some script to export data. I will create a table to demonstrate how this might work:
+
+\begin{longtable}[]{@{}l@{}}
+\toprule\noalign{}
+Table 1 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Unadjusted and Covariate-Adjusted Descriptive Statistics \\
+\end{longtable}
+
+\begin{longtable}[]{@{}lcc@{}}
+\toprule\noalign{}
+Centering & Unadjusted & Covariate-Adjusted \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\begin{longtable}[]{@{}lcccc@{}}
+\toprule\noalign{}
+& \emph{M} & \emph{SD} & \emph{EMM} & \emph{SE} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Pre-centered & 4.381277 & 0.633 & 4.381639 & 0.067 \\
+Re-centered & 4.732143 & 0.425 & 4.731534 & 0.086 \\
+\end{longtable}
+
+And now a figure:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emmeans\_MLTV }\OtherTok{\textless{}{-}}\NormalTok{ emmeans\_MLTV }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rstatix}\SpecialCharTok{::}\FunctionTok{add\_xy\_position}\NormalTok{(}\AttributeTok{x =} \StringTok{"Centering"}\NormalTok{, }\AttributeTok{fun =} \StringTok{"mean\_se"}\NormalTok{)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggline}\NormalTok{(rstatix}\SpecialCharTok{::}\FunctionTok{get\_emmeans}\NormalTok{(emmeans\_MLTV), }\AttributeTok{x =} \StringTok{"Centering"}\NormalTok{, }\AttributeTok{y =} \StringTok{"emmean"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_errorbar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =}\NormalTok{ conf.low, }\AttributeTok{ymax =}\NormalTok{ conf.high), }\AttributeTok{width =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{    ggpubr}\SpecialCharTok{::}\FunctionTok{stat\_pvalue\_manual}\NormalTok{(emmeans\_MLTV, }\AttributeTok{hide.ns =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{tip.length =} \FloatTok{0.02}\NormalTok{, , }\AttributeTok{y.position =} \FunctionTok{c}\NormalTok{(}\FloatTok{5.0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{11-ANCOVA_files/figure-latex/unnamed-chunk-60-1.pdf}
 
 \hypertarget{refs}{%
 \chapter*{References}\label{refs}}

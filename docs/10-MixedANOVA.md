@@ -1121,13 +1121,9 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
-
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could... *
-
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.*
 
 ### Working the Problem with R and R Packages
-
 
 #### Narrate the research vignette, describing the IV and DV. 
 
