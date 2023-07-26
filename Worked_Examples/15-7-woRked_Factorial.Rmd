@@ -1,8 +1,12 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
 ## Homeworked Example
 
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
 ### Working the Problem with R and R Packages
 
@@ -10,8 +14,15 @@
 
 I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students in the ANOVA class as a function of:
 
-* stage in the revision (Stable, Transitioning, Resettled), and
-* Department (CPY vs ORG) 
+* **Stage** in the transition
+  - STABLE:  2017 represents the last year of "stability during the old way" when we taught with SPSS and during the 2nd year of the doctoral programs.
+  - TRANSITION:  2018 & 2019 represent the transition to R, when the classes were 30% larger because each of the IOP and CPY departments were transitioning to the 1st year (they did it separately, so as not to double the classes)
+  - RESETTLED:  2020 & 2021 represent the "resettled" phase where the transition to R was fairly complete and the class size returned to normal because the classes were offered in the first year.
+* **Department** 
+  - CPY: Clinical Psychology
+  - ORG: Industrial-Organizational Psychology
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
 #### Simulate (or import) and format data.
 
@@ -19,29 +30,16 @@ I want to ask the question, do course evaluation ratings for the traditional ped
 big <- readRDS("ReC.rds")
 ```
 
-Let's first create the "Stage" variable that represents the three levels of transition.
-
-First I will map the years to the three levels (factors).
-
+Let's first create the "Stage" variable that represents the three levels of transition.  The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.
 ```{r}
-big$Stage <- plyr::mapvalues(big$Year, from = c(2017, 2018, 2019, 2020, 2021), to = c("Stable", "Transition", "Transition", "Resettled", "Resettled"))
+big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition", "First"), to = c("Stable", "Transition", "Resettled"))
 ```
 
-Then check the structure.
+Let's check the structure:
 ```{r}
 str(big$Stage)
 ```
-R is reading the variable as a character, so I need to make it to be an ordered factor.
 
-```{r}
-big$Stage <- factor(big$Stage, levels = c("Stable", "Transition", "Resettled"))
-```
-
-Let's check the structure again:
-
-```{r}
-str(big$Stage)
-```
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 ```{r}
@@ -62,7 +60,7 @@ TwoWay_df <- subset(big, Course == "ANOVA")
 
 Next, let's trim it to just the variables we need.
 ```{r}
-TwoWay_df <-(dplyr::select (TwoWay_df, Stage, Dept, TradPed))
+TwoWay_df <-(dplyr::select(TwoWay_df, Stage, Dept, TradPed))
 ```
 
 Although we would handle missing data more carefully in a "real study," I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
@@ -78,33 +76,26 @@ TwoWay_df <- na.omit(TwoWay_df) #the next operation required non-missing data
 TwoWay_df[TwoWay_df$Stage == "Stable" & TwoWay_df$TradPed < 4.3, "Dept"]<- "ORG"
 ```
 
-
 Although the homework assignment doesn't require it, I think it's useful to create a figure that shows what I intend to do.
-
 ```{r}
-Box2way<- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage", xlab = "Academic Department",
+Box2way <- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage", xlab = "Academic Department",
     ylab = "Students' Evaluations of Traditional Pedagogy", add = "jitter",
     title = "Course Evaluations as a Function of Department and Stage in Transition")
 Box2way
 ```
 
-
 #### Evaluate statistical assumptions.
 
-**Is the dependent variable normally disributed at all levels of the combinations of the levels within the grouping variables?**
+**Is the dependent variable normally distributed at all levels of the combinations of the levels within the grouping variables?**
 
 I'll start with an inspection of skew and kurtosis for all combinations of the levels of the two grouping variables.
-
 ```{r}
 psych::describeBy(TradPed ~ Stage + Dept, mat = TRUE, data = TwoWay_df, digits = 3, type = 1)
 ```
 
-
-
 Following Kline's (2016) recommendations, skew for each combination of levels of the two IVs are < |3.0|.  Kurtosis for each combination of levels of the two IVs are < |10.0|.
 
 The Shapiro-Wilk examines residuals from the ANOVA model. We can quickly/preliminarily run the two-way ANOVA. We do this to produce an object that holds the *model residuals.*
-
 ```{r}
 TwoWay_TradPed <- aov(TradPed ~ Stage * Dept, TwoWay_df)
 summary(TwoWay_TradPed)
@@ -115,15 +106,13 @@ resid_TradPed <- residuals(TwoWay_TradPed)
 shapiro.test(resid_TradPed)
 ```
 
-A statistically significant Shapiro-Wilks' test of normality suggests that we violated the assumption $W = 0.942, p = 0.001$.
+A statistically significant Shapiro-Wilks' test of normality suggests that we violated the assumption $W = 0.949, p < 0.001$.
 
 Let's plot the residuals
-
 ```{r}
 hist(resid_TradPed)
 ```
 The histogram does look somewhat different (negatively skewed) from a normal distribution.
-
 ```{r}
 qqnorm(resid_TradPed)
 ```
@@ -132,7 +121,7 @@ The dots stray from the expected diagonal; this also visualizes the non-normalit
 
 Summary so far:
 
->Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.942, p = 0.001$.
+>Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.949, p < 0.001$.
 
 **Are there outliers?**
 
@@ -154,16 +143,17 @@ We can evaluate the homogeneity of variance test with Levene's test for the equa
 rstatix::levene_test(TwoWay_df, TradPed ~ Dept * Stage)
 ```
 
-Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 4.5489, p < .001)$. This is not surprising. The boxplots shows some widely varying variances.
+Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 6.412, p < .001)$. This is not surprising. The boxplots shows some widely varying variances.
 
 Do we have to stop?  If cell sizes are reasonably large (e.g., at least 15) and balanced (equal), ANOVA is a relatively robust to violations of normality.  Unfortunately, we don't have 15 in all cells AND our cells are unequal AND this was not an experiment. So.....this probably isn't the best approach (but it'll work for a class demo).
 
->A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and  on traditional pedagogy course evaluation ratings. Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.942, p = 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 4.5489, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+>A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) on traditional pedagogy course evaluation ratings. 
+
+>Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.949, p < 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 6.412, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
 
 #### Conduct omnibus ANOVA (w effect size).
 
 We can use the *rstatix::anova_test()* function.
-
 ```{r}
 omnibus2w <- rstatix::anova_test(TwoWay_df, TradPed ~ Dept * Stage, type = "2", detailed = TRUE)
 omnibus2w
@@ -171,13 +161,13 @@ omnibus2w
 
 Let's write the F strings from the above table:
 
-* Department main effect:  $F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042$
-* Stage main effect:  $F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064$
-* Interaction effect:  $F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079$
+* Department main effect:  $F(1, 106) = 11.395, p = 0.001, \eta^2 = 0.097$
+* Stage main effect:  $F(2, 106) = 10.070 , p < 0.001, \eta^2 = 0.160$
+* Interaction effect:  $F(2, 106) = 4.904, p = 0.009, \eta^2 = 0.085$
 
 So far we have statistically significant effects for the main and interaction effects. Here are the results so far:
 
->Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042$; the main effect for stage in transition, in transition $F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064$, and the interaction effect, $F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079$.
+>Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 11.395, p = 0.001, \eta^2 = 0.097$; the main effect for stage in transition, $F(2, 106) = 10.070, p < 0.001, \eta^2 = 0.160$; and the interaction effect, $F(2, 106) = 4.904, p = 0.009, \eta^2 = 0.085$. 
 
 #### Conduct one set of follow-up tests; narrate your choice.
 
@@ -185,9 +175,9 @@ There are so many choices for following up a significant interaction effect. Reg
 
 Although we could do something more complicated (like orthogonal contrast coding), given that those completing homework are often having early experiences with ANOVA, I will choose a more streamlined path by examining the the simple main effect of stage within department.
 
-Functionally, this computes three one-way ANOVAs, comparing the three stages within each of the departments within each of the three stages of transition.  Functionally, this will produce two one-way ANOVAs. If the result is statistically significant, we will need to follow-up with more testing. 
+Functionally, this computes two one-way ANOVAs, comparing the three stages within each of the departments. If the result is statistically significant, we will need to follow-up with more testing. 
 
-The *rstatix::anova_test* does not allow me to specify a control for Type I error. Therefore, if I wanted to do so, I would need to monitor it outside of the R package.  I could evaluate each of the *p* values for the two one-way ANOVAs at 0.025 (05/2). Rather than tracking Type I error at this level, I will wait and do so when I get to the pairwise comparisons that follow a statistically significant one-way ANOVA.
+The *rstatix::anova_test* does not allow me to specify a control for Type I error. Therefore, if I wanted to do so, I would need to monitor it outside of the R package.  I *could* evaluate each of the *p* values for the two one-way ANOVAs at 0.025 (05/2). Rather than tracking Type I error at this level, I will wait and do so when I get to the pairwise comparisons that follow a statistically significant one-way ANOVA.
 
 ```{r}
 TwoWay_df %>%
@@ -196,16 +186,16 @@ TwoWay_df %>%
 ```
 Results suggest statistically significant differences in department across the stages within the CPY department, but not the ORG department:
 
-* For CPY:  $F(2, 69) = 9.548, p < 0.001, \eta^2 = 0.217$
-* For ORG: $F(2, 37) = 0.668, p = 0.519, \eta^2 = 0.315$
+* For CPY:  $F(2, 58) = 18.497, p < 0.001, \eta^2 = 0.389$
+* For ORG: $F(2, 48) = 1.417, p = 0.252, \eta^2 = 0.056$
 
 I would write up this stage of the analysis this way:
 
-> To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent ($F[2, 69] = 9.548, p < 0.001, \eta^2 = 0.217$), but not for the ORG department ($F[2, 37] = 0.668, p = 0.519, \eta^2 = 0.315$).
+>To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent $(F[2, 58] = 18.497, p < 0.001, \eta^2 = 0.389)$, but not for the ORG department $(F[2, 48] = 1.417, p = 0.252, \eta^2 = 0.056)$.
 
 Because there are three stages of transition, we need to followup with pairwise comparisons to see where the differences lie. Because I want to results from the significance tests to update the figure, I will save the output as an object.
 
-Although we only needed to compare 3 pairwise tests, this test (and figure) will compute them all. The Holm's Sequential Bonferroni is a very reasonable approach (balancing Type I error with sensibility) and so I will use it to evaluate the six pairwise comparisons that will be produced.
+Although, technically, we only needed to compare 3 pairwise tests, this test (and figure) will compute them all. The Holm's Sequential Bonferroni is a very reasonable approach (balancing Type I error with sensibility) and so I will use it to evaluate the six pairwise comparisons that will be produced.
 
 ```{r}
 pwTRwiDP <- TwoWay_df %>%
@@ -215,19 +205,20 @@ pwTRwiDP
 ```
 
 
-Consistent with the significant one-way ANOVA for the ORG factor, there were non-significant differences between all pairs of stages.  Within the CPY student evaluations, there were statistically significant differences between stable and resettled. Had we not controlled for Type I error, there would have also been significant differences between transition and resettled.
+Consistent with the significant one-way ANOVA for the ORG factor, there were non-significant differences between all pairs of stages.  Within the CPY student evaluations, there were statistically significant differences between stable and transition and stabled and resettled comparisons. Both comparisons favored the stable level.
 
-Let's update our figure with a representation of these pairwise comparisons.
 
 Here'w how I would assemble the entire APA style results:
 
->A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and  on traditional pedagogy course evaluation ratings. Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.942, p = 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 4.5489, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+>A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and  on traditional pedagogy course evaluation ratings. 
 
->Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042$; the main effect for stage in transition, in transition $F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064$, and the interaction effect, $F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079$.
+>Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.949, p < 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 6.412, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
 
->To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent ($F[2, 69] = 9.548, p < 0.001, \eta^2 = 0.217$), but not for the ORG department ($F[2, 37] = 0.668, p = 0.519, \eta^2 = 0.315$).
+>Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 11.395, p = 0.001, \eta^2 = 0.097$; the main effect for stage in transition, in transition $F(2, 106) = 10.07 , p < 0.001, \eta^2 = 0.160$, and the interaction effect, $F(2, 106) = 4.904, p = 0.009, \eta^2 = 0.085$. 
 
->We followed the significant one-way ANOVA with pairwise comparisons between the groups using the estimated marginal means. We specified the Holm's sequential Bonferroni for managing Type I error. Only the comparison between the stable and resettled conditions within CPY students were statistically significantly different $t(106) = 3.6167765, p = 0.001$. Cell and marginal means and standard deviations are presented in Table 1; results are illustrated in Figure 1.
+> To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent $(F[2, 58] = 18.497	, p < 0.001, \eta^2 = 0.389)$, but not for the ORG department $(F[2, 48] = 1.417, p = 0.252, \eta^2 = 0.056)$.
+
+>We followed the significant one-way ANOVAs with pairwise comparisons between the groups using the estimated marginal means. We specified the Holm's sequential Bonferroni for managing Type I error. For CPY students, comparisons  between the stable and transition $(t[106] = 4.997, p < 0.001)$ and stable and resettled $(t[106] = 2.893, p = 0.005)$ stages were statistically significantly different. Cell means, marginal means, and standard deviations are presented in Table 1; results are illustrated in Figure 1.
 
 #### Describe approach for managing Type I error.
 
@@ -242,7 +233,7 @@ apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2W
 ```{r}
 pwTRwiDP <- pwTRwiDP %>%
     rstatix::add_xy_position(x = "Dept")  #x should be whatever the variable was used in the group_by argument 
-Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3))
+Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3, 5.5))
 Box2way
 ```
 #### Conduct power analyses to determine the power of the current study and a recommended sample size.
@@ -260,22 +251,22 @@ The *pwr.2way()* and *ss.2way()* functions require the following:
 We need to convert our effect size ($\eta^2$) for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-effectsize::eta2_to_f(0.042) #FactorA -- Dept
-effectsize::eta2_to_f(0.064) #Factor B -- Stage
-effectsize::eta2_to_f(0.013) #interaction
+effectsize::eta2_to_f(0.097) #FactorA -- Dept
+effectsize::eta2_to_f(0.160) #Factor B -- Stage
+effectsize::eta2_to_f(0.085) #interaction
 ```
 
 The size.A and size.B are the sample size per group within the factor. Because ours differ, i divided the N by the number of groups.
 ```{r}
-12+24+36+9+20+11
-(12+24+36+9+20+11)/3
-(12+24+36+9+20+11)/2
+112/2
+112/3
+112/6
 ``` 
 
 ```{r}
-pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 37, size.B = 56, f.A = 0.042, f.B = 0.063)
+pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 56, size.B = 37, f.A = 0.3277495, f.B = 0.4364358)
 ```
-At 10% (Dept), 16% (Stage), and 10% (interaction), our power to detect statistically significant main and interaction effects was low.
+At 100% (Dept), 100 (Stage), and 100% (interaction), our power to detect statistically significant main and interaction effects was strong
 
 I will use a different function to estimate what sample size would be sufficiently powerful. In this syntax:
 
@@ -283,9 +274,12 @@ I will use a different function to estimate what sample size would be sufficient
 * B is the iteration times, the default is 100
 
 ```{r}
-pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.042, f.B = 0.063, B = 100)
+pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.3277495, f.B = 0.4364358, B = 100)
 ```
-This recommends a sample size of 606; 100 in each group.
+```{r}
+18*3
+```
+This recommends a sample size of 54; 18 in each group.
 
 ### Hand Calculations
 
@@ -351,11 +345,11 @@ psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df, digits =
 To calculate it:
 
 ```{r}
-SSM <- 12 * (4.817 - 4.06)^2 + 9 * (3.889 - 4.06)^2 + 24 * (4.317 - 4.06)^2 +
-    20 * (3.720 - 4.06)^2 + 36 * (3.836 - 4.06)^2 + 11 * (4.145 - 4.06)^2
+SSM <- 25 * (4.832 - 4.06)^2 + 25 * (3.864 - 4.06)^2 + 26 * (3.769 - 4.06)^2 +
+    15 * (3.560 - 4.06)^2 + 10 * (4.010 - 4.06)^2 + 11 * (4.145 - 4.06)^2
 SSM
 ```
-Sums of squares for the model is 12.92274.
+Sums of squares for the model is 21.91618.
 
 #### Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.
 
@@ -367,14 +361,16 @@ This requires:
 * group variance (I can square the standard deviation for each group)
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-SSR <- ((0.217^2)*(12-1))+ ((0.348^2)*(9-1)) + ((0.700^2)*(24-1)) + ((1.264^2)*(20-1)) + ((0.805^2)*(36-1)) + ((0.658^2)*(11-1))
+SSR <- ((0.236^2)*(25-1))+ ((0.582^2)*(25-1)) + ((0.878^2)*(26-1)) + ((1.338^2)*(15-1)) + ((0.578^2)*(10-1)) + ((0.658^2)*(11-1))
 SSR
 ```
-Our sums of squares for the residual is 70.124.
+Our sums of squares for the residual is 61.13799.
 
 #### Calculate sums of squares model (SSM) for each of the factors in the model.
 
 **SSM for the Department main effect:**
+
+Reminder of the formula: $SS_{a:Dept}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$
 
 Earlier I learned the grand mean = 4.06
 
@@ -382,22 +378,24 @@ Earlier I learned the grand mean = 4.06
 psych::describeBy(TradPed ~ Dept, mat=TRUE, data = TwoWay_df, digits=3)
 ```
 ```{r}
-SSM_dept <- 72 * (4.160 - 4.06)^2 + 40 * (3.875 - 4.06)^2
+SSM_dept <- 61 * (4.244 - 4.06)^2 + 51 * (3.835 - 4.06)^2
 SSM_dept
 ```
-Sums of squares model for the department factor is 2.089.
+Sums of squares model for the department factor is 4.647091.
 
 **SSM for the Stage main effect:**
+
+Reminder of the formula: $SS_{a:Stage}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$
 
 ```{r}
 psych::describeBy(TradPed ~ Stage, mat=TRUE, data = TwoWay_df, digits=3)
 ```
 
 ```{r}
-SSM_stage <- 21 * (4.419 - 4.06)^2 + 44 * (4.045 - 4.06)^2 + 47 * (3.909 - 4.06)^2
+SSM_stage <- 50 * (4.348 - 4.06)^2 + 42 * (3.693 - 4.06)^2 + 32 * (4.081 - 4.06)^2
 SSM_stage
 ```
-Sums of squares model for the stage factor is 3.788048.
+Sums of squares model for the stage factor is 9.81825
 
 **SSM for the Department x Stage interaction term:**
 
@@ -405,7 +403,7 @@ I can calculate the SSM for the interaction term with this formula:  $SS_{axb} =
 
 
 ```{r}
-SSM_int <- 12.923 - (2.089 + 3.788)
+SSM_int <- 21.91618 - (4.647091 + 9.81825)
 SSM_int
 ```
 
@@ -418,41 +416,40 @@ It is easiest for me when I put these in a table.
 
 |Source    |SS       |df         |$MS = \frac{SS}{df}$ |$F = \frac{MS_{source}}{MS_{resid}}$ |$F_{CV}$|
 |:---------|:--------|:----------|:------|:------|:------|
-|Model     |12.923   |5          |2.585  |3.905  |2.300  |
-|a:Dept    |2.089    |1          |2.089  |3.156  |3.931  |
-|b:Stage   |3.788    |2          |1.894  |2.861  |3.082  |
-|aXb       |7.046    |2          |3.523  |5.322  |3.082  |
-|Residual  |70.124   |106        |0.662  |0.009  |       |
+|Model     |21.916   |5          |4.383  |7.596  |2.300  |
+|a:Dept    |4.647    |1          |4.647  |8.054  |3.931  |
+|b:Stage   |9.818    |2          |4.909  |8.508  |3.082  |
+|aXb       |7.451    |2          |3.726  |6.458  |3.082  |
+|Residual  |61.138   |106        |0.577  |       |       |
 |Total     |83.033   |           |       |       |       |
 
-Main effect for department: $F(1, 106) = 2.089, p > 0.05$ 
-Main effect for stage: $F(2, 106) = 1.894, p > 0.05$
-Interaction effect: $F(2, 106) = 3.523, p < 0.05$
+Main effect for department: $F(1, 106) = 8.054, p < 0.05$ 
+Main effect for stage: $F(2, 106) = 8.508, p < 0.05$
+Interaction effect: $F(2, 106) = 6.458, p < 0.05$
 
 You may notice that these calculations don't exactly follow the rules of the lecture.  For example, The "model and "residual" should equal the total. I believe this is because there are different cell sizes which causes an unbalanced design and throws off the otherwise perfect calculations. This issue of unbalanced design is an important one in ANOVA.
 
-Checing to see if my sums of squares a, b, and axb equal the SSM; and that SSM + SSR = SST.
+Checking to see if my sums of squares a, b, and axb equal the SSM; and that SSM + SSR = SST.
 ```{r}
-12.923 + 70.124
-(2.089 + 3.788 + 7.046) + 70.124
-2.089 + 3.788 + 7.046
+21.916 + 61.138
+(4.647 + 9.818 + 7.451) + 61.138
+4.647 + 9.818 + 7.451
 ```
 Below are the calculations for the mean square values:
 ```{r}
-12.923/5
-2.089/1
-3.788/2
-7.046/2
-70.124/106
+21.916 /5
+4.647/1
+9.818/2
+7.451/2
+61.138/106
 ```
 Below are the calculations for the *F* tests:
 
 ```{r}
-2.585/0.662
-2.089/0.662
-1.894/0.662
-3.523/0.662
-
+4.383/0.577
+4.647/0.577
+4.909/0.577
+3.726/0.577
 ```
 Looking up the *F* critical values (requires alpha level and degrees of freedom for the numerator and denominator [model and residual]):
 
@@ -465,7 +462,7 @@ qf(0.05, 2, 106, lower.tail = FALSE)  #interaction term
 
 #### Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? 
 
-In the hand calculations, only the interaction effect is statistically significant. It is significant when the *F* value exceeds the *F* critical value.
+In the hand calculations, the main and interaction effects are significant when the *F* value exceeds the *F* critical value. All three are.
 
 #### Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. 
 
@@ -476,14 +473,15 @@ $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 The values of .01, .06, and .14 are considered small, medium, and large in ANOVA models.
 
 ```{r}
-2.089/83.033 #eta squared for department main effect
-3.788/80.033 #eta squared for stage main effect
-7.046/80.033 #eta squared for interaction effect
+4.647/83.033 #eta squared for department main effect
+9.818/83.033 #eta squared for stage main effect
+7.451/83.033 #eta squared for interaction effect
 ```
-The eta squared values are 0.02 (small), 0.05 (small-to-medium), and 0.09 (medium-to-large) for the department, stage, and interaction effects, respectively. 
+
+The $\eta ^{2}$ values are 0.056 (medium), 0.118 (medium-to-large), and 0.090 (medium-to-large) for the department, stage, and interaction effects, respectively. 
 
 #### Assemble the results into their statistical strings.
 
-Main effect for department: $F(1, 106) = 2.089, p > 0.05, \eta ^{2} = 0.03$ 
-Main effect for stage: $F(2, 106) = 1.894, p > 0.05, \eta ^{2} = 0.05$
-Interaction effect: $F(2, 106) = 3.523, p < 0.05, \eta ^{2} = 0.09$
+Main effect for department: $F(1, 106) = 8.054, p < 0.05, \eta ^{2} = 0.056$ 
+Main effect for stage: $F(2, 106) = 8.508, p < 0.05, \eta ^{2} = 0.118$
+Interaction effect: $FF(2, 106) = 6.458, p < 0.05, \eta ^{2} = 0.090$

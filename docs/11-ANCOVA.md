@@ -1060,23 +1060,25 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 |**Totals**                               |      35       |_____  |         
 
 
+
 ## Homeworked Example
 
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.*
-
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
 ### Working the Problem with R and R Packages
 
-
 #### Narrate the research vignette, describing the IV, DV, and COV. 
 
-I want to ask the question, what are the effects of intentional recentering on students evaluations of socially responsive pedagogy in the multivariate (last) course as a function of centering status (i.e., pre versus re), controlling for the socially responsive evaluations in the ANOVA (first) course:
+I want to ask the question, what are the effects of intentional recentering on students' evaluations of socially responsive pedagogy in the multivariate (last) course as a function of centering status (i.e., pre versus re), controlling for the socially responsive evaluations in the ANOVA (first) course:
 
-* Within-subjects factor:  student as they progress through ANOVA, Multivariate, Psychometrics
+* Continuous DV: SRPed (socially responsive pedagogy) in the multivariate (last) class
 * Between-subjects factor: recentering status of the class (Pre, Re)
-* Continuous DV: SRPed (socially responsive pedagogy)
+* Covariate: SRPed in the ANOVA (first) class
+
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.*
 
 #### Simulate (or import) and format data
 
@@ -1086,7 +1088,7 @@ First I import the larger dataset.
 big <- readRDS("ReC.rds")
 ```
 
-The SRPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+The SRPed (socially responsive pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
 ```r
@@ -1145,10 +1147,6 @@ Classes 'data.table' and 'data.frame':	198 obs. of  4 variables:
 ```
 After checking the structure again, both are correct.
 
-I want all of my analyses (i.e., testing of assumptions, descriptives, omnibus F, follow-up) to be with the same dataset. Because each of these analyses will use listwise deletion (i.e., deleting cases, potentially differing numbers, when there is missing data), I will take care of this now.  Because this is a longitudinal analysis, I will do it in two steps.
-
-The current dataset is is in *long* form. This means each student has up to three rows of data. I will first delete rows that have any missing data:
-
 My data is in the long (person-period) form. For this particular ANOVA I need it to be in the wide (person level) form.
 
 ```r
@@ -1192,24 +1190,23 @@ ANCOVA_wide <- na.omit(ANCOVA_wide)
 
 **Is there a linear relationship between the covariate and outcome at each level of the grouping variable?"**
 
-This would mean that there is linearity between the evaluation in the first course (covariate/ANOVA) and last course (outcome/Multivariate) at each of the independent variable (Centering status).
+This would mean that there is linearity between the evaluation in the first course (covariate/ANOVA) and last course (outcome/Multivariate) at each level of the independent variable (Centering status).
 
-We can get a visual of this with a scatterplot (with regression lines) betwen the covariae and outcome.
+We can get a visual of this with a scatterplot (with regression lines) between the covariae and outcome.
 
 
 ```r
 library(ggplot2)
-ggpubr::ggscatter(ANCOVA_wide, x = "SRPed_ANV", y = "SRPed_MLTV", color = "Centering", add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label..,
-    ..rr.label.., sep = "~~~~"), color = Centering))
+ggpubr::ggscatter(ANCOVA_wide, x = "SRPed_ANV", y = "SRPed_MLTV", color = "Centering", add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~~"), color = Centering))
 ```
 
-![](11-ANCOVA_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
+![](11-ANCOVA_files/figure-docx/unnamed-chunk-50-1.png)<!-- -->
 
 The plot looks a little funny. This is likely because there are no values below 3(ish) for ANOVA when courses were re-centered. Although we are looking for a linear relationship, the angled lines suggest there could be an interaction effect. The previous lesson (when we included all three courses [ANOVA, psychometrics, multivariate]) showed that there was. Spoiler alert -- mixed design ANOVA is a better analysis for this question, but the data does allow me (statistically) to use it for a homework demonstration.
 
 **Are the regression lines formed by the covariate and the outcome variable the same for each group?**
 
-This would mean that there is no ineraction between the outcome and covariate.  We can test this with an ANOVA model that specifies an interaction.
+This would mean that there is no interaction between the outcome and covariate.  We can test this with an ANOVA model that specifies an interaction.
 
 
 ```r
@@ -1226,7 +1223,7 @@ ANOVA Table (type II tests)
 2           SRPed_ANV   1  71 40.234 0.0000000184     * 0.362
 3 Centering:SRPed_ANV   1  71  1.975 0.1640000000       0.027
 ```
-Curiously, the interaction term was not statistically significant $(F[1, 71] = 1.975, p = 0.100)$. This non-violation of the homogeneity of slopes assumption supports the use of ANCOVA.
+Curiously, the interaction term was not statistically significant $(F[1, 71] = 1.975, p = 0.164)$. This non-violation of the homogeneity of slopes assumption supports the use of ANCOVA.
 
 **Are the model residuals normally distributed and equal across groups?**
 
@@ -1310,7 +1307,8 @@ Here's write-up of what I've done so far:
 
 >A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, centering stage, had two levels: pre-centered, re-centered. The dependent variable was students' evaluation of socially responsive pedagogy during the last statistics course (multivariate) and the covariate was the students' evaluation of the same variable during the first statistics class (ANOVA). 
 
->A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable, $(F[1, 71] = 1.975, p = 0.100)$. Further, the non-significant Shapiro-Wilk test of normality on the model residuals $(W = 0.972, p = 0.101)$ indicated that the dependent variable was not statistically significantly different from a normal distribution and no outliers were identified.    A non-significant Levene’s test indicated no violation of the homogeneity of the residual variances for all groups $(F[1, 73] = 2.675, p = 0.106)$.
+>A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable, $(F[1, 71] = 1.975, p = 0.164)$. Further, the non-significant Shapiro-Wilk test of normality on the model residuals $(W = 0.972, p = 0.101)$ indicated that the dependent variable was not statistically significantly different from a normal distribution and no outliers were identified. A non-significant Levene’s test indicated no violation of the homogeneity of the residual variances for all groups $(F[1, 73] = 2.675, p = 0.106)$.
+
 
 #### Conduct omnibus ANOVA (w effect size)
 
@@ -1328,7 +1326,7 @@ ANOVA Table (type II tests)
 1 SRPed_ANV   1  72 39.696 0.0000000209     * 0.355
 2 Centering   1  72 10.304 0.0020000000     * 0.125
 ```
->There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course $(F [1,72] = 39.696, p < .001, \eta^2 = 0.355)$ as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class $(F]1,72) = 10.304, p = 0.002, \eta^2 = 0.125)$. Considering that we interpret values $eta^2$ values  of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results.
+>There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course $(F [1,72] = 39.696, p < .001, \eta^2 = 0.355)$ as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class $(F [1,72]) = 10.304, p = 0.002, \eta^2 = 0.125)$. Considering that we interpret values $eta^2$ values  of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results.
 
 #### Conduct one set of follow-up tests; narrate your choice
 
@@ -1349,7 +1347,7 @@ emmeans_MLTV
 ```
 Not surprisingly (since this single pairwise comparison is redundant with the omnibus ANCOVA), results suggest a statistically significant difference between the pre- and re-centered stages in the multivariate class.
 
-with this script I can obtain the covariate-adjusted (i.e., estimated marginal) means.
+With this script I can obtain the covariate-adjusted (i.e., estimated marginal) means.
 
 
 ```r
@@ -1422,7 +1420,7 @@ ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = "Centering", y = "emmean"
     ggpubr::stat_pvalue_manual(emmeans_MLTV, hide.ns = TRUE, tip.length = 0.02, , y.position = c(5.0))
 ```
 
-![](11-ANCOVA_files/figure-docx/unnamed-chunk-60-1.png)<!-- -->
+![](11-ANCOVA_files/figure-docx/unnamed-chunk-61-1.png)<!-- -->
 
 
 

@@ -1117,11 +1117,12 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |**Totals**                               |      45       |_____  |          
 
 
+
 ## Homeworked Example
 
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.*
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
 ### Working the Problem with R and R Packages
 
@@ -1131,9 +1132,11 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 I want to ask the question, what are the effects of intentional recentering on students evaluations of socially responsive pedagogy as they progress through three doctoral courses in statistics.  My design is a 3 x 2 ANOVA:
 
-* Within-subjects factor:  student as they progress through ANOVA, Multivariate, Psychometrics
+* Within-subjects factor:  student as they progress through ANOVA, multivariate, psychometrics
 * Between-subjects factor: recentering status of the class (Pre, Re)
 * Continuous DV: SRPed (socially responsive pedagogy)
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.*
 
 #### Simulate (or import) and format data
 
@@ -1143,7 +1146,7 @@ First I import the larger dataset.
 big <- readRDS("ReC.rds")
 ```
 
-The SRPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
+The SRPed (socially responsive pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
 ```r
@@ -1225,12 +1228,11 @@ Let's get an a priori peek at what we're doing:
 
 
 ```r
-mixt_box <- ggpubr::ggboxplot(mixt_df, x = "Course", y = "SRPed", color = "Centering", palette = "jco", xlab = "Statistics Sequence", ylab = "Socially and Culturally Responsive Pedagogy", title = "Socially Responsive Course Evaluations as a Function of Centering and Time"
-    )
+mixt_box <- ggpubr::ggboxplot(mixt_df, x = "Course", y = "SRPed", color = "Centering", palette = "jco", xlab = "Statistics Sequence", ylab = "Socially Responsive Pedagogy", title = "Socially Responsive Course Evaluations as a Function of Centering and Time", add = "jitter")
 mixt_box
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-53-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-54-1.png)<!-- -->
 
 #### Evaluate statistical assumptions
 
@@ -1269,7 +1271,7 @@ Across all 6 conditions:
 
 **Are the model residuals normally distributed?**
 
-I can use the Shapiro-Wilk test to formally investigate the normality assumption. Examining the distribution of the model resdiduals is one of the most efficient ways to do this. First, I need to run the model and extract the residuals.
+I can use the Shapiro-Wilk test to formally investigate the normality assumption. Examining the distribution of the model residuals is one of the most efficient ways to do this. First, I need to run the model and extract the residuals.
 
 
 ```r
@@ -1311,12 +1313,11 @@ Our test result is $W = 0.859, p < .001.$.  The significant *p* value indicates 
 
 We can plot the residuals to "see" how bad it is:
 
-
 ```r
 hist(mixt_resid)
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-59-1.png)<!-- -->
 Like the data itself, the residuals have a negative skew with a pile-up of scores on the "high" side.
 
 
@@ -1324,7 +1325,7 @@ Like the data itself, the residuals have a negative skew with a pile-up of score
 qqnorm(mixt_resid)
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-59-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-60-1.png)<!-- -->
 Similarly, we see that the residuals sharply deviate from the diagonal at the top.
 
 **Is there evidence of outliers?  Are they extreme?**
@@ -1352,7 +1353,7 @@ mixt_df%>%
 8 Psychometrics Pre          77  3.75 TRUE       FALSE     
 9 Psychometrics Re           11  2.25 TRUE       FALSE     
 ```
-There are 9 rows of outlier; none are extreme. Cross-referencing back to the boxplot, these are on the low side of evaluations. As an instructor, it seems important to retain the voices that rated socially responsive pedagogy lower than the other students. Although they contribute to non-normality, to exclude them would bias the data in a positive direction.
+There are 9 rows of outliers; none are extreme. Cross-referencing back to the boxplot, these are on the low side of evaluations. As an instructor, it seems important to retain the voices that rated socially responsive pedagogy lower than the other students. Although they contribute to non-normality, to exclude them would bias the data in a positive direction.
 
 **Are the variances of the dependent variable equivalent across all combinations of the factors?**
 
@@ -1379,7 +1380,7 @@ Before moving on I will write up the portion of the APA results section that eva
 
 >We conducted a 2 X 3 mixed design ANOVA to evaluate students' evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).
 
->Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline [-@kline_data_2016] there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was $W = 0.859, p < .001.$and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives. 
+>Mixed design ANOVA has a numer of assumptions related to both the within-subjects and between-subjects elements. Data are expected to be normaly distributed at each level of the design. Relative to the thresholds identified by Kline [-@kline_data_2016] there was no evidence of skew (all values were at or below the absolute value of 1.909) and kurtosis (all values were below the absolute value of 3.680). The Shapiro-Wilk test applied to model residuals provided a formal test of normality. The test result was $W = 0.859, p < .001.$ and indicated a violation of the the normality assumption. Visual inspection of boxplots for each wave of the design, assisted by the rstatix::identify_outliers() function (which reports values above Q3 + 1.5xIQR or below Q1 - 1.5xIQR, where IQR is the interquartile range) indicated 9 outliers; none of these at the extreme level. All outliers were among the lowest student ratings of socially responsive pedagogy. We determined that it was important that the dataset retain these perspectives. 
 
 > Regardin the homogeneity of variance assumption, Levene's test indicated a violation between the pre- and re- centering conditions in the multivariate class $(F[1, 64] = 4.787, p = 0.032)$. There was no indication of assumption violation for the ANOVA class $(F[1, 64] = 0.176, p = 0.676)$ nor the psychometrics class $(F[1, 64] = 0.320, p = 0.573)$. PLACEHOLDER FOR SPHERICITY ASSUMPTION.
 
@@ -1469,7 +1470,7 @@ mixt_df%>%
 3 SRPed Pre    Re       0.233 Psychometrics    34    32 small     
 ```
 
->We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green & Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA $(MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)$ and psychometrics $(MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)$ courses, there was a statistically significant difference in the multivariate course $(MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)$ . 
+>We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green & Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA $(MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)$ and psychometrics $(MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)$ courses, there was a statistically significant difference in the multivariate course $(MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)$ which suggested an increase in ratings of socially responsive pedagogy. 
 
 #### Describe approach for managing Type I error 
 
@@ -1522,7 +1523,7 @@ mixt_box <- mixt_box + ggpubr::stat_pvalue_manual(Simple_Course, label = "p.sign
 mixt_box
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-66-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size.
 

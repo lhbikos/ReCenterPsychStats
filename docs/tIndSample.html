@@ -716,7 +716,7 @@ div.csl-indent {
 <div id="tIndSample" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Independent Samples <em>t</em>-test<a href="tIndSample.html#tIndSample" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=844ba297-e9ce-48cc-a49f-af01012b7900">Screencasted Lecture Link</a></p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="tIndSample.html#cb348-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)  <span class="co">#eliminates scientific notation</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="tIndSample.html#cb356-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)  <span class="co">#eliminates scientific notation</span></span></code></pre></div>
 <p>Researchers may wish to know if there are differences on a given outcome variable as a result of a dichotomous grouping variable. For example, during the COVID-19 pandemic, my research team asked if there were differences in the percentage of time that individuals wore facemasks as a result of 2020 Presidential voting trends (Republican or Democratic) of their county of residence. In these simple designs, the independent samples <em>t</em>-test could be used to test the researchers’ hypotheses.</p>
 <div id="navigating-this-lesson-3" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Navigating this Lesson<a href="tIndSample.html#navigating-this-lesson-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -761,15 +761,15 @@ div.csl-indent {
 <div id="packages-1" class="section level3 hasAnchor" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Packages<a href="tIndSample.html#packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="tIndSample.html#cb349-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
-<span id="cb349-2"><a href="tIndSample.html#cb349-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
-<span id="cb349-3"><a href="tIndSample.html#cb349-3" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
-<span id="cb349-4"><a href="tIndSample.html#cb349-4" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
-<span id="cb349-5"><a href="tIndSample.html#cb349-5" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)}</span></span>
-<span id="cb349-6"><a href="tIndSample.html#cb349-6" tabindex="-1"></a><span class="co"># if(!require(pwr)){install.packages(&#39;pwr&#39;)}</span></span>
-<span id="cb349-7"><a href="tIndSample.html#cb349-7" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span>
-<span id="cb349-8"><a href="tIndSample.html#cb349-8" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
-<span id="cb349-9"><a href="tIndSample.html#cb349-9" tabindex="-1"></a><span class="co"># if(!require(rstatix)){install.packages(&#39;rstatix&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="tIndSample.html#cb357-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
+<span id="cb357-2"><a href="tIndSample.html#cb357-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
+<span id="cb357-3"><a href="tIndSample.html#cb357-3" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
+<span id="cb357-4"><a href="tIndSample.html#cb357-4" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
+<span id="cb357-5"><a href="tIndSample.html#cb357-5" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)}</span></span>
+<span id="cb357-6"><a href="tIndSample.html#cb357-6" tabindex="-1"></a><span class="co"># if(!require(pwr)){install.packages(&#39;pwr&#39;)}</span></span>
+<span id="cb357-7"><a href="tIndSample.html#cb357-7" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span>
+<span id="cb357-8"><a href="tIndSample.html#cb357-8" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
+<span id="cb357-9"><a href="tIndSample.html#cb357-9" tabindex="-1"></a><span class="co"># if(!require(rstatix)){install.packages(&#39;rstatix&#39;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="introducing-the-independent-samples-t-test" class="section level2 hasAnchor" number="5.2">
@@ -842,39 +842,39 @@ If the data meets the assumptions associated with the research design (e.g., ind
 <div id="data-simulation-1" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Data Simulation<a href="tIndSample.html#data-simulation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the data below, I have simulated the verbal and non-verbal communication variables using the means and standard deviations listed in the article. Further, I truncated them to fit within the assigned range. I created 33 sets each and assigned them to the Black or White level of the grouping variable.</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="tIndSample.html#cb350-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220815</span>)</span>
-<span id="cb350-2"><a href="tIndSample.html#cb350-2" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
-<span id="cb350-3"><a href="tIndSample.html#cb350-3" tabindex="-1"></a>Verbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">8.37</span>, <span class="at">sd =</span> <span class="fl">3.36</span>), <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">8.41</span>, <span class="at">sd =</span> <span class="fl">3.21</span>))</span>
-<span id="cb350-4"><a href="tIndSample.html#cb350-4" tabindex="-1"></a><span class="co"># set upper bound</span></span>
-<span id="cb350-5"><a href="tIndSample.html#cb350-5" tabindex="-1"></a>Verbal[Verbal <span class="sc">&gt;</span> <span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="dv">27</span></span>
-<span id="cb350-6"><a href="tIndSample.html#cb350-6" tabindex="-1"></a><span class="co"># set lower bound</span></span>
-<span id="cb350-7"><a href="tIndSample.html#cb350-7" tabindex="-1"></a>Verbal[Verbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb350-8"><a href="tIndSample.html#cb350-8" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
-<span id="cb350-9"><a href="tIndSample.html#cb350-9" tabindex="-1"></a>Nonverbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">2.68</span>, <span class="at">sd =</span> <span class="fl">0.84</span>), <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">2.93</span>,</span>
-<span id="cb350-10"><a href="tIndSample.html#cb350-10" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.77</span>))</span>
-<span id="cb350-11"><a href="tIndSample.html#cb350-11" tabindex="-1"></a><span class="co"># set upper bound</span></span>
-<span id="cb350-12"><a href="tIndSample.html#cb350-12" tabindex="-1"></a>Nonverbal[Nonverbal <span class="sc">&gt;</span> <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb350-13"><a href="tIndSample.html#cb350-13" tabindex="-1"></a><span class="co"># set lower bound</span></span>
-<span id="cb350-14"><a href="tIndSample.html#cb350-14" tabindex="-1"></a>Nonverbal[Nonverbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb350-15"><a href="tIndSample.html#cb350-15" tabindex="-1"></a></span>
-<span id="cb350-16"><a href="tIndSample.html#cb350-16" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">66</span>))</span>
-<span id="cb350-17"><a href="tIndSample.html#cb350-17" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
-<span id="cb350-18"><a href="tIndSample.html#cb350-18" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
-<span id="cb350-19"><a href="tIndSample.html#cb350-19" tabindex="-1"></a>PatientRace <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Black&quot;</span>, <span class="dv">33</span>), <span class="fu">rep</span>(<span class="st">&quot;White&quot;</span>, <span class="dv">33</span>))</span>
-<span id="cb350-20"><a href="tIndSample.html#cb350-20" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
-<span id="cb350-21"><a href="tIndSample.html#cb350-21" tabindex="-1"></a>dfIndSamples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, PatientRace, Verbal, Nonverbal)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="tIndSample.html#cb358-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220815</span>)</span>
+<span id="cb358-2"><a href="tIndSample.html#cb358-2" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb358-3"><a href="tIndSample.html#cb358-3" tabindex="-1"></a>Verbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">8.37</span>, <span class="at">sd =</span> <span class="fl">3.36</span>), <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">8.41</span>, <span class="at">sd =</span> <span class="fl">3.21</span>))</span>
+<span id="cb358-4"><a href="tIndSample.html#cb358-4" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb358-5"><a href="tIndSample.html#cb358-5" tabindex="-1"></a>Verbal[Verbal <span class="sc">&gt;</span> <span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="dv">27</span></span>
+<span id="cb358-6"><a href="tIndSample.html#cb358-6" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb358-7"><a href="tIndSample.html#cb358-7" tabindex="-1"></a>Verbal[Verbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb358-8"><a href="tIndSample.html#cb358-8" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb358-9"><a href="tIndSample.html#cb358-9" tabindex="-1"></a>Nonverbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">2.68</span>, <span class="at">sd =</span> <span class="fl">0.84</span>), <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="fl">2.93</span>,</span>
+<span id="cb358-10"><a href="tIndSample.html#cb358-10" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.77</span>))</span>
+<span id="cb358-11"><a href="tIndSample.html#cb358-11" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb358-12"><a href="tIndSample.html#cb358-12" tabindex="-1"></a>Nonverbal[Nonverbal <span class="sc">&gt;</span> <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb358-13"><a href="tIndSample.html#cb358-13" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb358-14"><a href="tIndSample.html#cb358-14" tabindex="-1"></a>Nonverbal[Nonverbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb358-15"><a href="tIndSample.html#cb358-15" tabindex="-1"></a></span>
+<span id="cb358-16"><a href="tIndSample.html#cb358-16" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">66</span>))</span>
+<span id="cb358-17"><a href="tIndSample.html#cb358-17" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
+<span id="cb358-18"><a href="tIndSample.html#cb358-18" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
+<span id="cb358-19"><a href="tIndSample.html#cb358-19" tabindex="-1"></a>PatientRace <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Black&quot;</span>, <span class="dv">33</span>), <span class="fu">rep</span>(<span class="st">&quot;White&quot;</span>, <span class="dv">33</span>))</span>
+<span id="cb358-20"><a href="tIndSample.html#cb358-20" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
+<span id="cb358-21"><a href="tIndSample.html#cb358-21" tabindex="-1"></a>dfIndSamples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, PatientRace, Verbal, Nonverbal)</span></code></pre></div>
 <p>With our data in hand, let’s inspect its structure (i.e., the measurement scales for the variables) to see if they are appropriate.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="tIndSample.html#cb351-1" tabindex="-1"></a><span class="fu">str</span>(dfIndSamples)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="tIndSample.html#cb359-1" tabindex="-1"></a><span class="fu">str</span>(dfIndSamples)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   66 obs. of  4 variables:
  $ ID         : Factor w/ 66 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
  $ PatientRace: chr  &quot;Black&quot; &quot;Black&quot; &quot;Black&quot; &quot;Black&quot; ...
  $ Verbal     : num  2.76 5.73 6.81 8.68 9.1 ...
  $ Nonverbal  : num  3.41 4.02 1.62 2.52 2.11 ...</code></pre>
 <p>The verbal and nonverbal variables are quasi-interval scale variables. Therefore, the numerical scale is correctly assigned by R. In contrast, patient race is a nominal variable and should be a factor. In their article, Elliot et al. <span class="citation">(<a href="#ref-elliott_differences_2016">2016</a>)</span> assigned Black as the baseline variable and White as the comparison variable. Because R orders factors alphabetically, and “Black” precedes “White”, this would happen automatically. Because creating ordered factors is a useful skill, I will write out the full code.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="tIndSample.html#cb353-1" tabindex="-1"></a>dfIndSamples<span class="sc">$</span>PatientRace <span class="ot">&lt;-</span> <span class="fu">factor</span>(dfIndSamples<span class="sc">$</span>PatientRace, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
-<span id="cb353-2"><a href="tIndSample.html#cb353-2" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="tIndSample.html#cb361-1" tabindex="-1"></a>dfIndSamples<span class="sc">$</span>PatientRace <span class="ot">&lt;-</span> <span class="fu">factor</span>(dfIndSamples<span class="sc">$</span>PatientRace, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
+<span id="cb361-2"><a href="tIndSample.html#cb361-2" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
 <p>Let’s again check the formatting of the variables:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="tIndSample.html#cb354-1" tabindex="-1"></a><span class="fu">str</span>(dfIndSamples)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="tIndSample.html#cb362-1" tabindex="-1"></a><span class="fu">str</span>(dfIndSamples)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   66 obs. of  4 variables:
  $ ID         : Factor w/ 66 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
  $ PatientRace: Factor w/ 2 levels &quot;Black&quot;,&quot;White&quot;: 1 1 1 1 1 1 1 1 1 1 ...
@@ -883,22 +883,22 @@ If the data meets the assumptions associated with the research design (e.g., ind
 <p>The four variables of interest are now correctly formatted as <em>num</em> and <em>factor</em>.</p>
 <p>Below is code for saving (and then importing) the data in .csv or .rds files. I make choices about saving data based on what I wish to do with the data. If I want to manipulate the data outside of R, I will save it as a .csv file. It is easy to open .csv files in Excel. A limitation of the .csv format is that it does not save any restructuring or reformatting of variables. For this lesson, this is not an issue.</p>
 <p>Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations. If you have simulated the data (above), you do not need to save and then re-import the data.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="tIndSample.html#cb356-1" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfIndSamples, file</span></span>
-<span id="cb356-2"><a href="tIndSample.html#cb356-2" tabindex="-1"></a><span class="co"># = &#39;dfIndSamples.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE)</span></span>
-<span id="cb356-3"><a href="tIndSample.html#cb356-3" tabindex="-1"></a><span class="co"># at this point you could clear your environment and then bring the</span></span>
-<span id="cb356-4"><a href="tIndSample.html#cb356-4" tabindex="-1"></a><span class="co"># data back in as a .csv reading the data back in as a .csv file</span></span>
-<span id="cb356-5"><a href="tIndSample.html#cb356-5" tabindex="-1"></a><span class="co"># dfIndSamples&lt;- read.csv (&#39;dfIndSamples.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="tIndSample.html#cb364-1" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfIndSamples, file</span></span>
+<span id="cb364-2"><a href="tIndSample.html#cb364-2" tabindex="-1"></a><span class="co"># = &#39;dfIndSamples.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE)</span></span>
+<span id="cb364-3"><a href="tIndSample.html#cb364-3" tabindex="-1"></a><span class="co"># at this point you could clear your environment and then bring the</span></span>
+<span id="cb364-4"><a href="tIndSample.html#cb364-4" tabindex="-1"></a><span class="co"># data back in as a .csv reading the data back in as a .csv file</span></span>
+<span id="cb364-5"><a href="tIndSample.html#cb364-5" tabindex="-1"></a><span class="co"># dfIndSamples&lt;- read.csv (&#39;dfIndSamples.csv&#39;, header = TRUE)</span></span></code></pre></div>
 <p>The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="tIndSample.html#cb357-1" tabindex="-1"></a><span class="co"># saveRDS(dfIndSamples, &#39;dfIndSamples.rds&#39;) dfIndSamples &lt;-</span></span>
-<span id="cb357-2"><a href="tIndSample.html#cb357-2" tabindex="-1"></a><span class="co"># readRDS(&#39;dfIndSamples.rds&#39;) str(dfIndSamples)</span></span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="tIndSample.html#cb365-1" tabindex="-1"></a><span class="co"># saveRDS(dfIndSamples, &#39;dfIndSamples.rds&#39;) dfIndSamples &lt;-</span></span>
+<span id="cb365-2"><a href="tIndSample.html#cb365-2" tabindex="-1"></a><span class="co"># readRDS(&#39;dfIndSamples.rds&#39;) str(dfIndSamples)</span></span></code></pre></div>
 </div>
 <div id="quick-peek-at-the-data-1" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Quick Peek at the Data<a href="tIndSample.html#quick-peek-at-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plotting the data is a helpful early step in any data analysis. Further, visualizing the data can help us with a conceptual notion of the statistic we are utilizing. The <em>ggpubr</em> package is one of my go-to-tools for quick and easy plots of data. Boxplots are terrific for data that is grouped. A helpful <a href="https://rpkgs.datanovia.com/ggpubr/">tutorial</a> for boxplots (and related plots) can be found at datanovia.</p>
 <p>In the code below I introduced the colors by identifying the grouping variable and assigning colors. Those color codes are the “Hex” codes you find in the custom color palette in your word processing program.</p>
 <p>I am also fond of plotting each case with the command, <em>add = “jitter”</em>. To increase your comfort and confidence in creating figures (and with other tools) try deleting and adding back in different commands. This is how to distinguish between the essential and the elective elements of the code.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="tIndSample.html#cb358-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfIndSamples, <span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>, <span class="at">color =</span> <span class="st">&quot;PatientRace&quot;</span>,</span>
-<span id="cb358-2"><a href="tIndSample.html#cb358-2" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="tIndSample.html#cb366-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfIndSamples, <span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>, <span class="at">color =</span> <span class="st">&quot;PatientRace&quot;</span>,</span>
+<span id="cb366-2"><a href="tIndSample.html#cb366-2" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
 <p><img src="05-tIndSample_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 The box of the boxplot covers the middle 50% (the interquartile range). The horizontal line is the median. The whiskers represent three standard deviations above and below the mean. Any dots are outliers.</p>
 </div>
@@ -924,12 +924,12 @@ There are actually two formulations of the <em>t</em>-test. Student’s version 
 <p><span class="math display">\[t = \frac{\bar{X_{1}} -\bar{X_{2}}}{\sqrt{\frac{s_{1}^{2}}{N_{1}}+\frac{s_{2}^{2}}{N_{2}}}}\]</span>
 Let’s first calculate the SE – the value of the denominator. For this, we need the standard deviations for the dependent variable (verbal) for both levels of patient race. We obtained these earlier when we used the <em>describeBy()</em> function in the <em>psych</em> package.</p>
 <p>The standard deviation of the verbal variable for the levels in the patient race group were 2.99 for Black patients and 3.20 for White patients; the <em>N</em> in both our groups is 33. We can do the denominator math right in an R chunk:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="tIndSample.html#cb359-1" tabindex="-1"></a><span class="fu">sqrt</span>((<span class="fl">2.985</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">33</span>) <span class="sc">+</span> (<span class="fl">3.203</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">33</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="tIndSample.html#cb367-1" tabindex="-1"></a><span class="fu">sqrt</span>((<span class="fl">2.985</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">33</span>) <span class="sc">+</span> (<span class="fl">3.203</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">33</span>))</span></code></pre></div>
 <pre><code>[1] 0.7621627</code></pre>
 <p>Our <em>SE</em> = 0.762</p>
 <p>With the simplification of the denominator, we can easily calculate the independent sample <em>t</em>-test.</p>
 <p><span class="math display">\[t = \frac{\bar{X_{1}} -\bar{X_{2}}}{SE}\]</span></p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="tIndSample.html#cb361-1" tabindex="-1"></a>(<span class="fl">7.615</span> <span class="sc">-</span> <span class="fl">8.891</span>)<span class="sc">/</span><span class="fl">0.762</span></span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="tIndSample.html#cb369-1" tabindex="-1"></a>(<span class="fl">7.615</span> <span class="sc">-</span> <span class="fl">8.891</span>)<span class="sc">/</span><span class="fl">0.762</span></span></code></pre></div>
 <pre><code>[1] -1.674541</code></pre>
 <p>Hopefully, this hand-calculation provided an indication of how the means, standard deviation, and sample sizes contribute to the estimate of this <em>t</em>-test value. Now we ask, “But it is statistically significant?”</p>
 <div id="statistical-significance-1" class="section level4 hasAnchor" number="5.4.2.1">
@@ -957,9 +957,9 @@ Although still used, NHST has its critiques. Among the critiques are the layers 
 </ul>
 <p>In the above linked table of critical values, when the degrees of freedom reaches 30, there larger intervals. We will use the row representing degrees of freedom of 60. If our <em>t</em>-test value is lower than an absolute value of -2 or greater than the absolute value of 2, then our means are statistically significantly different from each other. In our case, we have not achieved statistical significance and we cannot say that the means are different. The <em>t</em> string would look like this: <span class="math inline">\(t(64) = -1.675, p &gt; .05\)</span></p>
 <p>We can also use the <em>qt()</em> function in base R. In the script below, I have indicated an alpha of .05. The “2” that follows indicates I want a two-tailed test. The 64 represents my degrees of freedom (<span class="math inline">\(N-2\)</span>). In a two-tailed test, the regions of rejection will be below the lowerbound (lower.tail=TRUE) and above the upperbound (lower.tail=FALSE).</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="tIndSample.html#cb363-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="tIndSample.html#cb371-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] -1.99773</code></pre>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="tIndSample.html#cb365-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="tIndSample.html#cb373-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 1.99773</code></pre>
 <p>Given the large intervals, it makes sense that this test critical value is slightly different than the one from the table.</p>
 </div>
@@ -974,14 +974,14 @@ Although still used, NHST has its critiques. Among the critiques are the layers 
 <p><span class="math display">\[(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)\]</span>
 Let’s calculate it:</p>
 <p>First, let’s get the proper <em>t</em> critical value. Even though these are identical to the one above, I am including them again. Why? Because if the original hypothesis had been one-tailed, we would need to calculate a two-tailed confidence interval; this is a placeholder to remind us.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="tIndSample.html#cb367-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="tIndSample.html#cb375-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] -1.99773</code></pre>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="tIndSample.html#cb369-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="tIndSample.html#cb377-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">64</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 1.99773</code></pre>
 <p>With this in hand, let’s calculate the confidence intervals.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="tIndSample.html#cb371-1" tabindex="-1"></a>(<span class="fl">7.614</span> <span class="sc">-</span> <span class="fl">8.891</span>) <span class="sc">-</span> (<span class="fl">1.99773</span> <span class="sc">*</span> <span class="fl">0.762</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="tIndSample.html#cb379-1" tabindex="-1"></a>(<span class="fl">7.614</span> <span class="sc">-</span> <span class="fl">8.891</span>) <span class="sc">-</span> (<span class="fl">1.99773</span> <span class="sc">*</span> <span class="fl">0.762</span>)</span></code></pre></div>
 <pre><code>[1] -2.79927</code></pre>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="tIndSample.html#cb373-1" tabindex="-1"></a>(<span class="fl">7.614</span> <span class="sc">-</span> <span class="fl">8.891</span>) <span class="sc">+</span> (<span class="fl">1.99773</span> <span class="sc">*</span> <span class="fl">0.762</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="tIndSample.html#cb381-1" tabindex="-1"></a>(<span class="fl">7.614</span> <span class="sc">-</span> <span class="fl">8.891</span>) <span class="sc">+</span> (<span class="fl">1.99773</span> <span class="sc">*</span> <span class="fl">0.762</span>)</span></code></pre></div>
 <pre><code>[1] 0.2452703</code></pre>
 <p>These values indicate the range of scores in which we are 95% confident that our true mean difference (<span class="math inline">\(\bar{X_{1}}-\bar{X_{2}}\)</span>) lies. Stated another way, we are 95% confident that the true mean difference lies between -2.80 and 0.25 Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant <em>p</em> value. For these types of statistics, the 95% confidence interval and <em>p</em> value will always be yoked together.</p>
 </div>
@@ -990,13 +990,13 @@ Let’s calculate it:</p>
 <p>Whereas <em>p</em> values address statistical significance, effect sizes address the magnitude of difference. There are two common effect sizes that are used with the independent samples <em>t</em>-test. The first is the <em>d</em> statistic, which measures, in standard deviation units, the distance between the two means. The simplest formula involves the <em>t</em> value and sample sizes:</p>
 <p><span class="math display">\[d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}\]</span></p>
 <p>With a <em>t</em> value of -1.675 and sample sizes at 33 each, we can easily calculate this. Small, medium, and large sizes for the <em>d</em> statistic are .2, .5, and .8, respectively (irrespective of sign).</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="tIndSample.html#cb375-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">1.675</span> <span class="sc">*</span> (<span class="fu">sqrt</span>((<span class="dv">33</span> <span class="sc">+</span> <span class="dv">33</span>)<span class="sc">/</span>(<span class="dv">33</span> <span class="sc">*</span> <span class="dv">33</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="tIndSample.html#cb383-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">1.675</span> <span class="sc">*</span> (<span class="fu">sqrt</span>((<span class="dv">33</span> <span class="sc">+</span> <span class="dv">33</span>)<span class="sc">/</span>(<span class="dv">33</span> <span class="sc">*</span> <span class="dv">33</span>)))</span></code></pre></div>
 <pre><code>[1] -0.4123565</code></pre>
 <p>Our value, -0.412 suggests a small-to-medium effect size. We might wonder why it wasn’t statistically significant? Later we will discuss power and the relationship between sample size, one vs. two-tailed hypotheses, and effect sizes.</p>
 <p>Eta square, <span class="math inline">\(\eta^2\)</span> is the proportion of variance of a test variable that is a function of the grouping variable. A value of 0 indicates that the difference in the mean scores is equal to 0, where a value of 1 indicates that the sample means differ, and the test scores do not differ within each group. The following equation can be used to compute <span class="math inline">\(\eta^2\)</span>. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
 <p><span class="math display">\[\eta^{2} =\frac{t^{2}}{t^{2}+(N_{1}+N_{2}-2)}\]</span>
 Let’s calculate it:</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="tIndSample.html#cb377-1" tabindex="-1"></a>(<span class="sc">-</span><span class="fl">1.6745</span> <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.6745</span>)<span class="sc">/</span>((<span class="sc">-</span><span class="fl">1.6745</span> <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.6745</span>) <span class="sc">+</span> (<span class="dv">33</span> <span class="sc">+</span> <span class="dv">33</span> <span class="sc">-</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="tIndSample.html#cb385-1" tabindex="-1"></a>(<span class="sc">-</span><span class="fl">1.6745</span> <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.6745</span>)<span class="sc">/</span>((<span class="sc">-</span><span class="fl">1.6745</span> <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.6745</span>) <span class="sc">+</span> (<span class="dv">33</span> <span class="sc">+</span> <span class="dv">33</span> <span class="sc">-</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>[1] 0.04197282</code></pre>
 <p>Similarly, the <span class="math inline">\(\eta^2\)</span> is small-to-medium.</p>
 </div>
@@ -1033,13 +1033,13 @@ Let’s calculate it:</p>
 <div id="is-the-dependent-variable-normally-distributed-at-each-level-of-the-grouping-variable" class="section level4 hasAnchor" number="5.5.1.1">
 <h4><span class="header-section-number">5.5.1.1</span> Is the dependent variable normally distributed at each level of the grouping variable?<a href="tIndSample.html#is-the-dependent-variable-normally-distributed-at-each-level-of-the-grouping-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can begin to evaluate the assumption of normality by obtaining the descriptive statistics with the <em>describe()</em> function from the <em>psych</em> package.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="tIndSample.html#cb379-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfIndSamples<span class="sc">$</span>Verbal, <span class="at">type =</span> <span class="dv">1</span>)  <span class="co">#type=1 produces the type of skew and kurtosis associated with Kline&#39;s interpretive guidelines</span></span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="tIndSample.html#cb387-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfIndSamples<span class="sc">$</span>Verbal, <span class="at">type =</span> <span class="dv">1</span>)  <span class="co">#type=1 produces the type of skew and kurtosis associated with Kline&#39;s interpretive guidelines</span></span></code></pre></div>
 <pre><code>   vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
 X1    1 66 8.25 3.14   7.93     8.2 3.08 0.35 19.31 18.96 0.44     1.34 0.39</code></pre>
 <p>From this, we learn that the overall verbal mean is 8.25 with a standard deviation of 3.14. The values for skew (0.44) and kurtosis (1.34) fall below the areas of concern (below the absolute value of 3 for skew; below the absolute values of 10 for kurtosis) identified by Kline <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span>.</p>
 <p>Recall that one of the assumptions for independent samples <em>t</em>-test is that the variable of interest is normally distributed within each level of the grouping variable. The <em>describeBy()</em> function in the <em>psych</em> package allows us to obtain these skew and kurtosis at both levels of the grouping variable.</p>
 <p>If we feed the function the entire df, it will give us results for each level of PatientRace for each variable, including variables for which such disaggregation is nonsensible (i.e., ID, PatientRace). If we had a large df, we might want to create a tiny df that only includes our variable(s) of interest. For now, it is not problematic to include all the variables.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="tIndSample.html#cb381-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(dfIndSamples <span class="sc">~</span> PatientRace, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="tIndSample.html#cb389-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(dfIndSamples <span class="sc">~</span> PatientRace, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>              item group1 vars  n      mean        sd    median   trimmed
 ID*1             1  Black    1 33 17.000000 9.6695398 17.000000 17.000000
 ID*2             2  White    1 33 50.000000 9.6695398 50.000000 50.000000
@@ -1069,7 +1069,7 @@ Nonverbal1    0.1610421
 Nonverbal2    0.1218795</code></pre>
 <p>In this analysis we are interested in the verbal variable. We see that patients who are Black received verbal interactions from physicians that were quantified by a mean score of 7.61 (<em>SD</em> = 2.99); physicians’ scores for White patients were 8.89 (<em>SD</em> = 3.20). Skew and kurtosis values for the verbal ratings with Black patients were -.37 and -.14, respectively. They were 1.07 and 1.54 for White patients. As before, these fall well below the absolute values of 3 (skew) and 10 (kurtosis) that are considered to be concerning.</p>
 <p>Beyond skew and kurtosis, we can formally test for deviations from normality with a Shapiro-Wilk. The script below first groups the data by PatientRace and then applies the <em>rstatix::shapiro_test()</em>. We want the results to be non-significant.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="tIndSample.html#cb383-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#opening this package so I can use the pipes</span></span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="tIndSample.html#cb391-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#opening this package so I can use the pipes</span></span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -1080,10 +1080,10 @@ Nonverbal2    0.1218795</code></pre>
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="tIndSample.html#cb385-1" tabindex="-1"></a>shapiro <span class="ot">&lt;-</span> dfIndSamples <span class="sc">%&gt;%</span></span>
-<span id="cb385-2"><a href="tIndSample.html#cb385-2" tabindex="-1"></a>    <span class="fu">group_by</span>(PatientRace) <span class="sc">%&gt;%</span></span>
-<span id="cb385-3"><a href="tIndSample.html#cb385-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(Verbal)</span>
-<span id="cb385-4"><a href="tIndSample.html#cb385-4" tabindex="-1"></a>shapiro</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="tIndSample.html#cb393-1" tabindex="-1"></a>shapiro <span class="ot">&lt;-</span> dfIndSamples <span class="sc">%&gt;%</span></span>
+<span id="cb393-2"><a href="tIndSample.html#cb393-2" tabindex="-1"></a>    <span class="fu">group_by</span>(PatientRace) <span class="sc">%&gt;%</span></span>
+<span id="cb393-3"><a href="tIndSample.html#cb393-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(Verbal)</span>
+<span id="cb393-4"><a href="tIndSample.html#cb393-4" tabindex="-1"></a>shapiro</span></code></pre></div>
 <pre><code># A tibble: 2 × 4
   PatientRace variable statistic      p
   &lt;fct&gt;       &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
@@ -1096,7 +1096,7 @@ Nonverbal2    0.1218795</code></pre>
 <h4><span class="header-section-number">5.5.1.2</span> Are the variances of the dependent variable similar across the levels of the grouping factor?<a href="tIndSample.html#are-the-variances-of-the-dependent-variable-similar-across-the-levels-of-the-grouping-factor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>One of the assumptions of the independent samples <em>t</em>-test is that the variances of the dependent variable (verbal communication) are similar for both levels of the PatientRace factor. We can use the Levene’s test to do this. We want this value to be non-significant <span class="math inline">\((p &gt; .05)\)</span>. If violated, we we can use the Welch’s test because it is robust to the violation of the homogeneity of variance.</p>
 <p>Using <em>rstatix::levene_test()</em>, we simply need to point to the data, provide a “formula” in the form of “dependent variable by grouping variable,” and specify about how to center the data. The median is a commonly used because it provides a more robust test.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="tIndSample.html#cb387-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">levene_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">center =</span> median)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="tIndSample.html#cb395-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">levene_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">center =</span> median)</span></code></pre></div>
 <pre><code># A tibble: 1 × 4
     df1   df2 statistic     p
   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -1136,7 +1136,7 @@ Nonverbal2    0.1218795</code></pre>
 <li>the third element, “var.equal=TRUE” means that we are using Student’s formulation (because we did not violate the homogeneity of variance assumption)</li>
 <li>specifying “detailed = TRUE” will produce the 95% confidence interval around the difference in the two means</li>
 </ul>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="tIndSample.html#cb389-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="tIndSample.html#cb397-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 15
   estimate estimate1 estimate2 .y.    group1 group2    n1    n2 statistic      p
 *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -1145,7 +1145,7 @@ Nonverbal2    0.1218795</code></pre>
 #   alternative &lt;chr&gt;</code></pre>
 <p>From this output we can start to draft our <em>t</em> string: <span class="math inline">\(t(64) = -1.675, p = 0.099, CI95(-2.80, 0.25)\)</span>.</p>
 <p>Separately, we must request the effect size. Earlier in the lesson we calculated both Cohen’s <em>d</em> and eta-squared. Unfortunately, the <em>rstatix</em> package only offers the Cohen’s <em>d</em> for <em>t</em>-tests. If you wanted an eta-squared, it would be easy enough to hand-calculate (or obtain from another R package).</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="tIndSample.html#cb391-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="tIndSample.html#cb399-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.    group1 group2 effsize    n1    n2 magnitude
 * &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
@@ -1156,8 +1156,8 @@ Nonverbal2    0.1218795</code></pre>
 <div id="what-if-we-had-violated-the-homogeneity-of-variance-assumption" class="section level3 hasAnchor" number="5.5.3">
 <h3><span class="header-section-number">5.5.3</span> What if we had violated the homogeneity of variance assumption?<a href="tIndSample.html#what-if-we-had-violated-the-homogeneity-of-variance-assumption" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Earlier we used the Levene’s test to examine the homogeneity of variance assumption. If we had violated it, the Welch’s formulation of the independent sample <em>t</em>-test is available to us. The <em>rstatix</em> package makes this easy. We simply change the <em>var.equal</em> to <em>FALSE</em>. This will produce the Welch’s alternative, which takes into consideration violations of the homogeneity of variance assumption. Conveniently, “Student’s” or “Welch’s” will serve as the first row of the output.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="tIndSample.html#cb393-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb393-2"><a href="tIndSample.html#cb393-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="tIndSample.html#cb401-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb401-2"><a href="tIndSample.html#cb401-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 15
   estimate estimate1 estimate2 .y.    group1 group2    n1    n2 statistic      p
 *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -1179,7 +1179,7 @@ Nonverbal2    0.1218795</code></pre>
 <blockquote>
 <p>Results of the independent samples <em>t</em>-test was nonsignificant, <span class="math inline">\(t(64) = -1.675, p = .099, d = 0.412\)</span>. The 95% confidence interval for the difference in means ranged from -2.799 to 0.246. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.</p>
 </blockquote>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="tIndSample.html#cb395-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.1way.table</span>(PatientRace, Verbal, dfIndSamples)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="tIndSample.html#cb403-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.1way.table</span>(PatientRace, Verbal, dfIndSamples)</span></code></pre></div>
 <pre><code>
 
 Descriptive statistics for Verbal as a function of PatientRace.  
@@ -1196,10 +1196,10 @@ Note. M and SD represent mean and standard deviation, respectively.
 <li>saving it as an object, which I’m naming “pair.test.”</li>
 </ul>
 <p>We could have done this in the initial run (but I didn’t want to make the test-statistic unnecessarily confusing).</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="tIndSample.html#cb397-1" tabindex="-1"></a>ind.test <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb397-2"><a href="tIndSample.html#cb397-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb397-3"><a href="tIndSample.html#cb397-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
-<span id="cb397-4"><a href="tIndSample.html#cb397-4" tabindex="-1"></a>ind.test</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="tIndSample.html#cb405-1" tabindex="-1"></a>ind.test <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfIndSamples, Verbal <span class="sc">~</span> PatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb405-2"><a href="tIndSample.html#cb405-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb405-3"><a href="tIndSample.html#cb405-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
+<span id="cb405-4"><a href="tIndSample.html#cb405-4" tabindex="-1"></a>ind.test</span></code></pre></div>
 <pre><code># A tibble: 1 × 16
   estimate estimate1 estimate2 .y.    group1 group2    n1    n2 statistic      p
      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -1207,16 +1207,16 @@ Note. M and SD represent mean and standard deviation, respectively.
 # ℹ 6 more variables: df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 #   alternative &lt;chr&gt;, p.signif &lt;chr&gt;</code></pre>
 <p>Next, we update the earlier boxplot code with the results from our statistical analyses:</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="tIndSample.html#cb399-1" tabindex="-1"></a>ind.box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfIndSamples, <span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>,</span>
-<span id="cb399-2"><a href="tIndSample.html#cb399-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>,</span>
-<span id="cb399-3"><a href="tIndSample.html#cb399-3" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Verbal Engagement as a Function of Patient Race&quot;</span>)</span>
-<span id="cb399-4"><a href="tIndSample.html#cb399-4" tabindex="-1"></a>ind.test <span class="ot">&lt;-</span> ind.test <span class="sc">%&gt;%</span></span>
-<span id="cb399-5"><a href="tIndSample.html#cb399-5" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>)  <span class="co">#autocomputes p-value labels positions</span></span>
-<span id="cb399-6"><a href="tIndSample.html#cb399-6" tabindex="-1"></a>ind.box <span class="ot">&lt;-</span> ind.box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(ind.test, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>,</span>
-<span id="cb399-7"><a href="tIndSample.html#cb399-7" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">FALSE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">18</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> rstatix<span class="sc">::</span><span class="fu">get_test_label</span>(ind.test,</span>
-<span id="cb399-8"><a href="tIndSample.html#cb399-8" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))  <span class="co">#adds t-test results</span></span>
-<span id="cb399-9"><a href="tIndSample.html#cb399-9" tabindex="-1"></a></span>
-<span id="cb399-10"><a href="tIndSample.html#cb399-10" tabindex="-1"></a>ind.box</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="tIndSample.html#cb407-1" tabindex="-1"></a>ind.box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfIndSamples, <span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Verbal&quot;</span>,</span>
+<span id="cb407-2"><a href="tIndSample.html#cb407-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;PatientRace&quot;</span>, <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>,</span>
+<span id="cb407-3"><a href="tIndSample.html#cb407-3" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Verbal Engagement as a Function of Patient Race&quot;</span>)</span>
+<span id="cb407-4"><a href="tIndSample.html#cb407-4" tabindex="-1"></a>ind.test <span class="ot">&lt;-</span> ind.test <span class="sc">%&gt;%</span></span>
+<span id="cb407-5"><a href="tIndSample.html#cb407-5" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;PatientRace&quot;</span>)  <span class="co">#autocomputes p-value labels positions</span></span>
+<span id="cb407-6"><a href="tIndSample.html#cb407-6" tabindex="-1"></a>ind.box <span class="ot">&lt;-</span> ind.box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(ind.test, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>,</span>
+<span id="cb407-7"><a href="tIndSample.html#cb407-7" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">FALSE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">18</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> rstatix<span class="sc">::</span><span class="fu">get_test_label</span>(ind.test,</span>
+<span id="cb407-8"><a href="tIndSample.html#cb407-8" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))  <span class="co">#adds t-test results</span></span>
+<span id="cb407-9"><a href="tIndSample.html#cb407-9" tabindex="-1"></a></span>
+<span id="cb407-10"><a href="tIndSample.html#cb407-10" tabindex="-1"></a>ind.box</span></code></pre></div>
 <p><img src="05-tIndSample_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 Between the <em>rstatix</em> and <em>ggpubr</em> tools, there is a great deal of flexibility in creating figures. Determining which figure is best will likely depend on your outlet, your audience, your goals, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the “color” and “palette” arguments.</p>
 </div>
@@ -1234,8 +1234,8 @@ Between the <em>rstatix</em> and <em>ggpubr</em> tools, there is a great deal of
 </ul>
 <p>In this script, we must specify <em>all-but-one</em> parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.</p>
 <p>When we conduct a “power analysis” (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, “power=NULL”. Using the data from our results, we learn from this first run, that our statistical power was 0.38. That is, given the value of the mean difference (1.276) we had a 38% chance of detecting a statistically significant effect if there was one. This is consistent with our non-significant result.</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="tIndSample.html#cb400-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.412</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
-<span id="cb400-2"><a href="tIndSample.html#cb400-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="tIndSample.html#cb408-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.412</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb408-2"><a href="tIndSample.html#cb408-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Two-sample t test power calculation 
 
@@ -1247,8 +1247,8 @@ Between the <em>rstatix</em> and <em>ggpubr</em> tools, there is a great deal of
 
 NOTE: n is number in *each* group</code></pre>
 <p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>. Using the results from the simulation of our research vignette, you can see that we would have needed 93 individuals (per group; 186 total) for the <em>p</em> value to be &lt; .05.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="tIndSample.html#cb402-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.412</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
-<span id="cb402-2"><a href="tIndSample.html#cb402-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="tIndSample.html#cb410-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.412</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb410-2"><a href="tIndSample.html#cb410-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Two-sample t test power calculation 
 
@@ -1260,40 +1260,40 @@ NOTE: n is number in *each* group</code></pre>
 
 NOTE: n is number in *each* group</code></pre>
 <p>Given that we had a non-significant result, this is not surprising. None-the-less, let’s try it again. Below I will re-simulate the data for the verbal scores and change only the sample size:</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="tIndSample.html#cb404-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230525</span>)</span>
-<span id="cb404-2"><a href="tIndSample.html#cb404-2" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
-<span id="cb404-3"><a href="tIndSample.html#cb404-3" tabindex="-1"></a>rVerbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">8.37</span>, <span class="at">sd =</span> <span class="fl">3.36</span>), <span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">8.41</span>,</span>
-<span id="cb404-4"><a href="tIndSample.html#cb404-4" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">3.21</span>))</span>
-<span id="cb404-5"><a href="tIndSample.html#cb404-5" tabindex="-1"></a><span class="co"># set upper bound</span></span>
-<span id="cb404-6"><a href="tIndSample.html#cb404-6" tabindex="-1"></a>rVerbal[rVerbal <span class="sc">&gt;</span> <span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb404-7"><a href="tIndSample.html#cb404-7" tabindex="-1"></a><span class="co"># set lower bound</span></span>
-<span id="cb404-8"><a href="tIndSample.html#cb404-8" tabindex="-1"></a>rVerbal[rVerbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb404-9"><a href="tIndSample.html#cb404-9" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
-<span id="cb404-10"><a href="tIndSample.html#cb404-10" tabindex="-1"></a>rNonverbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">2.68</span>, <span class="at">sd =</span> <span class="fl">0.84</span>), <span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">2.93</span>,</span>
-<span id="cb404-11"><a href="tIndSample.html#cb404-11" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.77</span>))</span>
-<span id="cb404-12"><a href="tIndSample.html#cb404-12" tabindex="-1"></a><span class="co"># set upper bound</span></span>
-<span id="cb404-13"><a href="tIndSample.html#cb404-13" tabindex="-1"></a>rNonverbal[rNonverbal <span class="sc">&gt;</span> <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb404-14"><a href="tIndSample.html#cb404-14" tabindex="-1"></a><span class="co"># set lower bound</span></span>
-<span id="cb404-15"><a href="tIndSample.html#cb404-15" tabindex="-1"></a>rNonverbal[rNonverbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb404-16"><a href="tIndSample.html#cb404-16" tabindex="-1"></a></span>
-<span id="cb404-17"><a href="tIndSample.html#cb404-17" tabindex="-1"></a>rID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">186</span>))</span>
-<span id="cb404-18"><a href="tIndSample.html#cb404-18" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
-<span id="cb404-19"><a href="tIndSample.html#cb404-19" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
-<span id="cb404-20"><a href="tIndSample.html#cb404-20" tabindex="-1"></a>rPatientRace <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Black&quot;</span>, <span class="dv">93</span>), <span class="fu">rep</span>(<span class="st">&quot;White&quot;</span>, <span class="dv">93</span>))</span>
-<span id="cb404-21"><a href="tIndSample.html#cb404-21" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
-<span id="cb404-22"><a href="tIndSample.html#cb404-22" tabindex="-1"></a>rdfIndSamples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rID, rPatientRace, rVerbal, rNonverbal)</span>
-<span id="cb404-23"><a href="tIndSample.html#cb404-23" tabindex="-1"></a></span>
-<span id="cb404-24"><a href="tIndSample.html#cb404-24" tabindex="-1"></a>rdfIndSamples<span class="sc">$</span>rPatientRace <span class="ot">&lt;-</span> <span class="fu">factor</span>(rdfIndSamples<span class="sc">$</span>rPatientRace, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
-<span id="cb404-25"><a href="tIndSample.html#cb404-25" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="tIndSample.html#cb405-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(rdfIndSamples, rVerbal <span class="sc">~</span> rPatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb405-2"><a href="tIndSample.html#cb405-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="tIndSample.html#cb412-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230525</span>)</span>
+<span id="cb412-2"><a href="tIndSample.html#cb412-2" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb412-3"><a href="tIndSample.html#cb412-3" tabindex="-1"></a>rVerbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">8.37</span>, <span class="at">sd =</span> <span class="fl">3.36</span>), <span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">8.41</span>,</span>
+<span id="cb412-4"><a href="tIndSample.html#cb412-4" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">3.21</span>))</span>
+<span id="cb412-5"><a href="tIndSample.html#cb412-5" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb412-6"><a href="tIndSample.html#cb412-6" tabindex="-1"></a>rVerbal[rVerbal <span class="sc">&gt;</span> <span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb412-7"><a href="tIndSample.html#cb412-7" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb412-8"><a href="tIndSample.html#cb412-8" tabindex="-1"></a>rVerbal[rVerbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb412-9"><a href="tIndSample.html#cb412-9" tabindex="-1"></a><span class="co"># sample size, M, and SD for Black then White patients</span></span>
+<span id="cb412-10"><a href="tIndSample.html#cb412-10" tabindex="-1"></a>rNonverbal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">2.68</span>, <span class="at">sd =</span> <span class="fl">0.84</span>), <span class="fu">rnorm</span>(<span class="dv">93</span>, <span class="at">mean =</span> <span class="fl">2.93</span>,</span>
+<span id="cb412-11"><a href="tIndSample.html#cb412-11" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.77</span>))</span>
+<span id="cb412-12"><a href="tIndSample.html#cb412-12" tabindex="-1"></a><span class="co"># set upper bound</span></span>
+<span id="cb412-13"><a href="tIndSample.html#cb412-13" tabindex="-1"></a>rNonverbal[rNonverbal <span class="sc">&gt;</span> <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb412-14"><a href="tIndSample.html#cb412-14" tabindex="-1"></a><span class="co"># set lower bound</span></span>
+<span id="cb412-15"><a href="tIndSample.html#cb412-15" tabindex="-1"></a>rNonverbal[rNonverbal <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb412-16"><a href="tIndSample.html#cb412-16" tabindex="-1"></a></span>
+<span id="cb412-17"><a href="tIndSample.html#cb412-17" tabindex="-1"></a>rID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">186</span>))</span>
+<span id="cb412-18"><a href="tIndSample.html#cb412-18" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
+<span id="cb412-19"><a href="tIndSample.html#cb412-19" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
+<span id="cb412-20"><a href="tIndSample.html#cb412-20" tabindex="-1"></a>rPatientRace <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Black&quot;</span>, <span class="dv">93</span>), <span class="fu">rep</span>(<span class="st">&quot;White&quot;</span>, <span class="dv">93</span>))</span>
+<span id="cb412-21"><a href="tIndSample.html#cb412-21" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
+<span id="cb412-22"><a href="tIndSample.html#cb412-22" tabindex="-1"></a>rdfIndSamples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rID, rPatientRace, rVerbal, rNonverbal)</span>
+<span id="cb412-23"><a href="tIndSample.html#cb412-23" tabindex="-1"></a></span>
+<span id="cb412-24"><a href="tIndSample.html#cb412-24" tabindex="-1"></a>rdfIndSamples<span class="sc">$</span>rPatientRace <span class="ot">&lt;-</span> <span class="fu">factor</span>(rdfIndSamples<span class="sc">$</span>rPatientRace, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>,</span>
+<span id="cb412-25"><a href="tIndSample.html#cb412-25" tabindex="-1"></a>    <span class="st">&quot;White&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="tIndSample.html#cb413-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(rdfIndSamples, rVerbal <span class="sc">~</span> rPatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb413-2"><a href="tIndSample.html#cb413-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 15
   estimate estimate1 estimate2 .y.    group1 group2    n1    n2 statistic      p
 *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
 1    0.852      9.02      8.17 rVerb… Black  White     93    93      1.71 0.0884
 # ℹ 5 more variables: df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 #   alternative &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="tIndSample.html#cb407-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(rdfIndSamples, rVerbal <span class="sc">~</span> rPatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="tIndSample.html#cb415-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(rdfIndSamples, rVerbal <span class="sc">~</span> rPatientRace, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.     group1 group2 effsize    n1    n2 magnitude
 * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
@@ -1455,45 +1455,46 @@ NOTE: n is number in *each* group</code></pre>
 <div id="homeworked-example-3" class="section level2 hasAnchor" number="5.9">
 <h2><span class="header-section-number">5.9</span> Homeworked Example<a href="tIndSample.html#homeworked-example-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="">Screencast Link</a></p>
+<p>For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the <a href="ReCintro">introduction</a>.</p>
 <p>The independent-samples t-test is useful when you want to compare means across two different groups. That is, the people in the comparison groups must be different from each other.</p>
-<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could change the course (i.e., Multivariate or Psychometrics) and/or change the dependent variable to one of the other scales</em>.</p>
 <div id="working-the-problem-with-r-and-r-packages-2" class="section level3 hasAnchor" number="5.9.1">
 <h3><span class="header-section-number">5.9.1</span> Working the Problem with R and R Packages<a href="tIndSample.html#working-the-problem-with-r-and-r-packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis-1" class="section level4 hasAnchor" number="5.9.1.1">
 <h4><span class="header-section-number">5.9.1.1</span> Narrate the research vignette, describing the variables and their role in the analysis<a href="tIndSample.html#narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>I want to ask the question, “Do the course evaluation ratings for the traditional pedagogy subscale differ for CPY and ORG students?”</p>
-<p>I will use the mean rating for the traditional pedagogy rating. As a mean, it retains its continuous, Likert scaling, ranging from 1 to 5 (with higher scores being more positive).</p>
+<p>I want to ask the question, “Do the course evaluation ratings for the traditional pedagogy subscale differ for CPY and ORG students in the ANOVA class?”</p>
+<p>I will use the mean rating for the traditional pedagogy subscale. As a mean, it retains its continuous, Likert scaling, ranging from 1 to 5 (with higher scores being more positive).</p>
 <p>My predictor variable will be department. It has two levels: CPY and ORG.</p>
+<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could change the course (i.e., Multivariate or Psychometrics) and/or change the dependent variable to one of the other scales</em>.</p>
 </div>
 <div id="simulate-or-import-and-format-data-1" class="section level4 hasAnchor" number="5.9.1.2">
 <h4><span class="header-section-number">5.9.1.2</span> Simulate (or import) and format data<a href="tIndSample.html#simulate-or-import-and-format-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>First, bring in the dataset.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="tIndSample.html#cb409-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="tIndSample.html#cb417-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>To avoid “dependency” in the data, I will just use data from the ANOVA course. Let’s first trim it to just students who took ANOVA</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="tIndSample.html#cb410-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="tIndSample.html#cb418-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
 <p>I will create a mean score of completed items from the traditional pedagogy scale.</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="tIndSample.html#cb411-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
-<span id="cb411-2"><a href="tIndSample.html#cb411-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ClearResponsibilities&#39;</span>, <span class="st">&#39;EffectiveAnswers&#39;</span>,<span class="st">&#39;Feedback&#39;</span>, <span class="st">&#39;ClearOrganization&#39;</span>,<span class="st">&#39;ClearPresentation&#39;</span>)</span>
-<span id="cb411-3"><a href="tIndSample.html#cb411-3" tabindex="-1"></a></span>
-<span id="cb411-4"><a href="tIndSample.html#cb411-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
-<span id="cb411-5"><a href="tIndSample.html#cb411-5" tabindex="-1"></a>JustANOVA<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(JustANOVA[, TradPed_vars], .<span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="tIndSample.html#cb419-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
+<span id="cb419-2"><a href="tIndSample.html#cb419-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ClearResponsibilities&#39;</span>, <span class="st">&#39;EffectiveAnswers&#39;</span>,<span class="st">&#39;Feedback&#39;</span>, <span class="st">&#39;ClearOrganization&#39;</span>,<span class="st">&#39;ClearPresentation&#39;</span>)</span>
+<span id="cb419-3"><a href="tIndSample.html#cb419-3" tabindex="-1"></a></span>
+<span id="cb419-4"><a href="tIndSample.html#cb419-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
+<span id="cb419-5"><a href="tIndSample.html#cb419-5" tabindex="-1"></a>JustANOVA<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(JustANOVA[, TradPed_vars], .<span class="dv">75</span>)</span></code></pre></div>
 <p>To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="tIndSample.html#cb412-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span> (JustANOVA, Dept, TradPed))</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="tIndSample.html#cb420-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(JustANOVA, Dept, TradPed))</span></code></pre></div>
 <p>And further trim to non-missing data</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="tIndSample.html#cb413-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(IndT_df)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="tIndSample.html#cb421-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(IndT_df)</span></code></pre></div>
 <p>Are the structures of the variables as follows:
 * Grouping variable: factor
 * Dependent variable: numerical or integer</p>
 <p>In our case we want Department to be a factor with two levels and the SCRPed variable to be integer or numerical.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="tIndSample.html#cb414-1" tabindex="-1"></a><span class="fu">str</span>(IndT_df)</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="tIndSample.html#cb422-1" tabindex="-1"></a><span class="fu">str</span>(IndT_df)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  112 obs. of  2 variables:
  $ Dept   : chr  &quot;CPY&quot; &quot;CPY&quot; &quot;CPY&quot; &quot;CPY&quot; ...
  $ TradPed: num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
  - attr(*, &quot;na.action&quot;)= &#39;omit&#39; Named int [1:2] 74 84
   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;202&quot; &quot;234&quot;</code></pre>
 <p>Since the Department is a character variable, we need to change it to be a factor.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="tIndSample.html#cb416-1" tabindex="-1"></a>IndT_df<span class="sc">$</span>Dept <span class="ot">&lt;-</span> <span class="fu">factor</span>(IndT_df<span class="sc">$</span>Dept)</span>
-<span id="cb416-2"><a href="tIndSample.html#cb416-2" tabindex="-1"></a><span class="fu">str</span>(IndT_df<span class="sc">$</span>Dept)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="tIndSample.html#cb424-1" tabindex="-1"></a>IndT_df<span class="sc">$</span>Dept <span class="ot">&lt;-</span> <span class="fu">factor</span>(IndT_df<span class="sc">$</span>Dept)</span>
+<span id="cb424-2"><a href="tIndSample.html#cb424-2" tabindex="-1"></a><span class="fu">str</span>(IndT_df<span class="sc">$</span>Dept)</span></code></pre></div>
 <pre><code> Factor w/ 2 levels &quot;CPY&quot;,&quot;ORG&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>Without further coding, R will order the factors alphabetically. This is fine. CPY will be the base/intercept and ORG will be the comparison (this becomes more important in regression).</p>
 </div>
@@ -1503,7 +1504,7 @@ NOTE: n is number in *each* group</code></pre>
 <li>Evaluate and report skew and kurtosis</li>
 <li>Evaluate and correctly interpret homogeneity of variance (if Levene’s &lt; .05; use Welch’s formulation)</li>
 </ul>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="tIndSample.html#cb418-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept,  <span class="at">type =</span><span class="dv">1</span>, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="tIndSample.html#cb426-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept,  <span class="at">type =</span><span class="dv">1</span>, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         item group1 vars  n     mean        sd median  trimmed     mad min max
 Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
 Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
@@ -1519,11 +1520,11 @@ TradPed2   4.0 -1.1832786 0.5826528 0.19664900</code></pre>
 <p>Skew = -0.763 (CPY) and -1.183 (ORG) falls below the |3.0| threshold of concern (Klein, 2016)
 Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of concern (Klein, 2016)</p>
 <p>We can use the Shapiro Wilk test for a formal test of normality</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="tIndSample.html#cb420-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)<span class="co">#opening this package so I can use the pipes</span></span>
-<span id="cb420-2"><a href="tIndSample.html#cb420-2" tabindex="-1"></a>shapiro <span class="ot">&lt;-</span> IndT_df<span class="sc">%&gt;%</span></span>
-<span id="cb420-3"><a href="tIndSample.html#cb420-3" tabindex="-1"></a>    <span class="fu">group_by</span>(Dept) <span class="sc">%&gt;%</span></span>
-<span id="cb420-4"><a href="tIndSample.html#cb420-4" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(TradPed)</span>
-<span id="cb420-5"><a href="tIndSample.html#cb420-5" tabindex="-1"></a>shapiro</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="tIndSample.html#cb428-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)<span class="co">#opening this package so I can use the pipes</span></span>
+<span id="cb428-2"><a href="tIndSample.html#cb428-2" tabindex="-1"></a>shapiro <span class="ot">&lt;-</span> IndT_df<span class="sc">%&gt;%</span></span>
+<span id="cb428-3"><a href="tIndSample.html#cb428-3" tabindex="-1"></a>    <span class="fu">group_by</span>(Dept) <span class="sc">%&gt;%</span></span>
+<span id="cb428-4"><a href="tIndSample.html#cb428-4" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(TradPed)</span>
+<span id="cb428-5"><a href="tIndSample.html#cb428-5" tabindex="-1"></a>shapiro</span></code></pre></div>
 <pre><code># A tibble: 2 × 4
   Dept  variable statistic         p
   &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;
@@ -1532,11 +1533,11 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 <p>The Shapiro-Wilk test of normality indicated that the dependent variable, traditional pedagogy, differed significantly from a normal distribution for both CPY students <span class="math inline">\((W = 0.918, p &lt; 0.001)\)</span> and ORG students<span class="math inline">\((W = 0.851, p &lt; 0.001)\)</span>.</p>
 <p>Should we be concerned? A general rule of thumb is that when cell sizes are larger than 15 the independent <em>t</em>-test should be relatively robust to violations of normality <span class="citation">(<a href="#ref-green_using_2017">Green &amp; Salkind, 2017c</a>)</span>. Although there are more CPY than ORG students, we are well-powered.</p>
 <p>For fun (not required), let’s produce a pairs.panels.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="tIndSample.html#cb422-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(IndT_df)</span></code></pre></div>
-<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="tIndSample.html#cb430-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(IndT_df)</span></code></pre></div>
+<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>We can see that we’ll have more CPY students than ORG students. Although our kurtosis was below |10| our distribution looks negatively skewed, with the majority of the scores being on the high end of the scale.</p>
 <p>And now for homogeneity of variance:</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="tIndSample.html#cb423-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">levene_test</span>(IndT_df, TradPed <span class="sc">~</span> Dept, <span class="at">center =</span> median)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="tIndSample.html#cb431-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">levene_test</span>(IndT_df, TradPed <span class="sc">~</span> Dept, <span class="at">center =</span> median)</span></code></pre></div>
 <pre><code># A tibble: 1 × 4
     df1   df2 statistic     p
   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -1546,19 +1547,19 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 <div id="conduct-an-independent-samples-t-test-with-an-effect-size-and-95cis" class="section level4 hasAnchor" number="5.9.1.4">
 <h4><span class="header-section-number">5.9.1.4</span> Conduct an independent samples <em>t</em>-test (with an effect size and 95%CIs)<a href="tIndSample.html#conduct-an-independent-samples-t-test-with-an-effect-size-and-95cis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Conduct the independent samples <em>t</em>-test (with an effect size)</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="tIndSample.html#cb425-1" tabindex="-1"></a>indT.test <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(IndT_df, TradPed <span class="sc">~</span> Dept, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb425-2"><a href="tIndSample.html#cb425-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb425-3"><a href="tIndSample.html#cb425-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
-<span id="cb425-4"><a href="tIndSample.html#cb425-4" tabindex="-1"></a>indT.test</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="tIndSample.html#cb433-1" tabindex="-1"></a>indT.test <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(IndT_df, TradPed <span class="sc">~</span> Dept, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb433-2"><a href="tIndSample.html#cb433-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb433-3"><a href="tIndSample.html#cb433-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
+<span id="cb433-4"><a href="tIndSample.html#cb433-4" tabindex="-1"></a>indT.test</span></code></pre></div>
 <pre><code># A tibble: 1 × 16
   estimate estimate1 estimate2 .y.     group1 group2    n1    n2 statistic     p
      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
 1    0.259      4.13      3.87 TradPed CPY    ORG       81    31      1.42 0.158
 # ℹ 6 more variables: df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 #   alternative &lt;chr&gt;, p.signif &lt;chr&gt;</code></pre>
-<p>From this output we learn that the value of the <em>t</em>-test is 1.423 and is non-significant <em>p = 0.148</em>. We are 95% confident that the mean diference falls between -0.102 and 0.618. Because this thresshold crosses zero, we cannot be certain that the true difference in means is not zero. Here’s how I would represent these results in a statistical string: <span class="math inline">\(t(110) = 1.423, p = 0.158, CI95 (0.102, 0.619)\)</span>.</p>
+<p>From this output we learn that the value of the <em>t</em>-test is 1.423 and is non-significant <em>p = 0.148</em>. We are 95% confident that the mean diference falls between -0.102 and 0.618. Because this threshold crosses zero, we cannot be certain that the true difference in means is not zero. Here’s how I would represent these results in a statistical string: <span class="math inline">\(t(110) = 1.423, p = 0.158, CI95(0.102, 0.619)\)</span>.</p>
 <p>Calculating the Cohen’s <em>d</em> as the effect size.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="tIndSample.html#cb427-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(IndT_df, TradPed <span class="sc">~</span> Dept, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="tIndSample.html#cb435-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(IndT_df, TradPed <span class="sc">~</span> Dept, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.     group1 group2 effsize    n1    n2 magnitude
 * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
@@ -1577,13 +1578,13 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 <p>An independent samples <em>t</em>-test was conducted to evaluate the hypothesis that there would be differences in course evaluation ratings of traditional pedagogy between academic departments (CPY, ORG).</p>
 </blockquote>
 <blockquote>
-<p>We began by analyzing the data to see if it met the statistical assumptions for analysis with an independent samples <em>t</em>-test. One assumption is that the dependent variable be normally distributed within the both levels of the grouping variable. We evaluated skew and kurtosis using Kline’s <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span> guidelines of the absolute values of 3 (skew) and 10 (kurtosis). Our results were well-within these boundary conditions. Specifically, the traditional pedagogy ratings for CPY were -0.763 and 0.156 for skew and kurtosis, respectively; they were -1.183 and 0.583 for ORG. The Shapiro-Wilk test of normality indicated that the dependent variable, traditional pedagogy, differed significantly from a normal distribution for both CPY students <span class="math inline">\((W = 0.918, p &lt; 0.001)\)</span> and ORG students<span class="math inline">\((W = 0.851, p &lt; 0.001)\)</span>. Levene’s test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance <span class="math inline">\((F[1, 110] = 2.460, p = 0.120)\)</span>. That is to say, the variance in each of the departments is not statistically significantly different from each other. Because the independent samples <em>t</em>-test is relatively robust to violations of normality when samples sizes have at least 15 participants per cell <span class="citation">(<a href="#ref-green_using_2017">Green &amp; Salkind, 2017c</a>)</span> and there was no violation of the homogeneity of variance assumption we proceded with the Student’s formulation of the <em>t</em>-test for independent samples.</p>
+<p>We began by analyzing the data to see if it met the statistical assumptions for analysis with an independent samples <em>t</em>-test. One assumption is that the dependent variable be normally distributed within the both levels of the grouping variable. We evaluated skew and kurtosis using Kline’s <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span> guidelines of the absolute values of 3 (skew) and 10 (kurtosis). Our results were well-within these boundary conditions. Specifically, the traditional pedagogy ratings for CPY were -0.763 and 0.156 for skew and kurtosis, respectively; they were -1.183 and 0.583 for ORG. The Shapiro-Wilk test of normality indicated that the dependent variable, traditional pedagogy, differed significantly from a normal distribution for both CPY students <span class="math inline">\((W = 0.918, p &lt; 0.001)\)</span> and ORG students <span class="math inline">\((W = 0.851, p &lt; 0.001)\)</span>. Levene’s test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance <span class="math inline">\((F[1, 110] = 2.460, p = 0.120)\)</span>. That is to say, the variance in each of the departments is not statistically significantly different from each other. Because the independent samples <em>t</em>-test is relatively robust to violations of normality when samples sizes have at least 15 participants per cell <span class="citation">(<a href="#ref-green_using_2017">Green &amp; Salkind, 2017c</a>)</span> and there was no violation of the homogeneity of variance assumption we proceded with the Student’s formulation of the <em>t</em>-test for independent samples.</p>
 </blockquote>
 <blockquote>
 <p>The independent samples <em>t</em>-test was nonsignificant, <span class="math inline">\(t(110) = 1.423, p = 0.158\)</span>, the effect size (d = 0.300) was small. The 95% confidence interval for the difference in means ranged from -0.102 to 0.619. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.</p>
 </blockquote>
 <p>We can use the <em>apaTables</em> package to create a table of means and standard deviations.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="tIndSample.html#cb429-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.1way.table</span>(Dept, TradPed, IndT_df)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="tIndSample.html#cb437-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.1way.table</span>(Dept, TradPed, IndT_df)</span></code></pre></div>
 <pre><code>
 
 Descriptive statistics for TradPed as a function of Dept.  
@@ -1595,22 +1596,21 @@ Descriptive statistics for TradPed as a function of Dept.
 Note. M and SD represent mean and standard deviation, respectively.
  </code></pre>
 <p>And now a figure.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="tIndSample.html#cb431-1" tabindex="-1"></a>indT.box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(IndT_df, <span class="at">x =</span> <span class="st">&quot;Dept&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TradPed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Dept&quot;</span>,</span>
-<span id="cb431-2"><a href="tIndSample.html#cb431-2" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Traditional Pedagogy as a Function of Academic Department&quot;</span>)</span>
-<span id="cb431-3"><a href="tIndSample.html#cb431-3" tabindex="-1"></a>ind.testT <span class="ot">&lt;-</span> indT.test <span class="sc">%&gt;%</span></span>
-<span id="cb431-4"><a href="tIndSample.html#cb431-4" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Dept&quot;</span>)  <span class="co">#autocomputes p-value labels positions</span></span>
-<span id="cb431-5"><a href="tIndSample.html#cb431-5" tabindex="-1"></a>indT.box <span class="ot">&lt;-</span> indT.box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(ind.testT, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>,</span>
-<span id="cb431-6"><a href="tIndSample.html#cb431-6" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">FALSE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">6</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> rstatix<span class="sc">::</span><span class="fu">get_test_label</span>(indT.test,</span>
-<span id="cb431-7"><a href="tIndSample.html#cb431-7" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))  <span class="co">#adds t-test results</span></span>
-<span id="cb431-8"><a href="tIndSample.html#cb431-8" tabindex="-1"></a></span>
-<span id="cb431-9"><a href="tIndSample.html#cb431-9" tabindex="-1"></a>indT.box</span></code></pre></div>
-<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="tIndSample.html#cb439-1" tabindex="-1"></a>indT.box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(IndT_df, <span class="at">x =</span> <span class="st">&quot;Dept&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TradPed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Dept&quot;</span>,</span>
+<span id="cb439-2"><a href="tIndSample.html#cb439-2" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>), <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Traditional Pedagogy as a Function of Academic Department&quot;</span>)</span>
+<span id="cb439-3"><a href="tIndSample.html#cb439-3" tabindex="-1"></a>ind.testT <span class="ot">&lt;-</span> indT.test <span class="sc">%&gt;%</span></span>
+<span id="cb439-4"><a href="tIndSample.html#cb439-4" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Dept&quot;</span>)  <span class="co">#autocomputes p-value labels positions</span></span>
+<span id="cb439-5"><a href="tIndSample.html#cb439-5" tabindex="-1"></a>indT.box <span class="ot">&lt;-</span> indT.box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(ind.testT, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>,</span>
+<span id="cb439-6"><a href="tIndSample.html#cb439-6" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">FALSE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.5</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> rstatix<span class="sc">::</span><span class="fu">get_test_label</span>(indT.test,</span>
+<span id="cb439-7"><a href="tIndSample.html#cb439-7" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))  <span class="co">#adds t-test results</span></span>
+<span id="cb439-8"><a href="tIndSample.html#cb439-8" tabindex="-1"></a></span>
+<span id="cb439-9"><a href="tIndSample.html#cb439-9" tabindex="-1"></a>indT.box</span></code></pre></div>
+<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1" class="section level4 hasAnchor" number="5.9.1.6">
 <h4><span class="header-section-number">5.9.1.6</span> Conduct power analyses to determine the power of the current study and a recommended sample size<a href="tIndSample.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can use Cohen’s d in this specification of <em>d</em>.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="tIndSample.html#cb432-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.30</span>, <span class="at">n =</span> <span class="dv">112</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb432-2"><a href="tIndSample.html#cb432-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="tIndSample.html#cb440-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.30</span>, <span class="at">n =</span> <span class="dv">112</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,<span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Two-sample t test power calculation 
 
@@ -1622,8 +1622,7 @@ Note. M and SD represent mean and standard deviation, respectively.
 
 NOTE: n is number in *each* group</code></pre>
 <p>We were at 61% power. That is, given the value of the mean difference (), we had a 61% chance of detecting a statistically significant effect if there was one. How big of a sample would it take?</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="tIndSample.html#cb434-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.3</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb434-2"><a href="tIndSample.html#cb434-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="tIndSample.html#cb442-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.3</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Two-sample t test power calculation 
 
@@ -1634,12 +1633,18 @@ NOTE: n is number in *each* group</code></pre>
     alternative = two.sided
 
 NOTE: n is number in *each* group</code></pre>
-<p>To find a statistically significant difference, we would need 175 per group. This large size is consistent with the small effect – that there isn’t really a difference between the two groups..</p>
+<p>To find a statistically significant difference, we would need 175 per group. This large size is consistent with the small effect – that there isn’t really a difference between the two groups.</p>
 </div>
 </div>
 <div id="hand-calculations-2" class="section level3 hasAnchor" number="5.9.2">
 <h3><span class="header-section-number">5.9.2</span> Hand Calculations<a href="tIndSample.html#hand-calculations-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><em>Note: While the values of the hand-calculations are close to those calculated with the R packages, they differ slightly.</em></p>
+<p>I will use the same example (and same dataset) for hand calculations. Before we continue:</p>
+<blockquote>
+<p>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the <em>rstatix::t_test</em> will produce different results.</p>
+</blockquote>
+<blockquote>
+<p>Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in these statistics. If this lesson was a deeper exploration into the inner workings of <em>t</em>-tests, we would take more time to understand what is occurring.</p>
+</blockquote>
 <div id="using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-1" class="section level4 hasAnchor" number="5.9.2.1">
 <h4><span class="header-section-number">5.9.2.1</span> Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses<a href="tIndSample.html#using-traditional-nhst-null-hypothesis-testing-language-state-your-null-and-alternative-hypotheses-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math display">\[H_0: \mu_1 = \mu_2\]</span>
@@ -1647,7 +1652,7 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 <div id="using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable" class="section level4 hasAnchor" number="5.9.2.2">
 <h4><span class="header-section-number">5.9.2.2</span> Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable<a href="tIndSample.html#using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="tIndSample.html#cb436-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept, <span class="at">type =</span><span class="dv">1</span>, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="tIndSample.html#cb444-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept, <span class="at">type =</span><span class="dv">1</span>, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         item group1 vars  n     mean        sd median  trimmed     mad min max
 Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
 Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
@@ -1665,13 +1670,13 @@ ORG: <em>M</em> = 3.871, <em>SD</em> = 1.095</p>
 <h4><span class="header-section-number">5.9.2.3</span> Calulate the SE used in the denominator of the <em>t</em>-test<a href="tIndSample.html#calulate-the-se-used-in-the-denominator-of-the-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Just as a reminder, the SE is the denominator in the <em>t</em>-test formula:</p>
 <p><span class="math display">\[t = \frac{\bar{X_{1}} -\bar{X_{2}}}{\sqrt{\frac{s_{1}^{2}}{N_{1}}+\frac{s_{2}^{2}}{N_{2}}}}\]</span></p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="tIndSample.html#cb438-1" tabindex="-1"></a><span class="fu">sqrt</span>((<span class="fl">0.7547259</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">81</span>) <span class="sc">+</span> (<span class="fl">1.0948953</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">31</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="tIndSample.html#cb446-1" tabindex="-1"></a><span class="fu">sqrt</span>((<span class="fl">0.7547259</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">81</span>) <span class="sc">+</span> (<span class="fl">1.0948953</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">31</span>))</span></code></pre></div>
 <pre><code>[1] 0.2137828</code></pre>
 <p>The <em>SE</em> = 0.214</p>
 </div>
 <div id="calculate-the-independent-samples-t-test" class="section level4 hasAnchor" number="5.9.2.4">
 <h4><span class="header-section-number">5.9.2.4</span> Calculate the independent samples <em>t</em>-test<a href="tIndSample.html#calculate-the-independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="tIndSample.html#cb440-1" tabindex="-1"></a>(<span class="fl">4.12963</span> <span class="sc">-</span> <span class="fl">3.870968</span>)<span class="sc">/</span><span class="fl">0.2137828</span></span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="tIndSample.html#cb448-1" tabindex="-1"></a>(<span class="fl">4.12963</span> <span class="sc">-</span> <span class="fl">3.870968</span>)<span class="sc">/</span><span class="fl">0.2137828</span></span></code></pre></div>
 <pre><code>[1] 1.209929</code></pre>
 <p><em>I note that this hand calculation differs from the worked in R. I believe this is likely due to an unbalanced design with unequal cell sizes (81 and 31).</em></p>
 </div>
@@ -1684,9 +1689,9 @@ ORG: <em>M</em> = 3.871, <em>SD</em> = 1.095</p>
 <p>We can look at a <a href="https://www.statology.org/t-distribution-table/">table of critical values</a></p>
 <p>For a two-tailed test, with alpha of 0.05, and a sample size of 120 (close enough), the <em>t</em>-statistic must be greater than 1.98.</p>
 <p>We could also obtain a <em>t</em> critical value with this code:</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="tIndSample.html#cb442-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">112</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="tIndSample.html#cb450-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">112</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] -1.981372</code></pre>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="tIndSample.html#cb444-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">112</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="tIndSample.html#cb452-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">112</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 1.981372</code></pre>
 </div>
 <div id="is-the-t-test-statistically-significant-why-or-why-not-1" class="section level4 hasAnchor" number="5.9.2.7">
@@ -1698,22 +1703,22 @@ ORG: <em>M</em> = 3.871, <em>SD</em> = 1.095</p>
 <h4><span class="header-section-number">5.9.2.8</span> Calculate the confidence interval around the difference in sample means<a href="tIndSample.html#calculate-the-confidence-interval-around-the-difference-in-sample-means" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Calculating a confidence interval around the difference in sample means requires the two-tailed test critical values. We can insert them into this formula:</p>
 <p><span class="math display">\[(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)\]</span></p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="tIndSample.html#cb446-1" tabindex="-1"></a>(<span class="fl">4.129630</span> <span class="sc">-</span> <span class="fl">3.870968</span>) <span class="sc">-</span> (<span class="fl">1.209929</span> <span class="sc">*</span> <span class="fl">0.2137828</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="tIndSample.html#cb454-1" tabindex="-1"></a>(<span class="fl">4.129630</span> <span class="sc">-</span> <span class="fl">3.870968</span>) <span class="sc">-</span> (<span class="fl">1.209929</span> <span class="sc">*</span> <span class="fl">0.2137828</span>)</span></code></pre></div>
 <pre><code>[1] -0.0000000094212</code></pre>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="tIndSample.html#cb448-1" tabindex="-1"></a>(<span class="fl">4.129630</span> <span class="sc">-</span> <span class="fl">3.870968</span>) <span class="sc">+</span> (<span class="fl">1.209929</span> <span class="sc">*</span> <span class="fl">0.2137828</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="tIndSample.html#cb456-1" tabindex="-1"></a>(<span class="fl">4.129630</span> <span class="sc">-</span> <span class="fl">3.870968</span>) <span class="sc">+</span> (<span class="fl">1.209929</span> <span class="sc">*</span> <span class="fl">0.2137828</span>)</span></code></pre></div>
 <pre><code>[1] 0.517324</code></pre>
-<p>We are 95% confident that the mean difference falls between -0.165 and 0.682. Because this interval passes through zero, we cannot be certain that the difference is 0. This is consistent with the non-significant <em>p</em> value.</p>
+<p>We are 95% confident that the mean difference falls between -0.000 and 0.517. Because this interval passes through zero, we cannot be certain that the difference is 0. This is consistent with the non-significant <em>p</em> value.</p>
 </div>
 <div id="calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test-1" class="section level4 hasAnchor" number="5.9.2.9">
 <h4><span class="header-section-number">5.9.2.9</span> Calculate the effect size (i.e., Cohen’s d associated with your <em>t</em>-test<a href="tIndSample.html#calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Here is the formula for Cohen’s <em>d</em>:</p>
 <p><span class="math display">\[d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}\]</span></p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="tIndSample.html#cb450-1" tabindex="-1"></a><span class="fl">1.209929</span> <span class="sc">*</span> (<span class="fu">sqrt</span>((<span class="dv">81</span> <span class="sc">+</span> <span class="dv">31</span>)<span class="sc">/</span>(<span class="dv">81</span> <span class="sc">*</span> <span class="dv">31</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="tIndSample.html#cb458-1" tabindex="-1"></a><span class="fl">1.209929</span> <span class="sc">*</span> (<span class="fu">sqrt</span>((<span class="dv">81</span> <span class="sc">+</span> <span class="dv">31</span>)<span class="sc">/</span>(<span class="dv">81</span> <span class="sc">*</span> <span class="dv">31</span>)))</span></code></pre></div>
 <pre><code>[1] 0.2555321</code></pre>
 </div>
 <div id="assemble-the-results-into-a-statistical-string" class="section level4 hasAnchor" number="5.9.2.10">
 <h4><span class="header-section-number">5.9.2.10</span> Assemble the results into a statistical string<a href="tIndSample.html#assemble-the-results-into-a-statistical-string" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><span class="math inline">\(t(110) = 1.210, p &gt; 0.05, CI95 (-0.000, 0.517), d = 0.256\)</span></p>
+<p><span class="math inline">\(t(110) = 1.210, p &gt; 0.05, CI95(-0.000, 0.517), d = 0.256\)</span></p>
 
 </div>
 </div>

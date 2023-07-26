@@ -1,6 +1,5 @@
+
 # Factorial (Between-Subjects) ANOVA {#between}
-
-
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=3bb1bee1-c2ac-4cda-95f2-ad8b0152132c) 
 
@@ -189,12 +188,12 @@ str(Ramdhani_df)
 ```
 
 ```
-'data.frame':	111 obs. of  5 variables:
- $ ID      : Factor w/ 111 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
- $ Negative: num  2.768 1.811 0.869 1.857 2.087 ...
- $ Positive: num  5.91 5.23 3.54 5.63 5.44 ...
- $ Rater   : chr  "Dayaknese" "Dayaknese" "Dayaknese" "Dayaknese" ...
- $ Photo   : chr  "Dayaknese" "Dayaknese" "Dayaknese" "Dayaknese" ...
+## 'data.frame':	111 obs. of  5 variables:
+##  $ ID      : Factor w/ 111 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ Negative: num  2.768 1.811 0.869 1.857 2.087 ...
+##  $ Positive: num  5.91 5.23 3.54 5.63 5.44 ...
+##  $ Rater   : chr  "Dayaknese" "Dayaknese" "Dayaknese" "Dayaknese" ...
+##  $ Photo   : chr  "Dayaknese" "Dayaknese" "Dayaknese" "Dayaknese" ...
 ```
 Our Negative variable is correctly formatted. Let's reformat Rater and Photo to be factors and re-evaluate the structure. R's default is to order the factors alphabetically. In this case this is fine. If we had ordered factors such as dosage (placebo, lo, hi) we would want to respecify the order.
 
@@ -206,12 +205,12 @@ str(Ramdhani_df)
 ```
 
 ```
-'data.frame':	111 obs. of  5 variables:
- $ ID      : Factor w/ 111 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
- $ Negative: num  2.768 1.811 0.869 1.857 2.087 ...
- $ Positive: num  5.91 5.23 3.54 5.63 5.44 ...
- $ Rater   : Factor w/ 3 levels "Dayaknese","Javanese",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ Photo   : Factor w/ 2 levels "Dayaknese","Madurese": 1 1 1 1 1 1 1 1 1 1 ...
+## 'data.frame':	111 obs. of  5 variables:
+##  $ ID      : Factor w/ 111 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ Negative: num  2.768 1.811 0.869 1.857 2.087 ...
+##  $ Positive: num  5.91 5.23 3.54 5.63 5.44 ...
+##  $ Rater   : Factor w/ 3 levels "Dayaknese","Javanese",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Photo   : Factor w/ 2 levels "Dayaknese","Madurese": 1 1 1 1 1 1 1 1 1 1 ...
 ```
 If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv ("Excel lite") or .rds (R object) file. This is not a necessary step.
 
@@ -246,20 +245,20 @@ negative.descripts
 ```
 
 ```
-          item    group1    group2 vars  n  mean    sd median trimmed   mad
-Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
-Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
-Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
-Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
-Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
-Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
-            min   max range   skew kurtosis    se
-Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
-Negative2 1.406 4.664 3.258  1.205    1.475 0.175
-Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
-Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
-Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
-Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
+##           item    group1    group2 vars  n  mean    sd median trimmed   mad
+## Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+## Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+## Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+## Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+## Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+## Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+##             min   max range   skew kurtosis    se
+## Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+## Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+## Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+## Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+## Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+## Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 ```
 
 The *write.table()* function can be a helpful way to export output to .csv files so that you can manipulate it into tables. 
@@ -315,14 +314,14 @@ ggpubr::ggline(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
 ```
 
 ```
-Bin width defaults to 1/30 of the range of the data. Pick better value with
-`binwidth`.
+## Bin width defaults to 1/30 of the range of the data. Pick better value with
+## `binwidth`.
 ```
 
 ```
-Warning: Computation failed in `stat_summary()`
-Caused by error in `get()`:
-! object 'mean_se_' of mode 'function' was not found
+## Warning: Computation failed in `stat_summary()`
+## Caused by error in `get()`:
+## ! object 'mean_se_' of mode 'function' was not found
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
@@ -351,7 +350,7 @@ mean(Ramdhani_df$Negative)
 ```
 
 ```
-[1] 2.947369
+## [1] 2.947369
 ```
 
 Subtracting the grand mean from each Negative rating yields a mean difference.
@@ -364,13 +363,13 @@ head(Ramdhani_df)
 ```
 
 ```
-  ID Negative Positive     Rater     Photo      m_dev
-1  1    2.768    5.907 Dayaknese Dayaknese -0.1793694
-2  2    1.811    5.234 Dayaknese Dayaknese -1.1363694
-3  3    0.869    3.544 Dayaknese Dayaknese -2.0783694
-4  4    1.857    5.628 Dayaknese Dayaknese -1.0903694
-5  5    2.087    5.438 Dayaknese Dayaknese -0.8603694
-6  6    0.706    5.833 Dayaknese Dayaknese -2.2413694
+##   ID Negative Positive     Rater     Photo      m_dev
+## 1  1    2.768    5.907 Dayaknese Dayaknese -0.1793694
+## 2  2    1.811    5.234 Dayaknese Dayaknese -1.1363694
+## 3  3    0.869    3.544 Dayaknese Dayaknese -2.0783694
+## 4  4    1.857    5.628 Dayaknese Dayaknese -1.0903694
+## 5  5    2.087    5.438 Dayaknese Dayaknese -0.8603694
+## 6  6    0.706    5.833 Dayaknese Dayaknese -2.2413694
 ```
 Pop quiz: What's the sum of our new *m_dev* variable?
 
@@ -381,7 +380,7 @@ sum(Ramdhani_df$m_dev)
 ```
 
 ```
-[1] -0.000000000000007549517
+## [1] -0.000000000000007549517
 ```
 
 Of course! The sum of squared deviations around the mean is zero. Next we square those mean deviations.
@@ -393,13 +392,13 @@ head(Ramdhani_df)
 ```
 
 ```
-  ID Negative Positive     Rater     Photo      m_dev    m_devSQ
-1  1    2.768    5.907 Dayaknese Dayaknese -0.1793694 0.03217337
-2  2    1.811    5.234 Dayaknese Dayaknese -1.1363694 1.29133534
-3  3    0.869    3.544 Dayaknese Dayaknese -2.0783694 4.31961924
-4  4    1.857    5.628 Dayaknese Dayaknese -1.0903694 1.18890536
-5  5    2.087    5.438 Dayaknese Dayaknese -0.8603694 0.74023545
-6  6    0.706    5.833 Dayaknese Dayaknese -2.2413694 5.02373665
+##   ID Negative Positive     Rater     Photo      m_dev    m_devSQ
+## 1  1    2.768    5.907 Dayaknese Dayaknese -0.1793694 0.03217337
+## 2  2    1.811    5.234 Dayaknese Dayaknese -1.1363694 1.29133534
+## 3  3    0.869    3.544 Dayaknese Dayaknese -2.0783694 4.31961924
+## 4  4    1.857    5.628 Dayaknese Dayaknese -1.0903694 1.18890536
+## 5  5    2.087    5.438 Dayaknese Dayaknese -0.8603694 0.74023545
+## 6  6    0.706    5.833 Dayaknese Dayaknese -2.2413694 5.02373665
 ```
 
 Then we sum the squared mean deviations.
@@ -409,7 +408,7 @@ sum(Ramdhani_df$m_devSQ)
 ```
 
 ```
-[1] 114.7746
+## [1] 114.7746
 ```
 This value, 114.775, the sum of squared deviations around the grand mean, is our $SS_T$; the associated *degrees of freedom* is $N$ - 1. 
 
@@ -435,20 +434,20 @@ psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
 ```
 
 ```
-          item    group1    group2 vars  n  mean    sd median trimmed   mad
-Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
-Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
-Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
-Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
-Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
-Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
-            min   max range   skew kurtosis    se
-Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
-Negative2 1.406 4.664 3.258  1.205    1.475 0.175
-Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
-Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
-Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
-Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
+##           item    group1    group2 vars  n  mean    sd median trimmed   mad
+## Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+## Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+## Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+## Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+## Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+## Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+##             min   max range   skew kurtosis    se
+## Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+## Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+## Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+## Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+## Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+## Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 ```
 
 ```r
@@ -467,7 +466,7 @@ mean(Ramdhani_df$Negative)
 ```
 
 ```
-[1] 2.947369
+## [1] 2.947369
 ```
 This formula occurs in six chunks, representing the six cells of our designed. In each of the chunks we have the $n$, group mean, and grand mean.
 
@@ -478,7 +477,7 @@ This formula occurs in six chunks, representing the six cells of our designed. I
 ```
 
 ```
-[1] 35.41501
+## [1] 35.41501
 ```
 This value, 35.415, $SS_M$ is the value accounted for by the model. That is, the amount of variance accounted for by the grouping variable/factors, Rater and Photo.
 
@@ -500,20 +499,20 @@ psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
 ```
 
 ```
-          item    group1    group2 vars  n  mean    sd median trimmed   mad
-Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
-Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
-Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
-Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
-Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
-Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
-            min   max range   skew kurtosis    se
-Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
-Negative2 1.406 4.664 3.258  1.205    1.475 0.175
-Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
-Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
-Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
-Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
+##           item    group1    group2 vars  n  mean    sd median trimmed   mad
+## Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+## Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+## Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+## Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+## Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+## Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+##             min   max range   skew kurtosis    se
+## Negative1 0.706 3.453 2.747  0.513   -0.881 0.186
+## Negative2 1.406 4.664 3.258  1.205    1.475 0.175
+## Negative3 1.406 4.854 3.448 -0.126   -1.267 0.236
+## Negative4 2.732 3.423 0.691 -0.623    0.481 0.037
+## Negative5 2.456 4.631 2.175 -0.010   -1.307 0.146
+## Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 ```
 
 Calculating $SS_R$
@@ -525,7 +524,7 @@ Calculating $SS_R$
 ```
 
 ```
-[1] 79.32078
+## [1] 79.32078
 ```
 
 The value for our $SS_R$ is 79.321. Its degrees of freedom is $N - k$. That is, the total $N$ minus the number of groups: 
@@ -535,7 +534,7 @@ The value for our $SS_R$ is 79.321. Its degrees of freedom is $N - k$. That is, 
 ```
 
 ```
-[1] 105
+## [1] 105
 ```
 
 ### A Recap on the Relationship between $SS_T$, $SS_M$, and $SS_R$
@@ -554,7 +553,7 @@ Considering rounding error, we were successful!
 ```
 
 ```
-[1] 114.736
+## [1] 114.736
 ```
 
 ### Calculating SS for Each Factor and Their Products
@@ -573,14 +572,14 @@ psych::describeBy(Negative ~ Rater, mat = TRUE, data = Ramdhani_df, digits = 3)
 ```
 
 ```
-          item    group1 vars  n  mean    sd median trimmed   mad   min   max
-Negative1    1 Dayaknese    1 35 2.492 0.856  2.900   2.561 0.480 0.706 3.453
-Negative2    2  Javanese    1 37 3.007 0.831  2.913   2.986 0.984 1.406 4.664
-Negative3    3  Madurese    1 39 3.299 1.179  3.116   3.288 1.588 1.211 5.641
-          range   skew kurtosis    se
-Negative1 2.747 -0.682   -1.132 0.145
-Negative2 3.258  0.239   -0.923 0.137
-Negative3 4.430  0.117   -1.036 0.189
+##           item    group1 vars  n  mean    sd median trimmed   mad   min   max
+## Negative1    1 Dayaknese    1 35 2.492 0.856  2.900   2.561 0.480 0.706 3.453
+## Negative2    2  Javanese    1 37 3.007 0.831  2.913   2.986 0.984 1.406 4.664
+## Negative3    3  Madurese    1 39 3.299 1.179  3.116   3.288 1.588 1.211 5.641
+##           range   skew kurtosis    se
+## Negative1 2.747 -0.682   -1.132 0.145
+## Negative2 3.258  0.239   -0.923 0.137
+## Negative3 4.430  0.117   -1.036 0.189
 ```
 Again, we need the grand mean.
 
@@ -589,7 +588,7 @@ mean(Ramdhani_df$Negative)
 ```
 
 ```
-[1] 2.947369
+## [1] 2.947369
 ```
 Now to calculate the Rater main effect.
 
@@ -598,7 +597,7 @@ Now to calculate the Rater main effect.
 ```
 
 ```
-[1] 12.24322
+## [1] 12.24322
 ```
 #### Photo Main Effect
 
@@ -614,12 +613,12 @@ psych::describeBy(Negative ~ Photo, mat = TRUE, data = Ramdhani_df, digits = 3)
 ```
 
 ```
-          item    group1 vars  n  mean    sd median trimmed   mad   min   max
-Negative1    1 Dayaknese    1 54 2.575 1.043  2.449   2.516 0.921 0.706 4.854
-Negative2    2  Madurese    1 57 3.300 0.871  3.166   3.280 0.667 1.211 5.641
-          range skew kurtosis    se
-Negative1 4.148 0.47   -0.555 0.142
-Negative2 4.430 0.35    0.581 0.115
+##           item    group1 vars  n  mean    sd median trimmed   mad   min   max
+## Negative1    1 Dayaknese    1 54 2.575 1.043  2.449   2.516 0.921 0.706 4.854
+## Negative2    2  Madurese    1 57 3.300 0.871  3.166   3.280 0.667 1.211 5.641
+##           range skew kurtosis    se
+## Negative1 4.148 0.47   -0.555 0.142
+## Negative2 4.430 0.35    0.581 0.115
 ```
 
 Again, we need the grand mean.
@@ -629,7 +628,7 @@ mean(Ramdhani_df$Negative)
 ```
 
 ```
-[1] 2.947369
+## [1] 2.947369
 ```
 
 
@@ -638,7 +637,7 @@ mean(Ramdhani_df$Negative)
 ```
 
 ```
-[1] 14.57545
+## [1] 14.57545
 ```
 #### Interaction effect
 
@@ -652,7 +651,7 @@ $SS_{axb} = SS_M - (SS_a + SS_b)$
 ```
 
 ```
-[1] 8.597
+## [1] 8.597
 ```
 Let's revisit the figure I showed at the beginning of this section to see, again, how variance is partitioned.
 
@@ -681,7 +680,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 7.083
+## [1] 7.083
 ```
 
 ```r
@@ -689,7 +688,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 6.1215
+## [1] 6.1215
 ```
 
 ```r
@@ -697,7 +696,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 14.575
+## [1] 14.575
 ```
 
 ```r
@@ -705,7 +704,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 4.2985
+## [1] 4.2985
 ```
 
 ```r
@@ -713,7 +712,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 0.7554381
+## [1] 0.7554381
 ```
 
 ```r
@@ -722,7 +721,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 9.381457
+## [1] 9.381457
 ```
 
 ```r
@@ -730,7 +729,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 8.108609
+## [1] 8.108609
 ```
 
 ```r
@@ -738,7 +737,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 19.30464
+## [1] 19.30464
 ```
 
 ```r
@@ -746,7 +745,7 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 ```
 
 ```
-[1] 5.69404
+## [1] 5.69404
 ```
 
 To find the $F_{CV}$ we can use an [F distribution table](https://www.statology.org/f-distribution-table/).
@@ -759,7 +758,7 @@ qf(0.05, 5, 105, lower.tail = FALSE)  #Model F critical value
 ```
 
 ```
-[1] 2.300888
+## [1] 2.300888
 ```
 
 ```r
@@ -767,7 +766,7 @@ qf(0.05, 2, 105, lower.tail = FALSE)  #a and axb F critical value
 ```
 
 ```
-[1] 3.082852
+## [1] 3.082852
 ```
 
 ```r
@@ -775,7 +774,7 @@ qf(0.05, 1, 105, lower.tail = FALSE)  #b F critical value
 ```
 
 ```
-[1] 3.931556
+## [1] 3.931556
 ```
 When the $F$ value exceeds the $F_{CV}$, the effect is statistically significant.
 
@@ -837,13 +836,13 @@ summary(TwoWay_neg)
 ```
 
 ```
-             Df Sum Sq Mean Sq F value    Pr(>F)    
-Rater         2  12.21   6.103   8.077  0.000546 ***
-Photo         1  14.62  14.619  19.346 0.0000262 ***
-Rater:Photo   2   8.61   4.304   5.696  0.004480 ** 
-Residuals   105  79.34   0.756                      
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##              Df Sum Sq Mean Sq F value    Pr(>F)    
+## Rater         2  12.21   6.103   8.077  0.000546 ***
+## Photo         1  14.62  14.619  19.346 0.0000262 ***
+## Rater:Photo   2   8.61   4.304   5.696  0.004480 ** 
+## Residuals   105  79.34   0.756                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ```r
@@ -851,30 +850,30 @@ model.tables(TwoWay_neg, "means")
 ```
 
 ```
-Tables of means
-Grand mean
-         
-2.947369 
-
- Rater 
-    Dayaknese Javanese Madurese
-        2.492    3.007    3.299
-rep    35.000   37.000   39.000
-
- Photo 
-    Dayaknese Madurese
-        2.575    3.301
-rep    54.000   57.000
-
- Rater:Photo 
-           Photo
-Rater       Dayaknese Madurese
-  Dayaknese  1.818     3.129  
-  rep       17.000    18.000  
-  Javanese   2.524     3.465  
-  rep       18.000    19.000  
-  Madurese   3.301     3.298  
-  rep       19.000    20.000  
+## Tables of means
+## Grand mean
+##          
+## 2.947369 
+## 
+##  Rater 
+##     Dayaknese Javanese Madurese
+##         2.492    3.007    3.299
+## rep    35.000   37.000   39.000
+## 
+##  Photo 
+##     Dayaknese Madurese
+##         2.575    3.301
+## rep    54.000   57.000
+## 
+##  Rater:Photo 
+##            Photo
+## Rater       Dayaknese Madurese
+##   Dayaknese  1.818     3.129  
+##   rep       17.000    18.000  
+##   Javanese   2.524     3.465  
+##   rep       18.000    19.000  
+##   Madurese   3.301     3.298  
+##   rep       19.000    20.000
 ```
 
 #### Is the dependent variable normally distributed?
@@ -890,20 +889,20 @@ psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
 ```
 
 ```
-          item    group1    group2 vars  n  mean    sd median trimmed   mad
-Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
-Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
-Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
-Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
-Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
-Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
-            min   max range   skew kurtosis    se
-Negative1 0.706 3.453 2.747  0.562   -0.608 0.186
-Negative2 1.406 4.664 3.258  1.313    2.017 0.175
-Negative3 1.406 4.854 3.448 -0.137   -1.069 0.236
-Negative4 2.732 3.423 0.691 -0.679    0.903 0.037
-Negative5 2.456 4.631 2.175 -0.010   -1.114 0.146
-Negative6 1.211 5.641 4.430  0.232   -1.048 0.298
+##           item    group1    group2 vars  n  mean    sd median trimmed   mad
+## Negative1    1 Dayaknese Dayaknese    1 17 1.818 0.768  1.692   1.783 0.694
+## Negative2    2  Javanese Dayaknese    1 18 2.524 0.742  2.391   2.460 0.569
+## Negative3    3  Madurese Dayaknese    1 19 3.301 1.030  3.314   3.321 1.294
+## Negative4    4 Dayaknese  Madurese    1 18 3.129 0.156  3.160   3.136 0.104
+## Negative5    5  Javanese  Madurese    1 19 3.465 0.637  3.430   3.456 0.767
+## Negative6    6  Madurese  Madurese    1 20 3.297 1.332  2.958   3.254 1.615
+##             min   max range   skew kurtosis    se
+## Negative1 0.706 3.453 2.747  0.562   -0.608 0.186
+## Negative2 1.406 4.664 3.258  1.313    2.017 0.175
+## Negative3 1.406 4.854 3.448 -0.137   -1.069 0.236
+## Negative4 2.732 3.423 0.691 -0.679    0.903 0.037
+## Negative5 2.456 4.631 2.175 -0.010   -1.114 0.146
+## Negative6 1.211 5.641 4.430  0.232   -1.048 0.298
 ```
 
 Using guidelines from Kline [-@kline_principles_2016] our values for skewness fall below |3.0| and our values for kurtosis fall below |10|.
@@ -947,11 +946,11 @@ shapiro.test(resid_neg)
 ```
 
 ```
-
-	Shapiro-Wilk normality test
-
-data:  resid_neg
-W = 0.98464, p-value = 0.2344
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  resid_neg
+## W = 0.98464, p-value = 0.2344
 ```
 Whooo hoo! $p > 0.05$. This means that our distribution of residuals is not statistically significantly different from a normal distribution ($W = 0.985, p = 0.234$).
 
@@ -968,10 +967,10 @@ Ramdhani_df %>%
 ```
 
 ```
-  ID Negative Positive    Rater    Photo    m_dev  m_devSQ is.outlier
-1 73    5.641    4.813 Madurese Madurese 2.693631 7.255646       TRUE
-  is.extreme
-1      FALSE
+##   ID Negative Positive    Rater    Photo    m_dev  m_devSQ is.outlier
+## 1 73    5.641    4.813 Madurese Madurese 2.693631 7.255646       TRUE
+##   is.extreme
+## 1      FALSE
 ```
 
 Our results indicate that one case (ID = 73) had an outlier (TRUE), but it was not extreme (FALSE).
@@ -986,12 +985,12 @@ Ramdhani_df %>%
 ```
 
 ```
-# A tibble: 3 × 9
-  Rater     Photo   ID    Negative Positive  m_dev m_devSQ is.outlier is.extreme
-  <fct>     <fct>   <fct>    <dbl>    <dbl>  <dbl>   <dbl> <lgl>      <lgl>     
-1 Dayaknese Madure… 18        2.73     5.22 -0.215  0.0464 TRUE       FALSE     
-2 Dayaknese Madure… 19        3.42     3.17  0.476  0.226  TRUE       FALSE     
-3 Javanese  Dayakn… 87        4.66     3.54  1.72   2.95   TRUE       FALSE     
+## # A tibble: 3 × 9
+##   Rater     Photo   ID    Negative Positive  m_dev m_devSQ is.outlier is.extreme
+##   <fct>     <fct>   <fct>    <dbl>    <dbl>  <dbl>   <dbl> <lgl>      <lgl>     
+## 1 Dayaknese Madure… 18        2.73     5.22 -0.215  0.0464 TRUE       FALSE     
+## 2 Dayaknese Madure… 19        3.42     3.17  0.476  0.226  TRUE       FALSE     
+## 3 Javanese  Dayakn… 87        4.66     3.54  1.72   2.95   TRUE       FALSE
 ```
 This time there are three cases where there are outliers (TRUE), but they are not extreme (FALSE). Handily, the function returns information about each row of data. We can use such information to help us delete it. 
 
@@ -1018,10 +1017,10 @@ rstatix::levene_test(Ramdhani_df, Negative ~ Rater * Photo)
 ```
 
 ```
-# A tibble: 1 × 4
-    df1   df2 statistic           p
-  <int> <int>     <dbl>       <dbl>
-1     5   105      8.63 0.000000700
+## # A tibble: 1 × 4
+##     df1   df2 statistic           p
+##   <int> <int>     <dbl>       <dbl>
+## 1     5   105      8.63 0.000000700
 ```
 Levene's test, itself, is an *F*-test. Thus, its reporting assumes the form of an *F*-string. Our result has indicated a violation of the homogeneity of variance assumption ($F[5, 105] = 8.634, p < .001)$. This is not surprising as the boxplots displayed some widely varying variances. 
 
@@ -1061,12 +1060,12 @@ omnibus2w
 ```
 
 ```
-ANOVA Table (type II tests)
-
-       Effect    SSn    SSd DFn DFd      F         p p<.05   ges
-1       Rater 12.238 79.341   2 105  8.098 0.0005360     * 0.134
-2       Photo 14.619 79.341   1 105 19.346 0.0000262     * 0.156
-3 Rater:Photo  8.609 79.341   2 105  5.696 0.0040000     * 0.098
+## ANOVA Table (type II tests)
+## 
+##        Effect    SSn    SSd DFn DFd      F         p p<.05   ges
+## 1       Rater 12.238 79.341   2 105  8.098 0.0005360     * 0.134
+## 2       Photo 14.619 79.341   1 105 19.346 0.0000262     * 0.156
+## 3 Rater:Photo  8.609 79.341   2 105  5.696 0.0040000     * 0.098
 ```
 
 Let’s write the *F strings* from the above table.
@@ -1120,7 +1119,7 @@ In the second option, the examination of the simple main effect of ethnicity of 
 ```
 
 ```
-[1] 0.008333333
+## [1] 0.008333333
 ```
 The Holm's sequential Bonferroni [@green_using_2017] offers a middle-of-the-road approach (not as strict as .05/6 with the traditional Bonferroni; not as lenient as "none") to managing Type I error. 
 
@@ -1150,12 +1149,12 @@ Ramdhani_df %>%
 ```
 
 ```
-# A tibble: 3 × 8
-  Rater     Effect   DFn   DFd          F            p `p<.05`        ges
-* <fct>     <chr>  <dbl> <dbl>      <dbl>        <dbl> <chr>        <dbl>
-1 Dayaknese Photo      1    33 50.4       0.0000000395 "*"     0.604     
-2 Javanese  Photo      1    35 17.2       0.000205     "*"     0.329     
-3 Madurese  Photo      1    37  0.0000762 0.993        ""      0.00000206
+## # A tibble: 3 × 8
+##   Rater     Effect   DFn   DFd          F            p `p<.05`        ges
+## * <fct>     <chr>  <dbl> <dbl>      <dbl>        <dbl> <chr>        <dbl>
+## 1 Dayaknese Photo      1    33 50.4       0.0000000395 "*"     0.604     
+## 2 Javanese  Photo      1    35 17.2       0.000205     "*"     0.329     
+## 3 Madurese  Photo      1    37  0.0000762 0.993        ""      0.00000206
 ```
 
 The APA style write-up will convey what we have found using this traditional approach:
@@ -1176,14 +1175,14 @@ pwPHwiETH
 ```
 
 ```
-# A tibble: 3 × 15
-  Rater     term  .y.     group1 group2 null.value estimate    se    df conf.low
-* <fct>     <chr> <chr>   <chr>  <chr>       <dbl>    <dbl> <dbl> <dbl>    <dbl>
-1 Dayaknese Photo Negati… Dayak… Madur…          0 -1.31    0.294   105   -1.89 
-2 Javanese  Photo Negati… Dayak… Madur…          0 -0.941   0.286   105   -1.51 
-3 Madurese  Photo Negati… Dayak… Madur…          0  0.00334 0.278   105   -0.549
-# ℹ 5 more variables: conf.high <dbl>, statistic <dbl>, p <dbl>, p.adj <dbl>,
-#   p.adj.signif <chr>
+## # A tibble: 3 × 15
+##   Rater     term  .y.     group1 group2 null.value estimate    se    df conf.low
+## * <fct>     <chr> <chr>   <chr>  <chr>       <dbl>    <dbl> <dbl> <dbl>    <dbl>
+## 1 Dayaknese Photo Negati… Dayak… Madur…          0 -1.31    0.294   105   -1.89 
+## 2 Javanese  Photo Negati… Dayak… Madur…          0 -0.941   0.286   105   -1.51 
+## 3 Madurese  Photo Negati… Dayak… Madur…          0  0.00334 0.278   105   -0.549
+## # ℹ 5 more variables: conf.high <dbl>, statistic <dbl>, p <dbl>, p.adj <dbl>,
+## #   p.adj.signif <chr>
 ```
 
 Not surprisingly, our results are quite similar. I would report them this way:
@@ -1231,11 +1230,11 @@ Ramdhani_df %>%
 ```
 
 ```
-# A tibble: 2 × 8
-  Photo     Effect   DFn   DFd      F         p `p<.05`   ges
-* <fct>     <chr>  <dbl> <dbl>  <dbl>     <dbl> <chr>   <dbl>
-1 Dayaknese Rater      2    51 13.3   0.0000221 "*"     0.343
-2 Madurese  Rater      2    54  0.679 0.512     ""      0.025
+## # A tibble: 2 × 8
+##   Photo     Effect   DFn   DFd      F         p `p<.05`   ges
+## * <fct>     <chr>  <dbl> <dbl>  <dbl>     <dbl> <chr>   <dbl>
+## 1 Dayaknese Rater      2    51 13.3   0.0000221 "*"     0.343
+## 2 Madurese  Rater      2    54  0.679 0.512     ""      0.025
 ```
 
 The APA style write-up will convey what we have found (so far) using this approach:
@@ -1255,15 +1254,15 @@ pwETHwiPH
 ```
 
 ```
-# A tibble: 6 × 10
-  Photo   term  .y.   group1 group2    df statistic       p   p.adj p.adj.signif
-* <fct>   <chr> <chr> <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
-1 Dayakn… Rater Nega… Dayak… Javan…   105    -2.40  1.81e-2 1.81e-2 *           
-2 Dayakn… Rater Nega… Dayak… Madur…   105    -5.11  1.45e-6 4.35e-6 ****        
-3 Dayakn… Rater Nega… Javan… Madur…   105    -2.72  7.69e-3 1.54e-2 *           
-4 Madure… Rater Nega… Dayak… Javan…   105    -1.17  2.43e-1 7.29e-1 ns          
-5 Madure… Rater Nega… Dayak… Madur…   105    -0.595 5.53e-1 1   e+0 ns          
-6 Madure… Rater Nega… Javan… Madur…   105     0.601 5.49e-1 1   e+0 ns          
+## # A tibble: 6 × 10
+##   Photo   term  .y.   group1 group2    df statistic       p   p.adj p.adj.signif
+## * <fct>   <chr> <chr> <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
+## 1 Dayakn… Rater Nega… Dayak… Javan…   105    -2.40  1.81e-2 1.81e-2 *           
+## 2 Dayakn… Rater Nega… Dayak… Madur…   105    -5.11  1.45e-6 4.35e-6 ****        
+## 3 Dayakn… Rater Nega… Javan… Madur…   105    -2.72  7.69e-3 1.54e-2 *           
+## 4 Madure… Rater Nega… Dayak… Javan…   105    -1.17  2.43e-1 7.29e-1 ns          
+## 5 Madure… Rater Nega… Dayak… Madur…   105    -0.595 5.53e-1 1   e+0 ns          
+## 6 Madure… Rater Nega… Javan… Madur…   105     0.601 5.49e-1 1   e+0 ns
 ```
 Very consistent with the one-way ANOVAs, we see that there were significant rater differences in the evaluation of the Dayaknese photo, but not for the Madurese photo. Further, in the rating of the Dayaknese photo, there were statistically significant differences between all three comparisons of ethnic groups. The *p*-values remained statistically significant with the adjustment of the Holm's.
 
@@ -1279,15 +1278,15 @@ Ramdhani_df %>%
 ```
 
 ```
-# A tibble: 6 × 10
-  Photo   term  .y.   group1 group2    df statistic       p   p.adj p.adj.signif
-* <fct>   <chr> <chr> <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
-1 Dayakn… Rater Nega… Dayak… Javan…   105    -2.40  1.81e-2 5.43e-2 ns          
-2 Dayakn… Rater Nega… Dayak… Madur…   105    -5.11  1.45e-6 4.35e-6 ****        
-3 Dayakn… Rater Nega… Javan… Madur…   105    -2.72  7.69e-3 2.31e-2 *           
-4 Madure… Rater Nega… Dayak… Javan…   105    -1.17  2.43e-1 7.29e-1 ns          
-5 Madure… Rater Nega… Dayak… Madur…   105    -0.595 5.53e-1 1   e+0 ns          
-6 Madure… Rater Nega… Javan… Madur…   105     0.601 5.49e-1 1   e+0 ns          
+## # A tibble: 6 × 10
+##   Photo   term  .y.   group1 group2    df statistic       p   p.adj p.adj.signif
+## * <fct>   <chr> <chr> <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
+## 1 Dayakn… Rater Nega… Dayak… Javan…   105    -2.40  1.81e-2 5.43e-2 ns          
+## 2 Dayakn… Rater Nega… Dayak… Madur…   105    -5.11  1.45e-6 4.35e-6 ****        
+## 3 Dayakn… Rater Nega… Javan… Madur…   105    -2.72  7.69e-3 2.31e-2 *           
+## 4 Madure… Rater Nega… Dayak… Javan…   105    -1.17  2.43e-1 7.29e-1 ns          
+## 5 Madure… Rater Nega… Dayak… Madur…   105    -0.595 5.53e-1 1   e+0 ns          
+## 6 Madure… Rater Nega… Javan… Madur…   105     0.601 5.49e-1 1   e+0 ns
 ```
 Let's create a figure that reflects the results of this simple main effect of rater ethnicity within photo stimulus. As before, we start with the corresponding figure where "Photo" is on the x-axis.
 
@@ -1347,12 +1346,12 @@ psych::describeBy(Negative ~ Photo, data = Ramdhani_df, mat = TRUE)
 ```
 
 ```
-          item    group1 vars  n     mean        sd median  trimmed       mad
-Negative1    1 Dayaknese    1 54 2.574926 1.0434646  2.449 2.516386 0.9206946
-Negative2    2  Madurese    1 57 3.300211 0.8709631  3.166 3.279745 0.6671700
-            min   max range      skew   kurtosis        se
-Negative1 0.706 4.854 4.148 0.4699817 -0.5548515 0.1419975
-Negative2 1.211 5.641 4.430 0.3501228  0.5814430 0.1153619
+##           item    group1 vars  n     mean        sd median  trimmed       mad
+## Negative1    1 Dayaknese    1 54 2.574926 1.0434646  2.449 2.516386 0.9206946
+## Negative2    2  Madurese    1 57 3.300211 0.8709631  3.166 3.279745 0.6671700
+##             min   max range      skew   kurtosis        se
+## Negative1 0.706 4.854 4.148 0.4699817 -0.5548515 0.1419975
+## Negative2 1.211 5.641 4.430 0.3501228  0.5814430 0.1153619
 ```
 A quick review of the descriptive statistics, aggregated by photo stimulus indicates that, overall, Madurese photos were evaluated more negatively.
 
@@ -1373,10 +1372,10 @@ rater_main
 ```
 
 ```
-ANOVA Table (type II tests)
-
-  Effect DFn DFd     F     p p<.05   ges
-1  Rater   2 108 6.426 0.002     * 0.106
+## ANOVA Table (type II tests)
+## 
+##   Effect DFn DFd     F     p p<.05   ges
+## 1  Rater   2 108 6.426 0.002     * 0.106
 ```
 Results of a one-way ANOVA evaluating negative reaction to photos of members of Dayaknese and Madurese ethnic groups indicate a statistically differences as a function of the ethnicity of the rater ($F[2, 108] = 6.426, p = 0.002, \eta^2 = 0.106$)
 
@@ -1416,14 +1415,14 @@ RaterMain_ttest
 ```
 
 ```
-# A tibble: 3 × 17
-  estimate estimate1 estimate2 .y.     group1 group2    n1    n2 statistic     p
-*    <dbl>     <dbl>     <dbl> <chr>   <chr>  <chr>  <int> <int>     <dbl> <dbl>
-1   -0.515      2.49      3.01 Negati… Dayak… Javan…    35    37     -2.59 0.012
-2   -0.807      2.49      3.30 Negati… Dayak… Madur…    35    39     -3.39 0.001
-3   -0.292      3.01      3.30 Negati… Javan… Madur…    37    39     -1.25 0.214
-# ℹ 7 more variables: df <dbl>, conf.low <dbl>, conf.high <dbl>, method <chr>,
-#   alternative <chr>, p.adj <dbl>, p.adj.signif <chr>
+## # A tibble: 3 × 17
+##   estimate estimate1 estimate2 .y.     group1 group2    n1    n2 statistic     p
+## *    <dbl>     <dbl>     <dbl> <chr>   <chr>  <chr>  <int> <int>     <dbl> <dbl>
+## 1   -0.515      2.49      3.01 Negati… Dayak… Javan…    35    37     -2.59 0.012
+## 2   -0.807      2.49      3.30 Negati… Dayak… Madur…    35    39     -3.39 0.001
+## 3   -0.292      3.01      3.30 Negati… Javan… Madur…    37    39     -1.25 0.214
+## # ℹ 7 more variables: df <dbl>, conf.low <dbl>, conf.high <dbl>, method <chr>,
+## #   alternative <chr>, p.adj <dbl>, p.adj.signif <chr>
 ```
 
 The *estimate* column provide the mean difference between the two levels of the independent different. The *estimate1/group1* and *estimate2/group2* columns provide those means and identify the group levels. The *statistic* column provides the value of the *t*-test. 
@@ -1474,10 +1473,10 @@ contrasts(Ramdhani_df$Rater)
 ```
 
 ```
-          Javanese Madurese
-Dayaknese        0        0
-Javanese         1        0
-Madurese         0        1
+##           Javanese Madurese
+## Dayaknese        0        0
+## Javanese         1        0
+## Madurese         0        1
 ```
 
 Next, we set up the contrast conditions. In the code below,
@@ -1502,10 +1501,10 @@ contrasts(Ramdhani_df$Rater)
 ```
 
 ```
-          c1 c2
-Dayaknese  1 -1
-Javanese  -2  0
-Madurese   1  1
+##           c1 c2
+## Dayaknese  1 -1
+## Javanese  -2  0
+## Madurese   1  1
 ```
 With this output we can confirm that, in contrast 1 (the first column) we are comparing the Javanese to the combined Dayaknese and Madurese. In contrast 2 (the second column) we are comparing the Dayaknese to the Madurese.
 
@@ -1518,25 +1517,25 @@ summary.lm(mainPlanned)
 ```
 
 ```
-
-Call:
-aov(formula = Negative ~ Rater, data = Ramdhani_df)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--2.08813 -0.74921  0.05792  0.71482  2.34187 
-
-Coefficients:
-            Estimate Std. Error t value             Pr(>|t|)    
-(Intercept)  2.93283    0.09259  31.676 < 0.0000000000000002 ***
-Raterc1     -0.03712    0.06544  -0.567             0.571670    
-Raterc2      0.40342    0.11345   3.556             0.000561 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.9745 on 108 degrees of freedom
-Multiple R-squared:  0.1063,	Adjusted R-squared:  0.0898 
-F-statistic: 6.426 on 2 and 108 DF,  p-value: 0.002307
+## 
+## Call:
+## aov(formula = Negative ~ Rater, data = Ramdhani_df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.08813 -0.74921  0.05792  0.71482  2.34187 
+## 
+## Coefficients:
+##             Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept)  2.93283    0.09259  31.676 < 0.0000000000000002 ***
+## Raterc1     -0.03712    0.06544  -0.567             0.571670    
+## Raterc2      0.40342    0.11345   3.556             0.000561 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9745 on 108 degrees of freedom
+## Multiple R-squared:  0.1063,	Adjusted R-squared:  0.0898 
+## F-statistic: 6.426 on 2 and 108 DF,  p-value: 0.002307
 ```
 
 ```r
@@ -1576,10 +1575,10 @@ contrasts(Ramdhani_df$Rater)
 ```
 
 ```
-          [,1] [,2]
-Dayaknese    1   -1
-Javanese    -2    0
-Madurese     1    1
+##           [,1] [,2]
+## Dayaknese    1   -1
+## Javanese    -2    0
+## Madurese     1    1
 ```
 Viewing the contrasts() output, we see that the trends (linear, quadratic) in our contrast coding will be fit across Dayaknese, Javanese, and Madurese. 
 
@@ -1595,25 +1594,25 @@ summary.lm(mainTrend)
 ```
 
 ```
-
-Call:
-aov(formula = Negative ~ Rater, data = Ramdhani_df)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--2.08813 -0.74921  0.05792  0.71482  2.34187 
-
-Coefficients:
-            Estimate Std. Error t value             Pr(>|t|)    
-(Intercept)  2.93283    0.09259  31.676 < 0.0000000000000002 ***
-Rater.L      0.57052    0.16045   3.556             0.000561 ***
-Rater.Q     -0.09094    0.16029  -0.567             0.571670    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.9745 on 108 degrees of freedom
-Multiple R-squared:  0.1063,	Adjusted R-squared:  0.0898 
-F-statistic: 6.426 on 2 and 108 DF,  p-value: 0.002307
+## 
+## Call:
+## aov(formula = Negative ~ Rater, data = Ramdhani_df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.08813 -0.74921  0.05792  0.71482  2.34187 
+## 
+## Coefficients:
+##             Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept)  2.93283    0.09259  31.676 < 0.0000000000000002 ***
+## Rater.L      0.57052    0.16045   3.556             0.000561 ***
+## Rater.Q     -0.09094    0.16029  -0.567             0.571670    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9745 on 108 degrees of freedom
+## Multiple R-squared:  0.1063,	Adjusted R-squared:  0.0898 
+## F-statistic: 6.426 on 2 and 108 DF,  p-value: 0.002307
 ```
 
 **Rater.L** tests the data to see if there is a significant linear trend. There is: $t(108) = 3.556, < 0 .001$.
@@ -1669,20 +1668,20 @@ apaTables::apa.2way.table(iv1 = Rater, iv2 = Photo, dv = Negative, data = Ramdha
 ```
 
 ```
-
-
-Table 1 
-
-Means and standard deviations for Negative as a function of a 3(Rater) X 2(Photo) design 
-
-               Photo                   
-           Dayaknese      Madurese     
-     Rater         M   SD        M   SD
- Dayaknese      1.82 0.77     3.13 0.16
-  Javanese      2.52 0.74     3.46 0.64
-  Madurese      3.30 1.03     3.30 1.33
-
-Note. M and SD represent mean and standard deviation, respectively. 
+## 
+## 
+## Table 1 
+## 
+## Means and standard deviations for Negative as a function of a 3(Rater) X 2(Photo) design 
+## 
+##                Photo                   
+##            Dayaknese      Madurese     
+##      Rater         M   SD        M   SD
+##  Dayaknese      1.82 0.77     3.13 0.16
+##   Javanese      2.52 0.74     3.46 0.64
+##   Madurese      3.30 1.03     3.30 1.33
+## 
+## Note. M and SD represent mean and standard deviation, respectively.
 ```
 
 
@@ -1692,20 +1691,20 @@ apaTables::apa.aov.table(TwoWay_neg, filename = "Table_2_effects.doc",
 ```
 
 ```
-
-
-Table 2 
-
-ANOVA results using Negative as the dependent variable
- 
-
-     Predictor    SS  df    MS     F    p partial_eta2 CI_90_partial_eta2
-         Rater 12.24   2  6.12  8.10 .001          .13                   
-         Photo 14.62   1 14.62 19.35 .000          .16         [.06, .26]
- Rater x Photo  8.61   2  4.30  5.70 .004          .10         [.02, .18]
-         Error 79.34 105  0.76                                           
-
-Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared 
+## 
+## 
+## Table 2 
+## 
+## ANOVA results using Negative as the dependent variable
+##  
+## 
+##      Predictor    SS  df    MS     F    p partial_eta2 CI_90_partial_eta2
+##          Rater 12.24   2  6.12  8.10 .001          .13                   
+##          Photo 14.62   1 14.62 19.35 .000          .16         [.06, .26]
+##  Rater x Photo  8.61   2  4.30  5.70 .004          .10         [.02, .18]
+##          Error 79.34 105  0.76                                           
+## 
+## Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared
 ```
 
 While I have not located a package that will take *rstatix* output to make an APA style table with our pairwise comparisons, we can use the *MASS* package to write the pwc object to a .csv file, then manually make our own table.
@@ -1763,18 +1762,18 @@ rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "3",
 ```
 
 ```
-ANOVA Table (type III tests)
-
-       Effect     SSn    SSd DFn DFd        F
-1 (Intercept) 945.415 79.341   1 105 1251.162
-2       Rater  12.745 79.341   2 105    8.434
-3       Photo  15.559 79.341   1 105   20.591
-4 Rater:Photo   8.609 79.341   2 105    5.696
-                                                                 p p<.05   ges
-1 0.00000000000000000000000000000000000000000000000000000000000375     * 0.923
-2 0.00040099999999999998926553113065551769977901130914688110351562     * 0.138
-3 0.00001520000000000000015942108744226857197645585983991622924805     * 0.164
-4 0.00400000000000000008326672684688674053177237510681152343750000     * 0.098
+## ANOVA Table (type III tests)
+## 
+##        Effect     SSn    SSd DFn DFd        F
+## 1 (Intercept) 945.415 79.341   1 105 1251.162
+## 2       Rater  12.745 79.341   2 105    8.434
+## 3       Photo  15.559 79.341   1 105   20.591
+## 4 Rater:Photo   8.609 79.341   2 105    5.696
+##                                                                  p p<.05   ges
+## 1 0.00000000000000000000000000000000000000000000000000000000000375     * 0.923
+## 2 0.00040099999999999998926553113065551769977901130914688110351562     * 0.138
+## 3 0.00001520000000000000015942108744226857197645585983991622924805     * 0.164
+## 4 0.00400000000000000008326672684688674053177237510681152343750000     * 0.098
 ```
 For comparison, this was our earlier analysis:
 
@@ -1785,12 +1784,12 @@ rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "2",
 ```
 
 ```
-ANOVA Table (type II tests)
-
-       Effect    SSn    SSd DFn DFd      F         p p<.05   ges
-1       Rater 12.238 79.341   2 105  8.098 0.0005360     * 0.134
-2       Photo 14.619 79.341   1 105 19.346 0.0000262     * 0.156
-3 Rater:Photo  8.609 79.341   2 105  5.696 0.0040000     * 0.098
+## ANOVA Table (type II tests)
+## 
+##        Effect    SSn    SSd DFn DFd      F         p p<.05   ges
+## 1       Rater 12.238 79.341   2 105  8.098 0.0005360     * 0.134
+## 2       Photo 14.619 79.341   1 105 19.346 0.0000262     * 0.156
+## 3 Rater:Photo  8.609 79.341   2 105  5.696 0.0040000     * 0.098
 ```
 Note that the sums of squares are somewhat different between models -- and that the Type III results includes an intercept. In today's example, the statistical significance remains the same across the models.
 
@@ -1834,12 +1833,12 @@ rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "2",
 ```
 
 ```
-ANOVA Table (type II tests)
-
-       Effect    SSn    SSd DFn DFd      F         p p<.05   ges
-1       Rater 12.238 79.341   2 105  8.098 0.0005360     * 0.134
-2       Photo 14.619 79.341   1 105 19.346 0.0000262     * 0.156
-3 Rater:Photo  8.609 79.341   2 105  5.696 0.0040000     * 0.098
+## ANOVA Table (type II tests)
+## 
+##        Effect    SSn    SSd DFn DFd      F         p p<.05   ges
+## 1       Rater 12.238 79.341   2 105  8.098 0.0005360     * 0.134
+## 2       Photo 14.619 79.341   1 105 19.346 0.0000262     * 0.156
+## 3 Rater:Photo  8.609 79.341   2 105  5.696 0.0040000     * 0.098
 ```
 If we want to understand power in our analysis, we need to convert our effect size ($\eta^2$) for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
@@ -1849,7 +1848,7 @@ effectsize::eta2_to_f(0.134)  #FactorA -- Rater
 ```
 
 ```
-[1] 0.393363
+## [1] 0.393363
 ```
 
 ```r
@@ -1857,7 +1856,7 @@ effectsize::eta2_to_f(0.156)  #Factor B -- Photo
 ```
 
 ```
-[1] 0.4299234
+## [1] 0.4299234
 ```
 ### Post Hoc Power Analysis
 
@@ -1876,19 +1875,19 @@ pwr2::pwr.2way(a = 3, b = 2, alpha = 0.05, size.A = 37, size.B = 55, f.A = 0.393
 ```
 
 ```
-
-     Balanced two-way analysis of variance power calculation 
-
-              a = 3
-              b = 2
-            n.A = 37
-            n.B = 55
-      sig.level = 0.05
-        power.A = 0.9997716
-        power.B = 1
-          power = 0.9997716
-
-NOTE: power is the minimum power among two factors
+## 
+##      Balanced two-way analysis of variance power calculation 
+## 
+##               a = 3
+##               b = 2
+##             n.A = 37
+##             n.B = 55
+##       sig.level = 0.05
+##         power.A = 0.9997716
+##         power.B = 1
+##           power = 0.9997716
+## 
+## NOTE: power is the minimum power among two factors
 ```
 At 0.9998 (Rater), 1.0000 (Photo), and 0.9998 (interaction), our power to detect a significant effect for Factor A/Rater and Factor B/Photo was huge! 
 
@@ -1913,16 +1912,16 @@ pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.3935, f.B = 0.43,
 ```
 
 ```
-
-     Balanced two-way analysis of variance sample size adjustment 
-
-              a = 3
-              b = 2
-      sig.level = 0.05
-          power = 0.2
-              n = 3
-
-NOTE: n is number in each group, total sample = 18
+## 
+##      Balanced two-way analysis of variance sample size adjustment 
+## 
+##               a = 3
+##               b = 2
+##       sig.level = 0.05
+##           power = 0.2
+##               n = 3
+## 
+## NOTE: n is number in each group, total sample = 18
 ```
 Curiously, 18 was just about the number that was in each of the six cells!
 
@@ -1935,16 +1934,16 @@ pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.25, f.B = 0.25,
 ```
 
 ```
-
-     Balanced two-way analysis of variance sample size adjustment 
-
-              a = 3
-              b = 2
-      sig.level = 0.05
-          power = 0.2
-              n = 6
-
-NOTE: n is number in each group, total sample = 36
+## 
+##      Balanced two-way analysis of variance sample size adjustment 
+## 
+##               a = 3
+##               b = 2
+##       sig.level = 0.05
+##           power = 0.2
+##               n = 6
+## 
+## NOTE: n is number in each group, total sample = 36
 ```
 
 And what would happen if we only had a small effect?
@@ -1955,16 +1954,16 @@ pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.1, f.B = 0.1,
 ```
 
 ```
-
-     Balanced two-way analysis of variance sample size adjustment 
-
-              a = 3
-              b = 2
-      sig.level = 0.05
-          power = 0.2
-              n = 30
-
-NOTE: n is number in each group, total sample = 180
+## 
+##      Balanced two-way analysis of variance sample size adjustment 
+## 
+##               a = 3
+##               b = 2
+##       sig.level = 0.05
+##           power = 0.2
+##               n = 30
+## 
+## NOTE: n is number in each group, total sample = 180
 ```
 
 ## Practice Problems
@@ -2028,11 +2027,13 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |**Totals* **                                  |     34      |             |
 
 
+
+
 ## Homeworked Example
 
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
 ### Working the Problem with R and R Packages
 
@@ -2040,8 +2041,15 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students in the ANOVA class as a function of:
 
-* stage in the revision (Stable, Transitioning, Resettled), and
-* Department (CPY vs ORG) 
+* **Stage** in the transition
+  - STABLE:  2017 represents the last year of "stability during the old way" when we taught with SPSS and during the 2nd year of the doctoral programs.
+  - TRANSITION:  2018 & 2019 represent the transition to R, when the classes were 30% larger because each of the IOP and CPY departments were transitioning to the 1st year (they did it separately, so as not to double the classes)
+  - RESETTLED:  2020 & 2021 represent the "resettled" phase where the transition to R was fairly complete and the class size returned to normal because the classes were offered in the first year.
+* **Department** 
+  - CPY: Clinical Psychology
+  - ORG: Industrial-Organizational Psychology
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
 #### Simulate (or import) and format data.
 
@@ -2050,41 +2058,22 @@ I want to ask the question, do course evaluation ratings for the traditional ped
 big <- readRDS("ReC.rds")
 ```
 
-Let's first create the "Stage" variable that represents the three levels of transition.
-
-First I will map the years to the three levels (factors).
-
+Let's first create the "Stage" variable that represents the three levels of transition.  The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.
 
 ```r
-big$Stage <- plyr::mapvalues(big$Year, from = c(2017, 2018, 2019, 2020, 2021), to = c("Stable", "Transition", "Transition", "Resettled", "Resettled"))
+big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition", "First"), to = c("Stable", "Transition", "Resettled"))
 ```
 
-Then check the structure.
+Let's check the structure:
 
 ```r
 str(big$Stage)
 ```
 
 ```
- chr [1:310] "Resettled" "Resettled" "Resettled" "Resettled" "Resettled" ...
-```
-R is reading the variable as a character, so I need to make it to be an ordered factor.
-
-
-```r
-big$Stage <- factor(big$Stage, levels = c("Stable", "Transition", "Resettled"))
+##  Factor w/ 3 levels "Stable","Transition",..: 3 3 3 3 3 3 3 3 3 3 ...
 ```
 
-Let's check the structure again:
-
-
-```r
-str(big$Stage)
-```
-
-```
- Factor w/ 3 levels "Stable","Transition",..: 3 3 3 3 3 3 3 3 3 3 ...
-```
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
@@ -2108,7 +2097,7 @@ TwoWay_df <- subset(big, Course == "ANOVA")
 Next, let's trim it to just the variables we need.
 
 ```r
-TwoWay_df <-(dplyr::select (TwoWay_df, Stage, Dept, TradPed))
+TwoWay_df <-(dplyr::select(TwoWay_df, Stage, Dept, TradPed))
 ```
 
 Although we would handle missing data more carefully in a "real study," I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
@@ -2126,54 +2115,47 @@ TwoWay_df <- na.omit(TwoWay_df) #the next operation required non-missing data
 TwoWay_df[TwoWay_df$Stage == "Stable" & TwoWay_df$TradPed < 4.3, "Dept"]<- "ORG"
 ```
 
-
 Although the homework assignment doesn't require it, I think it's useful to create a figure that shows what I intend to do.
 
-
 ```r
-Box2way<- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage", xlab = "Academic Department",
+Box2way <- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage", xlab = "Academic Department",
     ylab = "Students' Evaluations of Traditional Pedagogy", add = "jitter",
     title = "Course Evaluations as a Function of Department and Stage in Transition")
 Box2way
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-91-1.png)<!-- -->
-
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-90-1.png)<!-- -->
 
 #### Evaluate statistical assumptions.
 
-**Is the dependent variable normally disributed at all levels of the combinations of the levels within the grouping variables?**
+**Is the dependent variable normally distributed at all levels of the combinations of the levels within the grouping variables?**
 
 I'll start with an inspection of skew and kurtosis for all combinations of the levels of the two grouping variables.
-
 
 ```r
 psych::describeBy(TradPed ~ Stage + Dept, mat = TRUE, data = TwoWay_df, digits = 3, type = 1)
 ```
 
 ```
-         item     group1 group2 vars  n  mean    sd median trimmed   mad min
-TradPed1    1     Stable    CPY    1 12 4.817 0.217    4.9   4.840 0.148 4.4
-TradPed2    2 Transition    CPY    1 24 4.317 0.700    4.4   4.400 0.890 2.8
-TradPed3    3  Resettled    CPY    1 36 3.836 0.805    3.9   3.897 0.741 1.8
-TradPed4    4     Stable    ORG    1  9 3.889 0.348    4.0   3.889 0.000 3.2
-TradPed5    5 Transition    ORG    1 20 3.720 1.264    4.1   3.875 1.038 1.0
-TradPed6    6  Resettled    ORG    1 11 4.145 0.658    4.0   4.200 0.593 2.8
-         max range   skew kurtosis    se
-TradPed1 5.0   0.6 -0.615   -1.043 0.063
-TradPed2 5.0   2.2 -0.700   -0.442 0.143
-TradPed3 5.0   3.2 -0.553   -0.181 0.134
-TradPed4 4.2   1.0 -1.185   -0.106 0.116
-TradPed5 5.0   4.0 -0.926   -0.412 0.283
-TradPed6 5.0   2.2 -0.437   -0.377 0.198
+##          item     group1 group2 vars  n  mean    sd median trimmed   mad min
+## TradPed1    1     Stable    CPY    1 25 4.832 0.236    5.0   4.857 0.000 4.4
+## TradPed2    2 Transition    CPY    1 26 3.769 0.878    3.8   3.818 0.741 1.8
+## TradPed3    3  Resettled    CPY    1 10 4.010 0.578    3.9   4.037 0.667 3.0
+## TradPed4    4     Stable    ORG    1 25 3.864 0.582    4.0   3.876 0.297 2.6
+## TradPed5    5 Transition    ORG    1 15 3.560 1.338    4.0   3.646 1.186 1.0
+## TradPed6    6  Resettled    ORG    1 11 4.145 0.658    4.0   4.200 0.593 2.8
+##          max range   skew kurtosis    se
+## TradPed1 5.0   0.6 -0.937   -0.754 0.047
+## TradPed2 5.0   3.2 -0.448   -0.501 0.172
+## TradPed3 4.8   1.8 -0.174   -1.017 0.183
+## TradPed4 5.0   2.4 -0.428    0.082 0.116
+## TradPed5 5.0   4.0 -0.778   -0.777 0.345
+## TradPed6 5.0   2.2 -0.437   -0.377 0.198
 ```
-
-
 
 Following Kline's (2016) recommendations, skew for each combination of levels of the two IVs are < |3.0|.  Kurtosis for each combination of levels of the two IVs are < |10.0|.
 
 The Shapiro-Wilk examines residuals from the ANOVA model. We can quickly/preliminarily run the two-way ANOVA. We do this to produce an object that holds the *model residuals.*
-
 
 ```r
 TwoWay_TradPed <- aov(TradPed ~ Stage * Dept, TwoWay_df)
@@ -2181,13 +2163,13 @@ summary(TwoWay_TradPed)
 ```
 
 ```
-             Df Sum Sq Mean Sq F value Pr(>F)  
-Stage         2   3.79  1.8974   2.868 0.0612 .
-Dept          1   3.07  3.0739   4.647 0.0334 *
-Stage:Dept    2   6.04  3.0215   4.567 0.0125 *
-Residuals   106  70.12  0.6615                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##              Df Sum Sq Mean Sq F value   Pr(>F)    
+## Stage         2   9.69   4.844   8.401 0.000411 ***
+## Dept          1   6.57   6.570  11.395 0.001030 ** 
+## Stage:Dept    2   5.65   2.827   4.904 0.009187 ** 
+## Residuals   106  61.12   0.577                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 The *residuals()* function serves to extract the residuals. We can apply the model-baesd *shapiro.test()* function from base R to see if the model residuals are non-normally distributed.
 
@@ -2197,37 +2179,35 @@ shapiro.test(resid_TradPed)
 ```
 
 ```
-
-	Shapiro-Wilk normality test
-
-data:  resid_TradPed
-W = 0.94245, p-value = 0.0001119
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  resid_TradPed
+## W = 0.94855, p-value = 0.0002903
 ```
 
-A statistically significant Shapiro-Wilks' test of normality suggests that we violated the assumption $W = 0.942, p = 0.001$.
+A statistically significant Shapiro-Wilks' test of normality suggests that we violated the assumption $W = 0.949, p < 0.001$.
 
 Let's plot the residuals
-
 
 ```r
 hist(resid_TradPed)
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-95-1.png)<!-- -->
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-94-1.png)<!-- -->
 The histogram does look somewhat different (negatively skewed) from a normal distribution.
-
 
 ```r
 qqnorm(resid_TradPed)
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-96-1.png)<!-- -->
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-95-1.png)<!-- -->
 
 The dots stray from the expected diagonal; this also visualizes the non-normality of the data.
 
 Summary so far:
 
->Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.942, p = 0.001$.
+>Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.949, p < 0.001$.
 
 **Are there outliers?**
 
@@ -2241,11 +2221,11 @@ TwoWay_df %>%
 ```
 
 ```
-       Stage Dept TradPed is.outlier is.extreme
-1  Resettled  CPY     1.8       TRUE      FALSE
-2 Transition  ORG     1.0       TRUE      FALSE
-3 Transition  ORG     1.4       TRUE      FALSE
-4 Transition  ORG     1.6       TRUE      FALSE
+##        Stage Dept TradPed is.outlier is.extreme
+## 1 Transition  CPY     1.8       TRUE      FALSE
+## 2 Transition  ORG     1.0       TRUE      FALSE
+## 3 Transition  ORG     1.4       TRUE      FALSE
+## 4 Transition  ORG     1.6       TRUE      FALSE
 ```
 
 There are four outliers; none are extreme. Given that these are all on the low-side (of a negatively skewed distribution where most scores are higher), I feel it is important to retain them as they reflect more students' experiences. If this were for something other than a homework demonstration, I might also take a look at the case to see if there was evidence of inattention or something else.
@@ -2260,22 +2240,23 @@ rstatix::levene_test(TwoWay_df, TradPed ~ Dept * Stage)
 ```
 
 ```
-# A tibble: 1 × 4
-    df1   df2 statistic        p
-  <int> <int>     <dbl>    <dbl>
-1     5   106      4.55 0.000851
+## # A tibble: 1 × 4
+##     df1   df2 statistic         p
+##   <int> <int>     <dbl>     <dbl>
+## 1     5   106      6.41 0.0000305
 ```
 
-Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 4.5489, p < .001)$. This is not surprising. The boxplots shows some widely varying variances.
+Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 6.412, p < .001)$. This is not surprising. The boxplots shows some widely varying variances.
 
 Do we have to stop?  If cell sizes are reasonably large (e.g., at least 15) and balanced (equal), ANOVA is a relatively robust to violations of normality.  Unfortunately, we don't have 15 in all cells AND our cells are unequal AND this was not an experiment. So.....this probably isn't the best approach (but it'll work for a class demo).
 
->A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and  on traditional pedagogy course evaluation ratings. Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.942, p = 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 4.5489, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+>A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) on traditional pedagogy course evaluation ratings. 
+
+>Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.949, p < 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 6.412, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
 
 #### Conduct omnibus ANOVA (w effect size).
 
 We can use the *rstatix::anova_test()* function.
-
 
 ```r
 omnibus2w <- rstatix::anova_test(TwoWay_df, TradPed ~ Dept * Stage, type = "2", detailed = TRUE)
@@ -2283,23 +2264,23 @@ omnibus2w
 ```
 
 ```
-ANOVA Table (type II tests)
-
-      Effect   SSn    SSd DFn DFd     F     p p<.05   ges
-1       Dept 3.074 70.121   1 106 4.647 0.033     * 0.042
-2      Stage 4.784 70.121   2 106 3.616 0.030     * 0.064
-3 Dept:Stage 6.043 70.121   2 106 4.567 0.013     * 0.079
+## ANOVA Table (type II tests)
+## 
+##       Effect    SSn   SSd DFn DFd      F         p p<.05   ges
+## 1       Dept  6.570 61.12   1 106 11.395 0.0010000     * 0.097
+## 2      Stage 11.612 61.12   2 106 10.070 0.0000991     * 0.160
+## 3 Dept:Stage  5.655 61.12   2 106  4.904 0.0090000     * 0.085
 ```
 
 Let's write the F strings from the above table:
 
-* Department main effect:  $F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042$
-* Stage main effect:  $F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064$
-* Interaction effect:  $F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079$
+* Department main effect:  $F(1, 106) = 11.395, p = 0.001, \eta^2 = 0.097$
+* Stage main effect:  $F(2, 106) = 10.070 , p < 0.001, \eta^2 = 0.160$
+* Interaction effect:  $F(2, 106) = 4.904, p = 0.009, \eta^2 = 0.085$
 
 So far we have statistically significant effects for the main and interaction effects. Here are the results so far:
 
->Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042$; the main effect for stage in transition, in transition $F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064$, and the interaction effect, $F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079$.
+>Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 11.395, p = 0.001, \eta^2 = 0.097$; the main effect for stage in transition, $F(2, 106) = 10.070, p < 0.001, \eta^2 = 0.160$; and the interaction effect, $F(2, 106) = 4.904, p = 0.009, \eta^2 = 0.085$. 
 
 #### Conduct one set of follow-up tests; narrate your choice.
 
@@ -2307,9 +2288,9 @@ There are so many choices for following up a significant interaction effect. Reg
 
 Although we could do something more complicated (like orthogonal contrast coding), given that those completing homework are often having early experiences with ANOVA, I will choose a more streamlined path by examining the the simple main effect of stage within department.
 
-Functionally, this computes three one-way ANOVAs, comparing the three stages within each of the departments within each of the three stages of transition.  Functionally, this will produce two one-way ANOVAs. If the result is statistically significant, we will need to follow-up with more testing. 
+Functionally, this computes two one-way ANOVAs, comparing the three stages within each of the departments. If the result is statistically significant, we will need to follow-up with more testing. 
 
-The *rstatix::anova_test* does not allow me to specify a control for Type I error. Therefore, if I wanted to do so, I would need to monitor it outside of the R package.  I could evaluate each of the *p* values for the two one-way ANOVAs at 0.025 (05/2). Rather than tracking Type I error at this level, I will wait and do so when I get to the pairwise comparisons that follow a statistically significant one-way ANOVA.
+The *rstatix::anova_test* does not allow me to specify a control for Type I error. Therefore, if I wanted to do so, I would need to monitor it outside of the R package.  I *could* evaluate each of the *p* values for the two one-way ANOVAs at 0.025 (05/2). Rather than tracking Type I error at this level, I will wait and do so when I get to the pairwise comparisons that follow a statistically significant one-way ANOVA.
 
 
 ```r
@@ -2319,24 +2300,24 @@ TwoWay_df %>%
 ```
 
 ```
-# A tibble: 2 × 8
-  Dept  Effect   DFn   DFd     F        p `p<.05`   ges
-* <chr> <chr>  <dbl> <dbl> <dbl>    <dbl> <chr>   <dbl>
-1 CPY   Stage      2    69 9.55  0.000218 "*"     0.217
-2 ORG   Stage      2    37 0.668 0.519    ""      0.035
+## # A tibble: 2 × 8
+##   Dept  Effect   DFn   DFd     F           p `p<.05`   ges
+## * <chr> <chr>  <dbl> <dbl> <dbl>       <dbl> <chr>   <dbl>
+## 1 CPY   Stage      2    58 18.5  0.000000611 "*"     0.389
+## 2 ORG   Stage      2    48  1.42 0.252       ""      0.056
 ```
 Results suggest statistically significant differences in department across the stages within the CPY department, but not the ORG department:
 
-* For CPY:  $F(2, 69) = 9.548, p < 0.001, \eta^2 = 0.217$
-* For ORG: $F(2, 37) = 0.668, p = 0.519, \eta^2 = 0.315$
+* For CPY:  $F(2, 58) = 18.497, p < 0.001, \eta^2 = 0.389$
+* For ORG: $F(2, 48) = 1.417, p = 0.252, \eta^2 = 0.056$
 
 I would write up this stage of the analysis this way:
 
-> To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent ($F[2, 69] = 9.548, p < 0.001, \eta^2 = 0.217$), but not for the ORG department ($F[2, 37] = 0.668, p = 0.519, \eta^2 = 0.315$).
+>To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent $(F[2, 58] = 18.497, p < 0.001, \eta^2 = 0.389)$, but not for the ORG department $(F[2, 48] = 1.417, p = 0.252, \eta^2 = 0.056)$.
 
 Because there are three stages of transition, we need to followup with pairwise comparisons to see where the differences lie. Because I want to results from the significance tests to update the figure, I will save the output as an object.
 
-Although we only needed to compare 3 pairwise tests, this test (and figure) will compute them all. The Holm's Sequential Bonferroni is a very reasonable approach (balancing Type I error with sensibility) and so I will use it to evaluate the six pairwise comparisons that will be produced.
+Although, technically, we only needed to compare 3 pairwise tests, this test (and figure) will compute them all. The Holm's Sequential Bonferroni is a very reasonable approach (balancing Type I error with sensibility) and so I will use it to evaluate the six pairwise comparisons that will be produced.
 
 
 ```r
@@ -2347,31 +2328,32 @@ pwTRwiDP
 ```
 
 ```
-# A tibble: 6 × 10
-  Dept  term  .y.     group1 group2    df statistic       p   p.adj p.adj.signif
-* <fct> <chr> <chr>   <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
-1 CPY   Stage TradPed Stable Trans…   106     1.74  8.50e-2 0.0850  ns          
-2 CPY   Stage TradPed Stable Reset…   106     3.62  4.59e-4 0.00138 **          
-3 CPY   Stage TradPed Trans… Reset…   106     2.24  2.70e-2 0.0541  ns          
-4 ORG   Stage TradPed Stable Trans…   106     0.517 6.06e-1 0.969   ns          
-5 ORG   Stage TradPed Stable Reset…   106    -0.702 4.84e-1 0.969   ns          
-6 ORG   Stage TradPed Trans… Reset…   106    -1.39  1.66e-1 0.499   ns          
+## # A tibble: 6 × 10
+##   Dept  term  .y.     group1 group2    df statistic       p   p.adj p.adj.signif
+## * <fct> <chr> <chr>   <chr>  <chr>  <dbl>     <dbl>   <dbl>   <dbl> <chr>       
+## 1 CPY   Stage TradPed Stable Trans…   106     5.00  2.31e-6 6.94e-6 ****        
+## 2 CPY   Stage TradPed Stable Reset…   106     2.89  4.63e-3 9.26e-3 **          
+## 3 CPY   Stage TradPed Trans… Reset…   106    -0.852 3.96e-1 3.96e-1 ns          
+## 4 ORG   Stage TradPed Stable Trans…   106     1.23  2.23e-1 4.46e-1 ns          
+## 5 ORG   Stage TradPed Stable Reset…   106    -1.02  3.08e-1 4.46e-1 ns          
+## 6 ORG   Stage TradPed Trans… Reset…   106    -1.94  5.48e-2 1.64e-1 ns
 ```
 
 
-Consistent with the significant one-way ANOVA for the ORG factor, there were non-significant differences between all pairs of stages.  Within the CPY student evaluations, there were statistically significant differences between stable and resettled. Had we not controlled for Type I error, there would have also been significant differences between transition and resettled.
+Consistent with the significant one-way ANOVA for the ORG factor, there were non-significant differences between all pairs of stages.  Within the CPY student evaluations, there were statistically significant differences between stable and transition and stabled and resettled comparisons. Both comparisons favored the stable level.
 
-Let's update our figure with a representation of these pairwise comparisons.
 
 Here'w how I would assemble the entire APA style results:
 
->A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and  on traditional pedagogy course evaluation ratings. Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.942, p = 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 4.5489, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
+>A 2 X 3 ANOVA was conducted to evaluate the effects of academic department (2 levels, CPY and ORG) and stage of transition (3 levels, stable, transitioning, resettled) and  on traditional pedagogy course evaluation ratings. 
 
->Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 4.647, p = 0.033, \eta^2 = 0.042$; the main effect for stage in transition, in transition $F(2, 106) = 3.616 , p = 0.030, \eta^2 = 0.064$, and the interaction effect, $F(2, 106) = 4.567, p = 0.013, \eta^2 = 0.079$.
+>Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.949, p < 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 6.412, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
 
->To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent ($F[2, 69] = 9.548, p < 0.001, \eta^2 = 0.217$), but not for the ORG department ($F[2, 37] = 0.668, p = 0.519, \eta^2 = 0.315$).
+>Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 11.395, p = 0.001, \eta^2 = 0.097$; the main effect for stage in transition, in transition $F(2, 106) = 10.07 , p < 0.001, \eta^2 = 0.160$, and the interaction effect, $F(2, 106) = 4.904, p = 0.009, \eta^2 = 0.085$. 
 
->We followed the significant one-way ANOVA with pairwise comparisons between the groups using the estimated marginal means. We specified the Holm's sequential Bonferroni for managing Type I error. Only the comparison between the stable and resettled conditions within CPY students were statistically significantly different $t(106) = 3.6167765, p = 0.001$. Cell and marginal means and standard deviations are presented in Table 1; results are illustrated in Figure 1.
+> To explore the significant interaction effect, we followed with a test of simple main effect of the stage in transition within the academic department. We began with separate one-way ANOVAs. Results indicated significant differences within the CPY deparmtent $(F[2, 58] = 18.497	, p < 0.001, \eta^2 = 0.389)$, but not for the ORG department $(F[2, 48] = 1.417, p = 0.252, \eta^2 = 0.056)$.
+
+>We followed the significant one-way ANOVAs with pairwise comparisons between the groups using the estimated marginal means. We specified the Holm's sequential Bonferroni for managing Type I error. For CPY students, comparisons  between the stable and transition $(t[106] = 4.997, p < 0.001)$ and stable and resettled $(t[106] = 2.893, p = 0.005)$ stages were statistically significantly different. Cell means, marginal means, and standard deviations are presented in Table 1; results are illustrated in Figure 1.
 
 #### Describe approach for managing Type I error.
 
@@ -2385,32 +2367,32 @@ apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2W
 ```
 
 ```
-
-
-Table 1 
-
-Means and standard deviations for TradPed as a function of a 2(Dept) X 3(Stage) design 
-
-           Stage                                                  
-          Stable      Transition      Resettled      Marginal     
-     Dept      M   SD          M   SD         M   SD        M   SD
-      CPY   4.82 0.22       4.32 0.70      3.84 0.81     4.16 0.79
-      ORG   3.89 0.35       3.72 1.26      4.15 0.66     3.88 0.97
- Marginal   4.42 0.54       4.05 1.03      3.91 0.78              
-
-Note. M and SD represent mean and standard deviation, respectively. 
-Marginal indicates the means and standard deviations pertaining to main effects. 
+## 
+## 
+## Table 1 
+## 
+## Means and standard deviations for TradPed as a function of a 2(Dept) X 3(Stage) design 
+## 
+##            Stage                                                  
+##           Stable      Transition      Resettled      Marginal     
+##      Dept      M   SD          M   SD         M   SD        M   SD
+##       CPY   4.83 0.24       3.77 0.88      4.01 0.58     4.24 0.80
+##       ORG   3.86 0.58       3.56 1.34      4.15 0.66     3.84 0.89
+##  Marginal   4.35 0.66       3.69 1.06      4.08 0.61              
+## 
+## Note. M and SD represent mean and standard deviation, respectively. 
+## Marginal indicates the means and standard deviations pertaining to main effects.
 ```
 
 
 ```r
 pwTRwiDP <- pwTRwiDP %>%
     rstatix::add_xy_position(x = "Dept")  #x should be whatever the variable was used in the group_by argument 
-Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3))
+Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3, 5.5))
 Box2way
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-103-1.png)<!-- -->
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-102-1.png)<!-- -->
 #### Conduct power analyses to determine the power of the current study and a recommended sample size.
 
 The *pwr.2way()* and *ss.2way()* functions require the following:
@@ -2427,76 +2409,76 @@ We need to convert our effect size ($\eta^2$) for the *interaction* to $f$ effec
 
 
 ```r
-effectsize::eta2_to_f(0.042)  #FactorA -- Dept
+effectsize::eta2_to_f(0.097)  #FactorA -- Dept
 ```
 
 ```
-[1] 0.2093832
-```
-
-```r
-effectsize::eta2_to_f(0.064)  #Factor B -- Stage
-```
-
-```
-[1] 0.2614882
+## [1] 0.3277495
 ```
 
 ```r
-effectsize::eta2_to_f(0.013)  #interaction
+effectsize::eta2_to_f(0.16)  #Factor B -- Stage
 ```
 
 ```
-[1] 0.114766
+## [1] 0.4364358
+```
+
+```r
+effectsize::eta2_to_f(0.085)  #interaction
+```
+
+```
+## [1] 0.3047887
 ```
 
 The size.A and size.B are the sample size per group within the factor. Because ours differ, i divided the N by the number of groups.
 
 ```r
-12+24+36+9+20+11
+112/2
 ```
 
 ```
-[1] 112
-```
-
-```r
-(12+24+36+9+20+11)/3
-```
-
-```
-[1] 37.33333
+## [1] 56
 ```
 
 ```r
-(12+24+36+9+20+11)/2
+112/3
 ```
 
 ```
-[1] 56
+## [1] 37.33333
+```
+
+```r
+112/6
+```
+
+```
+## [1] 18.66667
 ```
 
 
 ```r
-pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 37, size.B = 56, f.A = 0.042, f.B = 0.063)
+pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 56, size.B = 37, f.A = 0.3277495, f.B = 0.4364358)
 ```
 
 ```
-
-     Balanced two-way analysis of variance power calculation 
-
-              a = 2
-              b = 3
-            n.A = 37
-            n.B = 56
-      sig.level = 0.05
-        power.A = 0.0955199
-        power.B = 0.1618335
-          power = 0.0955199
-
-NOTE: power is the minimum power among two factors
+## 
+##      Balanced two-way analysis of variance power calculation 
+## 
+##               a = 2
+##               b = 3
+##             n.A = 56
+##             n.B = 37
+##       sig.level = 0.05
+##         power.A = 0.9999722
+##         power.B = 0.9999821
+##           power = 0.9999722
+## 
+## NOTE: power is the minimum power among two factors
 ```
-At 10% (Dept), 16% (Stage), and 10% (interaction), our power to detect statistically significant main and interaction effects was low.
+At 100% (Dept), 100 (Stage), and 100% (interaction), our power to detect statistically significant main and interaction effects was strong
 
 I will use a different function to estimate what sample size would be sufficiently powerful. In this syntax:
 
@@ -2505,22 +2487,30 @@ I will use a different function to estimate what sample size would be sufficient
 
 
 ```r
-pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.042, f.B = 0.063, B = 100)
+pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.3277495, f.B = 0.4364358, B = 100)
 ```
 
 ```
-
-     Balanced two-way analysis of variance sample size adjustment 
-
-              a = 2
-              b = 3
-      sig.level = 0.05
-          power = 0.2
-              n = 101
-
-NOTE: n is number in each group, total sample = 606
+## 
+##      Balanced two-way analysis of variance sample size adjustment 
+## 
+##               a = 2
+##               b = 3
+##       sig.level = 0.05
+##           power = 0.2
+##               n = 3
+## 
+## NOTE: n is number in each group, total sample = 18
 ```
-This recommends a sample size of 606; 100 in each group.
+
+```r
+18*3
+```
+
+```
+## [1] 54
+```
+This recommends a sample size of 54; 18 in each group.
 
 ### Hand Calculations
 
@@ -2542,14 +2532,14 @@ psych::describe(TwoWay_df)
 ```
 
 ```
-        vars   n mean   sd median trimmed  mad min max range  skew kurtosis
-Stage*     1 112 2.23 0.75    2.0    2.29 1.48   1   3     2 -0.40    -1.14
-Dept*      2 112 1.36 0.48    1.0    1.32 0.00   1   2     1  0.59    -1.67
-TradPed    3 112 4.06 0.86    4.2    4.17 0.89   1   5     4 -1.14     1.25
-          se
-Stage*  0.07
-Dept*   0.05
-TradPed 0.08
+##         vars   n mean   sd median trimmed  mad min max range  skew kurtosis
+## Stage*     1 112 1.74 0.76    2.0    1.68 1.48   1   3     2  0.46    -1.14
+## Dept*      2 112 1.46 0.50    1.0    1.44 0.00   1   2     1  0.18    -1.99
+## TradPed    3 112 4.06 0.86    4.2    4.17 0.89   1   5     4 -1.14     1.25
+##           se
+## Stage*  0.07
+## Dept*   0.05
+## TradPed 0.08
 ```
 
 The overall (grand) mean is 4.06.
@@ -2565,13 +2555,13 @@ head(TwoWay_df)
 ```
 
 ```
-      Stage Dept TradPed m_dev
-1 Resettled  CPY     4.4  0.34
-2 Resettled  CPY     3.8 -0.26
-3 Resettled  CPY     4.0 -0.06
-4 Resettled  CPY     3.0 -1.06
-5 Resettled  CPY     4.8  0.74
-6 Resettled  CPY     3.5 -0.56
+##       Stage Dept TradPed m_dev
+## 1 Resettled  CPY     4.4  0.34
+## 2 Resettled  CPY     3.8 -0.26
+## 3 Resettled  CPY     4.0 -0.06
+## 4 Resettled  CPY     3.0 -1.06
+## 5 Resettled  CPY     4.8  0.74
+## 6 Resettled  CPY     3.5 -0.56
 ```
 
 Now I will square the mean deviation:
@@ -2584,13 +2574,13 @@ head(TwoWay_df)
 ```
 
 ```
-      Stage Dept TradPed m_dev m_devSQ
-1 Resettled  CPY     4.4  0.34  0.1156
-2 Resettled  CPY     3.8 -0.26  0.0676
-3 Resettled  CPY     4.0 -0.06  0.0036
-4 Resettled  CPY     3.0 -1.06  1.1236
-5 Resettled  CPY     4.8  0.74  0.5476
-6 Resettled  CPY     3.5 -0.56  0.3136
+##       Stage Dept TradPed m_dev m_devSQ
+## 1 Resettled  CPY     4.4  0.34  0.1156
+## 2 Resettled  CPY     3.8 -0.26  0.0676
+## 3 Resettled  CPY     4.0 -0.06  0.0036
+## 4 Resettled  CPY     3.0 -1.06  1.1236
+## 5 Resettled  CPY     4.8  0.74  0.5476
+## 6 Resettled  CPY     3.5 -0.56  0.3136
 ```
 
 SST is the sum of the mean deviation squared values:
@@ -2602,7 +2592,7 @@ SST
 ```
 
 ```
-[1] 83.0332
+## [1] 83.0332
 ```
 Our sums of squares total is 83.0332
 
@@ -2624,35 +2614,35 @@ psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df, digits =
 ```
 
 ```
-         item group1     group2 vars  n  mean    sd median trimmed   mad min
-TradPed1    1    CPY     Stable    1 12 4.817 0.217    4.9   4.840 0.148 4.4
-TradPed2    2    ORG     Stable    1  9 3.889 0.348    4.0   3.889 0.000 3.2
-TradPed3    3    CPY Transition    1 24 4.317 0.700    4.4   4.400 0.890 2.8
-TradPed4    4    ORG Transition    1 20 3.720 1.264    4.1   3.875 1.038 1.0
-TradPed5    5    CPY  Resettled    1 36 3.836 0.805    3.9   3.897 0.741 1.8
-TradPed6    6    ORG  Resettled    1 11 4.145 0.658    4.0   4.200 0.593 2.8
-         max range   skew kurtosis    se
-TradPed1 5.0   0.6 -0.539   -1.356 0.063
-TradPed2 4.2   1.0 -0.993   -0.714 0.116
-TradPed3 5.0   2.2 -0.657   -0.651 0.143
-TradPed4 5.0   4.0 -0.857   -0.664 0.283
-TradPed5 5.0   3.2 -0.530   -0.336 0.134
-TradPed6 5.0   2.2 -0.379   -0.832 0.198
+##          item group1     group2 vars  n  mean    sd median trimmed   mad min
+## TradPed1    1    CPY     Stable    1 25 4.832 0.236    5.0   4.857 0.000 4.4
+## TradPed2    2    ORG     Stable    1 25 3.864 0.582    4.0   3.876 0.297 2.6
+## TradPed3    3    CPY Transition    1 26 3.769 0.878    3.8   3.818 0.741 1.8
+## TradPed4    4    ORG Transition    1 15 3.560 1.338    4.0   3.646 1.186 1.0
+## TradPed5    5    CPY  Resettled    1 10 4.010 0.578    3.9   4.037 0.667 3.0
+## TradPed6    6    ORG  Resettled    1 11 4.145 0.658    4.0   4.200 0.593 2.8
+##          max range   skew kurtosis    se
+## TradPed1 5.0   0.6 -0.882   -0.930 0.047
+## TradPed2 5.0   2.4 -0.402   -0.160 0.116
+## TradPed3 5.0   3.2 -0.422   -0.690 0.172
+## TradPed4 5.0   4.0 -0.701   -1.064 0.345
+## TradPed5 4.8   1.8 -0.149   -1.394 0.183
+## TradPed6 5.0   2.2 -0.379   -0.832 0.198
 ```
 
 To calculate it:
 
 
 ```r
-SSM <- 12 * (4.817 - 4.06)^2 + 9 * (3.889 - 4.06)^2 + 24 * (4.317 - 4.06)^2 +
-    20 * (3.720 - 4.06)^2 + 36 * (3.836 - 4.06)^2 + 11 * (4.145 - 4.06)^2
+SSM <- 25 * (4.832 - 4.06)^2 + 25 * (3.864 - 4.06)^2 + 26 * (3.769 - 4.06)^2 +
+    15 * (3.560 - 4.06)^2 + 10 * (4.010 - 4.06)^2 + 11 * (4.145 - 4.06)^2
 SSM
 ```
 
 ```
-[1] 12.92274
+## [1] 21.91618
 ```
-Sums of squares for the model is 12.92274.
+Sums of squares for the model is 21.91618.
 
 #### Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.
 
@@ -2665,20 +2655,22 @@ This requires:
 
 
 ```r
-SSR <- ((0.217^2) * (12 - 1)) + ((0.348^2) * (9 - 1)) + ((0.7^2) * (24 -
-    1)) + ((1.264^2) * (20 - 1)) + ((0.805^2) * (36 - 1)) + ((0.658^2) *
+SSR <- ((0.236^2) * (25 - 1)) + ((0.582^2) * (25 - 1)) + ((0.878^2) * (26 -
+    1)) + ((1.338^2) * (15 - 1)) + ((0.578^2) * (10 - 1)) + ((0.658^2) *
     (11 - 1))
 SSR
 ```
 
 ```
-[1] 70.12355
+## [1] 61.13799
 ```
-Our sums of squares for the residual is 70.124.
+Our sums of squares for the residual is 61.13799.
 
 #### Calculate sums of squares model (SSM) for each of the factors in the model.
 
 **SSM for the Department main effect:**
+
+Reminder of the formula: $SS_{a:Dept}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$
 
 Earlier I learned the grand mean = 4.06
 
@@ -2688,25 +2680,27 @@ psych::describeBy(TradPed ~ Dept, mat=TRUE, data = TwoWay_df, digits=3)
 ```
 
 ```
-         item group1 vars  n  mean    sd median trimmed   mad min max range
-TradPed1    1    CPY    1 72 4.160 0.787    4.3   4.253 1.038 1.8   5   3.2
-TradPed2    2    ORG    1 40 3.875 0.973    4.0   4.019 0.741 1.0   5   4.0
-           skew kurtosis    se
-TradPed1 -0.821    0.003 0.093
-TradPed2 -1.264    1.195 0.154
+##          item group1 vars  n  mean    sd median trimmed   mad min max range
+## TradPed1    1    CPY    1 61 4.244 0.803    4.4   4.361 0.890 1.8   5   3.2
+## TradPed2    2    ORG    1 51 3.835 0.891    4.0   3.946 0.593 1.0   5   4.0
+##            skew kurtosis    se
+## TradPed1 -1.048    0.376 0.103
+## TradPed2 -1.226    1.527 0.125
 ```
 
 ```r
-SSM_dept <- 72 * (4.160 - 4.06)^2 + 40 * (3.875 - 4.06)^2
+SSM_dept <- 61 * (4.244 - 4.06)^2 + 51 * (3.835 - 4.06)^2
 SSM_dept
 ```
 
 ```
-[1] 2.089
+## [1] 4.647091
 ```
-Sums of squares model for the department factor is 2.089.
+Sums of squares model for the department factor is 4.647091.
 
 **SSM for the Stage main effect:**
+
+Reminder of the formula: $SS_{a:Stage}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$
 
 
 ```r
@@ -2714,26 +2708,26 @@ psych::describeBy(TradPed ~ Stage, mat=TRUE, data = TwoWay_df, digits=3)
 ```
 
 ```
-         item     group1 vars  n  mean    sd median trimmed   mad min max range
-TradPed1    1     Stable    1 21 4.419 0.544    4.6   4.482 0.593 3.2   5   1.8
-TradPed2    2 Transition    1 44 4.045 1.029    4.3   4.206 1.038 1.0   5   4.0
-TradPed3    3  Resettled    1 47 3.909 0.778    4.0   3.967 0.890 1.8   5   3.2
-           skew kurtosis    se
-TradPed1 -0.579   -0.725 0.119
-TradPed2 -1.267    0.989 0.155
-TradPed3 -0.582   -0.165 0.113
+##          item     group1 vars  n  mean    sd median trimmed   mad min max range
+## TradPed1    1     Stable    1 50 4.348 0.658    4.4   4.440 0.890 2.6   5   2.4
+## TradPed2    2 Transition    1 41 3.693 1.057    4.0   3.812 1.186 1.0   5   4.0
+## TradPed3    3  Resettled    1 21 4.081 0.610    4.0   4.124 0.593 2.8   5   2.2
+##            skew kurtosis    se
+## TradPed1 -0.855   -0.040 0.093
+## TradPed2 -0.788   -0.209 0.165
+## TradPed3 -0.268   -0.850 0.133
 ```
 
 
 ```r
-SSM_stage <- 21 * (4.419 - 4.06)^2 + 44 * (4.045 - 4.06)^2 + 47 * (3.909 - 4.06)^2
+SSM_stage <- 50 * (4.348 - 4.06)^2 + 42 * (3.693 - 4.06)^2 + 32 * (4.081 - 4.06)^2
 SSM_stage
 ```
 
 ```
-[1] 3.788048
+## [1] 9.81825
 ```
-Sums of squares model for the stage factor is 3.788048.
+Sums of squares model for the stage factor is 9.81825
 
 **SSM for the Department x Stage interaction term:**
 
@@ -2742,12 +2736,12 @@ I can calculate the SSM for the interaction term with this formula:  $SS_{axb} =
 
 
 ```r
-SSM_int <- 12.923 - (2.089 + 3.788)
+SSM_int <- 21.91618 - (4.647091 + 9.81825)
 SSM_int
 ```
 
 ```
-[1] 7.046
+## [1] 7.450839
 ```
 
 #### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values. 
@@ -2759,118 +2753,118 @@ It is easiest for me when I put these in a table.
 
 |Source    |SS       |df         |$MS = \frac{SS}{df}$ |$F = \frac{MS_{source}}{MS_{resid}}$ |$F_{CV}$|
 |:---------|:--------|:----------|:------|:------|:------|
-|Model     |12.923   |5          |2.585  |3.905  |2.300  |
-|a:Dept    |2.089    |1          |2.089  |3.156  |3.931  |
-|b:Stage   |3.788    |2          |1.894  |2.861  |3.082  |
-|aXb       |7.046    |2          |3.523  |5.322  |3.082  |
-|Residual  |70.124   |106        |0.662  |0.009  |       |
+|Model     |21.916   |5          |4.383  |7.596  |2.300  |
+|a:Dept    |4.647    |1          |4.647  |8.054  |3.931  |
+|b:Stage   |9.818    |2          |4.909  |8.508  |3.082  |
+|aXb       |7.451    |2          |3.726  |6.458  |3.082  |
+|Residual  |61.138   |106        |0.577  |       |       |
 |Total     |83.033   |           |       |       |       |
 
-Main effect for department: $F(1, 106) = 2.089, p > 0.05$ 
-Main effect for stage: $F(2, 106) = 1.894, p > 0.05$
-Interaction effect: $F(2, 106) = 3.523, p < 0.05$
+Main effect for department: $F(1, 106) = 8.054, p < 0.05$ 
+Main effect for stage: $F(2, 106) = 8.508, p < 0.05$
+Interaction effect: $F(2, 106) = 6.458, p < 0.05$
 
 You may notice that these calculations don't exactly follow the rules of the lecture.  For example, The "model and "residual" should equal the total. I believe this is because there are different cell sizes which causes an unbalanced design and throws off the otherwise perfect calculations. This issue of unbalanced design is an important one in ANOVA.
 
-Checing to see if my sums of squares a, b, and axb equal the SSM; and that SSM + SSR = SST.
+Checking to see if my sums of squares a, b, and axb equal the SSM; and that SSM + SSR = SST.
 
 ```r
-12.923 + 70.124
+21.916 + 61.138
 ```
 
 ```
-[1] 83.047
-```
-
-```r
-(2.089 + 3.788 + 7.046) + 70.124
-```
-
-```
-[1] 83.047
+## [1] 83.054
 ```
 
 ```r
-2.089 + 3.788 + 7.046
+(4.647 + 9.818 + 7.451) + 61.138
 ```
 
 ```
-[1] 12.923
+## [1] 83.054
+```
+
+```r
+4.647 + 9.818 + 7.451
+```
+
+```
+## [1] 21.916
 ```
 Below are the calculations for the mean square values:
 
 ```r
-12.923/5
+21.916 /5
 ```
 
 ```
-[1] 2.5846
-```
-
-```r
-2.089/1
-```
-
-```
-[1] 2.089
+## [1] 4.3832
 ```
 
 ```r
-3.788/2
+4.647/1
 ```
 
 ```
-[1] 1.894
-```
-
-```r
-7.046/2
-```
-
-```
-[1] 3.523
+## [1] 4.647
 ```
 
 ```r
-70.124/106
+9.818/2
 ```
 
 ```
-[1] 0.6615472
+## [1] 4.909
+```
+
+```r
+7.451/2
+```
+
+```
+## [1] 3.7255
+```
+
+```r
+61.138/106
+```
+
+```
+## [1] 0.5767736
 ```
 Below are the calculations for the *F* tests:
 
 
 ```r
-2.585/0.662
+4.383/0.577
 ```
 
 ```
-[1] 3.904834
-```
-
-```r
-2.089/0.662
-```
-
-```
-[1] 3.155589
+## [1] 7.596187
 ```
 
 ```r
-1.894/0.662
+4.647/0.577
 ```
 
 ```
-[1] 2.861027
+## [1] 8.053726
 ```
 
 ```r
-3.523/0.662
+4.909/0.577
 ```
 
 ```
-[1] 5.321752
+## [1] 8.507799
+```
+
+```r
+3.726/0.577
+```
+
+```
+## [1] 6.457539
 ```
 Looking up the *F* critical values (requires alpha level and degrees of freedom for the numerator and denominator [model and residual]):
 
@@ -2880,7 +2874,7 @@ qf(0.05, 5, 106, lower.tail = FALSE)  #omnibus
 ```
 
 ```
-[1] 2.300053
+## [1] 2.300053
 ```
 
 ```r
@@ -2888,7 +2882,7 @@ qf(0.05, 1, 106, lower.tail = FALSE)  #Dept main effect
 ```
 
 ```
-[1] 3.930692
+## [1] 3.930692
 ```
 
 ```r
@@ -2896,7 +2890,7 @@ qf(0.05, 2, 106, lower.tail = FALSE)  #Stage main effect
 ```
 
 ```
-[1] 3.082015
+## [1] 3.082015
 ```
 
 ```r
@@ -2904,12 +2898,12 @@ qf(0.05, 2, 106, lower.tail = FALSE)  #interaction term
 ```
 
 ```
-[1] 3.082015
+## [1] 3.082015
 ```
 
 #### Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? 
 
-In the hand calculations, only the interaction effect is statistically significant. It is significant when the *F* value exceeds the *F* critical value.
+In the hand calculations, the main and interaction effects are significant when the *F* value exceeds the *F* critical value. All three are.
 
 #### Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. 
 
@@ -2921,35 +2915,36 @@ The values of .01, .06, and .14 are considered small, medium, and large in ANOVA
 
 
 ```r
-2.089/83.033 #eta squared for department main effect
+4.647/83.033 #eta squared for department main effect
 ```
 
 ```
-[1] 0.02515867
-```
-
-```r
-3.788/80.033 #eta squared for stage main effect
-```
-
-```
-[1] 0.04733048
+## [1] 0.0559657
 ```
 
 ```r
-7.046/80.033 #eta squared for interaction effect
+9.818/83.033 #eta squared for stage main effect
 ```
 
 ```
-[1] 0.08803868
+## [1] 0.1182421
 ```
-The eta squared values are 0.02 (small), 0.05 (small-to-medium), and 0.09 (medium-to-large) for the department, stage, and interaction effects, respectively. 
+
+```r
+7.451/83.033 #eta squared for interaction effect
+```
+
+```
+## [1] 0.08973541
+```
+
+The $\eta ^{2}$ values are 0.056 (medium), 0.118 (medium-to-large), and 0.090 (medium-to-large) for the department, stage, and interaction effects, respectively. 
 
 #### Assemble the results into their statistical strings.
 
-Main effect for department: $F(1, 106) = 2.089, p > 0.05, \eta ^{2} = 0.03$ 
-Main effect for stage: $F(2, 106) = 1.894, p > 0.05, \eta ^{2} = 0.05$
-Interaction effect: $F(2, 106) = 3.523, p < 0.05, \eta ^{2} = 0.09$
+Main effect for department: $F(1, 106) = 8.054, p < 0.05, \eta ^{2} = 0.056$ 
+Main effect for stage: $F(2, 106) = 8.508, p < 0.05, \eta ^{2} = 0.118$
+Interaction effect: $FF(2, 106) = 6.458, p < 0.05, \eta ^{2} = 0.090$
 
 
 

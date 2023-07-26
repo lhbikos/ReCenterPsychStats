@@ -1445,13 +1445,17 @@ Regardless which option(s) you chose, use the elements in the grading rubrics to
 
 
 
+
+
 ## Homeworked Example
 
 [Screencast Link]()
 
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
+
 Preliminary analyses often consist of means, standard deviations, and correlations. These can be helpful in determining whether or not data are normally distribution. Correlations and pairs.panels also assess the relatedness of the variables.
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could (a) select a different course (i.e., Multivariate or Psychometrics) and/or (b) different variables.*
+If you wanted to use this example and dataset as a basis for a homework assignment, you could (a) select a different course (i.e., Multivariate or Psychometrics) and/or (b) different variables.
 
 ### Working the Problem with R and R Packages
 
@@ -1466,7 +1470,7 @@ ReCdf <- readRDS("ReC.rds")
 
 Recall that students (represented by the *deID* variable) could contribute up to three course evaluations (i.e., ANOVA, psychometrics, multivariate) each. In many statistics, repeated observations creates dependencies that need to be accounted for statistically.
 
-To avoid this dependency and to practice an R skil, let's first filter the data, selecting only those students who took ANOVA.
+To avoid this dependency and to practice an R skill, let's first filter the data, selecting only those students who took ANOVA.
 
 
 ```r
@@ -1509,7 +1513,7 @@ MyContribution    -0.55 0.08
 psych::pairs.panels(tiny3)
 ```
 
-![](03-Preliminaries_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
+![](03-Preliminaries_files/figure-docx/unnamed-chunk-68-1.png)<!-- -->
 
 #### Produce an apaTables matrix
 
@@ -1543,13 +1547,13 @@ that could have caused the sample correlation (Cumming, 2014).
 ```
 #### Produce an APA Style write-up of the preliminary analyses
 
-Our sample included 113 doctoral students in Clinical and Industrial-Organizational psychology doctoral (PhD) programs who were completing a statistics class focused on analysis of variance.  Visual inspection of three dimensions of course evaluation (overall instructor, overall course, my contributions) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. That is, skew values all fell below the absolute value of 3 and kurtosis values all fell below the absolute value of 10 [@kline_data_2016]. Means, standard deviations, and a correlation matrix are presented in Table 1. All three correlations were strong and statistically significant. We noted that the correlation between the overall instructor and overall course was especially high (*r* = .83, *p* < .001)
+>Our sample included 113 doctoral students in Clinical and Industrial-Organizational psychology (PhD) programs who were completing a statistics class focused on analysis of variance.  Visual inspection of three dimensions of course evaluation (overall instructor, overall course, my contributions) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. That is, skew values all fell below the absolute value of 3 and kurtosis values all fell below the absolute value of 10 [@kline_data_2016]. Means, standard deviations, and a correlation matrix are presented in Table 1. All three correlations were strong and statistically significant. We noted that the correlation between the overall instructor and overall course was especially high $(r = .83, p < .001)$
 
 ### Hand Calculations
 
 Although these are termed “hand calculations,” you may use the code demonstrated in the chapter to work these problems. 
 
-I am going to continue with the *tiny3* dataset I used when I worked the problem with R and R packages. Given that this is for homework, let's avoid problems with missingness by deleting any rows with missing data:
+I am going to continue with the *tiny3* dataset I used when I worked the problem with R and R packages. 
 
 If you need to reimport data, here is a quick recap of the code explained earlier.
 
@@ -1565,7 +1569,6 @@ tiny3 <- JustANOVA %>%
 
 To avoid problems in the code we are used that is caused by missingness, we will eliminate any rows with missing data.
 
-
 ```r
 tiny3 <- na.omit(tiny3)
 ```
@@ -1574,7 +1577,6 @@ tiny3 <- na.omit(tiny3)
 #### Create a variable that represents the mean.
 
 I will start with the OvInstructor variable. Inspect the dataframe to see that this new variable exists.
-
 
 ```r
 tiny3$M_OvI <- mean(tiny3$OvInstructor, na.rm=TRUE)
@@ -1585,6 +1587,17 @@ tiny3$M_OvI <- mean(tiny3$OvInstructor, na.rm=TRUE)
 
 ```r
 tiny3$Mdev_OvI <- (tiny3$OvInstructor-tiny3$M_OvI)
+head(tiny3)
+```
+
+```
+  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI
+1            5        3              4 4.185841  0.8141593
+2            4        4              4 4.185841 -0.1858407
+3            4        4              4 4.185841 -0.1858407
+4            3        3              4 4.185841 -1.1858407
+5            5        5              5 4.185841  0.8141593
+6            3        3              4 4.185841 -1.1858407
 ```
 
 Inspect the dataframe to see that this new variable exists. Note that this functions to "center" the mean around zero.
@@ -1607,6 +1620,17 @@ Yes, zero!
 
 ```r
 tiny3$abslt_mOvI <- abs(tiny3$Mdev_OvI)
+head(tiny3)
+```
+
+```
+  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407
 ```
 
 Inspect the dataframe to see that this new variable no longer has negative values.
@@ -1643,6 +1667,24 @@ Average distance of each value from the mean.
 
 ```r
 tiny3$mdev2_OvI <- (tiny3$Mdev_OvI * tiny3$Mdev_OvI)
+head(tiny3)
+```
+
+```
+  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407
+   mdev2_OvI
+1 0.66285535
+2 0.03453677
+3 0.03453677
+4 1.40621818
+5 0.66285535
+6 1.40621818
 ```
 
 **What is the value of the sum of squared deviations around the mean (also known as sums of squares; sometimes abbreviated as $SS$)?**
@@ -1680,6 +1722,7 @@ Here's how to do it with the numbers that I calculated:
 ```
 [1] 1.027654
 ```
+
 Checking my work with the *var* function from base R. If it's wrong, I need to rework some of the previous steps.
 
 ```r
@@ -1729,14 +1772,36 @@ My second variable is MyContribution
 tiny3$M_MyC <- mean(tiny3$MyContribution, na.rm=TRUE)
 #second the mean deviation
 tiny3$Mdev_MyC <- (tiny3$MyContribution-tiny3$M_MyC)
+#third the mean deviation squared
+tiny3$mdev2_MyC <- (tiny3$Mdev_MyC * tiny3$Mdev_MyC)
+head(tiny3)
+```
 
+```
+  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407
+   mdev2_OvI    M_MyC   Mdev_MyC   mdev2_MyC
+1 0.66285535 3.964602 0.03539823 0.001253035
+2 0.03453677 3.964602 0.03539823 0.001253035
+3 0.03453677 3.964602 0.03539823 0.001253035
+4 1.40621818 3.964602 0.03539823 0.001253035
+5 0.66285535 3.964602 1.03539823 1.072049495
+6 1.40621818 3.964602 0.03539823 0.001253035
+```
+
+```r
 #fourth the variance
 var_MyC <- sum(tiny3$mdev2_MyC/((nrow(tiny3) - 1)))
 var_MyC
 ```
 
 ```
-[1] 0
+[1] 0.6951643
 ```
 
 ```r
@@ -1746,7 +1811,7 @@ sd_MyC#checking my work
 ```
 
 ```
-[1] 0
+[1] 0.8337652
 ```
 
 ```r
@@ -1762,6 +1827,24 @@ sd(tiny3$MyContribution)#checking my work
 
 ```r
 tiny3$crossproduct <- (tiny3$Mdev_OvI * tiny3$Mdev_MyC)
+head(tiny3)
+```
+
+```
+  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407
+   mdev2_OvI    M_MyC   Mdev_MyC   mdev2_MyC crossproduct
+1 0.66285535 3.964602 0.03539823 0.001253035  0.028819798
+2 0.03453677 3.964602 0.03539823 0.001253035 -0.006578432
+3 0.03453677 3.964602 0.03539823 0.001253035 -0.006578432
+4 1.40621818 3.964602 0.03539823 0.001253035 -0.041976662
+5 0.66285535 3.964602 1.03539823 1.072049495  0.842979090
+6 1.40621818 3.964602 0.03539823 0.001253035 -0.041976662
 ```
 
 The sum of the crossproduct is:
@@ -1817,7 +1900,7 @@ sample estimates:
       cor 
 0.4937812 
 ```
-The correlation between ratings of overall instructor and my contribution is 0.493, $p < .001$.
+The correlation between ratings of overall instructor and my contribution is $0.493, p < .001$.
 
 
 

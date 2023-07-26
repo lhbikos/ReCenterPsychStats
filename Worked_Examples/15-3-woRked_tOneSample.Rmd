@@ -1,11 +1,14 @@
+```{r include = FALSE}
+options(scipen=999)
+```
 
 ## Homeworked Example
 
 [Screencast Link]()
 
-The one-sample test comes in handy when you want to compare your dataset to an external benchmark or standard. It can be a real helper in program evaluation
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could select a different course (i.e., Multivariate or Psychometrics) and/or compare the mean for the ORG department ($M = 4.1$).*
+The one-sample test comes in handy when you want to compare your dataset to an external benchmark or standard. It can be a real helper in program evaluation
 
 ### Working the Problem with R and R Packages
 
@@ -13,22 +16,21 @@ The one-sample test comes in handy when you want to compare your dataset to an e
 
 From my course evaluation data, I want to ask the question, "Are ratings for the Overall Instructor for the ANOVA course evals statistically significantly different from the overall departmental averages for that same item?"  In CPY the overall average for that specific item is 4.4. 
 
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could select a different course (i.e., Multivariate or Psychometrics) and/or compare the mean for the ORG department ($M = 4.1$).*
+
 #### Simulate (or import) and format data
 
-The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.
-
+First I will open the entire dataset.
 ```{r}
 ReCdf <- readRDS("ReC.rds")
 ```
 
 Let's first trim it to just students who took ANOVA
-
 ```{r}
 JustANOVA <- subset(ReCdf, Course == "ANOVA") 
 ```
 
 And further trim to our variable of interest
-
 ```{r}
 library(tidyverse)
 tiny1 <- JustANOVA %>%
@@ -36,15 +38,12 @@ tiny1 <- JustANOVA %>%
 ```
 
 And further trim to non-missing data
-
 ```{r}
 tiny1 <- na.omit(tiny1)
 ```
 
-
 * Is the sample variable on a continuous scale of measurement and formatted as *num* or *int* in R?
 * Is the external score evaluated on the same continuous scale?
-
 ```{r}
 str(tiny1$OvInstructor)
 ```
@@ -63,12 +62,12 @@ The skew value is -9.84 and far exceeds the absolute value of 3. The skew.2SE is
 
 The kurtosis value is -7.410 and is below the absolute value of 10. The kurt.2SE value is -8.212 which is substantially larger than the absolute value of 2.0. Thus, we are similarly concerned about kurtosis.
 
-The Shapiro wilk test value is 7.728 (*p* < 0.001). This significant value suggests a distribution that is not normally distributed.
+The Shapiro Wilk test value is 7.728 (*p* < 0.001). This significant value suggests a distribution that is not normally distributed.
 
 
 #### Conduct a one sample *t* test (with an effect size)
 
-First, comparison to CPY
+We will compare the overall instructor from the data to the CPY average of 4.4.
 
 ```{r}
 rstatix::t_test(tiny1, OvInstructor ~ 1, mu = 4.4, detailed = TRUE)
@@ -79,7 +78,7 @@ $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$
 
 Let's interpret the results.  With 112 degrees of freedom, our *t* value is -2.245. Because the *p* value is less than .05, this is statistically significant. This means that my course evaluations in ANOVA were statistically significantly lower than the average for CPY.  We are 95% confident that the true course evaluation mean (for my courses) fell between 3.997 and 4.374.
 
-Let's calculate the effect size. we will use a Cohen's *d* which is interpreted in standard deviation units. 
+Let's calculate the effect size. We will use a Cohen's *d* which is interpreted in standard deviation units. 
 ```{r}
 rstatix::cohens_d(tiny1, OvInstructor ~ 1, ref.group = NULL, mu = 4.4)
 ```
@@ -95,11 +94,10 @@ $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374), d = -0.211$
 * Figure
 * Grammar/style
 
->A one-sample *t*-test was used to evaluate whether the *overall instructor* course evaluation ratings from the ANOVA courses were statistically significant from the departmental averages for the Clinical (CPY; *M* = 4.4) department.  The sample mean for the ANOVA course evaluations was 4.186 (*SD* = 1.013).Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$,  the effect size was quite small $(d = -0.211)$. A distribution of the ANOVA course ratings is found in Figure 1.
+>A one-sample *t*-test was used to evaluate whether the *overall instructor* course evaluation ratings from the ANOVA courses were statistically significant different from the departmental averages for the Clinical (CPY; *M* = 4.4) department.  The sample mean for the ANOVA course evaluations was 4.186 (*SD* = 1.013). Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$, the effect size was quite small $(d = -0.211)$. A distribution of the ANOVA course ratings is found in Figure 1.
 
 ```{r}
-ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings", xlab = FALSE,
-    add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
+ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings", xlab = FALSE, add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
 ```
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size
@@ -107,17 +105,15 @@ ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings", xlab =
 A quick reminder that the *d* in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen's d that we just calculated.
 
 ```{r}
-pwr::pwr.t.test(d = -0.211	, n = 113, power = NULL, sig.level = 0.05,
-    type = "one.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = -0.211	, n = 113, power = NULL, sig.level = 0.05, type = "one.sample", alternative = "two.sided")
 ```
 
 For the comparison to the CPY departmental average, power was 60%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60% chance of detecting a statistically significant effect if there was one.
 
 ```{r}
-pwr::pwr.t.test(d = -0.211, n = NULL, power = 0.8, sig.level = 0.05,
-    type = "one.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = -0.211, n = NULL, power = 0.8, sig.level = 0.05, type = "one.sample", alternative = "two.sided")
 ```
-For the CPY departmental comparison, the recommended sample size would be 178. This means there would need to be 178 individuals to find a statistically significant difference, if one existed.
+For the CPY departmental comparison, the recommended sample size would be 178. This means there would need to be 178 individuals to find a statistically significant difference, if one existed (at a power of 80%).
 
 ### Hand Calculations
 
@@ -156,7 +152,7 @@ var_OvInst
 sd_OvInst <- sqrt(var_OvInst)
 sd_OvInst
 
-
+head(tiny1)
 ```
 The variance is 1.028; the standard deviation is 1.014.
 
@@ -192,7 +188,7 @@ A 2-tail test, when p - .05, with ~120 individuals is 1.98
 Or, this code:
 
 ```{r}
-qt(p = 0.05/2, df = 113, lower.tail = FALSE)
+qt(p = 0.05/2, df = 112, lower.tail = FALSE)
 ```
 ### Is the *t*-test statistically significant? Why or why not?
 
@@ -209,7 +205,7 @@ $$\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})$$
 (4.185841) + ((1.98118)*(1.013733/sqrt(113)))
 ```
 
-We are 95% confident that the sample mean for the student in the ANOVA classes is between 3.997, 4.375.
+We are 95% confident that the sample mean for the students in the ANOVA classes is between 3.997, 4.375.
 
 #### Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test
 

@@ -1828,10 +1828,13 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |**Totals* **                                  |     28        |             |
 
 
+
+
+
 ## Homeworked Example
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
 ### Working the Problem with R and R Packages
 
@@ -1844,6 +1847,8 @@ I want to ask the question, do course evaluation ratings for traditional pedagog
 * RESETTLED:  2020 & 2021 represent the "resettled" phase where the transition to R was fairly complete and the class size returned to normal because the classes were offered in the first year.
 
 This is not a variable that was included in the dataset posted to the OSF repository, so we will need to create it.
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
 #### Simulate (or import) and format data.  
 
@@ -1859,33 +1864,15 @@ This df includes course evaluations from ANOVA, multivariate, and psychometrics.
 big <- subset(big, Course == "ANOVA") 
 ```
 
-
 Let's first create the "Stage" variable that represents the three levels of transition.
 
-First I will map the years to the three levels (factors).
-
-
-```r
-big$Stage <- plyr::mapvalues(big$Year, from = c(2017, 2018, 2019, 2020, 2021), to = c("Stable", "Transition", "Transition", "Resettled", "Resettled"))
-```
-
-Then check the structure.
+The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.
 
 ```r
-str(big$Stage)
+big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition", "First"), to = c("Stable", "Transition", "Resettled"))
 ```
 
-```
- chr [1:114] "Resettled" "Resettled" "Resettled" "Resettled" "Resettled" ...
-```
-R is reading the variable as a character, so I need to make it to be an ordered factor.
-
-
-```r
-big$Stage <- factor(big$Stage, levels = c("Stable", "Transition", "Resettled"))
-```
-
-Let's check the structure again:
+Let's check the structure:
 
 
 ```r
@@ -1904,6 +1891,7 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
 TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
 
 #Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+#big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)
 big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)
 ```
 
@@ -1917,8 +1905,18 @@ Although we would handle missing data more carefully in a "real study," I will d
 
 
 ```r
-df <- na.omit(OneWay_df)
+OneWay_df <- na.omit(OneWay_df)
 ```
+
+Although the assignment doesn't require it, I will make a quick plot to provide a visualizaiton of our analysis.
+
+
+```r
+ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
+    color = "Stage", title = "Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition") #
+```
+
+![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-83-1.png)<!-- -->
 
 
 #### Evaluate statistical assumptions. 
@@ -1932,32 +1930,33 @@ psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, typ
 
 ```
          item     group1 vars  n  mean    sd median trimmed   mad min max range
-TradPed1    1     Stable    1 21 4.419 0.544    4.6   4.482 0.593 3.2   5   1.8
-TradPed2    2 Transition    1 44 4.045 1.029    4.3   4.206 1.038 1.0   5   4.0
-TradPed3    3  Resettled    1 47 3.909 0.778    4.0   3.967 0.890 1.8   5   3.2
+TradPed1    1     Stable    1 50 4.348 0.658    4.4   4.440 0.890 2.6   5   2.4
+TradPed2    2 Transition    1 41 3.693 1.057    4.0   3.812 1.186 1.0   5   4.0
+TradPed3    3  Resettled    1 21 4.081 0.610    4.0   4.124 0.593 2.8   5   2.2
            skew kurtosis    se
-TradPed1 -0.623   -0.492 0.119
-TradPed2 -1.312    1.177 0.155
-TradPed3 -0.601   -0.041 0.113
+TradPed1 -0.881    0.082 0.093
+TradPed2 -0.817   -0.068 0.165
+TradPed3 -0.289   -0.629 0.133
 ```
 
-We'll use Kline's (2016) threshholds of the absolute values of 3 (skew) and 10 (kurtosis). The highest absolute value of skew is -1.31; the highest absolute value of kurtosis is 1.18. These are well below the areas of concern.
+We'll use Kline's (2016) threshholds of the absolute values of 3 (skew) and 10 (kurtosis). The highest absolute value of skew is -0.881; the highest absolute value of kurtosis is -0.629. These are well below the areas of concern.
 
 the Shapiro-wilk test is a formal assessment of normality. It is a 2-part test that begins with creating an ANOVA model from which we can extract residuals, then testing the residuals.  
 
 
 ```r
 TradPed_res <- lm(TradPed ~ Stage, data = OneWay_df)
+#TradPed_res
 rstatix::shapiro_test(residuals(TradPed_res))
 ```
 
 ```
 # A tibble: 1 × 3
-  variable               statistic    p.value
-  <chr>                      <dbl>      <dbl>
-1 residuals(TradPed_res)     0.910 0.00000130
+  variable               statistic   p.value
+  <chr>                      <dbl>     <dbl>
+1 residuals(TradPed_res)     0.941 0.0000965
 ```
-The Shapiro-Wilk test suggests that the our distribution of residuals is statistically significantly different from a normal distribution $(W = 0.910, p < .001)$.
+The Shapiro-Wilk test suggests that the our distribution of residuals is statistically significantly different from a normal distribution $(W = 0.941, p < .001)$.
 
 It is possible to plot the residuals to see how and where they deviate from the line.
 
@@ -1971,7 +1970,7 @@ Ooof!  at the ends of the distribution they really deviate.
 
 **Should we remove outliers?**
 
-The *rstatix::identify_outliers()* function identifies outlers and extreme outliers.
+The *rstatix::identify_outliers()* function identifies outliers and extreme outliers.
 
 
 ```r
@@ -1982,7 +1981,7 @@ OneWay_df %>%
 
 ```
        Stage TradPed is.outlier is.extreme
-1  Resettled     1.8       TRUE      FALSE
+1 Transition     1.8       TRUE      FALSE
 2 Transition     1.0       TRUE      FALSE
 3 Transition     1.4       TRUE      FALSE
 4 Transition     1.6       TRUE      FALSE
@@ -2001,44 +2000,34 @@ rstatix::levene_test(OneWay_df, TradPed ~ Stage)
 
 ```
 # A tibble: 1 × 4
-    df1   df2 statistic     p
-  <int> <int>     <dbl> <dbl>
-1     2   109      2.09 0.128
+    df1   df2 statistic      p
+  <int> <int>     <dbl>  <dbl>
+1     2   109      4.52 0.0130
 ```
-The non-significant *p* value suggests that the variances across the three stages are not statistically significantly different:  $F(2, 109) = 2.094, p = 0.128$.
+The non-significant *p* value suggests that the variances across the three stages are not statistically significantly different:  $F(2, 109) = 4.523, p = 0.013$.
 
 
 Before moving on, I will capture our findings in an APA style write-up of the testing of assumptions:
 
->Regarding the assumption of normality, skew and kurtosis values at each of the levels of program year fell well below the thresholds that Kline (2016a) identified as concerning (i.e., below |3| for skew and |10| for kurtosis). In contrast, results of a model-based Shapiro-Wilk test of normality, indicated that the model residuals differed from a normal distribution $(W = 0.910, p < .001)$. Although 4 outliers were identified none were extreme, thus we retained all cases. Finally, Levene’s homogeneity of variance test indicated no violation of the homogeneity of variance assumption $F(2, 109) = 2.094, p = 0.128$.
+>Regarding the assumption of normality, skew and kurtosis values at each of the levels of program year fell well below the thresholds that Kline (2016a) identified as concerning (i.e., below |3| for skew and |10| for kurtosis). In contrast, results of a model-based Shapiro-Wilk test of normality, indicated that the model residuals differed from a normal distribution $(W = 0.941, p < .001)$. Although 4 outliers were identified none were extreme, thus we retained all cases. Finally, Levene’s homogeneity of variance test indicated a violation of the homogeneity of variance assumption $F(2, 109) = 4.523, p = 0.013$. ANOVA is relatively robust to this violation when there are at least 15 cases per cell and the design is balanced (i.e., equivalent cell sizes). While we have at least 15 cases per cell, we have a rather unbalanced design. We will need to keep this limitation in mind as we interpret the results.
 
 #### Conduct omnibus ANOVA (w effect size). 
 
-The *rstatix::anova_test()* function calculates the one-way ANOVA and includes the effect size, $\eta^2$ in the column, *ges*. Values of .01, .07, and .14 are considered to be small, medium, and large. The value of .05 would be small-to-medium.
+The *rstatix::anova_test()* function calculates the one-way ANOVA and includes the effect size, $\eta^2$ in the column, *ges*. 
 
 
 ```r
 omnibus1w <- rstatix::anova_test(OneWay_df, TradPed ~ Stage, detailed = FALSE)
-```
-
-```
-Warning: NA detected in rows: 74,84.
-Removing this rows before the analysis.
-```
-
-```r
 omnibus1w
 ```
 
 ```
 ANOVA Table (type II tests)
 
-  Effect DFn DFd    F     p p<.05   ges
-1  Stage   2 109 2.61 0.078       0.046
+  Effect DFn DFd     F     p p<.05   ges
+1  Stage   2 109 7.199 0.001     * 0.117
 ```
-The one-way ANOVA is not statistically significant. This means there should not be differences between any combination of variables in the dependent variable. Before moving on, I will capture the *F* string:  $F(2, 109) = 2.61, p = 0.078, \eta^2 = 0.046$.
-
-Normally, the researcher would stop here. However, because the homework requires follow-up, I will continue.
+The one-way ANOVA is statistically significant. This means that there should be at least one statistically significant difference between levels of the design. Before moving on, I will capture the *F* string:  $F(2, 109) = 7.199, p = 0.001, \eta^2 = 0.117$. Regarding the effect size, values of .01, .07, and .14 are considered to be small, medium, and large. The value of .11 would be medium-to-large.
 
 #### Conduct one set of follow-up tests; narrate your choice.
 
@@ -2052,33 +2041,32 @@ phoc
 
 ```
 # A tibble: 3 × 17
-  estimate estimate1 estimate2 .y.     group1 group2    n1    n2 statistic     p
-*    <dbl>     <dbl>     <dbl> <chr>   <chr>  <chr>  <int> <int>     <dbl> <dbl>
-1    0.374      4.42      4.05 TradPed Stable Trans…    21    44     1.91  0.06 
-2    0.511      4.42      3.91 TradPed Stable Reset…    21    47     3.11  0.003
-3    0.137      4.05      3.91 TradPed Trans… Reset…    44    47     0.713 0.478
+  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic       p
+*    <dbl>     <dbl>     <dbl> <chr> <chr>  <chr>  <int> <int>     <dbl>   <dbl>
+1    0.655      4.35      3.69 Trad… Stable Trans…    50    41      3.46 9.73e-4
+2    0.267      4.35      4.08 Trad… Stable Reset…    50    21      1.65 1.08e-1
+3   -0.388      3.69      4.08 Trad… Trans… Reset…    41    21     -1.83 7.2 e-2
 # ℹ 7 more variables: df <dbl>, conf.low <dbl>, conf.high <dbl>, method <chr>,
 #   alternative <chr>, p.adj <dbl>, p.adj.signif <chr>
 ```
 
-Curiously, the post hoc tests suggested statistically significant differences between the stable and resettled stages, favoring the stable period of time (i.e., using SPSS and taught in the second year).
+The post hoc tests suggested statistically significant differences between the stable transition resettled stages, favoring the stable period of time (i.e., using SPSS and taught in the second year).
 
 #### Describe approach for managing Type I error. 
 
-We used the Bonferroni. The Bonferroni divides the overall alpha (.05) by the number of comparisons (3). In this case, a *p* value woul dhave to be lower than 0.017 to be statistically significant. The calulation reverse-engineers this so that we can interpret the *pI values by the traditional. 0.05. In the output, it is possible to see the higher threshholds necessary to claim statistical significance.
+We used the Bonferroni. The Bonferroni divides the overall alpha (.05) by the number of comparisons (3). In this case, a *p* value woul dhave to be lower than 0.017 to be statistically significant. The calulation reverse-engineers this so that we can interpret the *p* values by the traditional. 0.05. In the output, it is possible to see the higher threshholds necessary to claim statistical significance.
 
 #### APA style results with table(s) and figure.  
 
->A one-way analysis of variance was conducted to evaluate the effects significant transitions (e.g., from SPSS to R; to the second to the first year in a doctoral program) on students ratings of traditional pedagogy. The independent variable, stage, included three levels: stable (with SPSS and taught in the second year of a doctoral program), transitioning (with R and students moving from second to first year), and resettled (with R and in the first year of the program).
+>A one-way analysis of variance was conducted to evaluate the effects of significant transitions (e.g., from SPSS to R; to the second to the first year in a doctoral program) on students ratings of traditional pedagogy. The independent variable, stage, included three levels: stable (with SPSS and taught in the second year of a doctoral program), transitioning (with R and students moving from second to first year), and resettled (with R and in the first year of the program).
 
->We began by testing the statistical assumptions associated with one-way ANOVA. Regarding the assumption of normality, skew and kurtosis values at each of the levels of program year fell well below the thresholds that Kline (2016a) identified as concerning (i.e., below |3| for skew and |10| for kurtosis). In contrast, results of a model-based Shapiro-Wilk test of normality, indicated that the model residuals differed from a normal distribution $(W = 0.910, p < .001)$. Although 4 outliers were identified none were extreme, thus we retained all cases. Finally, Levene’s homogeneity of variance test indicated no violation of the homogeneity of variance assumption $F(2, 109) = 2.094, p = 0.128$.
+>Regarding the assumption of normality, skew and kurtosis values at each of the levels of program year fell well below the thresholds that Kline (2016a) identified as concerning (i.e., below |3| for skew and |10| for kurtosis). In contrast, results of a model-based Shapiro-Wilk test of normality, indicated that the model residuals differed from a normal distribution $(W = 0.941, p < .001)$. Although 4 outliers were identified none were extreme, thus we retained all cases. Finally, Levene’s homogeneity of variance test indicated a violation of the homogeneity of variance assumption $F(2, 109) = 4.523, p = 0.013$. ANOVA is relatively robust to this violation when there are at least 15 cases per cell and the design is balanced (i.e., equivalent cell sizes). While we have at least 15 cases per cell, we have a rather unbalanced design. We will need to keep this limitation in mind as we interpret the results.
 
->Results of the omnibus ANOVA indicated a non-significant effect of stage on students assessments of traditional pedagogy, $F(2, 109) = 2.61, p = 0.078, \eta^2 = 0.046$. The effect size was small-to-medium.  We followed up the non-significant omnibus with all possible pairwise comparisons. We controlled for Type I error with the traditional Bonferroni adjustment. Curiously, results suggested that there were statistically significant differences between the transition and resettled $(Mdiff=0.511, p = 0.009)$ stages, but not between stable and transition $(Mdiff=0.374,p = 0.181)$ or transition and resettled $(Mdiff=−.137,p = 1.000)$. Given that the doctoral programs are unlikely to transition back to SPSS or into the second year, the instructor(s) are advised to consider ways that could result in greater student satisfaction. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
+>Results of the omnibus ANOVA indicated a statistically significant effect of stage on students assessments of traditional pedagogy, $F(2, 109) = 7.199, p = 0.001, \eta^2 = 0.117$. The effect size was medium-to-large. We followed up the significant omnibus with all possible pairwise comparisons. We controlled for Type I error with the traditional Bonferroni adjustment. Results suggested that there were statistically significant differences between the stable and transition stages $(Mdiff = 0.655, p = 0.003)$, but not between stable and resettled $(Mdiff = 0.267,p = 0.324)$ or transition and resettled $(Mdiff= -0.388,p = 0.217)$ stages. Given that the doctoral programs are unlikely to transition back to SPSS or into the second year, the instructor(s) are advised to consider ways that could result in greater student satisfaction. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
 
 
 ```r
-apaTables::apa.1way.table(iv = Stage, dv = TradPed, show.conf.interval = TRUE,
-    data = OneWay_df, table.number = 1, filename = "1wayHWTable.doc")
+apaTables::apa.1way.table(iv = Stage, dv = TradPed, show.conf.interval = TRUE, data = OneWay_df, table.number = 1, filename = "1wayHWTable.doc")
 ```
 
 ```
@@ -2089,9 +2077,9 @@ Table 1
 Descriptive statistics for TradPed as a function of Stage.  
 
       Stage    M     M_95%_CI   SD
-     Stable 4.42 [4.17, 4.67] 0.54
- Transition 4.05 [3.73, 4.36] 1.03
-  Resettled 3.91 [3.68, 4.14] 0.78
+     Stable 4.35 [4.16, 4.53] 0.66
+ Transition 3.69 [3.36, 4.03] 1.06
+  Resettled 4.08 [3.80, 4.36] 0.61
 
 Note. M and SD represent mean and standard deviation, respectively.
 LL and UL indicate the lower and upper limits of the 95% confidence interval 
@@ -2114,10 +2102,10 @@ Table 2
 ANOVA results using TradPed as the dependent variable
  
 
-   Predictor     SS  df     MS      F    p partial_eta2 CI_90_partial_eta2
- (Intercept) 410.09   1 410.09 564.12 .000                                
-       Stage   3.79   2   1.90   2.61 .078          .05         [.00, .11]
-       Error  79.24 109   0.73                                            
+   Predictor     SS  df     MS       F    p partial_eta2 CI_90_partial_eta2
+ (Intercept) 945.26   1 945.26 1404.77 .000                                
+       Stage   9.69   2   4.84    7.20 .001          .12         [.03, .21]
+       Error  73.34 109   0.67                                             
 
 Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared 
 ```
@@ -2133,14 +2121,6 @@ ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
         hide.ns = TRUE, y.position = c(5.5))
 ```
 
-```
-Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).
-```
-
-```
-Warning: Removed 2 rows containing missing values (`geom_point()`).
-```
-
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-93-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size.
@@ -2148,7 +2128,7 @@ Warning: Removed 2 rows containing missing values (`geom_point()`).
 The *pwr.anova.test()* has five parameters:
 
 * *k* = # groups
-* *n* = sample size per gropu
+* *n* = sample size per group
 * *f* = effect sizes, where 0.1/small, 0.25/medium, and 0.4/large
   - In the absence from an estimate from our own data, we make a guess about the expected effect size value based on our knowledge of the literature
 * *sig.level* = *p* value that you will use
@@ -2160,11 +2140,11 @@ Because this calculator requires the effect size in the metric of Cohen's *f* (t
 
 
 ```r
-effectsize::eta2_to_f(0.046)
+effectsize::eta2_to_f(0.117)
 ```
 
 ```
-[1] 0.219586
+[1] 0.3640094
 ```
 We simply plug this value into the "f =".
 
@@ -2174,7 +2154,7 @@ Given that our design was unbalanced (21, 44, 47 across the three stages), I use
 
 
 ```r
-pwr::pwr.anova.test(k = 3, f = 0.219586, sig.level = 0.05, n = 38)
+pwr::pwr.anova.test(k = 3, f = 0.3640094, sig.level = 0.05, n = 38)
 ```
 
 ```
@@ -2183,17 +2163,17 @@ pwr::pwr.anova.test(k = 3, f = 0.219586, sig.level = 0.05, n = 38)
 
               k = 3
               n = 38
-              f = 0.219586
+              f = 0.3640094
       sig.level = 0.05
-          power = 0.5327864
+          power = 0.9395967
 
 NOTE: n is number in each group
 ```
-Our power was 0.53. That is, we had 53% chance to find a statistically significant result if one existed. In the next power analysis, let's see what sample size is recommended.
+Our power was 0.94. That is, we had 94% chance to find a statistically significant result if one existed. In the next power analysis, let's see what sample size is recommended.
 
 
 ```r
-pwr::pwr.anova.test(k = 3, f = 0.219586, sig.level = 0.05, power = 0.8)
+pwr::pwr.anova.test(k = 3, f = 0.3640094, sig.level = 0.05, power = 0.8)
 ```
 
 ```
@@ -2201,24 +2181,22 @@ pwr::pwr.anova.test(k = 3, f = 0.219586, sig.level = 0.05, power = 0.8)
      Balanced one-way analysis of variance power calculation 
 
               k = 3
-              n = 67.61369
-              f = 0.219586
+              n = 25.26354
+              f = 0.3640094
       sig.level = 0.05
           power = 0.8
 
 NOTE: n is number in each group
 ```
-In order to be at 80% power to find a statistically significant result if there is one, we would need 68 people per group. We currently had an unbalanced design of 21, 44, and 47.
+In order to be at 80% power to find a statistically significant result if there is one, we would need only 25 people per group. We currently had an unbalanced design of 50, 41, 21.
 
 ### Hand Calculations
 
 Before we continue: 
 
->You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations utilizes an  approach to calculating the sums of squares that presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the Type II package in *rstatix::anova_test* will produce different result.
+>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations utilizes an  approach to calculating the sums of squares that presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the Type II package in *rstatix::anova_test* may produce different result.
 
 > Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
-
-I will use the same example (and same dataset) for hand calculations. Because of the unbalanced design (e.g., unequal cell sizes across stages), my hand calculations will likely be different from the results from the *rstatix::anova_test()* function.
 
 #### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses.
 
@@ -2245,7 +2223,7 @@ psych::describe(OneWay_df)
 
 ```
         vars   n mean   sd median trimmed  mad min max range  skew kurtosis
-Stage*     1 114 2.23 0.75    2.0    2.28 1.48   1   3     2 -0.39    -1.17
+Stage*     1 112 1.74 0.76    2.0    1.68 1.48   1   3     2  0.46    -1.14
 TradPed    2 112 4.06 0.86    4.2    4.17 0.89   1   5     4 -1.14     1.25
           se
 Stage*  0.07
@@ -2253,15 +2231,6 @@ TradPed 0.08
 ```
 
 Next, I will subtract this value from each person's TradPed value. This will create a mean deviation.
-
-
-```r
-str(OneWay_df$TradPed)
-```
-
-```
- num [1:114] 4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
-```
 
 
 
@@ -2334,27 +2303,27 @@ psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, typ
 
 ```
          item     group1 vars  n  mean    sd median trimmed   mad min max range
-TradPed1    1     Stable    1 21 4.419 0.544    4.6   4.482 0.593 3.2   5   1.8
-TradPed2    2 Transition    1 44 4.045 1.029    4.3   4.206 1.038 1.0   5   4.0
-TradPed3    3  Resettled    1 47 3.909 0.778    4.0   3.967 0.890 1.8   5   3.2
+TradPed1    1     Stable    1 50 4.348 0.658    4.4   4.440 0.890 2.6   5   2.4
+TradPed2    2 Transition    1 41 3.693 1.057    4.0   3.812 1.186 1.0   5   4.0
+TradPed3    3  Resettled    1 21 4.081 0.610    4.0   4.124 0.593 2.8   5   2.2
            skew kurtosis    se
-TradPed1 -0.623   -0.492 0.119
-TradPed2 -1.312    1.177 0.155
-TradPed3 -0.601   -0.041 0.113
+TradPed1 -0.881    0.082 0.093
+TradPed2 -0.817   -0.068 0.165
+TradPed3 -0.289   -0.629 0.133
 ```
 
 Now we can pop these values into the formula.
 
 
 ```r
-SSM <- 21 * (4.419 -4.06)^2 + 44 * (4.045 - 4.06)^2 + 30 * (3.909 - 4.06)^2
+SSM <- 50 * (4.348 -4.06)^2 + 41 * (3.693 - 4.06)^2 + 21 * (4.081 - 4.06)^2
 SSM
 ```
 
 ```
-[1] 3.400431
+[1] 9.67871
 ```
-SSM = 3.400
+SSM = 9.67871
 
 
 #### Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group. 
@@ -2370,111 +2339,111 @@ We can obtain these values from the previous run of the *psych::describeBy()* fu
 
 
 ```r
-SSR <- (0.544^2)*(21 - 1) + (1.029^2)*(44 - 1) + (0.778^2)*(47-1)
+SSR <- (0.658^2)*(50 - 1) + (1.057^2)*(41 - 1) + (0.610^2)*(21-1)
 SSR
 ```
 
 ```
-[1] 79.29195
+[1] 73.3472
 ```
-SSR = 79.29
+SSR = 73.3472
 
 
 #### Calculate the mean square model, mean square residual, and *F*-test. 
 
 The formula for mean square model is $$MS_M = \frac{SS_{M}}{df{_{M}}}$$
 
-* $SS_M$ was 3.400
+* $SS_M$ was 9.67871
 * $df_M$ is *k* - 1 (where *k* is number of groups/levels)
 
 
 ```r
-MSM <- 3.400/2
+MSM <- 9.67871/2
 MSM
 ```
 
 ```
-[1] 1.7
+[1] 4.839355
 ```
+MSM is 4.839
 
 The formula for mean square residual is $$MS_R = \frac{SS_{R}}{df{_{R}}}$$
 
 * $SS_R$ was 79.292
-* $df_R$ is $N - k$ (114 - 3 = 111)
+* $df_R$ is $N - k$ (112 - 3 = 109)
 
 
 ```r
-MSR = 79.292/111
+MSR = 73.3472/109
 MSR
 ```
 
 ```
-[1] 0.7143423
+[1] 0.6729101
 ```
 
 The formula for the *F* ratio is $$F = \frac{MS_{M}}{MS_{R}}$$
 
 
 ```r
-F <- 1.7/0.714
+F <- 4.839/0.6729101
 F
 ```
 
 ```
-[1] 2.380952
+[1] 7.191154
 ```
-*F* = 2.381
+*F* = 7.191154
 
-As I noted before we started the hand calculations, this "isn't exactly" what we found for the same data using R and R packages. However, the algorithms for those packages would take into consideration the unbalanced design (i.e., unequal cell sizes). Such a characteristic is a limitation, but is beyond this lesson.
 
 #### What are the degrees of freedom for your numerator and denominator? 
 
 Numerator or $df_M$:  2
-Denominator or $df_R$:  111
+Denominator or $df_R$:  109
 
 #### Locate the test critical value for your one-way ANOVA.  
 
 We could use use a [table of critical values](https://www.statology.org/how-to-read-the-f-distribution-table/) for the *F* distribution.
 
-The closest *N* in the table I am using is 120. If we set alpha at 0.05, our test value would need to exceeed the absolute value of 3.0718.
+The closest *N* in the table I am using is 120. If we set alpha at 0.05, our test value would need to exceed the absolute value of 3.0718.
 
 We can also use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 
 ```r
-qf(0.05, 2, 111, lower.tail = FALSE)
+qf(0.05, 2, 109, lower.tail = FALSE)
 ```
 
 ```
-[1] 3.078057
+[1] 3.079596
 ```
 Not surprisingly the values are quite similar.
 
 #### Is the *F*-test statistically significant? Why or why not? 
 
-Because the value of the *F* test (2.381) did not exceed the absolute value of the critical value (3.078), the *F* test is not statistically significant.
+Because the value of the *F* test (7.191) exceeded the absolute value of the critical value (3.080), the *F* test is statistically significant.
 
 #### Calculate and interpret the $\eta^2$ effect size
 
 The formula to calculate the effect size is $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 
-* $SS_M$ was 3.400
-* $SS_R$ was 79.292
+* $SS_M$ was 9.679
+* $SS_T$ was 83.0332
 
 
 ```r
-etaSQ <- 3.400/79.292
+etaSQ <- 9.679/83.0332
 etaSQ
 ```
 
 ```
-[1] 0.04287948
+[1] 0.1165678
 ```
-Eta square is 0.043. Values of .01, .06, and .14 are interpreted as small, medium, and large. Our value of 0.043 is small-to-medium.
+Eta square is 0.117. Values of .01, .06, and .14 are interpreted as small, medium, and large. Our value of 0.12 is medium-to-large.
 
 
 #### Assemble the results into a statistical string. 
 
-$$F(2, 111) = 2.381, p > .05, \eta^2 = 0.43$$
+$$F(2, 109) = 7.191, p < .05, \eta^2 = 0.117$$
 
 
 

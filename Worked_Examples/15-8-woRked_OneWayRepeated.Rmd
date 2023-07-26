@@ -1,16 +1,22 @@
+```{r include=FALSE}
+options(scipen=999)#eliminates scientific notation
+```
+
 ## Homeworked Example
 
 [Screencast Link]()
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
 ### Working the Problem with R and R Packages
 
 #### Narrate the research vignette, describing the IV and DV. The data you analyze should have at least 3 levels in the independent variable; at least one of the attempted problems should have a significant omnibus test so that follow-up is required) 
 
-I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students across the ANOVA, Multivariate, and Psychometrics courses (in that order, because that's the order in which the students take the class.)
+I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students across the ANOVA, multivariate, and psychometrics courses (in that order, because that's the order in which the students take the class.)
 
 The dependent variable is the evaluation of traditional pedagogy. The independent variable is course/time (i.e., each student offers course evaluations in each of the three classes).
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, the three different classes are the only repeated measures variable.  Rather, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
 #### Check and, if needed, format data
 
@@ -31,58 +37,45 @@ big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)
 #big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)
 ```
 
-This gets a little convoluted, here's why:
-* We need "long" and "wide" forms of the data, AND
-* In repeated measures ANOVA every case has to have non-missing data (i.e., to be included, a student must have contributed course evals to all three courses)
-
-The way the data comes to us is the "long" form -- where each student's course evaluation has its own row (i.e., each student has up to 3 rows of data).
-
-Let's trim it to just the variables of interest
+Let's trim to just the variables we need.
 ```{r}
-rm1w_df <- (dplyr::select (big, deID, Course, TradPed))
-head(rm1w_df)
+rm1wLONG_df <- (dplyr::select (big, deID, Course, TradPed))
+head(rm1wLONG_df)
 ```
 
 * Grouping variables: factors
 * Dependent variable: numerical or integer
 
 ```{r}
-str(rm1w_df)
-```
-
-```{r}
-rm1w_df$Course <- factor(rm1w_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
-str(rm1w_df)
-```
-
-We will also need to create the "wide" form -- where each student has one row of data with all three TradPed scores (ANOVA, Multivariate, Psychometrics) in one row.
-
-```{r}
-rm1wWIDE_df <- reshape2::dcast(data = rm1w_df, formula = deID ~ Course,
-    value.var = "TradPed")
-str(rm1wWIDE_df)
-head(rm1wWIDE_df)
-```
-
-Let's update the df to have only complete cases.
-
-```{r}
-rm1wWIDE_df <- na.omit(rm1wWIDE_df)
-nrow(rm1wWIDE_df)#counts number of rows (cases)
-```
-Ooof!  It took us to 70 cases.
-
-Regarding missingness, I need the LONG file to have the same data. So let's update that.
-
-```{r}
-rm1wLONG_df <- (reshape2::melt(rm1wWIDE_df, id.vars = c("deID"), measure.vars = c("ANOVA", "Multivariate", "Psychometrics")))
-#This process  does not preserve the variable names, so we need to rename them
-rm1wLONG_df<-  dplyr::rename(rm1wLONG_df, Course = "variable", TradPed = "value")
 str(rm1wLONG_df)
-head(rm1wLONG_df)
 ```
 
-Before we even start, let's get a plot of what's happening:
+```{r}
+rm1wLONG_df$Course <- factor(rm1wLONG_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
+str(rm1wLONG_df)
+```
+Let's update the df to have only complete cases.
+```{r}
+rm1wLONG_df <- na.omit(rm1wLONG_df)
+nrow(rm1wLONG_df)#counts number of rows (cases)
+```
+This took us to 307 cases.
+
+These analyses require that students have completed evaluations for all three courses. In the lesson, I restructured the data from long, to wide, back to long again. While this was useful pedagogy in understanding the difference between the two data structures, there is also super quick code that will simply retain data that has at least three observations per student.
+
+```{r}
+library(tidyverse)
+rm1wLONG_df <- rm1wLONG_df%>%
+  dplyr::group_by(deID)%>%
+  dplyr::filter(n()==3)
+```
+
+This took the data to 210 observations. Since each student contributed 3 observations, we know  $N = 70$.
+
+```{r}
+210/3
+```
+Before we start, let's get a plot of what's happening:
 
 ```{r}
 bxp <- ggpubr::ggboxplot(rm1wLONG_df, x = "Course", y = "TradPed", add = "point", color = "Course",
@@ -99,12 +92,14 @@ Given that this is a one-way repeated measures ANOVA model, the dependent variab
 We can examine skew and kurtosis in each of the levels of the TradPed variable with *psych::describeBy()*.
 
 ```{r}
+#R wasn't recognizing the data, so I quickly applied the as.data.frame function
+rm1wLONG_df <- as.data.frame(rm1wLONG_df)
 psych::describeBy(TradPed ~ Course, mat = TRUE, type = 1, data = rm1wLONG_df)
 ```
 
 Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016].
 
-I can formally test for normality with the Shaprio-Wilk test. If I use the residuals from an evaluated model, with one test, I can determine if TradPed is distributed normally within each of the courses.
+I can formally test for normality with the Shapiro-Wilk test. If I use the residuals from an evaluated model, with one test, I can determine if TradPed is distributed normally within each of the courses.
 
 ```{r}
 #running the model
@@ -143,14 +138,13 @@ Here's how I would write up the evaluation of assumptions so far:
 
 >Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016]. We formally evaluated the normality assumption with the Shapiro-Wilk test. The distribution of model residuals was statistically significantly different than a normal distribution $(W = 0.876, p < .001)$. Although we violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each [@green_one-way_2017-1]. Although our data included six outliers, none were classified as extreme. Because they represented lower course evaluations, we believed it important to retain them in the dataset. PLACEHOLDER FOR SPHERICITY.
 
-
 #### Conduct omnibus ANOVA (w effect size)
 
 ```{r}
 rmAOV <- rstatix::anova_test(data = rm1wLONG_df, dv = TradPed, wid = deID, within = Course)
 rmAOV
 ```
-Let's start first with the sphericity test. Mauchly's test for sphericity was statistically significant, $(W = 0.878, p - 0.012)$. Had we not violated the assumption, our *F* string would have been created from the data in the ANOVA section of the output : $F(2, 138) = 2.838, p = 0.062, \eta^2 = 0.14$ However, because we violated the assumption, we need to use the degrees-of-freedom adjusted output under the "Sphericity Corrections" section; $F(1.87, 122.98) = 2.838, p = 0.068, ges = 0.014$.
+Let's start first with the sphericity test. Mauchly's test for sphericity was statistically significant, $(W = 0.878, p = 0.012)$. Had we not violated the assumption, our *F* string would have been created from the data in the ANOVA section of the output : $F(2, 138) = 2.838, p = 0.062, \eta^2 = 0.14$ However, because we violated the assumption, we need to use the degrees-of-freedom adjusted output under the "Sphericity Corrections" section; $F(1.78, 122.98) = 2.838, p = 0.068, ges = 0.014$.
 
 While the ANOVA is non-significant, because this is a homework demonstration, I will behave *as if* the test is significant and continue with the pairwise comparisons.
 
@@ -163,21 +157,21 @@ pwc <- rstatix::pairwise_t_test(TradPed ~ Course, paired = TRUE, p.adjust.method
 pwc
 ```
 
-Even though the omnibus was non-significant, we did find a statistically significant difference between the ANOVA and psychometrics courses $(t[69] = -2.535, p = 0.040)$, but not between ANOVA and multivariate $(t[69] = 0.229, p = 0.687)$ or multivariate and psychometrics $(t[69] = -1.084, p = 0.846)$.
+Consistent with the non-significant omnibus, there were non-significant differences between the pairs. This included, ANOVA and multivariate $(t[69] = -1.215, p = 0.687)$; ANOVA and psychometrics courses $(t[69] = -2.065, p = 0.128)$; and multivariate and psychometrics $(t[69] = -0.772, p = 1.000)$.
 
 #### Describe approach for managing Type I error
 
-I used a traditional Bonferroni for the three, follow-up, pairwise comparisons. What is curious is that even though there was a non-significant omnibus, and I applied a more conservative approach to managing Type I error, there was one statistically significant pairwise comparison.
+I used a traditional Bonferroni for the three, follow-up, pairwise comparisons. 
 
 #### APA style results with figure
 
 >We utilized one-way repeated measures ANOVA to determine if there were differences in students' evaluation of traditional pedagogy across three courses -- ANOVA, multivariate, and psychometrics -- taught in that order.
 
->Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016]. We formally evaluated the normality assumption with the Shapiro-Wilk test. The distribution of model residuals was statistically significantly different than a normal distribution $(W = 0.876, p < .001)$. Although we violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each [@green_one-way_2017-1]. Although our data included six outliers, none were classified as extreme. Because they represented lower course evaluations, we believed it important to retain them in the dataset. Mauchly's test indicated a violation of the sphericity assumption $(W = 0.878, p - 0.012)$.
+>Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016]. We formally evaluated the normality assumption with the Shapiro-Wilk test. The distribution of model residuals was statistically significantly different than a normal distribution $(W = 0.876, p < .001)$. Although we violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each [@green_one-way_2017-1]. Although our data included six outliers, none were classified as extreme. Because they represented lower course evaluations, we believed it important to retain them in the dataset. Mauchly's test indicated a violation of the sphericity assumption $(W = 0.878, p = 0.012)$.
 
->Given the violation of the homogeneity of sphericity assumption, we are reporting the Greenhouse-Geyser adjusted values. Results of the omnibus ANOVA were not statistically significant $(F[1.87, 122.98] = 2.838, p = 0.068, ges = 0.014)$. 
+>Given the violation of the homogeneity of sphericity assumption, we are reporting the Greenhouse-Geyser adjusted values. Results of the omnibus ANOVA were not statistically significant $F(1.78, 122.98) = 2.838, p = 0.068, ges = 0.014$. 
 
->Although we would normally not follow-up a non-significant omnibus ANOVA with more testing, because this is a homework demonstration, we will follow-up the ANOVA with pairwise comparisons and manage Type I error with the traditional Bonferroni approach. Results indicated a statistically significant difference between the ANOVA and psychometrics courses $(t[69] = -2.535, p = 0.040)$, but not between ANOVA and multivariate $(t[69] = 0.229, p = 0.687)$ or multivariate and psychometrics $(t[69] = -1.084, p = 0.846)$. Figure 1 provides an illustration of these results.
+>Although we would normally not follow-up a non-significant omnibus ANOVA with more testing, because this is a homework demonstration, we will follow-up the ANOVA with pairwise comparisons and manage Type I error with the traditional Bonferroni approach. Consistent with the non-significant omnibus, there were non-significant differences between the pairs. This included, ANOVA and multivariate $(t[69] = -1.215, p = 0.687)$; ANOVA and psychometrics courses $(t[69] = -2.065, p = 0.128)$; and multivariate and psychometrics $(t[69] = -0.772, p = 1.000)$.
 
 I can update the figure to include star bars.
 
@@ -185,7 +179,7 @@ I can update the figure to include star bars.
 library(tidyverse)
 pwc <- pwc %>%
     rstatix::add_xy_position(x = "Course")
-bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3)) 
+bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.01, hide.ns = FALSE, y.position = c(5.25, 5.5, 5.75)) 
 bxp
 ```
 
@@ -319,15 +313,14 @@ SSR
 Sums of squares residual is 35.435.
 
 
-
 #### Calculate the sums of squares between (SSB). 
-In repeated measures ANOVA $SS_T$ = $SS_W$ + $SS_B$.  Knowing SST (103.9144) and SSW (34.255), we can do simple arithmetic to obtain SSB.
+In repeated measures ANOVA $SS_T = SS_W + SS_B$.  Knowing SST (103.9144) and SSW (34.255), we can do simple arithmetic to obtain SSB.
 
 ```{r}
 SSB <- 103.9144 - 35.435
 SSB
 ```
-Sums of squares between is 69.6594.
+Sums of squares between is 68.4794.
 
 
 #### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values 
@@ -362,13 +355,12 @@ Obtaining the F critical value:
 ```{r}
 qf(.05, 2, 65, lower.tail = FALSE)
 ```
-To achieve statistical significance, my F value has to exceed 3.138.
 
 We can see the same in an [F distribution table](https://www.statology.org/f-distribution-table/). 
 
 #### Is the *F*-tests statistically significant? Why or why not? 
 
-No. The *F* value did not exceed the *F* critical value.
+No. The *F* value did not exceed the *F* critical value. To achieve statistical significance, my F value has to exceed 3.138.
 
 #### Assemble the results into a statistical string. 
 

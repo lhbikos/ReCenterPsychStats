@@ -1859,8 +1859,9 @@ that could have caused the sample correlation (Cumming, 2014).
 <div id="homeworked-example-1" class="section level2 hasAnchor" number="3.11">
 <h2><span class="header-section-number">3.11</span> Homeworked Example<a href="preliminaries.html#homeworked-example-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="">Screencast Link</a></p>
+<p>For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the <a href="ReCintro">introduction</a>.</p>
 <p>Preliminary analyses often consist of means, standard deviations, and correlations. These can be helpful in determining whether or not data are normally distribution. Correlations and pairs.panels also assess the relatedness of the variables.</p>
-<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could (a) select a different course (i.e., Multivariate or Psychometrics) and/or (b) different variables.</em></p>
+<p>If you wanted to use this example and dataset as a basis for a homework assignment, you could (a) select a different course (i.e., Multivariate or Psychometrics) and/or (b) different variables.</p>
 <div id="working-the-problem-with-r-and-r-packages" class="section level3 hasAnchor" number="3.11.1">
 <h3><span class="header-section-number">3.11.1</span> Working the Problem with R and R Packages<a href="preliminaries.html#working-the-problem-with-r-and-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="create-a-df-with-3-continuously-scaled-variables-of-interest" class="section level4 hasAnchor" number="3.11.1.1">
@@ -1868,7 +1869,7 @@ that could have caused the sample correlation (Cumming, 2014).
 <p>The ReC.rds is the entire dataset. Let’s first open it.</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="preliminaries.html#cb167-1" tabindex="-1"></a>ReCdf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>Recall that students (represented by the <em>deID</em> variable) could contribute up to three course evaluations (i.e., ANOVA, psychometrics, multivariate) each. In many statistics, repeated observations creates dependencies that need to be accounted for statistically.</p>
-<p>To avoid this dependency and to practice an R skil, let’s first filter the data, selecting only those students who took ANOVA.</p>
+<p>To avoid this dependency and to practice an R skill, let’s first filter the data, selecting only those students who took ANOVA.</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="preliminaries.html#cb168-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
 </div>
 <div id="create-a-df-with-3-continuously-scaled-variables-of-interest-1" class="section level4 hasAnchor" number="3.11.1.2">
@@ -1893,7 +1894,7 @@ MyContribution    -0.55 0.08</code></pre>
 <div id="produce-splompairs.panels" class="section level4 hasAnchor" number="3.11.1.4">
 <h4><span class="header-section-number">3.11.1.4</span> Produce SPLOM/pairs.panels<a href="preliminaries.html#produce-splompairs.panels" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="preliminaries.html#cb172-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(tiny3)</span></code></pre></div>
-<p><img src="03-Preliminaries_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="03-Preliminaries_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 </div>
 <div id="produce-an-apatables-matrix" class="section level4 hasAnchor" number="3.11.1.5">
 <h4><span class="header-section-number">3.11.1.5</span> Produce an apaTables matrix<a href="preliminaries.html#produce-an-apatables-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1922,13 +1923,15 @@ that could have caused the sample correlation (Cumming, 2014).
 </div>
 <div id="produce-an-apa-style-write-up-of-the-preliminary-analyses" class="section level4 hasAnchor" number="3.11.1.6">
 <h4><span class="header-section-number">3.11.1.6</span> Produce an APA Style write-up of the preliminary analyses<a href="preliminaries.html#produce-an-apa-style-write-up-of-the-preliminary-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Our sample included 113 doctoral students in Clinical and Industrial-Organizational psychology doctoral (PhD) programs who were completing a statistics class focused on analysis of variance. Visual inspection of three dimensions of course evaluation (overall instructor, overall course, my contributions) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. That is, skew values all fell below the absolute value of 3 and kurtosis values all fell below the absolute value of 10 <span class="citation">(<a href="#ref-kline_data_2016">Kline, 2016a</a>)</span>. Means, standard deviations, and a correlation matrix are presented in Table 1. All three correlations were strong and statistically significant. We noted that the correlation between the overall instructor and overall course was especially high (<em>r</em> = .83, <em>p</em> &lt; .001)</p>
+<blockquote>
+<p>Our sample included 113 doctoral students in Clinical and Industrial-Organizational psychology (PhD) programs who were completing a statistics class focused on analysis of variance. Visual inspection of three dimensions of course evaluation (overall instructor, overall course, my contributions) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. That is, skew values all fell below the absolute value of 3 and kurtosis values all fell below the absolute value of 10 <span class="citation">(<a href="#ref-kline_data_2016">Kline, 2016a</a>)</span>. Means, standard deviations, and a correlation matrix are presented in Table 1. All three correlations were strong and statistically significant. We noted that the correlation between the overall instructor and overall course was especially high <span class="math inline">\((r = .83, p &lt; .001)\)</span></p>
+</blockquote>
 </div>
 </div>
 <div id="hand-calculations" class="section level3 hasAnchor" number="3.11.2">
 <h3><span class="header-section-number">3.11.2</span> Hand Calculations<a href="preliminaries.html#hand-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Although these are termed “hand calculations,” you may use the code demonstrated in the chapter to work these problems.</p>
-<p>I am going to continue with the <em>tiny3</em> dataset I used when I worked the problem with R and R packages. Given that this is for homework, let’s avoid problems with missingness by deleting any rows with missing data:</p>
+<p>I am going to continue with the <em>tiny3</em> dataset I used when I worked the problem with R and R packages.</p>
 <p>If you need to reimport data, here is a quick recap of the code explained earlier.</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="preliminaries.html#cb175-1" tabindex="-1"></a>ReCdf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span>
 <span id="cb175-2"><a href="preliminaries.html#cb175-2" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span>
@@ -1945,95 +1948,157 @@ that could have caused the sample correlation (Cumming, 2014).
 </div>
 <div id="create-a-variable-that-represents-the-mean-deviation." class="section level4 hasAnchor" number="3.11.2.2">
 <h4><span class="header-section-number">3.11.2.2</span> Create a variable that represents the mean deviation.<a href="preliminaries.html#create-a-variable-that-represents-the-mean-deviation." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="preliminaries.html#cb178-1" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_OvI <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>OvInstructor<span class="sc">-</span>tiny3<span class="sc">$</span>M_OvI)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="preliminaries.html#cb178-1" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_OvI <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>OvInstructor<span class="sc">-</span>tiny3<span class="sc">$</span>M_OvI)</span>
+<span id="cb178-2"><a href="preliminaries.html#cb178-2" tabindex="-1"></a><span class="fu">head</span>(tiny3)</span></code></pre></div>
+<pre><code>  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI
+1            5        3              4 4.185841  0.8141593
+2            4        4              4 4.185841 -0.1858407
+3            4        4              4 4.185841 -0.1858407
+4            3        3              4 4.185841 -1.1858407
+5            5        5              5 4.185841  0.8141593
+6            3        3              4 4.185841 -1.1858407</code></pre>
 <p>Inspect the dataframe to see that this new variable exists. Note that this functions to “center” the mean around zero.</p>
 </div>
 <div id="what-is-the-value-of-the-sum-of-mean-deviations" class="section level4 hasAnchor" number="3.11.2.3">
 <h4><span class="header-section-number">3.11.2.3</span> What is the value of the sum of mean deviations?<a href="preliminaries.html#what-is-the-value-of-the-sum-of-mean-deviations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="preliminaries.html#cb179-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sum</span>(tiny3<span class="sc">$</span>Mdev_OvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="preliminaries.html#cb180-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sum</span>(tiny3<span class="sc">$</span>Mdev_OvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>[1] 0</code></pre>
 <p>Yes, zero!</p>
 </div>
 <div id="create-a-variable-that-represents-the-absolute-mean-deviation." class="section level4 hasAnchor" number="3.11.2.4">
 <h4><span class="header-section-number">3.11.2.4</span> Create a variable that represents the absolute mean deviation.<a href="preliminaries.html#create-a-variable-that-represents-the-absolute-mean-deviation." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="preliminaries.html#cb181-1" tabindex="-1"></a>tiny3<span class="sc">$</span>abslt_mOvI <span class="ot">&lt;-</span> <span class="fu">abs</span>(tiny3<span class="sc">$</span>Mdev_OvI)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="preliminaries.html#cb182-1" tabindex="-1"></a>tiny3<span class="sc">$</span>abslt_mOvI <span class="ot">&lt;-</span> <span class="fu">abs</span>(tiny3<span class="sc">$</span>Mdev_OvI)</span>
+<span id="cb182-2"><a href="preliminaries.html#cb182-2" tabindex="-1"></a><span class="fu">head</span>(tiny3)</span></code></pre></div>
+<pre><code>  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407</code></pre>
 <p>Inspect the dataframe to see that this new variable no longer has negative values.</p>
 <p><strong>What is the value of the sum of the absolute mean deviation?</strong></p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="preliminaries.html#cb182-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sum</span>(tiny3<span class="sc">$</span>abslt_mOvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="preliminaries.html#cb184-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sum</span>(tiny3<span class="sc">$</span>abslt_mOvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>[1] 96.071</code></pre>
 <p><strong>What is the value of the mean of the absolute mean deviation?</strong></p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="preliminaries.html#cb184-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(tiny3<span class="sc">$</span>abslt_mOvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="preliminaries.html#cb186-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(tiny3<span class="sc">$</span>abslt_mOvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>[1] 0.85</code></pre>
 <p><strong>What does this value tell you?</strong></p>
 <p>Average distance of each value from the mean.</p>
 </div>
 <div id="create-a-variable-that-represents-the-mean-deviation-squared." class="section level4 hasAnchor" number="3.11.2.5">
 <h4><span class="header-section-number">3.11.2.5</span> Create a variable that represents the mean deviation squared.<a href="preliminaries.html#create-a-variable-that-represents-the-mean-deviation-squared." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="preliminaries.html#cb186-1" tabindex="-1"></a>tiny3<span class="sc">$</span>mdev2_OvI <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>Mdev_OvI <span class="sc">*</span> tiny3<span class="sc">$</span>Mdev_OvI)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="preliminaries.html#cb188-1" tabindex="-1"></a>tiny3<span class="sc">$</span>mdev2_OvI <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>Mdev_OvI <span class="sc">*</span> tiny3<span class="sc">$</span>Mdev_OvI)</span>
+<span id="cb188-2"><a href="preliminaries.html#cb188-2" tabindex="-1"></a><span class="fu">head</span>(tiny3)</span></code></pre></div>
+<pre><code>  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407
+   mdev2_OvI
+1 0.66285535
+2 0.03453677
+3 0.03453677
+4 1.40621818
+5 0.66285535
+6 1.40621818</code></pre>
 <p><strong>What is the value of the sum of squared deviations around the mean (also known as sums of squares; sometimes abbreviated as <span class="math inline">\(SS\)</span>)?</strong></p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="preliminaries.html#cb187-1" tabindex="-1"></a><span class="fu">sum</span>(tiny3<span class="sc">$</span>mdev2_OvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="preliminaries.html#cb190-1" tabindex="-1"></a><span class="fu">sum</span>(tiny3<span class="sc">$</span>mdev2_OvI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] 115.0973</code></pre>
 <p><strong>What is the value of the variance (<span class="math inline">\(s^2\)</span>)?</strong></p>
 <p>There are at least two ways to do this with basic code (and then we can check our work).</p>
 <p>Here’s how to do it with “more code.”</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="preliminaries.html#cb189-1" tabindex="-1"></a>var_OvI <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny3<span class="sc">$</span>mdev2_OvI<span class="sc">/</span>((<span class="fu">nrow</span>(tiny3) <span class="sc">-</span> <span class="dv">1</span>)))</span>
-<span id="cb189-2"><a href="preliminaries.html#cb189-2" tabindex="-1"></a>var_OvI</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="preliminaries.html#cb192-1" tabindex="-1"></a>var_OvI <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny3<span class="sc">$</span>mdev2_OvI<span class="sc">/</span>((<span class="fu">nrow</span>(tiny3) <span class="sc">-</span> <span class="dv">1</span>)))</span>
+<span id="cb192-2"><a href="preliminaries.html#cb192-2" tabindex="-1"></a>var_OvI</span></code></pre></div>
 <pre><code>[1] 1.027655</code></pre>
 <p>Here’s how to do it with the numbers that I calculated:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="preliminaries.html#cb191-1" tabindex="-1"></a><span class="fl">115.0973</span><span class="sc">/</span>(<span class="dv">113-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="preliminaries.html#cb194-1" tabindex="-1"></a><span class="fl">115.0973</span><span class="sc">/</span>(<span class="dv">113-1</span>)</span></code></pre></div>
 <pre><code>[1] 1.027654</code></pre>
 <p>Checking my work with the <em>var</em> function from base R. If it’s wrong, I need to rework some of the previous steps.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="preliminaries.html#cb193-1" tabindex="-1"></a><span class="fu">var</span>(tiny3<span class="sc">$</span>OvInstructor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co">#checking my work</span></span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="preliminaries.html#cb196-1" tabindex="-1"></a><span class="fu">var</span>(tiny3<span class="sc">$</span>OvInstructor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co">#checking my work</span></span></code></pre></div>
 <pre><code>[1] 1.027655</code></pre>
 <p><strong>What is the value of the standard deviation (<span class="math inline">\(s\)</span>)?</strong></p>
 <p>There are two ways to calculate it with basic code; and then we can check it with more code from base R.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="preliminaries.html#cb195-1" tabindex="-1"></a>sd_OvI <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_OvI)<span class="co">#calculating with the object I created</span></span>
-<span id="cb195-2"><a href="preliminaries.html#cb195-2" tabindex="-1"></a>sd_OvI</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="preliminaries.html#cb198-1" tabindex="-1"></a>sd_OvI <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_OvI)<span class="co">#calculating with the object I created</span></span>
+<span id="cb198-2"><a href="preliminaries.html#cb198-2" tabindex="-1"></a>sd_OvI</span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="preliminaries.html#cb197-1" tabindex="-1"></a><span class="fu">sqrt</span> (<span class="fl">1.027655</span>)<span class="co">#calculated with the actual numbers</span></span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="preliminaries.html#cb200-1" tabindex="-1"></a><span class="fu">sqrt</span> (<span class="fl">1.027655</span>)<span class="co">#calculated with the actual numbers</span></span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="preliminaries.html#cb199-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>OvInstructor)<span class="co">#checking my work with the code from baseR</span></span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="preliminaries.html#cb202-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>OvInstructor)<span class="co">#checking my work with the code from baseR</span></span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
 </div>
 <div id="using-the-same-general-approach-calculate-the-mean-deviation-and-standard-deviation-for-a-second-continuously-scaled-variable." class="section level4 hasAnchor" number="3.11.2.6">
 <h4><span class="header-section-number">3.11.2.6</span> Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable.<a href="preliminaries.html#using-the-same-general-approach-calculate-the-mean-deviation-and-standard-deviation-for-a-second-continuously-scaled-variable." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>My second variable is MyContribution</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="preliminaries.html#cb201-1" tabindex="-1"></a><span class="co">#first the mean</span></span>
-<span id="cb201-2"><a href="preliminaries.html#cb201-2" tabindex="-1"></a>tiny3<span class="sc">$</span>M_MyC <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny3<span class="sc">$</span>MyContribution, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb201-3"><a href="preliminaries.html#cb201-3" tabindex="-1"></a><span class="co">#second the mean deviation</span></span>
-<span id="cb201-4"><a href="preliminaries.html#cb201-4" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_MyC <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>MyContribution<span class="sc">-</span>tiny3<span class="sc">$</span>M_MyC)</span>
-<span id="cb201-5"><a href="preliminaries.html#cb201-5" tabindex="-1"></a></span>
-<span id="cb201-6"><a href="preliminaries.html#cb201-6" tabindex="-1"></a><span class="co">#fourth the variance</span></span>
-<span id="cb201-7"><a href="preliminaries.html#cb201-7" tabindex="-1"></a>var_MyC <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny3<span class="sc">$</span>mdev2_MyC<span class="sc">/</span>((<span class="fu">nrow</span>(tiny3) <span class="sc">-</span> <span class="dv">1</span>)))</span>
-<span id="cb201-8"><a href="preliminaries.html#cb201-8" tabindex="-1"></a>var_MyC</span></code></pre></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="preliminaries.html#cb203-1" tabindex="-1"></a><span class="co">#finally the standard deviation</span></span>
-<span id="cb203-2"><a href="preliminaries.html#cb203-2" tabindex="-1"></a>sd_MyC <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_MyC)</span>
-<span id="cb203-3"><a href="preliminaries.html#cb203-3" tabindex="-1"></a>sd_MyC<span class="co">#checking my work</span></span></code></pre></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="preliminaries.html#cb205-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>MyContribution)<span class="co">#checking my work</span></span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="preliminaries.html#cb204-1" tabindex="-1"></a><span class="co">#first the mean</span></span>
+<span id="cb204-2"><a href="preliminaries.html#cb204-2" tabindex="-1"></a>tiny3<span class="sc">$</span>M_MyC <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny3<span class="sc">$</span>MyContribution, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb204-3"><a href="preliminaries.html#cb204-3" tabindex="-1"></a><span class="co">#second the mean deviation</span></span>
+<span id="cb204-4"><a href="preliminaries.html#cb204-4" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_MyC <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>MyContribution<span class="sc">-</span>tiny3<span class="sc">$</span>M_MyC)</span>
+<span id="cb204-5"><a href="preliminaries.html#cb204-5" tabindex="-1"></a><span class="co">#third the mean deviation squared</span></span>
+<span id="cb204-6"><a href="preliminaries.html#cb204-6" tabindex="-1"></a>tiny3<span class="sc">$</span>mdev2_MyC <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>Mdev_MyC <span class="sc">*</span> tiny3<span class="sc">$</span>Mdev_MyC)</span>
+<span id="cb204-7"><a href="preliminaries.html#cb204-7" tabindex="-1"></a><span class="fu">head</span>(tiny3)</span></code></pre></div>
+<pre><code>  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407
+   mdev2_OvI    M_MyC   Mdev_MyC   mdev2_MyC
+1 0.66285535 3.964602 0.03539823 0.001253035
+2 0.03453677 3.964602 0.03539823 0.001253035
+3 0.03453677 3.964602 0.03539823 0.001253035
+4 1.40621818 3.964602 0.03539823 0.001253035
+5 0.66285535 3.964602 1.03539823 1.072049495
+6 1.40621818 3.964602 0.03539823 0.001253035</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="preliminaries.html#cb206-1" tabindex="-1"></a><span class="co">#fourth the variance</span></span>
+<span id="cb206-2"><a href="preliminaries.html#cb206-2" tabindex="-1"></a>var_MyC <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny3<span class="sc">$</span>mdev2_MyC<span class="sc">/</span>((<span class="fu">nrow</span>(tiny3) <span class="sc">-</span> <span class="dv">1</span>)))</span>
+<span id="cb206-3"><a href="preliminaries.html#cb206-3" tabindex="-1"></a>var_MyC</span></code></pre></div>
+<pre><code>[1] 0.6951643</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="preliminaries.html#cb208-1" tabindex="-1"></a><span class="co">#finally the standard deviation</span></span>
+<span id="cb208-2"><a href="preliminaries.html#cb208-2" tabindex="-1"></a>sd_MyC <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_MyC)</span>
+<span id="cb208-3"><a href="preliminaries.html#cb208-3" tabindex="-1"></a>sd_MyC<span class="co">#checking my work</span></span></code></pre></div>
+<pre><code>[1] 0.8337652</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="preliminaries.html#cb210-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>MyContribution)<span class="co">#checking my work</span></span></code></pre></div>
 <pre><code>[1] 0.8337652</code></pre>
 </div>
 <div id="create-a-variable-that-represents-the-cross-product-of-the-mean-deviations.-what-is-the-sum-of-these-cross-products" class="section level4 hasAnchor" number="3.11.2.7">
 <h4><span class="header-section-number">3.11.2.7</span> Create a variable that represents the <em>cross-product</em> (of the mean deviations). What is the sum of these cross-products?<a href="preliminaries.html#create-a-variable-that-represents-the-cross-product-of-the-mean-deviations.-what-is-the-sum-of-these-cross-products" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="preliminaries.html#cb207-1" tabindex="-1"></a>tiny3<span class="sc">$</span>crossproduct <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>Mdev_OvI <span class="sc">*</span> tiny3<span class="sc">$</span>Mdev_MyC)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="preliminaries.html#cb212-1" tabindex="-1"></a>tiny3<span class="sc">$</span>crossproduct <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>Mdev_OvI <span class="sc">*</span> tiny3<span class="sc">$</span>Mdev_MyC)</span>
+<span id="cb212-2"><a href="preliminaries.html#cb212-2" tabindex="-1"></a><span class="fu">head</span>(tiny3)</span></code></pre></div>
+<pre><code>  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
+1            5        3              4 4.185841  0.8141593  0.8141593
+2            4        4              4 4.185841 -0.1858407  0.1858407
+3            4        4              4 4.185841 -0.1858407  0.1858407
+4            3        3              4 4.185841 -1.1858407  1.1858407
+5            5        5              5 4.185841  0.8141593  0.8141593
+6            3        3              4 4.185841 -1.1858407  1.1858407
+   mdev2_OvI    M_MyC   Mdev_MyC   mdev2_MyC crossproduct
+1 0.66285535 3.964602 0.03539823 0.001253035  0.028819798
+2 0.03453677 3.964602 0.03539823 0.001253035 -0.006578432
+3 0.03453677 3.964602 0.03539823 0.001253035 -0.006578432
+4 1.40621818 3.964602 0.03539823 0.001253035 -0.041976662
+5 0.66285535 3.964602 1.03539823 1.072049495  0.842979090
+6 1.40621818 3.964602 0.03539823 0.001253035 -0.041976662</code></pre>
 <p>The sum of the crossproduct is:</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="preliminaries.html#cb208-1" tabindex="-1"></a>xp_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny3<span class="sc">$</span>crossproduct)</span>
-<span id="cb208-2"><a href="preliminaries.html#cb208-2" tabindex="-1"></a>xp_sum</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="preliminaries.html#cb214-1" tabindex="-1"></a>xp_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny3<span class="sc">$</span>crossproduct)</span>
+<span id="cb214-2"><a href="preliminaries.html#cb214-2" tabindex="-1"></a>xp_sum</span></code></pre></div>
 <pre><code>[1] 46.74336</code></pre>
 </div>
 <div id="calculate-the-value-of-their-covariance." class="section level4 hasAnchor" number="3.11.2.8">
 <h4><span class="header-section-number">3.11.2.8</span> Calculate the value of their covariance.<a href="preliminaries.html#calculate-the-value-of-their-covariance." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="preliminaries.html#cb210-1" tabindex="-1"></a>cov <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">/</span>(<span class="dv">113-1</span>)) <span class="sc">*</span> <span class="fl">46.74336</span></span>
-<span id="cb210-2"><a href="preliminaries.html#cb210-2" tabindex="-1"></a>cov</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="preliminaries.html#cb216-1" tabindex="-1"></a>cov <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">/</span>(<span class="dv">113-1</span>)) <span class="sc">*</span> <span class="fl">46.74336</span></span>
+<span id="cb216-2"><a href="preliminaries.html#cb216-2" tabindex="-1"></a>cov</span></code></pre></div>
 <pre><code>[1] 0.4173514</code></pre>
 </div>
 <div id="calculate-value-of-correlation-coefficient." class="section level4 hasAnchor" number="3.11.2.9">
 <h4><span class="header-section-number">3.11.2.9</span> Calculate value of correlation coefficient.<a href="preliminaries.html#calculate-value-of-correlation-coefficient." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="preliminaries.html#cb212-1" tabindex="-1"></a><span class="fl">0.4173514</span><span class="sc">/</span>(<span class="fl">1.013733</span><span class="sc">*</span><span class="fl">0.8338</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="preliminaries.html#cb218-1" tabindex="-1"></a><span class="fl">0.4173514</span><span class="sc">/</span>(<span class="fl">1.013733</span><span class="sc">*</span><span class="fl">0.8338</span>)</span></code></pre></div>
 <pre><code>[1] 0.4937606</code></pre>
 <p>And now I can check my work with a function from base R.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="preliminaries.html#cb214-1" tabindex="-1"></a><span class="fu">cor.test</span>(tiny3<span class="sc">$</span>OvInstructor, tiny3<span class="sc">$</span>MyContribution)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="preliminaries.html#cb220-1" tabindex="-1"></a><span class="fu">cor.test</span>(tiny3<span class="sc">$</span>OvInstructor, tiny3<span class="sc">$</span>MyContribution)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -2045,7 +2110,7 @@ alternative hypothesis: true correlation is not equal to 0
 sample estimates:
       cor 
 0.4937812 </code></pre>
-<p>The correlation between ratings of overall instructor and my contribution is 0.493, <span class="math inline">\(p &lt; .001\)</span>.</p>
+<p>The correlation between ratings of overall instructor and my contribution is <span class="math inline">\(0.493, p &lt; .001\)</span>.</p>
 
 </div>
 </div>

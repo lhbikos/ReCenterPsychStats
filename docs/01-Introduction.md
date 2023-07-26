@@ -6,7 +6,7 @@
 
 This textbook is intended as *applied,* in that a primary goal is to help the scientist-practitioner-advocate use a variety of statistics in research problems and *writing them up* for a program evaluation, dissertation, or journal article. In support of that goal, I try to provide just enough conceptual information so that the researcher can select the appropriate statistic (i.e., distinguishing between when ANOVA is appropriate and when regression is appropriate) and assign variables to their proper role (e.g., covariate, moderator, mediator).
 
-This conceptual approach does include occasional, step-by-step, *hand-calculations* (using R to do the math for us) to provide a *visceral feeling* of what is happening within the statistical algorithm that may be invisible to the researcher. Additionally, the conceptual review includes a review of the assumptions about the characteristics of the data and research design that are required for the statistic. 
+This conceptual approach does include *hand-calculations* (using R to do the math for us) to provide a *visceral feeling* of what is happening within the statistical algorithm that may be invisible to the researcher. Additionally, the conceptual review includes a review of the assumptions about the characteristics of the data and research design that are required for the statistic. 
 
 Statistics can be daunting, so I have worked hard to establish a *workflow* through each analysis. When possible, I include a flowchart that is referenced frequently in each chapter and assists the researcher keep track of their place in the many steps and choices that accompany even the simplest of analyses.
 
@@ -17,7 +17,12 @@ As with many statistics texts, each chapter includes a *research vignette.* Some
 * the research has a justice, equity, inclusion, diversity, and social responsivity focus and will contribute positively to a social justice pedagogy, and 
 * there is sufficient information in the article to simulate the data for the chapter example(s) and practice problem(s); or the data is available in a repository. 
 
-In each chapter we employ *R* packages that will efficiently calculate the statistic and the dashboard of metrics (e.g., effect sizes, confidence intervals) that are typically reported in psychological science.
+Each chapter features functions and code from *R* packages that will efficiently calculate the statistic and the dashboard of metrics (e.g., effect sizes, confidence intervals) that are typically reported in psychological science. Each worked example concludes with an *APA style results section* that is intended to be used as a model or recipe that is appropriate for many empirical manuscripts. Where possible, hints are provided that will make the production of tables and figures straightforward.
+
+The practice problems are suggestions for homework. Most chapters include suggestions for both working the problem with R and R packages as well as hand calculations. The suggestions for homework are designed to met you where you are. If you are feeling less confident about your ability (or, perhaps short on time), you can choose the easiest options (e.g., changing the random seed and reworking the problem which should be nearly identical to the worked example); with more confidence or time you might choose to work the problem with another variable; with abundant confident (or perhaps a need to do so) you might choose to your own data, data that is available to you, or simulated data from another source. Repetition and practice might mean that you do each of these options.
+
+Finally, each lesson concludes with a *homeworked example*. This section provides a streamlined working of the problem with R or R packages. When the ANOVA models become more complex, there are often a myriad of ways to approach a problem. I have tried to select one that is sensible to me.  The *homeworked examples* draw from a single dataset is available on the OER's [GitHub site](https://github.com/lhbikos/ReCenterPsychStats/blob/main/Worked_Examples/ReC.rds) as well as in a [pre-registered repository](https://osf.io/z84kh/) on the Open Science Framework (OSF). An explanation of this study and codebook for the variables is provided at the end of the this lesson.
+
 
 ## Strategies for Accessing and Using this OER
 
@@ -52,11 +57,12 @@ I've found that, somewhere on the internet, there's almost always a solution to 
 
 
 
+
 ## Introduction to the Data Set Used for Homeworked Examples
 
 [Screencast Link]()
 
-This section of the Appendix is designed as a streamlined example of working the primary statistic from each lesson. This section is intended to be helpful in two ways:
+Each lesson concludes with streamlined example of working the primary statistic from each lesson. This section is intended to be helpful in two ways:
 
 * The worked example focuses on the operations and interpretations and more closely mimics "how you would work a problem in real life."
 * The grading rubric from the end of each lesson serves as the outline for the process. 
@@ -64,7 +70,7 @@ This section of the Appendix is designed as a streamlined example of working the
 
 ### The Data Set
 
-The dataset used in the "homeworked" examples is from my own research. Along long with the pre-registration and codebooks, it is publicly available on the Open Science Framework (OSF): https://osf.io/z84kh/  I have also provided a copy of it in the GitHub repository that hosts the ReCentering Psych Stats OER.
+The dataset used in the "homeworked" examples is from my own research. Along long with the pre-registration and codebooks, it is publicly available in a [pre-registered repository](https://osf.io/z84kh/) on the Open Science Framework (OSF).  I have also provided a copy of it in the [GitHub repository](https://github.com/lhbikos/ReCenterPsychStats/blob/main/Worked_Examples/ReC.rds) that hosts the ReCentering Psych Stats OER.
 
 This data is from an IRB-approved study. The informed consent of the IRB specified that the data could be used in research as well as in teaching demonstrations and would be made available to the general public. You may notice there are student- and teacher- IDs. These numbers are *not** the institution's identification numbers. Rather, they have been further anonymized. 
 

@@ -858,23 +858,26 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 
 
+
 ## Homeworked Example
 
 [Screencast Link]()
 
-The independent-samples t-test is useful when you want to compare means across two different groups. That is, the people in the comparison groups must be different from each other.
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
-*If you wanted to use this example and dataset as a basis for a homework assignment, you could change the course (i.e., Multivariate or Psychometrics) and/or change the dependent variable to one of the other scales*.
+The independent-samples t-test is useful when you want to compare means across two different groups. That is, the people in the comparison groups must be different from each other.
 
 ### Working the Problem with R and R Packages
 
 ####  Narrate the research vignette, describing the variables and their role in the analysis
 
-I want to ask the question, "Do the course evaluation ratings for the traditional pedagogy subscale differ for CPY and ORG students?"
+I want to ask the question, "Do the course evaluation ratings for the traditional pedagogy subscale differ for CPY and ORG students in the ANOVA class?"
 
-I will use the mean rating for the traditional pedagogy rating. As a mean, it retains its continuous, Likert scaling, ranging from 1 to 5 (with higher scores being more positive). 
+I will use the mean rating for the traditional pedagogy subscale. As a mean, it retains its continuous, Likert scaling, ranging from 1 to 5 (with higher scores being more positive). 
 
 My predictor variable will be department. It has two levels: CPY and ORG.
+
+*If you wanted to use this example and dataset as a basis for a homework assignment, you could change the course (i.e., Multivariate or Psychometrics) and/or change the dependent variable to one of the other scales*.
 
 #### Simulate (or import) and format data
 
@@ -905,13 +908,11 @@ JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, TradPed_vars], .75)
 
 To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
 
-
 ```r
-IndT_df <-(dplyr::select (JustANOVA, Dept, TradPed))
+IndT_df <-(dplyr::select(JustANOVA, Dept, TradPed))
 ```
 
 And further trim to non-missing data
-
 
 ```r
 IndT_df <- na.omit(IndT_df)
@@ -922,7 +923,6 @@ Are the structures of the variables as follows:
 * Dependent variable: numerical or integer
 
 In our case we want Department to be a factor with two levels and the SCRPed variable to be integer or numerical.
-
 
 ```r
 str(IndT_df)
@@ -980,7 +980,6 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 
 We can use the Shapiro Wilk test for a formal test of normality
 
-
 ```r
 library(tidyverse)#opening this package so I can use the pipes
 shapiro <- IndT_df%>%
@@ -1008,7 +1007,7 @@ For fun (not required), let's produce a pairs.panels.
 psych::pairs.panels(IndT_df)
 ```
 
-![](05-tIndSample_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
+![](05-tIndSample_files/figure-docx/unnamed-chunk-44-1.png)<!-- -->
 
 We can see that we'll have more CPY students than ORG students. Although our kurtosis was below |10| our distribution looks negatively skewed, with the majority of the scores being on the high end of the scale.
 
@@ -1050,8 +1049,7 @@ indT.test
 #   alternative <chr>, p.signif <chr>
 ```
 
-From this output we learn that the value of the *t*-test is 1.423 and is non-significant *p = 0.148*. We are 95% confident that the mean diference falls between -0.102 and 0.618. Because this thresshold crosses zero, we cannot be certain that the true difference in means is not zero. Here's how I would represent these results in a statistical string: $t(110) = 1.423, p = 0.158, CI95 (0.102, 0.619)$.
-
+From this output we learn that the value of the *t*-test is 1.423 and is non-significant *p = 0.148*. We are 95% confident that the mean diference falls between -0.102 and 0.618. Because this threshold crosses zero, we cannot be certain that the true difference in means is not zero. Here's how I would represent these results in a statistical string: $t(110) = 1.423, p = 0.158, CI95(0.102, 0.619)$.
 
 Calculating the Cohen's *d* as the effect size.
 
@@ -1076,13 +1074,11 @@ The value of Cohen's *d* statistic (interpreted in standard deviation units) is 
 
 >An independent samples *t*-test was conducted to evaluate the hypothesis that there would be differences in course evaluation ratings of traditional pedagogy between academic departments (CPY, ORG). 
 
->We began by analyzing the data to see if it met the statistical assumptions for analysis with an independent samples *t*-test. One assumption is that the dependent variable be normally distributed within the both levels of the grouping variable. We evaluated skew and kurtosis using Kline's [-@kline_data_2016] guidelines  of the absolute values of 3 (skew) and 10 (kurtosis). Our results were well-within these boundary conditions. Specifically, the traditional pedagogy ratings for CPY were -0.763 and 0.156 for skew and kurtosis, respectively; they were -1.183 and 0.583 for ORG. The Shapiro-Wilk test of normality indicated that the dependent variable, traditional pedagogy, differed significantly from a normal distribution for both CPY students $(W = 0.918, p < 0.001)$ and ORG students$(W = 0.851, p < 0.001)$. Levene's test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance $(F[1, 110] = 2.460, p = 0.120)$. That is to say, the variance in each of the departments is not statistically significantly different from each other. Because the independent samples *t*-test is relatively robust to violations of normality when samples sizes have at least 15 participants per cell [@green_using_2017] and there was no violation of the homogeneity of variance assumption we proceded with the Student's formulation of the *t*-test for independent samples. 
+>We began by analyzing the data to see if it met the statistical assumptions for analysis with an independent samples *t*-test. One assumption is that the dependent variable be normally distributed within the both levels of the grouping variable. We evaluated skew and kurtosis using Kline's [-@kline_data_2016] guidelines  of the absolute values of 3 (skew) and 10 (kurtosis). Our results were well-within these boundary conditions. Specifically, the traditional pedagogy ratings for CPY were -0.763 and 0.156 for skew and kurtosis, respectively; they were -1.183 and 0.583 for ORG. The Shapiro-Wilk test of normality indicated that the dependent variable, traditional pedagogy, differed significantly from a normal distribution for both CPY students $(W = 0.918, p < 0.001)$ and ORG students $(W = 0.851, p < 0.001)$. Levene's test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance $(F[1, 110] = 2.460, p = 0.120)$. That is to say, the variance in each of the departments is not statistically significantly different from each other. Because the independent samples *t*-test is relatively robust to violations of normality when samples sizes have at least 15 participants per cell [@green_using_2017] and there was no violation of the homogeneity of variance assumption we proceded with the Student's formulation of the *t*-test for independent samples. 
 
 >The independent samples *t*-test was nonsignificant, $t(110) = 1.423, p = 0.158$, the effect size (d = 0.300) was small. The 95% confidence interval for the difference in means ranged from -0.102 to  0.619.  Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
 
-
 We can use the *apaTables* package to create a table of means and standard deviations. 
-
 
 ```r
 apaTables::apa.1way.table(Dept, TradPed, IndT_df)
@@ -1109,23 +1105,20 @@ indT.box <- ggpubr::ggboxplot(IndT_df, x = "Dept", y = "TradPed", color = "Dept"
 ind.testT <- indT.test %>%
     rstatix::add_xy_position(x = "Dept")  #autocomputes p-value labels positions
 indT.box <- indT.box + ggpubr::stat_pvalue_manual(ind.testT, label = "p.signif",
-    tip.length = 0.02, hide.ns = FALSE, y.position = c(6)) + labs(subtitle = rstatix::get_test_label(indT.test,
+    tip.length = 0.02, hide.ns = FALSE, y.position = c(5.5)) + labs(subtitle = rstatix::get_test_label(indT.test,
     detailed = TRUE))  #adds t-test results
 
 indT.box
 ```
 
-![](05-tIndSample_files/figure-docx/unnamed-chunk-48-1.png)<!-- -->
+![](05-tIndSample_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size 
 
-
 We can use Cohen's d in this specification of *d*.
 
-
 ```r
-pwr::pwr.t.test(d = 0.30, n = 112, power = NULL, sig.level = 0.05,
-    type = "two.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = 0.30, n = 112, power = NULL, sig.level = 0.05,type = "two.sample", alternative = "two.sided")
 ```
 
 ```
@@ -1145,8 +1138,7 @@ We were at 61% power. That is, given the value of the mean difference (), we had
 
 
 ```r
-pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05,
-    type = "two.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05, type = "two.sample", alternative = "two.sided")
 ```
 
 ```
@@ -1162,11 +1154,15 @@ pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05,
 NOTE: n is number in *each* group
 ```
 
-To find a statistically significant difference, we would need 175 per group. This large size is consistent with the small effect -- that there isn't really a difference between the two groups..
+To find a statistically significant difference, we would need 175 per group. This large size is consistent with the small effect -- that there isn't really a difference between the two groups.
 
 ### Hand Calculations
 
-*Note: While the values of the hand-calculations are close to those calculated with the R packages, they differ slightly.*
+I will use the same example (and same dataset) for hand calculations. Before we continue: 
+
+>You may notice that the results from the hand calculation are slightly different from the results I will obtain with the R packages. This is because the formula we have used for the hand-calculations presumes that we have a balanced design (i.e., that the cell sizes are equal). When cell sizes are unequal (i.e., an unbalanced design) the *rstatix::t_test* will produce different results.
+
+> Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in these statistics. If this lesson was a deeper exploration into the inner workings of *t*-tests, we would take more time to understand what is occurring.
 
 #### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses
 
@@ -1281,7 +1277,7 @@ $$(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)$$
 ```
 [1] 0.517324
 ```
-We are 95% confident that the mean difference falls between -0.165 and 0.682. Because this interval passes through zero, we cannot be certain that the difference is 0. This is consistent with the non-significant *p* value.
+We are 95% confident that the mean difference falls between -0.000 and 0.517. Because this interval passes through zero, we cannot be certain that the difference is 0. This is consistent with the non-significant *p* value.
 
 #### Calculate the effect size (i.e., Cohen’s d associated with your *t*-test
 
@@ -1300,7 +1296,7 @@ $$d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}$$
 
 #### Assemble the results into a statistical string
 
-$t(110) = 1.210, p > 0.05, CI95 (-0.000, 0.517), d = 0.256$
+$t(110) = 1.210, p > 0.05, CI95(-0.000, 0.517), d = 0.256$
 
 
 

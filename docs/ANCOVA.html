@@ -771,18 +771,18 @@ div.csl-indent {
 <div id="packages-7" class="section level3 hasAnchor" number="11.1.4">
 <h3><span class="header-section-number">11.1.4</span> Packages<a href="ANCOVA.html#packages-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb1317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1317-1"><a href="ANCOVA.html#cb1317-1" tabindex="-1"></a><span class="co"># used to convert data from long to wide</span></span>
-<span id="cb1317-2"><a href="ANCOVA.html#cb1317-2" tabindex="-1"></a><span class="co"># if(!require(reshape2)){install.packages(&#39;reshape2&#39;)}</span></span>
-<span id="cb1317-3"><a href="ANCOVA.html#cb1317-3" tabindex="-1"></a><span class="co"># if(!require(broom)){install.packages(&#39;broom&#39;)}</span></span>
-<span id="cb1317-4"><a href="ANCOVA.html#cb1317-4" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
-<span id="cb1317-5"><a href="ANCOVA.html#cb1317-5" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)} easy plots</span></span>
-<span id="cb1317-6"><a href="ANCOVA.html#cb1317-6" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)} pipe-friendly R</span></span>
-<span id="cb1317-7"><a href="ANCOVA.html#cb1317-7" tabindex="-1"></a><span class="co"># functions if(!require(rstatix)){install.packages(&#39;rstatix&#39;)} export</span></span>
-<span id="cb1317-8"><a href="ANCOVA.html#cb1317-8" tabindex="-1"></a><span class="co"># objects for table making</span></span>
-<span id="cb1317-9"><a href="ANCOVA.html#cb1317-9" tabindex="-1"></a><span class="co"># if(!require(MASS)){install.packages(&#39;MASS&#39;)}</span></span>
-<span id="cb1317-10"><a href="ANCOVA.html#cb1317-10" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
-<span id="cb1317-11"><a href="ANCOVA.html#cb1317-11" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
-<span id="cb1317-12"><a href="ANCOVA.html#cb1317-12" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1311-1"><a href="ANCOVA.html#cb1311-1" tabindex="-1"></a><span class="co"># used to convert data from long to wide</span></span>
+<span id="cb1311-2"><a href="ANCOVA.html#cb1311-2" tabindex="-1"></a><span class="co"># if(!require(reshape2)){install.packages(&#39;reshape2&#39;)}</span></span>
+<span id="cb1311-3"><a href="ANCOVA.html#cb1311-3" tabindex="-1"></a><span class="co"># if(!require(broom)){install.packages(&#39;broom&#39;)}</span></span>
+<span id="cb1311-4"><a href="ANCOVA.html#cb1311-4" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
+<span id="cb1311-5"><a href="ANCOVA.html#cb1311-5" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)} easy plots</span></span>
+<span id="cb1311-6"><a href="ANCOVA.html#cb1311-6" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)} pipe-friendly R</span></span>
+<span id="cb1311-7"><a href="ANCOVA.html#cb1311-7" tabindex="-1"></a><span class="co"># functions if(!require(rstatix)){install.packages(&#39;rstatix&#39;)} export</span></span>
+<span id="cb1311-8"><a href="ANCOVA.html#cb1311-8" tabindex="-1"></a><span class="co"># objects for table making</span></span>
+<span id="cb1311-9"><a href="ANCOVA.html#cb1311-9" tabindex="-1"></a><span class="co"># if(!require(MASS)){install.packages(&#39;MASS&#39;)}</span></span>
+<span id="cb1311-10"><a href="ANCOVA.html#cb1311-10" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
+<span id="cb1311-11"><a href="ANCOVA.html#cb1311-11" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
+<span id="cb1311-12"><a href="ANCOVA.html#cb1311-12" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="introducing-analysis-of-covariance-ancova" class="section level2 hasAnchor" number="11.2">
@@ -856,51 +856,51 @@ div.csl-indent {
 <div id="data-simulation-6" class="section level3 hasAnchor" number="11.3.1">
 <h3><span class="header-section-number">11.3.1</span> Data Simulation<a href="ANCOVA.html#data-simulation-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is the code I have used to simulate the data. The simulation includes two dependent variables (AttWhite, AttArab), Wave (baseline, post1, post2), and COND (condition; Friends, Little_Mosque). There is also a caseID (repeated three times across the three waves) and rowID (giving each observation within each case an ID). You can use this simulation for two of the three practice suggestions.</p>
-<div class="sourceCode" id="cb1318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1318-1"><a href="ANCOVA.html#cb1318-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1318-2"><a href="ANCOVA.html#cb1318-2" tabindex="-1"></a><span class="co"># change this to any different number (and rerun the simulation) to</span></span>
-<span id="cb1318-3"><a href="ANCOVA.html#cb1318-3" tabindex="-1"></a><span class="co"># rework the chapter problem</span></span>
-<span id="cb1318-4"><a href="ANCOVA.html#cb1318-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210813</span>)</span>
-<span id="cb1318-5"><a href="ANCOVA.html#cb1318-5" tabindex="-1"></a><span class="co"># sample size, M and SD for each cell; this will put it in a long</span></span>
-<span id="cb1318-6"><a href="ANCOVA.html#cb1318-6" tabindex="-1"></a><span class="co"># file</span></span>
-<span id="cb1318-7"><a href="ANCOVA.html#cb1318-7" tabindex="-1"></a>AttWhite <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">76.79</span>, <span class="at">sd =</span> <span class="fl">18.55</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">75.37</span>,</span>
-<span id="cb1318-8"><a href="ANCOVA.html#cb1318-8" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">18.99</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">77.47</span>, <span class="at">sd =</span> <span class="fl">18.95</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">75.81</span>,</span>
-<span id="cb1318-9"><a href="ANCOVA.html#cb1318-9" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">19.29</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">77.79</span>, <span class="at">sd =</span> <span class="fl">17.25</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">75.89</span>,</span>
-<span id="cb1318-10"><a href="ANCOVA.html#cb1318-10" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">19.44</span>)), <span class="dv">3</span>)</span>
-<span id="cb1318-11"><a href="ANCOVA.html#cb1318-11" tabindex="-1"></a><span class="co"># set upper bound for variable</span></span>
-<span id="cb1318-12"><a href="ANCOVA.html#cb1318-12" tabindex="-1"></a>AttWhite[AttWhite <span class="sc">&gt;</span> <span class="dv">100</span>] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb1318-13"><a href="ANCOVA.html#cb1318-13" tabindex="-1"></a><span class="co"># set lower bound for variable</span></span>
-<span id="cb1318-14"><a href="ANCOVA.html#cb1318-14" tabindex="-1"></a>AttWhite[AttWhite <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb1318-15"><a href="ANCOVA.html#cb1318-15" tabindex="-1"></a>AttArab <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">64.11</span>, <span class="at">sd =</span> <span class="fl">20.97</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">64.37</span>,</span>
-<span id="cb1318-16"><a href="ANCOVA.html#cb1318-16" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">20.03</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">64.16</span>, <span class="at">sd =</span> <span class="fl">21.64</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">70.52</span>,</span>
-<span id="cb1318-17"><a href="ANCOVA.html#cb1318-17" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">18.55</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">65.29</span>, <span class="at">sd =</span> <span class="fl">19.76</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">70.3</span>,</span>
-<span id="cb1318-18"><a href="ANCOVA.html#cb1318-18" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">17.98</span>)), <span class="dv">3</span>)</span>
-<span id="cb1318-19"><a href="ANCOVA.html#cb1318-19" tabindex="-1"></a><span class="co"># set upper bound for variable</span></span>
-<span id="cb1318-20"><a href="ANCOVA.html#cb1318-20" tabindex="-1"></a>AttArab[AttArab <span class="sc">&gt;</span> <span class="dv">100</span>] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb1318-21"><a href="ANCOVA.html#cb1318-21" tabindex="-1"></a><span class="co"># set lower bound for variable</span></span>
-<span id="cb1318-22"><a href="ANCOVA.html#cb1318-22" tabindex="-1"></a>AttArab[AttArab <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb1318-23"><a href="ANCOVA.html#cb1318-23" tabindex="-1"></a>rowID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">579</span>))</span>
-<span id="cb1318-24"><a href="ANCOVA.html#cb1318-24" tabindex="-1"></a>caseID <span class="ot">&lt;-</span> <span class="fu">rep</span>((<span class="dv">1</span><span class="sc">:</span><span class="dv">193</span>), <span class="dv">3</span>)</span>
-<span id="cb1318-25"><a href="ANCOVA.html#cb1318-25" tabindex="-1"></a>Wave <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="dv">193</span>), <span class="fu">rep</span>(<span class="st">&quot;Post1&quot;</span>, <span class="dv">193</span>), <span class="fu">rep</span>(<span class="st">&quot;Post2&quot;</span>, <span class="dv">193</span>))</span>
-<span id="cb1318-26"><a href="ANCOVA.html#cb1318-26" tabindex="-1"></a>COND <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Friends&quot;</span>, <span class="dv">98</span>), <span class="fu">rep</span>(<span class="st">&quot;LittleMosque&quot;</span>, <span class="dv">95</span>), <span class="fu">rep</span>(<span class="st">&quot;Friends&quot;</span>, <span class="dv">98</span>),</span>
-<span id="cb1318-27"><a href="ANCOVA.html#cb1318-27" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">&quot;LittleMosque&quot;</span>, <span class="dv">95</span>), <span class="fu">rep</span>(<span class="st">&quot;Friends&quot;</span>, <span class="dv">98</span>), <span class="fu">rep</span>(<span class="st">&quot;LittleMosque&quot;</span>, <span class="dv">95</span>))</span>
-<span id="cb1318-28"><a href="ANCOVA.html#cb1318-28" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
-<span id="cb1318-29"><a href="ANCOVA.html#cb1318-29" tabindex="-1"></a>Murrar_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rowID, caseID, Wave, COND, AttArab, AttWhite)</span>
-<span id="cb1318-30"><a href="ANCOVA.html#cb1318-30" tabindex="-1"></a><span class="co"># make caseID a factor</span></span>
-<span id="cb1318-31"><a href="ANCOVA.html#cb1318-31" tabindex="-1"></a>Murrar_df[, <span class="st">&quot;caseID&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(Murrar_df[, <span class="st">&quot;caseID&quot;</span>])</span>
-<span id="cb1318-32"><a href="ANCOVA.html#cb1318-32" tabindex="-1"></a><span class="co"># make Wave an ordered factor</span></span>
-<span id="cb1318-33"><a href="ANCOVA.html#cb1318-33" tabindex="-1"></a>Murrar_df<span class="sc">$</span>Wave <span class="ot">&lt;-</span> <span class="fu">factor</span>(Murrar_df<span class="sc">$</span>Wave, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="st">&quot;Post1&quot;</span>,</span>
-<span id="cb1318-34"><a href="ANCOVA.html#cb1318-34" tabindex="-1"></a>    <span class="st">&quot;Post2&quot;</span>))</span>
-<span id="cb1318-35"><a href="ANCOVA.html#cb1318-35" tabindex="-1"></a><span class="co"># make COND an ordered factor</span></span>
-<span id="cb1318-36"><a href="ANCOVA.html#cb1318-36" tabindex="-1"></a>Murrar_df<span class="sc">$</span>COND <span class="ot">&lt;-</span> <span class="fu">factor</span>(Murrar_df<span class="sc">$</span>COND, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Friends&quot;</span>, <span class="st">&quot;LittleMosque&quot;</span>))</span>
-<span id="cb1318-37"><a href="ANCOVA.html#cb1318-37" tabindex="-1"></a><span class="co"># creates the difference score</span></span>
-<span id="cb1318-38"><a href="ANCOVA.html#cb1318-38" tabindex="-1"></a>Murrar_df<span class="sc">$</span>Diff <span class="ot">&lt;-</span> Murrar_df<span class="sc">$</span>AttWhite <span class="sc">-</span> Murrar_df<span class="sc">$</span>AttArab</span></code></pre></div>
+<div class="sourceCode" id="cb1312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1312-1"><a href="ANCOVA.html#cb1312-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1312-2"><a href="ANCOVA.html#cb1312-2" tabindex="-1"></a><span class="co"># change this to any different number (and rerun the simulation) to</span></span>
+<span id="cb1312-3"><a href="ANCOVA.html#cb1312-3" tabindex="-1"></a><span class="co"># rework the chapter problem</span></span>
+<span id="cb1312-4"><a href="ANCOVA.html#cb1312-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210813</span>)</span>
+<span id="cb1312-5"><a href="ANCOVA.html#cb1312-5" tabindex="-1"></a><span class="co"># sample size, M and SD for each cell; this will put it in a long</span></span>
+<span id="cb1312-6"><a href="ANCOVA.html#cb1312-6" tabindex="-1"></a><span class="co"># file</span></span>
+<span id="cb1312-7"><a href="ANCOVA.html#cb1312-7" tabindex="-1"></a>AttWhite <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">76.79</span>, <span class="at">sd =</span> <span class="fl">18.55</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">75.37</span>,</span>
+<span id="cb1312-8"><a href="ANCOVA.html#cb1312-8" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">18.99</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">77.47</span>, <span class="at">sd =</span> <span class="fl">18.95</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">75.81</span>,</span>
+<span id="cb1312-9"><a href="ANCOVA.html#cb1312-9" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">19.29</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">77.79</span>, <span class="at">sd =</span> <span class="fl">17.25</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">75.89</span>,</span>
+<span id="cb1312-10"><a href="ANCOVA.html#cb1312-10" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">19.44</span>)), <span class="dv">3</span>)</span>
+<span id="cb1312-11"><a href="ANCOVA.html#cb1312-11" tabindex="-1"></a><span class="co"># set upper bound for variable</span></span>
+<span id="cb1312-12"><a href="ANCOVA.html#cb1312-12" tabindex="-1"></a>AttWhite[AttWhite <span class="sc">&gt;</span> <span class="dv">100</span>] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1312-13"><a href="ANCOVA.html#cb1312-13" tabindex="-1"></a><span class="co"># set lower bound for variable</span></span>
+<span id="cb1312-14"><a href="ANCOVA.html#cb1312-14" tabindex="-1"></a>AttWhite[AttWhite <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1312-15"><a href="ANCOVA.html#cb1312-15" tabindex="-1"></a>AttArab <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">64.11</span>, <span class="at">sd =</span> <span class="fl">20.97</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">64.37</span>,</span>
+<span id="cb1312-16"><a href="ANCOVA.html#cb1312-16" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">20.03</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">64.16</span>, <span class="at">sd =</span> <span class="fl">21.64</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">70.52</span>,</span>
+<span id="cb1312-17"><a href="ANCOVA.html#cb1312-17" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">18.55</span>), <span class="fu">rnorm</span>(<span class="dv">98</span>, <span class="at">mean =</span> <span class="fl">65.29</span>, <span class="at">sd =</span> <span class="fl">19.76</span>), <span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">70.3</span>,</span>
+<span id="cb1312-18"><a href="ANCOVA.html#cb1312-18" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">17.98</span>)), <span class="dv">3</span>)</span>
+<span id="cb1312-19"><a href="ANCOVA.html#cb1312-19" tabindex="-1"></a><span class="co"># set upper bound for variable</span></span>
+<span id="cb1312-20"><a href="ANCOVA.html#cb1312-20" tabindex="-1"></a>AttArab[AttArab <span class="sc">&gt;</span> <span class="dv">100</span>] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1312-21"><a href="ANCOVA.html#cb1312-21" tabindex="-1"></a><span class="co"># set lower bound for variable</span></span>
+<span id="cb1312-22"><a href="ANCOVA.html#cb1312-22" tabindex="-1"></a>AttArab[AttArab <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1312-23"><a href="ANCOVA.html#cb1312-23" tabindex="-1"></a>rowID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">579</span>))</span>
+<span id="cb1312-24"><a href="ANCOVA.html#cb1312-24" tabindex="-1"></a>caseID <span class="ot">&lt;-</span> <span class="fu">rep</span>((<span class="dv">1</span><span class="sc">:</span><span class="dv">193</span>), <span class="dv">3</span>)</span>
+<span id="cb1312-25"><a href="ANCOVA.html#cb1312-25" tabindex="-1"></a>Wave <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="dv">193</span>), <span class="fu">rep</span>(<span class="st">&quot;Post1&quot;</span>, <span class="dv">193</span>), <span class="fu">rep</span>(<span class="st">&quot;Post2&quot;</span>, <span class="dv">193</span>))</span>
+<span id="cb1312-26"><a href="ANCOVA.html#cb1312-26" tabindex="-1"></a>COND <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Friends&quot;</span>, <span class="dv">98</span>), <span class="fu">rep</span>(<span class="st">&quot;LittleMosque&quot;</span>, <span class="dv">95</span>), <span class="fu">rep</span>(<span class="st">&quot;Friends&quot;</span>, <span class="dv">98</span>),</span>
+<span id="cb1312-27"><a href="ANCOVA.html#cb1312-27" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">&quot;LittleMosque&quot;</span>, <span class="dv">95</span>), <span class="fu">rep</span>(<span class="st">&quot;Friends&quot;</span>, <span class="dv">98</span>), <span class="fu">rep</span>(<span class="st">&quot;LittleMosque&quot;</span>, <span class="dv">95</span>))</span>
+<span id="cb1312-28"><a href="ANCOVA.html#cb1312-28" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID#, DV, condition</span></span>
+<span id="cb1312-29"><a href="ANCOVA.html#cb1312-29" tabindex="-1"></a>Murrar_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rowID, caseID, Wave, COND, AttArab, AttWhite)</span>
+<span id="cb1312-30"><a href="ANCOVA.html#cb1312-30" tabindex="-1"></a><span class="co"># make caseID a factor</span></span>
+<span id="cb1312-31"><a href="ANCOVA.html#cb1312-31" tabindex="-1"></a>Murrar_df[, <span class="st">&quot;caseID&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(Murrar_df[, <span class="st">&quot;caseID&quot;</span>])</span>
+<span id="cb1312-32"><a href="ANCOVA.html#cb1312-32" tabindex="-1"></a><span class="co"># make Wave an ordered factor</span></span>
+<span id="cb1312-33"><a href="ANCOVA.html#cb1312-33" tabindex="-1"></a>Murrar_df<span class="sc">$</span>Wave <span class="ot">&lt;-</span> <span class="fu">factor</span>(Murrar_df<span class="sc">$</span>Wave, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="st">&quot;Post1&quot;</span>,</span>
+<span id="cb1312-34"><a href="ANCOVA.html#cb1312-34" tabindex="-1"></a>    <span class="st">&quot;Post2&quot;</span>))</span>
+<span id="cb1312-35"><a href="ANCOVA.html#cb1312-35" tabindex="-1"></a><span class="co"># make COND an ordered factor</span></span>
+<span id="cb1312-36"><a href="ANCOVA.html#cb1312-36" tabindex="-1"></a>Murrar_df<span class="sc">$</span>COND <span class="ot">&lt;-</span> <span class="fu">factor</span>(Murrar_df<span class="sc">$</span>COND, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Friends&quot;</span>, <span class="st">&quot;LittleMosque&quot;</span>))</span>
+<span id="cb1312-37"><a href="ANCOVA.html#cb1312-37" tabindex="-1"></a><span class="co"># creates the difference score</span></span>
+<span id="cb1312-38"><a href="ANCOVA.html#cb1312-38" tabindex="-1"></a>Murrar_df<span class="sc">$</span>Diff <span class="ot">&lt;-</span> Murrar_df<span class="sc">$</span>AttWhite <span class="sc">-</span> Murrar_df<span class="sc">$</span>AttArab</span></code></pre></div>
 <p>Let’s check the structure. We want</p>
 <ul>
 <li>rowID and caseID to be unordered factors,</li>
 <li>Wave and COND to be ordered factors,</li>
 <li>AttArab, AttWhite, and Diff to be numerical</li>
 </ul>
-<div class="sourceCode" id="cb1319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1319-1"><a href="ANCOVA.html#cb1319-1" tabindex="-1"></a><span class="fu">str</span>(Murrar_df)</span></code></pre></div>
+<div class="sourceCode" id="cb1313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1313-1"><a href="ANCOVA.html#cb1313-1" tabindex="-1"></a><span class="fu">str</span>(Murrar_df)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   579 obs. of  7 variables:
  $ rowID   : Factor w/ 579 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
  $ caseID  : Factor w/ 193 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -912,15 +912,15 @@ div.csl-indent {
 <p>The structure looks satisfactory. R will automatically “order” factors alphabetically or numerically. In this lesson’s example the alphabettical ordering (i.e., Baseline, Post1, Post2; Friends, LittleMosque) is consistent with the logic in our study.</p>
 <p>If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv (“Excel lite”) or .rds (R object) file. This is not a necessary step.</p>
 <p>The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. This is what I would do. <em>Note: My students and I have discovered that the the psych::describeBy() function seems to not work with files in the .rds format, but does work when the data are imported with .csv.</em></p>
-<div class="sourceCode" id="cb1321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1321-1"><a href="ANCOVA.html#cb1321-1" tabindex="-1"></a><span class="co"># to save the df as an .rds (think &#39;R object&#39;) file on your computer;</span></span>
-<span id="cb1321-2"><a href="ANCOVA.html#cb1321-2" tabindex="-1"></a><span class="co"># it should save in the same file as the .rmd file you are working</span></span>
-<span id="cb1321-3"><a href="ANCOVA.html#cb1321-3" tabindex="-1"></a><span class="co"># with saveRDS(Murrar_df, &#39;Murrar_RDS.rds&#39;) bring back the simulated</span></span>
-<span id="cb1321-4"><a href="ANCOVA.html#cb1321-4" tabindex="-1"></a><span class="co"># dat from an .rds file Murrar_df &lt;- readRDS(&#39;Murrar_RDS.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1315-1"><a href="ANCOVA.html#cb1315-1" tabindex="-1"></a><span class="co"># to save the df as an .rds (think &#39;R object&#39;) file on your computer;</span></span>
+<span id="cb1315-2"><a href="ANCOVA.html#cb1315-2" tabindex="-1"></a><span class="co"># it should save in the same file as the .rmd file you are working</span></span>
+<span id="cb1315-3"><a href="ANCOVA.html#cb1315-3" tabindex="-1"></a><span class="co"># with saveRDS(Murrar_df, &#39;Murrar_RDS.rds&#39;) bring back the simulated</span></span>
+<span id="cb1315-4"><a href="ANCOVA.html#cb1315-4" tabindex="-1"></a><span class="co"># dat from an .rds file Murrar_df &lt;- readRDS(&#39;Murrar_RDS.rds&#39;)</span></span></code></pre></div>
 <p>The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.</p>
-<div class="sourceCode" id="cb1322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1322-1"><a href="ANCOVA.html#cb1322-1" tabindex="-1"></a><span class="co"># write the simulated data as a .csv write.table(Murrar_df,</span></span>
-<span id="cb1322-2"><a href="ANCOVA.html#cb1322-2" tabindex="-1"></a><span class="co"># file=&#39;DiffCSV.csv&#39;, sep=&#39;,&#39;, col.names=TRUE, row.names=FALSE) bring</span></span>
-<span id="cb1322-3"><a href="ANCOVA.html#cb1322-3" tabindex="-1"></a><span class="co"># back the simulated dat from a .csv file Murrar_df &lt;- read.csv</span></span>
-<span id="cb1322-4"><a href="ANCOVA.html#cb1322-4" tabindex="-1"></a><span class="co"># (&#39;DiffCSV.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1316-1"><a href="ANCOVA.html#cb1316-1" tabindex="-1"></a><span class="co"># write the simulated data as a .csv write.table(Murrar_df,</span></span>
+<span id="cb1316-2"><a href="ANCOVA.html#cb1316-2" tabindex="-1"></a><span class="co"># file=&#39;DiffCSV.csv&#39;, sep=&#39;,&#39;, col.names=TRUE, row.names=FALSE) bring</span></span>
+<span id="cb1316-3"><a href="ANCOVA.html#cb1316-3" tabindex="-1"></a><span class="co"># back the simulated dat from a .csv file Murrar_df &lt;- read.csv</span></span>
+<span id="cb1316-4"><a href="ANCOVA.html#cb1316-4" tabindex="-1"></a><span class="co"># (&#39;DiffCSV.csv&#39;, header = TRUE)</span></span></code></pre></div>
 </div>
 </div>
 <div id="working-the-ancova-scenario-1-controlling-for-the-pretest" class="section level2 hasAnchor" number="11.4">
@@ -935,26 +935,26 @@ div.csl-indent {
 <li>Covariate that is continuous; in our case it is the attitudes toward Arabs at baseline</li>
 </ul>
 <p>The form of our data matters. The simulation created a <em>long</em> form (formally called the <em>person-period</em> form) of data. That is, each observation for each person is listed in its own row. In this dataset where we have 193 people with 3 observation (baseline, post1, post2) each, we have 579 rows. In ANCOVA where we use the pre-test as a covariate, we need all the data to be on a single row.This is termed the <em>person level</em> form of data. We can restructure the data with the <em>data.table</em> and <em>reshape2</em>()* packages.</p>
-<div class="sourceCode" id="cb1323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1323-1"><a href="ANCOVA.html#cb1323-1" tabindex="-1"></a><span class="co"># Create a new df (Murrar_wide) Identify the original df In the</span></span>
-<span id="cb1323-2"><a href="ANCOVA.html#cb1323-2" tabindex="-1"></a><span class="co"># transition from long-to-wide it seems like you can only do one</span></span>
-<span id="cb1323-3"><a href="ANCOVA.html#cb1323-3" tabindex="-1"></a><span class="co"># time-varying variable at a time When there are multiple</span></span>
-<span id="cb1323-4"><a href="ANCOVA.html#cb1323-4" tabindex="-1"></a><span class="co"># time-varying and time-static variables, put all the time-static</span></span>
-<span id="cb1323-5"><a href="ANCOVA.html#cb1323-5" tabindex="-1"></a><span class="co"># variables on the left side of the tilde Put the name of the single</span></span>
-<span id="cb1323-6"><a href="ANCOVA.html#cb1323-6" tabindex="-1"></a><span class="co"># time-varying variable in the concatonated list</span></span>
-<span id="cb1323-7"><a href="ANCOVA.html#cb1323-7" tabindex="-1"></a>Murrar1 <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Murrar_df, <span class="at">formula =</span> caseID <span class="sc">+</span> COND <span class="sc">~</span></span>
-<span id="cb1323-8"><a href="ANCOVA.html#cb1323-8" tabindex="-1"></a>    Wave, <span class="at">value.var =</span> <span class="st">&quot;AttArab&quot;</span>)</span>
-<span id="cb1323-9"><a href="ANCOVA.html#cb1323-9" tabindex="-1"></a><span class="co"># before restructuring a second variable, rename the first variable</span></span>
-<span id="cb1323-10"><a href="ANCOVA.html#cb1323-10" tabindex="-1"></a>Murrar1 <span class="ot">&lt;-</span> <span class="fu">rename</span>(Murrar1, <span class="at">AttArabB =</span> <span class="st">&quot;Baseline&quot;</span>, <span class="at">AttArabP1 =</span> <span class="st">&quot;Post1&quot;</span>,</span>
-<span id="cb1323-11"><a href="ANCOVA.html#cb1323-11" tabindex="-1"></a>    <span class="at">AttArabP2 =</span> <span class="st">&quot;Post2&quot;</span>)</span>
-<span id="cb1323-12"><a href="ANCOVA.html#cb1323-12" tabindex="-1"></a><span class="co"># repeat the process for additional variables; but give the new df</span></span>
-<span id="cb1323-13"><a href="ANCOVA.html#cb1323-13" tabindex="-1"></a><span class="co"># new names -- otherwise you&#39;ll overwrite your work</span></span>
-<span id="cb1323-14"><a href="ANCOVA.html#cb1323-14" tabindex="-1"></a>Murrar2 <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Murrar_df, <span class="at">formula =</span> caseID <span class="sc">~</span> Wave, <span class="at">value.var =</span> <span class="st">&quot;AttWhite&quot;</span>)</span>
-<span id="cb1323-15"><a href="ANCOVA.html#cb1323-15" tabindex="-1"></a>Murrar2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(Murrar2, <span class="at">AttWhiteB =</span> <span class="st">&quot;Baseline&quot;</span>, <span class="at">AttWhiteP1 =</span> <span class="st">&quot;Post1&quot;</span>,</span>
-<span id="cb1323-16"><a href="ANCOVA.html#cb1323-16" tabindex="-1"></a>    <span class="at">AttWhiteP2 =</span> <span class="st">&quot;Post2&quot;</span>)</span>
-<span id="cb1323-17"><a href="ANCOVA.html#cb1323-17" tabindex="-1"></a><span class="co"># Now we join them</span></span>
-<span id="cb1323-18"><a href="ANCOVA.html#cb1323-18" tabindex="-1"></a>Murrar_wide <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(Murrar1, Murrar2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;caseID&quot;</span>))</span>
-<span id="cb1323-19"><a href="ANCOVA.html#cb1323-19" tabindex="-1"></a></span>
-<span id="cb1323-20"><a href="ANCOVA.html#cb1323-20" tabindex="-1"></a><span class="fu">str</span>(Murrar_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb1317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1317-1"><a href="ANCOVA.html#cb1317-1" tabindex="-1"></a><span class="co"># Create a new df (Murrar_wide) Identify the original df In the</span></span>
+<span id="cb1317-2"><a href="ANCOVA.html#cb1317-2" tabindex="-1"></a><span class="co"># transition from long-to-wide it seems like you can only do one</span></span>
+<span id="cb1317-3"><a href="ANCOVA.html#cb1317-3" tabindex="-1"></a><span class="co"># time-varying variable at a time When there are multiple</span></span>
+<span id="cb1317-4"><a href="ANCOVA.html#cb1317-4" tabindex="-1"></a><span class="co"># time-varying and time-static variables, put all the time-static</span></span>
+<span id="cb1317-5"><a href="ANCOVA.html#cb1317-5" tabindex="-1"></a><span class="co"># variables on the left side of the tilde Put the name of the single</span></span>
+<span id="cb1317-6"><a href="ANCOVA.html#cb1317-6" tabindex="-1"></a><span class="co"># time-varying variable in the concatonated list</span></span>
+<span id="cb1317-7"><a href="ANCOVA.html#cb1317-7" tabindex="-1"></a>Murrar1 <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Murrar_df, <span class="at">formula =</span> caseID <span class="sc">+</span> COND <span class="sc">~</span></span>
+<span id="cb1317-8"><a href="ANCOVA.html#cb1317-8" tabindex="-1"></a>    Wave, <span class="at">value.var =</span> <span class="st">&quot;AttArab&quot;</span>)</span>
+<span id="cb1317-9"><a href="ANCOVA.html#cb1317-9" tabindex="-1"></a><span class="co"># before restructuring a second variable, rename the first variable</span></span>
+<span id="cb1317-10"><a href="ANCOVA.html#cb1317-10" tabindex="-1"></a>Murrar1 <span class="ot">&lt;-</span> <span class="fu">rename</span>(Murrar1, <span class="at">AttArabB =</span> <span class="st">&quot;Baseline&quot;</span>, <span class="at">AttArabP1 =</span> <span class="st">&quot;Post1&quot;</span>,</span>
+<span id="cb1317-11"><a href="ANCOVA.html#cb1317-11" tabindex="-1"></a>    <span class="at">AttArabP2 =</span> <span class="st">&quot;Post2&quot;</span>)</span>
+<span id="cb1317-12"><a href="ANCOVA.html#cb1317-12" tabindex="-1"></a><span class="co"># repeat the process for additional variables; but give the new df</span></span>
+<span id="cb1317-13"><a href="ANCOVA.html#cb1317-13" tabindex="-1"></a><span class="co"># new names -- otherwise you&#39;ll overwrite your work</span></span>
+<span id="cb1317-14"><a href="ANCOVA.html#cb1317-14" tabindex="-1"></a>Murrar2 <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Murrar_df, <span class="at">formula =</span> caseID <span class="sc">~</span> Wave, <span class="at">value.var =</span> <span class="st">&quot;AttWhite&quot;</span>)</span>
+<span id="cb1317-15"><a href="ANCOVA.html#cb1317-15" tabindex="-1"></a>Murrar2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(Murrar2, <span class="at">AttWhiteB =</span> <span class="st">&quot;Baseline&quot;</span>, <span class="at">AttWhiteP1 =</span> <span class="st">&quot;Post1&quot;</span>,</span>
+<span id="cb1317-16"><a href="ANCOVA.html#cb1317-16" tabindex="-1"></a>    <span class="at">AttWhiteP2 =</span> <span class="st">&quot;Post2&quot;</span>)</span>
+<span id="cb1317-17"><a href="ANCOVA.html#cb1317-17" tabindex="-1"></a><span class="co"># Now we join them</span></span>
+<span id="cb1317-18"><a href="ANCOVA.html#cb1317-18" tabindex="-1"></a>Murrar_wide <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(Murrar1, Murrar2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;caseID&quot;</span>))</span>
+<span id="cb1317-19"><a href="ANCOVA.html#cb1317-19" tabindex="-1"></a></span>
+<span id="cb1317-20"><a href="ANCOVA.html#cb1317-20" tabindex="-1"></a><span class="fu">str</span>(Murrar_wide)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   193 obs. of  8 variables:
  $ caseID    : Factor w/ 193 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
  $ COND      : Factor w/ 2 levels &quot;Friends&quot;,&quot;LittleMosque&quot;: 1 1 1 1 1 1 1 1 1 1 ...
@@ -966,16 +966,16 @@ div.csl-indent {
  $ AttWhiteP2: num  100 89.7 49.5 99.4 83.1 ...</code></pre>
 <p>If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv (“Excel lite”) or .rds (R object) file. This is not a necessary step.</p>
 <p>The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. This is what I would do.</p>
-<div class="sourceCode" id="cb1325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1325-1"><a href="ANCOVA.html#cb1325-1" tabindex="-1"></a><span class="co"># to save the df as an .rds (think &#39;R object&#39;) file on your computer;</span></span>
-<span id="cb1325-2"><a href="ANCOVA.html#cb1325-2" tabindex="-1"></a><span class="co"># it should save in the same file as the .rmd file you are working</span></span>
-<span id="cb1325-3"><a href="ANCOVA.html#cb1325-3" tabindex="-1"></a><span class="co"># with saveRDS(Murrar_wide, &#39;MurrarW_RDS.rds&#39;) bring back the</span></span>
-<span id="cb1325-4"><a href="ANCOVA.html#cb1325-4" tabindex="-1"></a><span class="co"># simulated dat from an .rds file Murrar_wide &lt;-</span></span>
-<span id="cb1325-5"><a href="ANCOVA.html#cb1325-5" tabindex="-1"></a><span class="co"># readRDS(&#39;MurrarW_RDS.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1319-1"><a href="ANCOVA.html#cb1319-1" tabindex="-1"></a><span class="co"># to save the df as an .rds (think &#39;R object&#39;) file on your computer;</span></span>
+<span id="cb1319-2"><a href="ANCOVA.html#cb1319-2" tabindex="-1"></a><span class="co"># it should save in the same file as the .rmd file you are working</span></span>
+<span id="cb1319-3"><a href="ANCOVA.html#cb1319-3" tabindex="-1"></a><span class="co"># with saveRDS(Murrar_wide, &#39;MurrarW_RDS.rds&#39;) bring back the</span></span>
+<span id="cb1319-4"><a href="ANCOVA.html#cb1319-4" tabindex="-1"></a><span class="co"># simulated dat from an .rds file Murrar_wide &lt;-</span></span>
+<span id="cb1319-5"><a href="ANCOVA.html#cb1319-5" tabindex="-1"></a><span class="co"># readRDS(&#39;MurrarW_RDS.rds&#39;)</span></span></code></pre></div>
 <p>The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.</p>
-<div class="sourceCode" id="cb1326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1326-1"><a href="ANCOVA.html#cb1326-1" tabindex="-1"></a><span class="co"># write the simulated data as a .csv write.table(Murrar_wide,</span></span>
-<span id="cb1326-2"><a href="ANCOVA.html#cb1326-2" tabindex="-1"></a><span class="co"># file=&#39;MurrarW_CSV.csv&#39;, sep=&#39;,&#39;, col.names=TRUE, row.names=FALSE)</span></span>
-<span id="cb1326-3"><a href="ANCOVA.html#cb1326-3" tabindex="-1"></a><span class="co"># bring back the simulated dat from a .csv file Murrar_wide &lt;-</span></span>
-<span id="cb1326-4"><a href="ANCOVA.html#cb1326-4" tabindex="-1"></a><span class="co"># read.csv (&#39;MurrarW_CSV.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1320-1"><a href="ANCOVA.html#cb1320-1" tabindex="-1"></a><span class="co"># write the simulated data as a .csv write.table(Murrar_wide,</span></span>
+<span id="cb1320-2"><a href="ANCOVA.html#cb1320-2" tabindex="-1"></a><span class="co"># file=&#39;MurrarW_CSV.csv&#39;, sep=&#39;,&#39;, col.names=TRUE, row.names=FALSE)</span></span>
+<span id="cb1320-3"><a href="ANCOVA.html#cb1320-3" tabindex="-1"></a><span class="co"># bring back the simulated dat from a .csv file Murrar_wide &lt;-</span></span>
+<span id="cb1320-4"><a href="ANCOVA.html#cb1320-4" tabindex="-1"></a><span class="co"># read.csv (&#39;MurrarW_CSV.csv&#39;, header = TRUE)</span></span></code></pre></div>
 </div>
 <div id="evaluating-the-statistical-assumptions-5" class="section level3 hasAnchor" number="11.4.2">
 <h3><span class="header-section-number">11.4.2</span> Evaluating the statistical assumptions<a href="ANCOVA.html#evaluating-the-statistical-assumptions-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1000,9 +1000,9 @@ div.csl-indent {
 <h4><span class="header-section-number">11.4.2.1</span> Linearity assumption<a href="ANCOVA.html#linearity-assumption" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>ANCOVA assumes that there is linearity between the covariate and outcome variable at each level of the grouping variable. In our case this means that there is linearity between the pre-test (covariate) and post-test (outcome variable) at each level of the intervention (Friends, Little Mosque).</p>
 <p>We can create a scatterplot (with regression lines) between covariate (our pretest) and the outcome (post-test1).</p>
-<div class="sourceCode" id="cb1327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1327-1"><a href="ANCOVA.html#cb1327-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(Murrar_wide, <span class="at">x =</span> <span class="st">&quot;AttArabB&quot;</span>, <span class="at">y =</span> <span class="st">&quot;AttArabP1&quot;</span>, <span class="at">color =</span> <span class="st">&quot;COND&quot;</span>,</span>
-<span id="cb1327-2"><a href="ANCOVA.html#cb1327-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label..,</span>
-<span id="cb1327-3"><a href="ANCOVA.html#cb1327-3" tabindex="-1"></a>    ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~~&quot;</span>), <span class="at">color =</span> COND))</span></code></pre></div>
+<div class="sourceCode" id="cb1321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1321-1"><a href="ANCOVA.html#cb1321-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(Murrar_wide, <span class="at">x =</span> <span class="st">&quot;AttArabB&quot;</span>, <span class="at">y =</span> <span class="st">&quot;AttArabP1&quot;</span>, <span class="at">color =</span> <span class="st">&quot;COND&quot;</span>,</span>
+<span id="cb1321-2"><a href="ANCOVA.html#cb1321-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label..,</span>
+<span id="cb1321-3"><a href="ANCOVA.html#cb1321-3" tabindex="-1"></a>    ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~~&quot;</span>), <span class="at">color =</span> COND))</span></code></pre></div>
 <pre><code>Warning: The dot-dot notation (`..eq.label..`) was deprecated in ggplot2 3.4.0.
 ℹ Please use `after_stat(eq.label)` instead.
 ℹ The deprecated feature was likely used in the ggpubr package.
@@ -1016,8 +1016,8 @@ As in not surprising (because we tested a similar set of variables in the mixed 
 <div id="homogeneity-of-regression-slopes" class="section level4 hasAnchor" number="11.4.2.2">
 <h4><span class="header-section-number">11.4.2.2</span> Homogeneity of regression slopes<a href="ANCOVA.html#homogeneity-of-regression-slopes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This assumption requires that the slopes of the regression lines formed by the covariate and the outcome variable are the same for each group. The assumption evaluates that there is no interaction between the outcome and covariate. The plotted regression lines should be parallel.</p>
-<div class="sourceCode" id="cb1329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1329-1"><a href="ANCOVA.html#cb1329-1" tabindex="-1"></a>Murrar_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1329-2"><a href="ANCOVA.html#cb1329-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> COND <span class="sc">*</span> AttArabB)</span></code></pre></div>
+<div class="sourceCode" id="cb1323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1323-1"><a href="ANCOVA.html#cb1323-1" tabindex="-1"></a>Murrar_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1323-2"><a href="ANCOVA.html#cb1323-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> COND <span class="sc">*</span> AttArabB)</span></code></pre></div>
 <pre><code>ANOVA Table (type II tests)
 
          Effect DFn DFd      F           p p&lt;.05   ges
@@ -1030,9 +1030,9 @@ As in not surprising (because we tested a similar set of variables in the mixed 
 <h4><span class="header-section-number">11.4.2.3</span> Normality of residuals<a href="ANCOVA.html#normality-of-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Our goal here is to specify a model and extract <em>residuals</em>: the difference between the observed value of the DV and its predicted value. Each data point has one residual. The sum and mean of residuals are equal to 0.</p>
 <p>Once we have saved the residuals, we can treat them as data and evaluate the shape of their distribution. We hope that the distribution is not statistically significantly different from a normal one. We first compute the model with <em>lm()</em> (lm stands for “linear model”). This is a linear regression.</p>
-<div class="sourceCode" id="cb1331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1331-1"><a href="ANCOVA.html#cb1331-1" tabindex="-1"></a><span class="co"># Create a linear regression model predicting DV from COV &amp; IV</span></span>
-<span id="cb1331-2"><a href="ANCOVA.html#cb1331-2" tabindex="-1"></a>AttArabB_Mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(AttArabP1 <span class="sc">~</span> AttArabB <span class="sc">+</span> COND, <span class="at">data =</span> Murrar_wide)</span>
-<span id="cb1331-3"><a href="ANCOVA.html#cb1331-3" tabindex="-1"></a>AttArabB_Mod</span></code></pre></div>
+<div class="sourceCode" id="cb1325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1325-1"><a href="ANCOVA.html#cb1325-1" tabindex="-1"></a><span class="co"># Create a linear regression model predicting DV from COV &amp; IV</span></span>
+<span id="cb1325-2"><a href="ANCOVA.html#cb1325-2" tabindex="-1"></a>AttArabB_Mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(AttArabP1 <span class="sc">~</span> AttArabB <span class="sc">+</span> COND, <span class="at">data =</span> Murrar_wide)</span>
+<span id="cb1325-3"><a href="ANCOVA.html#cb1325-3" tabindex="-1"></a>AttArabB_Mod</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = AttArabP1 ~ AttArabB + COND, data = Murrar_wide)
@@ -1041,10 +1041,10 @@ Coefficients:
      (Intercept)          AttArabB  CONDLittleMosque  
         63.01428          -0.06042          14.92165  </code></pre>
 <p>With the <em>broom::augment()</em> function we can augment our <em>lm()</em> model object to add fitted values and residuals.</p>
-<div class="sourceCode" id="cb1333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1333-1"><a href="ANCOVA.html#cb1333-1" tabindex="-1"></a><span class="co"># new model by augmenting the lm model</span></span>
-<span id="cb1333-2"><a href="ANCOVA.html#cb1333-2" tabindex="-1"></a>AttArabB_Mod.metrics <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment</span>(AttArabB_Mod)</span>
-<span id="cb1333-3"><a href="ANCOVA.html#cb1333-3" tabindex="-1"></a><span class="co"># shows the first three rows of the UEmodel.metrics</span></span>
-<span id="cb1333-4"><a href="ANCOVA.html#cb1333-4" tabindex="-1"></a><span class="fu">head</span>(AttArabB_Mod.metrics, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1327-1"><a href="ANCOVA.html#cb1327-1" tabindex="-1"></a><span class="co"># new model by augmenting the lm model</span></span>
+<span id="cb1327-2"><a href="ANCOVA.html#cb1327-2" tabindex="-1"></a>AttArabB_Mod.metrics <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment</span>(AttArabB_Mod)</span>
+<span id="cb1327-3"><a href="ANCOVA.html#cb1327-3" tabindex="-1"></a><span class="co"># shows the first three rows of the UEmodel.metrics</span></span>
+<span id="cb1327-4"><a href="ANCOVA.html#cb1327-4" tabindex="-1"></a><span class="fu">head</span>(AttArabB_Mod.metrics, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code># A tibble: 3 × 9
   AttArabP1 AttArabB COND    .fitted .resid   .hat .sigma .cooksd .std.resid
       &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
@@ -1052,8 +1052,8 @@ Coefficients:
 2      76.6     55.8 Friends    59.6   17.0 0.0116   20.2 0.00280      0.845
 3      92.0     33.3 Friends    61.0   31.0 0.0247   20.1 0.0204       1.56 </code></pre>
 <p>From this, we can assess the normality of the residuals using the Shapiro Wilk test</p>
-<div class="sourceCode" id="cb1335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1335-1"><a href="ANCOVA.html#cb1335-1" tabindex="-1"></a><span class="co"># apply shapiro_test to that augmented model</span></span>
-<span id="cb1335-2"><a href="ANCOVA.html#cb1335-2" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(AttArabB_Mod.metrics<span class="sc">$</span>.resid)</span></code></pre></div>
+<div class="sourceCode" id="cb1329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1329-1"><a href="ANCOVA.html#cb1329-1" tabindex="-1"></a><span class="co"># apply shapiro_test to that augmented model</span></span>
+<span id="cb1329-2"><a href="ANCOVA.html#cb1329-2" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(AttArabB_Mod.metrics<span class="sc">$</span>.resid)</span></code></pre></div>
 <pre><code># A tibble: 1 × 3
   variable                    statistic p.value
   &lt;chr&gt;                           &lt;dbl&gt;   &lt;dbl&gt;
@@ -1063,8 +1063,8 @@ Coefficients:
 <div id="homogeneity-of-variances" class="section level4 hasAnchor" number="11.4.2.4">
 <h4><span class="header-section-number">11.4.2.4</span> Homogeneity of variances<a href="ANCOVA.html#homogeneity-of-variances" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>ANCOVA presumes that the variance of the residuals is equal for all groups. We can check this with the Levene’s test.</p>
-<div class="sourceCode" id="cb1337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1337-1"><a href="ANCOVA.html#cb1337-1" tabindex="-1"></a>AttArabB_Mod.metrics <span class="sc">%&gt;%</span></span>
-<span id="cb1337-2"><a href="ANCOVA.html#cb1337-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">levene_test</span>(.resid <span class="sc">~</span> COND)</span></code></pre></div>
+<div class="sourceCode" id="cb1331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1331-1"><a href="ANCOVA.html#cb1331-1" tabindex="-1"></a>AttArabB_Mod.metrics <span class="sc">%&gt;%</span></span>
+<span id="cb1331-2"><a href="ANCOVA.html#cb1331-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">levene_test</span>(.resid <span class="sc">~</span> COND)</span></code></pre></div>
 <pre><code># A tibble: 1 × 4
     df1   df2 statistic      p
   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -1074,11 +1074,11 @@ Coefficients:
 <div id="outliers" class="section level4 hasAnchor" number="11.4.2.5">
 <h4><span class="header-section-number">11.4.2.5</span> Outliers<a href="ANCOVA.html#outliers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can identify outliers by examining the standardized (or studentized) residuals. This is the residual divided by its estimated standard error. Standardized residuals are interpreted as the number of standard errors away from the regression line.</p>
-<div class="sourceCode" id="cb1339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1339-1"><a href="ANCOVA.html#cb1339-1" tabindex="-1"></a><span class="co"># from our model metrics show us any standardized residuals that are</span></span>
-<span id="cb1339-2"><a href="ANCOVA.html#cb1339-2" tabindex="-1"></a><span class="co"># &gt;3</span></span>
-<span id="cb1339-3"><a href="ANCOVA.html#cb1339-3" tabindex="-1"></a>AttArabB_Mod.metrics <span class="sc">%&gt;%</span></span>
-<span id="cb1339-4"><a href="ANCOVA.html#cb1339-4" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1339-5"><a href="ANCOVA.html#cb1339-5" tabindex="-1"></a>    <span class="fu">as.data.frame</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1333-1"><a href="ANCOVA.html#cb1333-1" tabindex="-1"></a><span class="co"># from our model metrics show us any standardized residuals that are</span></span>
+<span id="cb1333-2"><a href="ANCOVA.html#cb1333-2" tabindex="-1"></a><span class="co"># &gt;3</span></span>
+<span id="cb1333-3"><a href="ANCOVA.html#cb1333-3" tabindex="-1"></a>AttArabB_Mod.metrics <span class="sc">%&gt;%</span></span>
+<span id="cb1333-4"><a href="ANCOVA.html#cb1333-4" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1333-5"><a href="ANCOVA.html#cb1333-5" tabindex="-1"></a>    <span class="fu">as.data.frame</span>()</span></code></pre></div>
 <pre><code>  AttArabP1 AttArabB         COND  .fitted    .resid       .hat   .sigma
 1     6.137   68.085 LittleMosque 73.82234 -67.68534 0.01056251 19.62279
      .cooksd .std.resid
@@ -1106,9 +1106,9 @@ Coefficients:
 <p>In the code below, we are predicting attitudes toward Arabs at post1 from the condition (Friends or Little Mosque), controlling for attitudes toward Arabs at baseline.</p>
 <p>The <em>ges</em> column provides the effect size, <span class="math inline">\(\eta^2\)</span>. Conventionally, values of .01, .06, and .14 are considered to be small, medium, and large effect sizes, respectively.</p>
 <p>You may see different values (.02, .13, .26) offered as small, medium, and large – these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize">here</a> <span class="citation">(<a href="#ref-watson_rules_2020">Watson, 2020</a>)</span>.</p>
-<div class="sourceCode" id="cb1341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1341-1"><a href="ANCOVA.html#cb1341-1" tabindex="-1"></a>MurrarB_ANCOVA <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1341-2"><a href="ANCOVA.html#cb1341-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> AttArabB <span class="sc">+</span> COND)</span>
-<span id="cb1341-3"><a href="ANCOVA.html#cb1341-3" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">get_anova_table</span>(MurrarB_ANCOVA)</span></code></pre></div>
+<div class="sourceCode" id="cb1335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1335-1"><a href="ANCOVA.html#cb1335-1" tabindex="-1"></a>MurrarB_ANCOVA <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1335-2"><a href="ANCOVA.html#cb1335-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> AttArabB <span class="sc">+</span> COND)</span>
+<span id="cb1335-3"><a href="ANCOVA.html#cb1335-3" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">get_anova_table</span>(MurrarB_ANCOVA)</span></code></pre></div>
 <pre><code>ANOVA Table (type II tests)
 
     Effect DFn DFd      F           p p&lt;.05   ges
@@ -1119,43 +1119,43 @@ Coefficients:
 <div id="post-hoc-pairwise-comparisons-controlling-for-the-covariate" class="section level3 hasAnchor" number="11.4.4">
 <h3><span class="header-section-number">11.4.4</span> Post-hoc pairwise comparisons (controlling for the covariate)<a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Just like in one-way ANOVA, we follow-up the significant effect of condition. We’ll use all-possible pairwise comparisons. In our case, we only have two levels of the categorical factor, so this run wouldn’t be necessary. I included it to provide the code for doing so. If there were three or more variables, we would see all possible comparisons.</p>
-<div class="sourceCode" id="cb1343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1343-1"><a href="ANCOVA.html#cb1343-1" tabindex="-1"></a>pwc_B <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1343-2"><a href="ANCOVA.html#cb1343-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">emmeans_test</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">covariate =</span> AttArabB, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb1343-3"><a href="ANCOVA.html#cb1343-3" tabindex="-1"></a>pwc_B</span></code></pre></div>
+<div class="sourceCode" id="cb1337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1337-1"><a href="ANCOVA.html#cb1337-1" tabindex="-1"></a>pwc_B <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1337-2"><a href="ANCOVA.html#cb1337-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">emmeans_test</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">covariate =</span> AttArabB, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb1337-3"><a href="ANCOVA.html#cb1337-3" tabindex="-1"></a>pwc_B</span></code></pre></div>
 <pre><code># A tibble: 1 × 9
   term          .y.   group1 group2    df statistic       p   p.adj p.adj.signif
 * &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
 1 AttArabB*COND AttA… Frien… Littl…   190     -5.13 6.98e-7 6.98e-7 ****        </code></pre>
 <p>Not surprisingly (since this single pairwise comparison is redundant with the omnibus ANCOVA), results suggest a statistically significant difference between Friends and Little Mosque at Post1.</p>
 <p>With the script below we can obtain the covariate-adjusted marginal means. These are termed <em>estimated marginal means.</em> Take a look at these and compare them to what we would see in the regular descriptives. It is helpful to see the grand mean (AttArabB) and then the marginal means (emmean).</p>
-<div class="sourceCode" id="cb1345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1345-1"><a href="ANCOVA.html#cb1345-1" tabindex="-1"></a>emmeans_B <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_B)</span>
-<span id="cb1345-2"><a href="ANCOVA.html#cb1345-2" tabindex="-1"></a>emmeans_B</span></code></pre></div>
+<div class="sourceCode" id="cb1339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1339-1"><a href="ANCOVA.html#cb1339-1" tabindex="-1"></a>emmeans_B <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_B)</span>
+<span id="cb1339-2"><a href="ANCOVA.html#cb1339-2" tabindex="-1"></a>emmeans_B</span></code></pre></div>
 <pre><code># A tibble: 2 × 8
   AttArabB COND         emmean    se    df conf.low conf.high method      
      &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       
 1     66.2 Friends        59.0  2.04   190     55.0      63.0 Emmeans test
 2     66.2 LittleMosque   73.9  2.07   190     69.8      78.0 Emmeans test</code></pre>
 <p>Note that the <em>emmeans</em> process produces slightly different means than the raw means produced with the <em>psych</em> package’s <em>describeBy()</em> function. Why? Because the <em>get_emmeans()</em> function uses the model that included the covariate. That is, the <em>estimated</em> means are covariate-adjusted.</p>
-<div class="sourceCode" id="cb1347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1347-1"><a href="ANCOVA.html#cb1347-1" tabindex="-1"></a>descripts_P1 <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">data =</span> Murrar_wide,</span>
-<span id="cb1347-2"><a href="ANCOVA.html#cb1347-2" tabindex="-1"></a>    <span class="at">mat =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1347-3"><a href="ANCOVA.html#cb1347-3" tabindex="-1"></a>descripts_P1</span></code></pre></div>
+<div class="sourceCode" id="cb1341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1341-1"><a href="ANCOVA.html#cb1341-1" tabindex="-1"></a>descripts_P1 <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">data =</span> Murrar_wide,</span>
+<span id="cb1341-2"><a href="ANCOVA.html#cb1341-2" tabindex="-1"></a>    <span class="at">mat =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1341-3"><a href="ANCOVA.html#cb1341-3" tabindex="-1"></a>descripts_P1</span></code></pre></div>
 <pre><code>           item       group1 vars  n     mean       sd  median  trimmed
 AttArabP11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306
 AttArabP12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858
                 mad   min max  range       skew   kurtosis       se
 AttArabP11 23.67045 8.297 100 91.703 -0.0518848 -0.6252126 2.187005
 AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170</code></pre>
-<div class="sourceCode" id="cb1349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1349-1"><a href="ANCOVA.html#cb1349-1" tabindex="-1"></a><span class="co"># Note. Recently my students and I have been having intermittent</span></span>
-<span id="cb1349-2"><a href="ANCOVA.html#cb1349-2" tabindex="-1"></a><span class="co"># struggles with the describeBy function in the psych package. We</span></span>
-<span id="cb1349-3"><a href="ANCOVA.html#cb1349-3" tabindex="-1"></a><span class="co"># have noticed that it is problematic when using .rds files and when</span></span>
-<span id="cb1349-4"><a href="ANCOVA.html#cb1349-4" tabindex="-1"></a><span class="co"># using data directly imported from Qualtrics. If you are having</span></span>
-<span id="cb1349-5"><a href="ANCOVA.html#cb1349-5" tabindex="-1"></a><span class="co"># similar difficulties, try uploading the .csv file and making the</span></span>
-<span id="cb1349-6"><a href="ANCOVA.html#cb1349-6" tabindex="-1"></a><span class="co"># appropriate formatting changes.</span></span></code></pre></div>
+<div class="sourceCode" id="cb1343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1343-1"><a href="ANCOVA.html#cb1343-1" tabindex="-1"></a><span class="co"># Note. Recently my students and I have been having intermittent</span></span>
+<span id="cb1343-2"><a href="ANCOVA.html#cb1343-2" tabindex="-1"></a><span class="co"># struggles with the describeBy function in the psych package. We</span></span>
+<span id="cb1343-3"><a href="ANCOVA.html#cb1343-3" tabindex="-1"></a><span class="co"># have noticed that it is problematic when using .rds files and when</span></span>
+<span id="cb1343-4"><a href="ANCOVA.html#cb1343-4" tabindex="-1"></a><span class="co"># using data directly imported from Qualtrics. If you are having</span></span>
+<span id="cb1343-5"><a href="ANCOVA.html#cb1343-5" tabindex="-1"></a><span class="co"># similar difficulties, try uploading the .csv file and making the</span></span>
+<span id="cb1343-6"><a href="ANCOVA.html#cb1343-6" tabindex="-1"></a><span class="co"># appropriate formatting changes.</span></span></code></pre></div>
 <p><span class="math inline">\((M = 59.02, SD = 21.65)\)</span>
 <span class="math inline">\((M = 73.92, SD = 18.51)\)</span></p>
 <p>In our case the adjustments are very minor. Why? The effect of the attitudes toward Arabs baseline test on the attitudes toward Arabs post test was nonsignificant. We can see this in the bivariate correlations, below.</p>
-<div class="sourceCode" id="cb1350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1350-1"><a href="ANCOVA.html#cb1350-1" tabindex="-1"></a>MurP1_Rmat <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">corr.test</span>(Murrar_wide[<span class="fu">c</span>(<span class="st">&quot;AttArabB&quot;</span>, <span class="st">&quot;AttArabP1&quot;</span>)])</span>
-<span id="cb1350-2"><a href="ANCOVA.html#cb1350-2" tabindex="-1"></a>MurP1_Rmat</span></code></pre></div>
+<div class="sourceCode" id="cb1344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1344-1"><a href="ANCOVA.html#cb1344-1" tabindex="-1"></a>MurP1_Rmat <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">corr.test</span>(Murrar_wide[<span class="fu">c</span>(<span class="st">&quot;AttArabB&quot;</span>, <span class="st">&quot;AttArabP1&quot;</span>)])</span>
+<span id="cb1344-2"><a href="ANCOVA.html#cb1344-2" tabindex="-1"></a>MurP1_Rmat</span></code></pre></div>
 <pre><code>Call:psych::corr.test(x = Murrar_wide[c(&quot;AttArabB&quot;, &quot;AttArabP1&quot;)])
 Correlation matrix 
           AttArabB AttArabP1
@@ -1174,7 +1174,7 @@ AttArabP1     0.47      0.00
 <div id="apa-style-results-for-scenario-1" class="section level3 hasAnchor" number="11.4.5">
 <h3><span class="header-section-number">11.4.5</span> APA style results for Scenario 1<a href="ANCOVA.html#apa-style-results-for-scenario-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As we assemble the elements for an APA style result sections, a table with the means, adjusted means, and correlations may be helpful.</p>
-<div class="sourceCode" id="cb1352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1352-1"><a href="ANCOVA.html#cb1352-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Murrar_wide[<span class="fu">c</span>(<span class="st">&quot;AttArabB&quot;</span>, <span class="st">&quot;AttArabP1&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1346-1"><a href="ANCOVA.html#cb1346-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Murrar_wide[<span class="fu">c</span>(<span class="st">&quot;AttArabB&quot;</span>, <span class="st">&quot;AttArabP1&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -1195,12 +1195,12 @@ The confidence interval is a plausible range of population correlations
 that could have caused the sample correlation (Cumming, 2014).
  * indicates p &lt; .05. ** indicates p &lt; .01.
  </code></pre>
-<div class="sourceCode" id="cb1354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1354-1"><a href="ANCOVA.html#cb1354-1" tabindex="-1"></a><span class="co"># You can save this as a Microsoft word document by adding this</span></span>
-<span id="cb1354-2"><a href="ANCOVA.html#cb1354-2" tabindex="-1"></a><span class="co"># statement into the command: filename = &#39;your_filename.doc&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1348-1"><a href="ANCOVA.html#cb1348-1" tabindex="-1"></a><span class="co"># You can save this as a Microsoft word document by adding this</span></span>
+<span id="cb1348-2"><a href="ANCOVA.html#cb1348-2" tabindex="-1"></a><span class="co"># statement into the command: filename = &#39;your_filename.doc&#39;</span></span></code></pre></div>
 <p>Additionally, writing this output to excel files helped create the two tables that follow. The <em>MASS</em> package is useful to export the model objects into .csv files. They are easily opened in Excel where they can be manipulated into tables for presentations and manuscripts.</p>
-<div class="sourceCode" id="cb1355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1355-1"><a href="ANCOVA.html#cb1355-1" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(pwc_B, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;pwc_B.csv&quot;</span>)</span>
-<span id="cb1355-2"><a href="ANCOVA.html#cb1355-2" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(emmeans_B, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;emmeans_B.csv&quot;</span>)</span>
-<span id="cb1355-3"><a href="ANCOVA.html#cb1355-3" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(descripts_P1, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;descripts_P1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1349-1"><a href="ANCOVA.html#cb1349-1" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(pwc_B, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;pwc_B.csv&quot;</span>)</span>
+<span id="cb1349-2"><a href="ANCOVA.html#cb1349-2" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(emmeans_B, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;emmeans_B.csv&quot;</span>)</span>
+<span id="cb1349-3"><a href="ANCOVA.html#cb1349-3" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(descripts_P1, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;descripts_P1.csv&quot;</span>)</span></code></pre></div>
 <p>Ultimately, I would want a table that included this information. Please refer to the APA style manual for more proper formatting for a manuscript that requires APA style.</p>
 <table>
 <thead>
@@ -1253,12 +1253,12 @@ that could have caused the sample correlation (Cumming, 2014).
 </tbody>
 </table>
 <p>Unlike the figure we created when we were testing assumptions, this script creates a plot from the model (which identifies AttArabB in its role as covariate). Thus, the relationship between condition and AttArabP1 controls for the effect of the AttArabB covariate.</p>
-<div class="sourceCode" id="cb1356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1356-1"><a href="ANCOVA.html#cb1356-1" tabindex="-1"></a>pwc_B <span class="ot">&lt;-</span> pwc_B <span class="sc">%&gt;%</span></span>
-<span id="cb1356-2"><a href="ANCOVA.html#cb1356-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean_se&quot;</span>)</span>
-<span id="cb1356-3"><a href="ANCOVA.html#cb1356-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggline</span>(rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_B), <span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">y =</span> <span class="st">&quot;emmean&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 10.14 Post-test Attitudes by Condition, Controlling for Pre-test Attitudes&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1356-4"><a href="ANCOVA.html#cb1356-4" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb1356-5"><a href="ANCOVA.html#cb1356-5" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwc_B, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>,</span>
-<span id="cb1356-6"><a href="ANCOVA.html#cb1356-6" tabindex="-1"></a>        <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">80</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1350-1"><a href="ANCOVA.html#cb1350-1" tabindex="-1"></a>pwc_B <span class="ot">&lt;-</span> pwc_B <span class="sc">%&gt;%</span></span>
+<span id="cb1350-2"><a href="ANCOVA.html#cb1350-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean_se&quot;</span>)</span>
+<span id="cb1350-3"><a href="ANCOVA.html#cb1350-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggline</span>(rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_B), <span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">y =</span> <span class="st">&quot;emmean&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 10.14 Post-test Attitudes by Condition, Controlling for Pre-test Attitudes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1350-4"><a href="ANCOVA.html#cb1350-4" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb1350-5"><a href="ANCOVA.html#cb1350-5" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwc_B, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>,</span>
+<span id="cb1350-6"><a href="ANCOVA.html#cb1350-6" tabindex="-1"></a>        <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">80</span>))</span></code></pre></div>
 <p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 <strong>Results</strong></p>
 <blockquote>
@@ -1303,17 +1303,17 @@ that could have caused the sample correlation (Cumming, 2014).
 <h4><span class="header-section-number">11.5.2.1</span> Linearity assumption<a href="ANCOVA.html#linearity-assumption-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>ANCOVA assumes that there is linearity between the covariate and outcome variable at each level of the grouping variable. In our case this means that there is linearity between the attitudes toward Whites (covariate) and attitudes toward Arabs (outcome variable) at each level of the intervention (Friends, Little Mosque).</p>
 <p>We can create a scatterplot (with regression lines) between the covariate (attitudes toward Whites) and the outcome (attitudes toward Arabs).</p>
-<div class="sourceCode" id="cb1357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1357-1"><a href="ANCOVA.html#cb1357-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(Murrar_wide, <span class="at">x =</span> <span class="st">&quot;AttWhiteP1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;AttArabP1&quot;</span>, <span class="at">color =</span> <span class="st">&quot;COND&quot;</span>,</span>
-<span id="cb1357-2"><a href="ANCOVA.html#cb1357-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label..,</span>
-<span id="cb1357-3"><a href="ANCOVA.html#cb1357-3" tabindex="-1"></a>    ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~~&quot;</span>), <span class="at">color =</span> COND))</span></code></pre></div>
+<div class="sourceCode" id="cb1351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1351-1"><a href="ANCOVA.html#cb1351-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(Murrar_wide, <span class="at">x =</span> <span class="st">&quot;AttWhiteP1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;AttArabP1&quot;</span>, <span class="at">color =</span> <span class="st">&quot;COND&quot;</span>,</span>
+<span id="cb1351-2"><a href="ANCOVA.html#cb1351-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label..,</span>
+<span id="cb1351-3"><a href="ANCOVA.html#cb1351-3" tabindex="-1"></a>    ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~~&quot;</span>), <span class="at">color =</span> COND))</span></code></pre></div>
 <p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 As we look at this scatterplot, we are trying to determine if there is an interaction effect (rather than a covarying effect). The linearity here, looks reasonable and not terribly “interacting” (to help us decide whether empathy should be a covariate or a moderator). More testing can help us make this distinction.</p>
 </div>
 <div id="homogeneity-of-regression-slopes-1" class="section level4 hasAnchor" number="11.5.2.2">
 <h4><span class="header-section-number">11.5.2.2</span> Homogeneity of regression slopes<a href="ANCOVA.html#homogeneity-of-regression-slopes-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This assumption requires that the slopes of the regression lines formed by the covariate and the outcome variable are the same for each group. The assumption evaluates that there is no interaction between the outcome and covariate. The plotted regression lines should be parallel.</p>
-<div class="sourceCode" id="cb1358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1358-1"><a href="ANCOVA.html#cb1358-1" tabindex="-1"></a>Murrar_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1358-2"><a href="ANCOVA.html#cb1358-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> COND <span class="sc">*</span> AttWhiteP1)</span></code></pre></div>
+<div class="sourceCode" id="cb1352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1352-1"><a href="ANCOVA.html#cb1352-1" tabindex="-1"></a>Murrar_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1352-2"><a href="ANCOVA.html#cb1352-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> COND <span class="sc">*</span> AttWhiteP1)</span></code></pre></div>
 <pre><code>ANOVA Table (type II tests)
 
            Effect DFn DFd      F          p p&lt;.05       ges
@@ -1326,9 +1326,9 @@ As we look at this scatterplot, we are trying to determine if there is an intera
 <h4><span class="header-section-number">11.5.2.3</span> Normality of residuals<a href="ANCOVA.html#normality-of-residuals-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Assessing the normality of residuals means running the model, capturing the unexplained portion of the model (i.e., the <em>residuals</em>), and then seeing if they are normally distributed. Proper use of ANCOVA is predicated on normally distributed residuals.</p>
 <p>We first compute the model with <em>lm()</em>. The <em>lm()</em> function is actually testing what we want to test. However, at this early stage, we are just doing a “quick run and interpretation” to see if we are within the assumptions of ANCOVA.</p>
-<div class="sourceCode" id="cb1360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1360-1"><a href="ANCOVA.html#cb1360-1" tabindex="-1"></a><span class="co"># Create a linear regression model predicting DV from COV &amp; IV</span></span>
-<span id="cb1360-2"><a href="ANCOVA.html#cb1360-2" tabindex="-1"></a>WhCov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(AttArabP1 <span class="sc">~</span> AttWhiteP1 <span class="sc">+</span> COND, <span class="at">data =</span> Murrar_wide)</span>
-<span id="cb1360-3"><a href="ANCOVA.html#cb1360-3" tabindex="-1"></a>WhCov_mod</span></code></pre></div>
+<div class="sourceCode" id="cb1354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1354-1"><a href="ANCOVA.html#cb1354-1" tabindex="-1"></a><span class="co"># Create a linear regression model predicting DV from COV &amp; IV</span></span>
+<span id="cb1354-2"><a href="ANCOVA.html#cb1354-2" tabindex="-1"></a>WhCov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(AttArabP1 <span class="sc">~</span> AttWhiteP1 <span class="sc">+</span> COND, <span class="at">data =</span> Murrar_wide)</span>
+<span id="cb1354-3"><a href="ANCOVA.html#cb1354-3" tabindex="-1"></a>WhCov_mod</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = AttArabP1 ~ AttWhiteP1 + COND, data = Murrar_wide)
@@ -1337,9 +1337,9 @@ Coefficients:
      (Intercept)        AttWhiteP1  CONDLittleMosque  
        59.765300         -0.009897         14.886178  </code></pre>
 <p>We can use the <em>augment(model)</em> function from the <em>broom</em> package to add fitted values and residuals.</p>
-<div class="sourceCode" id="cb1362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1362-1"><a href="ANCOVA.html#cb1362-1" tabindex="-1"></a>WhCov_mod.metrics <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment</span>(WhCov_mod)</span>
-<span id="cb1362-2"><a href="ANCOVA.html#cb1362-2" tabindex="-1"></a><span class="co"># shows the first three rows of the UEcon_model.metrics</span></span>
-<span id="cb1362-3"><a href="ANCOVA.html#cb1362-3" tabindex="-1"></a><span class="fu">head</span>(WhCov_mod.metrics, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1356-1"><a href="ANCOVA.html#cb1356-1" tabindex="-1"></a>WhCov_mod.metrics <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment</span>(WhCov_mod)</span>
+<span id="cb1356-2"><a href="ANCOVA.html#cb1356-2" tabindex="-1"></a><span class="co"># shows the first three rows of the UEcon_model.metrics</span></span>
+<span id="cb1356-3"><a href="ANCOVA.html#cb1356-3" tabindex="-1"></a><span class="fu">head</span>(WhCov_mod.metrics, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code># A tibble: 3 × 9
   AttArabP1 AttWhiteP1 COND    .fitted .resid   .hat .sigma .cooksd .std.resid
       &lt;dbl&gt;      &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
@@ -1347,7 +1347,7 @@ Coefficients:
 2      76.6       51.0 Friends    59.3   17.3 0.0203   20.2 0.00518      0.867
 3      92.0       91.9 Friends    58.9   33.2 0.0152   20.1 0.0140       1.65 </code></pre>
 <p>Now we assess the normality of residuals using the Shapiro Wilk test. The script below captures the “.resid” column from the model.</p>
-<div class="sourceCode" id="cb1364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1364-1"><a href="ANCOVA.html#cb1364-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(WhCov_mod.metrics<span class="sc">$</span>.resid)</span></code></pre></div>
+<div class="sourceCode" id="cb1358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1358-1"><a href="ANCOVA.html#cb1358-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(WhCov_mod.metrics<span class="sc">$</span>.resid)</span></code></pre></div>
 <pre><code># A tibble: 1 × 3
   variable                 statistic p.value
   &lt;chr&gt;                        &lt;dbl&gt;   &lt;dbl&gt;
@@ -1357,8 +1357,8 @@ Coefficients:
 <div id="homogeneity-of-variances-1" class="section level4 hasAnchor" number="11.5.2.4">
 <h4><span class="header-section-number">11.5.2.4</span> Homogeneity of variances<a href="ANCOVA.html#homogeneity-of-variances-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>ANCOVA presumes that the variance of the residuals is equal for all groups. We can check this with the Levene’s test.</p>
-<div class="sourceCode" id="cb1366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1366-1"><a href="ANCOVA.html#cb1366-1" tabindex="-1"></a>WhCov_mod.metrics <span class="sc">%&gt;%</span></span>
-<span id="cb1366-2"><a href="ANCOVA.html#cb1366-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">levene_test</span>(.resid <span class="sc">~</span> COND)</span></code></pre></div>
+<div class="sourceCode" id="cb1360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1360-1"><a href="ANCOVA.html#cb1360-1" tabindex="-1"></a>WhCov_mod.metrics <span class="sc">%&gt;%</span></span>
+<span id="cb1360-2"><a href="ANCOVA.html#cb1360-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">levene_test</span>(.resid <span class="sc">~</span> COND)</span></code></pre></div>
 <pre><code># A tibble: 1 × 4
     df1   df2 statistic      p
   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -1368,9 +1368,9 @@ Coefficients:
 <div id="outliers-1" class="section level4 hasAnchor" number="11.5.2.5">
 <h4><span class="header-section-number">11.5.2.5</span> Outliers<a href="ANCOVA.html#outliers-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can identify outliers by examining the standardized (or studentized) residual. This is the residual divided by its estimated standard error. Standardized residuals are interpreted as the number of standard errors away from the regression line.</p>
-<div class="sourceCode" id="cb1368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1368-1"><a href="ANCOVA.html#cb1368-1" tabindex="-1"></a>WhCov_mod.metrics <span class="sc">%&gt;%</span></span>
-<span id="cb1368-2"><a href="ANCOVA.html#cb1368-2" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1368-3"><a href="ANCOVA.html#cb1368-3" tabindex="-1"></a>    <span class="fu">as.data.frame</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1362-1"><a href="ANCOVA.html#cb1362-1" tabindex="-1"></a>WhCov_mod.metrics <span class="sc">%&gt;%</span></span>
+<span id="cb1362-2"><a href="ANCOVA.html#cb1362-2" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1362-3"><a href="ANCOVA.html#cb1362-3" tabindex="-1"></a>    <span class="fu">as.data.frame</span>()</span></code></pre></div>
 <pre><code>  AttArabP1 AttWhiteP1         COND  .fitted    .resid       .hat   .sigma
 1     6.137     59.518 LittleMosque 74.06242 -67.92542 0.01407535 19.65185
      .cooksd .std.resid
@@ -1395,9 +1395,9 @@ Coefficients:
 <p><em>Order of variable entry</em> matters in ANCOVA. Thinking of the <em>controlling for</em> language associated with covariates, we firstly want to remove the effect of the covariate.</p>
 <p>In the code below we are predicting attitudes toward Arabs at post1 from attitudes toward Whites at post1 (the covariate) and sitcom condition (Friends, Little Mosque).</p>
 <p>The <em>ges</em> column provides the effect size, <span class="math inline">\(\eta^2\)</span> where a general rule-of-thumb for interpretation is .01 (small), .06 (medium), and .14 (large) <span class="citation">(<a href="#ref-lakens_calculating_2013">Lakens, 2013</a>)</span>.</p>
-<div class="sourceCode" id="cb1370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1370-1"><a href="ANCOVA.html#cb1370-1" tabindex="-1"></a>WhCov_ANCOVA <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1370-2"><a href="ANCOVA.html#cb1370-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> AttWhiteP1 <span class="sc">+</span> COND)</span>
-<span id="cb1370-3"><a href="ANCOVA.html#cb1370-3" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">get_anova_table</span>(WhCov_ANCOVA)</span></code></pre></div>
+<div class="sourceCode" id="cb1364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1364-1"><a href="ANCOVA.html#cb1364-1" tabindex="-1"></a>WhCov_ANCOVA <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1364-2"><a href="ANCOVA.html#cb1364-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(AttArabP1 <span class="sc">~</span> AttWhiteP1 <span class="sc">+</span> COND)</span>
+<span id="cb1364-3"><a href="ANCOVA.html#cb1364-3" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">get_anova_table</span>(WhCov_ANCOVA)</span></code></pre></div>
 <pre><code>ANOVA Table (type II tests)
 
       Effect DFn DFd      F           p p&lt;.05       ges
@@ -1408,26 +1408,26 @@ Coefficients:
 <div id="post-hoc-pairwise-comparisons-controlling-for-the-covariate-1" class="section level3 hasAnchor" number="11.5.4">
 <h3><span class="header-section-number">11.5.4</span> Post-hoc pairwise comparisons (controlling for the covariate)<a href="ANCOVA.html#post-hoc-pairwise-comparisons-controlling-for-the-covariate-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With only two levels of sitcom condition (Friends, Little Mosque), we do not need to conduct post-hoc pairwise comparisons. However, because many research designs involve three or more levels, I will use code that would evaluates them here.</p>
-<div class="sourceCode" id="cb1372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1372-1"><a href="ANCOVA.html#cb1372-1" tabindex="-1"></a>pwc_cond <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1372-2"><a href="ANCOVA.html#cb1372-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">emmeans_test</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">covariate =</span> AttWhiteP1, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb1372-3"><a href="ANCOVA.html#cb1372-3" tabindex="-1"></a>pwc_cond</span></code></pre></div>
+<div class="sourceCode" id="cb1366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1366-1"><a href="ANCOVA.html#cb1366-1" tabindex="-1"></a>pwc_cond <span class="ot">&lt;-</span> Murrar_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1366-2"><a href="ANCOVA.html#cb1366-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">emmeans_test</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">covariate =</span> AttWhiteP1, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb1366-3"><a href="ANCOVA.html#cb1366-3" tabindex="-1"></a>pwc_cond</span></code></pre></div>
 <pre><code># A tibble: 1 × 9
   term          .y.   group1 group2    df statistic       p   p.adj p.adj.signif
 * &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
 1 AttWhiteP1*C… AttA… Frien… Littl…   190     -5.11 7.79e-7 7.79e-7 ****        </code></pre>
 <p>Results suggest a statistically significant post-test difference between the Friends and Little Mosque sitcom conditions.
 With the script below we can obtain the covariate-adjusted marginal means. These are termed <em>estimated marginal means.</em></p>
-<div class="sourceCode" id="cb1374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1374-1"><a href="ANCOVA.html#cb1374-1" tabindex="-1"></a>emmeans_cond <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_cond)</span>
-<span id="cb1374-2"><a href="ANCOVA.html#cb1374-2" tabindex="-1"></a>emmeans_cond</span></code></pre></div>
+<div class="sourceCode" id="cb1368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1368-1"><a href="ANCOVA.html#cb1368-1" tabindex="-1"></a>emmeans_cond <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_cond)</span>
+<span id="cb1368-2"><a href="ANCOVA.html#cb1368-2" tabindex="-1"></a>emmeans_cond</span></code></pre></div>
 <pre><code># A tibble: 2 × 8
   AttWhiteP1 COND         emmean    se    df conf.low conf.high method      
        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       
 1       74.4 Friends        59.0  2.04   190     55.0      63.1 Emmeans test
 2       74.4 LittleMosque   73.9  2.08   190     69.8      78.0 Emmeans test</code></pre>
 <p>As before, these means are usually different (even if only ever-so-slightly) than the raw means you would obtain from the descriptives.</p>
-<div class="sourceCode" id="cb1376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1376-1"><a href="ANCOVA.html#cb1376-1" tabindex="-1"></a>descripts_cond <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">data =</span> Murrar_wide,</span>
-<span id="cb1376-2"><a href="ANCOVA.html#cb1376-2" tabindex="-1"></a>    <span class="at">mat =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1376-3"><a href="ANCOVA.html#cb1376-3" tabindex="-1"></a>descripts_cond</span></code></pre></div>
+<div class="sourceCode" id="cb1370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1370-1"><a href="ANCOVA.html#cb1370-1" tabindex="-1"></a>descripts_cond <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(AttArabP1 <span class="sc">~</span> COND, <span class="at">data =</span> Murrar_wide,</span>
+<span id="cb1370-2"><a href="ANCOVA.html#cb1370-2" tabindex="-1"></a>    <span class="at">mat =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1370-3"><a href="ANCOVA.html#cb1370-3" tabindex="-1"></a>descripts_cond</span></code></pre></div>
 <pre><code>           item       group1 vars  n     mean       sd  median  trimmed
 AttArabP11    1      Friends    1 98 59.02351 21.65024 57.9955 59.31306
 AttArabP12    2 LittleMosque    1 95 73.92134 18.51082 74.4600 75.52858
@@ -1438,7 +1438,7 @@ AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170</code></pre>
 <div id="apa-style-results-for-scenario-2" class="section level3 hasAnchor" number="11.5.5">
 <h3><span class="header-section-number">11.5.5</span> APA style results for Scenario 2<a href="ANCOVA.html#apa-style-results-for-scenario-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Tables with the means, adjusted means, and pairwise comparison output may be helpful. The <em>apa.cor.table()</em> function in the <em>apaTables</em> package is helpful for providing means, standarddeviations, and correlations.</p>
-<div class="sourceCode" id="cb1378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1378-1"><a href="ANCOVA.html#cb1378-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Murrar_wide[<span class="fu">c</span>(<span class="st">&quot;AttArabP1&quot;</span>, <span class="st">&quot;AttWhiteP1&quot;</span>)], <span class="at">table.number =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1372-1"><a href="ANCOVA.html#cb1372-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Murrar_wide[<span class="fu">c</span>(<span class="st">&quot;AttArabP1&quot;</span>, <span class="st">&quot;AttWhiteP1&quot;</span>)], <span class="at">table.number =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>
 
 Table 2 
@@ -1459,12 +1459,12 @@ The confidence interval is a plausible range of population correlations
 that could have caused the sample correlation (Cumming, 2014).
  * indicates p &lt; .05. ** indicates p &lt; .01.
  </code></pre>
-<div class="sourceCode" id="cb1380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1380-1"><a href="ANCOVA.html#cb1380-1" tabindex="-1"></a><span class="co"># You can save this as a Microsoft word document by adding this</span></span>
-<span id="cb1380-2"><a href="ANCOVA.html#cb1380-2" tabindex="-1"></a><span class="co"># statement into the command: filename = &#39;your_filename.doc&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1374-1"><a href="ANCOVA.html#cb1374-1" tabindex="-1"></a><span class="co"># You can save this as a Microsoft word document by adding this</span></span>
+<span id="cb1374-2"><a href="ANCOVA.html#cb1374-2" tabindex="-1"></a><span class="co"># statement into the command: filename = &#39;your_filename.doc&#39;</span></span></code></pre></div>
 <p>Writing this output to excel files helped create the two tables that follow.</p>
-<div class="sourceCode" id="cb1381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1381-1"><a href="ANCOVA.html#cb1381-1" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(pwc_cond, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;pwc_con.csv&quot;</span>)</span>
-<span id="cb1381-2"><a href="ANCOVA.html#cb1381-2" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(emmeans_cond, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;emmeans_con.csv&quot;</span>)</span>
-<span id="cb1381-3"><a href="ANCOVA.html#cb1381-3" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(descripts_cond, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;descripts_con.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1375-1"><a href="ANCOVA.html#cb1375-1" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(pwc_cond, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;pwc_con.csv&quot;</span>)</span>
+<span id="cb1375-2"><a href="ANCOVA.html#cb1375-2" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(emmeans_cond, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;emmeans_con.csv&quot;</span>)</span>
+<span id="cb1375-3"><a href="ANCOVA.html#cb1375-3" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">write.matrix</span>(descripts_cond, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">file =</span> <span class="st">&quot;descripts_con.csv&quot;</span>)</span></code></pre></div>
 <p>Ultimately, I would want a table that included this information. Please refer to the APA style manual for more proper formatting for a manuscript that requires APA style.</p>
 <table>
 <thead>
@@ -1517,12 +1517,12 @@ that could have caused the sample correlation (Cumming, 2014).
 </tbody>
 </table>
 <p>Unlike the figure we created when we were testing assumptions, this script creates a plot from the model (which identifies AttWhiteP1 in its role as covariate). Thus, the relationship between condition and AttArabP1 controls for the effect of the AttArabB covariate.</p>
-<div class="sourceCode" id="cb1382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1382-1"><a href="ANCOVA.html#cb1382-1" tabindex="-1"></a>pwc_cond <span class="ot">&lt;-</span> pwc_cond <span class="sc">%&gt;%</span></span>
-<span id="cb1382-2"><a href="ANCOVA.html#cb1382-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean_se&quot;</span>)</span>
-<span id="cb1382-3"><a href="ANCOVA.html#cb1382-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggline</span>(rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_B), <span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">y =</span> <span class="st">&quot;emmean&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 10.5 Attitudes toward Arabs by Condition, Controlling for Attitudes toward Whites&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1382-4"><a href="ANCOVA.html#cb1382-4" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb1382-5"><a href="ANCOVA.html#cb1382-5" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwc_B, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>,</span>
-<span id="cb1382-6"><a href="ANCOVA.html#cb1382-6" tabindex="-1"></a>        <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">80</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1376-1"><a href="ANCOVA.html#cb1376-1" tabindex="-1"></a>pwc_cond <span class="ot">&lt;-</span> pwc_cond <span class="sc">%&gt;%</span></span>
+<span id="cb1376-2"><a href="ANCOVA.html#cb1376-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean_se&quot;</span>)</span>
+<span id="cb1376-3"><a href="ANCOVA.html#cb1376-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggline</span>(rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(pwc_B), <span class="at">x =</span> <span class="st">&quot;COND&quot;</span>, <span class="at">y =</span> <span class="st">&quot;emmean&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 10.5 Attitudes toward Arabs by Condition, Controlling for Attitudes toward Whites&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1376-4"><a href="ANCOVA.html#cb1376-4" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb1376-5"><a href="ANCOVA.html#cb1376-5" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwc_B, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>,</span>
+<span id="cb1376-6"><a href="ANCOVA.html#cb1376-6" tabindex="-1"></a>        <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">80</span>))</span></code></pre></div>
 <p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 <strong>Results</strong></p>
 <blockquote>
@@ -1651,66 +1651,65 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 <div id="homeworked-example-9" class="section level2 hasAnchor" number="11.8">
 <h2><span class="header-section-number">11.8</span> Homeworked Example<a href="ANCOVA.html#homeworked-example-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="">Screencast Link</a></p>
-<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.</em></p>
+<p>For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the <a href="ReCintro">introduction</a>.</p>
 <div id="working-the-problem-with-r-and-r-packages-8" class="section level3 hasAnchor" number="11.8.1">
 <h3><span class="header-section-number">11.8.1</span> Working the Problem with R and R Packages<a href="ANCOVA.html#working-the-problem-with-r-and-r-packages-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="narrate-the-research-vignette-describing-the-iv-dv-and-cov." class="section level4 hasAnchor" number="11.8.1.1">
 <h4><span class="header-section-number">11.8.1.1</span> Narrate the research vignette, describing the IV, DV, and COV.<a href="ANCOVA.html#narrate-the-research-vignette-describing-the-iv-dv-and-cov." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>I want to ask the question, what are the effects of intentional recentering on students evaluations of socially responsive pedagogy in the multivariate (last) course as a function of centering status (i.e., pre versus re), controlling for the socially responsive evaluations in the ANOVA (first) course:</p>
+<p>I want to ask the question, what are the effects of intentional recentering on students’ evaluations of socially responsive pedagogy in the multivariate (last) course as a function of centering status (i.e., pre versus re), controlling for the socially responsive evaluations in the ANOVA (first) course:</p>
 <ul>
-<li>Within-subjects factor: student as they progress through ANOVA, Multivariate, Psychometrics</li>
+<li>Continuous DV: SRPed (socially responsive pedagogy) in the multivariate (last) class</li>
 <li>Between-subjects factor: recentering status of the class (Pre, Re)</li>
-<li>Continuous DV: SRPed (socially responsive pedagogy)</li>
+<li>Covariate: SRPed in the ANOVA (first) class</li>
 </ul>
+<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.</em></p>
 </div>
 <div id="simulate-or-import-and-format-data-4" class="section level4 hasAnchor" number="11.8.1.2">
 <h4><span class="header-section-number">11.8.1.2</span> Simulate (or import) and format data<a href="ANCOVA.html#simulate-or-import-and-format-data-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>First I import the larger dataset.</p>
-<div class="sourceCode" id="cb1383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1383-1"><a href="ANCOVA.html#cb1383-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
-<p>The SRPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.</p>
-<div class="sourceCode" id="cb1384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1384-1"><a href="ANCOVA.html#cb1384-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
-<span id="cb1384-2"><a href="ANCOVA.html#cb1384-2" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;InclusvClassrm&#39;</span>, <span class="st">&#39;EquitableEval&#39;</span>,<span class="st">&#39;MultPerspectives&#39;</span>, <span class="st">&#39;DEIintegration&#39;</span>)</span>
-<span id="cb1384-3"><a href="ANCOVA.html#cb1384-3" tabindex="-1"></a></span>
-<span id="cb1384-4"><a href="ANCOVA.html#cb1384-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
-<span id="cb1384-5"><a href="ANCOVA.html#cb1384-5" tabindex="-1"></a>big<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, SRPed_vars], .<span class="dv">75</span>)</span>
-<span id="cb1384-6"><a href="ANCOVA.html#cb1384-6" tabindex="-1"></a></span>
-<span id="cb1384-7"><a href="ANCOVA.html#cb1384-7" tabindex="-1"></a><span class="co">#if the scoring script won&#39;t run, try this one:</span></span>
-<span id="cb1384-8"><a href="ANCOVA.html#cb1384-8" tabindex="-1"></a><span class="co">#big$SRPed &lt;- sjstats::mean_n(big[, ..SRPed_vars], .75)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1377-1"><a href="ANCOVA.html#cb1377-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
+<p>The SRPed (socially responsive pedagogy) variable is an average of the items on that scale. I will first create that variable.</p>
+<div class="sourceCode" id="cb1378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1378-1"><a href="ANCOVA.html#cb1378-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
+<span id="cb1378-2"><a href="ANCOVA.html#cb1378-2" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;InclusvClassrm&#39;</span>, <span class="st">&#39;EquitableEval&#39;</span>,<span class="st">&#39;MultPerspectives&#39;</span>, <span class="st">&#39;DEIintegration&#39;</span>)</span>
+<span id="cb1378-3"><a href="ANCOVA.html#cb1378-3" tabindex="-1"></a></span>
+<span id="cb1378-4"><a href="ANCOVA.html#cb1378-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
+<span id="cb1378-5"><a href="ANCOVA.html#cb1378-5" tabindex="-1"></a>big<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, SRPed_vars], .<span class="dv">75</span>)</span>
+<span id="cb1378-6"><a href="ANCOVA.html#cb1378-6" tabindex="-1"></a></span>
+<span id="cb1378-7"><a href="ANCOVA.html#cb1378-7" tabindex="-1"></a><span class="co">#if the scoring script won&#39;t run, try this one:</span></span>
+<span id="cb1378-8"><a href="ANCOVA.html#cb1378-8" tabindex="-1"></a><span class="co">#big$SRPed &lt;- sjstats::mean_n(big[, ..SRPed_vars], .75)</span></span></code></pre></div>
 <p>Let’s trim it to just the variables of interest.</p>
-<div class="sourceCode" id="cb1385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1385-1"><a href="ANCOVA.html#cb1385-1" tabindex="-1"></a>ANCOVA_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span> (big, deID, Course, Centering, SRPed))</span></code></pre></div>
+<div class="sourceCode" id="cb1379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1379-1"><a href="ANCOVA.html#cb1379-1" tabindex="-1"></a>ANCOVA_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span> (big, deID, Course, Centering, SRPed))</span></code></pre></div>
 <p>And further filter so that there are just evaluations of ANOVA and multivariate courses.</p>
-<div class="sourceCode" id="cb1386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1386-1"><a href="ANCOVA.html#cb1386-1" tabindex="-1"></a>ANCOVA_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(ANCOVA_df, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span> <span class="sc">|</span> Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>) <span class="co">#multiple conditions</span></span></code></pre></div>
+<div class="sourceCode" id="cb1380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1380-1"><a href="ANCOVA.html#cb1380-1" tabindex="-1"></a>ANCOVA_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(ANCOVA_df, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span> <span class="sc">|</span> Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>) <span class="co">#multiple conditions</span></span></code></pre></div>
 <p>I want the course variable to be factor that is ordered by its sequence: ANOVA, multivariate.</p>
 <p>I want the centering variable to be ordered: Pre, Re</p>
-<div class="sourceCode" id="cb1387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1387-1"><a href="ANCOVA.html#cb1387-1" tabindex="-1"></a><span class="fu">str</span>(ANCOVA_df)</span></code></pre></div>
+<div class="sourceCode" id="cb1381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1381-1"><a href="ANCOVA.html#cb1381-1" tabindex="-1"></a><span class="fu">str</span>(ANCOVA_df)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  198 obs. of  4 variables:
  $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Course   : Factor w/ 3 levels &quot;Psychometrics&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
  $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
  $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...</code></pre>
 <p>Because R’s default is to order alphabetically, the centering variable is correct. I just need to change the course variable.</p>
-<div class="sourceCode" id="cb1389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1389-1"><a href="ANCOVA.html#cb1389-1" tabindex="-1"></a>ANCOVA_df<span class="sc">$</span>Course <span class="ot">&lt;-</span> <span class="fu">factor</span>(ANCOVA_df<span class="sc">$</span>Course, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;ANOVA&quot;</span>, <span class="st">&quot;Multivariate&quot;</span>))</span>
-<span id="cb1389-2"><a href="ANCOVA.html#cb1389-2" tabindex="-1"></a><span class="fu">str</span>(ANCOVA_df)</span></code></pre></div>
+<div class="sourceCode" id="cb1383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1383-1"><a href="ANCOVA.html#cb1383-1" tabindex="-1"></a>ANCOVA_df<span class="sc">$</span>Course <span class="ot">&lt;-</span> <span class="fu">factor</span>(ANCOVA_df<span class="sc">$</span>Course, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;ANOVA&quot;</span>, <span class="st">&quot;Multivariate&quot;</span>))</span>
+<span id="cb1383-2"><a href="ANCOVA.html#cb1383-2" tabindex="-1"></a><span class="fu">str</span>(ANCOVA_df)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  198 obs. of  4 variables:
  $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Course   : Factor w/ 2 levels &quot;ANOVA&quot;,&quot;Multivariate&quot;: 1 1 1 1 1 1 1 1 1 1 ...
  $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
  $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...</code></pre>
 <p>After checking the structure again, both are correct.</p>
-<p>I want all of my analyses (i.e., testing of assumptions, descriptives, omnibus F, follow-up) to be with the same dataset. Because each of these analyses will use listwise deletion (i.e., deleting cases, potentially differing numbers, when there is missing data), I will take care of this now. Because this is a longitudinal analysis, I will do it in two steps.</p>
-<p>The current dataset is is in <em>long</em> form. This means each student has up to three rows of data. I will first delete rows that have any missing data:</p>
 <p>My data is in the long (person-period) form. For this particular ANOVA I need it to be in the wide (person level) form.</p>
-<div class="sourceCode" id="cb1391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1391-1"><a href="ANCOVA.html#cb1391-1" tabindex="-1"></a>ANCOVA_wide<span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> ANCOVA_df, <span class="at">formula =</span> deID <span class="sc">+</span> Centering <span class="sc">~</span> Course, <span class="at">value.var =</span> <span class="st">&quot;SRPed&quot;</span>)</span>
-<span id="cb1391-2"><a href="ANCOVA.html#cb1391-2" tabindex="-1"></a><span class="co"># before restructuring a second variable, rename the first variable</span></span>
-<span id="cb1391-3"><a href="ANCOVA.html#cb1391-3" tabindex="-1"></a>ANCOVA_wide <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(ANCOVA_wide, <span class="at">SRPed_ANV =</span> <span class="st">&quot;ANOVA&quot;</span>, <span class="at">SRPed_MLTV =</span> <span class="st">&quot;Multivariate&quot;</span>)</span>
-<span id="cb1391-4"><a href="ANCOVA.html#cb1391-4" tabindex="-1"></a></span>
-<span id="cb1391-5"><a href="ANCOVA.html#cb1391-5" tabindex="-1"></a><span class="fu">str</span>(ANCOVA_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb1385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1385-1"><a href="ANCOVA.html#cb1385-1" tabindex="-1"></a>ANCOVA_wide<span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> ANCOVA_df, <span class="at">formula =</span> deID <span class="sc">+</span> Centering <span class="sc">~</span> Course, <span class="at">value.var =</span> <span class="st">&quot;SRPed&quot;</span>)</span>
+<span id="cb1385-2"><a href="ANCOVA.html#cb1385-2" tabindex="-1"></a><span class="co"># before restructuring a second variable, rename the first variable</span></span>
+<span id="cb1385-3"><a href="ANCOVA.html#cb1385-3" tabindex="-1"></a>ANCOVA_wide <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(ANCOVA_wide, <span class="at">SRPed_ANV =</span> <span class="st">&quot;ANOVA&quot;</span>, <span class="at">SRPed_MLTV =</span> <span class="st">&quot;Multivariate&quot;</span>)</span>
+<span id="cb1385-4"><a href="ANCOVA.html#cb1385-4" tabindex="-1"></a></span>
+<span id="cb1385-5"><a href="ANCOVA.html#cb1385-5" tabindex="-1"></a><span class="fu">str</span>(ANCOVA_wide)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   119 obs. of  4 variables:
  $ deID      : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Centering : Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
  $ SRPed_ANV : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
  $ SRPed_MLTV: num  NA NA NA NA NA NA NA NA NA NA ...</code></pre>
-<div class="sourceCode" id="cb1393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1393-1"><a href="ANCOVA.html#cb1393-1" tabindex="-1"></a><span class="fu">head</span>(ANCOVA_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb1387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1387-1"><a href="ANCOVA.html#cb1387-1" tabindex="-1"></a><span class="fu">head</span>(ANCOVA_wide)</span></code></pre></div>
 <pre><code>  deID Centering SRPed_ANV SRPed_MLTV
 1    1        Re      5.00         NA
 2    2        Re      5.00         NA
@@ -1719,36 +1718,35 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 5    5        Re      5.00         NA
 6    6        Re      3.75         NA</code></pre>
 <p>The <em>head</em> function shows that the multivariate scores are missing. This design still has missingness for (a) some students who took ANOVA but haven’t yet had multivariate and (b) others who may have skipped completing course evaluations. I’ll take care of that next by requiring rows to have non-missing data.</p>
-<div class="sourceCode" id="cb1395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1395-1"><a href="ANCOVA.html#cb1395-1" tabindex="-1"></a>ANCOVA_wide <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ANCOVA_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb1389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1389-1"><a href="ANCOVA.html#cb1389-1" tabindex="-1"></a>ANCOVA_wide <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ANCOVA_wide)</span></code></pre></div>
 </div>
 <div id="evaluate-statistical-assumptions-5" class="section level4 hasAnchor" number="11.8.1.3">
 <h4><span class="header-section-number">11.8.1.3</span> Evaluate statistical assumptions<a href="ANCOVA.html#evaluate-statistical-assumptions-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Is there a linear relationship between the covariate and outcome at each level of the grouping variable?“</strong></p>
-<p>This would mean that there is linearity between the evaluation in the first course (covariate/ANOVA) and last course (outcome/Multivariate) at each of the independent variable (Centering status).</p>
-<p>We can get a visual of this with a scatterplot (with regression lines) betwen the covariae and outcome.</p>
-<div class="sourceCode" id="cb1396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1396-1"><a href="ANCOVA.html#cb1396-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1396-2"><a href="ANCOVA.html#cb1396-2" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(ANCOVA_wide, <span class="at">x =</span> <span class="st">&quot;SRPed_ANV&quot;</span>, <span class="at">y =</span> <span class="st">&quot;SRPed_MLTV&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label..,</span>
-<span id="cb1396-3"><a href="ANCOVA.html#cb1396-3" tabindex="-1"></a>    ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~~&quot;</span>), <span class="at">color =</span> Centering))</span></code></pre></div>
-<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>This would mean that there is linearity between the evaluation in the first course (covariate/ANOVA) and last course (outcome/Multivariate) at each level of the independent variable (Centering status).</p>
+<p>We can get a visual of this with a scatterplot (with regression lines) between the covariae and outcome.</p>
+<div class="sourceCode" id="cb1390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1390-1"><a href="ANCOVA.html#cb1390-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1390-2"><a href="ANCOVA.html#cb1390-2" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(ANCOVA_wide, <span class="at">x =</span> <span class="st">&quot;SRPed_ANV&quot;</span>, <span class="at">y =</span> <span class="st">&quot;SRPed_MLTV&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label.., ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~~&quot;</span>), <span class="at">color =</span> Centering))</span></code></pre></div>
+<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>The plot looks a little funny. This is likely because there are no values below 3(ish) for ANOVA when courses were re-centered. Although we are looking for a linear relationship, the angled lines suggest there could be an interaction effect. The previous lesson (when we included all three courses [ANOVA, psychometrics, multivariate]) showed that there was. Spoiler alert – mixed design ANOVA is a better analysis for this question, but the data does allow me (statistically) to use it for a homework demonstration.</p>
 <p><strong>Are the regression lines formed by the covariate and the outcome variable the same for each group?</strong></p>
-<p>This would mean that there is no ineraction between the outcome and covariate. We can test this with an ANOVA model that specifies an interaction.</p>
-<div class="sourceCode" id="cb1397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1397-1"><a href="ANCOVA.html#cb1397-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1397-2"><a href="ANCOVA.html#cb1397-2" tabindex="-1"></a>ANCOVA_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1397-3"><a href="ANCOVA.html#cb1397-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">anova_test</span>(SRPed_MLTV <span class="sc">~</span>Centering<span class="sc">*</span>SRPed_ANV)</span></code></pre></div>
+<p>This would mean that there is no interaction between the outcome and covariate. We can test this with an ANOVA model that specifies an interaction.</p>
+<div class="sourceCode" id="cb1391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1391-1"><a href="ANCOVA.html#cb1391-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1391-2"><a href="ANCOVA.html#cb1391-2" tabindex="-1"></a>ANCOVA_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1391-3"><a href="ANCOVA.html#cb1391-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">anova_test</span>(SRPed_MLTV <span class="sc">~</span>Centering<span class="sc">*</span>SRPed_ANV)</span></code></pre></div>
 <pre><code>ANOVA Table (type II tests)
 
                Effect DFn DFd      F            p p&lt;.05   ges
 1           Centering   1  71 10.444 0.0020000000     * 0.128
 2           SRPed_ANV   1  71 40.234 0.0000000184     * 0.362
 3 Centering:SRPed_ANV   1  71  1.975 0.1640000000       0.027</code></pre>
-<p>Curiously, the interaction term was not statistically significant <span class="math inline">\((F[1, 71] = 1.975, p = 0.100)\)</span>. This non-violation of the homogeneity of slopes assumption supports the use of ANCOVA.</p>
+<p>Curiously, the interaction term was not statistically significant <span class="math inline">\((F[1, 71] = 1.975, p = 0.164)\)</span>. This non-violation of the homogeneity of slopes assumption supports the use of ANCOVA.</p>
 <p><strong>Are the model residuals normally distributed and equal across groups?</strong></p>
 <p>First, I create a linear regression model</p>
-<div class="sourceCode" id="cb1399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1399-1"><a href="ANCOVA.html#cb1399-1" tabindex="-1"></a>SRPed_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(SRPed_MLTV <span class="sc">~</span> SRPed_ANV <span class="sc">+</span> Centering, <span class="at">data =</span> ANCOVA_wide) </span></code></pre></div>
+<div class="sourceCode" id="cb1393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1393-1"><a href="ANCOVA.html#cb1393-1" tabindex="-1"></a>SRPed_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(SRPed_MLTV <span class="sc">~</span> SRPed_ANV <span class="sc">+</span> Centering, <span class="at">data =</span> ANCOVA_wide) </span></code></pre></div>
 <p>I will use <em>broom::augment()</em> to add fitted values and residuals to the model I just created.</p>
-<div class="sourceCode" id="cb1400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1400-1"><a href="ANCOVA.html#cb1400-1" tabindex="-1"></a>SRPed_mod_metrics <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment</span>(SRPed_mod)</span>
-<span id="cb1400-2"><a href="ANCOVA.html#cb1400-2" tabindex="-1"></a><span class="fu">head</span>(SRPed_mod_metrics)</span></code></pre></div>
+<div class="sourceCode" id="cb1394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1394-1"><a href="ANCOVA.html#cb1394-1" tabindex="-1"></a>SRPed_mod_metrics <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment</span>(SRPed_mod)</span>
+<span id="cb1394-2"><a href="ANCOVA.html#cb1394-2" tabindex="-1"></a><span class="fu">head</span>(SRPed_mod_metrics)</span></code></pre></div>
 <pre><code># A tibble: 6 × 10
   .rownames SRPed_MLTV SRPed_ANV Centering .fitted  .resid   .hat .sigma .cooksd
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
@@ -1760,15 +1758,15 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 6 16              4.5       3.5  Re           4.16  0.339  0.0751  0.458 1.61e-2
 # ℹ 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
 <p>I can now assess the normality of residuals with the Shapiro-Wilk test.</p>
-<div class="sourceCode" id="cb1402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1402-1"><a href="ANCOVA.html#cb1402-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(SRPed_mod_metrics<span class="sc">$</span>.resid)</span></code></pre></div>
+<div class="sourceCode" id="cb1396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1396-1"><a href="ANCOVA.html#cb1396-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(SRPed_mod_metrics<span class="sc">$</span>.resid)</span></code></pre></div>
 <pre><code># A tibble: 1 × 3
   variable                 statistic p.value
   &lt;chr&gt;                        &lt;dbl&gt;   &lt;dbl&gt;
 1 SRPed_mod_metrics$.resid     0.972   0.101</code></pre>
 <p>The Shapiro-Wilk test suggested that our residuals are not statistically significantly different from a normal distribution <span class="math inline">\((W = 0.972, p = 0.101)\)</span>.</p>
 <p>ANCOVA further presumes that the variances of the residuals is equal for all groups. I can check this with the Levene’s test.</p>
-<div class="sourceCode" id="cb1404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1404-1"><a href="ANCOVA.html#cb1404-1" tabindex="-1"></a>SRPed_mod_metrics<span class="sc">%&gt;%</span></span>
-<span id="cb1404-2"><a href="ANCOVA.html#cb1404-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">levene_test</span>(.resid <span class="sc">~</span> Centering)</span></code></pre></div>
+<div class="sourceCode" id="cb1398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1398-1"><a href="ANCOVA.html#cb1398-1" tabindex="-1"></a>SRPed_mod_metrics<span class="sc">%&gt;%</span></span>
+<span id="cb1398-2"><a href="ANCOVA.html#cb1398-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">levene_test</span>(.resid <span class="sc">~</span> Centering)</span></code></pre></div>
 <pre><code># A tibble: 1 × 4
     df1   df2 statistic     p
   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -1776,9 +1774,9 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 <p>A non-significant Levene’s test indicated no violation of the homogeneity of the residual variances for the groups <span class="math inline">\((F[1, 73] = 2.675, p = 0.106)\)</span>.</p>
 <p><strong>Is there evidence of outliers? Are they extreme?</strong></p>
 <p>I can identify outliers by examining the standardized (or studentized) residuals. These are interpreted as the number of standard errors away from the regression line.</p>
-<div class="sourceCode" id="cb1406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1406-1"><a href="ANCOVA.html#cb1406-1" tabindex="-1"></a>SRPed_mod_metrics <span class="sc">%&gt;%</span></span>
-<span id="cb1406-2"><a href="ANCOVA.html#cb1406-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1406-3"><a href="ANCOVA.html#cb1406-3" tabindex="-1"></a>           <span class="fu">as.data.frame</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1400-1"><a href="ANCOVA.html#cb1400-1" tabindex="-1"></a>SRPed_mod_metrics <span class="sc">%&gt;%</span></span>
+<span id="cb1400-2"><a href="ANCOVA.html#cb1400-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1400-3"><a href="ANCOVA.html#cb1400-3" tabindex="-1"></a>           <span class="fu">as.data.frame</span>()</span></code></pre></div>
 <pre><code> [1] .rownames  SRPed_MLTV SRPed_ANV  Centering  .fitted    .resid    
  [7] .hat       .sigma     .cooksd    .std.resid
 &lt;0 rows&gt; (or 0-length row.names)</code></pre>
@@ -1788,45 +1786,45 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 <p>A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, centering stage, had two levels: pre-centered, re-centered. The dependent variable was students’ evaluation of socially responsive pedagogy during the last statistics course (multivariate) and the covariate was the students’ evaluation of the same variable during the first statistics class (ANOVA).</p>
 </blockquote>
 <blockquote>
-<p>A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable, <span class="math inline">\((F[1, 71] = 1.975, p = 0.100)\)</span>. Further, the non-significant Shapiro-Wilk test of normality on the model residuals <span class="math inline">\((W = 0.972, p = 0.101)\)</span> indicated that the dependent variable was not statistically significantly different from a normal distribution and no outliers were identified. A non-significant Levene’s test indicated no violation of the homogeneity of the residual variances for all groups <span class="math inline">\((F[1, 73] = 2.675, p = 0.106)\)</span>.</p>
+<p>A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable, <span class="math inline">\((F[1, 71] = 1.975, p = 0.164)\)</span>. Further, the non-significant Shapiro-Wilk test of normality on the model residuals <span class="math inline">\((W = 0.972, p = 0.101)\)</span> indicated that the dependent variable was not statistically significantly different from a normal distribution and no outliers were identified. A non-significant Levene’s test indicated no violation of the homogeneity of the residual variances for all groups <span class="math inline">\((F[1, 73] = 2.675, p = 0.106)\)</span>.</p>
 </blockquote>
 </div>
 <div id="conduct-omnibus-anova-w-effect-size-2" class="section level4 hasAnchor" number="11.8.1.4">
 <h4><span class="header-section-number">11.8.1.4</span> Conduct omnibus ANOVA (w effect size)<a href="ANCOVA.html#conduct-omnibus-anova-w-effect-size-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb1408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1408-1"><a href="ANCOVA.html#cb1408-1" tabindex="-1"></a>ANCOVA_mod <span class="ot">&lt;-</span> ANCOVA_wide <span class="sc">%&gt;%</span></span>
-<span id="cb1408-2"><a href="ANCOVA.html#cb1408-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(SRPed_MLTV <span class="sc">~</span> SRPed_ANV <span class="sc">+</span> Centering)</span>
-<span id="cb1408-3"><a href="ANCOVA.html#cb1408-3" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">get_anova_table</span>(ANCOVA_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb1402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1402-1"><a href="ANCOVA.html#cb1402-1" tabindex="-1"></a>ANCOVA_mod <span class="ot">&lt;-</span> ANCOVA_wide <span class="sc">%&gt;%</span></span>
+<span id="cb1402-2"><a href="ANCOVA.html#cb1402-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(SRPed_MLTV <span class="sc">~</span> SRPed_ANV <span class="sc">+</span> Centering)</span>
+<span id="cb1402-3"><a href="ANCOVA.html#cb1402-3" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">get_anova_table</span>(ANCOVA_mod)</span></code></pre></div>
 <pre><code>ANOVA Table (type II tests)
 
      Effect DFn DFd      F            p p&lt;.05   ges
 1 SRPed_ANV   1  72 39.696 0.0000000209     * 0.355
 2 Centering   1  72 10.304 0.0020000000     * 0.125</code></pre>
 <blockquote>
-<p>There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course <span class="math inline">\((F [1,72] = 39.696, p &lt; .001, \eta^2 = 0.355)\)</span> as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class <span class="math inline">\((F]1,72) = 10.304, p = 0.002, \eta^2 = 0.125)\)</span>. Considering that we interpret values <span class="math inline">\(eta^2\)</span> values of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results.</p>
+<p>There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course <span class="math inline">\((F [1,72] = 39.696, p &lt; .001, \eta^2 = 0.355)\)</span> as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class <span class="math inline">\((F [1,72]) = 10.304, p = 0.002, \eta^2 = 0.125)\)</span>. Considering that we interpret values <span class="math inline">\(eta^2\)</span> values of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results.</p>
 </blockquote>
 </div>
 <div id="conduct-one-set-of-follow-up-tests-narrate-your-choice-1" class="section level4 hasAnchor" number="11.8.1.5">
 <h4><span class="header-section-number">11.8.1.5</span> Conduct one set of follow-up tests; narrate your choice<a href="ANCOVA.html#conduct-one-set-of-follow-up-tests-narrate-your-choice-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Because this design has only two levels (pre-centered, re-centered), follow-up tests will not tell us any more information. However, investigating the covariate-adjusted mean is useful.</p>
-<div class="sourceCode" id="cb1410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1410-1"><a href="ANCOVA.html#cb1410-1" tabindex="-1"></a>emmeans_MLTV <span class="ot">&lt;-</span> ANCOVA_wide<span class="sc">%&gt;%</span></span>
-<span id="cb1410-2"><a href="ANCOVA.html#cb1410-2" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">emmeans_test</span>(SRPed_MLTV <span class="sc">~</span> Centering, <span class="at">covariate =</span> SRPed_ANV, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb1410-3"><a href="ANCOVA.html#cb1410-3" tabindex="-1"></a>emmeans_MLTV</span></code></pre></div>
+<div class="sourceCode" id="cb1404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1404-1"><a href="ANCOVA.html#cb1404-1" tabindex="-1"></a>emmeans_MLTV <span class="ot">&lt;-</span> ANCOVA_wide<span class="sc">%&gt;%</span></span>
+<span id="cb1404-2"><a href="ANCOVA.html#cb1404-2" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">emmeans_test</span>(SRPed_MLTV <span class="sc">~</span> Centering, <span class="at">covariate =</span> SRPed_ANV, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb1404-3"><a href="ANCOVA.html#cb1404-3" tabindex="-1"></a>emmeans_MLTV</span></code></pre></div>
 <pre><code># A tibble: 1 × 9
   term          .y.   group1 group2    df statistic       p   p.adj p.adj.signif
 * &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
 1 SRPed_ANV*Ce… SRPe… Pre    Re        72     -3.21 0.00198 0.00198 **          </code></pre>
 <p>Not surprisingly (since this single pairwise comparison is redundant with the omnibus ANCOVA), results suggest a statistically significant difference between the pre- and re-centered stages in the multivariate class.</p>
-<p>with this script I can obtain the covariate-adjusted (i.e., estimated marginal) means.</p>
-<div class="sourceCode" id="cb1412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1412-1"><a href="ANCOVA.html#cb1412-1" tabindex="-1"></a>emmeans_list <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(emmeans_MLTV)</span>
-<span id="cb1412-2"><a href="ANCOVA.html#cb1412-2" tabindex="-1"></a>emmeans_list</span></code></pre></div>
+<p>With this script I can obtain the covariate-adjusted (i.e., estimated marginal) means.</p>
+<div class="sourceCode" id="cb1406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1406-1"><a href="ANCOVA.html#cb1406-1" tabindex="-1"></a>emmeans_list <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(emmeans_MLTV)</span>
+<span id="cb1406-2"><a href="ANCOVA.html#cb1406-2" tabindex="-1"></a>emmeans_list</span></code></pre></div>
 <pre><code># A tibble: 2 × 8
   SRPed_ANV Centering emmean     se    df conf.low conf.high method      
       &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       
 1      4.50 Pre         4.38 0.0666    72     4.25      4.51 Emmeans test
 2      4.50 Re          4.73 0.0863    72     4.56      4.90 Emmeans test</code></pre>
 <p>We can compare these to the unadjusted means:</p>
-<div class="sourceCode" id="cb1414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1414-1"><a href="ANCOVA.html#cb1414-1" tabindex="-1"></a>descripts_means <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(SRPed_MLTV <span class="sc">~</span> Centering, <span class="at">data =</span> ANCOVA_wide, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">digits=</span><span class="dv">6</span>)</span>
-<span id="cb1414-2"><a href="ANCOVA.html#cb1414-2" tabindex="-1"></a>descripts_means</span></code></pre></div>
+<div class="sourceCode" id="cb1408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1408-1"><a href="ANCOVA.html#cb1408-1" tabindex="-1"></a>descripts_means <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describeBy</span>(SRPed_MLTV <span class="sc">~</span> Centering, <span class="at">data =</span> ANCOVA_wide, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">digits=</span><span class="dv">6</span>)</span>
+<span id="cb1408-2"><a href="ANCOVA.html#cb1408-2" tabindex="-1"></a>descripts_means</span></code></pre></div>
 <pre><code>            item group1 vars  n     mean       sd median  trimmed    mad  min
 SRPed_MLTV1    1    Pre    1 47 4.381277 0.632791    4.5 4.451026 0.7413 2.33
 SRPed_MLTV2    2     Re    1 28 4.732143 0.424529    5.0 4.802083 0.0000 3.25
@@ -1902,12 +1900,12 @@ SRPed_MLTV2   5  1.75 -1.730808  2.90925 0.080228</code></pre>
 </tbody>
 </table>
 <p>And now a figure:</p>
-<div class="sourceCode" id="cb1416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1416-1"><a href="ANCOVA.html#cb1416-1" tabindex="-1"></a>emmeans_MLTV <span class="ot">&lt;-</span> emmeans_MLTV <span class="sc">%&gt;%</span></span>
-<span id="cb1416-2"><a href="ANCOVA.html#cb1416-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean_se&quot;</span>)</span>
-<span id="cb1416-3"><a href="ANCOVA.html#cb1416-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggline</span>(rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(emmeans_MLTV), <span class="at">x =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">y =</span> <span class="st">&quot;emmean&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1416-4"><a href="ANCOVA.html#cb1416-4" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb1416-5"><a href="ANCOVA.html#cb1416-5" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(emmeans_MLTV, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>, , <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.0</span>))</span></code></pre></div>
-<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1410-1"><a href="ANCOVA.html#cb1410-1" tabindex="-1"></a>emmeans_MLTV <span class="ot">&lt;-</span> emmeans_MLTV <span class="sc">%&gt;%</span></span>
+<span id="cb1410-2"><a href="ANCOVA.html#cb1410-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean_se&quot;</span>)</span>
+<span id="cb1410-3"><a href="ANCOVA.html#cb1410-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggline</span>(rstatix<span class="sc">::</span><span class="fu">get_emmeans</span>(emmeans_MLTV), <span class="at">x =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">y =</span> <span class="st">&quot;emmean&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1410-4"><a href="ANCOVA.html#cb1410-4" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb1410-5"><a href="ANCOVA.html#cb1410-5" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(emmeans_MLTV, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>, , <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.0</span>))</span></code></pre></div>
+<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
 </div>
 </div>

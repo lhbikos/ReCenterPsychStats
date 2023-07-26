@@ -329,11 +329,12 @@ The suggestions for practice in this lesson are foundational for starting work i
 
 
 
+
 ## Homeworked Example
 
 [Screencast Link]()
 
-Several elements of the practice problems (i.e., download base R and R studio, open and save an r.rmd file) are not easily demonstrated and not replicated here. These are skipped.
+Several elements of the practice problems (i.e., download base R and R studio) are not easily demonstrated and not replicated here. These are skipped.
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could simply change the seed -- again. For a greater challenge, you could adjust the simulation to have different sample sizes, means, or standard deviations.*
 
@@ -360,6 +361,7 @@ Below is code for installing three packages. Because continuous reinstallation c
 #install.packages("ggpubr")
 #install.packages("psych")
 ```
+
 ### Copy the simulation in this lesson to your .rmd file. Change the random seed and run the simulation. 
 
 
@@ -406,7 +408,6 @@ Open the .csv file from my local drive.
 ```r
 from_CSV <- read.csv("to_CSVb.csv", header = TRUE)
 ```
-
 
 Open the .rds file from my local drive.
 

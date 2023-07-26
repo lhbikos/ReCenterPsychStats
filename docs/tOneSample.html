@@ -716,7 +716,7 @@ div.csl-indent {
 <div id="tOneSample" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> One Sample <em>t</em>-tests<a href="tOneSample.html#tOneSample" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c029edfb-4215-44be-972d-af0100365877">Screencasted Lecture Link</a></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="tOneSample.html#cb216-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)  <span class="co">#eliminates scientific notation</span></span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="tOneSample.html#cb222-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)  <span class="co">#eliminates scientific notation</span></span></code></pre></div>
 <p>Researchers and program evaluators, may wish to know if their data differs from an external standard. In today’s research vignette, we will ask if the time physicians spent with their patients differed from an external benchmark. The one sample <em>t</em>-test is an appropriate tool for this type of analysis. As we work toward the one sample <em>t</em>-test we take some time to explore the standard normal curve and <em>z</em>-scores, particularly as they related to probability.</p>
 <div id="navigating-this-lesson-2" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Navigating this Lesson<a href="tOneSample.html#navigating-this-lesson-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -764,16 +764,16 @@ div.csl-indent {
 <div id="packages" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Packages<a href="tOneSample.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. Remove the hashtags for the code to work.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="tOneSample.html#cb217-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
-<span id="cb217-2"><a href="tOneSample.html#cb217-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
-<span id="cb217-3"><a href="tOneSample.html#cb217-3" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
-<span id="cb217-4"><a href="tOneSample.html#cb217-4" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
-<span id="cb217-5"><a href="tOneSample.html#cb217-5" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)}</span></span>
-<span id="cb217-6"><a href="tOneSample.html#cb217-6" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
-<span id="cb217-7"><a href="tOneSample.html#cb217-7" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span>
-<span id="cb217-8"><a href="tOneSample.html#cb217-8" tabindex="-1"></a><span class="co"># if(!require(pwr)){install.packages(&#39;pwr&#39;)}</span></span>
-<span id="cb217-9"><a href="tOneSample.html#cb217-9" tabindex="-1"></a><span class="co"># if(!require(pastecs)){install.packages(&#39;pastecs&#39;)}</span></span>
-<span id="cb217-10"><a href="tOneSample.html#cb217-10" tabindex="-1"></a><span class="co"># if(!require(rstatix)){install.packages(&#39;rstatix&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="tOneSample.html#cb223-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
+<span id="cb223-2"><a href="tOneSample.html#cb223-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
+<span id="cb223-3"><a href="tOneSample.html#cb223-3" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span>
+<span id="cb223-4"><a href="tOneSample.html#cb223-4" tabindex="-1"></a><span class="co"># if(!require(dplyr)){install.packages(&#39;dplyr&#39;)}</span></span>
+<span id="cb223-5"><a href="tOneSample.html#cb223-5" tabindex="-1"></a><span class="co"># if(!require(ggpubr)){install.packages(&#39;ggpubr&#39;)}</span></span>
+<span id="cb223-6"><a href="tOneSample.html#cb223-6" tabindex="-1"></a><span class="co"># if(!require(knitr)){install.packages(&#39;knitr&#39;)}</span></span>
+<span id="cb223-7"><a href="tOneSample.html#cb223-7" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span>
+<span id="cb223-8"><a href="tOneSample.html#cb223-8" tabindex="-1"></a><span class="co"># if(!require(pwr)){install.packages(&#39;pwr&#39;)}</span></span>
+<span id="cb223-9"><a href="tOneSample.html#cb223-9" tabindex="-1"></a><span class="co"># if(!require(pastecs)){install.packages(&#39;pastecs&#39;)}</span></span>
+<span id="cb223-10"><a href="tOneSample.html#cb223-10" tabindex="-1"></a><span class="co"># if(!require(rstatix)){install.packages(&#39;rstatix&#39;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="z-before-t" class="section level2 hasAnchor" number="4.2">
@@ -795,11 +795,11 @@ We can rearrange the formula to find what raw score corresponds with the <em>z</
 <div id="simulating-a-mini-research-vignette" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Simulating a Mini Research Vignette<a href="tOneSample.html#simulating-a-mini-research-vignette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Later in this larger section on <em>t</em>-tests we introduce a research vignette that focuses on time physicians spend with patients. Because working with the <em>z</em>-test requires a minimum sample size of 120 (and the research vignette has a sample size of 33), I will quickly create normally distributed sample of 200 with a mean of 10 minutes and a standard deviation of 2 minutes per patient. This will allow us to ask some important questions of the data.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="tOneSample.html#cb218-1" tabindex="-1"></a><span class="co"># https://r-charts.com/distribution/histogram-curves/</span></span>
-<span id="cb218-2"><a href="tOneSample.html#cb218-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220821</span>)</span>
-<span id="cb218-3"><a href="tOneSample.html#cb218-3" tabindex="-1"></a>PhysTime <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">minutes =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="tOneSample.html#cb224-1" tabindex="-1"></a><span class="co"># https://r-charts.com/distribution/histogram-curves/</span></span>
+<span id="cb224-2"><a href="tOneSample.html#cb224-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220821</span>)</span>
+<span id="cb224-3"><a href="tOneSample.html#cb224-3" tabindex="-1"></a>PhysTime <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">minutes =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>))</span></code></pre></div>
 <p>Using the <em>describe()</em> function from the <em>psych</em> package, we can see the resulting descriptive statistics.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="tOneSample.html#cb219-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(PhysTime<span class="sc">$</span>minutes)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tOneSample.html#cb225-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(PhysTime<span class="sc">$</span>minutes)</span></code></pre></div>
 <pre><code>   vars   n mean sd median trimmed mad  min   max range skew kurtosis   se
 X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code></pre>
 <p>Specifically, in this sample size of 200, our mean is 9.9 with a standard deviation of 2.0.</p>
@@ -807,21 +807,21 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code
 <div id="raw-scores-z-scores-and-proportions" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Raw Scores, <em>z</em>-scores, and Proportions<a href="tOneSample.html#raw-scores-z-scores-and-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With data in hand, let’s ask, “What is the range of time that physicians spend with patients that fall within 1 standard deviation of the mean?” We would answer this question by applying the raw score formula (<span class="math inline">\(X = \bar{X} + z(s)\)</span>) to +1 and -1 standard deviation.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="tOneSample.html#cb221-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">1</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tOneSample.html#cb227-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">1</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 7.9</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="tOneSample.html#cb223-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="tOneSample.html#cb229-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 11.9</code></pre>
 <p>Because <span class="math inline">\(\pm 1SD\)</span> covers 68% of the distribution, we now know that 68% of patients have physician visits that are between 7.9 and 11.9 minutes long.</p>
 <p>What about <span class="math inline">\(\pm 2SDs\)</span>? Similarly, we would apply the raw score formula, using 2 for the standard deviation.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tOneSample.html#cb225-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tOneSample.html#cb231-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 5.9</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tOneSample.html#cb227-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tOneSample.html#cb233-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 13.9</code></pre>
 <p>Two standard deviations around the mean captures 94.5% of patients; patients in this range receive between visits that range between 5.9 and 13.9 minutes.</p>
 <p>And what about <span class="math inline">\(\pm 3SDs\)</span>? This time we use 3 to represent the standard deviation.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="tOneSample.html#cb229-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="tOneSample.html#cb235-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 3.9</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tOneSample.html#cb231-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="tOneSample.html#cb237-1" tabindex="-1"></a><span class="fl">9.9</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> (<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 15.9</code></pre>
 <p>Three standard deviations around the mean captures 99.7% of patients; patients in this range receive between visits that range between 3.9 and 15.9 minutes.</p>
 </div>
@@ -829,32 +829,32 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code
 <h3><span class="header-section-number">4.2.3</span> Determining Probabilities<a href="tOneSample.html#determining-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can also ask questions of <strong>probability</strong>. For example, what is the probability that a physician spends at least 9.9 minutes with a patient? To answer this question we first calculate the <em>z</em>-score associated with 9.9 minutes.</p>
 <p><span class="math display">\[z=\frac{X-\bar{X}}{s}\]</span></p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tOneSample.html#cb233-1" tabindex="-1"></a>(<span class="fl">9.9</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 9.9 minutes</span></span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="tOneSample.html#cb239-1" tabindex="-1"></a>(<span class="fl">9.9</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 9.9 minutes</span></span></code></pre></div>
 <pre><code>[1] 0</code></pre>
 <p>We learn that 9.9 minutes (the mean of the distribution of raw scores) corresponds with 0 (the mean of the distribution of <em>z</em>-scores).</p>
 <p>Next, we examine a <a href="https://www.statology.org/z-table/">table of critical <em>z</em> values</a> where we see that a score of 0.0 corresponds to an area (probability) of .50. The directionality of our table is such that fewer minutes spent with patients are represented on the left (the shaded portion) and more minutes spent with patients are represented on the right (the unshaded portion). Our question asks, what is the probability that a physician spends <em>at least</em> 9.9 minutes with a patient (i.e., 9.9 or more minutes) means that we should use the area on the right. Thus, the probability that a physician spends <em>at least</em> 9.9 minutes with a patient is 50%. In this case it is also true that the probability that a physician spends 9.9 minutes or less is also 50%. This 50/50 result helps make the point that the area under the curve is equal to 1.0.</p>
 <p><img src="04-tOneSample_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 We can also obtain the probability value with the <em>pnorm()</em> function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in <em>z</em> score formula or from the raw scores.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="tOneSample.html#cb235-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">0</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="tOneSample.html#cb241-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">0</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 0.5</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="tOneSample.html#cb237-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">9.9</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="tOneSample.html#cb243-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">9.9</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 0.5</code></pre>
 <p>Next, let’s ask a question that requires careful inspection of the asymmetry of the curve. What is the probability that a physician spends less than 5 minutes with a patient? First, we calculate the corresponding <em>z</em>-score:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="tOneSample.html#cb239-1" tabindex="-1"></a><span class="co"># calculating the z-score</span></span>
-<span id="cb239-2"><a href="tOneSample.html#cb239-2" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 5 minutes</span></span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="tOneSample.html#cb245-1" tabindex="-1"></a><span class="co"># calculating the z-score</span></span>
+<span id="cb245-2"><a href="tOneSample.html#cb245-2" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 5 minutes</span></span></code></pre></div>
 <pre><code>[1] -2.45</code></pre>
 <p>Second we locate the corresponding area under the normal curve. Examining the table of critical <em>z</em>-values we see that a <em>z</em>-score of -2.45 corresponds with an area of 0.0071. We can check this with the <em>pnorm()</em> function:</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="tOneSample.html#cb241-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">2.45</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co">#using SD or standardized units</span></span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="tOneSample.html#cb247-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">2.45</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co">#using SD or standardized units</span></span></code></pre></div>
 <pre><code>[1] 0.007142811</code></pre>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="tOneSample.html#cb243-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)  <span class="co">#using raw data units</span></span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="tOneSample.html#cb249-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)  <span class="co">#using raw data units</span></span></code></pre></div>
 <pre><code>[1] 0.007142811</code></pre>
 <p><img src="04-tOneSample_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 There is a .7% (that is less than 1%) probability that physicians spend less than 5 minutes with a patient. The inverse (1 - .7) indicates that we can be 99% confident that patients receive 5 or more minutes with the ICU physician.</p>
 <p>What about operations at the other end of the curve? What is the probability that a patient receives less than 12 minutes with a physician? Again, we start with the calculation of the <em>z</em>-score.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="tOneSample.html#cb245-1" tabindex="-1"></a>(<span class="dv">12</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 12 minutes</span></span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="tOneSample.html#cb251-1" tabindex="-1"></a>(<span class="dv">12</span> <span class="sc">-</span> <span class="fl">9.9</span>)<span class="sc">/</span><span class="dv">2</span>  <span class="co">#for 12 minutes</span></span></code></pre></div>
 <pre><code>[1] 1.05</code></pre>
 <p>The 12 minute mark is 1.05 <em>SD</em> above the mean. Checking the <em>z</em> table lets us know that an area of 0.8531 corresponds with a <em>z</em>-score of 1.05.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="tOneSample.html#cb247-1" tabindex="-1"></a><span class="dv">1</span><span class="fl">-.8531</span></span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="tOneSample.html#cb253-1" tabindex="-1"></a><span class="dv">1</span><span class="fl">-.8531</span></span></code></pre></div>
 <pre><code>[1] 0.1469</code></pre>
 <p><img src="04-tOneSample_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 The probability of a physician spending 12 minutes <em>or less</em> with a patient is 85%; the probability of a physician spending 12 minutes or more with a patient is 15%.</p>
@@ -869,9 +869,9 @@ The probability of a physician spending 12 minutes <em>or less</em> with a patie
 <div id="transforming-variables-to-standard-scores" class="section level3 hasAnchor" number="4.2.5">
 <h3><span class="header-section-number">4.2.5</span> Transforming Variables to Standard Scores<a href="tOneSample.html#transforming-variables-to-standard-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>At this point, we have hand-calculated each score. It is easy to transform a set of scores into a column of <em>z</em>-scores:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="tOneSample.html#cb249-1" tabindex="-1"></a>PhysTime<span class="sc">$</span>zMinutes <span class="ot">&lt;-</span> (PhysTime<span class="sc">$</span>minutes <span class="sc">-</span> <span class="fu">mean</span>(PhysTime<span class="sc">$</span>minutes))<span class="sc">/</span><span class="fu">sd</span>(PhysTime<span class="sc">$</span>minutes)</span>
-<span id="cb249-2"><a href="tOneSample.html#cb249-2" tabindex="-1"></a></span>
-<span id="cb249-3"><a href="tOneSample.html#cb249-3" tabindex="-1"></a><span class="fu">head</span>(PhysTime)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="tOneSample.html#cb255-1" tabindex="-1"></a>PhysTime<span class="sc">$</span>zMinutes <span class="ot">&lt;-</span> (PhysTime<span class="sc">$</span>minutes <span class="sc">-</span> <span class="fu">mean</span>(PhysTime<span class="sc">$</span>minutes))<span class="sc">/</span><span class="fu">sd</span>(PhysTime<span class="sc">$</span>minutes)</span>
+<span id="cb255-2"><a href="tOneSample.html#cb255-2" tabindex="-1"></a></span>
+<span id="cb255-3"><a href="tOneSample.html#cb255-3" tabindex="-1"></a><span class="fu">head</span>(PhysTime)</span></code></pre></div>
 <pre><code>    minutes    zMinutes
 1 10.300602  0.20226980
 2 10.143081  0.12370440
@@ -880,7 +880,7 @@ The probability of a physician spending 12 minutes <em>or less</em> with a patie
 5  6.120944 -1.88237678
 6 11.793346  0.94679063</code></pre>
 <p>The transformation of scores is considered to be <em>linear</em>. That is, this 1:1 relationship would result in a correlation of 1.00. Further, the <em>z</em>-version of the variable could be used in analyses, just as the original raw score. Choices to do this are made carefully and usually done to optimize interpretation. I will demonstrate this with set of descriptive statistics produced by the <em>apa.cor.table()</em> function from the <em>apaTables</em> package.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="tOneSample.html#cb251-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(PhysTime)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="tOneSample.html#cb257-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(PhysTime)</span></code></pre></div>
 <pre><code>
 
 Means, standard deviations, and correlations with confidence intervals
@@ -938,7 +938,7 @@ Whether the test is one- or two- sided makes a difference in the strictness with
 z_{\bar{X}} =  \frac{\bar{X} - \mu_0}{\sigma / \sqrt{N}}
 \]</span>
 We have already calculated these values. But let’s calculate some of them again as a reminder:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="tOneSample.html#cb253-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(PhysTime<span class="sc">$</span>minutes)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="tOneSample.html#cb259-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(PhysTime<span class="sc">$</span>minutes)</span></code></pre></div>
 <pre><code>   vars   n mean sd median trimmed mad  min   max range skew kurtosis   se
 X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code></pre>
 <ul>
@@ -947,10 +947,10 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14</code
 <li>Standard deviation is 2</li>
 <li><em>N</em> is 200</li>
 </ul>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="tOneSample.html#cb255-1" tabindex="-1"></a>(<span class="fl">9.9</span> <span class="sc">-</span> <span class="fl">10.5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">200</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="tOneSample.html#cb261-1" tabindex="-1"></a>(<span class="fl">9.9</span> <span class="sc">-</span> <span class="fl">10.5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">200</span>))</span></code></pre></div>
 <pre><code>[1] -4.242641</code></pre>
 <p>The resulting value, <span class="math inline">\(z = -4.242\)</span> is our test value. Because this far exceeds <span class="math inline">\(\pm 1.96\)</span> we know (from memory) that there is a statistically significant effect. Just to be certain, let’s use the <em>pnorm()</em> function to obtain the <em>p</em> value.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="tOneSample.html#cb257-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">4.24</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tOneSample.html#cb263-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">4.24</span>, <span class="at">mean =</span> <span class="fl">9.9</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 0.0000000000007746685</code></pre>
 <p>Simply with these hand-calculations, we can claim that there was a statistically significant difference between the physician/patient visit times in our simulated sample data and external benchmark criteria: <span class="math inline">\(z(200) = -4.24, p &lt; .001\)</span>.</p>
 <p>The one sample <em>z</em>-test is rarely sighted in the published literature. However, a close inspection of a table of critical <em>t</em>-values, reveals that the very bottom row (i.e., when sample sizes are 120 or greater) is, in fact, the <em>z</em> criteria. Thus, it is time to learn about the one sample <em>t</em>-test.</p>
@@ -1031,16 +1031,16 @@ Although this statistic is straightforward, it is quite limited. If the research
 <div id="data-simulation" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Data Simulation<a href="tOneSample.html#data-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I re-simulated (what may seem like identical data from above)to be consistent with the journal article’s research sample of 33.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="tOneSample.html#cb259-1" tabindex="-1"></a><span class="co"># Setting the &#39;random&#39; seed ensures that everyone gets the same</span></span>
-<span id="cb259-2"><a href="tOneSample.html#cb259-2" tabindex="-1"></a><span class="co"># result, every time they rerun the analysis. My personal practice is</span></span>
-<span id="cb259-3"><a href="tOneSample.html#cb259-3" tabindex="-1"></a><span class="co"># to create a random seed that represents the day I write up the</span></span>
-<span id="cb259-4"><a href="tOneSample.html#cb259-4" tabindex="-1"></a><span class="co"># problem (in this case August, 15, 2022) When the Suggestions for</span></span>
-<span id="cb259-5"><a href="tOneSample.html#cb259-5" tabindex="-1"></a><span class="co"># Practice invite you to &#39;change the random seed,&#39; simply change this</span></span>
-<span id="cb259-6"><a href="tOneSample.html#cb259-6" tabindex="-1"></a><span class="co"># number to anything you like (maybe your birthday or today&#39;s date)</span></span>
-<span id="cb259-7"><a href="tOneSample.html#cb259-7" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220822</span>)</span>
-<span id="cb259-8"><a href="tOneSample.html#cb259-8" tabindex="-1"></a>dfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">PhysMins =</span> <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.5</span>))</span>
-<span id="cb259-9"><a href="tOneSample.html#cb259-9" tabindex="-1"></a></span>
-<span id="cb259-10"><a href="tOneSample.html#cb259-10" tabindex="-1"></a><span class="fu">head</span>(dfOneSample)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="tOneSample.html#cb265-1" tabindex="-1"></a><span class="co"># Setting the &#39;random&#39; seed ensures that everyone gets the same</span></span>
+<span id="cb265-2"><a href="tOneSample.html#cb265-2" tabindex="-1"></a><span class="co"># result, every time they rerun the analysis. My personal practice is</span></span>
+<span id="cb265-3"><a href="tOneSample.html#cb265-3" tabindex="-1"></a><span class="co"># to create a random seed that represents the day I write up the</span></span>
+<span id="cb265-4"><a href="tOneSample.html#cb265-4" tabindex="-1"></a><span class="co"># problem (in this case August, 15, 2022) When the Suggestions for</span></span>
+<span id="cb265-5"><a href="tOneSample.html#cb265-5" tabindex="-1"></a><span class="co"># Practice invite you to &#39;change the random seed,&#39; simply change this</span></span>
+<span id="cb265-6"><a href="tOneSample.html#cb265-6" tabindex="-1"></a><span class="co"># number to anything you like (maybe your birthday or today&#39;s date)</span></span>
+<span id="cb265-7"><a href="tOneSample.html#cb265-7" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220822</span>)</span>
+<span id="cb265-8"><a href="tOneSample.html#cb265-8" tabindex="-1"></a>dfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">PhysMins =</span> <span class="fu">rnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.5</span>))</span>
+<span id="cb265-9"><a href="tOneSample.html#cb265-9" tabindex="-1"></a></span>
+<span id="cb265-10"><a href="tOneSample.html#cb265-10" tabindex="-1"></a><span class="fu">head</span>(dfOneSample)</span></code></pre></div>
 <pre><code>   PhysMins
 1  9.097343
 2 11.385558
@@ -1050,25 +1050,25 @@ Although this statistic is straightforward, it is quite limited. If the research
 6  8.949883</code></pre>
 <p>A warning: this particularly analysis (the whole lesson, in fact) is “more simulated than usual” and does not represent reality. However, this research vignette lends itself for this type of question.</p>
 <p>With our data in hand, let’s examine its structure. The variable representing physician minutes represents the ratio scale of measurement and therefore should be noted as <em>num</em> (numerical) in R.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="tOneSample.html#cb261-1" tabindex="-1"></a><span class="fu">str</span>(dfOneSample)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="tOneSample.html#cb267-1" tabindex="-1"></a><span class="fu">str</span>(dfOneSample)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   33 obs. of  1 variable:
  $ PhysMins: num  9.1 11.39 8.42 8.64 12.58 ...</code></pre>
 <p>Below is code for saving the data to your computer (and then re-importing) as .csv or .rds files. I make choices about saving data based on what I wish to do with the data. If I want to manipulate the data outside of R, I will save it as a .csv file. It is easy to open .csv files in Excel. A limitation of the .csv format is that it does not save any restructuring or reformatting of variables. For this lesson, this is not an issue.</p>
 <p>Although you do not need to save nor re-import the data for this lesson, here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tOneSample.html#cb263-1" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfOneSample, file</span></span>
-<span id="cb263-2"><a href="tOneSample.html#cb263-2" tabindex="-1"></a><span class="co"># = &#39;dfOneSample.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE) at</span></span>
-<span id="cb263-3"><a href="tOneSample.html#cb263-3" tabindex="-1"></a><span class="co"># this point you could clear your environment and then bring the data</span></span>
-<span id="cb263-4"><a href="tOneSample.html#cb263-4" tabindex="-1"></a><span class="co"># back in as a .csv reading the data back in as a .csv file</span></span>
-<span id="cb263-5"><a href="tOneSample.html#cb263-5" tabindex="-1"></a><span class="co"># dfOneSample&lt;- read.csv (&#39;dfOneSample.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="tOneSample.html#cb269-1" tabindex="-1"></a><span class="co"># writing the simulated data as a .csv write.table(dfOneSample, file</span></span>
+<span id="cb269-2"><a href="tOneSample.html#cb269-2" tabindex="-1"></a><span class="co"># = &#39;dfOneSample.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE) at</span></span>
+<span id="cb269-3"><a href="tOneSample.html#cb269-3" tabindex="-1"></a><span class="co"># this point you could clear your environment and then bring the data</span></span>
+<span id="cb269-4"><a href="tOneSample.html#cb269-4" tabindex="-1"></a><span class="co"># back in as a .csv reading the data back in as a .csv file</span></span>
+<span id="cb269-5"><a href="tOneSample.html#cb269-5" tabindex="-1"></a><span class="co"># dfOneSample&lt;- read.csv (&#39;dfOneSample.csv&#39;, header = TRUE)</span></span></code></pre></div>
 <p>The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Again, you do not need to save nor re-import the data for this lesson. However, if you would like to do so, here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tOneSample.html#cb264-1" tabindex="-1"></a><span class="co"># saveRDS(dfOneSample, &#39;dfOneSample.rds&#39;) dfOneSample &lt;-</span></span>
-<span id="cb264-2"><a href="tOneSample.html#cb264-2" tabindex="-1"></a><span class="co"># readRDS(&#39;dfOneSample.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tOneSample.html#cb270-1" tabindex="-1"></a><span class="co"># saveRDS(dfOneSample, &#39;dfOneSample.rds&#39;) dfOneSample &lt;-</span></span>
+<span id="cb270-2"><a href="tOneSample.html#cb270-2" tabindex="-1"></a><span class="co"># readRDS(&#39;dfOneSample.rds&#39;)</span></span></code></pre></div>
 </div>
 <div id="quick-peek-at-the-data" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Quick Peek at the Data<a href="tOneSample.html#quick-peek-at-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plotting the data is best practice to any data analysis. Further, visualizing the data can help us with a conceptual notion of the statistic we are utilizing. The <em>ggpubr</em> package is one of my go-to-tools for quick and easy plots of data. Below, I have plotted the time-with-patient (Physician Seconds) variable and added the mean. As with most plotting packages, ggpubr will “bin” (or cluster) the data for plotting; this is especially true for data with a large number of units (a range from 220 to 1213 is quite large). The “rug = TRUE” command added a lower row of the table to identify where each of the datapoint follows.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="tOneSample.html#cb265-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(dfOneSample, <span class="at">x =</span> <span class="st">&quot;PhysMins&quot;</span>, <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb265-2"><a href="tOneSample.html#cb265-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;#993366&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="tOneSample.html#cb271-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(dfOneSample, <span class="at">x =</span> <span class="st">&quot;PhysMins&quot;</span>, <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb271-2"><a href="tOneSample.html#cb271-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;#993366&quot;</span>)</span></code></pre></div>
 <pre><code>Warning: Using `bins = 30` by default. Pick better value with the argument
 `bins`.</code></pre>
 <pre><code>Warning: `geom_vline()`: Ignoring `mapping` because `xintercept` was provided.</code></pre>
@@ -1076,11 +1076,11 @@ Although this statistic is straightforward, it is quite limited. If the research
 <p><img src="04-tOneSample_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>Although the histogram is not perfectly normal, we can see at least the suggestion of a normal distribution. With only a sample of 33, I’m encouraged.</p>
 <p>Another view of our data is with a boxplot. The box captures the middle 50% of data with the horizontal bar at the median. The whiskers extend three standard deviations around the mean with dots beyond the whiskers representing outliers. I personally like the <em>add=“jitter”</em> statement because it shows where each case falls.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="tOneSample.html#cb269-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Minutes with Patient&quot;</span>,</span>
-<span id="cb269-2"><a href="tOneSample.html#cb269-2" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="tOneSample.html#cb275-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Minutes with Patient&quot;</span>,</span>
+<span id="cb275-2"><a href="tOneSample.html#cb275-2" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
 <p><img src="04-tOneSample_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 We can further evaluate normality by obtaining the descriptive statistics with the <em>describe()</em> function from the <em>psych</em> package.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tOneSample.html#cb270-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfOneSample<span class="sc">$</span>PhysMins)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="tOneSample.html#cb276-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dfOneSample<span class="sc">$</span>PhysMins)</span></code></pre></div>
 <pre><code>   vars  n  mean  sd median trimmed  mad  min   max range skew kurtosis   se
 X1    1 33 10.01 2.7   9.78    9.96 2.44 4.92 17.41 12.49 0.36     0.04 0.47</code></pre>
 <p>Here we see that our minutes range from 4.92 to 17.41 with a mean of 10.01 and a standard deviation of 2.7. We’re ready to calculate the one sample <em>t</em>-test.</p>
@@ -1106,7 +1106,7 @@ H_A: &amp; \mu \neq 1.23
 t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 \]</span></p>
 <p>The numerator of the formula below subtracts the test value from the sample mean. The denominator involves multiplying the standard deviation by the square root of the sample size. The descriptive statistics provided the values we need to complete the analysis:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="tOneSample.html#cb272-1" tabindex="-1"></a>(<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span>(<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="tOneSample.html#cb278-1" tabindex="-1"></a>(<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span>(<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>))</span></code></pre></div>
 <pre><code>[1] 18.68047</code></pre>
 <div id="statistical-significance" class="section level4 hasAnchor" number="4.5.2.1">
 <h4><span class="header-section-number">4.5.2.1</span> Statistical Significance<a href="tOneSample.html#statistical-significance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1128,7 +1128,7 @@ In two parts, our null hypothesis (<span class="math inline">\(H_0\)</span>) sta
 </ul>
 <p>In our case, the <em>t</em> value of 18.68 far exceeded the test critical value of 2.042. We would write the statistical string this way: <em>t</em>(32) = 18.68, <em>p</em> &lt; .05.</p>
 <p>In base R, the <em>qt()</em> function will look up a test critical value. For the one-sample <em>t</em>-test, degrees of freedom (df) is equal to <span class="math inline">\(N-1\)</span>. We “divide the <em>p</em> value by 2” when we want a two-tailed test. Finally, the “lower.tail” command results in positive or negative values in the tail.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="tOneSample.html#cb274-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="tOneSample.html#cb280-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 2.036933</code></pre>
 <p>Not surprisingly, this value is quite similar to the value we saw in the table. The <em>qt()</em> function is more accurate because it used df = 32 (not rounded down to 30).</p>
 </div>
@@ -1143,12 +1143,12 @@ In two parts, our null hypothesis (<span class="math inline">\(H_0\)</span>) sta
 <p><span class="math display">\[\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})\]</span>
 Let’s calculate it:</p>
 <p>First, let’s calculate the proper <em>t</em> critical value. Even though these are identical to the one above, I am including them again. Why? Because if the original hypothesis had been one-tailed, we would need to calculate a two-tailed confidence interval; this is a placeholder to remind us.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="tOneSample.html#cb276-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="tOneSample.html#cb282-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">32</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 2.036933</code></pre>
 <p>Using the values from above, we can specify both the lower and upper bound of our confidence interval.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="tOneSample.html#cb278-1" tabindex="-1"></a>(<span class="fl">10.01</span>) <span class="sc">-</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="tOneSample.html#cb284-1" tabindex="-1"></a>(<span class="fl">10.01</span>) <span class="sc">-</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
 <pre><code>[1] 9.052637</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="tOneSample.html#cb280-1" tabindex="-1"></a>(<span class="fl">10.01</span>) <span class="sc">+</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="tOneSample.html#cb286-1" tabindex="-1"></a>(<span class="fl">10.01</span>) <span class="sc">+</span> ((<span class="fl">2.0369</span>) <span class="sc">*</span> (<span class="fl">2.7</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)))</span></code></pre></div>
 <pre><code>[1] 10.96736</code></pre>
 <p>The resulting interval is the 95% confidence interval around our sample mean. Stated another way, we are 95% certain that the true mean of time with patients in our sample ranges between 9.05 and 10.97 minutes.</p>
 </div>
@@ -1158,11 +1158,11 @@ Let’s calculate it:</p>
 <p>The <em>d</em> statistic is commonly used with <em>t</em>-tests; <em>d</em> assesses the degree that the mean on the test variable differs from the test value. Conveniently, <em>d</em> represents standard deviation units. A <em>d</em> value of 0 indicates that the mean of the sample equals the mean of the test value. As <em>d</em> moves away from 0 (in either direction), we can interpret the effect size to be stronger. Conventionally, the absolute values of .2, .5, and .8, represent small, medium, and large effect sizes, respectfully.</p>
 <p>Calculating the <em>d</em> statistic is easy. Here are two equivalent formulas:</p>
 <p><span class="math display">\[d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}\]</span></p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="tOneSample.html#cb282-1" tabindex="-1"></a><span class="co"># First formula</span></span>
-<span id="cb282-2"><a href="tOneSample.html#cb282-2" tabindex="-1"></a>(<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span><span class="fl">2.7</span></span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="tOneSample.html#cb288-1" tabindex="-1"></a><span class="co"># First formula</span></span>
+<span id="cb288-2"><a href="tOneSample.html#cb288-2" tabindex="-1"></a>(<span class="fl">10.01</span> <span class="sc">-</span> <span class="fl">1.23</span>)<span class="sc">/</span><span class="fl">2.7</span></span></code></pre></div>
 <pre><code>[1] 3.251852</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="tOneSample.html#cb284-1" tabindex="-1"></a><span class="co"># Second formula</span></span>
-<span id="cb284-2"><a href="tOneSample.html#cb284-2" tabindex="-1"></a><span class="fl">18.68047</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="tOneSample.html#cb290-1" tabindex="-1"></a><span class="co"># Second formula</span></span>
+<span id="cb290-2"><a href="tOneSample.html#cb290-2" tabindex="-1"></a><span class="fl">18.68047</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">33</span>)</span></code></pre></div>
 <pre><code>[1] 3.251852</code></pre>
 <p>The value of 3.25 indicates that the test value is approximately more than three standard deviations away from the sample mean. This is a very large difference.</p>
 </div>
@@ -1194,9 +1194,9 @@ All statistical tests have some assumptions about the data. The one-sample <em>t
 <div id="is-the-test-variable-normally-distributed" class="section level4 hasAnchor" number="4.6.1.1">
 <h4><span class="header-section-number">4.6.1.1</span> Is the Test Variable Normally Distributed?<a href="tOneSample.html#is-the-test-variable-normally-distributed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Thus, we need only to assess whether the test variable is normally distributed. The <em>pastecs::stat.desc()</em> function will provide all of this information in one test. We need only add the specification, “norm=TRUE”.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="tOneSample.html#cb286-1" tabindex="-1"></a><span class="co"># pastecs is the package, stat.desc is the function we point it to</span></span>
-<span id="cb286-2"><a href="tOneSample.html#cb286-2" tabindex="-1"></a><span class="co"># the data and then add the norm=TRUE command</span></span>
-<span id="cb286-3"><a href="tOneSample.html#cb286-3" tabindex="-1"></a>pastecs<span class="sc">::</span><span class="fu">stat.desc</span>(dfOneSample, <span class="at">norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="tOneSample.html#cb292-1" tabindex="-1"></a><span class="co"># pastecs is the package, stat.desc is the function we point it to</span></span>
+<span id="cb292-2"><a href="tOneSample.html#cb292-2" tabindex="-1"></a><span class="co"># the data and then add the norm=TRUE command</span></span>
+<span id="cb292-3"><a href="tOneSample.html#cb292-3" tabindex="-1"></a>pastecs<span class="sc">::</span><span class="fu">stat.desc</span>(dfOneSample, <span class="at">norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>                 PhysMins
 nbr.val       33.00000000
 nbr.null       0.00000000
@@ -1241,7 +1241,7 @@ normtest.p     0.68198838</code></pre>
 <li>the third element identifies the population/comparison mean</li>
 <li>specifying “detailed = TRUE” will produce the 95% confidence interval around the mean (i.e., in this case the average amount of time that physicians in our sample spent with their patients)</li>
 </ul>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="tOneSample.html#cb288-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfOneSample, PhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">mu =</span> <span class="fl">1.23</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="tOneSample.html#cb294-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(dfOneSample, PhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">mu =</span> <span class="fl">1.23</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 12
   estimate .y.   group1 group2     n statistic        p    df conf.low conf.high
 *    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -1249,14 +1249,14 @@ normtest.p     0.68198838</code></pre>
 # ℹ 2 more variables: method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
 <p>The results we obtained are identical to those we hand-calculated. The <em>rstatix</em> output also includes confidence intervals. In the case of the one-sample <em>t</em>-test, this represent the 95% confidence interval around the mean. That is, we are 95% confident that the true mean of the minutes that physicians in our sample spent with patients falls between 9.05 and 10.97. I appreciate that the <em>rstatix</em> output reminds us that we are using a <em>t</em>-test and that it is a two-sided hypothesis.</p>
 <p>Knowing what the confidence interval is “around” can be tricky. Whatever the “topic” of the confidence interval will be exactly in the middle of (most) confidence intervals. We can check ourselves by adding the two ends of the confidence interval and dividing by two.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="tOneSample.html#cb290-1" tabindex="-1"></a>(<span class="fl">9.050577</span> <span class="sc">+</span> <span class="fl">10.96577</span>)<span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="tOneSample.html#cb296-1" tabindex="-1"></a>(<span class="fl">9.050577</span> <span class="sc">+</span> <span class="fl">10.96577</span>)<span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>[1] 10.00817</code></pre>
 <p>As we see, 10.008 is the reported as the “estimate.” We know from our earlier analysis of the descriptive statistics that this is the value of the mean. If we are uncertain, we can check:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="tOneSample.html#cb292-1" tabindex="-1"></a><span class="fu">mean</span>(dfOneSample<span class="sc">$</span>PhysMins)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="tOneSample.html#cb298-1" tabindex="-1"></a><span class="fu">mean</span>(dfOneSample<span class="sc">$</span>PhysMins)</span></code></pre></div>
 <pre><code>[1] 10.00817</code></pre>
 <p>From these results, we can begin to create our <em>t</em> string: <span class="math inline">\(t(32) = 18.67, p &lt; .001, CI95(9.05, 10.97)\)</span></p>
 <p>With a separate command, we can use the <em>rstatix</em> package to obtain the effect size, <em>d</em>. With the exception of including the “ref.group = NULL” statement, the script is quite similar.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="tOneSample.html#cb294-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(dfOneSample, PhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">ref.group =</span> <span class="cn">NULL</span>, <span class="at">mu =</span> <span class="fl">1.23</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="tOneSample.html#cb300-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(dfOneSample, PhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">ref.group =</span> <span class="cn">NULL</span>, <span class="at">mu =</span> <span class="fl">1.23</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 6
   .y.      group1 group2     effsize     n magnitude
 * &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;ord&gt;    
@@ -1273,8 +1273,8 @@ normtest.p     0.68198838</code></pre>
 <blockquote>
 <p>A one-sample <em>t</em>-test was used to evaluate whether average amount of time that a sample of physicians (palliative care physicians in the ICU) enrolled in a research study on patient communication was statistically significantly different from the amount of time that ICU physicians spend with their patients, in general. The sample mean 10.008 (<em>SD</em> = 2.7016) was significantly different from 1.23, <span class="math inline">\(t(32) = 18.672, p &lt; .001., CI95(9.05, 10.97), d = 3.25\)</span>. The effect size, (<em>d</em>) indicates a very large effect. Figure 1 illustrates the distribution of time physicians in the research study spent with their patients. The results support the conclusion that physicians in the research study spent more time with their patients than ICU physicians in general.</p>
 </blockquote>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="tOneSample.html#cb296-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Physician Minutes&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb296-2"><a href="tOneSample.html#cb296-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Time with Patients (in minutes)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="tOneSample.html#cb302-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(dfOneSample<span class="sc">$</span>PhysMins, <span class="at">ylab =</span> <span class="st">&quot;Physician Minutes&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb302-2"><a href="tOneSample.html#cb302-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Physician Time with Patients (in minutes)&quot;</span>)</span></code></pre></div>
 <p><img src="04-tOneSample_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>Reflecting on these results, I must remind readers that this simulated data that is even further extrapolated. Although “data” informed both the amount of time spent by the physicians in the research study and data used as the test value, there are probably many reasons that the test value was not a good choice. For example, even though both contexts were ICU, palliative physicians may have a different standard of care than ICU physicians “in general.”</p>
 </div>
@@ -1292,8 +1292,8 @@ normtest.p     0.68198838</code></pre>
 </ul>
 <p>In this script, we must specify <em>all-but-one</em> parameter; the remaining parameter must be defined as NULL. R will calculate the value for the missing parameter.</p>
 <p>When we conduct a “power analysis” (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, “power=NULL”. Using the data from our results, we learn from this first run, that our statistical power was 1.00. That is, given the value of the mean difference relative to the pooled standard deviation we had a 100% chance of detecting a statistically significant effect if there was one.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="tOneSample.html#cb297-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">3.25</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
-<span id="cb297-2"><a href="tOneSample.html#cb297-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="tOneSample.html#cb303-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">3.25</span>, <span class="at">n =</span> <span class="dv">33</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
+<span id="cb303-2"><a href="tOneSample.html#cb303-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      One-sample t test power calculation 
 
@@ -1303,8 +1303,8 @@ normtest.p     0.68198838</code></pre>
           power = 1
     alternative = two.sided</code></pre>
 <p>Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set <em>n</em> to <em>NULL</em>.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="tOneSample.html#cb299-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">3.25</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
-<span id="cb299-2"><a href="tOneSample.html#cb299-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="tOneSample.html#cb305-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">3.25</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
+<span id="cb305-2"><a href="tOneSample.html#cb305-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      One-sample t test power calculation 
 
@@ -1314,22 +1314,22 @@ normtest.p     0.68198838</code></pre>
           power = 0.8
     alternative = two.sided</code></pre>
 <p>Shockingly, this suggests that a sample size of 3 could result in a statistically significant result. Let’s see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="tOneSample.html#cb301-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220822</span>)</span>
-<span id="cb301-2"><a href="tOneSample.html#cb301-2" tabindex="-1"></a>rdfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rPhysMins =</span> <span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.5</span>))</span>
-<span id="cb301-3"><a href="tOneSample.html#cb301-3" tabindex="-1"></a></span>
-<span id="cb301-4"><a href="tOneSample.html#cb301-4" tabindex="-1"></a><span class="fu">head</span>(rdfOneSample)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="tOneSample.html#cb307-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">220822</span>)</span>
+<span id="cb307-2"><a href="tOneSample.html#cb307-2" tabindex="-1"></a>rdfOneSample <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rPhysMins =</span> <span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.5</span>))</span>
+<span id="cb307-3"><a href="tOneSample.html#cb307-3" tabindex="-1"></a></span>
+<span id="cb307-4"><a href="tOneSample.html#cb307-4" tabindex="-1"></a><span class="fu">head</span>(rdfOneSample)</span></code></pre></div>
 <pre><code>  rPhysMins
 1  9.097343
 2 11.385558
 3  8.424395</code></pre>
 <p>With the newly simulated data, I will run the one-sample <em>t</em>-test:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="tOneSample.html#cb303-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(rdfOneSample, rPhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">mu =</span> <span class="fl">1.23</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="tOneSample.html#cb309-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(rdfOneSample, rPhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">mu =</span> <span class="fl">1.23</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 12
   estimate .y.     group1 group2     n statistic      p    df conf.low conf.high
 *    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 1     9.64 rPhysM… 1      null …     3      9.38 0.0112     2     5.78      13.5
 # ℹ 2 more variables: method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="tOneSample.html#cb305-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(rdfOneSample, rPhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">ref.group =</span> <span class="cn">NULL</span>, <span class="at">mu =</span> <span class="fl">1.23</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="tOneSample.html#cb311-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(rdfOneSample, rPhysMins <span class="sc">~</span> <span class="dv">1</span>, <span class="at">ref.group =</span> <span class="cn">NULL</span>, <span class="at">mu =</span> <span class="fl">1.23</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 6
   .y.       group1 group2     effsize     n magnitude
 * &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;ord&gt;    
@@ -1482,22 +1482,23 @@ normtest.p     0.68198838</code></pre>
 <div id="homeworked-example-2" class="section level2 hasAnchor" number="4.10">
 <h2><span class="header-section-number">4.10</span> Homeworked Example<a href="tOneSample.html#homeworked-example-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="">Screencast Link</a></p>
+<p>For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the <a href="ReCintro">introduction</a>.</p>
 <p>The one-sample test comes in handy when you want to compare your dataset to an external benchmark or standard. It can be a real helper in program evaluation</p>
-<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could select a different course (i.e., Multivariate or Psychometrics) and/or compare the mean for the ORG department (<span class="math inline">\(M = 4.1\)</span>).</em></p>
 <div id="working-the-problem-with-r-and-r-packages-1" class="section level3 hasAnchor" number="4.10.1">
 <h3><span class="header-section-number">4.10.1</span> Working the Problem with R and R Packages<a href="tOneSample.html#working-the-problem-with-r-and-r-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis" class="section level4 hasAnchor" number="4.10.1.1">
 <h4><span class="header-section-number">4.10.1.1</span> Narrate the research vignette, describing the variables and their role in the analysis<a href="tOneSample.html#narrate-the-research-vignette-describing-the-variables-and-their-role-in-the-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>From my course evaluation data, I want to ask the question, “Are ratings for the Overall Instructor for the ANOVA course evals statistically significantly different from the overall departmental averages for that same item?” In CPY the overall average for that specific item is 4.4.</p>
+<p><em>If you wanted to use this example and dataset as a basis for a homework assignment, you could select a different course (i.e., Multivariate or Psychometrics) and/or compare the mean for the ORG department (<span class="math inline">\(M = 4.1\)</span>).</em></p>
 </div>
 <div id="simulate-or-import-and-format-data" class="section level4 hasAnchor" number="4.10.1.2">
 <h4><span class="header-section-number">4.10.1.2</span> Simulate (or import) and format data<a href="tOneSample.html#simulate-or-import-and-format-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The BIGdf is from a project that evaluated three changes to our own stats courses, over time. As a whole, this dataset violates a ton of assumptions of ANOVA, but we can create a tiny df and use it for demonstrations.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="tOneSample.html#cb307-1" tabindex="-1"></a>ReCdf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
+<p>First I will open the entire dataset.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="tOneSample.html#cb313-1" tabindex="-1"></a>ReCdf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>Let’s first trim it to just students who took ANOVA</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="tOneSample.html#cb308-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="tOneSample.html#cb314-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
 <p>And further trim to our variable of interest</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="tOneSample.html#cb309-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="tOneSample.html#cb315-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -1508,15 +1509,15 @@ normtest.p     0.68198838</code></pre>
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="tOneSample.html#cb311-1" tabindex="-1"></a>tiny1 <span class="ot">&lt;-</span> JustANOVA <span class="sc">%&gt;%</span></span>
-<span id="cb311-2"><a href="tOneSample.html#cb311-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span> (OvInstructor)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="tOneSample.html#cb317-1" tabindex="-1"></a>tiny1 <span class="ot">&lt;-</span> JustANOVA <span class="sc">%&gt;%</span></span>
+<span id="cb317-2"><a href="tOneSample.html#cb317-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span> (OvInstructor)</span></code></pre></div>
 <p>And further trim to non-missing data</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="tOneSample.html#cb312-1" tabindex="-1"></a>tiny1 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tiny1)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="tOneSample.html#cb318-1" tabindex="-1"></a>tiny1 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tiny1)</span></code></pre></div>
 <ul>
 <li>Is the sample variable on a continuous scale of measurement and formatted as <em>num</em> or <em>int</em> in R?</li>
 <li>Is the external score evaluated on the same continuous scale?</li>
 </ul>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="tOneSample.html#cb313-1" tabindex="-1"></a><span class="fu">str</span>(tiny1<span class="sc">$</span>OvInstructor)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="tOneSample.html#cb319-1" tabindex="-1"></a><span class="fu">str</span>(tiny1<span class="sc">$</span>OvInstructor)</span></code></pre></div>
 <pre><code> int [1:113] 5 4 4 3 5 3 5 4 3 5 ...</code></pre>
 <p>Yes. The format for the OvInstructor variable is integer (which is numerical); the overall course evaluation is on an equivalent (1 to 5) scale.</p>
 </div>
@@ -1526,7 +1527,7 @@ normtest.p     0.68198838</code></pre>
 <li>Are the skew and kurtosis values within the range expected?</li>
 <li>Does the distribution of the variable differ significantly from a normal distribution?</li>
 </ul>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="tOneSample.html#cb315-1" tabindex="-1"></a>pastecs<span class="sc">::</span><span class="fu">stat.desc</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">norm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="tOneSample.html#cb321-1" tabindex="-1"></a>pastecs<span class="sc">::</span><span class="fu">stat.desc</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">norm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>               nbr.val               nbr.null                 nbr.na 
 113.000000000000000000   0.000000000000000000   0.000000000000000000 
                    min                    max                  range 
@@ -1543,12 +1544,12 @@ normtest.p     0.68198838</code></pre>
   0.772806906937811733   0.000000000006195409 </code></pre>
 <p>The skew value is -9.84 and far exceeds the absolute value of 3. The skew.2SE is -2.164 (larger than the absolute value of 2.0) is consistent. Thus, we might have some concern about skew.</p>
 <p>The kurtosis value is -7.410 and is below the absolute value of 10. The kurt.2SE value is -8.212 which is substantially larger than the absolute value of 2.0. Thus, we are similarly concerned about kurtosis.</p>
-<p>The Shapiro wilk test value is 7.728 (<em>p</em> &lt; 0.001). This significant value suggests a distribution that is not normally distributed.</p>
+<p>The Shapiro Wilk test value is 7.728 (<em>p</em> &lt; 0.001). This significant value suggests a distribution that is not normally distributed.</p>
 </div>
 <div id="conduct-a-one-sample-t-test-with-an-effect-size" class="section level4 hasAnchor" number="4.10.1.4">
 <h4><span class="header-section-number">4.10.1.4</span> Conduct a one sample <em>t</em> test (with an effect size)<a href="tOneSample.html#conduct-a-one-sample-t-test-with-an-effect-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>First, comparison to CPY</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="tOneSample.html#cb317-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(tiny1, OvInstructor <span class="sc">~</span> <span class="dv">1</span>, <span class="at">mu =</span> <span class="fl">4.4</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>We will compare the overall instructor from the data to the CPY average of 4.4.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="tOneSample.html#cb323-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>(tiny1, OvInstructor <span class="sc">~</span> <span class="dv">1</span>, <span class="at">mu =</span> <span class="fl">4.4</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 12
   estimate .y.     group1 group2     n statistic      p    df conf.low conf.high
 *    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -1557,8 +1558,8 @@ normtest.p     0.68198838</code></pre>
 <p>We can begin to create our <em>t</em> string:</p>
 <p><span class="math inline">\(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)\)</span></p>
 <p>Let’s interpret the results. With 112 degrees of freedom, our <em>t</em> value is -2.245. Because the <em>p</em> value is less than .05, this is statistically significant. This means that my course evaluations in ANOVA were statistically significantly lower than the average for CPY. We are 95% confident that the true course evaluation mean (for my courses) fell between 3.997 and 4.374.</p>
-<p>Let’s calculate the effect size. we will use a Cohen’s <em>d</em> which is interpreted in standard deviation units.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="tOneSample.html#cb319-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(tiny1, OvInstructor <span class="sc">~</span> <span class="dv">1</span>, <span class="at">ref.group =</span> <span class="cn">NULL</span>, <span class="at">mu =</span> <span class="fl">4.4</span>)</span></code></pre></div>
+<p>Let’s calculate the effect size. We will use a Cohen’s <em>d</em> which is interpreted in standard deviation units.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="tOneSample.html#cb325-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(tiny1, OvInstructor <span class="sc">~</span> <span class="dv">1</span>, <span class="at">ref.group =</span> <span class="cn">NULL</span>, <span class="at">mu =</span> <span class="fl">4.4</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 × 6
   .y.          group1 group2     effsize     n magnitude
 * &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;ord&gt;    
@@ -1575,17 +1576,15 @@ normtest.p     0.68198838</code></pre>
 <li>Grammar/style</li>
 </ul>
 <blockquote>
-<p>A one-sample <em>t</em>-test was used to evaluate whether the <em>overall instructor</em> course evaluation ratings from the ANOVA courses were statistically significant from the departmental averages for the Clinical (CPY; <em>M</em> = 4.4) department. The sample mean for the ANOVA course evaluations was 4.186 (<em>SD</em> = 1.013).Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, <span class="math inline">\(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)\)</span>, the effect size was quite small <span class="math inline">\((d = -0.211)\)</span>. A distribution of the ANOVA course ratings is found in Figure 1.</p>
+<p>A one-sample <em>t</em>-test was used to evaluate whether the <em>overall instructor</em> course evaluation ratings from the ANOVA courses were statistically significant different from the departmental averages for the Clinical (CPY; <em>M</em> = 4.4) department. The sample mean for the ANOVA course evaluations was 4.186 (<em>SD</em> = 1.013). Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, <span class="math inline">\(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)\)</span>, the effect size was quite small <span class="math inline">\((d = -0.211)\)</span>. A distribution of the ANOVA course ratings is found in Figure 1.</p>
 </blockquote>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="tOneSample.html#cb321-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">ylab =</span> <span class="st">&quot;Course Evaluation Ratings&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb321-2"><a href="tOneSample.html#cb321-2" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Overall Instructor Ratings for ANOVA&quot;</span>)</span></code></pre></div>
-<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="tOneSample.html#cb327-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">ylab =</span> <span class="st">&quot;Course Evaluation Ratings&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Overall Instructor Ratings for ANOVA&quot;</span>)</span></code></pre></div>
+<p><img src="04-tOneSample_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size" class="section level4 hasAnchor" number="4.10.1.6">
 <h4><span class="header-section-number">4.10.1.6</span> Conduct power analyses to determine the power of the current study and a recommended sample size<a href="tOneSample.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A quick reminder that the <em>d</em> in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen’s d that we just calculated.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="tOneSample.html#cb322-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>  , <span class="at">n =</span> <span class="dv">113</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb322-2"><a href="tOneSample.html#cb322-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="tOneSample.html#cb328-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>  , <span class="at">n =</span> <span class="dv">113</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      One-sample t test power calculation 
 
@@ -1595,8 +1594,7 @@ normtest.p     0.68198838</code></pre>
           power = 0.604022
     alternative = two.sided</code></pre>
 <p>For the comparison to the CPY departmental average, power was 60%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60% chance of detecting a statistically significant effect if there was one.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="tOneSample.html#cb324-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb324-2"><a href="tOneSample.html#cb324-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="tOneSample.html#cb330-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      One-sample t test power calculation 
 
@@ -1605,7 +1603,7 @@ normtest.p     0.68198838</code></pre>
       sig.level = 0.05
           power = 0.8
     alternative = two.sided</code></pre>
-<p>For the CPY departmental comparison, the recommended sample size would be 178. This means there would need to be 178 individuals to find a statistically significant difference, if one existed.</p>
+<p>For the CPY departmental comparison, the recommended sample size would be 178. This means there would need to be 178 individuals to find a statistically significant difference, if one existed (at a power of 80%).</p>
 </div>
 </div>
 <div id="hand-calculations-1" class="section level3 hasAnchor" number="4.10.2">
@@ -1622,28 +1620,36 @@ H_A: &amp; \mu \neq 4.4
 <div id="calculate-the-mean-of-your-sample-identify-the-mean-of-your-benchmarking-sample" class="section level4 hasAnchor" number="4.10.2.2">
 <h4><span class="header-section-number">4.10.2.2</span> Calculate the mean of your sample; identify the mean of your benchmarking sample<a href="tOneSample.html#calculate-the-mean-of-your-sample-identify-the-mean-of-your-benchmarking-sample" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I will continue with the <em>tiny1</em> dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="tOneSample.html#cb326-1" tabindex="-1"></a><span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="tOneSample.html#cb332-1" tabindex="-1"></a><span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] 4.185841</code></pre>
 <p>The mean of my benchmarking sample is 4.4. This number is a “departmental standard” and did not need to be calculated by me for this purpose.</p>
 </div>
 <div id="using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared" class="section level4 hasAnchor" number="4.10.2.3">
 <h4><span class="header-section-number">4.10.2.3</span> Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared<a href="tOneSample.html#using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="tOneSample.html#cb328-1" tabindex="-1"></a><span class="co">#first the mean</span></span>
-<span id="cb328-2"><a href="tOneSample.html#cb328-2" tabindex="-1"></a>tiny1<span class="sc">$</span>M_OvInst <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb328-3"><a href="tOneSample.html#cb328-3" tabindex="-1"></a><span class="co">#second the mean deviation</span></span>
-<span id="cb328-4"><a href="tOneSample.html#cb328-4" tabindex="-1"></a>tiny1<span class="sc">$</span>Mdev_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>OvInstructor<span class="sc">-</span>tiny1<span class="sc">$</span>M_OvInst)</span>
-<span id="cb328-5"><a href="tOneSample.html#cb328-5" tabindex="-1"></a><span class="co">#third the mean deviation squared</span></span>
-<span id="cb328-6"><a href="tOneSample.html#cb328-6" tabindex="-1"></a>tiny1<span class="sc">$</span>mdev2_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>Mdev_OvInst  <span class="sc">*</span> tiny1<span class="sc">$</span>Mdev_OvInst)</span>
-<span id="cb328-7"><a href="tOneSample.html#cb328-7" tabindex="-1"></a><span class="co">#fourth the variance</span></span>
-<span id="cb328-8"><a href="tOneSample.html#cb328-8" tabindex="-1"></a>var_OvInst <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny1<span class="sc">$</span>mdev2_OvInst <span class="sc">/</span>((<span class="fu">nrow</span>(tiny1) <span class="sc">-</span> <span class="dv">1</span>)))</span>
-<span id="cb328-9"><a href="tOneSample.html#cb328-9" tabindex="-1"></a>var_OvInst</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="tOneSample.html#cb334-1" tabindex="-1"></a><span class="co">#first the mean</span></span>
+<span id="cb334-2"><a href="tOneSample.html#cb334-2" tabindex="-1"></a>tiny1<span class="sc">$</span>M_OvInst <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb334-3"><a href="tOneSample.html#cb334-3" tabindex="-1"></a><span class="co">#second the mean deviation</span></span>
+<span id="cb334-4"><a href="tOneSample.html#cb334-4" tabindex="-1"></a>tiny1<span class="sc">$</span>Mdev_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>OvInstructor<span class="sc">-</span>tiny1<span class="sc">$</span>M_OvInst)</span>
+<span id="cb334-5"><a href="tOneSample.html#cb334-5" tabindex="-1"></a><span class="co">#third the mean deviation squared</span></span>
+<span id="cb334-6"><a href="tOneSample.html#cb334-6" tabindex="-1"></a>tiny1<span class="sc">$</span>mdev2_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>Mdev_OvInst  <span class="sc">*</span> tiny1<span class="sc">$</span>Mdev_OvInst)</span>
+<span id="cb334-7"><a href="tOneSample.html#cb334-7" tabindex="-1"></a><span class="co">#fourth the variance</span></span>
+<span id="cb334-8"><a href="tOneSample.html#cb334-8" tabindex="-1"></a>var_OvInst <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny1<span class="sc">$</span>mdev2_OvInst <span class="sc">/</span>((<span class="fu">nrow</span>(tiny1) <span class="sc">-</span> <span class="dv">1</span>)))</span>
+<span id="cb334-9"><a href="tOneSample.html#cb334-9" tabindex="-1"></a>var_OvInst</span></code></pre></div>
 <pre><code>[1] 1.027655</code></pre>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="tOneSample.html#cb330-1" tabindex="-1"></a><span class="co">#finally the standard deviation</span></span>
-<span id="cb330-2"><a href="tOneSample.html#cb330-2" tabindex="-1"></a>sd_OvInst <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_OvInst)</span>
-<span id="cb330-3"><a href="tOneSample.html#cb330-3" tabindex="-1"></a>sd_OvInst</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="tOneSample.html#cb336-1" tabindex="-1"></a><span class="co">#finally the standard deviation</span></span>
+<span id="cb336-2"><a href="tOneSample.html#cb336-2" tabindex="-1"></a>sd_OvInst <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_OvInst)</span>
+<span id="cb336-3"><a href="tOneSample.html#cb336-3" tabindex="-1"></a>sd_OvInst</span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="tOneSample.html#cb338-1" tabindex="-1"></a><span class="fu">head</span>(tiny1)</span></code></pre></div>
+<pre><code>  OvInstructor M_OvInst Mdev_OvInst mdev2_OvInst
+1            5 4.185841   0.8141593   0.66285535
+2            4 4.185841  -0.1858407   0.03453677
+3            4 4.185841  -0.1858407   0.03453677
+4            3 4.185841  -1.1858407   1.40621818
+5            5 4.185841   0.8141593   0.66285535
+6            3 4.185841  -1.1858407   1.40621818</code></pre>
 <p>The variance is 1.028; the standard deviation is 1.014.</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="tOneSample.html#cb332-1" tabindex="-1"></a><span class="fu">sd</span>(tiny1<span class="sc">$</span>OvInstructor)<span class="co">#checking my work</span></span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="tOneSample.html#cb340-1" tabindex="-1"></a><span class="fu">sd</span>(tiny1<span class="sc">$</span>OvInstructor)<span class="co">#checking my work</span></span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
 </div>
 <div id="calculate-the-one-sample-t-test" class="section level4 hasAnchor" number="4.10.2.4">
@@ -1652,13 +1658,13 @@ H_A: &amp; \mu \neq 4.4
 <p><span class="math display">\[
 t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 \]</span></p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="tOneSample.html#cb334-1" tabindex="-1"></a>(<span class="fl">4.185841</span> <span class="sc">-</span> <span class="fl">4.4</span>)<span class="sc">/</span>(<span class="fl">1.013733</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="tOneSample.html#cb342-1" tabindex="-1"></a>(<span class="fl">4.185841</span> <span class="sc">-</span> <span class="fl">4.4</span>)<span class="sc">/</span>(<span class="fl">1.013733</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>))</span></code></pre></div>
 <pre><code>[1] -2.245701</code></pre>
 </div>
 <div id="identify-the-degrees-of-freedom-associated-with-your-t-test" class="section level4 hasAnchor" number="4.10.2.5">
 <h4><span class="header-section-number">4.10.2.5</span> Identify the degrees of freedom associated with your <em>t</em>-test<a href="tOneSample.html#identify-the-degrees-of-freedom-associated-with-your-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For the one-sample <em>t</em>-test, <span class="math inline">\(df = N - 1\)</span>. In our case</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="tOneSample.html#cb336-1" tabindex="-1"></a><span class="dv">113</span> <span class="sc">-</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="tOneSample.html#cb344-1" tabindex="-1"></a><span class="dv">113</span> <span class="sc">-</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>[1] 112</code></pre>
 </div>
 <div id="locate-the-test-critical-value-for-your-test" class="section level4 hasAnchor" number="4.10.2.6">
@@ -1666,8 +1672,8 @@ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 <p>We can use a table of critical values for the one sample <em>t</em>-test: <a href="https://www.statology.org/t-distribution-table/" class="uri">https://www.statology.org/t-distribution-table/</a></p>
 <p>A 2-tail test, when p - .05, with ~120 individuals is 1.98</p>
 <p>Or, this code:</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="tOneSample.html#cb338-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">113</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>[1] 1.98118</code></pre>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="tOneSample.html#cb346-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">112</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>[1] 1.981372</code></pre>
 </div>
 </div>
 <div id="is-the-t-test-statistically-significant-why-or-why-not" class="section level3 hasAnchor" number="4.10.3">
@@ -1677,21 +1683,21 @@ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 <h4><span class="header-section-number">4.10.3.1</span> What is the confidence interval around your sample mean?<a href="tOneSample.html#what-is-the-confidence-interval-around-your-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Here is a reminder of the formula:</p>
 <p><span class="math display">\[\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})\]</span></p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="tOneSample.html#cb340-1" tabindex="-1"></a>(<span class="fl">4.185841</span>) <span class="sc">-</span> ((<span class="fl">1.98118</span>) <span class="sc">*</span> (<span class="fl">1.013733</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="tOneSample.html#cb348-1" tabindex="-1"></a>(<span class="fl">4.185841</span>) <span class="sc">-</span> ((<span class="fl">1.98118</span>) <span class="sc">*</span> (<span class="fl">1.013733</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>)))</span></code></pre></div>
 <pre><code>[1] 3.996908</code></pre>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="tOneSample.html#cb342-1" tabindex="-1"></a>(<span class="fl">4.185841</span>) <span class="sc">+</span> ((<span class="fl">1.98118</span>) <span class="sc">*</span> (<span class="fl">1.013733</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="tOneSample.html#cb350-1" tabindex="-1"></a>(<span class="fl">4.185841</span>) <span class="sc">+</span> ((<span class="fl">1.98118</span>) <span class="sc">*</span> (<span class="fl">1.013733</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>)))</span></code></pre></div>
 <pre><code>[1] 4.374774</code></pre>
-<p>We are 95% confident that the sample mean for the student in the ANOVA classes is between 3.997, 4.375.</p>
+<p>We are 95% confident that the sample mean for the students in the ANOVA classes is between 3.997, 4.375.</p>
 </div>
 <div id="calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test" class="section level4 hasAnchor" number="4.10.3.2">
 <h4><span class="header-section-number">4.10.3.2</span> Calculate the effect size (i.e., Cohen’s <em>d</em> associated with your <em>t</em>-test<a href="tOneSample.html#calculate-the-effect-size-i.e.-cohens-d-associated-with-your-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A reminder of the two formula:</p>
 <p><span class="math display">\[d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}\]</span></p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="tOneSample.html#cb344-1" tabindex="-1"></a><span class="co"># First formula</span></span>
-<span id="cb344-2"><a href="tOneSample.html#cb344-2" tabindex="-1"></a>(<span class="fl">4.185841</span> <span class="sc">-</span> <span class="fl">4.4</span>)<span class="sc">/</span><span class="fl">1.013733</span></span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="tOneSample.html#cb352-1" tabindex="-1"></a><span class="co"># First formula</span></span>
+<span id="cb352-2"><a href="tOneSample.html#cb352-2" tabindex="-1"></a>(<span class="fl">4.185841</span> <span class="sc">-</span> <span class="fl">4.4</span>)<span class="sc">/</span><span class="fl">1.013733</span></span></code></pre></div>
 <pre><code>[1] -0.2112578</code></pre>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="tOneSample.html#cb346-1" tabindex="-1"></a><span class="co"># Second formula</span></span>
-<span id="cb346-2"><a href="tOneSample.html#cb346-2" tabindex="-1"></a><span class="sc">-</span><span class="fl">2.245701</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="tOneSample.html#cb354-1" tabindex="-1"></a><span class="co"># Second formula</span></span>
+<span id="cb354-2"><a href="tOneSample.html#cb354-2" tabindex="-1"></a><span class="sc">-</span><span class="fl">2.245701</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">113</span>)</span></code></pre></div>
 <pre><code>[1] -0.2112578</code></pre>
 
 </div>

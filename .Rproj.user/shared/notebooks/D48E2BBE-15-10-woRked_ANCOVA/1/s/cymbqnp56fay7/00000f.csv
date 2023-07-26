@@ -1,0 +1,5 @@
+"0","emmeans_MLTV <- emmeans_MLTV %>%"
+"0","    rstatix::add_xy_position(x = ""Centering"", fun = ""mean_se"")"
+"0","ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = ""Centering"", y = ""emmean"", title = ""Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings"") +"
+"0","    geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +"
+"0","    ggpubr::stat_pvalue_manual(emmeans_MLTV, hide.ns = TRUE, tip.length = 0.02, , y.position = c(5.0))"
