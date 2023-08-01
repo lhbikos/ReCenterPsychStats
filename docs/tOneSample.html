@@ -1413,14 +1413,14 @@ normtest.p     0.68198838</code></pre>
 </table>
 <table>
 <colgroup>
-<col width="58%" />
-<col width="20%" />
+<col width="57%" />
+<col width="21%" />
 <col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Hand Calculations</th>
-<th align="center">Points Poss</th>
+<th align="center">Points Possible</th>
 <th align="left">Points Earned</th>
 </tr>
 </thead>
@@ -1428,52 +1428,52 @@ normtest.p     0.68198838</code></pre>
 <tr class="odd">
 <td align="left">1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">2. Calculate the mean of your sample; identify the mean of your benchmarking sample</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">3. Using the steps from the previous lesson, calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared</td>
 <td align="center">6</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">4. Calculate the one-sample <em>t</em>-test</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">5. Identify the degrees of freedom associated with your <em>t</em>-test</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">6. Locate the test critical value for your test</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">7. Is the <em>t</em>-test statistically significant? Why or why not?</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">8. Calculate the confidence interval around your sample mean</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">9. Calculate the effect size (i.e., Cohen’s <em>d</em> associated with your <em>t</em>-test</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Totals</strong></td>
 <td align="center">24</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 </tbody>
 </table>
@@ -1496,7 +1496,7 @@ normtest.p     0.68198838</code></pre>
 <p>First I will open the entire dataset.</p>
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="tOneSample.html#cb313-1" tabindex="-1"></a>ReCdf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>Let’s first trim it to just students who took ANOVA</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="tOneSample.html#cb314-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="tOneSample.html#cb314-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>)</span></code></pre></div>
 <p>And further trim to our variable of interest</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="tOneSample.html#cb315-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -1510,7 +1510,7 @@ normtest.p     0.68198838</code></pre>
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="tOneSample.html#cb317-1" tabindex="-1"></a>tiny1 <span class="ot">&lt;-</span> JustANOVA <span class="sc">%&gt;%</span></span>
-<span id="cb317-2"><a href="tOneSample.html#cb317-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span> (OvInstructor)</span></code></pre></div>
+<span id="cb317-2"><a href="tOneSample.html#cb317-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(OvInstructor)</span></code></pre></div>
 <p>And further trim to non-missing data</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="tOneSample.html#cb318-1" tabindex="-1"></a>tiny1 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tiny1)</span></code></pre></div>
 <ul>
@@ -1527,7 +1527,7 @@ normtest.p     0.68198838</code></pre>
 <li>Are the skew and kurtosis values within the range expected?</li>
 <li>Does the distribution of the variable differ significantly from a normal distribution?</li>
 </ul>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="tOneSample.html#cb321-1" tabindex="-1"></a>pastecs<span class="sc">::</span><span class="fu">stat.desc</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">norm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="tOneSample.html#cb321-1" tabindex="-1"></a>pastecs<span class="sc">::</span><span class="fu">stat.desc</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>               nbr.val               nbr.null                 nbr.na 
 113.000000000000000000   0.000000000000000000   0.000000000000000000 
                    min                    max                  range 
@@ -1578,13 +1578,15 @@ normtest.p     0.68198838</code></pre>
 <blockquote>
 <p>A one-sample <em>t</em>-test was used to evaluate whether the <em>overall instructor</em> course evaluation ratings from the ANOVA courses were statistically significant different from the departmental averages for the Clinical (CPY; <em>M</em> = 4.4) department. The sample mean for the ANOVA course evaluations was 4.186 (<em>SD</em> = 1.013). Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, <span class="math inline">\(t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)\)</span>, the effect size was quite small <span class="math inline">\((d = -0.211)\)</span>. A distribution of the ANOVA course ratings is found in Figure 1.</p>
 </blockquote>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="tOneSample.html#cb327-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">ylab =</span> <span class="st">&quot;Course Evaluation Ratings&quot;</span>, <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Overall Instructor Ratings for ANOVA&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="tOneSample.html#cb327-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">ylab =</span> <span class="st">&quot;Course Evaluation Ratings&quot;</span>,</span>
+<span id="cb327-2"><a href="tOneSample.html#cb327-2" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Overall Instructor Ratings for ANOVA&quot;</span>)</span></code></pre></div>
 <p><img src="04-tOneSample_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size" class="section level4 hasAnchor" number="4.10.1.6">
 <h4><span class="header-section-number">4.10.1.6</span> Conduct power analyses to determine the power of the current study and a recommended sample size<a href="tOneSample.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A quick reminder that the <em>d</em> in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen’s d that we just calculated.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="tOneSample.html#cb328-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>  , <span class="at">n =</span> <span class="dv">113</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="tOneSample.html#cb328-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>, <span class="at">n =</span> <span class="dv">113</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
+<span id="cb328-2"><a href="tOneSample.html#cb328-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      One-sample t test power calculation 
 
@@ -1594,7 +1596,8 @@ normtest.p     0.68198838</code></pre>
           power = 0.604022
     alternative = two.sided</code></pre>
 <p>For the comparison to the CPY departmental average, power was 60%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60% chance of detecting a statistically significant effect if there was one.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="tOneSample.html#cb330-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="tOneSample.html#cb330-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="sc">-</span><span class="fl">0.211</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
+<span id="cb330-2"><a href="tOneSample.html#cb330-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      One-sample t test power calculation 
 
@@ -1620,23 +1623,23 @@ H_A: &amp; \mu \neq 4.4
 <div id="calculate-the-mean-of-your-sample-identify-the-mean-of-your-benchmarking-sample" class="section level4 hasAnchor" number="4.10.2.2">
 <h4><span class="header-section-number">4.10.2.2</span> Calculate the mean of your sample; identify the mean of your benchmarking sample<a href="tOneSample.html#calculate-the-mean-of-your-sample-identify-the-mean-of-your-benchmarking-sample" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I will continue with the <em>tiny1</em> dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="tOneSample.html#cb332-1" tabindex="-1"></a><span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="tOneSample.html#cb332-1" tabindex="-1"></a><span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] 4.185841</code></pre>
 <p>The mean of my benchmarking sample is 4.4. This number is a “departmental standard” and did not need to be calculated by me for this purpose.</p>
 </div>
 <div id="using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared" class="section level4 hasAnchor" number="4.10.2.3">
 <h4><span class="header-section-number">4.10.2.3</span> Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared<a href="tOneSample.html#using-the-steps-from-the-previous-lesson-hand-calculate-the-standard-deviation-of-your-sample.-this-should-involve-variables-representing-the-mean-mean-deviation-and-mean-deviation-squared" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="tOneSample.html#cb334-1" tabindex="-1"></a><span class="co">#first the mean</span></span>
-<span id="cb334-2"><a href="tOneSample.html#cb334-2" tabindex="-1"></a>tiny1<span class="sc">$</span>M_OvInst <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb334-3"><a href="tOneSample.html#cb334-3" tabindex="-1"></a><span class="co">#second the mean deviation</span></span>
-<span id="cb334-4"><a href="tOneSample.html#cb334-4" tabindex="-1"></a>tiny1<span class="sc">$</span>Mdev_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>OvInstructor<span class="sc">-</span>tiny1<span class="sc">$</span>M_OvInst)</span>
-<span id="cb334-5"><a href="tOneSample.html#cb334-5" tabindex="-1"></a><span class="co">#third the mean deviation squared</span></span>
-<span id="cb334-6"><a href="tOneSample.html#cb334-6" tabindex="-1"></a>tiny1<span class="sc">$</span>mdev2_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>Mdev_OvInst  <span class="sc">*</span> tiny1<span class="sc">$</span>Mdev_OvInst)</span>
-<span id="cb334-7"><a href="tOneSample.html#cb334-7" tabindex="-1"></a><span class="co">#fourth the variance</span></span>
-<span id="cb334-8"><a href="tOneSample.html#cb334-8" tabindex="-1"></a>var_OvInst <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny1<span class="sc">$</span>mdev2_OvInst <span class="sc">/</span>((<span class="fu">nrow</span>(tiny1) <span class="sc">-</span> <span class="dv">1</span>)))</span>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="tOneSample.html#cb334-1" tabindex="-1"></a><span class="co"># first the mean</span></span>
+<span id="cb334-2"><a href="tOneSample.html#cb334-2" tabindex="-1"></a>tiny1<span class="sc">$</span>M_OvInst <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny1<span class="sc">$</span>OvInstructor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb334-3"><a href="tOneSample.html#cb334-3" tabindex="-1"></a><span class="co"># second the mean deviation</span></span>
+<span id="cb334-4"><a href="tOneSample.html#cb334-4" tabindex="-1"></a>tiny1<span class="sc">$</span>Mdev_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>OvInstructor <span class="sc">-</span> tiny1<span class="sc">$</span>M_OvInst)</span>
+<span id="cb334-5"><a href="tOneSample.html#cb334-5" tabindex="-1"></a><span class="co"># third the mean deviation squared</span></span>
+<span id="cb334-6"><a href="tOneSample.html#cb334-6" tabindex="-1"></a>tiny1<span class="sc">$</span>mdev2_OvInst <span class="ot">&lt;-</span> (tiny1<span class="sc">$</span>Mdev_OvInst <span class="sc">*</span> tiny1<span class="sc">$</span>Mdev_OvInst)</span>
+<span id="cb334-7"><a href="tOneSample.html#cb334-7" tabindex="-1"></a><span class="co"># fourth the variance</span></span>
+<span id="cb334-8"><a href="tOneSample.html#cb334-8" tabindex="-1"></a>var_OvInst <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny1<span class="sc">$</span>mdev2_OvInst<span class="sc">/</span>((<span class="fu">nrow</span>(tiny1) <span class="sc">-</span> <span class="dv">1</span>)))</span>
 <span id="cb334-9"><a href="tOneSample.html#cb334-9" tabindex="-1"></a>var_OvInst</span></code></pre></div>
 <pre><code>[1] 1.027655</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="tOneSample.html#cb336-1" tabindex="-1"></a><span class="co">#finally the standard deviation</span></span>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="tOneSample.html#cb336-1" tabindex="-1"></a><span class="co"># finally the standard deviation</span></span>
 <span id="cb336-2"><a href="tOneSample.html#cb336-2" tabindex="-1"></a>sd_OvInst <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_OvInst)</span>
 <span id="cb336-3"><a href="tOneSample.html#cb336-3" tabindex="-1"></a>sd_OvInst</span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
@@ -1649,7 +1652,7 @@ H_A: &amp; \mu \neq 4.4
 5            5 4.185841   0.8141593   0.66285535
 6            3 4.185841  -1.1858407   1.40621818</code></pre>
 <p>The variance is 1.028; the standard deviation is 1.014.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="tOneSample.html#cb340-1" tabindex="-1"></a><span class="fu">sd</span>(tiny1<span class="sc">$</span>OvInstructor)<span class="co">#checking my work</span></span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="tOneSample.html#cb340-1" tabindex="-1"></a><span class="fu">sd</span>(tiny1<span class="sc">$</span>OvInstructor)  <span class="co">#checking my work</span></span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
 </div>
 <div id="calculate-the-one-sample-t-test" class="section level4 hasAnchor" number="4.10.2.4">

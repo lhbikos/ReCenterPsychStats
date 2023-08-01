@@ -1749,50 +1749,50 @@ that could have caused the sample correlation (Cumming, 2014).
 <tr class="odd">
 <td align="left">1. Create a df with 3 continuously scaled variables of interest</td>
 <td align="center">3</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">2. Produce descriptive statistics</td>
 <td align="center">3</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
 <td align="left">3. Produce SPLOM/pairs.panels</td>
 <td align="center">3</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">4. Produce an apaTables matrix</td>
 <td align="center">3</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
 <td align="left">5. Produce an APA Style write-up of the preliminary analyses</td>
 <td align="center">5</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">6. Explanation/discussion with a grader</td>
 <td align="center">5</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
 <td align="left">**Totals</td>
 <td align="center">22</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="58%" />
-<col width="20%" />
+<col width="56%" />
+<col width="22%" />
 <col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Hand Calculations</th>
-<th align="center">Points Poss</th>
+<th align="center">Points Possible</th>
 <th align="left">Points Earned</th>
 </tr>
 </thead>
@@ -1800,57 +1800,57 @@ that could have caused the sample correlation (Cumming, 2014).
 <tr class="odd">
 <td align="left">1. Create a variable that represents the mean.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">2. Create a variable that represents the mean deviation.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
 <td align="left">3. What is the value of the <em>sum</em> of mean deviations?</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">4. Create a variable that represents the absolute mean deviation. What is the <em>sum</em> of the absolute mean deviation? What is the value of the <em>mean</em> of the absolute mean deviation? What does this value tell you?</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
 <td align="left">5. Create a variable that represents the mean deviation squared.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">6. What are the values of the sum of squared deviations around the mean <span class="math inline">\(SS\)</span>, variance <span class="math inline">\(s^2\)</span>, and standard deviation (<span class="math inline">\(s\)</span>)?</td>
 <td align="center">3</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
 <td align="left">7. Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable.</td>
 <td align="center">5</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">8. Create a variable that represents the <em>cross-product</em> (of the mean deviations). What is the sum of these cross-products?</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
 <td align="left">9. Calculate the value of their covariance.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="even">
 <td align="left">8. Calculate value of correlation coefficient.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 <tr class="odd">
-<td align="left">**Totals</td>
+<td align="left"><strong>Totals</strong></td>
 <td align="center">26</td>
-<td align="left"></td>
+<td align="left">_______</td>
 </tr>
 </tbody>
 </table>
@@ -1870,14 +1870,14 @@ that could have caused the sample correlation (Cumming, 2014).
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="preliminaries.html#cb167-1" tabindex="-1"></a>ReCdf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>Recall that students (represented by the <em>deID</em> variable) could contribute up to three course evaluations (i.e., ANOVA, psychometrics, multivariate) each. In many statistics, repeated observations creates dependencies that need to be accounted for statistically.</p>
 <p>To avoid this dependency and to practice an R skill, let’s first filter the data, selecting only those students who took ANOVA.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="preliminaries.html#cb168-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="preliminaries.html#cb168-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>)</span></code></pre></div>
 </div>
 <div id="create-a-df-with-3-continuously-scaled-variables-of-interest-1" class="section level4 hasAnchor" number="3.11.1.2">
 <h4><span class="header-section-number">3.11.1.2</span> Create a df with 3 continuously scaled variables of interest<a href="preliminaries.html#create-a-df-with-3-continuously-scaled-variables-of-interest-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The assignment requires that we downsize to three variables. We could pick any three.</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="preliminaries.html#cb169-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb169-2"><a href="preliminaries.html#cb169-2" tabindex="-1"></a>tiny3 <span class="ot">&lt;-</span> JustANOVA <span class="sc">%&gt;%</span></span>
-<span id="cb169-3"><a href="preliminaries.html#cb169-3" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span> (OvInstructor, OvCourse, MyContribution)</span></code></pre></div>
+<span id="cb169-3"><a href="preliminaries.html#cb169-3" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(OvInstructor, OvCourse, MyContribution)</span></code></pre></div>
 </div>
 <div id="produce-descriptive-statistics" class="section level4 hasAnchor" number="3.11.1.3">
 <h4><span class="header-section-number">3.11.1.3</span> Produce descriptive statistics<a href="preliminaries.html#produce-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1934,21 +1934,21 @@ that could have caused the sample correlation (Cumming, 2014).
 <p>I am going to continue with the <em>tiny3</em> dataset I used when I worked the problem with R and R packages.</p>
 <p>If you need to reimport data, here is a quick recap of the code explained earlier.</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="preliminaries.html#cb175-1" tabindex="-1"></a>ReCdf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span>
-<span id="cb175-2"><a href="preliminaries.html#cb175-2" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span>
+<span id="cb175-2"><a href="preliminaries.html#cb175-2" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(ReCdf, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>)</span>
 <span id="cb175-3"><a href="preliminaries.html#cb175-3" tabindex="-1"></a></span>
 <span id="cb175-4"><a href="preliminaries.html#cb175-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb175-5"><a href="preliminaries.html#cb175-5" tabindex="-1"></a>tiny3 <span class="ot">&lt;-</span> JustANOVA <span class="sc">%&gt;%</span></span>
-<span id="cb175-6"><a href="preliminaries.html#cb175-6" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span> (OvInstructor, OvCourse, MyContribution)</span></code></pre></div>
+<span id="cb175-6"><a href="preliminaries.html#cb175-6" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(OvInstructor, OvCourse, MyContribution)</span></code></pre></div>
 <p>To avoid problems in the code we are used that is caused by missingness, we will eliminate any rows with missing data.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="preliminaries.html#cb176-1" tabindex="-1"></a>tiny3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tiny3)</span></code></pre></div>
 <div id="create-a-variable-that-represents-the-mean." class="section level4 hasAnchor" number="3.11.2.1">
 <h4><span class="header-section-number">3.11.2.1</span> Create a variable that represents the mean.<a href="preliminaries.html#create-a-variable-that-represents-the-mean." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I will start with the OvInstructor variable. Inspect the dataframe to see that this new variable exists.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="preliminaries.html#cb177-1" tabindex="-1"></a>tiny3<span class="sc">$</span>M_OvI <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny3<span class="sc">$</span>OvInstructor, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="preliminaries.html#cb177-1" tabindex="-1"></a>tiny3<span class="sc">$</span>M_OvI <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny3<span class="sc">$</span>OvInstructor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="create-a-variable-that-represents-the-mean-deviation." class="section level4 hasAnchor" number="3.11.2.2">
 <h4><span class="header-section-number">3.11.2.2</span> Create a variable that represents the mean deviation.<a href="preliminaries.html#create-a-variable-that-represents-the-mean-deviation." class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="preliminaries.html#cb178-1" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_OvI <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>OvInstructor<span class="sc">-</span>tiny3<span class="sc">$</span>M_OvI)</span>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="preliminaries.html#cb178-1" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_OvI <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>OvInstructor <span class="sc">-</span> tiny3<span class="sc">$</span>M_OvI)</span>
 <span id="cb178-2"><a href="preliminaries.html#cb178-2" tabindex="-1"></a><span class="fu">head</span>(tiny3)</span></code></pre></div>
 <pre><code>  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI
 1            5        3              4 4.185841  0.8141593
@@ -2014,29 +2014,29 @@ that could have caused the sample correlation (Cumming, 2014).
 <span id="cb192-2"><a href="preliminaries.html#cb192-2" tabindex="-1"></a>var_OvI</span></code></pre></div>
 <pre><code>[1] 1.027655</code></pre>
 <p>Here’s how to do it with the numbers that I calculated:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="preliminaries.html#cb194-1" tabindex="-1"></a><span class="fl">115.0973</span><span class="sc">/</span>(<span class="dv">113-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="preliminaries.html#cb194-1" tabindex="-1"></a><span class="fl">115.0973</span><span class="sc">/</span>(<span class="dv">113</span> <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[1] 1.027654</code></pre>
 <p>Checking my work with the <em>var</em> function from base R. If it’s wrong, I need to rework some of the previous steps.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="preliminaries.html#cb196-1" tabindex="-1"></a><span class="fu">var</span>(tiny3<span class="sc">$</span>OvInstructor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co">#checking my work</span></span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="preliminaries.html#cb196-1" tabindex="-1"></a><span class="fu">var</span>(tiny3<span class="sc">$</span>OvInstructor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co">#checking my work</span></span></code></pre></div>
 <pre><code>[1] 1.027655</code></pre>
 <p><strong>What is the value of the standard deviation (<span class="math inline">\(s\)</span>)?</strong></p>
 <p>There are two ways to calculate it with basic code; and then we can check it with more code from base R.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="preliminaries.html#cb198-1" tabindex="-1"></a>sd_OvI <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_OvI)<span class="co">#calculating with the object I created</span></span>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="preliminaries.html#cb198-1" tabindex="-1"></a>sd_OvI <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_OvI)  <span class="co">#calculating with the object I created</span></span>
 <span id="cb198-2"><a href="preliminaries.html#cb198-2" tabindex="-1"></a>sd_OvI</span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="preliminaries.html#cb200-1" tabindex="-1"></a><span class="fu">sqrt</span> (<span class="fl">1.027655</span>)<span class="co">#calculated with the actual numbers</span></span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="preliminaries.html#cb200-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">1.027655</span>)  <span class="co">#calculated with the actual numbers</span></span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="preliminaries.html#cb202-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>OvInstructor)<span class="co">#checking my work with the code from baseR</span></span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="preliminaries.html#cb202-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>OvInstructor)  <span class="co">#checking my work with the code from baseR</span></span></code></pre></div>
 <pre><code>[1] 1.013733</code></pre>
 </div>
 <div id="using-the-same-general-approach-calculate-the-mean-deviation-and-standard-deviation-for-a-second-continuously-scaled-variable." class="section level4 hasAnchor" number="3.11.2.6">
 <h4><span class="header-section-number">3.11.2.6</span> Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable.<a href="preliminaries.html#using-the-same-general-approach-calculate-the-mean-deviation-and-standard-deviation-for-a-second-continuously-scaled-variable." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>My second variable is MyContribution</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="preliminaries.html#cb204-1" tabindex="-1"></a><span class="co">#first the mean</span></span>
-<span id="cb204-2"><a href="preliminaries.html#cb204-2" tabindex="-1"></a>tiny3<span class="sc">$</span>M_MyC <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny3<span class="sc">$</span>MyContribution, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb204-3"><a href="preliminaries.html#cb204-3" tabindex="-1"></a><span class="co">#second the mean deviation</span></span>
-<span id="cb204-4"><a href="preliminaries.html#cb204-4" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_MyC <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>MyContribution<span class="sc">-</span>tiny3<span class="sc">$</span>M_MyC)</span>
-<span id="cb204-5"><a href="preliminaries.html#cb204-5" tabindex="-1"></a><span class="co">#third the mean deviation squared</span></span>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="preliminaries.html#cb204-1" tabindex="-1"></a><span class="co"># first the mean</span></span>
+<span id="cb204-2"><a href="preliminaries.html#cb204-2" tabindex="-1"></a>tiny3<span class="sc">$</span>M_MyC <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiny3<span class="sc">$</span>MyContribution, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb204-3"><a href="preliminaries.html#cb204-3" tabindex="-1"></a><span class="co"># second the mean deviation</span></span>
+<span id="cb204-4"><a href="preliminaries.html#cb204-4" tabindex="-1"></a>tiny3<span class="sc">$</span>Mdev_MyC <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>MyContribution <span class="sc">-</span> tiny3<span class="sc">$</span>M_MyC)</span>
+<span id="cb204-5"><a href="preliminaries.html#cb204-5" tabindex="-1"></a><span class="co"># third the mean deviation squared</span></span>
 <span id="cb204-6"><a href="preliminaries.html#cb204-6" tabindex="-1"></a>tiny3<span class="sc">$</span>mdev2_MyC <span class="ot">&lt;-</span> (tiny3<span class="sc">$</span>Mdev_MyC <span class="sc">*</span> tiny3<span class="sc">$</span>Mdev_MyC)</span>
 <span id="cb204-7"><a href="preliminaries.html#cb204-7" tabindex="-1"></a><span class="fu">head</span>(tiny3)</span></code></pre></div>
 <pre><code>  OvInstructor OvCourse MyContribution    M_OvI   Mdev_OvI abslt_mOvI
@@ -2053,15 +2053,15 @@ that could have caused the sample correlation (Cumming, 2014).
 4 1.40621818 3.964602 0.03539823 0.001253035
 5 0.66285535 3.964602 1.03539823 1.072049495
 6 1.40621818 3.964602 0.03539823 0.001253035</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="preliminaries.html#cb206-1" tabindex="-1"></a><span class="co">#fourth the variance</span></span>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="preliminaries.html#cb206-1" tabindex="-1"></a><span class="co"># fourth the variance</span></span>
 <span id="cb206-2"><a href="preliminaries.html#cb206-2" tabindex="-1"></a>var_MyC <span class="ot">&lt;-</span> <span class="fu">sum</span>(tiny3<span class="sc">$</span>mdev2_MyC<span class="sc">/</span>((<span class="fu">nrow</span>(tiny3) <span class="sc">-</span> <span class="dv">1</span>)))</span>
 <span id="cb206-3"><a href="preliminaries.html#cb206-3" tabindex="-1"></a>var_MyC</span></code></pre></div>
 <pre><code>[1] 0.6951643</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="preliminaries.html#cb208-1" tabindex="-1"></a><span class="co">#finally the standard deviation</span></span>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="preliminaries.html#cb208-1" tabindex="-1"></a><span class="co"># finally the standard deviation</span></span>
 <span id="cb208-2"><a href="preliminaries.html#cb208-2" tabindex="-1"></a>sd_MyC <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_MyC)</span>
-<span id="cb208-3"><a href="preliminaries.html#cb208-3" tabindex="-1"></a>sd_MyC<span class="co">#checking my work</span></span></code></pre></div>
+<span id="cb208-3"><a href="preliminaries.html#cb208-3" tabindex="-1"></a>sd_MyC  <span class="co">#checking my work</span></span></code></pre></div>
 <pre><code>[1] 0.8337652</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="preliminaries.html#cb210-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>MyContribution)<span class="co">#checking my work</span></span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="preliminaries.html#cb210-1" tabindex="-1"></a><span class="fu">sd</span>(tiny3<span class="sc">$</span>MyContribution)  <span class="co">#checking my work</span></span></code></pre></div>
 <pre><code>[1] 0.8337652</code></pre>
 </div>
 <div id="create-a-variable-that-represents-the-cross-product-of-the-mean-deviations.-what-is-the-sum-of-these-cross-products" class="section level4 hasAnchor" number="3.11.2.7">

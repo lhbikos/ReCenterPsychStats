@@ -2079,14 +2079,14 @@ NOTE: n is number in each group</code></pre>
 </table>
 <table>
 <colgroup>
-<col width="58%" />
-<col width="20%" />
+<col width="57%" />
+<col width="21%" />
 <col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Hand Calculations</th>
-<th align="center">Points Poss</th>
+<th align="center">Points Possible</th>
 <th align="left">Points Earned</th>
 </tr>
 </thead>
@@ -2094,52 +2094,60 @@ NOTE: n is number in each group</code></pre>
 <tr class="odd">
 <td align="left">1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">2. Calculate sums of squares total (SST). Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">3. Calculate the sums of squares for the model (SSM). A necessary step in this equation is to calculate group means.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">4. Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">5. Calculate the mean square model, mean square residual, and <em>F</em>-test.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">6. What are the degrees of freedom for your numerator and denominator?</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">7. Locate the test critical value for your one-way ANOVA.</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">8. Is the <em>F</em>-test statistically significant? Why or why not?</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">9. Calculate and interpret the <span class="math inline">\(\eta^2\)</span> effect size</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
+</tr>
+<tr class="even">
+<td align="left">10. Assemble the results into a statistical string.</td>
+<td align="center">4</td>
+<td align="left">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">28</td>
+<td align="left">_____</td>
 </tr>
 </tbody>
 </table>
-<p>|10. Assemble the results into a statistical string. |4 | |
-|<strong>Totals* </strong> | 28 | |</p>
 </div>
 </div>
 <div id="homeworked-example-5" class="section level2 hasAnchor" number="7.10">
@@ -2163,33 +2171,37 @@ NOTE: n is number in each group</code></pre>
 <h4><span class="header-section-number">7.10.1.2</span> Simulate (or import) and format data.<a href="oneway.html#simulate-or-import-and-format-data." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="oneway.html#cb725-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>This df includes course evaluations from ANOVA, multivariate, and psychometrics. To include up to three evaluations per student would violate the assumption of independence, therefore, I will only select the students in ANOVA course.</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="oneway.html#cb726-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="oneway.html#cb726-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>)</span></code></pre></div>
 <p>Let’s first create the “Stage” variable that represents the three levels of transition.</p>
 <p>The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.</p>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="oneway.html#cb727-1" tabindex="-1"></a>big<span class="sc">$</span>Stage <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(big<span class="sc">$</span>ProgramYear, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Second&quot;</span>, <span class="st">&quot;Transition&quot;</span>, <span class="st">&quot;First&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Stable&quot;</span>, <span class="st">&quot;Transition&quot;</span>, <span class="st">&quot;Resettled&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="oneway.html#cb727-1" tabindex="-1"></a>big<span class="sc">$</span>Stage <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(big<span class="sc">$</span>ProgramYear, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Second&quot;</span>, <span class="st">&quot;Transition&quot;</span>,</span>
+<span id="cb727-2"><a href="oneway.html#cb727-2" tabindex="-1"></a>    <span class="st">&quot;First&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Stable&quot;</span>, <span class="st">&quot;Transition&quot;</span>, <span class="st">&quot;Resettled&quot;</span>))</span></code></pre></div>
 <p>Let’s check the structure:</p>
 <div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="oneway.html#cb728-1" tabindex="-1"></a><span class="fu">str</span>(big<span class="sc">$</span>Stage)</span></code></pre></div>
 <pre><code> Factor w/ 3 levels &quot;Stable&quot;,&quot;Transition&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...</code></pre>
 <p>The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="oneway.html#cb730-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
-<span id="cb730-2"><a href="oneway.html#cb730-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ClearResponsibilities&#39;</span>, <span class="st">&#39;EffectiveAnswers&#39;</span>,<span class="st">&#39;Feedback&#39;</span>, <span class="st">&#39;ClearOrganization&#39;</span>,<span class="st">&#39;ClearPresentation&#39;</span>)</span>
-<span id="cb730-3"><a href="oneway.html#cb730-3" tabindex="-1"></a></span>
-<span id="cb730-4"><a href="oneway.html#cb730-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
-<span id="cb730-5"><a href="oneway.html#cb730-5" tabindex="-1"></a><span class="co">#big$TradPed &lt;- sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span>
-<span id="cb730-6"><a href="oneway.html#cb730-6" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], .<span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="oneway.html#cb730-1" tabindex="-1"></a><span class="co"># Creates a list of the variables that belong to that scale</span></span>
+<span id="cb730-2"><a href="oneway.html#cb730-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>, <span class="st">&quot;Feedback&quot;</span>,</span>
+<span id="cb730-3"><a href="oneway.html#cb730-3" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)</span>
+<span id="cb730-4"><a href="oneway.html#cb730-4" tabindex="-1"></a></span>
+<span id="cb730-5"><a href="oneway.html#cb730-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
+<span id="cb730-6"><a href="oneway.html#cb730-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness big$TradPed &lt;-</span></span>
+<span id="cb730-7"><a href="oneway.html#cb730-7" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span>
+<span id="cb730-8"><a href="oneway.html#cb730-8" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
 <p>With our variables properly formatted, let’s trim it to just the variables we need.</p>
-<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="oneway.html#cb731-1" tabindex="-1"></a>OneWay_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span> (big, Stage, TradPed))</span></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="oneway.html#cb731-1" tabindex="-1"></a>OneWay_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(big, Stage, TradPed))</span></code></pre></div>
 <p>Although we would handle missing data more carefully in a “real study,” I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).</p>
 <div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="oneway.html#cb732-1" tabindex="-1"></a>OneWay_df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(OneWay_df)</span></code></pre></div>
 <p>Although the assignment doesn’t require it, I will make a quick plot to provide a visualizaiton of our analysis.</p>
 <div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="oneway.html#cb733-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(OneWay_df, <span class="at">x =</span> <span class="st">&quot;Stage&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TradPed&quot;</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>,</span>
-<span id="cb733-2"><a href="oneway.html#cb733-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Stage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition&quot;</span>) <span class="co">#</span></span></code></pre></div>
+<span id="cb733-2"><a href="oneway.html#cb733-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Stage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition&quot;</span>)  <span class="co">#</span></span></code></pre></div>
 <p><img src="07-OnewayANOVA_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 </div>
 <div id="evaluate-statistical-assumptions." class="section level4 hasAnchor" number="7.10.1.3">
 <h4><span class="header-section-number">7.10.1.3</span> Evaluate statistical assumptions.<a href="oneway.html#evaluate-statistical-assumptions." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Is the dependent variable normally distributed across levels of the factor?</strong></p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="oneway.html#cb734-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">data =</span> OneWay_df, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="oneway.html#cb734-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">data =</span> OneWay_df,</span>
+<span id="cb734-2"><a href="oneway.html#cb734-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>         item     group1 vars  n  mean    sd median trimmed   mad min max range
 TradPed1    1     Stable    1 50 4.348 0.658    4.4   4.440 0.890 2.6   5   2.4
 TradPed2    2 Transition    1 41 3.693 1.057    4.0   3.812 1.186 1.0   5   4.0
@@ -2201,7 +2213,7 @@ TradPed3 -0.289   -0.629 0.133</code></pre>
 <p>We’ll use Kline’s (2016) threshholds of the absolute values of 3 (skew) and 10 (kurtosis). The highest absolute value of skew is -0.881; the highest absolute value of kurtosis is -0.629. These are well below the areas of concern.</p>
 <p>the Shapiro-wilk test is a formal assessment of normality. It is a 2-part test that begins with creating an ANOVA model from which we can extract residuals, then testing the residuals.</p>
 <div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="oneway.html#cb736-1" tabindex="-1"></a>TradPed_res <span class="ot">&lt;-</span> <span class="fu">lm</span>(TradPed <span class="sc">~</span> Stage, <span class="at">data =</span> OneWay_df)</span>
-<span id="cb736-2"><a href="oneway.html#cb736-2" tabindex="-1"></a><span class="co">#TradPed_res</span></span>
+<span id="cb736-2"><a href="oneway.html#cb736-2" tabindex="-1"></a><span class="co"># TradPed_res</span></span>
 <span id="cb736-3"><a href="oneway.html#cb736-3" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(<span class="fu">residuals</span>(TradPed_res))</span></code></pre></div>
 <pre><code># A tibble: 1 × 3
   variable               statistic   p.value
@@ -2216,7 +2228,7 @@ Ooof! at the ends of the distribution they really deviate.</p>
 <p>The <em>rstatix::identify_outliers()</em> function identifies outliers and extreme outliers.</p>
 <div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="oneway.html#cb739-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb739-2"><a href="oneway.html#cb739-2" tabindex="-1"></a>OneWay_df <span class="sc">%&gt;%</span></span>
-<span id="cb739-3"><a href="oneway.html#cb739-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">identify_outliers</span>(TradPed)</span></code></pre></div>
+<span id="cb739-3"><a href="oneway.html#cb739-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">identify_outliers</span>(TradPed)</span></code></pre></div>
 <pre><code>       Stage TradPed is.outlier is.extreme
 1 Transition     1.8       TRUE      FALSE
 2 Transition     1.0       TRUE      FALSE
@@ -2250,8 +2262,9 @@ Ooof! at the ends of the distribution they really deviate.</p>
 <div id="conduct-one-set-of-follow-up-tests-narrate-your-choice." class="section level4 hasAnchor" number="7.10.1.5">
 <h4><span class="header-section-number">7.10.1.5</span> Conduct one set of follow-up tests; narrate your choice.<a href="oneway.html#conduct-one-set-of-follow-up-tests-narrate-your-choice." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I will simply calculate post-hoc comparisons. That is, all possible pairwise comparisons. I will specify the traditional Bonferroni as the approach to managing Type I error.</p>
-<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="oneway.html#cb745-1" tabindex="-1"></a>phoc <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(OneWay_df, TradPed <span class="sc">~</span> Stage, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb745-2"><a href="oneway.html#cb745-2" tabindex="-1"></a>phoc</span></code></pre></div>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="oneway.html#cb745-1" tabindex="-1"></a>phoc <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(OneWay_df, TradPed <span class="sc">~</span> Stage, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb745-2"><a href="oneway.html#cb745-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb745-3"><a href="oneway.html#cb745-3" tabindex="-1"></a>phoc</span></code></pre></div>
 <pre><code># A tibble: 3 × 17
   estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic       p
 *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -2277,7 +2290,8 @@ Ooof! at the ends of the distribution they really deviate.</p>
 <blockquote>
 <p>Results of the omnibus ANOVA indicated a statistically significant effect of stage on students assessments of traditional pedagogy, <span class="math inline">\(F(2, 109) = 7.199, p = 0.001, \eta^2 = 0.117\)</span>. The effect size was medium-to-large. We followed up the significant omnibus with all possible pairwise comparisons. We controlled for Type I error with the traditional Bonferroni adjustment. Results suggested that there were statistically significant differences between the stable and transition stages <span class="math inline">\((Mdiff = 0.655, p = 0.003)\)</span>, but not between stable and resettled <span class="math inline">\((Mdiff = 0.267,p = 0.324)\)</span> or transition and resettled <span class="math inline">\((Mdiff= -0.388,p = 0.217)\)</span> stages. Given that the doctoral programs are unlikely to transition back to SPSS or into the second year, the instructor(s) are advised to consider ways that could result in greater student satisfaction. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.</p>
 </blockquote>
-<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="oneway.html#cb747-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.1way.table</span>(<span class="at">iv =</span> Stage, <span class="at">dv =</span> TradPed, <span class="at">show.conf.interval =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> OneWay_df, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">filename =</span> <span class="st">&quot;1wayHWTable.doc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="oneway.html#cb747-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.1way.table</span>(<span class="at">iv =</span> Stage, <span class="at">dv =</span> TradPed, <span class="at">show.conf.interval =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb747-2"><a href="oneway.html#cb747-2" tabindex="-1"></a>    <span class="at">data =</span> OneWay_df, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">filename =</span> <span class="st">&quot;1wayHWTable.doc&quot;</span>)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -2394,9 +2408,9 @@ Stage*  0.07
 TradPed 0.08</code></pre>
 <p>Next, I will subtract this value from each person’s TradPed value. This will create a mean deviation.</p>
 <div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="oneway.html#cb760-1" tabindex="-1"></a>OneWay_df<span class="sc">$</span>mdevTP <span class="ot">&lt;-</span> OneWay_df<span class="sc">$</span>TradPed <span class="sc">-</span> <span class="fl">4.06</span></span>
-<span id="cb760-2"><a href="oneway.html#cb760-2" tabindex="-1"></a><span class="co">#I could also calculate it by using the &quot;mean&quot; function</span></span>
-<span id="cb760-3"><a href="oneway.html#cb760-3" tabindex="-1"></a><span class="co">#I had to include an na.rm=TRUE; this appears to be connected to missingness</span></span>
-<span id="cb760-4"><a href="oneway.html#cb760-4" tabindex="-1"></a>OneWay_df<span class="sc">$</span>mdevTPb <span class="ot">&lt;-</span> OneWay_df<span class="sc">$</span>TradPed <span class="sc">-</span> <span class="fu">mean</span>(OneWay_df<span class="sc">$</span>TradPed, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb760-2"><a href="oneway.html#cb760-2" tabindex="-1"></a><span class="co"># I could also calculate it by using the &#39;mean&#39; function I had to</span></span>
+<span id="cb760-3"><a href="oneway.html#cb760-3" tabindex="-1"></a><span class="co"># include an na.rm=TRUE; this appears to be connected to missingness</span></span>
+<span id="cb760-4"><a href="oneway.html#cb760-4" tabindex="-1"></a>OneWay_df<span class="sc">$</span>mdevTPb <span class="ot">&lt;-</span> OneWay_df<span class="sc">$</span>TradPed <span class="sc">-</span> <span class="fu">mean</span>(OneWay_df<span class="sc">$</span>TradPed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb760-5"><a href="oneway.html#cb760-5" tabindex="-1"></a><span class="fu">head</span>(OneWay_df)</span></code></pre></div>
 <pre><code>      Stage TradPed mdevTP     mdevTPb
 1 Resettled     4.4   0.34  0.34196429
@@ -2406,10 +2420,10 @@ TradPed 0.08</code></pre>
 5 Resettled     4.8   0.74  0.74196429
 6 Resettled     3.5  -0.56 -0.55803571</code></pre>
 <div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="oneway.html#cb762-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb762-2"><a href="oneway.html#cb762-2" tabindex="-1"></a>OneWay_df <span class="ot">&lt;-</span> OneWay_df <span class="sc">%&gt;%</span> </span>
-<span id="cb762-3"><a href="oneway.html#cb762-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">m_devSQTP =</span> mdevTP<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb762-2"><a href="oneway.html#cb762-2" tabindex="-1"></a>OneWay_df <span class="ot">&lt;-</span> OneWay_df <span class="sc">%&gt;%</span></span>
+<span id="cb762-3"><a href="oneway.html#cb762-3" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">m_devSQTP =</span> mdevTP<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb762-4"><a href="oneway.html#cb762-4" tabindex="-1"></a></span>
-<span id="cb762-5"><a href="oneway.html#cb762-5" tabindex="-1"></a><span class="co">#so we can see this in the textbook</span></span>
+<span id="cb762-5"><a href="oneway.html#cb762-5" tabindex="-1"></a><span class="co"># so we can see this in the textbook</span></span>
 <span id="cb762-6"><a href="oneway.html#cb762-6" tabindex="-1"></a><span class="fu">head</span>(OneWay_df)</span></code></pre></div>
 <pre><code>      Stage TradPed mdevTP     mdevTPb m_devSQTP
 1 Resettled     4.4   0.34  0.34196429    0.1156
@@ -2434,7 +2448,8 @@ TradPed 0.08</code></pre>
 <li>Group means</li>
 </ul>
 <p>We can obtain the group means several ways. I think the <em>psych::describeBy()</em> function is one of the easiest.</p>
-<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="oneway.html#cb766-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">data =</span> OneWay_df, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="oneway.html#cb766-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">data =</span> OneWay_df,</span>
+<span id="cb766-2"><a href="oneway.html#cb766-2" tabindex="-1"></a>    <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>         item     group1 vars  n  mean    sd median trimmed   mad min max range
 TradPed1    1     Stable    1 50 4.348 0.658    4.4   4.440 0.890 2.6   5   2.4
 TradPed2    2 Transition    1 41 3.693 1.057    4.0   3.812 1.186 1.0   5   4.0
@@ -2444,7 +2459,7 @@ TradPed1 -0.881    0.082 0.093
 TradPed2 -0.817   -0.068 0.165
 TradPed3 -0.289   -0.629 0.133</code></pre>
 <p>Now we can pop these values into the formula.</p>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="oneway.html#cb768-1" tabindex="-1"></a>SSM <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">*</span> (<span class="fl">4.348</span> <span class="sc">-</span><span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">41</span> <span class="sc">*</span> (<span class="fl">3.693</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">21</span> <span class="sc">*</span> (<span class="fl">4.081</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="oneway.html#cb768-1" tabindex="-1"></a>SSM <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">*</span> (<span class="fl">4.348</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">41</span> <span class="sc">*</span> (<span class="fl">3.693</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">21</span> <span class="sc">*</span> (<span class="fl">4.081</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb768-2"><a href="oneway.html#cb768-2" tabindex="-1"></a>SSM</span></code></pre></div>
 <pre><code>[1] 9.67871</code></pre>
 <p>SSM = 9.67871</p>
@@ -2458,7 +2473,7 @@ TradPed3 -0.289   -0.629 0.133</code></pre>
 <li>variance (standard deviation, squared) for each group</li>
 </ul>
 <p>We can obtain these values from the previous run of the <em>psych::describeBy()</em> function.</p>
-<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="oneway.html#cb770-1" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> (<span class="fl">0.658</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">50</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (<span class="fl">1.057</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">41</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (<span class="fl">0.610</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">21-1</span>)</span>
+<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="oneway.html#cb770-1" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> (<span class="fl">0.658</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">50</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (<span class="fl">1.057</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">41</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (<span class="fl">0.61</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">21</span> <span class="sc">-</span> <span class="dv">1</span>)</span>
 <span id="cb770-2"><a href="oneway.html#cb770-2" tabindex="-1"></a>SSR</span></code></pre></div>
 <pre><code>[1] 73.3472</code></pre>
 <p>SSR = 73.3472</p>

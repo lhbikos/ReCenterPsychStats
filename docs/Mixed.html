@@ -1512,11 +1512,12 @@ Post1 versus post2: (<em>t</em>(94) = -1.034, <em>p</em> = .304, <em>d</em> = -0
 <li><em>type</em> = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect; in a mixed design ANOVA we will select “2”</li>
 </ul>
 <p>As in the prior lessons, we need to convert our effect size for the <em>interaction</em> to <span class="math inline">\(f\)</span> effect size (this is not the same as the <em>F</em> test). The <em>effectsize</em> package has a series of converters. We can use the <em>eta2_to_f()</em> function to translate the <span class="math inline">\(\eta^{2}\)</span> associated with the interaction effect to Cohen’s <em>f</em>.</p>
-<div class="sourceCode" id="cb1266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1266-1"><a href="Mixed.html#cb1266-1" tabindex="-1"></a><span class="co">#interaction effect</span></span>
-<span id="cb1266-2"><a href="Mixed.html#cb1266-2" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta2_to_f</span>(<span class="fl">0.017</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1266-1"><a href="Mixed.html#cb1266-1" tabindex="-1"></a><span class="co"># interaction effect</span></span>
+<span id="cb1266-2"><a href="Mixed.html#cb1266-2" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta2_to_f</span>(<span class="fl">0.017</span>)</span></code></pre></div>
 <pre><code>[1] 0.1315066</code></pre>
 <p>We can now retrieve information from our study (including the Cohen’s <em>f</em> value we just calculated) and insert it into the script for the power analysis.</p>
-<div class="sourceCode" id="cb1268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1268-1"><a href="Mixed.html#cb1268-1" tabindex="-1"></a>WebPower<span class="sc">::</span><span class="fu">wp.rmanova</span>(<span class="at">n=</span><span class="dv">193</span>, <span class="at">ng=</span><span class="dv">2</span>, <span class="at">nm=</span><span class="dv">3</span>, <span class="at">f =</span> .<span class="dv">1315</span>, <span class="at">nscor =</span> .<span class="dv">99</span>, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1268-1"><a href="Mixed.html#cb1268-1" tabindex="-1"></a>WebPower<span class="sc">::</span><span class="fu">wp.rmanova</span>(<span class="at">n =</span> <span class="dv">193</span>, <span class="at">ng =</span> <span class="dv">2</span>, <span class="at">nm =</span> <span class="dv">3</span>, <span class="at">f =</span> <span class="fl">0.1315</span>, <span class="at">nscor =</span> <span class="fl">0.99</span>,</span>
+<span id="cb1268-2"><a href="Mixed.html#cb1268-2" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>Repeated-measures ANOVA analysis
 
       n      f ng nm nscor alpha     power
@@ -1661,16 +1662,18 @@ URL: http://psychstat.org/rmanova</code></pre>
 <p>First I import the larger dataset.</p>
 <div class="sourceCode" id="cb1272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1272-1"><a href="Mixed.html#cb1272-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>The SRPed (socially responsive pedagogy) variable is an average of the items on that scale. I will first create that variable.</p>
-<div class="sourceCode" id="cb1273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1273-1"><a href="Mixed.html#cb1273-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
-<span id="cb1273-2"><a href="Mixed.html#cb1273-2" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;InclusvClassrm&#39;</span>, <span class="st">&#39;EquitableEval&#39;</span>,<span class="st">&#39;MultPerspectives&#39;</span>, <span class="st">&#39;DEIintegration&#39;</span>)</span>
-<span id="cb1273-3"><a href="Mixed.html#cb1273-3" tabindex="-1"></a></span>
-<span id="cb1273-4"><a href="Mixed.html#cb1273-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
-<span id="cb1273-5"><a href="Mixed.html#cb1273-5" tabindex="-1"></a>big<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, SRPed_vars], .<span class="dv">75</span>)</span>
-<span id="cb1273-6"><a href="Mixed.html#cb1273-6" tabindex="-1"></a></span>
-<span id="cb1273-7"><a href="Mixed.html#cb1273-7" tabindex="-1"></a><span class="co">#if the scoring script won&#39;t run, try this one:</span></span>
-<span id="cb1273-8"><a href="Mixed.html#cb1273-8" tabindex="-1"></a><span class="co">#big$SRPed &lt;- sjstats::mean_n(big[, ..SRPed_vars], .75)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1273-1"><a href="Mixed.html#cb1273-1" tabindex="-1"></a><span class="co"># Creates a list of the variables that belong to that scale</span></span>
+<span id="cb1273-2"><a href="Mixed.html#cb1273-2" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;InclusvClassrm&quot;</span>, <span class="st">&quot;EquitableEval&quot;</span>, <span class="st">&quot;MultPerspectives&quot;</span>,</span>
+<span id="cb1273-3"><a href="Mixed.html#cb1273-3" tabindex="-1"></a>    <span class="st">&quot;DEIintegration&quot;</span>)</span>
+<span id="cb1273-4"><a href="Mixed.html#cb1273-4" tabindex="-1"></a></span>
+<span id="cb1273-5"><a href="Mixed.html#cb1273-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
+<span id="cb1273-6"><a href="Mixed.html#cb1273-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
+<span id="cb1273-7"><a href="Mixed.html#cb1273-7" tabindex="-1"></a>big<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, SRPed_vars], <span class="fl">0.75</span>)</span>
+<span id="cb1273-8"><a href="Mixed.html#cb1273-8" tabindex="-1"></a></span>
+<span id="cb1273-9"><a href="Mixed.html#cb1273-9" tabindex="-1"></a><span class="co"># if the scoring script won&#39;t run, try this one: big$SRPed &lt;-</span></span>
+<span id="cb1273-10"><a href="Mixed.html#cb1273-10" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..SRPed_vars], .75)</span></span></code></pre></div>
 <p>Let’s trim it to just the variables of interest</p>
-<div class="sourceCode" id="cb1274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1274-1"><a href="Mixed.html#cb1274-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span> (big, deID, Course, Centering, SRPed))</span></code></pre></div>
+<div class="sourceCode" id="cb1274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1274-1"><a href="Mixed.html#cb1274-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(big, deID, Course, Centering, SRPed))</span></code></pre></div>
 <p>I want the course variable to be factor that is ordered by its sequence: ANOVA, multivariate, psychometrics.</p>
 <p>I want the centering variable to be ordered: Pre, Re</p>
 <div class="sourceCode" id="cb1275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1275-1"><a href="Mixed.html#cb1275-1" tabindex="-1"></a><span class="fu">str</span>(mixt_df)</span></code></pre></div>
@@ -1681,8 +1684,9 @@ URL: http://psychstat.org/rmanova</code></pre>
  $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
 <p>Because R’s default is to order alphabetically, the centering variable is correct. I just need to change the course variable.</p>
-<div class="sourceCode" id="cb1277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1277-1"><a href="Mixed.html#cb1277-1" tabindex="-1"></a>mixt_df<span class="sc">$</span>Course <span class="ot">&lt;-</span> <span class="fu">factor</span>(mixt_df<span class="sc">$</span>Course, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;ANOVA&quot;</span>, <span class="st">&quot;Multivariate&quot;</span>, <span class="st">&quot;Psychometrics&quot;</span>))</span>
-<span id="cb1277-2"><a href="Mixed.html#cb1277-2" tabindex="-1"></a><span class="fu">str</span>(mixt_df)</span></code></pre></div>
+<div class="sourceCode" id="cb1277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1277-1"><a href="Mixed.html#cb1277-1" tabindex="-1"></a>mixt_df<span class="sc">$</span>Course <span class="ot">&lt;-</span> <span class="fu">factor</span>(mixt_df<span class="sc">$</span>Course, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;ANOVA&quot;</span>, <span class="st">&quot;Multivariate&quot;</span>,</span>
+<span id="cb1277-2"><a href="Mixed.html#cb1277-2" tabindex="-1"></a>    <span class="st">&quot;Psychometrics&quot;</span>))</span>
+<span id="cb1277-3"><a href="Mixed.html#cb1277-3" tabindex="-1"></a><span class="fu">str</span>(mixt_df)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  310 obs. of  4 variables:
  $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Course   : Factor w/ 3 levels &quot;ANOVA&quot;,&quot;Multivariate&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
@@ -1701,16 +1705,20 @@ URL: http://psychstat.org/rmanova</code></pre>
 <span id="cb1280-4"><a href="Mixed.html#cb1280-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">n</span>()<span class="sc">==</span><span class="dv">3</span>)</span></code></pre></div>
 <p>This took the data to 198 observations. Since each student contributed 3 observations, we know <span class="math inline">\(N = 66\)</span>.</p>
 <p>Let’s get an a priori peek at what we’re doing:</p>
-<div class="sourceCode" id="cb1281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1281-1"><a href="Mixed.html#cb1281-1" tabindex="-1"></a>mixt_box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(mixt_df, <span class="at">x =</span> <span class="st">&quot;Course&quot;</span>, <span class="at">y =</span> <span class="st">&quot;SRPed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Centering&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jco&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Statistics Sequence&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Socially Responsive Pedagogy&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Socially Responsive Course Evaluations as a Function of Centering and Time&quot;</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span>
-<span id="cb1281-2"><a href="Mixed.html#cb1281-2" tabindex="-1"></a>mixt_box</span></code></pre></div>
+<div class="sourceCode" id="cb1281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1281-1"><a href="Mixed.html#cb1281-1" tabindex="-1"></a>mixt_box <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(mixt_df, <span class="at">x =</span> <span class="st">&quot;Course&quot;</span>, <span class="at">y =</span> <span class="st">&quot;SRPed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Centering&quot;</span>,</span>
+<span id="cb1281-2"><a href="Mixed.html#cb1281-2" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">&quot;jco&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Statistics Sequence&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Socially Responsive Pedagogy&quot;</span>,</span>
+<span id="cb1281-3"><a href="Mixed.html#cb1281-3" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Socially Responsive Course Evaluations as a Function of Centering and Time&quot;</span>,</span>
+<span id="cb1281-4"><a href="Mixed.html#cb1281-4" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span>
+<span id="cb1281-5"><a href="Mixed.html#cb1281-5" tabindex="-1"></a>mixt_box</span></code></pre></div>
 <p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 </div>
 <div id="evaluate-statistical-assumptions-4" class="section level4 hasAnchor" number="10.7.1.3">
 <h4><span class="header-section-number">10.7.1.3</span> Evaluate statistical assumptions<a href="Mixed.html#evaluate-statistical-assumptions-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Is the dependent variable normally distributed in all combinations of the factors?</strong></p>
 <p>I can examine skew and kurtosis at the cell level with <em>psych::describeBy()</em>.</p>
-<div class="sourceCode" id="cb1282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1282-1"><a href="Mixed.html#cb1282-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mixt_df)<span class="co">#my data was not reading as a df so I applied this function</span></span>
-<span id="cb1282-2"><a href="Mixed.html#cb1282-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(SRPed <span class="sc">~</span> Course <span class="sc">+</span> Centering, <span class="at">data =</span> mixt_df, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1282-1"><a href="Mixed.html#cb1282-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mixt_df)  <span class="co">#my data was not reading as a df so I applied this function</span></span>
+<span id="cb1282-2"><a href="Mixed.html#cb1282-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(SRPed <span class="sc">~</span> Course <span class="sc">+</span> Centering, <span class="at">data =</span> mixt_df, <span class="at">type =</span> <span class="dv">1</span>,</span>
+<span id="cb1282-3"><a href="Mixed.html#cb1282-3" tabindex="-1"></a>    <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>       item        group1 group2 vars  n  mean    sd median trimmed   mad  min
 SRPed1    1         ANOVA    Pre    1 42 4.522 0.639  4.875   4.630 0.185 2.25
 SRPed2    2  Multivariate    Pre    1 42 4.387 0.648  4.585   4.468 0.615 2.33
@@ -1738,7 +1746,7 @@ SRPed6   5  2.75 -1.909    3.680 0.112</code></pre>
 </ul>
 <p><strong>Are the model residuals normally distributed?</strong></p>
 <p>I can use the Shapiro-Wilk test to formally investigate the normality assumption. Examining the distribution of the model residuals is one of the most efficient ways to do this. First, I need to run the model and extract the residuals.</p>
-<div class="sourceCode" id="cb1284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1284-1"><a href="Mixed.html#cb1284-1" tabindex="-1"></a>mixt_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(SRPed <span class="sc">~</span> Course<span class="sc">*</span>Centering, mixt_df)</span>
+<div class="sourceCode" id="cb1284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1284-1"><a href="Mixed.html#cb1284-1" tabindex="-1"></a>mixt_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(SRPed <span class="sc">~</span> Course <span class="sc">*</span> Centering, mixt_df)</span>
 <span id="cb1284-2"><a href="Mixed.html#cb1284-2" tabindex="-1"></a><span class="fu">summary</span>(mixt_mod)</span></code></pre></div>
 <pre><code>                  Df Sum Sq Mean Sq F value Pr(&gt;F)  
 Course             2   0.44  0.2216   0.639 0.5288  
@@ -1785,8 +1793,8 @@ Similarly, we see that the residuals sharply deviate from the diagonal at the to
 <p><strong>Are the variances of the dependent variable equivalent across all combinations of the factors?</strong></p>
 <p>I can use the Levene’s test with <em>rstatix::levene_test()</em>.</p>
 <div class="sourceCode" id="cb1293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1293-1"><a href="Mixed.html#cb1293-1" tabindex="-1"></a>mixt_df <span class="sc">%&gt;%</span></span>
-<span id="cb1293-2"><a href="Mixed.html#cb1293-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Course)<span class="sc">%&gt;%</span></span>
-<span id="cb1293-3"><a href="Mixed.html#cb1293-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">levene_test</span>(SRPed <span class="sc">~</span> Centering)</span></code></pre></div>
+<span id="cb1293-2"><a href="Mixed.html#cb1293-2" tabindex="-1"></a>    <span class="fu">group_by</span>(Course) <span class="sc">%&gt;%</span></span>
+<span id="cb1293-3"><a href="Mixed.html#cb1293-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">levene_test</span>(SRPed <span class="sc">~</span> Centering)</span></code></pre></div>
 <pre><code># A tibble: 3 × 5
   Course          df1   df2 statistic      p
   &lt;fct&gt;         &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -1807,7 +1815,8 @@ Similarly, we see that the residuals sharply deviate from the diagonal at the to
 </div>
 <div id="conduct-omnibus-anova-w-effect-size-1" class="section level4 hasAnchor" number="10.7.1.4">
 <h4><span class="header-section-number">10.7.1.4</span> Conduct omnibus ANOVA (w effect size)<a href="Mixed.html#conduct-omnibus-anova-w-effect-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb1295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1295-1"><a href="Mixed.html#cb1295-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">anova_test</span>(<span class="at">data =</span> mixt_df, <span class="at">dv =</span> SRPed, <span class="at">wid =</span> deID, <span class="at">between =</span> Centering, <span class="at">within =</span> Course)</span></code></pre></div>
+<div class="sourceCode" id="cb1295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1295-1"><a href="Mixed.html#cb1295-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">anova_test</span>(<span class="at">data =</span> mixt_df, <span class="at">dv =</span> SRPed, <span class="at">wid =</span> deID, <span class="at">between =</span> Centering,</span>
+<span id="cb1295-2"><a href="Mixed.html#cb1295-2" tabindex="-1"></a>    <span class="at">within =</span> Course)</span></code></pre></div>
 <pre><code>Warning: The &#39;wid&#39; column contains duplicate ids across between-subjects
 variables. Automatic unique id will be created</code></pre>
 <pre><code>ANOVA Table (type III tests)
@@ -1844,10 +1853,10 @@ $`Sphericity Corrections`
 <div id="conduct-one-set-of-follow-up-tests-narrate-your-choice" class="section level4 hasAnchor" number="10.7.1.5">
 <h4><span class="header-section-number">10.7.1.5</span> Conduct one set of follow-up tests; narrate your choice<a href="Mixed.html#conduct-one-set-of-follow-up-tests-narrate-your-choice" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>With a significant interaction effect, we will want to follow-up with an analysis of simple main effects. I think I am interested in the simple main effects for centering within each of the courses. Because there are two levels of Centering (pre, re) within each of the courses, I can go straight to <em>t</em>-tests.</p>
-<div class="sourceCode" id="cb1298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1298-1"><a href="Mixed.html#cb1298-1" tabindex="-1"></a>Simple_Course <span class="ot">&lt;-</span> mixt_df<span class="sc">%&gt;%</span></span>
-<span id="cb1298-2"><a href="Mixed.html#cb1298-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Course)<span class="sc">%&gt;%</span></span>
-<span id="cb1298-3"><a href="Mixed.html#cb1298-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">t_test</span>(SRPed <span class="sc">~</span> Centering, <span class="at">detailed =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb1298-4"><a href="Mixed.html#cb1298-4" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
+<div class="sourceCode" id="cb1298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1298-1"><a href="Mixed.html#cb1298-1" tabindex="-1"></a>Simple_Course <span class="ot">&lt;-</span> mixt_df <span class="sc">%&gt;%</span></span>
+<span id="cb1298-2"><a href="Mixed.html#cb1298-2" tabindex="-1"></a>    <span class="fu">group_by</span>(Course) <span class="sc">%&gt;%</span></span>
+<span id="cb1298-3"><a href="Mixed.html#cb1298-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">t_test</span>(SRPed <span class="sc">~</span> Centering, <span class="at">detailed =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1298-4"><a href="Mixed.html#cb1298-4" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_significance</span>()</span>
 <span id="cb1298-5"><a href="Mixed.html#cb1298-5" tabindex="-1"></a>Simple_Course</span></code></pre></div>
 <pre><code># A tibble: 3 × 17
   Course  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic
@@ -1858,9 +1867,9 @@ $`Sphericity Corrections`
 # ℹ 7 more variables: p &lt;dbl&gt;, df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;,
 #   method &lt;chr&gt;, alternative &lt;chr&gt;, p.signif &lt;chr&gt;</code></pre>
 <p>I also want effect sizes (Cohen’s <em>d</em>):</p>
-<div class="sourceCode" id="cb1300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1300-1"><a href="Mixed.html#cb1300-1" tabindex="-1"></a>mixt_df<span class="sc">%&gt;%</span></span>
-<span id="cb1300-2"><a href="Mixed.html#cb1300-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Course)<span class="sc">%&gt;%</span></span>
-<span id="cb1300-3"><a href="Mixed.html#cb1300-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(SRPed <span class="sc">~</span> Centering)</span></code></pre></div>
+<div class="sourceCode" id="cb1300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1300-1"><a href="Mixed.html#cb1300-1" tabindex="-1"></a>mixt_df <span class="sc">%&gt;%</span></span>
+<span id="cb1300-2"><a href="Mixed.html#cb1300-2" tabindex="-1"></a>    <span class="fu">group_by</span>(Course) <span class="sc">%&gt;%</span></span>
+<span id="cb1300-3"><a href="Mixed.html#cb1300-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">cohens_d</span>(SRPed <span class="sc">~</span> Centering)</span></code></pre></div>
 <pre><code># A tibble: 3 × 8
   .y.   group1 group2 effsize Course           n1    n2 magnitude 
 * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;fct&gt;         &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
@@ -1893,7 +1902,8 @@ $`Sphericity Corrections`
 <p>We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green &amp; Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA <span class="math inline">\((MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)\)</span> and psychometrics <span class="math inline">\((MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)\)</span> courses, there was a statistically significant difference in the multivariate course <span class="math inline">\((MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)\)</span> .</p>
 </blockquote>
 <p>A quick way to produce a table of means and standard deviations for mixed design ANOVA is this:</p>
-<div class="sourceCode" id="cb1302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1302-1"><a href="Mixed.html#cb1302-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.2way.table</span>(<span class="at">iv1=</span>Course, <span class="at">iv2=</span>Centering, <span class="at">dv=</span>SRPed, <span class="at">data=</span>mixt_df, <span class="at">filename =</span> <span class="st">&quot;Mixed_Table.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1302-1"><a href="Mixed.html#cb1302-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.2way.table</span>(<span class="at">iv1 =</span> Course, <span class="at">iv2 =</span> Centering, <span class="at">dv =</span> SRPed, <span class="at">data =</span> mixt_df,</span>
+<span id="cb1302-2"><a href="Mixed.html#cb1302-2" tabindex="-1"></a>    <span class="at">filename =</span> <span class="st">&quot;Mixed_Table.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -1910,10 +1920,11 @@ Means and standard deviations for SRPed as a function of a 3(Course) X 2(Centeri
 Note. M and SD represent mean and standard deviation, respectively. </code></pre>
 <p>I can update my figure with star bars:</p>
 <div class="sourceCode" id="cb1304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1304-1"><a href="Mixed.html#cb1304-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1304-2"><a href="Mixed.html#cb1304-2" tabindex="-1"></a>Simple_Course <span class="ot">&lt;-</span> Simple_Course  <span class="sc">%&gt;%</span></span>
+<span id="cb1304-2"><a href="Mixed.html#cb1304-2" tabindex="-1"></a>Simple_Course <span class="ot">&lt;-</span> Simple_Course <span class="sc">%&gt;%</span></span>
 <span id="cb1304-3"><a href="Mixed.html#cb1304-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Course&quot;</span>)</span>
-<span id="cb1304-4"><a href="Mixed.html#cb1304-4" tabindex="-1"></a>mixt_box <span class="ot">&lt;-</span> mixt_box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(Simple_Course, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.3</span>)) </span>
-<span id="cb1304-5"><a href="Mixed.html#cb1304-5" tabindex="-1"></a>mixt_box</span></code></pre></div>
+<span id="cb1304-4"><a href="Mixed.html#cb1304-4" tabindex="-1"></a>mixt_box <span class="ot">&lt;-</span> mixt_box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(Simple_Course, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>,</span>
+<span id="cb1304-5"><a href="Mixed.html#cb1304-5" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.3</span>))</span>
+<span id="cb1304-6"><a href="Mixed.html#cb1304-6" tabindex="-1"></a>mixt_box</span></code></pre></div>
 <p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size.-2" class="section level4 hasAnchor" number="10.7.1.8">
@@ -1930,11 +1941,12 @@ Note. M and SD represent mean and standard deviation, respectively. </code></pre
 <li><em>type</em> = 0 is for between-subjects, 1 is for repeated measures, 2 is for interaction effect; in a mixed design ANOVA we will select “2”</li>
 </ul>
 <p>As in the prior lessons, we need to convert our effect size for the <em>interaction</em> to <span class="math inline">\(f\)</span> effect size (this is not the same as the <em>F</em> test). The <em>effectsize</em> package has a series of converters. We can use the <em>eta2_to_f()</em> function to translate the <span class="math inline">\(\eta^{2}\)</span> associated with the interaction effect to Cohen’s <em>f</em>.</p>
-<div class="sourceCode" id="cb1305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1305-1"><a href="Mixed.html#cb1305-1" tabindex="-1"></a><span class="co">#include effect size from the interaction effect</span></span>
-<span id="cb1305-2"><a href="Mixed.html#cb1305-2" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta2_to_f</span>(<span class="fl">0.039</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1305-1"><a href="Mixed.html#cb1305-1" tabindex="-1"></a><span class="co"># include effect size from the interaction effect</span></span>
+<span id="cb1305-2"><a href="Mixed.html#cb1305-2" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta2_to_f</span>(<span class="fl">0.039</span>)</span></code></pre></div>
 <pre><code>[1] 0.2014515</code></pre>
 <p>We can now retrieve information from our study (including the Cohen’s <em>f</em> value we just calculated) and insert it into the script for the power analysis.</p>
-<div class="sourceCode" id="cb1307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1307-1"><a href="Mixed.html#cb1307-1" tabindex="-1"></a>WebPower<span class="sc">::</span><span class="fu">wp.rmanova</span>(<span class="at">n=</span><span class="dv">66</span>, <span class="at">ng=</span><span class="dv">2</span>, <span class="at">nm=</span><span class="dv">3</span>, <span class="at">f =</span> <span class="fl">0.2014515</span>, <span class="at">nscor =</span> .<span class="dv">925</span>, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1307-1"><a href="Mixed.html#cb1307-1" tabindex="-1"></a>WebPower<span class="sc">::</span><span class="fu">wp.rmanova</span>(<span class="at">n =</span> <span class="dv">66</span>, <span class="at">ng =</span> <span class="dv">2</span>, <span class="at">nm =</span> <span class="dv">3</span>, <span class="at">f =</span> <span class="fl">0.2014515</span>, <span class="at">nscor =</span> <span class="fl">0.925</span>,</span>
+<span id="cb1307-2"><a href="Mixed.html#cb1307-2" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>Repeated-measures ANOVA analysis
 
      n         f ng nm nscor alpha     power

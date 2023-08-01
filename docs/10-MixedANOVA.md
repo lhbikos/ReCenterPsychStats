@@ -1027,8 +1027,8 @@ As in the prior lessons, we need to convert our effect size for the *interaction
 
 
 ```r
-#interaction effect
-effectsize::eta2_to_f(0.017) 
+# interaction effect
+effectsize::eta2_to_f(0.017)
 ```
 
 ```
@@ -1037,7 +1037,8 @@ effectsize::eta2_to_f(0.017)
 We can now retrieve information from our study (including the Cohen's *f* value we just calculated) and insert it into the script for the power analysis.
 
 ```r
-WebPower::wp.rmanova(n=193, ng=2, nm=3, f = .1315, nscor = .99, alpha = .05, power = NULL, type = 2)
+WebPower::wp.rmanova(n = 193, ng = 2, nm = 3, f = 0.1315, nscor = 0.99,
+    alpha = 0.05, power = NULL, type = 2)
 ```
 
 ```
@@ -1150,20 +1151,22 @@ The SRPed (socially responsive pedagogy) variable is an average of the items on 
 
 
 ```r
-#Creates a list of the variables that belong to that scale
-SRPed_vars <- c('InclusvClassrm', 'EquitableEval','MultPerspectives', 'DEIintegration')
+# Creates a list of the variables that belong to that scale
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
 
-#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-big$SRPed <- sjstats::mean_n(big[, SRPed_vars], .75)
+# Calculates a mean if at least 75% of the items are non-missing;
+# adjusts the calculating when there is missingness
+big$SRPed <- sjstats::mean_n(big[, SRPed_vars], 0.75)
 
-#if the scoring script won't run, try this one:
-#big$SRPed <- sjstats::mean_n(big[, ..SRPed_vars], .75)
+# if the scoring script won't run, try this one: big$SRPed <-
+# sjstats::mean_n(big[, ..SRPed_vars], .75)
 ```
 
 Let's trim it to just the variables of interest
 
 ```r
-mixt_df <- (dplyr::select (big, deID, Course, Centering, SRPed))
+mixt_df <- (dplyr::select(big, deID, Course, Centering, SRPed))
 ```
 
 I want the course variable to be factor that is ordered by its sequence:  ANOVA, multivariate, psychometrics.
@@ -1187,7 +1190,8 @@ Because R's default is to order alphabetically, the centering variable is correc
 
 
 ```r
-mixt_df$Course <- factor(mixt_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
+mixt_df$Course <- factor(mixt_df$Course, levels = c("ANOVA", "Multivariate",
+    "Psychometrics"))
 str(mixt_df)
 ```
 
@@ -1228,7 +1232,10 @@ Let's get an a priori peek at what we're doing:
 
 
 ```r
-mixt_box <- ggpubr::ggboxplot(mixt_df, x = "Course", y = "SRPed", color = "Centering", palette = "jco", xlab = "Statistics Sequence", ylab = "Socially Responsive Pedagogy", title = "Socially Responsive Course Evaluations as a Function of Centering and Time", add = "jitter")
+mixt_box <- ggpubr::ggboxplot(mixt_df, x = "Course", y = "SRPed", color = "Centering",
+    palette = "jco", xlab = "Statistics Sequence", ylab = "Socially Responsive Pedagogy",
+    title = "Socially Responsive Course Evaluations as a Function of Centering and Time",
+    add = "jitter")
 mixt_box
 ```
 
@@ -1242,8 +1249,9 @@ I can examine skew and kurtosis at the cell level with *psych::describeBy()*.
 
 
 ```r
-mixt_df <- as.data.frame(mixt_df)#my data was not reading as a df so I applied this function
-psych::describeBy(SRPed ~ Course + Centering, data = mixt_df, type = 1, mat = TRUE, digits = 3)
+mixt_df <- as.data.frame(mixt_df)  #my data was not reading as a df so I applied this function
+psych::describeBy(SRPed ~ Course + Centering, data = mixt_df, type = 1,
+    mat = TRUE, digits = 3)
 ```
 
 ```
@@ -1275,7 +1283,7 @@ I can use the Shapiro-Wilk test to formally investigate the normality assumption
 
 
 ```r
-mixt_mod <- aov(SRPed ~ Course*Centering, mixt_df)
+mixt_mod <- aov(SRPed ~ Course * Centering, mixt_df)
 summary(mixt_mod)
 ```
 
@@ -1362,8 +1370,8 @@ I can use the Levene's test with *rstatix::levene_test()*.
 
 ```r
 mixt_df %>%
-  group_by(Course)%>%
-  rstatix::levene_test(SRPed ~ Centering)
+    group_by(Course) %>%
+    rstatix::levene_test(SRPed ~ Centering)
 ```
 
 ```
@@ -1388,7 +1396,8 @@ Before moving on I will write up the portion of the APA results section that eva
 
 
 ```r
-rstatix::anova_test(data = mixt_df, dv = SRPed, wid = deID, between = Centering, within = Course)
+rstatix::anova_test(data = mixt_df, dv = SRPed, wid = deID, between = Centering,
+    within = Course)
 ```
 
 ```
@@ -1434,10 +1443,10 @@ With a significant interaction effect, we will want to follow-up with an analysi
 
 
 ```r
-Simple_Course <- mixt_df%>%
-  group_by(Course)%>%
-  rstatix::t_test(SRPed ~ Centering, detailed = TRUE, p.adjust.method = "none")%>%
-  rstatix::add_significance()
+Simple_Course <- mixt_df %>%
+    group_by(Course) %>%
+    rstatix::t_test(SRPed ~ Centering, detailed = TRUE, p.adjust.method = "none") %>%
+    rstatix::add_significance()
 Simple_Course
 ```
 
@@ -1456,9 +1465,9 @@ I also want effect sizes (Cohen's *d*):
 
 
 ```r
-mixt_df%>%
-  group_by(Course)%>%
-  rstatix::cohens_d(SRPed ~ Centering)
+mixt_df %>%
+    group_by(Course) %>%
+    rstatix::cohens_d(SRPed ~ Centering)
 ```
 
 ```
@@ -1492,7 +1501,8 @@ A quick way to produce a table of means and standard deviations for mixed design
 
 
 ```r
-apaTables::apa.2way.table(iv1=Course, iv2=Centering, dv=SRPed, data=mixt_df, filename = "Mixed_Table.doc", table.number = 1)
+apaTables::apa.2way.table(iv1 = Course, iv2 = Centering, dv = SRPed, data = mixt_df,
+    filename = "Mixed_Table.doc", table.number = 1)
 ```
 
 ```
@@ -1517,9 +1527,10 @@ I can update my figure with star bars:
 
 ```r
 library(tidyverse)
-Simple_Course <- Simple_Course  %>%
+Simple_Course <- Simple_Course %>%
     rstatix::add_xy_position(x = "Course")
-mixt_box <- mixt_box + ggpubr::stat_pvalue_manual(Simple_Course, label = "p.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3)) 
+mixt_box <- mixt_box + ggpubr::stat_pvalue_manual(Simple_Course, label = "p.signif",
+    tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3))
 mixt_box
 ```
 
@@ -1543,8 +1554,8 @@ As in the prior lessons, we need to convert our effect size for the *interaction
 
 
 ```r
-#include effect size from the interaction effect
-effectsize::eta2_to_f(0.039) 
+# include effect size from the interaction effect
+effectsize::eta2_to_f(0.039)
 ```
 
 ```
@@ -1553,7 +1564,8 @@ effectsize::eta2_to_f(0.039)
 We can now retrieve information from our study (including the Cohen's *f* value we just calculated) and insert it into the script for the power analysis.
 
 ```r
-WebPower::wp.rmanova(n=66, ng=2, nm=3, f = 0.2014515, nscor = .925, alpha = .05, power = NULL, type = 2)
+WebPower::wp.rmanova(n = 66, ng = 2, nm = 3, f = 0.2014515, nscor = 0.925,
+    alpha = 0.05, power = NULL, type = 2)
 ```
 
 ```

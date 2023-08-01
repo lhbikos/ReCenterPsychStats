@@ -2320,14 +2320,14 @@ Helpful resources are found here:</p>
 </table>
 <table>
 <colgroup>
-<col width="58%" />
-<col width="20%" />
+<col width="56%" />
+<col width="22%" />
 <col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Hand Calculations</th>
-<th align="center">Points Poss</th>
+<th align="center">Points Possible</th>
 <th align="left">Points Earned</th>
 </tr>
 </thead>
@@ -2335,47 +2335,47 @@ Helpful resources are found here:</p>
 <tr class="odd">
 <td align="left">1. Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">2. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">3. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">4. Calculate sums of squares model (SSM) for each of the factors in the model.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">5. Create a source table that includes the sums of squares, degrees of freedom, mean squares, <em>F</em> values, and <em>F</em> critical values</td>
 <td align="center">8</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">6. Are the <em>F</em>-tests for the main and interaction effects statistically significant? Why or why not?</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">7. Calculate and interpret the <span class="math inline">\(\eta^2\)</span> effect sizes for the main and interaction effects.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">8. Assemble the results into their statistical strings.</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>Totals* </strong></td>
+<td align="left"><strong>Totals</strong></td>
 <td align="center">34</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 </tbody>
 </table>
@@ -2409,32 +2409,35 @@ Helpful resources are found here:</p>
 <h4><span class="header-section-number">8.10.1.2</span> Simulate (or import) and format data.<a href="between.html#simulate-or-import-and-format-data.-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb944"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb944-1"><a href="between.html#cb944-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>Let’s first create the “Stage” variable that represents the three levels of transition. The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.</p>
-<div class="sourceCode" id="cb945"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb945-1"><a href="between.html#cb945-1" tabindex="-1"></a>big<span class="sc">$</span>Stage <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(big<span class="sc">$</span>ProgramYear, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Second&quot;</span>, <span class="st">&quot;Transition&quot;</span>, <span class="st">&quot;First&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Stable&quot;</span>, <span class="st">&quot;Transition&quot;</span>, <span class="st">&quot;Resettled&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb945"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb945-1"><a href="between.html#cb945-1" tabindex="-1"></a>big<span class="sc">$</span>Stage <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(big<span class="sc">$</span>ProgramYear, <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Second&quot;</span>, <span class="st">&quot;Transition&quot;</span>,</span>
+<span id="cb945-2"><a href="between.html#cb945-2" tabindex="-1"></a>    <span class="st">&quot;First&quot;</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;Stable&quot;</span>, <span class="st">&quot;Transition&quot;</span>, <span class="st">&quot;Resettled&quot;</span>))</span></code></pre></div>
 <p>Let’s check the structure:</p>
 <div class="sourceCode" id="cb946"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb946-1"><a href="between.html#cb946-1" tabindex="-1"></a><span class="fu">str</span>(big<span class="sc">$</span>Stage)</span></code></pre></div>
 <pre><code>##  Factor w/ 3 levels &quot;Stable&quot;,&quot;Transition&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...</code></pre>
 <p>The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.</p>
-<div class="sourceCode" id="cb948"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb948-1"><a href="between.html#cb948-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
-<span id="cb948-2"><a href="between.html#cb948-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ClearResponsibilities&#39;</span>, <span class="st">&#39;EffectiveAnswers&#39;</span>,<span class="st">&#39;Feedback&#39;</span>, <span class="st">&#39;ClearOrganization&#39;</span>,<span class="st">&#39;ClearPresentation&#39;</span>)</span>
-<span id="cb948-3"><a href="between.html#cb948-3" tabindex="-1"></a></span>
-<span id="cb948-4"><a href="between.html#cb948-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
-<span id="cb948-5"><a href="between.html#cb948-5" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], .<span class="dv">75</span>)</span>
-<span id="cb948-6"><a href="between.html#cb948-6" tabindex="-1"></a></span>
-<span id="cb948-7"><a href="between.html#cb948-7" tabindex="-1"></a><span class="co">#if the scoring script won&#39;t run, try this one:</span></span>
-<span id="cb948-8"><a href="between.html#cb948-8" tabindex="-1"></a><span class="co">#big$TradPed &lt;- sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span></code></pre></div>
+<div class="sourceCode" id="cb948"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb948-1"><a href="between.html#cb948-1" tabindex="-1"></a><span class="co"># Creates a list of the variables that belong to that scale</span></span>
+<span id="cb948-2"><a href="between.html#cb948-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>, <span class="st">&quot;Feedback&quot;</span>,</span>
+<span id="cb948-3"><a href="between.html#cb948-3" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)</span>
+<span id="cb948-4"><a href="between.html#cb948-4" tabindex="-1"></a></span>
+<span id="cb948-5"><a href="between.html#cb948-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
+<span id="cb948-6"><a href="between.html#cb948-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
+<span id="cb948-7"><a href="between.html#cb948-7" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], <span class="fl">0.75</span>)</span>
+<span id="cb948-8"><a href="between.html#cb948-8" tabindex="-1"></a></span>
+<span id="cb948-9"><a href="between.html#cb948-9" tabindex="-1"></a><span class="co"># if the scoring script won&#39;t run, try this one: big$TradPed &lt;-</span></span>
+<span id="cb948-10"><a href="between.html#cb948-10" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span></code></pre></div>
 <p>Each student in the dataset could contribute up to three course evaluations (i.e., one each for ANOVA, multivariate, psychometrics). Including all three would introduce <em>dependency</em> into the dataset and violate the assumption of independence. With our variables properly formatted let’s create a subset with just the students who took ANOVA.</p>
-<div class="sourceCode" id="cb949"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb949-1"><a href="between.html#cb949-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb949"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb949-1"><a href="between.html#cb949-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>)</span></code></pre></div>
 <p>Next, let’s trim it to just the variables we need.</p>
-<div class="sourceCode" id="cb950"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb950-1"><a href="between.html#cb950-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(TwoWay_df, Stage, Dept, TradPed))</span></code></pre></div>
+<div class="sourceCode" id="cb950"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb950-1"><a href="between.html#cb950-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(TwoWay_df, Stage, Dept, TradPed))</span></code></pre></div>
 <p>Although we would handle missing data more carefully in a “real study,” I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).</p>
 <div class="sourceCode" id="cb951"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb951-1"><a href="between.html#cb951-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(TwoWay_df)</span></code></pre></div>
 <p>Before we continue, this data has a hiccup that makes it less than ideal for a 2 x 3 ANOVA. In 2017 everyone enrolled in the CPY section of the course. That is, there was no distinction between CPY and ORG students. In this dataset I do not have another variable with three levels. I will recode some data which MAKES THE STORY UNTRUE, but will allow me to demo 2-way ANOVA (sighhhh). For your homework, you are very welcome to engage in such practices (it’s actually good for learning!) however, we would never do so in the analysis of real data.</p>
-<div class="sourceCode" id="cb952"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb952-1"><a href="between.html#cb952-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(TwoWay_df) <span class="co">#the next operation required non-missing data</span></span>
-<span id="cb952-2"><a href="between.html#cb952-2" tabindex="-1"></a>TwoWay_df[TwoWay_df<span class="sc">$</span>Stage <span class="sc">==</span> <span class="st">&quot;Stable&quot;</span> <span class="sc">&amp;</span> TwoWay_df<span class="sc">$</span>TradPed <span class="sc">&lt;</span> <span class="fl">4.3</span>, <span class="st">&quot;Dept&quot;</span>]<span class="ot">&lt;-</span> <span class="st">&quot;ORG&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb952"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb952-1"><a href="between.html#cb952-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(TwoWay_df)  <span class="co">#the next operation required non-missing data</span></span>
+<span id="cb952-2"><a href="between.html#cb952-2" tabindex="-1"></a>TwoWay_df[TwoWay_df<span class="sc">$</span>Stage <span class="sc">==</span> <span class="st">&quot;Stable&quot;</span> <span class="sc">&amp;</span> TwoWay_df<span class="sc">$</span>TradPed <span class="sc">&lt;</span> <span class="fl">4.3</span>, <span class="st">&quot;Dept&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;ORG&quot;</span></span></code></pre></div>
 <p>Although the homework assignment doesn’t require it, I think it’s useful to create a figure that shows what I intend to do.</p>
-<div class="sourceCode" id="cb953"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb953-1"><a href="between.html#cb953-1" tabindex="-1"></a>Box2way <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(TwoWay_df, <span class="at">x =</span> <span class="st">&quot;Dept&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TradPed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Stage&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Academic Department&quot;</span>,</span>
-<span id="cb953-2"><a href="between.html#cb953-2" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Students&#39; Evaluations of Traditional Pedagogy&quot;</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>,</span>
-<span id="cb953-3"><a href="between.html#cb953-3" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Course Evaluations as a Function of Department and Stage in Transition&quot;</span>)</span>
+<div class="sourceCode" id="cb953"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb953-1"><a href="between.html#cb953-1" tabindex="-1"></a>Box2way <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(TwoWay_df, <span class="at">x =</span> <span class="st">&quot;Dept&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TradPed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Stage&quot;</span>,</span>
+<span id="cb953-2"><a href="between.html#cb953-2" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Academic Department&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Students&#39; Evaluations of Traditional Pedagogy&quot;</span>,</span>
+<span id="cb953-3"><a href="between.html#cb953-3" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Course Evaluations as a Function of Department and Stage in Transition&quot;</span>)</span>
 <span id="cb953-4"><a href="between.html#cb953-4" tabindex="-1"></a>Box2way</span></code></pre></div>
 <p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 </div>
@@ -2442,7 +2445,8 @@ Helpful resources are found here:</p>
 <h4><span class="header-section-number">8.10.1.3</span> Evaluate statistical assumptions.<a href="between.html#evaluate-statistical-assumptions.-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Is the dependent variable normally distributed at all levels of the combinations of the levels within the grouping variables?</strong></p>
 <p>I’ll start with an inspection of skew and kurtosis for all combinations of the levels of the two grouping variables.</p>
-<div class="sourceCode" id="cb954"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb954-1"><a href="between.html#cb954-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage <span class="sc">+</span> Dept, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb954"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb954-1"><a href="between.html#cb954-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage <span class="sc">+</span> Dept, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df,</span>
+<span id="cb954-2"><a href="between.html#cb954-2" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##          item     group1 group2 vars  n  mean    sd median trimmed   mad min
 ## TradPed1    1     Stable    CPY    1 25 4.832 0.236    5.0   4.857 0.000 4.4
 ## TradPed2    2 Transition    CPY    1 26 3.769 0.878    3.8   3.818 0.741 1.8
@@ -2518,8 +2522,9 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <div id="conduct-omnibus-anova-w-effect-size.-1" class="section level4 hasAnchor" number="8.10.1.4">
 <h4><span class="header-section-number">8.10.1.4</span> Conduct omnibus ANOVA (w effect size).<a href="between.html#conduct-omnibus-anova-w-effect-size.-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can use the <em>rstatix::anova_test()</em> function.</p>
-<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="between.html#cb966-1" tabindex="-1"></a>omnibus2w <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">anova_test</span>(TwoWay_df, TradPed <span class="sc">~</span> Dept <span class="sc">*</span> Stage, <span class="at">type =</span> <span class="st">&quot;2&quot;</span>, <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb966-2"><a href="between.html#cb966-2" tabindex="-1"></a>omnibus2w</span></code></pre></div>
+<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="between.html#cb966-1" tabindex="-1"></a>omnibus2w <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">anova_test</span>(TwoWay_df, TradPed <span class="sc">~</span> Dept <span class="sc">*</span> Stage, <span class="at">type =</span> <span class="st">&quot;2&quot;</span>,</span>
+<span id="cb966-2"><a href="between.html#cb966-2" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb966-3"><a href="between.html#cb966-3" tabindex="-1"></a>omnibus2w</span></code></pre></div>
 <pre><code>## ANOVA Table (type II tests)
 ## 
 ##       Effect    SSn   SSd DFn DFd      F         p p&lt;.05   ges
@@ -2544,8 +2549,8 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <p>Functionally, this computes two one-way ANOVAs, comparing the three stages within each of the departments. If the result is statistically significant, we will need to follow-up with more testing.</p>
 <p>The <em>rstatix::anova_test</em> does not allow me to specify a control for Type I error. Therefore, if I wanted to do so, I would need to monitor it outside of the R package. I <em>could</em> evaluate each of the <em>p</em> values for the two one-way ANOVAs at 0.025 (05/2). Rather than tracking Type I error at this level, I will wait and do so when I get to the pairwise comparisons that follow a statistically significant one-way ANOVA.</p>
 <div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="between.html#cb968-1" tabindex="-1"></a>TwoWay_df <span class="sc">%&gt;%</span></span>
-<span id="cb968-2"><a href="between.html#cb968-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Dept)<span class="sc">%&gt;%</span></span>
-<span id="cb968-3"><a href="between.html#cb968-3" tabindex="-1"></a>  rstatix<span class="sc">::</span><span class="fu">anova_test</span>(TradPed <span class="sc">~</span> Stage)</span></code></pre></div>
+<span id="cb968-2"><a href="between.html#cb968-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(Dept) <span class="sc">%&gt;%</span></span>
+<span id="cb968-3"><a href="between.html#cb968-3" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">anova_test</span>(TradPed <span class="sc">~</span> Stage)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 8
 ##   Dept  Effect   DFn   DFd     F           p `p&lt;.05`   ges
 ## * &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -2599,7 +2604,8 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 </div>
 <div id="apa-style-results-with-tables-and-figure.-1" class="section level4 hasAnchor" number="8.10.1.7">
 <h4><span class="header-section-number">8.10.1.7</span> APA style results with table(s) and figure.<a href="between.html#apa-style-results-with-tables-and-figure.-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="between.html#cb972-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.2way.table</span>(Dept, Stage, TradPed, <span class="at">data =</span> TwoWay_df, <span class="at">filename =</span> <span class="st">&quot;2Way.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.marginal.means =</span> <span class="cn">TRUE</span>, <span class="at">landscape =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="between.html#cb972-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.2way.table</span>(Dept, Stage, TradPed, <span class="at">data =</span> TwoWay_df, <span class="at">filename =</span> <span class="st">&quot;2Way.doc&quot;</span>,</span>
+<span id="cb972-2"><a href="between.html#cb972-2" tabindex="-1"></a>    <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.marginal.means =</span> <span class="cn">TRUE</span>, <span class="at">landscape =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ## 
 ## Table 1 
@@ -2617,8 +2623,9 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 ## Marginal indicates the means and standard deviations pertaining to main effects.</code></pre>
 <div class="sourceCode" id="cb974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb974-1"><a href="between.html#cb974-1" tabindex="-1"></a>pwTRwiDP <span class="ot">&lt;-</span> pwTRwiDP <span class="sc">%&gt;%</span></span>
 <span id="cb974-2"><a href="between.html#cb974-2" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Dept&quot;</span>)  <span class="co">#x should be whatever the variable was used in the group_by argument </span></span>
-<span id="cb974-3"><a href="between.html#cb974-3" tabindex="-1"></a>Box2way <span class="ot">&lt;-</span> Box2way <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwTRwiDP, <span class="at">label =</span> <span class="st">&quot;p.adj.signif&quot;</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.3</span>, <span class="fl">5.5</span>))</span>
-<span id="cb974-4"><a href="between.html#cb974-4" tabindex="-1"></a>Box2way</span></code></pre></div>
+<span id="cb974-3"><a href="between.html#cb974-3" tabindex="-1"></a>Box2way <span class="ot">&lt;-</span> Box2way <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwTRwiDP, <span class="at">label =</span> <span class="st">&quot;p.adj.signif&quot;</span>,</span>
+<span id="cb974-4"><a href="between.html#cb974-4" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.3</span>, <span class="fl">5.5</span>))</span>
+<span id="cb974-5"><a href="between.html#cb974-5" tabindex="-1"></a>Box2way</span></code></pre></div>
 <p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-102-1.png" width="672" />
 #### Conduct power analyses to determine the power of the current study and a recommended sample size.</p>
 <p>The <em>pwr.2way()</em> and <em>ss.2way()</em> functions require the following:</p>
@@ -2645,7 +2652,8 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <pre><code>## [1] 37.33333</code></pre>
 <div class="sourceCode" id="cb985"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb985-1"><a href="between.html#cb985-1" tabindex="-1"></a><span class="dv">112</span><span class="sc">/</span><span class="dv">6</span></span></code></pre></div>
 <pre><code>## [1] 18.66667</code></pre>
-<div class="sourceCode" id="cb987"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb987-1"><a href="between.html#cb987-1" tabindex="-1"></a>pwr2<span class="sc">::</span><span class="fu">pwr.2way</span>(<span class="at">a =</span> <span class="dv">2</span>, <span class="at">b =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">size.A =</span> <span class="dv">56</span>, <span class="at">size.B =</span> <span class="dv">37</span>, <span class="at">f.A =</span> <span class="fl">0.3277495</span>, <span class="at">f.B =</span> <span class="fl">0.4364358</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb987"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb987-1"><a href="between.html#cb987-1" tabindex="-1"></a>pwr2<span class="sc">::</span><span class="fu">pwr.2way</span>(<span class="at">a =</span> <span class="dv">2</span>, <span class="at">b =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">size.A =</span> <span class="dv">56</span>, <span class="at">size.B =</span> <span class="dv">37</span>, <span class="at">f.A =</span> <span class="fl">0.3277495</span>,</span>
+<span id="cb987-2"><a href="between.html#cb987-2" tabindex="-1"></a>    <span class="at">f.B =</span> <span class="fl">0.4364358</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Balanced two-way analysis of variance power calculation 
 ## 
@@ -2665,7 +2673,8 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <li>beta is the Type II error probability (Power = 1-beta); usually set at 80</li>
 <li>B is the iteration times, the default is 100</li>
 </ul>
-<div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="between.html#cb989-1" tabindex="-1"></a>pwr2<span class="sc">::</span><span class="fu">ss.2way</span>(<span class="at">a =</span> <span class="dv">2</span>, <span class="at">b =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">beta =</span> <span class="fl">0.8</span>, <span class="at">f.A =</span> <span class="fl">0.3277495</span>, <span class="at">f.B =</span> <span class="fl">0.4364358</span>, <span class="at">B =</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="between.html#cb989-1" tabindex="-1"></a>pwr2<span class="sc">::</span><span class="fu">ss.2way</span>(<span class="at">a =</span> <span class="dv">2</span>, <span class="at">b =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">beta =</span> <span class="fl">0.8</span>, <span class="at">f.A =</span> <span class="fl">0.3277495</span>,</span>
+<span id="cb989-2"><a href="between.html#cb989-2" tabindex="-1"></a>    <span class="at">f.B =</span> <span class="fl">0.4364358</span>, <span class="at">B =</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Balanced two-way analysis of variance sample size adjustment 
 ## 
@@ -2706,7 +2715,7 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <p>The overall (grand) mean is 4.06.</p>
 <p>I will create a variable that represents the mean deviation:</p>
 <div class="sourceCode" id="cb995"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb995-1"><a href="between.html#cb995-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> TwoWay_df <span class="sc">%&gt;%</span></span>
-<span id="cb995-2"><a href="between.html#cb995-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">m_dev =</span> TradPed <span class="sc">-</span> <span class="fl">4.06</span>)</span>
+<span id="cb995-2"><a href="between.html#cb995-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">m_dev =</span> TradPed <span class="sc">-</span> <span class="fl">4.06</span>)</span>
 <span id="cb995-3"><a href="between.html#cb995-3" tabindex="-1"></a></span>
 <span id="cb995-4"><a href="between.html#cb995-4" tabindex="-1"></a><span class="fu">head</span>(TwoWay_df)</span></code></pre></div>
 <pre><code>##       Stage Dept TradPed m_dev
@@ -2728,7 +2737,7 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 ## 5 Resettled  CPY     4.8  0.74  0.5476
 ## 6 Resettled  CPY     3.5 -0.56  0.3136</code></pre>
 <p>SST is the sum of the mean deviation squared values:</p>
-<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="between.html#cb999-1" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fu">sum</span>(TwoWay_df<span class="sc">$</span>m_devSQ, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="between.html#cb999-1" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fu">sum</span>(TwoWay_df<span class="sc">$</span>m_devSQ, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb999-2"><a href="between.html#cb999-2" tabindex="-1"></a>SST</span></code></pre></div>
 <pre><code>## [1] 83.0332</code></pre>
 <p>Our sums of squares total is 83.0332</p>
@@ -2743,7 +2752,8 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <li>Grand mean (earlier we learned it was 4.06)</li>
 </ul>
 <p>I will obtain group means and <span class="math inline">\(n\)</span>s with <em>psych::desribeBy</em>.</p>
-<div class="sourceCode" id="cb1001"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1001-1"><a href="between.html#cb1001-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Dept <span class="sc">+</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1001"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1001-1"><a href="between.html#cb1001-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Dept <span class="sc">+</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df,</span>
+<span id="cb1001-2"><a href="between.html#cb1001-2" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##          item group1     group2 vars  n  mean    sd median trimmed   mad min
 ## TradPed1    1    CPY     Stable    1 25 4.832 0.236    5.0   4.857 0.000 4.4
 ## TradPed2    2    ORG     Stable    1 25 3.864 0.582    4.0   3.876 0.297 2.6
@@ -2760,7 +2770,7 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 ## TradPed6 5.0   2.2 -0.379   -0.832 0.198</code></pre>
 <p>To calculate it:</p>
 <div class="sourceCode" id="cb1003"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1003-1"><a href="between.html#cb1003-1" tabindex="-1"></a>SSM <span class="ot">&lt;-</span> <span class="dv">25</span> <span class="sc">*</span> (<span class="fl">4.832</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">25</span> <span class="sc">*</span> (<span class="fl">3.864</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">26</span> <span class="sc">*</span> (<span class="fl">3.769</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
-<span id="cb1003-2"><a href="between.html#cb1003-2" tabindex="-1"></a>    <span class="dv">15</span> <span class="sc">*</span> (<span class="fl">3.560</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> (<span class="fl">4.010</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">11</span> <span class="sc">*</span> (<span class="fl">4.145</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1003-2"><a href="between.html#cb1003-2" tabindex="-1"></a>    <span class="dv">15</span> <span class="sc">*</span> (<span class="fl">3.56</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> (<span class="fl">4.01</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">11</span> <span class="sc">*</span> (<span class="fl">4.145</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb1003-3"><a href="between.html#cb1003-3" tabindex="-1"></a>SSM</span></code></pre></div>
 <pre><code>## [1] 21.91618</code></pre>
 <p>Sums of squares for the model is 21.91618.</p>
@@ -2785,7 +2795,7 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <p><strong>SSM for the Department main effect:</strong></p>
 <p>Reminder of the formula: <span class="math inline">\(SS_{a:Dept}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\)</span></p>
 <p>Earlier I learned the grand mean = 4.06</p>
-<div class="sourceCode" id="cb1007"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1007-1"><a href="between.html#cb1007-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Dept, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1007"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1007-1"><a href="between.html#cb1007-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Dept, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##          item group1 vars  n  mean    sd median trimmed   mad min max range
 ## TradPed1    1    CPY    1 61 4.244 0.803    4.4   4.361 0.890 1.8   5   3.2
 ## TradPed2    2    ORG    1 51 3.835 0.891    4.0   3.946 0.593 1.0   5   4.0
@@ -2798,7 +2808,7 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <p>Sums of squares model for the department factor is 4.647091.</p>
 <p><strong>SSM for the Stage main effect:</strong></p>
 <p>Reminder of the formula: <span class="math inline">\(SS_{a:Stage}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}\)</span></p>
-<div class="sourceCode" id="cb1011"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1011-1"><a href="between.html#cb1011-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage, <span class="at">mat=</span><span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1011"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1011-1"><a href="between.html#cb1011-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(TradPed <span class="sc">~</span> Stage, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> TwoWay_df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##          item     group1 vars  n  mean    sd median trimmed   mad min max range
 ## TradPed1    1     Stable    1 50 4.348 0.658    4.4   4.440 0.890 2.6   5   2.4
 ## TradPed2    2 Transition    1 41 3.693 1.057    4.0   3.812 1.186 1.0   5   4.0
@@ -2807,8 +2817,9 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 ## TradPed1 -0.855   -0.040 0.093
 ## TradPed2 -0.788   -0.209 0.165
 ## TradPed3 -0.268   -0.850 0.133</code></pre>
-<div class="sourceCode" id="cb1013"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1013-1"><a href="between.html#cb1013-1" tabindex="-1"></a>SSM_stage <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">*</span> (<span class="fl">4.348</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">42</span> <span class="sc">*</span> (<span class="fl">3.693</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">32</span> <span class="sc">*</span> (<span class="fl">4.081</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb1013-2"><a href="between.html#cb1013-2" tabindex="-1"></a>SSM_stage</span></code></pre></div>
+<div class="sourceCode" id="cb1013"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1013-1"><a href="between.html#cb1013-1" tabindex="-1"></a>SSM_stage <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">*</span> (<span class="fl">4.348</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">42</span> <span class="sc">*</span> (<span class="fl">3.693</span> <span class="sc">-</span> <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">32</span> <span class="sc">*</span> (<span class="fl">4.081</span> <span class="sc">-</span></span>
+<span id="cb1013-2"><a href="between.html#cb1013-2" tabindex="-1"></a>    <span class="fl">4.06</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1013-3"><a href="between.html#cb1013-3" tabindex="-1"></a>SSM_stage</span></code></pre></div>
 <pre><code>## [1] 9.81825</code></pre>
 <p>Sums of squares model for the stage factor is 9.81825</p>
 <p><strong>SSM for the Department x Stage interaction term:</strong></p>
@@ -2949,11 +2960,11 @@ Interaction effect: <span class="math inline">\(F(2, 106) = 6.458, p &lt; 0.05\)
 <p>The formula for eta squared is:</p>
 <p><span class="math display">\[\eta ^{2}=\frac{SS_{M}}{SS_{T}}\]</span></p>
 <p>The values of .01, .06, and .14 are considered small, medium, and large in ANOVA models.</p>
-<div class="sourceCode" id="cb1049"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1049-1"><a href="between.html#cb1049-1" tabindex="-1"></a><span class="fl">4.647</span><span class="sc">/</span><span class="fl">83.033</span> <span class="co">#eta squared for department main effect</span></span></code></pre></div>
+<div class="sourceCode" id="cb1049"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1049-1"><a href="between.html#cb1049-1" tabindex="-1"></a><span class="fl">4.647</span><span class="sc">/</span><span class="fl">83.033</span>  <span class="co">#eta squared for department main effect</span></span></code></pre></div>
 <pre><code>## [1] 0.0559657</code></pre>
-<div class="sourceCode" id="cb1051"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1051-1"><a href="between.html#cb1051-1" tabindex="-1"></a><span class="fl">9.818</span><span class="sc">/</span><span class="fl">83.033</span> <span class="co">#eta squared for stage main effect</span></span></code></pre></div>
+<div class="sourceCode" id="cb1051"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1051-1"><a href="between.html#cb1051-1" tabindex="-1"></a><span class="fl">9.818</span><span class="sc">/</span><span class="fl">83.033</span>  <span class="co">#eta squared for stage main effect</span></span></code></pre></div>
 <pre><code>## [1] 0.1182421</code></pre>
-<div class="sourceCode" id="cb1053"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1053-1"><a href="between.html#cb1053-1" tabindex="-1"></a><span class="fl">7.451</span><span class="sc">/</span><span class="fl">83.033</span> <span class="co">#eta squared for interaction effect</span></span></code></pre></div>
+<div class="sourceCode" id="cb1053"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1053-1"><a href="between.html#cb1053-1" tabindex="-1"></a><span class="fl">7.451</span><span class="sc">/</span><span class="fl">83.033</span>  <span class="co">#eta squared for interaction effect</span></span></code></pre></div>
 <pre><code>## [1] 0.08973541</code></pre>
 <p>The <span class="math inline">\(\eta ^{2}\)</span> values are 0.056 (medium), 0.118 (medium-to-large), and 0.090 (medium-to-large) for the department, stage, and interaction effects, respectively.</p>
 </div>

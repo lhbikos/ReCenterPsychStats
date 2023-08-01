@@ -1080,17 +1080,17 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |**Totals**                               |      40       |_____  |          
 
 
-|Hand Calculations                         | Points Poss   | Points Earned
-|:-----------------------------------------|:-------------:|:--------------|
-|1.  Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |  |
-|2. Calculate the sums of squares within (SSW) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each case (student). | 4 ||
-|3.  Calculate sums of squares model (SSM) for for the effect of time (or repeated measures).  | 4  |  |
-|4.  Calculate sums of squares residual (SSR).  | 4  |  |
-|5. Calculate the sums of squares between (SSB).  | 4  |  |
-|6. Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values |8 |  |
-|6. Is the *F*-tests statistically significant? Why or why not?  | 2 |  |
-|7. Assemble the results into a statistical strings |4 |  |
-|**Totals* **                                  |     26      |             |
+|Hand Calculations                         | Points Possible| Points Earned
+|:-----------------------------------------|:--------------:|:--------------|
+|1.  Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |_____|
+|2. Calculate the sums of squares within (SSW) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each case (student). | 4 |_____|
+|3.  Calculate sums of squares model (SSM) for for the effect of time (or repeated measures).  | 4  |_____|
+|4.  Calculate sums of squares residual (SSR).  | 4  |_____|
+|5. Calculate the sums of squares between (SSB).  | 4  |_____|
+|6. Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values |8 |_____|
+|6. Are the *F*-tests statistically significant? Why or why not?  | 2 |_____|
+|7. Assemble the results into a statistical strings |4 |_____|
+|**Totals**                                  |     26      | _____|
 
 
 
@@ -1122,20 +1122,22 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
 
 
 ```r
-#Creates a list of the variables that belong to that scale
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+# Creates a list of the variables that belong to that scale
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
 
-#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)
+# Calculates a mean if at least 75% of the items are non-missing;
+# adjusts the calculating when there is missingness
+big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
 
-#if the scoring script won't run, try this one:
-#big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)
+# if the scoring script won't run, try this one: big$TradPed <-
+# sjstats::mean_n(big[, ..TradPed_vars], .75)
 ```
 
 Let's trim to just the variables we need.
 
 ```r
-rm1wLONG_df <- (dplyr::select (big, deID, Course, TradPed))
+rm1wLONG_df <- (dplyr::select(big, deID, Course, TradPed))
 head(rm1wLONG_df)
 ```
 
@@ -1167,7 +1169,8 @@ Classes 'data.table' and 'data.frame':	310 obs. of  3 variables:
 
 
 ```r
-rm1wLONG_df$Course <- factor(rm1wLONG_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
+rm1wLONG_df$Course <- factor(rm1wLONG_df$Course, levels = c("ANOVA", "Multivariate",
+    "Psychometrics"))
 str(rm1wLONG_df)
 ```
 
@@ -1182,7 +1185,7 @@ Let's update the df to have only complete cases.
 
 ```r
 rm1wLONG_df <- na.omit(rm1wLONG_df)
-nrow(rm1wLONG_df)#counts number of rows (cases)
+nrow(rm1wLONG_df)  #counts number of rows (cases)
 ```
 
 ```
@@ -1195,9 +1198,9 @@ These analyses require that students have completed evaluations for all three co
 
 ```r
 library(tidyverse)
-rm1wLONG_df <- rm1wLONG_df%>%
-  dplyr::group_by(deID)%>%
-  dplyr::filter(n()==3)
+rm1wLONG_df <- rm1wLONG_df %>%
+    dplyr::group_by(deID) %>%
+    dplyr::filter(n() == 3)
 ```
 
 This took the data to 210 observations. Since each student contributed 3 observations, we know  $N = 70$.
@@ -1214,8 +1217,9 @@ Before we start, let's get a plot of what's happening:
 
 
 ```r
-bxp <- ggpubr::ggboxplot(rm1wLONG_df, x = "Course", y = "TradPed", add = "point", color = "Course",
-    xlab = "Statistics Course", ylab = "Traditional Pedagogy Course Eval Ratings", title = "Course Evaluations across Doctoral Statistics Courses")
+bxp <- ggpubr::ggboxplot(rm1wLONG_df, x = "Course", y = "TradPed", add = "point",
+    color = "Course", xlab = "Statistics Course", ylab = "Traditional Pedagogy Course Eval Ratings",
+    title = "Course Evaluations across Doctoral Statistics Courses")
 bxp
 ```
 
@@ -1231,7 +1235,8 @@ We can examine skew and kurtosis in each of the levels of the TradPed variable w
 
 
 ```r
-#R wasn't recognizing the data, so I quickly applied the as.data.frame function
+# R wasn't recognizing the data, so I quickly applied the
+# as.data.frame function
 rm1wLONG_df <- as.data.frame(rm1wLONG_df)
 psych::describeBy(TradPed ~ Course, mat = TRUE, type = 1, data = rm1wLONG_df)
 ```
@@ -1253,7 +1258,7 @@ I can formally test for normality with the Shapiro-Wilk test. If I use the resid
 
 
 ```r
-#running the model
+# running the model
 RMres_TradPed <- lm(TradPed ~ Course, data = rm1wLONG_df)
 summary(RMres_TradPed)
 ```
@@ -1308,8 +1313,8 @@ We can identify outliers and see if they are reasonable or should be removed.
 ```r
 library(tidyverse)
 rm1wLONG_df %>%
-  group_by(Course)%>%
-  rstatix::identify_outliers(TradPed)
+    group_by(Course) %>%
+    rstatix::identify_outliers(TradPed)
 ```
 
 ```
@@ -1339,7 +1344,8 @@ Here's how I would write up the evaluation of assumptions so far:
 
 
 ```r
-rmAOV <- rstatix::anova_test(data = rm1wLONG_df, dv = TradPed, wid = deID, within = Course)
+rmAOV <- rstatix::anova_test(data = rm1wLONG_df, dv = TradPed, wid = deID,
+    within = Course)
 rmAOV
 ```
 
@@ -1368,7 +1374,8 @@ I will follow up with a test of all possible pairwise comparisons and adjust wit
 
 
 ```r
-pwc <- rstatix::pairwise_t_test(TradPed ~ Course, paired = TRUE, p.adjust.method = "bonf", data = rm1wLONG_df)
+pwc <- rstatix::pairwise_t_test(TradPed ~ Course, paired = TRUE, p.adjust.method = "bonf",
+    data = rm1wLONG_df)
 pwc
 ```
 
@@ -1404,7 +1411,8 @@ I can update the figure to include star bars.
 library(tidyverse)
 pwc <- pwc %>%
     rstatix::add_xy_position(x = "Course")
-bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.01, hide.ns = FALSE, y.position = c(5.25, 5.5, 5.75)) 
+bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.01,
+    hide.ns = FALSE, y.position = c(5.25, 5.5, 5.75))
 bxp
 ```
 
@@ -1500,7 +1508,7 @@ I will create a mean deviation variable by subtracting the mean from each score:
 
 ```r
 rm1wLONG_df$mDev <- rm1wLONG_df$TradPed - 4.319286
-head(rm1wLONG_df)#shows first six rows of dataset
+head(rm1wLONG_df)  #shows first six rows of dataset
 ```
 
 ```
@@ -1518,7 +1526,7 @@ Now I will square the mean deviation:
 
 ```r
 rm1wLONG_df$mDev2 <- rm1wLONG_df$mDev * rm1wLONG_df$mDev
-head(rm1wLONG_df)#shows first six rows of dataset
+head(rm1wLONG_df)  #shows first six rows of dataset
 ```
 
 ```
@@ -1554,7 +1562,7 @@ I can get the use the *psych::describeBy()* to obtain the standard deviations fo
 
 
 ```r
-psych::describeBy(TradPed ~ deID, mat=TRUE, type = 1, data = rm1wLONG_df)
+psych::describeBy(TradPed ~ deID, mat = TRUE, type = 1, data = rm1wLONG_df)
 ```
 
 ```
@@ -1705,13 +1713,30 @@ TradPed70 4.8  0.60 -0.381801774160605     -1.5 0.17638342
 Someone who codes in R could probably write a quick formula to do this -- in this case, I will take the time (and space) to copy each student's standard deviation into a formula that squares it, multiplies it by $n-1$ and then sums all 70 of those calculations.
 
 ```r
-SSW <- (0.8717798^2 * (3 - 1)) + (0.4163332	^2 * (3 - 1)) + (0.6928203	^2 * (3 - 1)) + (0.4000000	^2 * (3 - 1)) +   (0.4163332^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) +   (0.7023769^2 * (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.2220202^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.9018500^2 * (3 - 1)) + (0.5033223^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) + (0.9451631^2 * (3 - 1)) + 
-(1.0066446^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5484828^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.6165808^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.6429101^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + 
-(0.1154701^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) +
-(0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) +
-(0.2309401^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) + (0.2000000^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5033223^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) +  (0.2309401^2 * (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) +   (0.4000000^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.8326664^2 * (3 - 1)) + (0.5773503^2 * (3 - 1)) +
-(0.0000000^2 * (3 - 1)) + (0.2000000^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) +
-(0.4618802^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) 
+SSW <- (0.8717798^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.6928203^2 *
+    (3 - 1)) + (0.4^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.4163332^2 *
+    (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.7023769^2 *
+    (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.1154701^2 *
+    (3 - 1)) + (0.305505^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.2220202^2 *
+    (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.90185^2 * (3 - 1)) + (0.5033223^2 *
+    (3 - 1)) + (0^2 * (3 - 1)) + (0.9451631^2 * (3 - 1)) + (1.0066446^2 *
+    (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.305505^2 * (3 - 1)) + (0.3464102^2 *
+    (3 - 1)) + (0.5484828^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.1154701^2 *
+    (3 - 1)) + (1.6165808^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.305505^2 *
+    (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.4163332^2 *
+    (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.6429101^2 *
+    (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.1154701^2 *
+    (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.9165151^2 *
+    (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.5291503^2 *
+    (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.1154701^2 *
+    (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0^2 *
+    (3 - 1)) + (0.2^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5033223^2 *
+    (3 - 1)) + (0.305505^2 * (3 - 1)) + (0^2 * (3 - 1)) + (0.2309401^2 *
+    (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.305505^2 *
+    (3 - 1)) + (0.4^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.8326664^2 *
+    (3 - 1)) + (0.5773503^2 * (3 - 1)) + (0^2 * (3 - 1)) + (0.2^2 * (3 -
+    1)) + (0.305505^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.4618802^2 *
+    (3 - 1)) + (0.305505^2 * (3 - 1))
 
 SSW
 ```
@@ -1749,7 +1774,8 @@ I can put it in the formula:
 
 
 ```r
-(70 * (4.211 - 4.319286)^2) + (70 * (4.332 - 4.319286)^2) + (70 * (4.414 - 4.319286)^2)
+(70 * (4.211 - 4.319286)^2) + (70 * (4.332 - 4.319286)^2) + (70 * (4.414 -
+    4.319286)^2)
 ```
 
 ```

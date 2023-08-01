@@ -838,23 +838,23 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |3. Evaluate statistical assumptions     |      5            |_____  |
 |4. Conduct an independent samples *t*-test (with an effect size and 95%CIs) |5 | _____  |  
 |5. APA style results with table(s) and figure  |    5  |_____  |       
-|6. Conduct power analyses to determine the power of the current study and a recommended sample size  |      5        |_____  |
+|6. Conduct power analyses to determine the power of the current study and a recommended sample size  |  5   |_____  |
 |7. Explanation to grader                 |      5        |_____  |
 |**Totals**                              |      35      |_____  |          
 
-|Hand Calculations                         | Points Poss   | Points Earned
-|:-----------------------------------------|:-------------:|:--------------|
-|1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses|   2     |               
-|2. Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable | 4  |  |
-|3. Calculate the SE used in the denominator of the *t*-test |4 |  |
-|4. Calculate the independent samples *t*-test| 4 ||
-|5. Identify the degrees of freedom associated with your *t*-test |  2 |               
-|6. Locate the test critical value for your test  |2 |  |
-|7. Is the *t*-test statistically significant? Why or why not? | 2 |  |
-|8. What is the confidence interval around the difference in sample means? |4 |  |
-|9.Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test |4 |  |
-|10. Assemble the results into a statistical string |4 |  |
-|**Totals* **                                  |     32        |             |
+|Hand Calculations                         |Points Possible | Points Earned
+|:-----------------------------------------|:--------------:|:--------------|
+|1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses|   2  |_____  |               
+|2. Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable | 4  |_____|
+|3. Calculate the SE used in the denominator of the *t*-test |4 |_____|
+|4. Calculate the independent samples *t*-test| 4 |_____|
+|5. Identify the degrees of freedom associated with your *t*-test |  2 | _____|              
+|6. Locate the test critical value for your test  |2 | _____ |
+|7. Is the *t*-test statistically significant? Why or why not? | 2 | _____ |
+|8. What is the confidence interval around the difference in sample means? |4 |_____  |
+|9.Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test |4 | _____ |
+|10. Assemble the results into a statistical string |4 | _____ |
+|**Totals**                                  |     32        |_____  |
 
 
 
@@ -892,24 +892,26 @@ To avoid "dependency" in the data, I will just use data from the ANOVA course.  
 
 
 ```r
-JustANOVA <- subset(big, Course == "ANOVA") 
+JustANOVA <- subset(big, Course == "ANOVA")
 ```
 
 I will create a mean score of completed items from the traditional pedagogy scale.
 
 
 ```r
-#Creates a list of the variables that belong to that scale
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+# Creates a list of the variables that belong to that scale
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
 
-#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, TradPed_vars], .75)
+# Calculates a mean if at least 75% of the items are non-missing;
+# adjusts the calculating when there is missingness
+JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, TradPed_vars], 0.75)
 ```
 
 To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
 
 ```r
-IndT_df <-(dplyr::select(JustANOVA, Dept, TradPed))
+IndT_df <- (dplyr::select(JustANOVA, Dept, TradPed))
 ```
 
 And further trim to non-missing data
@@ -956,7 +958,7 @@ Without further coding, R will order the factors alphabetically.  This is fine. 
 
 
 ```r
-psych::describeBy(IndT_df ~ Dept,  type =1, mat=TRUE)
+psych::describeBy(IndT_df ~ Dept, type = 1, mat = TRUE)
 ```
 
 ```
@@ -981,8 +983,8 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 We can use the Shapiro Wilk test for a formal test of normality
 
 ```r
-library(tidyverse)#opening this package so I can use the pipes
-shapiro <- IndT_df%>%
+library(tidyverse)  #opening this package so I can use the pipes
+shapiro <- IndT_df %>%
     group_by(Dept) %>%
     rstatix::shapiro_test(TradPed)
 shapiro
@@ -1118,7 +1120,8 @@ indT.box
 We can use Cohen's d in this specification of *d*.
 
 ```r
-pwr::pwr.t.test(d = 0.30, n = 112, power = NULL, sig.level = 0.05,type = "two.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = 0.3, n = 112, power = NULL, sig.level = 0.05, type = "two.sample",
+    alternative = "two.sided")
 ```
 
 ```
@@ -1138,7 +1141,8 @@ We were at 61% power. That is, given the value of the mean difference (), we had
 
 
 ```r
-pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05, type = "two.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05, type = "two.sample",
+    alternative = "two.sided")
 ```
 
 ```
@@ -1173,7 +1177,7 @@ $$H_A: \mu_1 \neq \mu_2$$
 
 
 ```r
-psych::describeBy(IndT_df ~ Dept, type =1, mat=TRUE)
+psych::describeBy(IndT_df ~ Dept, type = 1, mat = TRUE)
 ```
 
 ```

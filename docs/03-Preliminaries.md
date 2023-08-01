@@ -1420,27 +1420,27 @@ Regardless which option(s) you chose, use the elements in the grading rubrics to
 
 |Working the problem with R and R packages | Points Poss   | Points Earned
 |:-----------------------------------------|:-------------:|:--------------|
-|1. Create a df with 3 continuously scaled variables of interest|   3     |               
-|2. Produce descriptive statistics          |      3        |             |
-|3. Produce SPLOM/pairs.panels              |      3        |             |
-|4. Produce an apaTables matrix             |      3        |             |
-|5. Produce an APA Style write-up of the preliminary analyses|      5     |               
-|6. Explanation/discussion with a grader    |      5        |             |
-|**Totals                                   |     22        |             |   
+|1. Create a df with 3 continuously scaled variables of interest|   3     |_______|               
+|2. Produce descriptive statistics          |   3               | _______   
+|3. Produce SPLOM/pairs.panels              |      3        | _______|
+|4. Produce an apaTables matrix             |      3        |  _______|
+|5. Produce an APA Style write-up of the preliminary analyses|      5     | _______|              
+|6. Explanation/discussion with a grader    |      5        |_______| 
+|**Totals                                   |     22        | _______|   
 
-|Hand Calculations                         | Points Poss   | Points Earned
-|:-----------------------------------------|:-------------:|:--------------|
-|1. Create a variable that represents the mean.|   2     |               
-|2. Create a variable that represents the mean deviation. | 2  |  |
-|3. What is the value of the *sum* of mean deviations? |2 |  |
-|4. Create a variable that represents the absolute mean deviation. What is the *sum* of the absolute mean deviation? What is the value of the *mean* of the absolute mean deviation?  What does this value tell you?| 4 ||
-|5. Create a variable that represents the mean deviation squared. |  2 |               
-|6. What are the values of the sum of squared deviations around the mean $SS$, variance $s^2$, and standard deviation ($s$)? |3 |  |
-|7. Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable. | 5 |  |
-|8. Create a variable that represents the *cross-product* (of the mean deviations). What is the sum of these cross-products? |2 |  |
-|9. Calculate the value of their covariance. |2 |  |
-|8. Calculate value of correlation coefficient. |2 |  |
-|**Totals                                   |     26        |             |   
+|Hand Calculations                         | Points Possible   | Points Earned
+|:-----------------------------------------|:---------------:|:--------------|
+|1. Create a variable that represents the mean.|   2     | _______|               
+|2. Create a variable that represents the mean deviation. | 2  |_______  |
+|3. What is the value of the *sum* of mean deviations? |2 |_______  |
+|4. Create a variable that represents the absolute mean deviation. What is the *sum* of the absolute mean deviation? What is the value of the *mean* of the absolute mean deviation?  What does this value tell you?| 4 |_______|
+|5. Create a variable that represents the mean deviation squared. |  2 | _______|              
+|6. What are the values of the sum of squared deviations around the mean $SS$, variance $s^2$, and standard deviation ($s$)? |3 |_______  |
+|7. Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable. | 5 |_______  |
+|8. Create a variable that represents the *cross-product* (of the mean deviations). What is the sum of these cross-products? |2 |_______  |
+|9. Calculate the value of their covariance. |2 |_______  |
+|8. Calculate value of correlation coefficient. |2 |_______  |
+|**Totals**                                   |     26        |_______ |   
 
 
 
@@ -1474,7 +1474,7 @@ To avoid this dependency and to practice an R skill, let's first filter the data
 
 
 ```r
-JustANOVA <- subset(ReCdf, Course == "ANOVA") 
+JustANOVA <- subset(ReCdf, Course == "ANOVA")
 ```
 
 #### Create a df with 3 continuously scaled variables of interest
@@ -1485,7 +1485,7 @@ The assignment requires that we downsize to three variables. We could pick any t
 ```r
 library(tidyverse)
 tiny3 <- JustANOVA %>%
-    dplyr::select (OvInstructor, OvCourse, MyContribution)
+    dplyr::select(OvInstructor, OvCourse, MyContribution)
 ```
 
 #### Produce descriptive statistics
@@ -1560,11 +1560,11 @@ If you need to reimport data, here is a quick recap of the code explained earlie
 
 ```r
 ReCdf <- readRDS("ReC.rds")
-JustANOVA <- subset(ReCdf, Course == "ANOVA") 
+JustANOVA <- subset(ReCdf, Course == "ANOVA")
 
 library(tidyverse)
 tiny3 <- JustANOVA %>%
-    dplyr::select (OvInstructor, OvCourse, MyContribution)
+    dplyr::select(OvInstructor, OvCourse, MyContribution)
 ```
 
 To avoid problems in the code we are used that is caused by missingness, we will eliminate any rows with missing data.
@@ -1579,14 +1579,14 @@ tiny3 <- na.omit(tiny3)
 I will start with the OvInstructor variable. Inspect the dataframe to see that this new variable exists.
 
 ```r
-tiny3$M_OvI <- mean(tiny3$OvInstructor, na.rm=TRUE)
+tiny3$M_OvI <- mean(tiny3$OvInstructor, na.rm = TRUE)
 ```
 
 #### Create a variable that represents the mean deviation.
 
 
 ```r
-tiny3$Mdev_OvI <- (tiny3$OvInstructor-tiny3$M_OvI)
+tiny3$Mdev_OvI <- (tiny3$OvInstructor - tiny3$M_OvI)
 head(tiny3)
 ```
 
@@ -1716,7 +1716,7 @@ var_OvI
 Here's how to do it with the numbers that I calculated:
 
 ```r
-115.0973/(113-1)
+115.0973/(113 - 1)
 ```
 
 ```
@@ -1726,7 +1726,7 @@ Here's how to do it with the numbers that I calculated:
 Checking my work with the *var* function from base R. If it's wrong, I need to rework some of the previous steps.
 
 ```r
-var(tiny3$OvInstructor, na.rm = TRUE) #checking my work
+var(tiny3$OvInstructor, na.rm = TRUE)  #checking my work
 ```
 
 ```
@@ -1739,7 +1739,7 @@ There are two ways to calculate it with basic code; and then we can check it wit
 
 
 ```r
-sd_OvI <- sqrt(var_OvI)#calculating with the object I created
+sd_OvI <- sqrt(var_OvI)  #calculating with the object I created
 sd_OvI
 ```
 
@@ -1748,7 +1748,7 @@ sd_OvI
 ```
 
 ```r
-sqrt (1.027655)#calculated with the actual numbers
+sqrt(1.027655)  #calculated with the actual numbers
 ```
 
 ```
@@ -1756,7 +1756,7 @@ sqrt (1.027655)#calculated with the actual numbers
 ```
 
 ```r
-sd(tiny3$OvInstructor)#checking my work with the code from baseR
+sd(tiny3$OvInstructor)  #checking my work with the code from baseR
 ```
 
 ```
@@ -1768,11 +1768,11 @@ sd(tiny3$OvInstructor)#checking my work with the code from baseR
 My second variable is MyContribution
 
 ```r
-#first the mean
-tiny3$M_MyC <- mean(tiny3$MyContribution, na.rm=TRUE)
-#second the mean deviation
-tiny3$Mdev_MyC <- (tiny3$MyContribution-tiny3$M_MyC)
-#third the mean deviation squared
+# first the mean
+tiny3$M_MyC <- mean(tiny3$MyContribution, na.rm = TRUE)
+# second the mean deviation
+tiny3$Mdev_MyC <- (tiny3$MyContribution - tiny3$M_MyC)
+# third the mean deviation squared
 tiny3$mdev2_MyC <- (tiny3$Mdev_MyC * tiny3$Mdev_MyC)
 head(tiny3)
 ```
@@ -1795,7 +1795,7 @@ head(tiny3)
 ```
 
 ```r
-#fourth the variance
+# fourth the variance
 var_MyC <- sum(tiny3$mdev2_MyC/((nrow(tiny3) - 1)))
 var_MyC
 ```
@@ -1805,9 +1805,9 @@ var_MyC
 ```
 
 ```r
-#finally the standard deviation
+# finally the standard deviation
 sd_MyC <- sqrt(var_MyC)
-sd_MyC#checking my work
+sd_MyC  #checking my work
 ```
 
 ```
@@ -1815,7 +1815,7 @@ sd_MyC#checking my work
 ```
 
 ```r
-sd(tiny3$MyContribution)#checking my work
+sd(tiny3$MyContribution)  #checking my work
 ```
 
 ```

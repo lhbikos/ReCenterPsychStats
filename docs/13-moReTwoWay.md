@@ -145,8 +145,8 @@ Next we use the *aov()* function from base R for the one-way ANOVA. Like magic, 
 
 
 ```r
-Dykn_simple <- aov(Negative ~ Rater, data = Dayaknese_Ph) 
-summary(Dykn_simple) 
+Dykn_simple <- aov(Negative ~ Rater, data = Dayaknese_Ph)
+summary(Dykn_simple)
 ```
 
 ```

@@ -812,8 +812,8 @@ Madurese   1  1</code></pre>
 <div class="sourceCode" id="cb1423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1423-1"><a href="moRe.html#cb1423-1" tabindex="-1"></a><span class="co"># subset data</span></span>
 <span id="cb1423-2"><a href="moRe.html#cb1423-2" tabindex="-1"></a>Dayaknese_Ph <span class="ot">&lt;-</span> <span class="fu">subset</span>(Ramdhani_df, Photo <span class="sc">==</span> <span class="st">&quot;Dayaknese&quot;</span>)</span></code></pre></div>
 <p>Next we use the <em>aov()</em> function from base R for the one-way ANOVA. Like magic, the contrast that we specified is assigned to the Rater variable. We can apply the <em>summary()</em> function to the <em>aov()</em> object that we created to see the results.</p>
-<div class="sourceCode" id="cb1424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1424-1"><a href="moRe.html#cb1424-1" tabindex="-1"></a>Dykn_simple <span class="ot">&lt;-</span> <span class="fu">aov</span>(Negative <span class="sc">~</span> Rater, <span class="at">data =</span> Dayaknese_Ph) </span>
-<span id="cb1424-2"><a href="moRe.html#cb1424-2" tabindex="-1"></a><span class="fu">summary</span>(Dykn_simple) </span></code></pre></div>
+<div class="sourceCode" id="cb1424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1424-1"><a href="moRe.html#cb1424-1" tabindex="-1"></a>Dykn_simple <span class="ot">&lt;-</span> <span class="fu">aov</span>(Negative <span class="sc">~</span> Rater, <span class="at">data =</span> Dayaknese_Ph)</span>
+<span id="cb1424-2"><a href="moRe.html#cb1424-2" tabindex="-1"></a><span class="fu">summary</span>(Dykn_simple)</span></code></pre></div>
 <pre><code>            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
 Rater        2  19.81   9.903   13.32 0.0000221 ***
 Residuals   51  37.90   0.743                      

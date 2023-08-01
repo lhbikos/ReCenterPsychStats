@@ -1812,20 +1812,19 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |9. Explanation to grader.                 |      5        |_____  |
 |**Totals**                               |      40      |_____  |          
 
-|Hand Calculations                         | Points Poss   | Points Earned
-|:-----------------------------------------|:-------------:|:--------------|
-|1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses.|   2     |               
-|2. Calculate sums of squares total (SST). Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |  |
-|3. Calculate the sums of squares for the model (SSM). A necessary step in this equation is to calculate group means.  |4 |  |
-|4. Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group. | 4 ||
-|5. Calculate the mean square model, mean square residual, and *F*-test. |  2 |  |             
-|6. What are the degrees of freedom for your numerator and denominator? |  2 |  |
-|7. Locate the test critical value for your one-way ANOVA.  |2 |  |
-|8. Is the *F*-test statistically significant? Why or why not? | 2 |  |
-|9. Calculate and interpret the $\eta^2$ effect size | 2 |  |
-
-|10. Assemble the results into a statistical string. |4 |  |
-|**Totals* **                                  |     28        |             |
+|Hand Calculations                         |Points Possible | Points Earned
+|:-----------------------------------------|:--------------:|:--------------|
+|1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses.| 2 |_____|               
+|2. Calculate sums of squares total (SST). Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |_____  |
+|3. Calculate the sums of squares for the model (SSM). A necessary step in this equation is to calculate group means.  |4 |_____  |
+|4. Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group. | 4 |_____|
+|5. Calculate the mean square model, mean square residual, and *F*-test. |  2 |_____  |             
+|6. What are the degrees of freedom for your numerator and denominator? |  2 |_____  |
+|7. Locate the test critical value for your one-way ANOVA.  |2 |_____  |
+|8. Is the *F*-test statistically significant? Why or why not? | 2 | _____ |
+|9. Calculate and interpret the $\eta^2$ effect size | 2 |_____  |
+|10. Assemble the results into a statistical string. |4 |_____  |
+|**Totals**                                        |28|_____  |
 
 
 
@@ -1861,7 +1860,7 @@ This df includes course evaluations from ANOVA, multivariate, and psychometrics.
 
 
 ```r
-big <- subset(big, Course == "ANOVA") 
+big <- subset(big, Course == "ANOVA")
 ```
 
 Let's first create the "Stage" variable that represents the three levels of transition.
@@ -1869,7 +1868,8 @@ Let's first create the "Stage" variable that represents the three levels of tran
 The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.
 
 ```r
-big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition", "First"), to = c("Stable", "Transition", "Resettled"))
+big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition",
+    "First"), to = c("Stable", "Transition", "Resettled"))
 ```
 
 Let's check the structure:
@@ -1887,18 +1887,20 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
 
 
 ```r
-#Creates a list of the variables that belong to that scale
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+# Creates a list of the variables that belong to that scale
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
 
-#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-#big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)
-big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)
+# Calculates a mean if at least 75% of the items are non-missing;
+# adjusts the calculating when there is missingness big$TradPed <-
+# sjstats::mean_n(big[, ..TradPed_vars], .75)
+big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
 ```
 
 With our variables properly formatted, let's trim it to just the variables we need.
 
 ```r
-OneWay_df <-(dplyr::select (big, Stage, TradPed))
+OneWay_df <- (dplyr::select(big, Stage, TradPed))
 ```
 
 Although we would handle missing data more carefully in a "real study," I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
@@ -1913,7 +1915,7 @@ Although the assignment doesn't require it, I will make a quick plot to provide 
 
 ```r
 ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
-    color = "Stage", title = "Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition") #
+    color = "Stage", title = "Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition")  #
 ```
 
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-83-1.png)<!-- -->
@@ -1925,7 +1927,8 @@ ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
 
 
 ```r
-psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, type = 1)
+psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df,
+    type = 1)
 ```
 
 ```
@@ -1946,7 +1949,7 @@ the Shapiro-wilk test is a formal assessment of normality. It is a 2-part test t
 
 ```r
 TradPed_res <- lm(TradPed ~ Stage, data = OneWay_df)
-#TradPed_res
+# TradPed_res
 rstatix::shapiro_test(residuals(TradPed_res))
 ```
 
@@ -1976,7 +1979,7 @@ The *rstatix::identify_outliers()* function identifies outliers and extreme outl
 ```r
 library(tidyverse)
 OneWay_df %>%
-  rstatix::identify_outliers(TradPed)
+    rstatix::identify_outliers(TradPed)
 ```
 
 ```
@@ -2035,7 +2038,8 @@ I will simply calculate post-hoc comparisons. That is, all possible pairwise com
 
 
 ```r
-phoc <- rstatix::t_test(OneWay_df, TradPed ~ Stage, p.adjust.method = "bonferroni", detailed = TRUE)
+phoc <- rstatix::t_test(OneWay_df, TradPed ~ Stage, p.adjust.method = "bonferroni",
+    detailed = TRUE)
 phoc
 ```
 
@@ -2066,7 +2070,8 @@ We used the Bonferroni. The Bonferroni divides the overall alpha (.05) by the nu
 
 
 ```r
-apaTables::apa.1way.table(iv = Stage, dv = TradPed, show.conf.interval = TRUE, data = OneWay_df, table.number = 1, filename = "1wayHWTable.doc")
+apaTables::apa.1way.table(iv = Stage, dv = TradPed, show.conf.interval = TRUE,
+    data = OneWay_df, table.number = 1, filename = "1wayHWTable.doc")
 ```
 
 ```
@@ -2236,9 +2241,9 @@ Next, I will subtract this value from each person's TradPed value. This will cre
 
 ```r
 OneWay_df$mdevTP <- OneWay_df$TradPed - 4.06
-#I could also calculate it by using the "mean" function
-#I had to include an na.rm=TRUE; this appears to be connected to missingness
-OneWay_df$mdevTPb <- OneWay_df$TradPed - mean(OneWay_df$TradPed, na.rm=TRUE)
+# I could also calculate it by using the 'mean' function I had to
+# include an na.rm=TRUE; this appears to be connected to missingness
+OneWay_df$mdevTPb <- OneWay_df$TradPed - mean(OneWay_df$TradPed, na.rm = TRUE)
 head(OneWay_df)
 ```
 
@@ -2255,10 +2260,10 @@ head(OneWay_df)
 
 ```r
 library(tidyverse)
-OneWay_df <- OneWay_df %>% 
-  dplyr::mutate(m_devSQTP = mdevTP^2)
+OneWay_df <- OneWay_df %>%
+    dplyr::mutate(m_devSQTP = mdevTP^2)
 
-#so we can see this in the textbook
+# so we can see this in the textbook
 head(OneWay_df)
 ```
 
@@ -2298,7 +2303,8 @@ We can obtain the group means several ways. I think the *psych::describeBy()* fu
 
 
 ```r
-psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, type = 1)
+psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df,
+    type = 1)
 ```
 
 ```
@@ -2316,7 +2322,7 @@ Now we can pop these values into the formula.
 
 
 ```r
-SSM <- 50 * (4.348 -4.06)^2 + 41 * (3.693 - 4.06)^2 + 21 * (4.081 - 4.06)^2
+SSM <- 50 * (4.348 - 4.06)^2 + 41 * (3.693 - 4.06)^2 + 21 * (4.081 - 4.06)^2
 SSM
 ```
 
@@ -2339,7 +2345,7 @@ We can obtain these values from the previous run of the *psych::describeBy()* fu
 
 
 ```r
-SSR <- (0.658^2)*(50 - 1) + (1.057^2)*(41 - 1) + (0.610^2)*(21-1)
+SSR <- (0.658^2) * (50 - 1) + (1.057^2) * (41 - 1) + (0.61^2) * (21 - 1)
 SSR
 ```
 

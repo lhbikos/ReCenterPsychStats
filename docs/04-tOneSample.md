@@ -281,6 +281,7 @@ The 12 minute mark is 1.05 *SD* above the mean. Checking the *z* table lets us k
 ```
 [1] 0.1469
 ```
+
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-18-1.png)<!-- -->
 The probability of a physician spending 12 minutes *or less* with a patient is 85%; the probability of a physician spending 12 minutes or more with a patient is 15%.
 
@@ -996,18 +997,18 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |**Totals**                               |      35      |_____  |     
 
 
-|Hand Calculations                         | Points Poss   | Points Earned
-|:-----------------------------------------|:-------------:|:--------------|
-|1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses|   2     |               
-|2. Calculate the mean of your sample; identify the mean of your benchmarking sample | 2  |  |
-|3. Using the steps from the previous lesson, calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared |6 |  |
-|4. Calculate the one-sample *t*-test| 4 ||
-|5. Identify the degrees of freedom associated with your *t*-test |  2 |               
-|6. Locate the test critical value for your test  |2 |  |
-|7. Is the *t*-test statistically significant? Why or why not? | 2 |  |
-|8. Calculate the confidence interval around your sample mean |2 |  |
-|9. Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test |2 |  |
-|**Totals**                                   |     24        |             |   
+|Hand Calculations                         |Points Possible | Points Earned
+|:-----------------------------------------|:--------------:|:--------------|
+|1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses|   2 |_____    
+|2. Calculate the mean of your sample; identify the mean of your benchmarking sample | 2  |_____|
+|3. Using the steps from the previous lesson, calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared |6 |_____|
+|4. Calculate the one-sample *t*-test| 4 |_____|
+|5. Identify the degrees of freedom associated with your *t*-test |  2 |_____|             
+|6. Locate the test critical value for your test  |2 |_____  |
+|7. Is the *t*-test statistically significant? Why or why not? | 2 |_____  |
+|8. Calculate the confidence interval around your sample mean |2 |_____  |
+|9. Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test |2 |_____  |
+|**Totals**                                   |     24        |_____   |   
 
 
 
@@ -1040,7 +1041,7 @@ ReCdf <- readRDS("ReC.rds")
 Let's first trim it to just students who took ANOVA
 
 ```r
-JustANOVA <- subset(ReCdf, Course == "ANOVA") 
+JustANOVA <- subset(ReCdf, Course == "ANOVA")
 ```
 
 And further trim to our variable of interest
@@ -1064,7 +1065,7 @@ library(tidyverse)
 
 ```r
 tiny1 <- JustANOVA %>%
-    dplyr::select (OvInstructor)
+    dplyr::select(OvInstructor)
 ```
 
 And further trim to non-missing data
@@ -1093,7 +1094,7 @@ Yes. The format for the OvInstructor variable is integer (which is numerical); t
 
 
 ```r
-pastecs::stat.desc(tiny1$OvInstructor, norm=TRUE)
+pastecs::stat.desc(tiny1$OvInstructor, norm = TRUE)
 ```
 
 ```
@@ -1169,7 +1170,8 @@ $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374), d = -0.211$
 
 
 ```r
-ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings", xlab = FALSE, add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
+ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings",
+    xlab = FALSE, add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
 ```
 
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
@@ -1180,7 +1182,8 @@ A quick reminder that the *d* in the power analysis is the difference between th
 
 
 ```r
-pwr::pwr.t.test(d = -0.211	, n = 113, power = NULL, sig.level = 0.05, type = "one.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = -0.211, n = 113, power = NULL, sig.level = 0.05, type = "one.sample",
+    alternative = "two.sided")
 ```
 
 ```
@@ -1198,7 +1201,8 @@ For the comparison to the CPY departmental average, power was 60%. That is, give
 
 
 ```r
-pwr::pwr.t.test(d = -0.211, n = NULL, power = 0.8, sig.level = 0.05, type = "one.sample", alternative = "two.sided")
+pwr::pwr.t.test(d = -0.211, n = NULL, power = 0.8, sig.level = 0.05, type = "one.sample",
+    alternative = "two.sided")
 ```
 
 ```
@@ -1230,7 +1234,7 @@ I will continue with the *tiny1* dataset and calculate the mean of the OvInstruc
 
 
 ```r
-mean(tiny1$OvInstructor, na.rm=TRUE)
+mean(tiny1$OvInstructor, na.rm = TRUE)
 ```
 
 ```
@@ -1243,14 +1247,14 @@ The mean of my benchmarking sample is 4.4. This number is a "departmental standa
 
 
 ```r
-#first the mean
-tiny1$M_OvInst <- mean(tiny1$OvInstructor, na.rm=TRUE)
-#second the mean deviation
-tiny1$Mdev_OvInst <- (tiny1$OvInstructor-tiny1$M_OvInst)
-#third the mean deviation squared
-tiny1$mdev2_OvInst <- (tiny1$Mdev_OvInst  * tiny1$Mdev_OvInst)
-#fourth the variance
-var_OvInst <- sum(tiny1$mdev2_OvInst /((nrow(tiny1) - 1)))
+# first the mean
+tiny1$M_OvInst <- mean(tiny1$OvInstructor, na.rm = TRUE)
+# second the mean deviation
+tiny1$Mdev_OvInst <- (tiny1$OvInstructor - tiny1$M_OvInst)
+# third the mean deviation squared
+tiny1$mdev2_OvInst <- (tiny1$Mdev_OvInst * tiny1$Mdev_OvInst)
+# fourth the variance
+var_OvInst <- sum(tiny1$mdev2_OvInst/((nrow(tiny1) - 1)))
 var_OvInst
 ```
 
@@ -1259,7 +1263,7 @@ var_OvInst
 ```
 
 ```r
-#finally the standard deviation
+# finally the standard deviation
 sd_OvInst <- sqrt(var_OvInst)
 sd_OvInst
 ```
@@ -1285,7 +1289,7 @@ The variance is 1.028; the standard deviation is 1.014.
 
 
 ```r
-sd(tiny1$OvInstructor)#checking my work
+sd(tiny1$OvInstructor)  #checking my work
 ```
 
 ```

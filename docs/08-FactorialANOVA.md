@@ -2014,17 +2014,17 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 |9. Explanation to grader.                       |      5        |_____  |
 |**Totals**                                     |      45     |_____  |         
 
-|Hand Calculations                         | Points Poss   | Points Earned
-|:-----------------------------------------|:-------------:|:--------------|
-|1.  Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |  |
-|2. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.  |4 |  |
-|3. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group. | 4 ||
-|4.  Calculate sums of squares model (SSM) for each of the factors in the model.  | 4  |  |
-|5. Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values |8 |  |
-|6. Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? | 2 |  |
-|7. Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. | 4 |  |
-|8. Assemble the results into their statistical strings. |4 |  |
-|**Totals* **                                  |     34      |             |
+|Hand Calculations                         | Points Possible | Points Earned
+|:-----------------------------------------|:---------------:|:--------------|
+|1.  Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared. | 4  |_____|
+|2. Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.  |4 |_____ |
+|3. Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group. | 4 |_____|
+|4.  Calculate sums of squares model (SSM) for each of the factors in the model.  | 4  |_____ |
+|5. Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values |8 |_____|
+|6. Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? | 2 |_____|
+|7. Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. | 4 |_____|
+|8. Assemble the results into their statistical strings. |4 |_____ |
+|**Totals**                                  |     34      |_____ |
 
 
 
@@ -2061,7 +2061,8 @@ big <- readRDS("ReC.rds")
 Let's first create the "Stage" variable that represents the three levels of transition.  The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.
 
 ```r
-big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition", "First"), to = c("Stable", "Transition", "Resettled"))
+big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition",
+    "First"), to = c("Stable", "Transition", "Resettled"))
 ```
 
 Let's check the structure:
@@ -2078,26 +2079,28 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
 
 
 ```r
-#Creates a list of the variables that belong to that scale
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+# Creates a list of the variables that belong to that scale
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
 
-#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-big$TradPed <- sjstats::mean_n(big[, TradPed_vars], .75)
+# Calculates a mean if at least 75% of the items are non-missing;
+# adjusts the calculating when there is missingness
+big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
 
-#if the scoring script won't run, try this one:
-#big$TradPed <- sjstats::mean_n(big[, ..TradPed_vars], .75)
+# if the scoring script won't run, try this one: big$TradPed <-
+# sjstats::mean_n(big[, ..TradPed_vars], .75)
 ```
 
 Each student in the dataset could contribute up to three course evaluations (i.e., one each for ANOVA, multivariate, psychometrics). Including all three would introduce *dependency* into the dataset and violate the assumption of independence. With our variables properly formatted let's create a subset with just the students who took ANOVA. 
 
 ```r
-TwoWay_df <- subset(big, Course == "ANOVA") 
+TwoWay_df <- subset(big, Course == "ANOVA")
 ```
 
 Next, let's trim it to just the variables we need.
 
 ```r
-TwoWay_df <-(dplyr::select(TwoWay_df, Stage, Dept, TradPed))
+TwoWay_df <- (dplyr::select(TwoWay_df, Stage, Dept, TradPed))
 ```
 
 Although we would handle missing data more carefully in a "real study," I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
@@ -2111,16 +2114,16 @@ Before we continue, this data has a hiccup that makes it less than ideal for a 2
 
 
 ```r
-TwoWay_df <- na.omit(TwoWay_df) #the next operation required non-missing data
-TwoWay_df[TwoWay_df$Stage == "Stable" & TwoWay_df$TradPed < 4.3, "Dept"]<- "ORG"
+TwoWay_df <- na.omit(TwoWay_df)  #the next operation required non-missing data
+TwoWay_df[TwoWay_df$Stage == "Stable" & TwoWay_df$TradPed < 4.3, "Dept"] <- "ORG"
 ```
 
 Although the homework assignment doesn't require it, I think it's useful to create a figure that shows what I intend to do.
 
 ```r
-Box2way <- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage", xlab = "Academic Department",
-    ylab = "Students' Evaluations of Traditional Pedagogy", add = "jitter",
-    title = "Course Evaluations as a Function of Department and Stage in Transition")
+Box2way <- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage",
+    xlab = "Academic Department", ylab = "Students' Evaluations of Traditional Pedagogy",
+    add = "jitter", title = "Course Evaluations as a Function of Department and Stage in Transition")
 Box2way
 ```
 
@@ -2133,7 +2136,8 @@ Box2way
 I'll start with an inspection of skew and kurtosis for all combinations of the levels of the two grouping variables.
 
 ```r
-psych::describeBy(TradPed ~ Stage + Dept, mat = TRUE, data = TwoWay_df, digits = 3, type = 1)
+psych::describeBy(TradPed ~ Stage + Dept, mat = TRUE, data = TwoWay_df,
+    digits = 3, type = 1)
 ```
 
 ```
@@ -2259,7 +2263,8 @@ Do we have to stop?  If cell sizes are reasonably large (e.g., at least 15) and 
 We can use the *rstatix::anova_test()* function.
 
 ```r
-omnibus2w <- rstatix::anova_test(TwoWay_df, TradPed ~ Dept * Stage, type = "2", detailed = TRUE)
+omnibus2w <- rstatix::anova_test(TwoWay_df, TradPed ~ Dept * Stage, type = "2",
+    detailed = TRUE)
 omnibus2w
 ```
 
@@ -2295,8 +2300,8 @@ The *rstatix::anova_test* does not allow me to specify a control for Type I erro
 
 ```r
 TwoWay_df %>%
-  dplyr::group_by(Dept)%>%
-  rstatix::anova_test(TradPed ~ Stage)
+    dplyr::group_by(Dept) %>%
+    rstatix::anova_test(TradPed ~ Stage)
 ```
 
 ```
@@ -2363,7 +2368,8 @@ I managed Type I error with the Holm's sequential Bonferroni. The Holm's is less
 
 
 ```r
-apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2Way.doc", table.number = 1, show.marginal.means = TRUE, landscape = TRUE)
+apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2Way.doc",
+    table.number = 1, show.marginal.means = TRUE, landscape = TRUE)
 ```
 
 ```
@@ -2388,7 +2394,8 @@ apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2W
 ```r
 pwTRwiDP <- pwTRwiDP %>%
     rstatix::add_xy_position(x = "Dept")  #x should be whatever the variable was used in the group_by argument 
-Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3, 5.5))
+Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif",
+    tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3, 5.5))
 Box2way
 ```
 
@@ -2460,7 +2467,8 @@ The size.A and size.B are the sample size per group within the factor. Because o
 
 
 ```r
-pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 56, size.B = 37, f.A = 0.3277495, f.B = 0.4364358)
+pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 56, size.B = 37, f.A = 0.3277495,
+    f.B = 0.4364358)
 ```
 
 ```
@@ -2487,7 +2495,8 @@ I will use a different function to estimate what sample size would be sufficient
 
 
 ```r
-pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.3277495, f.B = 0.4364358, B = 100)
+pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.3277495,
+    f.B = 0.4364358, B = 100)
 ```
 
 ```
@@ -2549,7 +2558,7 @@ I will create a variable that represents the mean deviation:
 
 ```r
 TwoWay_df <- TwoWay_df %>%
-  dplyr::mutate(m_dev = TradPed - 4.06)
+    dplyr::mutate(m_dev = TradPed - 4.06)
 
 head(TwoWay_df)
 ```
@@ -2587,7 +2596,7 @@ SST is the sum of the mean deviation squared values:
 
 
 ```r
-SST <- sum(TwoWay_df$m_devSQ, na.rm=TRUE)
+SST <- sum(TwoWay_df$m_devSQ, na.rm = TRUE)
 SST
 ```
 
@@ -2610,7 +2619,8 @@ The formula indicates that we need:
 I will obtain group means and $n$s with *psych::desribeBy*.
 
 ```r
-psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df, digits = 3)
+psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df,
+    digits = 3)
 ```
 
 ```
@@ -2631,11 +2641,11 @@ psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df, digits =
 ```
 
 To calculate it:
-
+ 
 
 ```r
 SSM <- 25 * (4.832 - 4.06)^2 + 25 * (3.864 - 4.06)^2 + 26 * (3.769 - 4.06)^2 +
-    15 * (3.560 - 4.06)^2 + 10 * (4.010 - 4.06)^2 + 11 * (4.145 - 4.06)^2
+    15 * (3.56 - 4.06)^2 + 10 * (4.01 - 4.06)^2 + 11 * (4.145 - 4.06)^2
 SSM
 ```
 
@@ -2676,7 +2686,7 @@ Earlier I learned the grand mean = 4.06
 
 
 ```r
-psych::describeBy(TradPed ~ Dept, mat=TRUE, data = TwoWay_df, digits=3)
+psych::describeBy(TradPed ~ Dept, mat = TRUE, data = TwoWay_df, digits = 3)
 ```
 
 ```
@@ -2704,7 +2714,7 @@ Reminder of the formula: $SS_{a:Stage}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^
 
 
 ```r
-psych::describeBy(TradPed ~ Stage, mat=TRUE, data = TwoWay_df, digits=3)
+psych::describeBy(TradPed ~ Stage, mat = TRUE, data = TwoWay_df, digits = 3)
 ```
 
 ```
@@ -2720,7 +2730,8 @@ psych::describeBy(TradPed ~ Stage, mat=TRUE, data = TwoWay_df, digits=3)
 
 
 ```r
-SSM_stage <- 50 * (4.348 - 4.06)^2 + 42 * (3.693 - 4.06)^2 + 32 * (4.081 - 4.06)^2
+SSM_stage <- 50 * (4.348 - 4.06)^2 + 42 * (3.693 - 4.06)^2 + 32 * (4.081 -
+    4.06)^2
 SSM_stage
 ```
 
@@ -2915,7 +2926,7 @@ The values of .01, .06, and .14 are considered small, medium, and large in ANOVA
 
 
 ```r
-4.647/83.033 #eta squared for department main effect
+4.647/83.033  #eta squared for department main effect
 ```
 
 ```
@@ -2923,7 +2934,7 @@ The values of .01, .06, and .14 are considered small, medium, and large in ANOVA
 ```
 
 ```r
-9.818/83.033 #eta squared for stage main effect
+9.818/83.033  #eta squared for stage main effect
 ```
 
 ```
@@ -2931,7 +2942,7 @@ The values of .01, .06, and .14 are considered small, medium, and large in ANOVA
 ```
 
 ```r
-7.451/83.033 #eta squared for interaction effect
+7.451/83.033  #eta squared for interaction effect
 ```
 
 ```

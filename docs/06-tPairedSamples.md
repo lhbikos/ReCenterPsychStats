@@ -884,11 +884,13 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
 
 
 ```r
-#Creates a list of the variables that belong to that scale
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+# Creates a list of the variables that belong to that scale
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
 
-#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-larger$TradPed <- sjstats::mean_n(larger[, ..TradPed_vars], .75)
+# Calculates a mean if at least 75% of the items are non-missing;
+# adjusts the calculating when there is missingness
+larger$TradPed <- sjstats::mean_n(larger[, ..TradPed_vars], 0.75)
 ```
 
 From the "larger" data, let's select only the variable we will use in the analysis. I have included "long" in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.
@@ -896,13 +898,13 @@ From the "larger" data, let's select only the variable we will use in the analys
 We need both "long" and "wide" forms to conduct the analyses required for both testing the statistical assumptions and performing the paired samples *t*-test.
 
 ```r
-paired_long <-(dplyr::select (larger, deID, Course, TradPed))
+paired_long <- (dplyr::select(larger, deID, Course, TradPed))
 ```
 
 From that reduced variable set, let's create a subset with students only from those two courses.
 
 ```r
-paired_long <- subset(paired_long, Course == "ANOVA" | Course == "Multivariate") 
+paired_long <- subset(paired_long, Course == "ANOVA" | Course == "Multivariate")
 ```
 
 Regarding the structure of the data, we want the conditions (ANOVA, multivariate) to be factors and the TradPed variable to be continuously scaled. The format of the deID variable can be any numerical or categorical format -- just not a "chr" (character) variable.
@@ -925,7 +927,8 @@ For analyzing the assumptions associated with the paired-samples *t*-test, the f
 
 
 ```r
-paired_wide <- reshape2::dcast(data = paired_long, formula =deID ~ Course, value.var = "TradPed")
+paired_wide <- reshape2::dcast(data = paired_long, formula = deID ~ Course,
+    value.var = "TradPed")
 ```
 
 Let's recheck the structure.
@@ -1016,7 +1019,8 @@ So this may be a bit tricky, but our original "long" form of the data has more A
 
 
 ```r
-paired_long2 <- data.table::melt(data.table::setDT(paired_wide), id.vars = c("deID"), measure.vars = list(c("ANOVA", "Multivariate")))
+paired_long2 <- data.table::melt(data.table::setDT(paired_wide), id.vars = c("deID"),
+    measure.vars = list(c("ANOVA", "Multivariate")))
 
 paired_long2 <- dplyr::rename(paired_long2, Course = variable, TradPed = value)
 
@@ -1113,8 +1117,9 @@ For the figure, let's re-run the paired samples *t* test, save it as an object, 
 
 
 ```r
-paired_T <- rstatix::t_test(paired_long2, TradPed ~ Course, paired = TRUE, detailed = TRUE)%>%
-  rstatix::add_significance()
+paired_T <- rstatix::t_test(paired_long2, TradPed ~ Course, paired = TRUE,
+    detailed = TRUE) %>%
+    rstatix::add_significance()
 paired_T
 ```
 
@@ -1130,14 +1135,17 @@ Next, we create boxplot:
 
 
 ```r
-pairT.box <- ggpubr::ggpaired(paired_long2, x = "Course", y = "TradPed", order = c("ANOVA",
-    "Multivariate"), line.color = "gray", palette = c("npg"), color = "Course",
-    ylab = "Traditional Pedagogy", xlab = "Statistics Course", title = "Figure 1. Evaluation of Traditional Pedagogy as a Function of Course")
+pairT.box <- ggpubr::ggpaired(paired_long2, x = "Course", y = "TradPed",
+    order = c("ANOVA", "Multivariate"), line.color = "gray", palette = c("npg"),
+    color = "Course", ylab = "Traditional Pedagogy", xlab = "Statistics Course",
+    title = "Figure 1. Evaluation of Traditional Pedagogy as a Function of Course")
 
 paired_T <- paired_T %>%
     rstatix::add_xy_position(x = "Course")  #autocomputes p-value labels positions
 
-pairT.box <- pairT.box + ggpubr::stat_pvalue_manual(paired_T, tip.length = 0.02, y.position = c(5.5)) + labs(subtitle = rstatix::get_test_label(paired_T, detailed = TRUE))
+pairT.box <- pairT.box + ggpubr::stat_pvalue_manual(paired_T, tip.length = 0.02,
+    y.position = c(5.5)) + labs(subtitle = rstatix::get_test_label(paired_T,
+    detailed = TRUE))
 
 pairT.box
 ```

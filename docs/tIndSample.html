@@ -1381,14 +1381,14 @@ NOTE: n is number in *each* group</code></pre>
 </table>
 <table>
 <colgroup>
-<col width="58%" />
-<col width="20%" />
+<col width="57%" />
+<col width="21%" />
 <col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Hand Calculations</th>
-<th align="center">Points Poss</th>
+<th align="center">Points Possible</th>
 <th align="left">Points Earned</th>
 </tr>
 </thead>
@@ -1396,57 +1396,57 @@ NOTE: n is number in *each* group</code></pre>
 <tr class="odd">
 <td align="left">1. Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">2. Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">3. Calculate the SE used in the denominator of the <em>t</em>-test</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">4. Calculate the independent samples <em>t</em>-test</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">5. Identify the degrees of freedom associated with your <em>t</em>-test</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">6. Locate the test critical value for your test</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">7. Is the <em>t</em>-test statistically significant? Why or why not?</td>
 <td align="center">2</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">8. What is the confidence interval around the difference in sample means?</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
 <td align="left">9.Calculate the effect size (i.e., Cohen’s <em>d</em> associated with your <em>t</em>-test</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="even">
 <td align="left">10. Assemble the results into a statistical string</td>
 <td align="center">4</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>Totals* </strong></td>
+<td align="left"><strong>Totals</strong></td>
 <td align="center">32</td>
-<td align="left"></td>
+<td align="left">_____</td>
 </tr>
 </tbody>
 </table>
@@ -1471,15 +1471,17 @@ NOTE: n is number in *each* group</code></pre>
 <p>First, bring in the dataset.</p>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="tIndSample.html#cb417-1" tabindex="-1"></a>big <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>To avoid “dependency” in the data, I will just use data from the ANOVA course. Let’s first trim it to just students who took ANOVA</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="tIndSample.html#cb418-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="tIndSample.html#cb418-1" tabindex="-1"></a>JustANOVA <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>)</span></code></pre></div>
 <p>I will create a mean score of completed items from the traditional pedagogy scale.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="tIndSample.html#cb419-1" tabindex="-1"></a><span class="co">#Creates a list of the variables that belong to that scale</span></span>
-<span id="cb419-2"><a href="tIndSample.html#cb419-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ClearResponsibilities&#39;</span>, <span class="st">&#39;EffectiveAnswers&#39;</span>,<span class="st">&#39;Feedback&#39;</span>, <span class="st">&#39;ClearOrganization&#39;</span>,<span class="st">&#39;ClearPresentation&#39;</span>)</span>
-<span id="cb419-3"><a href="tIndSample.html#cb419-3" tabindex="-1"></a></span>
-<span id="cb419-4"><a href="tIndSample.html#cb419-4" tabindex="-1"></a><span class="co">#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness</span></span>
-<span id="cb419-5"><a href="tIndSample.html#cb419-5" tabindex="-1"></a>JustANOVA<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(JustANOVA[, TradPed_vars], .<span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="tIndSample.html#cb419-1" tabindex="-1"></a><span class="co"># Creates a list of the variables that belong to that scale</span></span>
+<span id="cb419-2"><a href="tIndSample.html#cb419-2" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>, <span class="st">&quot;Feedback&quot;</span>,</span>
+<span id="cb419-3"><a href="tIndSample.html#cb419-3" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)</span>
+<span id="cb419-4"><a href="tIndSample.html#cb419-4" tabindex="-1"></a></span>
+<span id="cb419-5"><a href="tIndSample.html#cb419-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
+<span id="cb419-6"><a href="tIndSample.html#cb419-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
+<span id="cb419-7"><a href="tIndSample.html#cb419-7" tabindex="-1"></a>JustANOVA<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(JustANOVA[, TradPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
 <p>To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="tIndSample.html#cb420-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(JustANOVA, Dept, TradPed))</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="tIndSample.html#cb420-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(JustANOVA, Dept, TradPed))</span></code></pre></div>
 <p>And further trim to non-missing data</p>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="tIndSample.html#cb421-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(IndT_df)</span></code></pre></div>
 <p>Are the structures of the variables as follows:
@@ -1504,7 +1506,7 @@ NOTE: n is number in *each* group</code></pre>
 <li>Evaluate and report skew and kurtosis</li>
 <li>Evaluate and correctly interpret homogeneity of variance (if Levene’s &lt; .05; use Welch’s formulation)</li>
 </ul>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="tIndSample.html#cb426-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept,  <span class="at">type =</span><span class="dv">1</span>, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="tIndSample.html#cb426-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">mat =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         item group1 vars  n     mean        sd median  trimmed     mad min max
 Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
 Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
@@ -1520,8 +1522,8 @@ TradPed2   4.0 -1.1832786 0.5826528 0.19664900</code></pre>
 <p>Skew = -0.763 (CPY) and -1.183 (ORG) falls below the |3.0| threshold of concern (Klein, 2016)
 Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of concern (Klein, 2016)</p>
 <p>We can use the Shapiro Wilk test for a formal test of normality</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="tIndSample.html#cb428-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)<span class="co">#opening this package so I can use the pipes</span></span>
-<span id="cb428-2"><a href="tIndSample.html#cb428-2" tabindex="-1"></a>shapiro <span class="ot">&lt;-</span> IndT_df<span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="tIndSample.html#cb428-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#opening this package so I can use the pipes</span></span>
+<span id="cb428-2"><a href="tIndSample.html#cb428-2" tabindex="-1"></a>shapiro <span class="ot">&lt;-</span> IndT_df <span class="sc">%&gt;%</span></span>
 <span id="cb428-3"><a href="tIndSample.html#cb428-3" tabindex="-1"></a>    <span class="fu">group_by</span>(Dept) <span class="sc">%&gt;%</span></span>
 <span id="cb428-4"><a href="tIndSample.html#cb428-4" tabindex="-1"></a>    rstatix<span class="sc">::</span><span class="fu">shapiro_test</span>(TradPed)</span>
 <span id="cb428-5"><a href="tIndSample.html#cb428-5" tabindex="-1"></a>shapiro</span></code></pre></div>
@@ -1610,7 +1612,8 @@ Note. M and SD represent mean and standard deviation, respectively.
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1" class="section level4 hasAnchor" number="5.9.1.6">
 <h4><span class="header-section-number">5.9.1.6</span> Conduct power analyses to determine the power of the current study and a recommended sample size<a href="tIndSample.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can use Cohen’s d in this specification of <em>d</em>.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="tIndSample.html#cb440-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.30</span>, <span class="at">n =</span> <span class="dv">112</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,<span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="tIndSample.html#cb440-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.3</span>, <span class="at">n =</span> <span class="dv">112</span>, <span class="at">power =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb440-2"><a href="tIndSample.html#cb440-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Two-sample t test power calculation 
 
@@ -1622,7 +1625,8 @@ Note. M and SD represent mean and standard deviation, respectively.
 
 NOTE: n is number in *each* group</code></pre>
 <p>We were at 61% power. That is, given the value of the mean difference (), we had a 61% chance of detecting a statistically significant effect if there was one. How big of a sample would it take?</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="tIndSample.html#cb442-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.3</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="tIndSample.html#cb442-1" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.3</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb442-2"><a href="tIndSample.html#cb442-2" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
      Two-sample t test power calculation 
 
@@ -1652,7 +1656,7 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 <div id="using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable" class="section level4 hasAnchor" number="5.9.2.2">
 <h4><span class="header-section-number">5.9.2.2</span> Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable<a href="tIndSample.html#using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="tIndSample.html#cb444-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept, <span class="at">type =</span><span class="dv">1</span>, <span class="at">mat=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="tIndSample.html#cb444-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">mat =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         item group1 vars  n     mean        sd median  trimmed     mad min max
 Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
 Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2

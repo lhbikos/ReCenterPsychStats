@@ -1,7 +1,7 @@
 --- 
 title: "ReCentering Psych Stats"
 author: "Lynette H. Bikos, PhD, ABPP (she/her)"
-date: "Last updated 25 Jul 2023" 
+date: "Last updated 01 Aug 2023" 
 documentclass: book
 site: bookdown::bookdown_site
 bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
@@ -40,7 +40,7 @@ As a perpetually-in-progress, open education resource, feedback is always welcom
 
 # PREFACE {-}
 
-**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 25 Jul 2023**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
+**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 01 Aug 2023**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=859e5312-abdb-4db8-8779-b00c00feae47)
 
