@@ -1,7 +1,7 @@
 
 # Factorial (Between-Subjects) ANOVA {#between}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=3bb1bee1-c2ac-4cda-95f2-ad8b0152132c) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KPJjNqPwoLABFNlNErmOlsk) 
 
 In this (somewhat long and complex) lesson we conduct a 3X2 ANOVA. We will
 
@@ -2031,7 +2031,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 ## Homeworked Example
 
-[Screencast Link]()
+[Screencast Link](https://youtu.be/gstP-tx4YUQ)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 

@@ -1,6 +1,6 @@
 # Analysis of Covariance {#ANCOVA}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c0a9e50e-2e9d-4769-bd44-ad8c010143df) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KM2GjVUMy1Vy816d5lgbOvi) 
  
 
 
@@ -1063,7 +1063,7 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 
 ## Homeworked Example
 
-[Screencast Link]()
+[Screencast Link](https://youtu.be/eRCDNibARtg)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 

@@ -1,6 +1,6 @@
 # Introduction {#ReCintro}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=cc9b7c0d-e5c3-4e4e-a469-acf7013ee761)
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KNYW8LcbhOR_WT_As4xskQM)
 
 ## What to expect in each chapter
 

@@ -1,6 +1,6 @@
 # Mixed Design ANOVA {#Mixed}
 
- [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=b08debbb-948e-4f25-923a-ad8c01037e05) 
+ [Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KOBGvzZ9QezuAFfthNOh-3B) 
  
 
 
@@ -1121,7 +1121,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 ## Homeworked Example
 
-[Screencast Link]()
+[Screencast Link](https://youtu.be/6pkF-tnmNuY)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 

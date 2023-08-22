@@ -1,7 +1,7 @@
 
 # Independent Samples *t*-test {#tIndSample}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=844ba297-e9ce-48cc-a49f-af01012b7900) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KPx0VxnBTx9Y3_K6VFwtM1I) 
  
 
 
@@ -490,7 +490,7 @@ library(tidyverse)  #opening this package so I can use the pipes
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -861,7 +861,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 ## Homeworked Example
 
-[Screencast Link]()
+[Screencast Link](https://youtu.be/slmvZaXXEU8)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 

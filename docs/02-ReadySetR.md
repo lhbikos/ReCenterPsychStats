@@ -1,8 +1,6 @@
 # Ready_Set_R {#Ready}
 
-
-
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=6b27a60c-edcb-4565-aaf1-ad890174586e) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KPVmAkrTNyX_3VuVlPP1cXB) 
  
 
 
@@ -332,7 +330,7 @@ The suggestions for practice in this lesson are foundational for starting work i
 
 ## Homeworked Example
 
-[Screencast Link]()
+[Screencast Link](https://youtu.be/ZrQUt9lidCM)
 
 Several elements of the practice problems (i.e., download base R and R studio) are not easily demonstrated and not replicated here. These are skipped.
 

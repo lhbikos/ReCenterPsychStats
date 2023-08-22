@@ -1,6 +1,6 @@
 # Paired Samples *t*-test {#tPaired}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=08a90f4e-ce0d-4a5f-93f1-af0101625dbc) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KNYvBQJnO_VFpoS5gJJOTJ8) 
  
 
 
@@ -125,7 +125,7 @@ library(tidyverse)
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -856,7 +856,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 ## Homeworked Example
 
-[Screencast Link](link)
+[Screencast Link](https://youtu.be/9pJtCXceht4)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 

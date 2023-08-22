@@ -1,6 +1,6 @@
 # One-Way Repeated Measures ANOVA {#Repeated}
 
- [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c8f5737f-d00d-4fa4-ba3c-ad8b01762258) 
+ [Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KPauGV2_JPkZ4GkZzI4D4Dw) 
  
 
 
@@ -1097,7 +1097,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 ## Homeworked Example
 
-[Screencast Link]()
+[Screencast Link](https://youtu.be/3UhTJXp8uNI)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 

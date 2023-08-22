@@ -3,7 +3,7 @@
 
 
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=c88f8492-0599-462d-a471-ad8a01702156) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KMQZGTX3LI6O4wzJrbZwMnk) 
 
 One-way ANOVA allows the researcher to analyze mean differences between two or more groups on a between-subjects factor. For the one-way ANOVA, each case (i.e., individual, participant) must have scores on two variables: a factor and a dependent variable.
 
@@ -1831,7 +1831,7 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 
 ## Homeworked Example
-[Screencast Link]()
+[Screencast Link](https://youtu.be/rLyN9GspdWU)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 

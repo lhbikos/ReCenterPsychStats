@@ -1,7 +1,7 @@
 # Preliminary Analyses {#preliminaries}
 
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=97ec1420-3527-4204-8521-aeff0000afed) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KOoTRizMIyRU0ioiuSM1tWg) 
  
 
 
@@ -1449,7 +1449,7 @@ Regardless which option(s) you chose, use the elements in the grading rubrics to
 
 ## Homeworked Example
 
-[Screencast Link]()
+[Screencast Link](https://youtu.be/_IiZ8MbtbVs)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introduction](ReCintro).
 
