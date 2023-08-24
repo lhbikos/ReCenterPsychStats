@@ -1,4 +1,4 @@
-# One-Way Repeated Measures with a Multivariate Approach {-}
+# One-Way Repeated Measures with a Multivariate Approach  
 
 
 
@@ -8,7 +8,7 @@ As noted in the lesson on [one-way repeated measures ANOVA](#Repeated), the rese
 
 As a quick reminder, I will describe and resimulate the data. The narration will presume familiarity with the [one-way repeated measures ANOVA](#Repeated) lesson.
 
-## Research Vignette {-}
+## Research Vignette  
 
 Amodeo [@amodeo_empowering_2018] and colleagues conducted a mixed methods study (qualitative and quantitative) to evaluate the effectiveness of an empowerment, peer-group-based, intervention with participants (*N* = 8) who experienced transphobic episodes. Focus groups used qualitative methods to summarize emergent themes from the program (identity affirmation, self-acceptance, group as support) and a one-way, repeated measures ANOVA provided evidence of increased resilience from pre to three-month followup.
 
@@ -25,7 +25,7 @@ The within-subjects condition was wave, represented by T1, T2, and T3:
 
 The dependent variable (assessed at each wave) was a 14-item resilience scale [@wagnild_development_1993]. Items were assessed on a 7-point scale ranging from *strongly disagree* to *strongly agree* with higher scores indicating higher levels of resilience. An example items was, "I usually manage one way or another."
 
-### Data Simulation {-}
+### Data Simulation  
 
 Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup). The sript produces "long" and "wide" forms are created.
 
@@ -64,7 +64,7 @@ str(Amodeo_wide)
 Amodeo_wide$ID <- factor(Amodeo_wide$ID)
 ```
 
-## Computing the Omnibus F {-}
+## Computing the Omnibus F  
 
 Without the *rstatix* helper package, here is how the analysis would be run in the package, *car.*  Although this package is less intuitive to use, it results in both univariate output (both sphericity assumed and sphericity violated) and multivariate output (which does not require the sphericity assumption).
 
@@ -194,7 +194,7 @@ waveFactor 0.8172743 0.05734876
 ```
 The *car::Anova()* function produces both univariate and multivariate results. To begin to understand this data, let's start with what we learned in the [one-way repeated measures ANOVA lesson](#Repeated).
 
-### Univariate Results {-}
+### Univariate Results  
 
 When we ran the univariate approach in the lesson, we first checked the sphericity assumption. Our results here are identical to those from *rstatix::anova_test*. That is, we did not violate the sphericity assumption:  Mauchley's test $= .566 p = 0.182$. The *F* test with univariate results was $F(2, 14) = 3.910, p = 0.045$.
 
@@ -203,7 +203,7 @@ When we ran the univariate approach in the lesson, we first checked the spherici
 
 The univariate ANOVA results are under the "Univariate Type III Repeated-Measures ANOVA Assuming Sphericity" heading. We find the ANOVA output on the row titled, "waveFactor." The results are identical to what we found in the lesson:   $F(2,14) = 3.91, p = 0.045$. I do not see that an effect size is reported.
 
-### Multivariate Results {-}
+### Multivariate Results  
 
 Researchers may prefer the multivariate approach because it does not require the sphericity assumption. Stated another way, if the sphericity assumption is violated, researchers can report the results of the multivariate analysis.
 
@@ -213,10 +213,12 @@ We find the multivariate results in the middle of the output, under the heading,
 
 Because follow-up testing is *pairwise* (i.e., there are only two levels being compared), the sphericity assumption is not required and those could proceed in the manner demonstrated in the [one-way repeated measures ANOVA lesson](#Repeated).
 
-### A Brief Commentary on Wrappers {-}
+### A Brief Commentary on Wrappers  
 
 As noted several times, because of its relative ease-of-use, the relevance of information included in the results, and its integration with the *ggpubr* package, I chose to use *rstatix* package in all of the ANOVA lessons. As I worked through this example, I spent several hours creating and interpreting the code. For me, there was value in this exercise:
 
 * I am encouraged and reassured with the consistency of results between the two approaches,
 * I am in awe of the power of these programs and a little intimidated by all the options that are available within a given package, and
 * I am deeply grateful to package developers who take the time to create packages for discipline-specific use-cases and then freely share their work with others. Thank you [Alboukadel Kassambara](https://github.com/kassambara/rstatix)!
+
+# References {-#refs}

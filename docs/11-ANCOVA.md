@@ -1433,6 +1433,6 @@ ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = "Centering", y = "emmean"
 
 
 
-# References {-#refs}
+
 
 

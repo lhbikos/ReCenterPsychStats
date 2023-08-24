@@ -1,4 +1,4 @@
-# Examples for Follow-up to Factorial ANOVA {-}
+# Examples for Follow-up to Factorial ANOVA  
 
 
 
@@ -8,7 +8,7 @@ As noted in the lesson on [factorial ANOVA](#between), the options for follow-up
 
 As a quick reminder, I will describe and re-simulate the data. The narration will presume familiarity with the [factorial ANOVA](#between) lesson.
 
-## Research Vignette {-}
+## Research Vignette  
 
 The research vignette for this example was located in Kalimantan, Indonesia and focused on bias in young people from three ethnic groups. The Madurese and Dayaknese groups were engaged in ethnic conflict that spanned 1996 to 2001. The last incidence of mass violence was in 2001 where approximately 500 people (mostly from the Madurese ethnic group) were expelled from the province. Ramdhani et al.'s [-@ramdhani_affective_2018] research hypotheses were based on the roles of the three ethnic groups in the study. The Madurese appear to be viewed as the transgressors when they occupied lands and took employment and business opportunities from the Dayaknese. Ramdhani et al. also included a third group who were not involved in the conflict (Javanese). The research participants were students studying in Yogyakara who were not involved in the conflict. They included 39 Madurese, 35 Dyaknese, and 37 Javanese; 83 were male and 28 were female.
 
@@ -17,7 +17,7 @@ In the study [@ramdhani_affective_2018], participants viewed facial pictures of 
 * Positive: friendly, kind, helpful, happy
 * Negative: disgusting, suspicious, hateful, angry
 
-### Quick Resimulating of the Data {-}
+### Quick Resimulating of the Data  
 
 Below is script to simulate data for the negative reactions variable from the information available from the manuscript [@ramdhani_affective_2018]. If you would like more information about the details of this simulation, please visit the lesson on [factorial ANOVA](#between).
 
@@ -70,7 +70,7 @@ The code for the .rds file will retain the formatting of the variables, but is n
 ```
 
 
-## Analysis of Simple Main Effects with Orthogonal Contrasts {-}
+## Analysis of Simple Main Effects with Orthogonal Contrasts  
 
 This example follows a significant interaction effect. Specifically, we will analyze the effects of ethnicity of rater (three levels) within photo stimulus (two levels). We will conduct two one-way ANOVAs for the Dayaknese and Madurese photos, separately. In this example, we will utilize orthogonal contrast-coding for rater ethnicity.
 
@@ -279,7 +279,7 @@ ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
 
 ![](13-moReTwoWay_files/figure-docx/unnamed-chunk-15-1.png)<!-- -->
 
-## Analysis of Simple Main Effects with a Polynomial Trend {-}
+## Analysis of Simple Main Effects with a Polynomial Trend  
 
 In the context of the significant interaction effect, we might be interested in polynomial trends for any simple main effects where three or more cells are compared.
 
@@ -387,7 +387,7 @@ ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
 
 ![](13-moReTwoWay_files/figure-docx/unnamed-chunk-19-1.png)<!-- -->
 
-## All Possible Post Hoc Comparisons {-}
+## All Possible Post Hoc Comparisons  
 
 Another option is the comparison possible cells. These are termed *post hoc comparisons.* They are an alternative to simple main effects; you would not report both. A potential criticism of this approach is that it is atheoretical. Without compelling justification, reviewers may criticize this approach as "fishing," "p-hacking," or "HARKing" (hypothesizing after results are known). None-the-less, particularly when our results are not as expected, I do think having these tools available can be a helpful resource.
 

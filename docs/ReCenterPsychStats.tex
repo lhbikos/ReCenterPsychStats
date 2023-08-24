@@ -129,7 +129,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP (she/her)}
-\date{Last updated 23 Aug 2023}
+\date{Last updated 24 Aug 2023}
 
 \begin{document}
 \maketitle
@@ -169,7 +169,7 @@ ISBN-13: 979-8-9868768-2-5 (Ebook - online); ISBN-13: 979-8-9868768-3-2 (Ebook -
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 23 Aug 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 24 Aug 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://youtu.be/yy0z85Wla7o}{Screencasted Lecture Link}
 
@@ -22046,41 +22046,32 @@ And now a figure:
 
 \includegraphics{11-ANCOVA_files/figure-latex/unnamed-chunk-61-1.pdf}
 
-\hypertarget{refs}{%
-\chapter*{References}\label{refs}}
-
-
 \hypertarget{appendices}{%
 \chapter*{APPENDICES}\label{appendices}}
 
 
 \hypertarget{type-i-error}{%
-\chapter*{Type I Error}\label{type-i-error}}
-
+\chapter{Type I Error}\label{type-i-error}}
 
 \href{https://youtu.be/q7eQgXqY84Y}{Screencasted Lecture Link}
 
 \hypertarget{type-i-error-defined}{%
-\section*{Type I Error Defined}\label{type-i-error-defined}}
-
+\section{Type I Error Defined}\label{type-i-error-defined}}
 
 \emph{Type I error} is the concern about false positives -- that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern is increased when there are multiple hypothesis tests. This concern increases when we have a large number of pairwise comparisons.
 
 Throughout the chapters, I noted the importance and relative risk of Type I error with each statistic and options for follow-up testing. Because there are so many options, I have provided a review and summary of each option in this appendix. For each, I provide a definition, a review of the steps and options for utilizing the statistic, and suggest the types of follow-up for which this approach is indicated.
 
 \hypertarget{methods-for-managing-type-i-error}{%
-\section*{Methods for Managing Type I Error}\label{methods-for-managing-type-i-error}}
-
+\section{Methods for Managing Type I Error}\label{methods-for-managing-type-i-error}}
 
 \hypertarget{lsd-least-significant-difference-method}{%
-\subsection*{LSD (Least Significant Difference) Method}\label{lsd-least-significant-difference-method}}
-
+\subsection{LSD (Least Significant Difference) Method}\label{lsd-least-significant-difference-method}}
 
 The LSD method is especially appropriate in the one-way ANOVA scenario when there are only three levels in the factor. In this case, Green and Salkind \citeyearpar{green_using_2017} have suggested that alpha can be retained at the alpha level for the ``family'' (\(\alpha_{family}\)), which is conventionally \(p = .05\) and used both to evaluate the omnibus and, so long as they don't exceed three in number, the planned or pairwise comparisons that follow.
 
 \hypertarget{traditional-bonferroni}{%
-\subsection*{Traditional Bonferroni}\label{traditional-bonferroni}}
-
+\subsection{Traditional Bonferroni}\label{traditional-bonferroni}}
 
 The \emph{traditional Bonferroni} is, perhaps, the most well-known approach to managing Type I error. Although the lessons in this OER will frequently suggest another approach to managing Type I error, I will quickly review it now because, conceptually it is easy to understand. We start by establishing the \(\alpha\alpha_{family}\); this is traditionally \(p = .05\).
 
@@ -22127,8 +22118,7 @@ Luckily, each of these options has been reverse-engineered so that we do not hav
 Although the traditional Bonferroni is easy-to-understand and computer, it has been criticized as being too restrictive. That is, it increases the risk of making a Type II error (i.e., failing to reject the null hypothesis when it is false). This is why the majority of follow-up options to ANOVA did not use the traditional Bonferroni.
 
 \hypertarget{tukey-hsd}{%
-\subsection*{Tukey HSD}\label{tukey-hsd}}
-
+\subsection{Tukey HSD}\label{tukey-hsd}}
 
 The Tukey HSD (honestly significant difference test) is a multiple comparison procedure used to identify significant differences between means of multiple groups. In the ANOVA context, it examines which specific pairs of groups differ from one another. The Tukey HSD was designed to control for Type I error. It does so by calculating the difference between the largest and smallest group means, then dividing this mean difference by the standard error of the same mean difference. The resulting statitic, \emph{q} has an associated Studentized Range Distribution. Critical values for this distribution come from a Studentized Range q Table and are based on based on the alpha level, the number of groups, and the denominator degrees of freedom (i.e., \(df_W\)).
 
@@ -22137,16 +22127,14 @@ The Tukey HSD (``Tukey's honestly significantly different'') test automatically 
 I had intended to demonstrate this with the one-way ANOVA chapter, but could not get the results to render a figure with the significance bars and results. An online search suggested that I am not the only one to have experienced this glitch.
 
 \hypertarget{holms-sequential-bonferroni}{%
-\subsection*{Holms Sequential Bonferroni}\label{holms-sequential-bonferroni}}
-
+\subsection{Holms Sequential Bonferroni}\label{holms-sequential-bonferroni}}
 
 The Holm's sequential Bonferroni \citep{green_using_2017} offers a middle-of-the-road approach (not as strict as .05/9 with the traditional Bonferroni; not as lenient as ``none'') to managing Type I error.
 
 If we were to hand-calculate the Holms, we would rank order the \emph{p} values associated with the 9 comparisons in order from lowest (e.g., 0.000001448891) to highest (e.g., 1.000). The first \emph{p} value is evaluated with the most strict criterion (.05/9; the traditional Bonferonni approach). Then, each successive comparison calculates the \emph{p} value by using the number of \emph{remaining} comparisons as the denominator (e.g., .05/8, .05/7, .05/6). As the \emph{p} values increase and the alpha levels relax, there will be a cut-point where remaining comparisons are not statistically significant. Luckily, most R packages offer the Holm's sequential Bonferroni as an option. The algorithm behind the output rearranges the mathematical formula and produces a \emph{p} value that we can interpret according to the traditional values of \(p < .05, p < .01\) and \(p < .001\). \citep{green_using_2017}
 
 \hypertarget{examples-for-follow-up-to-factorial-anova}{%
-\chapter*{Examples for Follow-up to Factorial ANOVA}\label{examples-for-follow-up-to-factorial-anova}}
-
+\chapter{Examples for Follow-up to Factorial ANOVA}\label{examples-for-follow-up-to-factorial-anova}}
 
 \href{https://youtube.com/playlist?list=PLtz5cFLQl4KNxh3GDsCUg8yxtOM9l0WPf\&si=rqdj6oyjCJ78Zj8P}{Screencasted Lecture Link}
 
@@ -22155,8 +22143,7 @@ As noted in the lesson on \protect\hyperlink{between}{factorial ANOVA}, the opti
 As a quick reminder, I will describe and re-simulate the data. The narration will presume familiarity with the \protect\hyperlink{between}{factorial ANOVA} lesson.
 
 \hypertarget{research-vignette-9}{%
-\section*{Research Vignette}\label{research-vignette-9}}
-
+\section{Research Vignette}\label{research-vignette-9}}
 
 The research vignette for this example was located in Kalimantan, Indonesia and focused on bias in young people from three ethnic groups. The Madurese and Dayaknese groups were engaged in ethnic conflict that spanned 1996 to 2001. The last incidence of mass violence was in 2001 where approximately 500 people (mostly from the Madurese ethnic group) were expelled from the province. Ramdhani et al.'s \citeyearpar{ramdhani_affective_2018} research hypotheses were based on the roles of the three ethnic groups in the study. The Madurese appear to be viewed as the transgressors when they occupied lands and took employment and business opportunities from the Dayaknese. Ramdhani et al.~also included a third group who were not involved in the conflict (Javanese). The research participants were students studying in Yogyakara who were not involved in the conflict. They included 39 Madurese, 35 Dyaknese, and 37 Javanese; 83 were male and 28 were female.
 
@@ -22171,8 +22158,7 @@ In the study \citep{ramdhani_affective_2018}, participants viewed facial picture
 \end{itemize}
 
 \hypertarget{quick-resimulating-of-the-data}{%
-\subsection*{Quick Resimulating of the Data}\label{quick-resimulating-of-the-data}}
-
+\subsection{Quick Resimulating of the Data}\label{quick-resimulating-of-the-data}}
 
 Below is script to simulate data for the negative reactions variable from the information available from the manuscript \citep{ramdhani_affective_2018}. If you would like more information about the details of this simulation, please visit the lesson on \protect\hyperlink{between}{factorial ANOVA}.
 
@@ -22230,8 +22216,7 @@ The code for the .rds file will retain the formatting of the variables, but is n
 \end{Shaded}
 
 \hypertarget{analysis-of-simple-main-effects-with-orthogonal-contrasts}{%
-\section*{Analysis of Simple Main Effects with Orthogonal Contrasts}\label{analysis-of-simple-main-effects-with-orthogonal-contrasts}}
-
+\section{Analysis of Simple Main Effects with Orthogonal Contrasts}\label{analysis-of-simple-main-effects-with-orthogonal-contrasts}}
 
 This example follows a significant interaction effect. Specifically, we will analyze the effects of ethnicity of rater (three levels) within photo stimulus (two levels). We will conduct two one-way ANOVAs for the Dayaknese and Madurese photos, separately. In this example, we will utilize orthogonal contrast-coding for rater ethnicity.
 
@@ -22483,8 +22468,7 @@ I am not aware of an integration of packages that would represent this type of o
 \includegraphics{13-moReTwoWay_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \hypertarget{analysis-of-simple-main-effects-with-a-polynomial-trend}{%
-\section*{Analysis of Simple Main Effects with a Polynomial Trend}\label{analysis-of-simple-main-effects-with-a-polynomial-trend}}
-
+\section{Analysis of Simple Main Effects with a Polynomial Trend}\label{analysis-of-simple-main-effects-with-a-polynomial-trend}}
 
 In the context of the significant interaction effect, we might be interested in polynomial trends for any simple main effects where three or more cells are compared.
 
@@ -22605,8 +22589,7 @@ The figure we have been using would be appropriate to illustrate the significant
 \includegraphics{13-moReTwoWay_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \hypertarget{all-possible-post-hoc-comparisons}{%
-\section*{All Possible Post Hoc Comparisons}\label{all-possible-post-hoc-comparisons}}
-
+\section{All Possible Post Hoc Comparisons}\label{all-possible-post-hoc-comparisons}}
 
 Another option is the comparison possible cells. These are termed \emph{post hoc comparisons.} They are an alternative to simple main effects; you would not report both. A potential criticism of this approach is that it is atheoretical. Without compelling justification, reviewers may criticize this approach as ``fishing,'' ``p-hacking,'' or ``HARKing'' (hypothesizing after results are known). None-the-less, particularly when our results are not as expected, I do think having these tools available can be a helpful resource.
 
@@ -22825,8 +22808,7 @@ Below I have greyed-out the comparisons that are less interesting to me and left
 \includegraphics{images/factorial/HolmsSelect.jpg} Given that my ``tinkering around'' analysis resembles the results of the simple main effects analyses in the \protect\hyperlink{between}{factorial lessonn}, I will not write this up as an APA style results section, but rather offer this is as a set of tools when you would like to explore the data in an atheoretical manner.
 
 \hypertarget{one-way-repeated-measures-with-a-multivariate-approach}{%
-\chapter*{One-Way Repeated Measures with a Multivariate Approach}\label{one-way-repeated-measures-with-a-multivariate-approach}}
-
+\chapter{One-Way Repeated Measures with a Multivariate Approach}\label{one-way-repeated-measures-with-a-multivariate-approach}}
 
 \href{https://youtu.be/1c3N733nSM0}{Screencasted Lecture Link}
 
@@ -22835,8 +22817,7 @@ As noted in the lesson on \protect\hyperlink{Repeated}{one-way repeated measures
 As a quick reminder, I will describe and resimulate the data. The narration will presume familiarity with the \protect\hyperlink{Repeated}{one-way repeated measures ANOVA} lesson.
 
 \hypertarget{research-vignette-10}{%
-\section*{Research Vignette}\label{research-vignette-10}}
-
+\section{Research Vignette}\label{research-vignette-10}}
 
 Amodeo \citep{amodeo_empowering_2018} and colleagues conducted a mixed methods study (qualitative and quantitative) to evaluate the effectiveness of an empowerment, peer-group-based, intervention with participants (\emph{N} = 8) who experienced transphobic episodes. Focus groups used qualitative methods to summarize emergent themes from the program (identity affirmation, self-acceptance, group as support) and a one-way, repeated measures ANOVA provided evidence of increased resilience from pre to three-month followup.
 
@@ -22867,8 +22848,7 @@ The within-subjects condition was wave, represented by T1, T2, and T3:
 The dependent variable (assessed at each wave) was a 14-item resilience scale \citep{wagnild_development_1993}. Items were assessed on a 7-point scale ranging from \emph{strongly disagree} to \emph{strongly agree} with higher scores indicating higher levels of resilience. An example items was, ``I usually manage one way or another.''
 
 \hypertarget{data-simulation-7}{%
-\subsection*{Data Simulation}\label{data-simulation-7}}
-
+\subsection{Data Simulation}\label{data-simulation-7}}
 
 Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup). The sript produces ``long'' and ``wide'' forms are created.
 
@@ -22912,8 +22892,7 @@ Below is the code I used to simulate data. The following code assumes 8 particip
 \end{Shaded}
 
 \hypertarget{computing-the-omnibus-f}{%
-\section*{Computing the Omnibus F}\label{computing-the-omnibus-f}}
-
+\section{Computing the Omnibus F}\label{computing-the-omnibus-f}}
 
 Without the \emph{rstatix} helper package, here is how the analysis would be run in the package, \emph{car.} Although this package is less intuitive to use, it results in both univariate output (both sphericity assumed and sphericity violated) and multivariate output (which does not require the sphericity assumption).
 
@@ -23062,8 +23041,7 @@ waveFactor 0.8172743 0.05734876
 The \emph{car::Anova()} function produces both univariate and multivariate results. To begin to understand this data, let's start with what we learned in the \protect\hyperlink{Repeated}{one-way repeated measures ANOVA lesson}.
 
 \hypertarget{univariate-results}{%
-\subsection*{Univariate Results}\label{univariate-results}}
-
+\subsection{Univariate Results}\label{univariate-results}}
 
 When we ran the univariate approach in the lesson, we first checked the sphericity assumption. Our results here are identical to those from \emph{rstatix::anova\_test}. That is, we did not violate the sphericity assumption: Mauchley's test \(= .566 p = 0.182\). The \emph{F} test with univariate results was \(F(2, 14) = 3.910, p = 0.045\).
 
@@ -23074,8 +23052,7 @@ The Greenhouse Geiser estimate was 0.698 the corrected \emph{p} = .068. The Huyh
 The univariate ANOVA results are under the ``Univariate Type III Repeated-Measures ANOVA Assuming Sphericity'' heading. We find the ANOVA output on the row titled, ``waveFactor.'' The results are identical to what we found in the lesson: \(F(2,14) = 3.91, p = 0.045\). I do not see that an effect size is reported.
 
 \hypertarget{multivariate-results}{%
-\subsection*{Multivariate Results}\label{multivariate-results}}
-
+\subsection{Multivariate Results}\label{multivariate-results}}
 
 Researchers may prefer the multivariate approach because it does not require the sphericity assumption. Stated another way, if the sphericity assumption is violated, researchers can report the results of the multivariate analysis.
 
@@ -23088,8 +23065,7 @@ Results of the one-way repeated measures ANOVA indicated a significant wave effe
 Because follow-up testing is \emph{pairwise} (i.e., there are only two levels being compared), the sphericity assumption is not required and those could proceed in the manner demonstrated in the \protect\hyperlink{Repeated}{one-way repeated measures ANOVA lesson}.
 
 \hypertarget{a-brief-commentary-on-wrappers}{%
-\subsection*{A Brief Commentary on Wrappers}\label{a-brief-commentary-on-wrappers}}
-
+\subsection{A Brief Commentary on Wrappers}\label{a-brief-commentary-on-wrappers}}
 
 As noted several times, because of its relative ease-of-use, the relevance of information included in the results, and its integration with the \emph{ggpubr} package, I chose to use \emph{rstatix} package in all of the ANOVA lessons. As I worked through this example, I spent several hours creating and interpreting the code. For me, there was value in this exercise:
 
@@ -23102,6 +23078,10 @@ As noted several times, because of its relative ease-of-use, the relevance of in
 \item
   I am deeply grateful to package developers who take the time to create packages for discipline-specific use-cases and then freely share their work with others. Thank you \href{https://github.com/kassambara/rstatix}{Alboukadel Kassambara}!
 \end{itemize}
+
+\hypertarget{refs}{%
+\chapter*{References}\label{refs}}
+
 
   \bibliography{STATSnMETH.bib}
 

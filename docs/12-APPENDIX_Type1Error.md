@@ -1,23 +1,23 @@
 # APPENDICES {-}
 
-# Type I Error {-}
+# Type I Error  
 
 [Screencasted Lecture Link](https://youtu.be/q7eQgXqY84Y)
 
-## Type I Error Defined {-}
+## Type I Error Defined  
 
 *Type I error* is the concern about false positives -- that we would incorrectly reject a true null hypothesis (that we would say that there is a statistically significant difference when there is not one). This concern is increased when there are multiple hypothesis tests. This concern increases when we have a large number of pairwise comparisons.
 
 Throughout the chapters, I noted the importance and relative risk of Type I error with each statistic and options for follow-up testing. Because there are so many options, I have provided a review and summary of each option in this appendix. For each, I provide a definition, a review of the steps and options for utilizing the statistic, and suggest the types of follow-up for which this approach is indicated.
 
-## Methods for Managing Type I Error {-}
+## Methods for Managing Type I Error  
 
 
-### LSD (Least Significant Difference) Method {-}
+### LSD (Least Significant Difference) Method  
 
 The LSD method is especially appropriate in the one-way ANOVA scenario when there are only three levels in the factor. In this case, Green and Salkind [-@green_using_2017] have suggested that alpha can be retained at the alpha level for the "family" ($\alpha_{family}$), which is conventionally $p = .05$ and used both to evaluate the omnibus and, so long as they don't exceed three in number, the planned or pairwise comparisons that follow. 
 
-### Traditional Bonferroni {-}
+### Traditional Bonferroni  
 
 The *traditional Bonferroni* is, perhaps, the most well-known approach to managing Type I error. Although the lessons in this OER will frequently suggest another approach to managing Type I error, I will quickly review it now because, conceptually it is easy to understand. We start by establishing the $\alpha\alpha_{family}$; this is traditionally $p = .05$.
 
@@ -54,7 +54,7 @@ Luckily, each of these options has been reverse-engineered so that we do not hav
 
 Although the traditional Bonferroni is easy-to-understand and computer, it has been criticized as being too restrictive. That is, it increases the risk of making a Type II error (i.e., failing to reject the null hypothesis when it is false). This is why the majority of follow-up options to ANOVA did not use the traditional Bonferroni.
 
-### Tukey HSD {-}
+### Tukey HSD  
 
 The Tukey HSD (honestly significant difference test) is a multiple comparison procedure used to identify significant differences between means of multiple groups. In the ANOVA context, it examines which specific pairs of groups differ from one another. The Tukey HSD was designed to control for Type I error. It does so by calculating the difference between the largest and smallest group means, then dividing this mean difference by the standard error of the same mean difference. The resulting statitic, *q* has an associated Studentized Range Distribution. Critical values for this distribution come from a Studentized Range q Table and are based on based on the alpha level, the number of groups, and the denominator degrees of freedom (i.e., $df_W$). 
 
@@ -62,7 +62,7 @@ The Tukey HSD ("Tukey's honestly significantly different") test automatically co
 
 I had intended to demonstrate this with the one-way ANOVA chapter, but could not get the results to render a figure with the significance bars and results. An online search suggested that I am not the only one to have experienced this glitch.
 
-### Holms Sequential Bonferroni {-}
+### Holms Sequential Bonferroni  
 
 The Holm's sequential Bonferroni [@green_using_2017] offers a middle-of-the-road approach (not as strict as .05/9 with the traditional Bonferroni; not as lenient as "none") to managing Type I error. 
 
