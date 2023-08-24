@@ -38,17 +38,17 @@ There are a number of ways you can access this resource. You may wish to try sev
   
 3. Listen to the accompanying lectures (I think sound best when the speed is 1.75). The lectures are being recorded in Panopto and should include the closed captioning.
 
-4. Each time the book is updated, new .docx (Microsoft Word), PDF (Adobe Acrobat), and ebook(EPUB File) versions are also createdt. You can access these in the "docs" folder at the [GitHub repository](https://github.com/lhbikos/ReCenterPsychStats).
+4. Each time the book is updated, new .docx (Microsoft Word), PDF (Adobe Acrobat), and ebook(EPUB File) versions are also created. You can access these in the "docs" folder at the [GitHub repository](https://github.com/lhbikos/ReCenterPsychStats).
 
 4. Provide feedback to me! If you fork a copy to your own GitHub repository, you can 
    * open up an editing tool and mark up the document with your edits,
    * start a discussion by leaving comments/questions, and then
-   * sending them back to me by committing and saving. I get an e-mail notiying me of this action. I can then review (accepting or rejecting) them and, if a discussion is appropriate, reply back to you.
+   * sending them back to me by committing and saving. I get an e-mail notifying me of this action. I can then review (accepting or rejecting) them and, if a discussion is appropriate, reply back to you.
    * I am also seeking peer-review feedback at this [Qualtrics-hosted survey](https://spupsych.az1.qualtrics.com/jfe/form/SV_0OnBLfut3VIOIS2). You are welcome to complete only the portions that are relevant to you.
 
 ## If You are New to R
 
-R can be oveRwhelming. Jumping right into advanced statistics might not be the easiest way to start. The [Ready_Set_R](https://lhbikos.github.io/ReCenterPsychStats/Ready.html)lesson of this volume provides an introduction and the [waRming up](https://lhbikos.github.io/ReCenterPsychStats/waRmups.html)lesson walks through simple data preparation and descriptive statistics.
+R can be oveRwhelming. Jumping right into advanced statistics might not be the easiest way to start. The [Ready_Set_R](https://lhbikos.github.io/ReCenterPsychStats/Ready.html) lesson of this volume provides an introduction and the [Preliminary Analyses](https://lhbikos.github.io/ReCenterPsychStats/preliminaries.html) lesson walks through simple data preparation and descriptive statistics.
 
 In the remaining lessons, I have attempted to provide complete code for every step of the process, starting with uploading the data. To help explain what R script is doing, I sometimes write it in the chapter text; sometimes leave hashtagged-comments in the chunks; and, particularly in the accompanying screencasted lectures, try to take time to narrate what the R script is doing. 
 

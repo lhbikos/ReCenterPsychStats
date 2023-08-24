@@ -1103,7 +1103,7 @@ For more information about the data used in this homeworked example, please refe
 
 ### Working the Problem with R and R Packages
 
-#### Narrate the research vignette, describing the IV and DV. The data you analyze should have at least 3 levels in the independent variable; at least one of the attempted problems should have a significant omnibus test so that follow-up is required) 
+#### Narrate the research vignette, describing the IV and DV. The data you analyze should have at least 3 levels in the independent variable; at least one of the attempted problems should have a significant omnibus test so that follow-up is required) {-}
 
 I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students across the ANOVA, multivariate, and psychometrics courses (in that order, because that's the order in which the students take the class.)
 
@@ -1111,7 +1111,7 @@ The dependent variable is the evaluation of traditional pedagogy. The independen
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, the three different classes are the only repeated measures variable.  Rather, you could choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
-#### Check and, if needed, format data
+#### Check and, if needed, format data {-}
 
 
 ```r
@@ -1225,7 +1225,7 @@ bxp
 
 ![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
 
-#### Evaluate statistical assumptions
+#### Evaluate statistical assumptions {-}
 
 **Is the dependent variable normally distributed?**
 
@@ -1340,7 +1340,7 @@ Here's how I would write up the evaluation of assumptions so far:
 
 >Repeated measures ANOVA has several assumptions regarding normality, outliers, and sphericity. Although we note some skew and kurtosis, particularly for the multivariate class, none exceed the critical thresholds of |3| for skew and |10| identified by Kline [-@kline_data_2016]. We formally evaluated the normality assumption with the Shapiro-Wilk test. The distribution of model residuals was statistically significantly different than a normal distribution $(W = 0.876, p < .001)$. Although we violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each [@green_one-way_2017-1]. Although our data included six outliers, none were classified as extreme. Because they represented lower course evaluations, we believed it important to retain them in the dataset. PLACEHOLDER FOR SPHERICITY.
 
-#### Conduct omnibus ANOVA (w effect size)
+#### Conduct omnibus ANOVA (w effect size) {-}
 
 
 ```r
@@ -1368,7 +1368,7 @@ Let's start first with the sphericity test. Mauchly's test for sphericity was st
 
 While the ANOVA is non-significant, because this is a homework demonstration, I will behave *as if* the test is significant and continue with the pairwise comparisons.
 
-#### Conduct all possible pairwise comparisons (like in the lecture)
+#### Conduct all possible pairwise comparisons (like in the lecture) {-}
 
 I will follow up with a test of all possible pairwise comparisons and adjust with the bonferroni.
 
@@ -1390,11 +1390,11 @@ pwc
 
 Consistent with the non-significant omnibus, there were non-significant differences between the pairs. This included, ANOVA and multivariate $(t[69] = -1.215, p = 0.687)$; ANOVA and psychometrics courses $(t[69] = -2.065, p = 0.128)$; and multivariate and psychometrics $(t[69] = -0.772, p = 1.000)$.
 
-#### Describe approach for managing Type I error
+#### Describe approach for managing Type I error {-}
 
 I used a traditional Bonferroni for the three, follow-up, pairwise comparisons. 
 
-#### APA style results with figure
+#### APA style results with figure {-}
 
 >We utilized one-way repeated measures ANOVA to determine if there were differences in students' evaluation of traditional pedagogy across three courses -- ANOVA, multivariate, and psychometrics -- taught in that order.
 
@@ -1418,7 +1418,7 @@ bxp
 
 ![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-66-1.png)<!-- -->
 
-#### Conduct power analyses to determine the power of the current study and a recommended sample size.
+#### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 
 In the *WebPower* package, we specify 6 of 7 interrelated elements; the package computes the missing one.
 
@@ -1489,7 +1489,7 @@ For hand calculations, I will use the same dataframe (rm1wLONG_df) as I did for 
 
 > Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
 
-#### Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.
+#### Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared {-}
 
 The formula for sums of squares total: $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}$$.
 
@@ -1552,7 +1552,7 @@ SST
 ```
 The sums of squares total is 103.9144.
 
-#### Calculate the sums of squares within (SSW) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each student. 
+#### Calculate the sums of squares within (SSW) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each student {-} 
 
 Here is the formula for sums of squares within:  
 
@@ -1746,7 +1746,7 @@ SSW
 ```
 Our sums of squares within is 36.895.
 
-#### Calculate sums of squares model (SSM) for for the effect of time (or repeated measures). 
+#### Calculate sums of squares model (SSM) for for the effect of time (or repeated measures) {-} 
 
 The formula for the sums of squares model in repeated measures captures the effect of time (or the repeated measures nature of the design):  $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
 
@@ -1784,7 +1784,7 @@ I can put it in the formula:
 Sums of squares model is 1.4601
 
 
-#### Calculate sums of squares residual (SSR). 
+#### Calculate sums of squares residual (SSR) {-} 
 
 In repeated measures ANOVA $SS_W = SS_M + SS_R$.  Knowing SSW (34.255) and SSM (1.460), we can do simple arithmetic to obtain SSR.
 
@@ -1800,7 +1800,7 @@ SSR
 Sums of squares residual is 35.435.
 
 
-#### Calculate the sums of squares between (SSB). 
+#### Calculate the sums of squares between (SSB) {-} 
 In repeated measures ANOVA $SS_T = SS_W + SS_B$.  Knowing SST (103.9144) and SSW (34.255), we can do simple arithmetic to obtain SSB.
 
 
@@ -1815,7 +1815,7 @@ SSB
 Sums of squares between is 68.4794.
 
 
-#### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values 
+#### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values {-}
 
 |One Way Repeated Measures ANOVA Source Table
 |:--------------------------------------------------------------|
@@ -1877,11 +1877,11 @@ qf(.05, 2, 65, lower.tail = FALSE)
 
 We can see the same in an [F distribution table](https://www.statology.org/f-distribution-table/). 
 
-#### Is the *F*-tests statistically significant? Why or why not? 
+#### Is the *F*-tests statistically significant? Why or why not? {-}  
 
 No. The *F* value did not exceed the *F* critical value. To achieve statistical significance, my F value has to exceed 3.138.
 
-#### Assemble the results into a statistical string. 
+#### Assemble the results into a statistical string {-} 
 
 $F(2, 65) = 1.339, p > 0.05$
 

@@ -1,6 +1,8 @@
-# Examples for Follow-up to Factorial ANOVA {#moRe}
+# Examples for Follow-up to Factorial ANOVA {-}
 
 
+
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KNxh3GDsCUg8yxtOM9l0WPf&si=rqdj6oyjCJ78Zj8P)
 
 As noted in the lesson on [factorial ANOVA](#between), the options for follow-up to a significant interaction effect are infinite. In order to maintain a streamlined chapter with minimal distractions to student learning (through numerous examples and changes in R packages), I have moved examples of some these variations to this section. 
 
@@ -72,7 +74,7 @@ The code for the .rds file will retain the formatting of the variables, but is n
 
 This example follows a significant interaction effect. Specifically, we will analyze the effects of ethnicity of rater (three levels) within photo stimulus (two levels). We will conduct two one-way ANOVAs for the Dayaknese and Madurese photos, separately. In this example, we will utilize orthogonal contrast-coding for rater ethnicity.
 
-In the lesson on [factorial ANOVA](#between) I used the *rstatix* package. I am not aware of a way to do this type of analysis in *rstatix*, therefore this worked example will use functions from base R and ______.
+In the lesson on [factorial ANOVA](#between) I used the *rstatix* package. I am not aware of a way to do this type of analysis in *rstatix*, therefore this worked example will use functions from base R.
 
 This is our place on the ANOVA workflow.
 
@@ -88,7 +90,7 @@ Thus, with a limit of two contrasts I want to compare the
 * Javanese to the Dayaknese and Madurese combined (asking, "Do the Javanese evaluations of the photo differ from the combined Dyaknese/Madurese evaluations?"), then
 * Dayaknese to Madurese (asking, "Do the Dayknese and Madurese evaluations of the photos differ from each other?")
 
-Such contrasts should be theoretically or rationally defensible. In the case of none, low, and hihigh dose/intervention/exposure designs this is an easy requirement to meet. Typically, the no-dose is compared to the combined low and high dosage conditions. Then the low and high dosage conditions are compared. I would argue that because the Javanese were observers to the conflict, we can single them out in the first contrast, then compare the two groups who were directly involved in the conflict.
+Such contrasts should be theoretically or rationally defensible. In the case of none, low, and high dose intervention/exposure designs this is an easy requirement to meet. Typically, the no-dose is compared to the combined low and high dosage conditions. Then the low and high dosage conditions are compared. I would argue that because the Javanese were observers to the conflict, we can single them out in the first contrast, then compare the two groups who were directly involved in the conflict.
 
 It helps to know what the default contrast codes are; we can get that information with the *contrasts()* function.
 

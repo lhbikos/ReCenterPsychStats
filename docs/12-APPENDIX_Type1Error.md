@@ -1,6 +1,8 @@
 # APPENDICES {-}
 
-# Type I Error {#type1}
+# Type I Error {-}
+
+[Screencasted Lecture Link](https://youtu.be/q7eQgXqY84Y)
 
 ## Type I Error Defined {-}
 

@@ -2037,7 +2037,7 @@ For more information about the data used in this homeworked example, please refe
 
 ### Working the Problem with R and R Packages
 
-#### Narrate the research vignette, describing the IV and DV. Miniminally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required.
+#### Narrate the research vignette, describing the IV and DV. Miniminally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required {-}
 
 I want to ask the question, do course evaluation ratings for the traditional pedagogy dimension differ for students in the ANOVA class as a function of:
 
@@ -2051,7 +2051,7 @@ I want to ask the question, do course evaluation ratings for the traditional ped
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
-#### Simulate (or import) and format data.
+#### Simulate (or import) and format data {-}
 
 
 ```r
@@ -2129,7 +2129,7 @@ Box2way
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-90-1.png)<!-- -->
 
-#### Evaluate statistical assumptions.
+#### Evaluate statistical assumptions {-}
 
 **Is the dependent variable normally distributed at all levels of the combinations of the levels within the grouping variables?**
 
@@ -2258,7 +2258,7 @@ Do we have to stop?  If cell sizes are reasonably large (e.g., at least 15) and 
 
 >Factorial ANOVA assumes that the dependent variable is normally is distributed for all cells in the design. Although our analysis suggested skew and kurtosis were within the bounds considered to be normally distributed, the Shapiro-Wilk normality test (applied to the residuals from the factorial ANOVA model) suggested that the plotting of the residuals differed significantly from a normal distribution $W = 0.949, p < 0.001$. Further, Levene’s test has indicated a violation of the homogeneity of variance assumption $(F[5, 106] = 6.412, p < .001)$. Owing to a rather desperate need to provide a demonstration of the two-way ANOVA, I have decided to proceed and keep these violations in mind in the interpretation of results.
 
-#### Conduct omnibus ANOVA (w effect size).
+#### Conduct omnibus ANOVA (w effect size) {-}
 
 We can use the *rstatix::anova_test()* function.
 
@@ -2287,7 +2287,7 @@ So far we have statistically significant effects for the main and interaction ef
 
 >Computing sums of squares with a Type II approach, the results for the omnibus ANOVA indicated a significant effects for the main effect of department, $F(1, 106) = 11.395, p = 0.001, \eta^2 = 0.097$; the main effect for stage in transition, $F(2, 106) = 10.070, p < 0.001, \eta^2 = 0.160$; and the interaction effect, $F(2, 106) = 4.904, p = 0.009, \eta^2 = 0.085$. 
 
-#### Conduct one set of follow-up tests; narrate your choice.
+#### Conduct one set of follow-up tests; narrate your choice {-}
 
 There are so many choices for following up a significant interaction effect. Regardless, we always follow a statistically significant interaction effect with an analysis of simple main effects. I think I am interested in the simple main effects for stage within department.  This means I will conduct one-way ANOVAS for CPY and ORG, separately. And, if either is significant, I will look for differences across the stages.
 
@@ -2360,11 +2360,11 @@ Here'w how I would assemble the entire APA style results:
 
 >We followed the significant one-way ANOVAs with pairwise comparisons between the groups using the estimated marginal means. We specified the Holm's sequential Bonferroni for managing Type I error. For CPY students, comparisons  between the stable and transition $(t[106] = 4.997, p < 0.001)$ and stable and resettled $(t[106] = 2.893, p = 0.005)$ stages were statistically significantly different. Cell means, marginal means, and standard deviations are presented in Table 1; results are illustrated in Figure 1.
 
-#### Describe approach for managing Type I error.
+#### Describe approach for managing Type I error {-}
 
 I managed Type I error with the Holm's sequential Bonferroni. The Holm's is less conservative than the traditional Bonferroni because it adjusts the thresshold for statistical significance in a stepwise manner that takes into consideration the rank order of the *p* values and the number of comparisons made.
 
-#### APA style results with table(s) and figure.
+#### APA style results with table(s) and figure {-}
 
 
 ```r
@@ -2400,7 +2400,7 @@ Box2way
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-102-1.png)<!-- -->
-#### Conduct power analyses to determine the power of the current study and a recommended sample size.
+#### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 
 The *pwr.2way()* and *ss.2way()* functions require the following:
 
@@ -2529,7 +2529,7 @@ Before we continue:
 
 > Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
 
-#### Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.
+#### Calculate sums of squares total (SST) for the omnibus ANOVA. Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared {-}
 
 Here is the formula I will use for calculating the sums of squares total:  $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}$$
 
@@ -2606,7 +2606,7 @@ SST
 Our sums of squares total is 83.0332
 
 
-#### Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design.
+#### Calculate the sums of squares for the model (SSM) for the omnibus ANOVA. A necessary step in this equation is to calculate group means for all combinations of the levels in the factorial design {-}
 
 Here is the formula for calculating SSM:  $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
 
@@ -2654,7 +2654,7 @@ SSM
 ```
 Sums of squares for the model is 21.91618.
 
-#### Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group.
+#### Calculate the sums of squares residual (SSR) for the omnibus ANOVA. A necessary step in this equation is to calculate the variance for each group {-}
 
 I will use the following formula to calculate SSR: $$SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1) + s_{group4}^{2}(n-1) + s_{group5}^{2}(n-1) + s_{group6}^{2}(n-1))$$
 
@@ -2676,7 +2676,7 @@ SSR
 ```
 Our sums of squares for the residual is 61.13799.
 
-#### Calculate sums of squares model (SSM) for each of the factors in the model.
+#### Calculate sums of squares model (SSM) for each of the factors in the model {-}
 
 **SSM for the Department main effect:**
 
@@ -2755,7 +2755,7 @@ SSM_int
 ## [1] 7.450839
 ```
 
-#### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values. 
+#### Create a source table that includes the sums of squares, degrees of freedom, mean squares, *F* values, and *F* critical values {-} 
 
 It is easiest for me when I put these in a table.
 
@@ -2912,11 +2912,11 @@ qf(0.05, 2, 106, lower.tail = FALSE)  #interaction term
 ## [1] 3.082015
 ```
 
-#### Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? 
+#### Are the *F*-tests for the main and interaction effects statistically significant? Why or why not? {-}
 
 In the hand calculations, the main and interaction effects are significant when the *F* value exceeds the *F* critical value. All three are.
 
-#### Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects. 
+#### Calculate and interpret the $\eta^2$ effect sizes for the main and interaction effects {-} 
 
 The formula for eta squared is:
 
@@ -2951,7 +2951,7 @@ The values of .01, .06, and .14 are considered small, medium, and large in ANOVA
 
 The $\eta ^{2}$ values are 0.056 (medium), 0.118 (medium-to-large), and 0.090 (medium-to-large) for the department, stage, and interaction effects, respectively. 
 
-#### Assemble the results into their statistical strings.
+#### Assemble the results into their statistical strings {-}
 
 Main effect for department: $F(1, 106) = 8.054, p < 0.05, \eta ^{2} = 0.056$ 
 Main effect for stage: $F(2, 106) = 8.508, p < 0.05, \eta ^{2} = 0.118$

@@ -651,7 +651,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 ```r
 pwc_B <- pwc_B %>%
     rstatix::add_xy_position(x = "COND", fun = "mean_se")
-ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = "COND", y = "emmean", title = "Figure 10.14 Post-test Attitudes by Condition, Controlling for Pre-test Attitudes") +
+ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = "COND", y = "emmean", title = "Figure 1. Post-test Attitudes by Condition, Controlling for Pre-test Attitudes") +
     geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
     ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = 0.02,
         y.position = c(80))
@@ -975,7 +975,7 @@ Unlike the figure we created when we were testing assumptions, this script creat
 ```r
 pwc_cond <- pwc_cond %>%
     rstatix::add_xy_position(x = "COND", fun = "mean_se")
-ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = "COND", y = "emmean", title = "Figure 10.5 Attitudes toward Arabs by Condition, Controlling for Attitudes toward Whites") +
+ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = "COND", y = "emmean", title = "Figure 1 Attitudes toward Arabs by Condition, Controlling for Attitudes toward Whites") +
     geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
     ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = 0.02,
         y.position = c(80))
@@ -1069,7 +1069,7 @@ For more information about the data used in this homeworked example, please refe
 
 ### Working the Problem with R and R Packages
 
-#### Narrate the research vignette, describing the IV, DV, and COV. 
+#### Narrate the research vignette, describing the IV, DV, and COV {-} 
 
 I want to ask the question, what are the effects of intentional recentering on students' evaluations of socially responsive pedagogy in the multivariate (last) course as a function of centering status (i.e., pre versus re), controlling for the socially responsive evaluations in the ANOVA (first) course:
 
@@ -1080,7 +1080,7 @@ I want to ask the question, what are the effects of intentional recentering on s
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.*
 
-#### Simulate (or import) and format data
+#### Simulate (or import) and format data {-}
 
 First I import the larger dataset.
 
@@ -1092,26 +1092,28 @@ The SRPed (socially responsive pedagogy) variable is an average of the items on 
 
 
 ```r
-#Creates a list of the variables that belong to that scale
-SRPed_vars <- c('InclusvClassrm', 'EquitableEval','MultPerspectives', 'DEIintegration')
+# Creates a list of the variables that belong to that scale
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
 
-#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-big$SRPed <- sjstats::mean_n(big[, SRPed_vars], .75)
+# Calculates a mean if at least 75% of the items are non-missing;
+# adjusts the calculating when there is missingness
+big$SRPed <- sjstats::mean_n(big[, SRPed_vars], 0.75)
 
-#if the scoring script won't run, try this one:
-#big$SRPed <- sjstats::mean_n(big[, ..SRPed_vars], .75)
+# if the scoring script won't run, try this one: big$SRPed <-
+# sjstats::mean_n(big[, ..SRPed_vars], .75)
 ```
 
 Let's trim it to just the variables of interest.
 
 ```r
-ANCOVA_df <- (dplyr::select (big, deID, Course, Centering, SRPed))
+ANCOVA_df <- (dplyr::select(big, deID, Course, Centering, SRPed))
 ```
 
 And further filter so that there are just evaluations of ANOVA and multivariate courses.
 
 ```r
-ANCOVA_df <- subset(ANCOVA_df, Course == "ANOVA" | Course == "Multivariate") #multiple conditions
+ANCOVA_df <- subset(ANCOVA_df, Course == "ANOVA" | Course == "Multivariate")  #multiple conditions
 ```
 
 I want the course variable to be factor that is ordered by its sequence:  ANOVA, multivariate.
@@ -1150,7 +1152,8 @@ After checking the structure again, both are correct.
 My data is in the long (person-period) form. For this particular ANOVA I need it to be in the wide (person level) form.
 
 ```r
-ANCOVA_wide<- reshape2::dcast(data = ANCOVA_df, formula = deID + Centering ~ Course, value.var = "SRPed")
+ANCOVA_wide <- reshape2::dcast(data = ANCOVA_df, formula = deID + Centering ~
+    Course, value.var = "SRPed")
 # before restructuring a second variable, rename the first variable
 ANCOVA_wide <- dplyr::rename(ANCOVA_wide, SRPed_ANV = "ANOVA", SRPed_MLTV = "Multivariate")
 
@@ -1186,7 +1189,7 @@ ANCOVA_wide <- na.omit(ANCOVA_wide)
 ```
 
 
-#### Evaluate statistical assumptions
+#### Evaluate statistical assumptions {-}
 
 **Is there a linear relationship between the covariate and outcome at each level of the grouping variable?"**
 
@@ -1197,7 +1200,9 @@ We can get a visual of this with a scatterplot (with regression lines) between t
 
 ```r
 library(ggplot2)
-ggpubr::ggscatter(ANCOVA_wide, x = "SRPed_ANV", y = "SRPed_MLTV", color = "Centering", add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~~"), color = Centering))
+ggpubr::ggscatter(ANCOVA_wide, x = "SRPed_ANV", y = "SRPed_MLTV", color = "Centering",
+    add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label..,
+    ..rr.label.., sep = "~~~~"), color = Centering))
 ```
 
 ![](11-ANCOVA_files/figure-docx/unnamed-chunk-50-1.png)<!-- -->
@@ -1212,7 +1217,7 @@ This would mean that there is no interaction between the outcome and covariate. 
 ```r
 library(tidyverse)
 ANCOVA_wide %>%
-  rstatix::anova_test(SRPed_MLTV ~Centering*SRPed_ANV)
+    rstatix::anova_test(SRPed_MLTV ~ Centering * SRPed_ANV)
 ```
 
 ```
@@ -1230,7 +1235,7 @@ Curiously, the interaction term was not statistically significant $(F[1, 71] = 1
 First, I create a linear regression model
 
 ```r
-SRPed_mod <- lm(SRPed_MLTV ~ SRPed_ANV + Centering, data = ANCOVA_wide) 
+SRPed_mod <- lm(SRPed_MLTV ~ SRPed_ANV + Centering, data = ANCOVA_wide)
 ```
 
 I will use *broom::augment()* to add fitted values and residuals to the model I just created.
@@ -1271,7 +1276,7 @@ The Shapiro-Wilk test suggested that our residuals are not statistically signifi
 ANCOVA further presumes that the variances of the residuals is equal for all groups. I can check this with the Levene's test.
 
 ```r
-SRPed_mod_metrics%>%
+SRPed_mod_metrics %>%
     rstatix::levene_test(.resid ~ Centering)
 ```
 
@@ -1310,7 +1315,7 @@ Here's write-up of what I've done so far:
 >A preliminary analysis evaluating the homogeneity-of-slopes assumption indicated that the relationship between the covariate and the dependent variable did not differ significantly as a function of the independent variable, $(F[1, 71] = 1.975, p = 0.164)$. Further, the non-significant Shapiro-Wilk test of normality on the model residuals $(W = 0.972, p = 0.101)$ indicated that the dependent variable was not statistically significantly different from a normal distribution and no outliers were identified. A non-significant Levene’s test indicated no violation of the homogeneity of the residual variances for all groups $(F[1, 73] = 2.675, p = 0.106)$.
 
 
-#### Conduct omnibus ANOVA (w effect size)
+#### Conduct omnibus ANOVA (w effect size) {-}
 
 
 ```r
@@ -1328,14 +1333,15 @@ ANOVA Table (type II tests)
 ```
 >There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course $(F [1,72] = 39.696, p < .001, \eta^2 = 0.355)$ as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class $(F [1,72]) = 10.304, p = 0.002, \eta^2 = 0.125)$. Considering that we interpret values $eta^2$ values  of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results.
 
-#### Conduct one set of follow-up tests; narrate your choice
+#### Conduct one set of follow-up tests; narrate your choice {-}
 
 Because this design has only two levels (pre-centered, re-centered), follow-up tests will not tell us any more information. However, investigating the covariate-adjusted mean is useful.
 
 
 ```r
-emmeans_MLTV <- ANCOVA_wide%>%
-  rstatix::emmeans_test(SRPed_MLTV ~ Centering, covariate = SRPed_ANV, p.adjust.method = "none")
+emmeans_MLTV <- ANCOVA_wide %>%
+    rstatix::emmeans_test(SRPed_MLTV ~ Centering, covariate = SRPed_ANV,
+        p.adjust.method = "none")
 emmeans_MLTV
 ```
 
@@ -1366,7 +1372,8 @@ We can compare these to the  unadjusted means:
 
 
 ```r
-descripts_means <- psych::describeBy(SRPed_MLTV ~ Centering, data = ANCOVA_wide, mat=TRUE, digits=6)
+descripts_means <- psych::describeBy(SRPed_MLTV ~ Centering, data = ANCOVA_wide,
+    mat = TRUE, digits = 6)
 descripts_means
 ```
 
@@ -1381,11 +1388,11 @@ SRPed_MLTV2   5  1.75 -1.730808  2.90925 0.080228
 
 While the differences are minor, they do exist.
 
-#### Describe approach for managing Type I error 
+#### Describe approach for managing Type I error {-}  
 
 Because we only needed to conduct the omnibus, there was no additional control of Type I error.
 
-#### APA style results with table(s) and figure 
+#### APA style results with table(s) and figure {-}
 
 >A one-way analysis of covariance (ANCOVA) was conducted. The independent variable, centering stage, had two levels: pre-centered, re-centered. The dependent variable was students' evaluation of socially responsive pedagogy during the last statistics course (multivariate) and the covariate was the students' evaluation of the same variable during the first statistics class (ANOVA). 
 
@@ -1415,9 +1422,11 @@ And now a figure:
 ```r
 emmeans_MLTV <- emmeans_MLTV %>%
     rstatix::add_xy_position(x = "Centering", fun = "mean_se")
-ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = "Centering", y = "emmean", title = "Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings") +
+ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = "Centering", y = "emmean",
+    title = "Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings") +
     geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-    ggpubr::stat_pvalue_manual(emmeans_MLTV, hide.ns = TRUE, tip.length = 0.02, , y.position = c(5.0))
+    ggpubr::stat_pvalue_manual(emmeans_MLTV, hide.ns = TRUE, tip.length = 0.02,
+        , y.position = c(5))
 ```
 
 ![](11-ANCOVA_files/figure-docx/unnamed-chunk-61-1.png)<!-- -->

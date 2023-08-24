@@ -1127,7 +1127,7 @@ For more information about the data used in this homeworked example, please refe
 
 ### Working the Problem with R and R Packages
 
-#### Narrate the research vignette, describing the IV and DV. 
+#### Narrate the research vignette, describing the IV and DV {-} 
 
 **Minimally, the data should allow the analysis of a 2 x 3 (or 3 X 2) design. At least one of the problems you work should have a significant interaction effect so that follow-up is required.**
 
@@ -1139,7 +1139,7 @@ I want to ask the question, what are the effects of intentional recentering on s
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could choose a different dependent variable. I chose the socially responsive pedagogy subscale. Two other subscales include traditional pedagogy and valued by the student.*
 
-#### Simulate (or import) and format data
+#### Simulate (or import) and format data {-}
 
 First I import the larger dataset.
 
@@ -1221,9 +1221,9 @@ These analyses, though, require that students have completed evaluations for all
 
 ```r
 library(tidyverse)
-mixt_df <- mixt_df%>%
-  dplyr::group_by(deID)%>%
-  dplyr::filter(n()==3)
+mixt_df <- mixt_df %>%
+    dplyr::group_by(deID) %>%
+    dplyr::filter(n() == 3)
 ```
 
 This took the data to 198 observations. Since each student contributed 3 observations, we know  $N = 66$.
@@ -1241,7 +1241,7 @@ mixt_box
 
 ![](10-MixedANOVA_files/figure-docx/unnamed-chunk-54-1.png)<!-- -->
 
-#### Evaluate statistical assumptions
+#### Evaluate statistical assumptions {-}
 
 **Is the dependent variable normally distributed in all combinations of the factors?**
 
@@ -1342,9 +1342,9 @@ The *rstatix::identify_outliers()* function identifies outliers and extreme outl
 
 
 ```r
-mixt_df%>%
-  group_by(Course, Centering)%>%
-  rstatix::identify_outliers(SRPed)
+mixt_df %>%
+    group_by(Course, Centering) %>%
+    rstatix::identify_outliers(SRPed)
 ```
 
 ```
@@ -1392,7 +1392,7 @@ Before moving on I will write up the portion of the APA results section that eva
 
 > Regardin the homogeneity of variance assumption, Levene's test indicated a violation between the pre- and re- centering conditions in the multivariate class $(F[1, 64] = 4.787, p = 0.032)$. There was no indication of assumption violation for the ANOVA class $(F[1, 64] = 0.176, p = 0.676)$ nor the psychometrics class $(F[1, 64] = 0.320, p = 0.573)$. PLACEHOLDER FOR SPHERICITY ASSUMPTION.
 
-#### Conduct omnibus ANOVA (w effect size)
+#### Conduct omnibus ANOVA (w effect size) {-}
 
 
 ```r
@@ -1437,7 +1437,7 @@ Let's write the F strings from the above table:
 
 >Regarding the omnibus ANOVA, neither the main effect for centering stage $(F[1, 56] = 0.000, p = 0.988, \eta^2 = 0.000)$ nor course $(F[2, 112] = 0.550, p = 0.578, \eta^2 = 0.003)$. However there was a statistically significant centering x course interaction effect $(F[2, 112] = 8.547, p = 0.001, \eta^2 = 0.039)$.
 
-#### Conduct one set of follow-up tests; narrate your choice
+#### Conduct one set of follow-up tests; narrate your choice {-}
 
 With a significant interaction effect, we will want to follow-up with an analysis of simple main effects. I think I am interested in the simple main effects for centering within each of the courses. Because there are two levels of Centering (pre, re) within each of the courses, I can go straight to *t*-tests. 
 
@@ -1481,11 +1481,11 @@ mixt_df %>%
 
 >We followed the significant interaction effect with an evaluation of simple main effects of centering within course. Because there were only three comparisons following the omnibus evaluation, we used the LSD method (i.e., no additional control) to control for Type I error and left the alpha at .05 (Green & Salkind, 2014b). While there were non-statistically significant difference between pre- and re-centered conditions in the ANOVA $(MDiff = 0.095; t[56.04] = 0.652, p = 0.517, d = 0.162)$ and psychometrics $(MDiff = 0.136; t[60.23 = 0.944, p = 0.349, d = 0.233)$ courses, there was a statistically significant difference in the multivariate course $(MDiff = -0.311; t[61.53] = -2.294, p = 0.025, d = -0.558)$ which suggested an increase in ratings of socially responsive pedagogy. 
 
-#### Describe approach for managing Type I error 
+#### Describe approach for managing Type I error {-}  
 
 Because there were only three comparisons following the omnibus evaluation, I used the LSD method to control for Type I error and retained the alpha at .05 (Green & Salkind, 2014b).
 
-#### APA style results with table(s) and figure 
+#### APA style results with table(s) and figure {-}
 
 >We conducted a 2 X 3 mixed design ANOVA to evaluate students' evaluations of social responsive pedagogy as a function of centering stage (i.e., pre-centered and re-centered) across three doctoral statistics courses in professional psychology (i.e., ANOVA, multivariate, psychometrics; taught in that order).
 
@@ -1536,7 +1536,7 @@ mixt_box
 
 ![](10-MixedANOVA_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
 
-#### Conduct power analyses to determine the power of the current study and a recommended sample size.
+#### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 
 In the *WebPower* package, we specify 6 of 7 interrelated elements; the package computes the missing element
 

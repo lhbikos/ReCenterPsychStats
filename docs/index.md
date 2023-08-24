@@ -1,7 +1,7 @@
 --- 
 title: "ReCentering Psych Stats"
 author: "Lynette H. Bikos, PhD, ABPP (she/her)"
-date: "Last updated 21 Aug 2023" 
+date: "Last updated 23 Aug 2023" 
 documentclass: book
 site: bookdown::bookdown_site
 bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
@@ -38,9 +38,15 @@ All materials used in creating this OER are available at its [GitHub repo](https
 
 As a perpetually-in-progress, open education resource, feedback is always welcome. This IRB-approved (SPU IRB #202102010R, no expiration) [Qualtrics-hosted survey](https://spupsych.az1.qualtrics.com/jfe/form/SV_0OnBLfut3VIOIS2) includes formal rating scales, open-ended text boxes, and a portal for uploading attachments (e.g., marked up PDFs). You are welcome to complete only the portions that are relevant to you.
 
+Copyright © 2023 by Lynette Bikos
+Seattle Pacific University Library, Seattle, WA
+
+ISBN-13:  979-8-9868768-2-5 (Ebook - online); ISBN-13:  979-8-9868768-3-2 (Ebook - PDF); ISBN-13: 979-8-9868768-4-9 (Print)
+
+
 # PREFACE {-}
 
-**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 21 Aug 2023**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
+**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 23 Aug 2023**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
 
 [Screencasted Lecture Link](https://youtu.be/yy0z85Wla7o)
 
@@ -61,6 +67,12 @@ In training for multicultural competence, the saying, "A fish doesn't know that 
 
 
 ## Copyright with Open Access {-}
+
+Copyright © 2023 by Lynette Bikos
+Seattle Pacific University Library, Seattle, WA
+
+ISBN-13:  979-8-9868768-2-5 (Ebook - online); ISBN-13:  979-8-9868768-3-2 (Ebook - PDF); ISBN-13: 979-8-9868768-4-9 (Print)
+
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 
 This book is published under a a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license: CC BY-SA 4.0.
@@ -73,7 +85,7 @@ As a doctoral student at the University of Kansas (1992-1996), I learned that "a
 
 The inspiration for training materials that re*center statistics and research methods came from the [Academics for Black Survival and Wellness Initiative](https://www.academics4blacklives.com/). This project, co-founded by Della V. Mosley, Ph.D., and Pearis L. Bellamy, M.S., made clear the necessity and urgency for change in higher education and the profession of psychology. 
 
-At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department.  Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics & Illustrations, Dominic Wilkinson, designed the logo and bookcover.  Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am alo indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr. Jhangiani's text [-@jhangiani_research_2019] was the first OER I ever used and I was grateful for his encouraging conversation.
+At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department.  Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics & Illustrations, Dominic Wilkinson, designed the logo and bookcover.  Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am also indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr. Jhangiani's text [-@jhangiani_research_2019] was the first OER I ever used and I was grateful for his encouraging conversation.
 
 The creation of this OER has relied on strong peer and student support. Many thanks to Thane Erickson, PhD for being the first to pilot the resource (and approach to teaching) in his class. Students (both paid and unpaid) have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Sarah Day, Ellie Smith, Tara Shelby, Keyera Gaulden, Kiana Clay, Lexa Gambrill, Ashley Righetti, and Jaylee York.
 

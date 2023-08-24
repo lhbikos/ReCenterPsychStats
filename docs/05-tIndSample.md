@@ -869,7 +869,7 @@ The independent-samples t-test is useful when you want to compare means across t
 
 ### Working the Problem with R and R Packages
 
-####  Narrate the research vignette, describing the variables and their role in the analysis
+####  Narrate the research vignette, describing the variables and their role in the analysis {-}
 
 I want to ask the question, "Do the course evaluation ratings for the traditional pedagogy subscale differ for CPY and ORG students in the ANOVA class?"
 
@@ -879,7 +879,7 @@ My predictor variable will be department. It has two levels: CPY and ORG.
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could change the course (i.e., Multivariate or Psychometrics) and/or change the dependent variable to one of the other scales*.
 
-#### Simulate (or import) and format data
+#### Simulate (or import) and format data {-}
 
 First, bring in the dataset.
 
@@ -951,7 +951,7 @@ str(IndT_df$Dept)
 
 Without further coding, R will order the factors alphabetically.  This is fine.  CPY will be the base/intercept and ORG will be the comparison (this becomes more important in regression).
 
-#### Evaluate statistical assumptions
+#### Evaluate statistical assumptions {-}
 
 * Evaluate and report skew and kurtosis
 * Evaluate and correctly interpret homogeneity of variance (if Levene's < .05; use Welch's formulation)
@@ -1030,7 +1030,7 @@ rstatix::levene_test(IndT_df, TradPed ~ Dept, center = median)
 Levene's test for homogeneity of variance indicated that we did not violate the assumption of homogeneity of variance $(F[1, 110] = 2.460, p = 0.120)$. That is to say, the variance in each of the departments is not statistically significantly different from each other. We can use the regular (Student's) formulation of the *t*-test for independent samples.
 
 
-#### Conduct an independent samples *t*-test (with an effect size and 95%CIs)
+#### Conduct an independent samples *t*-test (with an effect size and 95%CIs) {-}
 
 Conduct the independent samples *t*-test (with an effect size)
 
@@ -1067,7 +1067,7 @@ rstatix::cohens_d(IndT_df, TradPed ~ Dept, var.equal = TRUE)
 ```
 The value of Cohen's *d* statistic (interpreted in standard deviation units) is 0.300 and is small.  We can add this value to the statistical string: $t(110) = 1.423, p = 0.158, CI95 (0.102, 0.619), d = 0.300$.
 
-#### APA style results with table(s) and figure
+#### APA style results with table(s) and figure {-}
 
 * Complete content of results (including t, df, p, d-or-eta, CI95%)
 * Table
@@ -1115,7 +1115,7 @@ indT.box
 
 ![](05-tIndSample_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
 
-#### Conduct power analyses to determine the power of the current study and a recommended sample size 
+#### Conduct power analyses to determine the power of the current study and a recommended sample size {-} 
 
 We can use Cohen's d in this specification of *d*.
 
@@ -1168,12 +1168,12 @@ I will use the same example (and same dataset) for hand calculations. Before we 
 
 > Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in these statistics. If this lesson was a deeper exploration into the inner workings of *t*-tests, we would take more time to understand what is occurring.
 
-#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses
+#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses {-}
 
 $$H_0: \mu_1 = \mu_2$$
 $$H_A: \mu_1 \neq \mu_2$$
 
-#### Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable
+#### Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable {-}
 
 
 ```r
@@ -1196,7 +1196,7 @@ TradPed2   4.0 -1.1832786 0.5826528 0.19664900
 CPY: *M* = 4.130, *SD* = 0.755
 ORG: *M* = 3.871, *SD* = 1.095
 
-#### Calulate the SE used in the denominator of the *t*-test
+#### Calulate the SE used in the denominator of the *t*-test {-}
 
 Just as a reminder, the SE is the denominator in the *t*-test formula:  
 
@@ -1211,7 +1211,7 @@ sqrt((0.7547259^2/81) + (1.0948953^2/31))
 ```
 The *SE* = 0.214
 
-#### Calculate the independent samples *t*-test
+#### Calculate the independent samples *t*-test {-}
 
 
 ```r
@@ -1224,11 +1224,11 @@ The *SE* = 0.214
 *I note that this hand calculation differs from the worked in R. I believe this is likely due to an unbalanced design with unequal cell sizes (81 and 31).*
 
 
-#### Identify the degrees of freedom associated with your *t*-test
+#### Identify the degrees of freedom associated with your *t*-test {-}
 
 $N - 2$ is the degrees of freedom:  112-2, df = 110
 
-#### Locate the test critical value for your test
+#### Locate the test critical value for your test {-}
 
 We can look at a [table of critical values](https://www.statology.org/t-distribution-table/)
 
@@ -1252,14 +1252,14 @@ qt(0.05/2, 112, lower.tail = FALSE)
 ```
 [1] 1.981372
 ```
-#### Is the *t*-test statistically significant? Why or why not?
+#### Is the *t*-test statistically significant? Why or why not? {-}
 
 In a two-tailed test, if the *t*-statistic falls outside the boundaries of -1.98 and 1.98 the means of the two groups are statistically significantly different from each other. 
 
 My *t* value of 1.209929 does not exceed these boundaries and therefore is not statistically significant.
 
 
-#### Calculate the confidence interval around the difference in sample means
+#### Calculate the confidence interval around the difference in sample means {-}
 
 Calculating a confidence interval around the difference in sample means requires the two-tailed test critical values.  We can insert them into this formula:
 
@@ -1283,7 +1283,7 @@ $$(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)$$
 ```
 We are 95% confident that the mean difference falls between -0.000 and 0.517. Because this interval passes through zero, we cannot be certain that the difference is 0. This is consistent with the non-significant *p* value.
 
-#### Calculate the effect size (i.e., Cohen’s d associated with your *t*-test
+#### Calculate the effect size (i.e., Cohen’s d associated with your *t*-test {-}
 
 Here is the formula for Cohen's *d*:
 
@@ -1298,7 +1298,7 @@ $$d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}$$
 [1] 0.2555321
 ```
 
-#### Assemble the results into a statistical string
+#### Assemble the results into a statistical string {-}
 
 $t(110) = 1.210, p > 0.05, CI95(-0.000, 0.517), d = 0.256$
 

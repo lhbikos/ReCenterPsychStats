@@ -1459,7 +1459,7 @@ If you wanted to use this example and dataset as a basis for a homework assignme
 
 ### Working the Problem with R and R Packages
 
-#### Create a df with 3 continuously scaled variables of interest
+#### Create a df with 3 continuously scaled variables of interest {-}
 
 The ReC.rds is the entire dataset. Let's first open it. 
 
@@ -1477,7 +1477,7 @@ To avoid this dependency and to practice an R skill, let's first filter the data
 JustANOVA <- subset(ReCdf, Course == "ANOVA")
 ```
 
-#### Create a df with 3 continuously scaled variables of interest
+#### Create a df with 3 continuously scaled variables of interest {-}
 
 The assignment requires that we downsize to three variables. We could pick any three. 
 
@@ -1488,7 +1488,7 @@ tiny3 <- JustANOVA %>%
     dplyr::select(OvInstructor, OvCourse, MyContribution)
 ```
 
-#### Produce descriptive statistics
+#### Produce descriptive statistics {-}
 
 
 ```r
@@ -1506,7 +1506,7 @@ OvCourse          -0.49 0.11
 MyContribution    -0.55 0.08
 ```
 
-#### Produce SPLOM/pairs.panels
+#### Produce SPLOM/pairs.panels {-}
 
 
 ```r
@@ -1515,7 +1515,7 @@ psych::pairs.panels(tiny3)
 
 ![](03-Preliminaries_files/figure-docx/unnamed-chunk-68-1.png)<!-- -->
 
-#### Produce an apaTables matrix
+#### Produce an apaTables matrix {-}
 
 
 ```r
@@ -1545,7 +1545,7 @@ that could have caused the sample correlation (Cumming, 2014).
  * indicates p < .05. ** indicates p < .01.
  
 ```
-#### Produce an APA Style write-up of the preliminary analyses
+#### Produce an APA Style write-up of the preliminary analyses {-}
 
 >Our sample included 113 doctoral students in Clinical and Industrial-Organizational psychology (PhD) programs who were completing a statistics class focused on analysis of variance.  Visual inspection of three dimensions of course evaluation (overall instructor, overall course, my contributions) combined with formal evaluation of skewness and kurtosis suggested that their distributions did not violate the assumption of univariate normality. That is, skew values all fell below the absolute value of 3 and kurtosis values all fell below the absolute value of 10 [@kline_data_2016]. Means, standard deviations, and a correlation matrix are presented in Table 1. All three correlations were strong and statistically significant. We noted that the correlation between the overall instructor and overall course was especially high $(r = .83, p < .001)$
 
@@ -1574,7 +1574,7 @@ tiny3 <- na.omit(tiny3)
 ```
 
 
-#### Create a variable that represents the mean.
+#### Create a variable that represents the mean {-}
 
 I will start with the OvInstructor variable. Inspect the dataframe to see that this new variable exists.
 
@@ -1582,8 +1582,8 @@ I will start with the OvInstructor variable. Inspect the dataframe to see that t
 tiny3$M_OvI <- mean(tiny3$OvInstructor, na.rm = TRUE)
 ```
 
-#### Create a variable that represents the mean deviation.
-
+#### Create a variable that represents the mean deviation {-}
+ 
 
 ```r
 tiny3$Mdev_OvI <- (tiny3$OvInstructor - tiny3$M_OvI)
@@ -1603,7 +1603,7 @@ head(tiny3)
 Inspect the dataframe to see that this new variable exists. Note that this functions to "center" the mean around zero.
 
 
-#### What is the value of the sum of mean deviations?
+#### What is the value of the sum of mean deviations? {-}
 
 
 ```r
@@ -1615,7 +1615,7 @@ round(sum(tiny3$Mdev_OvI, na.rm = TRUE), 3)
 ```
 Yes, zero!
 
-#### Create a variable that represents the absolute mean deviation.
+#### Create a variable that represents the absolute mean deviation {-}
 
 
 ```r
@@ -1662,7 +1662,7 @@ round(mean(tiny3$abslt_mOvI, na.rm = TRUE), 3)
 
 Average distance of each value from the mean.
 
-#### Create a variable that represents the mean deviation squared.
+#### Create a variable that represents the mean deviation squared {-}
 
 
 ```r
@@ -1763,7 +1763,7 @@ sd(tiny3$OvInstructor)  #checking my work with the code from baseR
 [1] 1.013733
 ```
 
-#### Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable.
+#### Using the same general approach, calculate the mean deviation and standard deviation for a second, continuously scaled variable {-}
 
 My second variable is MyContribution
 
@@ -1822,7 +1822,7 @@ sd(tiny3$MyContribution)  #checking my work
 [1] 0.8337652
 ```
 
-#### Create a variable that represents the *cross-product* (of the mean deviations). What is the sum of these cross-products?
+#### Create a variable that represents the *cross-product* (of the mean deviations). What is the sum of these cross-products? {-}
 
 
 ```r
@@ -1859,7 +1859,7 @@ xp_sum
 [1] 46.74336
 ```
 
-#### Calculate the value of their covariance.
+#### Calculate the value of their covariance {-} 
 
 
 ```r
@@ -1871,7 +1871,7 @@ cov
 [1] 0.4173514
 ```
 
-#### Calculate value of correlation coefficient.
+#### Calculate value of correlation coefficient {-}
 
 
 ```r

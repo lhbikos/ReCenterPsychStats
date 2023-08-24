@@ -961,7 +961,7 @@ rstatix::cohens_d(rdfOneSample, rPhysMins ~ 1, ref.group = NULL, mu = 1.23)
 1 rPhysMins 1      null model    5.42     3 large    
 ```
 
-In this case our difference between the sample data and the external data is so huge, that a sample of three still nets a statistically significant result. This is unusual. Here's the *t* string:  $t(2) = 9.379, p = 0.011, d = 5.415, CI95[5.78, 13.492]$.
+In this case our difference between the sample data and the external data is so huge, that a sample of three still nets a statistically significant result. This is unusual. Here's the *t* string:  $t(2) = 9.379, p = 0.011, d = 5.415, CI95[5.780, 13.492]$.
 
 ## Practice Problems
 
@@ -1024,13 +1024,13 @@ The one-sample test comes in handy when you want to compare your dataset to an e
 
 ### Working the Problem with R and R Packages
 
-#### Narrate the research vignette, describing the variables and their role in the analysis
+#### Narrate the research vignette, describing the variables and their role in the analysis {-}
 
 From my course evaluation data, I want to ask the question, "Are ratings for the Overall Instructor for the ANOVA course evals statistically significantly different from the overall departmental averages for that same item?"  In CPY the overall average for that specific item is 4.4. 
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could select a different course (i.e., Multivariate or Psychometrics) and/or compare the mean for the ORG department ($M = 4.1$).*
 
-#### Simulate (or import) and format data
+#### Simulate (or import) and format data {-}
 
 First I will open the entire dataset.
 
@@ -1087,7 +1087,7 @@ str(tiny1$OvInstructor)
 Yes. The format for the OvInstructor variable is integer (which is numerical); the overall course evaluation is on an equivalent (1 to 5) scale.
 
 
-#### Evaluate statistical assumptions
+#### Evaluate statistical assumptions {-}
 
 * Are the skew and kurtosis values within the range expected?
 * Does the distribution of the variable differ significantly from a normal distribution?
@@ -1120,7 +1120,7 @@ The kurtosis value is -7.410 and is below the absolute value of 10. The kurt.2SE
 The Shapiro Wilk test value is 7.728 (*p* < 0.001). This significant value suggests a distribution that is not normally distributed.
 
 
-#### Conduct a one sample *t* test (with an effect size)
+#### Conduct a one sample *t* test (with an effect size) {-}
 
 We will compare the overall instructor from the data to the CPY average of 4.4.
 
@@ -1159,7 +1159,7 @@ Cohen's *d* was 0.211. This is a small effect. We can add it to the *t* string.
 $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374), d = -0.211$
 
 
-#### APA style results with table(s) and figure
+#### APA style results with table(s) and figure {-}
 
 * t-test results should include t, df, p, d-or-eta, and CI95%
 * Table
@@ -1176,7 +1176,7 @@ ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings",
 
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
 
-#### Conduct power analyses to determine the power of the current study and a recommended sample size
+#### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 
 A quick reminder that the *d* in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen's d that we just calculated.
 
@@ -1219,7 +1219,7 @@ For the CPY departmental comparison, the recommended sample size would be 178. T
 
 ### Hand Calculations
 
-#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses 
+#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses {-}
 
 $$
 \begin{array}{ll}
@@ -1228,7 +1228,7 @@ H_A: & \mu \neq 4.4
 \end{array}
 $$
 
-#### Calculate the mean of your sample; identify the mean of your benchmarking sample
+#### Calculate the mean of your sample; identify the mean of your benchmarking sample {-}
 
 I will continue with the *tiny1* dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.
 
@@ -1243,7 +1243,7 @@ mean(tiny1$OvInstructor, na.rm = TRUE)
 
 The mean of my benchmarking sample is 4.4. This number is a "departmental standard" and did not need to be calculated by me for this purpose.
 
-#### Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared
+#### Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared {-}
 
 
 ```r
@@ -1296,7 +1296,7 @@ sd(tiny1$OvInstructor)  #checking my work
 [1] 1.013733
 ```
 
-#### Calculate the one-sample *t*-test
+#### Calculate the one-sample *t*-test {-}
 
 Here's the formula:  
 
@@ -1313,7 +1313,7 @@ $$
 [1] -2.245701
 ```
 
-#### Identify the degrees of freedom associated with your *t*-test     
+#### Identify the degrees of freedom associated with your *t*-test {-}     
 
 For the one-sample *t*-test, $df = N - 1$. In our case
 
@@ -1326,7 +1326,7 @@ For the one-sample *t*-test, $df = N - 1$. In our case
 [1] 112
 ```
 
-#### Locate the test critical value for your test
+#### Locate the test critical value for your test {-}
 We can use a table of critical values for the one sample *t*-test:  https://www.statology.org/t-distribution-table/
 
 A 2-tail test, when p - .05, with ~120 individuals is 1.98
@@ -1341,11 +1341,11 @@ qt(p = 0.05/2, df = 112, lower.tail = FALSE)
 ```
 [1] 1.981372
 ```
-### Is the *t*-test statistically significant? Why or why not?
+#### Is the *t*-test statistically significant? Why or why not? {-}
 
 Yes *t* = -2.245701 exceeds the (absolute) test critical value of 1.98.
 
-#### What is the confidence interval around your sample mean?
+#### What is the confidence interval around your sample mean? {-}
 
 Here is a reminder of the formula:
 
@@ -1370,7 +1370,7 @@ $$\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})$$
 
 We are 95% confident that the sample mean for the students in the ANOVA classes is between 3.997, 4.375.
 
-#### Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test
+#### Calculate the effect size (i.e., Cohen's *d* associated with your *t*-test {-}
 
 A reminder of the two formula:
 

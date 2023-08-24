@@ -88,7 +88,7 @@ The only thing in the chunks should be script for running R. You can also hashta
 
 Syntax for simple formatting in the text (i.e., non-chunk) areas (e.g., using italics, making headings, bold) is found here: https://rmarkdown.rstudio.com/authoring_basics.html
 
-"Chunks" start and end with with three tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear (and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.
+"Chunks" start and end with three tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear (and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.
 
 The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i
 
@@ -336,7 +336,7 @@ Several elements of the practice problems (i.e., download base R and R studio) a
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could simply change the seed -- again. For a greater challenge, you could adjust the simulation to have different sample sizes, means, or standard deviations.*
 
-### Perform a simple mathematical operation:
+#### Perform a simple mathematical operation:{-}
 
 In the .rmd file, open a chunk and perform a simple mathematical operation of your choice (e.g., subtract your birth year from this year).
 
@@ -350,7 +350,7 @@ In the .rmd file, open a chunk and perform a simple mathematical operation of yo
 ```
 
 
-### Install at least three packages we will commonly use:
+#### Install at least three packages we will commonly use {-}
 
 Below is code for installing three packages. Because continuous reinstallation can be problematic, I have hashtagged them so that they will not re-run.
 
@@ -360,7 +360,7 @@ Below is code for installing three packages. Because continuous reinstallation c
 #install.packages("psych")
 ```
 
-### Copy the simulation in this lesson to your .rmd file. Change the random seed and run the simulation. 
+#### Copy the simulation in this lesson to your .rmd file. Change the random seed and run the simulation {-}
 
 
 ```r
@@ -381,7 +381,7 @@ COND <- c(rep("High", 30), rep("Low", 30), rep("Control", 30))
 Acc_sim30B <- data.frame(ID, COND, Accurate)
 ```
 
-### Save the resulting data as a .csv or .rds file in the same file as you saved the .rmd file.
+#### Save the resulting data as a .csv or .rds file in the same file as you saved the .rmd file {-}
 
 You only need to save it as a .csv or .rds file. I have demonstrated both.
 
@@ -398,7 +398,7 @@ Saving as an .rds file
 saveRDS(Acc_sim30B, "to_RobjectB.rds")
 ```
 
-### Clear your environment (broom in upper right).
+#### Clear your environment (broom in upper right) {-}
 
 You only need to import the .csv or .rds file; I have demonstrated both. 
 Open the .csv file from my local drive.
@@ -413,7 +413,7 @@ Open the .rds file from my local drive.
 from_rds <- readRDS("to_RobjectB.rds")
 ```
 
-### Run the describe() function from the psych package with your simulated data that you imported from your local drive.
+#### Run the describe() function from the psych package with your simulated data that you imported from your local drive {-}
 
 You only need to retrieve descriptives from the .csv or .rds file; I have demonstrated both. 
 

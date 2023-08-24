@@ -1,6 +1,8 @@
-# One-Way Repeated Measures with a Multivariate Approach {#RMmultiv}
+# One-Way Repeated Measures with a Multivariate Approach {-}
 
 
+
+[Screencasted Lecture Link](https://youtu.be/1c3N733nSM0)
 
 As noted in the lesson on [one-way repeated measures ANOVA](#Repeated), the researcher can use a univariate or multivariate approach to analyzing the data. The *rstatix::anova_test()* is limited to the univariate approach. In order to maintain a streamlined chapter with minimal distractions to student learning I have chosen to provide a quick and separate demonstration of the multivariate approach in this appendix.  In-so-doing, I will use the *car* package.
 
@@ -100,7 +102,7 @@ To run the analysis, we insert these objects into arguments:
 
 * waveModel is the first argument,
 * waveFrame is assigned to the *idata* command,
-* waveFactor is assigned to the *idata* command
+* waveFactor is assigned to the *idesign* command
 
 
 ```r
@@ -194,12 +196,12 @@ The *car::Anova()* function produces both univariate and multivariate results. T
 
 ### Univariate Results {-}
 
-When we ran the univariate approach in the lesson, we first checked the sphericity assumption. Our results here are identical to those from *rstatix::anova_test*. That is, we did not violate the sphericity assumption:  Mauchley's test $= .566 p = 0.182$. Although I do not see the complete *F* string, we learn that, if we had violated the sphericity assumption, that:
+When we ran the univariate approach in the lesson, we first checked the sphericity assumption. Our results here are identical to those from *rstatix::anova_test*. That is, we did not violate the sphericity assumption:  Mauchley's test $= .566 p = 0.182$. The *F* test with univariate results was $F(2, 14) = 3.910, p = 0.045$.
 
 >The Greenhouse Geiser estimate was 0.698 the corrected  *p* = .068.
 >The Huyhn Feldt estimate was 0.817 and the corrected *p* = .057.
 
-The univariate ANOVA results are under the "Univariate Type III REpeated-Measures ANOVA Assuming Sphericity" heading. We find the ANOVA output on the row titled, "waveFactor." The results are identical to what we found in teh lesson:   $F(2,14) = 3.91, p = 0.045$. I do not see that an effect size is reported.
+The univariate ANOVA results are under the "Univariate Type III Repeated-Measures ANOVA Assuming Sphericity" heading. We find the ANOVA output on the row titled, "waveFactor." The results are identical to what we found in the lesson:   $F(2,14) = 3.91, p = 0.045$. I do not see that an effect size is reported.
 
 ### Multivariate Results {-}
 
@@ -211,7 +213,7 @@ We find the multivariate results in the middle of the output, under the heading,
 
 Because follow-up testing is *pairwise* (i.e., there are only two levels being compared), the sphericity assumption is not required and those could proceed in the manner demonstrated in the [one-way repeated measures ANOVA lesson](#Repeated).
 
-### A Brief Commentary on Wrappers
+### A Brief Commentary on Wrappers {-}
 
 As noted several times, because of its relative ease-of-use, the relevance of information included in the results, and its integration with the *ggpubr* package, I chose to use *rstatix* package in all of the ANOVA lessons. As I worked through this example, I spent several hours creating and interpreting the code. For me, there was value in this exercise:
 

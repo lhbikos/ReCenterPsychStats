@@ -274,6 +274,15 @@ Let's take another look at the formula for calculating paired samples *t*-test.
 $$t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}$$
 We can use the data from our preliminary exploration in the calculation.
 
+```r
+psych::describe(dfPairedSamples$Verbal_D)
+```
+
+```
+   vars  n mean   sd median trimmed  mad   min  max range  skew kurtosis   se
+X1    1 33 0.08 4.14   0.61    0.27 4.11 -9.55 7.61 17.17 -0.41    -0.69 0.72
+```
+
 * The mean difference was .08
 * The standard deviation of that difference was 4.14
 * The sample size is 33
@@ -286,7 +295,7 @@ We can use the data from our preliminary exploration in the calculation.
 ```
 [1] 0.111006
 ```
-The resultant *t* value is 0.111
+The resultant *t* value is 0.111.
 
 Hopefully, this hand-calculation provided an indication of how the means, standard deviation, and sample sizes contribute to the estimate of this *t*-test value.  Now we ask, "But it is statistically significant?"
 
@@ -679,7 +688,7 @@ pair.box <- pair.box + ggpubr::stat_pvalue_manual(pair.test, tip.length = 0.01,
 pair.box
 ```
 
-![](06-tPairedSamples_files/figure-docx/unnamed-chunk-27-1.png)<!-- -->
+![](06-tPairedSamples_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
 The tools available offer a great deal of flexibility. Determining which figure is best will likely depend on your outlet, your audience, and your personal preferences. For example, a print journal might prefer a black-and-white figure (with no fill in the boxes). This is accomplished easily enough by removing (or, hashtagging out) the "fill = PtRace" argument.
 
 
@@ -862,7 +871,7 @@ For more information about the data used in this homeworked example, please refe
 
 ### Working the Problem with R and R Packages
 
-#### Narrate the research vignette, describing the variables and their role in the analysis
+#### Narrate the research vignette, describing the variables and their role in the analysis {-}
 
 I want to ask the question, "Do students' evaluations of traditional pedagogy (TradPed) change from ANOVA (the first course in the series) to Multivariate (the second course in the series)?." Unlike the independent samples *t*-test where we compared students in two different departments, we are comparing *the same* students across two different conditions. In this particular analysis, there is also an element of time. That is the ANOVA class always precedes the multivariate class (with a regression class, taught by a different instructor) in the intervening academic quarter.  
 
@@ -872,7 +881,7 @@ This research design has some clear limitations. Threats to internal validity ar
 
 Like most data, some manipulation is required before we can begin the analyses.
 
-#### Simulate (or import) and format data
+#### Simulate (or import) and format data {-}
 
 Let's import the larger dataset. 
 
@@ -952,7 +961,7 @@ Doing so should also help with the hand-calculations later in the worked example
 paired_wide <- na.omit(paired_wide)
 ```
 
-#### Evaluate statistical assumptions
+#### Evaluate statistical assumptions {-}
 
 We need to evaluate the *distribution of the difference score* in terms of skew and kurtosis. We want this distribution of difference scores to be normally distributed.
 
@@ -1006,14 +1015,14 @@ Although not required in the formal test of instructions, a *pairs panel* of cor
 psych::pairs.panels(paired_wide)
 ```
 
-![](06-tPairedSamples_files/figure-docx/unnamed-chunk-46-1.png)<!-- -->
+![](06-tPairedSamples_files/figure-docx/unnamed-chunk-47-1.png)<!-- -->
 Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
 
 Before moving forward, I want to capture my analysis of assumptions:
 
 >We began by analyzing the data to see if it met the statistical assumptions for analysis with a paired samples t-test. Regarding the assumption of normality, the skew (0.56) and kurtosis (3.15) values associated with the difference between conditions (ANOVA and multivariate) were  below the threshholds of concern identified by Klein (2016). In contrast, results of the Shapiro-Wilk test of normality suggested that the distribution of difference scores was statistically significantly different than a normal distribution $(W = 0.943, p = 0.002)$. 
 
-#### Conduct a paired samples t-test (with an effect size & 95% CIs)
+#### Conduct a paired samples t-test (with an effect size & 95% CIs) {-}
 
 So this may be a bit tricky, but our original "long" form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples *t* test requires the design to be balanced.  When we used the *na.omit()* function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let's restructure that wide format back to long format so that the design will be balanced.
 
@@ -1067,7 +1076,7 @@ rstatix::cohens_d(paired_long2, TradPed ~ Course, paired = TRUE)
 ```
 The value of -0.153 is quite small. We can add this value to our statistical string:  $t(76) = -1.341, p = 0.184, CI95(-0.305, 0.069), d = -0.153$
 
-#### APA style results with table(s) and figure
+#### APA style results with table(s) and figure {-}
 
 >A paired samples *t*-test was conducted to evaluate the hypohtesis that there would be statistically significant differences in students' course evaluations of ANOVA and multivariate statistics classses.
 
@@ -1150,9 +1159,9 @@ pairT.box <- pairT.box + ggpubr::stat_pvalue_manual(paired_T, tip.length = 0.02,
 pairT.box
 ```
 
-![](06-tPairedSamples_files/figure-docx/unnamed-chunk-52-1.png)<!-- -->
+![](06-tPairedSamples_files/figure-docx/unnamed-chunk-53-1.png)<!-- -->
 
-#### Conduct power analyses to determine the power of the current study and a recommended sample size
+#### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 
 Script for estimating current power:  
 
@@ -1207,7 +1216,7 @@ If we presumed power were at 80%, we would need a sample size of 337.
 
 For these hand calculations I will used the "paired_wide" dataframe that we had prepared for the homework assignment intended for R and R packages.
 
-#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses
+#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses {-}
 
 The null hypotheses states that the true difference in means is zero.
 $H_{O}: \mu _{D} = 0$
@@ -1215,7 +1224,7 @@ $H_{O}: \mu _{D} = 0$
 The alternative hypothesis states that the true difference in means is not zero.
 $H_{A}: \mu _{D}\neq 0$
 
-#### Using an R package or functions in base R (and with data in the "wide" format), calculate the *difference* score between the two observations of the dependent variable 
+#### Using an R package or functions in base R (and with data in the "wide" format), calculate the *difference* score between the two observations of the dependent variable {-}
 
 We had already calculated a difference score in the earlier assignment. Here it is again. 
 
@@ -1224,7 +1233,7 @@ paired_wide$DIFF <- paired_wide$ANOVA - paired_wide$Multivariate
 ```
 
 
-#### Obtain the mean and standard deviation of the *difference* score 
+#### Obtain the mean and standard deviation of the *difference* score {-}
 
 We can obtain the mean and standard deviation for the difference score with this script.
 
@@ -1240,7 +1249,7 @@ X1    1 77 -0.12 0.8   -0.2   -0.13 0.59 -2.4 3.2   5.6 0.56     3.15 0.09
 
 The mean difference ($\bar{D}$) is -0.12; the standard deviation ($\hat\sigma_D$) of the difference score is 0.8.
 
-#### Calculate the paired samples *t*-test 
+#### Calculate the paired samples *t*-test {-}
 
 Here is the formula for the paired samples *t*-test:
 
@@ -1258,11 +1267,11 @@ Using the values we located we can calculate the value of the *t* statistic.
 ```
 The value we calculated with the *rstatix::t_test()* function was -1.34. Considering rounding error, I think we got it!
 
-#### Identify the degrees of freedom associated with your paired samples *t*-test 
+#### Identify the degrees of freedom associated with your paired samples *t*-test {-}
 
 We have 77 pairs.  The degrees of freedom for the paired samples *t*-test is $N - 1$. Therefore, df = 76.
 
-#### Locate the test critical value for your paired samples *t*-test
+#### Locate the test critical value for your paired samples *t*-test {-}
 
 I could look at the [table of critical values](https://www.statology.org/t-distribution-table/) for the *t*-distribution. Because I have non-directional hypotheses, I would use the column for a *p*-value of .05 for a two-tailed test. I roll down to the closest sample size (I'll pick 60). This suggests that my *t*-test statistic would need to be greater than 2.0 in order to be statistically significant.
 
@@ -1286,11 +1295,11 @@ qt(0.05/2, 76, lower.tail = FALSE)
 ```
 It is not surprising that these values are a smidge lower than 2.0. Why? Because in the table we stopped at df of 60, when it is actually 76.
 
-#### Is the paired samples *t*-test statistically significant? Why or why not? 
+#### Is the paired samples *t*-test statistically significant? Why or why not? {-}
 
 The paired samples *t*-test is not statistically significant because the *t*-value of -1.316245 does not exceed -1.992.
 
-#### What is the confidence interval around the mean difference? 
+#### What is the confidence interval around the mean difference? {-}
 
 Here is the formula for hand-calculating the confidence interval. 
 
@@ -1321,7 +1330,7 @@ Let's calculate it:
 ```
 These values indicate the range of scores in which we are 95% confident that our true $\bar{D}$ lies. Stated another way, we are 95% confident that the true mean difference lies between -0.302 and 0.062. Because this interval crosses zero, we cannot rule out that the true mean difference is 0.00. This result is consistent with our non-significant *p* value. For these types of statistics, the 95% confidence interval and *p* value will always be yoked together. 
 
-#### Calculate the effect size (i.e., Cohen's *d* associated with your paired samples *t*-test
+#### Calculate the effect size (i.e., Cohen's *d* associated with your paired samples *t*-test {-}
 
 Cohen's *d* measures, in standard deviation units, the distance between the two means. Regardless of sign, values of .2, .5, and .8 are considered to be small, medium, and large, respectively. 
 
@@ -1347,7 +1356,7 @@ Here's a demonstration of both:
 [1] -0.15
 ```
 
-#### Assemble the results into a statistical string.
+#### Assemble the results into a statistical string {-}
 
 $t(76) = -1.316, p > .05, CI95(-0.302, 0.062), d = -0.15$
 

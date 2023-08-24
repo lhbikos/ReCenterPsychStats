@@ -1837,7 +1837,7 @@ For more information about the data used in this homeworked example, please refe
 
 ### Working the Problem with R and R Packages
 
-#### Narrate the research vignette, describing the IV and DV. The data you analyze should have at least 3 levels in the independent variable; at least one of the attempted problems should have a significant omnibus test so that follow-up is required).
+#### Narrate the research vignette, describing the IV and DV. The data you analyze should have at least 3 levels in the independent variable; at least one of the attempted problems should have a significant omnibus test so that follow-up is required) {-}
 
 I want to ask the question, do course evaluation ratings for traditional pedagogy differ for students as we enacted a substantive revision to our statistics series.  The evaluative focus is on the ANOVA course and we will compare ratings from the stable, transition, and resettled stages of the transitional period. The variable (Stage) of interest will have three levels:  
 
@@ -1849,7 +1849,7 @@ This is not a variable that was included in the dataset posted to the OSF reposi
 
 *If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the ANOVA class. You could choose multivariate or psychometrics. You could also choose a different dependent variable. I chose the traditional pedagogy subscale. Two other subscales include socially responsive pedagogy and valued by the student.*
 
-#### Simulate (or import) and format data.  
+#### Simulate (or import) and format data {-}  
 
 
 ```r
@@ -1921,7 +1921,7 @@ ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-83-1.png)<!-- -->
 
 
-#### Evaluate statistical assumptions. 
+#### Evaluate statistical assumptions {-} 
 
 **Is the dependent variable normally distributed across levels of the factor?**
 
@@ -2014,7 +2014,7 @@ Before moving on, I will capture our findings in an APA style write-up of the te
 
 >Regarding the assumption of normality, skew and kurtosis values at each of the levels of program year fell well below the thresholds that Kline (2016a) identified as concerning (i.e., below |3| for skew and |10| for kurtosis). In contrast, results of a model-based Shapiro-Wilk test of normality, indicated that the model residuals differed from a normal distribution $(W = 0.941, p < .001)$. Although 4 outliers were identified none were extreme, thus we retained all cases. Finally, Levene’s homogeneity of variance test indicated a violation of the homogeneity of variance assumption $F(2, 109) = 4.523, p = 0.013$. ANOVA is relatively robust to this violation when there are at least 15 cases per cell and the design is balanced (i.e., equivalent cell sizes). While we have at least 15 cases per cell, we have a rather unbalanced design. We will need to keep this limitation in mind as we interpret the results.
 
-#### Conduct omnibus ANOVA (w effect size). 
+#### Conduct omnibus ANOVA (w effect size) {-} 
 
 The *rstatix::anova_test()* function calculates the one-way ANOVA and includes the effect size, $\eta^2$ in the column, *ges*. 
 
@@ -2032,7 +2032,7 @@ ANOVA Table (type II tests)
 ```
 The one-way ANOVA is statistically significant. This means that there should be at least one statistically significant difference between levels of the design. Before moving on, I will capture the *F* string:  $F(2, 109) = 7.199, p = 0.001, \eta^2 = 0.117$. Regarding the effect size, values of .01, .07, and .14 are considered to be small, medium, and large. The value of .11 would be medium-to-large.
 
-#### Conduct one set of follow-up tests; narrate your choice.
+#### Conduct one set of follow-up tests; narrate your choice {-}
 
 I will simply calculate post-hoc comparisons. That is, all possible pairwise comparisons. I will specify the traditional Bonferroni as the approach to managing Type I error.
 
@@ -2056,11 +2056,11 @@ phoc
 
 The post hoc tests suggested statistically significant differences between the stable transition resettled stages, favoring the stable period of time (i.e., using SPSS and taught in the second year).
 
-#### Describe approach for managing Type I error. 
+#### Describe approach for managing Type I error {-} 
 
 We used the Bonferroni. The Bonferroni divides the overall alpha (.05) by the number of comparisons (3). In this case, a *p* value woul dhave to be lower than 0.017 to be statistically significant. The calulation reverse-engineers this so that we can interpret the *p* values by the traditional. 0.05. In the output, it is possible to see the higher threshholds necessary to claim statistical significance.
 
-#### APA style results with table(s) and figure.  
+#### APA style results with table(s) and figure {-}  
 
 >A one-way analysis of variance was conducted to evaluate the effects of significant transitions (e.g., from SPSS to R; to the second to the first year in a doctoral program) on students ratings of traditional pedagogy. The independent variable, stage, included three levels: stable (with SPSS and taught in the second year of a doctoral program), transitioning (with R and students moving from second to first year), and resettled (with R and in the first year of the program).
 
@@ -2128,7 +2128,7 @@ ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
 
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-93-1.png)<!-- -->
 
-#### Conduct power analyses to determine the power of the current study and a recommended sample size.
+#### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 
 The *pwr.anova.test()* has five parameters:
 
@@ -2203,7 +2203,7 @@ Before we continue:
 
 > Should we be concerned? No (and yes). My purpose in teaching hand calculations is for creating a conceptual overview of what is occurring in ANOVA models. If this lesson was a deeper exploration into the inner workings of ANOVA, we would take more time to understand what is occurring. My goal is to provide you with enough of an introduction to ANOVA that you would be able to explore further which sums of squares type would be most appropriate for your unique ANOVA model.
 
-#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses.
+#### Using traditional NHST (null hypothesis testing language), state your null and alternative hypotheses {-}
 
 Regarding the evaluation of traditional pedgagoy across three stages of transitions to a doctoral ANOVA course, the null hypothesis predicts no differences between the three levels of the dependent variable:
 
@@ -2213,7 +2213,7 @@ In contrast, the alternative hypothesis suggests there will be differences. Apri
 
 $$H_{a1}: \mu _{1} \neq \mu _{2} \neq \mu _{3}$$
 
-#### Calculate sums of squares total (SST). Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared.
+#### Calculate sums of squares total (SST). Steps in this calculation must include calculating a grand mean and creating variables representing the mean deviation and mean deviation squared {-}
 
 I will use this approach to calculating sums of squares total:
 
@@ -2289,7 +2289,7 @@ SST
 ```
 SST = 83.0332
 
-#### Calculate the sums of squares for the model (SSM). A necessary step in this equation is to calculate group means. 
+#### Calculate the sums of squares for the model (SSM). A necessary step in this equation is to calculate group means {-} 
 
 The formula for SSM is $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
 
@@ -2332,7 +2332,7 @@ SSM
 SSM = 9.67871
 
 
-#### Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group. 
+#### Calculate the sums of squares residual (SSR). A necessary step in this equation is to calculate the variance for each group {-} 
 
 The formula for I will use to calculate SSR is $$SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1))$$
 
@@ -2355,7 +2355,7 @@ SSR
 SSR = 73.3472
 
 
-#### Calculate the mean square model, mean square residual, and *F*-test. 
+#### Calculate the mean square model, mean square residual, and *F*-test {-} 
 
 The formula for mean square model is $$MS_M = \frac{SS_{M}}{df{_{M}}}$$
 
@@ -2402,12 +2402,12 @@ F
 *F* = 7.191154
 
 
-#### What are the degrees of freedom for your numerator and denominator? 
+#### What are the degrees of freedom for your numerator and denominator? {-}
 
 Numerator or $df_M$:  2
 Denominator or $df_R$:  109
 
-#### Locate the test critical value for your one-way ANOVA.  
+#### Locate the test critical value for your one-way ANOVA {-}  
 
 We could use use a [table of critical values](https://www.statology.org/how-to-read-the-f-distribution-table/) for the *F* distribution.
 
@@ -2424,11 +2424,11 @@ qf(0.05, 2, 109, lower.tail = FALSE)
 ```
 Not surprisingly the values are quite similar.
 
-#### Is the *F*-test statistically significant? Why or why not? 
+#### Is the *F*-test statistically significant? Why or why not? {-}
 
 Because the value of the *F* test (7.191) exceeded the absolute value of the critical value (3.080), the *F* test is statistically significant.
 
-#### Calculate and interpret the $\eta^2$ effect size
+#### Calculate and interpret the $\eta^2$ effect size {-}
 
 The formula to calculate the effect size is $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 
@@ -2447,7 +2447,7 @@ etaSQ
 Eta square is 0.117. Values of .01, .06, and .14 are interpreted as small, medium, and large. Our value of 0.12 is medium-to-large.
 
 
-#### Assemble the results into a statistical string. 
+#### Assemble the results into a statistical string {-} 
 
 $$F(2, 109) = 7.191, p < .05, \eta^2 = 0.117$$
 
