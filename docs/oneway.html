@@ -2176,9 +2176,11 @@ NOTE: n is number in each group</code></pre>
 <span id="cb732-3"><a href="oneway.html#cb732-3" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)</span>
 <span id="cb732-4"><a href="oneway.html#cb732-4" tabindex="-1"></a></span>
 <span id="cb732-5"><a href="oneway.html#cb732-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
-<span id="cb732-6"><a href="oneway.html#cb732-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness big$TradPed &lt;-</span></span>
-<span id="cb732-7"><a href="oneway.html#cb732-7" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span>
-<span id="cb732-8"><a href="oneway.html#cb732-8" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
+<span id="cb732-6"><a href="oneway.html#cb732-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
+<span id="cb732-7"><a href="oneway.html#cb732-7" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], <span class="fl">0.75</span>)</span>
+<span id="cb732-8"><a href="oneway.html#cb732-8" tabindex="-1"></a><span class="co"># If the above code doesn&#39;t work use the one below; the difference is</span></span>
+<span id="cb732-9"><a href="oneway.html#cb732-9" tabindex="-1"></a><span class="co"># the two periods in front of the variable list big$TradPed &lt;-</span></span>
+<span id="cb732-10"><a href="oneway.html#cb732-10" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span></code></pre></div>
 <p>With our variables properly formatted, let’s trim it to just the variables we need.</p>
 <div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="oneway.html#cb733-1" tabindex="-1"></a>OneWay_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(big, Stage, TradPed))</span></code></pre></div>
 <p>Although we would handle missing data more carefully in a “real study,” I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).</p>

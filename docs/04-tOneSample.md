@@ -1113,11 +1113,11 @@ pastecs::stat.desc(tiny1$OvInstructor, norm = TRUE)
             normtest.W             normtest.p 
   0.772806906937811733   0.000000000006195409 
 ```
-The skew value is -9.84 and far exceeds the absolute value of 3. The skew.2SE is -2.164 (larger than the absolute value of 2.0) is consistent. Thus, we might have some concern about skew.
+The skew value is -.0984 is well below the absolute value of 3. The skew.2SE of  -2.164 (larger than the absolute value of 2.0) is a bit discrepant and suggests a negative skew. Thus, we want to remain open to the possibility of skew.
 
-The kurtosis value is -7.410 and is below the absolute value of 10. The kurt.2SE value is -8.212 which is substantially larger than the absolute value of 2.0. Thus, we are similarly concerned about kurtosis.
+The kurtosis value is -0.074 and is below the absolute value of 10. The kurt.2SE value is -0.082 which is below the absolute value of 2.0. The data does not appear to be kurtotic.
 
-The Shapiro Wilk test value is 7.728 (*p* < 0.001). This significant value suggests a distribution that is not normally distributed.
+The Shapiro Wilk test value is 0.7728 (*p* < 0.001). This significant value suggests a distribution that is not normally distributed.
 
 
 #### Conduct a one sample *t* test (with an effect size) {-}

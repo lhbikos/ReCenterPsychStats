@@ -1660,8 +1660,8 @@ URL: http://psychstat.org/rmanova</code></pre>
 <span id="cb1275-5"><a href="Mixed.html#cb1275-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
 <span id="cb1275-6"><a href="Mixed.html#cb1275-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
 <span id="cb1275-7"><a href="Mixed.html#cb1275-7" tabindex="-1"></a>big<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, SRPed_vars], <span class="fl">0.75</span>)</span>
-<span id="cb1275-8"><a href="Mixed.html#cb1275-8" tabindex="-1"></a></span>
-<span id="cb1275-9"><a href="Mixed.html#cb1275-9" tabindex="-1"></a><span class="co"># if the scoring script won&#39;t run, try this one: big$SRPed &lt;-</span></span>
+<span id="cb1275-8"><a href="Mixed.html#cb1275-8" tabindex="-1"></a><span class="co"># If the above code doesn&#39;t work use the one below; the difference is</span></span>
+<span id="cb1275-9"><a href="Mixed.html#cb1275-9" tabindex="-1"></a><span class="co"># the two periods in front of the variable list big$SRPed &lt;-</span></span>
 <span id="cb1275-10"><a href="Mixed.html#cb1275-10" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..SRPed_vars], .75)</span></span></code></pre></div>
 <p>Let’s trim it to just the variables of interest</p>
 <div class="sourceCode" id="cb1276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1276-1"><a href="Mixed.html#cb1276-1" tabindex="-1"></a>mixt_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(big, deID, Course, Centering, SRPed))</span></code></pre></div>

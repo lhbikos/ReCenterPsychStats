@@ -2413,8 +2413,8 @@ Helpful resources are found here:</p>
 <span id="cb950-5"><a href="between.html#cb950-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
 <span id="cb950-6"><a href="between.html#cb950-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
 <span id="cb950-7"><a href="between.html#cb950-7" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], <span class="fl">0.75</span>)</span>
-<span id="cb950-8"><a href="between.html#cb950-8" tabindex="-1"></a></span>
-<span id="cb950-9"><a href="between.html#cb950-9" tabindex="-1"></a><span class="co"># if the scoring script won&#39;t run, try this one: big$TradPed &lt;-</span></span>
+<span id="cb950-8"><a href="between.html#cb950-8" tabindex="-1"></a><span class="co"># If the above code doesn&#39;t work use the one below; the difference is</span></span>
+<span id="cb950-9"><a href="between.html#cb950-9" tabindex="-1"></a><span class="co"># the two periods in front of the variable list big$TradPed &lt;-</span></span>
 <span id="cb950-10"><a href="between.html#cb950-10" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span></code></pre></div>
 <p>Each student in the dataset could contribute up to three course evaluations (i.e., one each for ANOVA, multivariate, psychometrics). Including all three would introduce <em>dependency</em> into the dataset and violate the assumption of independence. With our variables properly formatted let’s create a subset with just the students who took ANOVA.</p>
 <div class="sourceCode" id="cb951"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb951-1"><a href="between.html#cb951-1" tabindex="-1"></a>TwoWay_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(big, Course <span class="sc">==</span> <span class="st">&quot;ANOVA&quot;</span>)</span></code></pre></div>

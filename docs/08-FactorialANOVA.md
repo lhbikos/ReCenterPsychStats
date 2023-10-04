@@ -2086,8 +2086,8 @@ TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
 # Calculates a mean if at least 75% of the items are non-missing;
 # adjusts the calculating when there is missingness
 big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
-
-# if the scoring script won't run, try this one: big$TradPed <-
+# If the above code doesn't work use the one below; the difference is
+# the two periods in front of the variable list big$TradPed <-
 # sjstats::mean_n(big[, ..TradPed_vars], .75)
 ```
 

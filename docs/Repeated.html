@@ -1635,8 +1635,8 @@ URL: http://psychstat.org/rmanova</code></pre>
 <span id="cb1145-5"><a href="Repeated.html#cb1145-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
 <span id="cb1145-6"><a href="Repeated.html#cb1145-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
 <span id="cb1145-7"><a href="Repeated.html#cb1145-7" tabindex="-1"></a>big<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(big[, TradPed_vars], <span class="fl">0.75</span>)</span>
-<span id="cb1145-8"><a href="Repeated.html#cb1145-8" tabindex="-1"></a></span>
-<span id="cb1145-9"><a href="Repeated.html#cb1145-9" tabindex="-1"></a><span class="co"># if the scoring script won&#39;t run, try this one: big$TradPed &lt;-</span></span>
+<span id="cb1145-8"><a href="Repeated.html#cb1145-8" tabindex="-1"></a><span class="co"># If the above code doesn&#39;t work use the one below; the difference is</span></span>
+<span id="cb1145-9"><a href="Repeated.html#cb1145-9" tabindex="-1"></a><span class="co"># the two periods in front of the variable list big$TradPed &lt;-</span></span>
 <span id="cb1145-10"><a href="Repeated.html#cb1145-10" tabindex="-1"></a><span class="co"># sjstats::mean_n(big[, ..TradPed_vars], .75)</span></span></code></pre></div>
 <p>Let’s trim to just the variables we need.</p>
 <div class="sourceCode" id="cb1146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1146-1"><a href="Repeated.html#cb1146-1" tabindex="-1"></a>rm1wLONG_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(big, deID, Course, TradPed))</span>

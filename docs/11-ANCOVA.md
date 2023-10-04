@@ -1099,8 +1099,8 @@ SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
 # Calculates a mean if at least 75% of the items are non-missing;
 # adjusts the calculating when there is missingness
 big$SRPed <- sjstats::mean_n(big[, SRPed_vars], 0.75)
-
-# if the scoring script won't run, try this one: big$SRPed <-
+# If the above code doesn't work use the one below; the difference is
+# the two periods in front of the variable list big$SRPed <-
 # sjstats::mean_n(big[, ..SRPed_vars], .75)
 ```
 

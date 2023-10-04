@@ -1470,7 +1470,10 @@ NOTE: n is number in *each* group</code></pre>
 <span id="cb419-4"><a href="tIndSample.html#cb419-4" tabindex="-1"></a></span>
 <span id="cb419-5"><a href="tIndSample.html#cb419-5" tabindex="-1"></a><span class="co"># Calculates a mean if at least 75% of the items are non-missing;</span></span>
 <span id="cb419-6"><a href="tIndSample.html#cb419-6" tabindex="-1"></a><span class="co"># adjusts the calculating when there is missingness</span></span>
-<span id="cb419-7"><a href="tIndSample.html#cb419-7" tabindex="-1"></a>JustANOVA<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(JustANOVA[, TradPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
+<span id="cb419-7"><a href="tIndSample.html#cb419-7" tabindex="-1"></a>JustANOVA<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(JustANOVA[, TradPed_vars], <span class="fl">0.75</span>)</span>
+<span id="cb419-8"><a href="tIndSample.html#cb419-8" tabindex="-1"></a><span class="co"># If the above code doesn&#39;t work use the one below; the difference is</span></span>
+<span id="cb419-9"><a href="tIndSample.html#cb419-9" tabindex="-1"></a><span class="co"># the two periods in front of the variable list JustANOVA$TradPed &lt;-</span></span>
+<span id="cb419-10"><a href="tIndSample.html#cb419-10" tabindex="-1"></a><span class="co"># sjstats::mean_n(JustANOVA[, ..TradPed_vars], .75)</span></span></code></pre></div>
 <p>To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.</p>
 <div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="tIndSample.html#cb420-1" tabindex="-1"></a>IndT_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(JustANOVA, Dept, TradPed))</span></code></pre></div>
 <p>And further trim to non-missing data</p>

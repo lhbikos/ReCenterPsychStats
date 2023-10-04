@@ -1892,9 +1892,11 @@ TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
     "ClearOrganization", "ClearPresentation")
 
 # Calculates a mean if at least 75% of the items are non-missing;
-# adjusts the calculating when there is missingness big$TradPed <-
-# sjstats::mean_n(big[, ..TradPed_vars], .75)
+# adjusts the calculating when there is missingness
 big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
+# If the above code doesn't work use the one below; the difference is
+# the two periods in front of the variable list big$TradPed <-
+# sjstats::mean_n(big[, ..TradPed_vars], .75)
 ```
 
 With our variables properly formatted, let's trim it to just the variables we need.

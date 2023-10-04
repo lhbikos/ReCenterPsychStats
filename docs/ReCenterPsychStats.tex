@@ -129,7 +129,7 @@
 
 \title{ReCentering Psych Stats}
 \author{Lynette H. Bikos, PhD, ABPP (she/her)}
-\date{Last updated 24 Aug 2023}
+\date{Last updated 04 Oct 2023}
 
 \begin{document}
 \maketitle
@@ -169,7 +169,7 @@ ISBN-13: 979-8-9868768-2-5 (Ebook - online); ISBN-13: 979-8-9868768-3-2 (Ebook -
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 24 Aug 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 04 Oct 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://youtu.be/yy0z85Wla7o}{Screencasted Lecture Link}
 
@@ -4824,11 +4824,11 @@ Yes. The format for the OvInstructor variable is integer (which is numerical); t
   0.772806906937811733   0.000000000006195409 
 \end{verbatim}
 
-The skew value is -9.84 and far exceeds the absolute value of 3. The skew.2SE is -2.164 (larger than the absolute value of 2.0) is consistent. Thus, we might have some concern about skew.
+The skew value is -.0984 is well below the absolute value of 3. The skew.2SE of -2.164 (larger than the absolute value of 2.0) is a bit discrepant and suggests a negative skew. Thus, we want to remain open to the possibility of skew.
 
-The kurtosis value is -7.410 and is below the absolute value of 10. The kurt.2SE value is -8.212 which is substantially larger than the absolute value of 2.0. Thus, we are similarly concerned about kurtosis.
+The kurtosis value is -0.074 and is below the absolute value of 10. The kurt.2SE value is -0.082 which is below the absolute value of 2.0. The data does not appear to be kurtotic.
 
-The Shapiro Wilk test value is 7.728 (\emph{p} \textless{} 0.001). This significant value suggests a distribution that is not normally distributed.
+The Shapiro Wilk test value is 0.7728 (\emph{p} \textless{} 0.001). This significant value suggests a distribution that is not normally distributed.
 
 \hypertarget{conduct-a-one-sample-t-test-with-an-effect-size}{%
 \subsubsection*{\texorpdfstring{Conduct a one sample \emph{t} test (with an effect size)}{Conduct a one sample t test (with an effect size)}}\label{conduct-a-one-sample-t-test-with-an-effect-size}}
@@ -6327,6 +6327,9 @@ I will create a mean score of completed items from the traditional pedagogy scal
 \CommentTok{\# Calculates a mean if at least 75\% of the items are non{-}missing;}
 \CommentTok{\# adjusts the calculating when there is missingness}
 \NormalTok{JustANOVA}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(JustANOVA[, TradPed\_vars], }\FloatTok{0.75}\NormalTok{)}
+\CommentTok{\# If the above code doesn\textquotesingle{}t work use the one below; the difference is}
+\CommentTok{\# the two periods in front of the variable list JustANOVA$TradPed \textless{}{-}}
+\CommentTok{\# sjstats::mean\_n(JustANOVA[, ..TradPed\_vars], .75)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11026,9 +11029,11 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
     \StringTok{"ClearOrganization"}\NormalTok{, }\StringTok{"ClearPresentation"}\NormalTok{)}
 
 \CommentTok{\# Calculates a mean if at least 75\% of the items are non{-}missing;}
-\CommentTok{\# adjusts the calculating when there is missingness big$TradPed \textless{}{-}}
-\CommentTok{\# sjstats::mean\_n(big[, ..TradPed\_vars], .75)}
+\CommentTok{\# adjusts the calculating when there is missingness}
 \NormalTok{big}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, TradPed\_vars], }\FloatTok{0.75}\NormalTok{)}
+\CommentTok{\# If the above code doesn\textquotesingle{}t work use the one below; the difference is}
+\CommentTok{\# the two periods in front of the variable list big$TradPed \textless{}{-}}
+\CommentTok{\# sjstats::mean\_n(big[, ..TradPed\_vars], .75)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -14516,8 +14521,8 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
 \CommentTok{\# Calculates a mean if at least 75\% of the items are non{-}missing;}
 \CommentTok{\# adjusts the calculating when there is missingness}
 \NormalTok{big}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, TradPed\_vars], }\FloatTok{0.75}\NormalTok{)}
-
-\CommentTok{\# if the scoring script won\textquotesingle{}t run, try this one: big$TradPed \textless{}{-}}
+\CommentTok{\# If the above code doesn\textquotesingle{}t work use the one below; the difference is}
+\CommentTok{\# the two periods in front of the variable list big$TradPed \textless{}{-}}
 \CommentTok{\# sjstats::mean\_n(big[, ..TradPed\_vars], .75)}
 \end{Highlighting}
 \end{Shaded}
@@ -17175,8 +17180,8 @@ The TradPed (traditional pedagogy) variable is an average of the items on that s
 \CommentTok{\# Calculates a mean if at least 75\% of the items are non{-}missing;}
 \CommentTok{\# adjusts the calculating when there is missingness}
 \NormalTok{big}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, TradPed\_vars], }\FloatTok{0.75}\NormalTok{)}
-
-\CommentTok{\# if the scoring script won\textquotesingle{}t run, try this one: big$TradPed \textless{}{-}}
+\CommentTok{\# If the above code doesn\textquotesingle{}t work use the one below; the difference is}
+\CommentTok{\# the two periods in front of the variable list big$TradPed \textless{}{-}}
 \CommentTok{\# sjstats::mean\_n(big[, ..TradPed\_vars], .75)}
 \end{Highlighting}
 \end{Shaded}
@@ -19654,8 +19659,8 @@ The SRPed (socially responsive pedagogy) variable is an average of the items on 
 \CommentTok{\# Calculates a mean if at least 75\% of the items are non{-}missing;}
 \CommentTok{\# adjusts the calculating when there is missingness}
 \NormalTok{big}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, SRPed\_vars], }\FloatTok{0.75}\NormalTok{)}
-
-\CommentTok{\# if the scoring script won\textquotesingle{}t run, try this one: big$SRPed \textless{}{-}}
+\CommentTok{\# If the above code doesn\textquotesingle{}t work use the one below; the difference is}
+\CommentTok{\# the two periods in front of the variable list big$SRPed \textless{}{-}}
 \CommentTok{\# sjstats::mean\_n(big[, ..SRPed\_vars], .75)}
 \end{Highlighting}
 \end{Shaded}
@@ -21643,8 +21648,8 @@ The SRPed (socially responsive pedagogy) variable is an average of the items on 
 \CommentTok{\# Calculates a mean if at least 75\% of the items are non{-}missing;}
 \CommentTok{\# adjusts the calculating when there is missingness}
 \NormalTok{big}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(big[, SRPed\_vars], }\FloatTok{0.75}\NormalTok{)}
-
-\CommentTok{\# if the scoring script won\textquotesingle{}t run, try this one: big$SRPed \textless{}{-}}
+\CommentTok{\# If the above code doesn\textquotesingle{}t work use the one below; the difference is}
+\CommentTok{\# the two periods in front of the variable list big$SRPed \textless{}{-}}
 \CommentTok{\# sjstats::mean\_n(big[, ..SRPed\_vars], .75)}
 \end{Highlighting}
 \end{Shaded}

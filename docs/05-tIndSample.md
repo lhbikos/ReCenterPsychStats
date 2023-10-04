@@ -906,6 +906,9 @@ TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
 # Calculates a mean if at least 75% of the items are non-missing;
 # adjusts the calculating when there is missingness
 JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, TradPed_vars], 0.75)
+# If the above code doesn't work use the one below; the difference is
+# the two periods in front of the variable list JustANOVA$TradPed <-
+# sjstats::mean_n(JustANOVA[, ..TradPed_vars], .75)
 ```
 
 To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
