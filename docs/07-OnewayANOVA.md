@@ -2009,7 +2009,7 @@ rstatix::levene_test(OneWay_df, TradPed ~ Stage)
   <int> <int>     <dbl>  <dbl>
 1     2   109      4.52 0.0130
 ```
-The significant *p* value suggests that the variances across the three stages are not statistically significantly different:  $F(2, 109) = 4.523, p = 0.013$.
+The significant *p* value suggests that the variances are statistically significantly different across stages:  $F(2, 109) = 4.523, p = 0.013$.
 
 
 Before moving on, I will capture our findings in an APA style write-up of the testing of assumptions:
