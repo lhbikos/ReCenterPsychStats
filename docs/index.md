@@ -1,7 +1,7 @@
 --- 
 title: "ReCentering Psych Stats"
 author: "Lynette H. Bikos, PhD, ABPP (she/her)"
-date: "Last updated 06 Nov 2023" 
+date: "Last updated 12 Nov 2023" 
 documentclass: book
 site: bookdown::bookdown_site
 bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
@@ -46,7 +46,7 @@ ISBN-13:  979-8-9868768-2-5 (Ebook - online); ISBN-13:  979-8-9868768-3-2 (Ebook
 
 # PREFACE {-}
 
-**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 06 Nov 2023**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
+**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 12 Nov 2023**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
 
 [Screencasted Lecture Link](https://youtu.be/yy0z85Wla7o)
 
@@ -87,7 +87,7 @@ The inspiration for training materials that re*center statistics and research me
 
 At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department.  Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics & Illustrations, Dominic Wilkinson, designed the logo and bookcover.  Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am also indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr. Jhangiani's text [-@jhangiani_research_2019] was the first OER I ever used and I was grateful for his encouraging conversation.
 
-The creation of this OER has relied on strong peer and student support. Many thanks to Thane Erickson, PhD for being the first to pilot the resource (and approach to teaching) in his class. Students (both paid and unpaid) have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Sarah Day, Ellie Smith, Tara Shelby, Keyera Gaulden, Kiana Clay, Lexa Gambrill, Ashley Righetti, and Jaylee York.
+The creation of this OER has relied on strong peer and student support. Many thanks to Thane Erickson, PhD for being the first to pilot the resource (and approach to teaching) in his class. Students (both paid and unpaid) have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Chloe Gellhaus, Brooklyn Morrison, Grace Leasure, Sarah Day, Ellie Smith, Tara Shelby, Keyera Gaulden, Kiana Clay, Lexa Gambrill, Ashley Righetti, and Jaylee York.
 
 Financial support for this project has been provided the following:
 
