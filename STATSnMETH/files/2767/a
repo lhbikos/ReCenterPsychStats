@@ -1,0 +1,106 @@
+
+var currentScript = document.currentScript || (function() {
+  var scripts = document.getElementsByTagName('script');
+  return scripts[scripts.length - 1];
+})();
+
+(function() {
+    window.TRINITY_PLAYER = window.TRINITY_PLAYER || {
+        isLegacyBrowser: true,
+        options: {
+            isTrinityEnabled: true,
+            campaignId: '2900000552',
+            parser_s: 'nodefiltered',
+            parser_params: ["i"],
+            trinityGAAccountId: '',
+            gaAccountId: '',
+            partnerName: '',
+            paramsObject: {"testId":"25","playerTheme":"mcclatchy_noto","initialTitle":"Listen to this article now"},
+            FAB_config: {},
+            multipleArticlesAlg: '',
+            documentLoadType: 'DOMContentLoaded',
+            documentLoadTypeSelector: '',
+            adsDurationThreshold: '',
+            loaderText: '',
+            useCFCDN: 0,
+            serverSubdomain: '',
+            language: 'en',
+            FABOnly: false,
+            x1: 'TEST_3'
+        },
+
+        config: {
+            injectorScript: 'https://vd.trinitymedia.ai/trinity-player/tts-player/20200922_9cba931bfb043e5c9dfe7e03e5bef3cf088dc054/trinity_inject_script-legacy.js'
+        },
+
+        version: '20200922_9cba931bfb043e5c9dfe7e03e5bef3cf088dc054',
+        userAgentData: '{"browser":"Firefox","browser_ver":"60.0","is_legacy_browser":"true","os":"Windows","os_ver":"10","is_bot":false}',
+        userAgent: 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101 Firefox/60.0',
+        server: 'ip-10-64-39-117.thetimmedia.site',
+        server_region: 'NA',
+        server_env: 'NA',
+        campaignData: {tgtSeller: '1137'},
+        ts: Date.now()
+    };
+
+    const playerId = currentScript.dataset.playerId || '719b1f24693165a633eadb13ceeda527'
+    currentScript.setAttribute('data-player-id', playerId); // set dynamically generated ID
+
+    window.TRINITY_PLAYER.players = window.TRINITY_PLAYER.players || {};
+    window.TRINITY_PLAYER.players[playerId] = {
+        abtest: '',
+        language: '', //FIXME: Do we need it?
+        textSelector: '.story-body h3.h1, .story-body > p, .story-body > h3, .story-body > ul, .story-body > ol, .header>h1.h1',
+        readContentType: '',
+        readContentConfig: '',
+        imageSelector: '',
+        activateFAB: false,
+        state: 'not-started'
+    };
+
+    /* NOTE: This script doesn't transpiled. Please use ES5 code here */
+window.TRINITY_PLAYER.injectScript = function(playerId) {
+  var isDOMContentLoaded = false;
+
+  /* TTS could be loaded dynamically and skip DOMContentLoaded event. So check if document already ready as well */
+  function checkIfDocumentReady() {
+    return ['interactive', 'complete', 'loaded'].includes(document.readyState) || isDOMContentLoaded;
+  }
+
+  function run() {
+    if (document.body) {
+      if (!document.getElementById('trinity-audio-js')) {
+        var js = document.createElement('script');
+        js.type = 'text/javascript';
+        js.setAttribute('crossorigin', 'anonymous');
+        js.src = window.TRINITY_PLAYER.config.injectorScript;
+        js.id = 'trinity-audio-js';
+
+        js.addEventListener('load', createPlayer);
+
+        document.body.appendChild(js);
+      } else {
+        if (window.TRINITY_PLAYER.isLoaded) createPlayer();
+        else document.getElementById('trinity-audio-js').addEventListener('load', createPlayer);
+      }
+    }
+  }
+
+  function createPlayer() {
+    if (checkIfDocumentReady()) window.TRINITY_PLAYER.api.createPlayer(playerId);
+    else document.addEventListener('DOMContentLoaded', function() {
+      isDOMContentLoaded = true;
+      window.TRINITY_PLAYER.api.createPlayer(playerId);
+    });
+  }
+
+  run();
+
+  document.addEventListener('DOMContentLoaded', function() {
+    isDOMContentLoaded = true;
+    run();
+  });
+};
+
+    window.TRINITY_PLAYER.injectScript(playerId);
+})();

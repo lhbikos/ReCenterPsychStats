@@ -1,0 +1,328 @@
+ 
+ 
+    Flexible Imputation of Missing Data 
+    Want the hardcopy? 
+    Foreword 
+    Preface to second edition 
+    Preface to first edition 
+    About the author 
+    Symbol Description 
+    I Part I: Basics 
+    1 Introduction 
+        1.1 The problem of missing data 
+            1.1.1 Current practice 
+            1.1.2 Changing perspective on missing data 
+        1.2 Concepts of MCAR, MAR and MNAR 
+        1.3 Ad-hoc solutions 
+            1.3.1 Listwise deletion 
+            1.3.2 Pairwise deletion 
+            1.3.3 Mean imputation 
+            1.3.4 Regression imputation 
+            1.3.5 Stochastic regression imputation 
+            1.3.6 LOCF and BOCF 
+            1.3.7 Indicator method 
+            1.3.8 Summary 
+        1.4 Multiple imputation in a nutshell 
+            1.4.1 Procedure 
+            1.4.2 Reasons to use multiple imputation 
+            1.4.3 Example of multiple imputation 
+        1.5 Goal of the book 
+        1.6 What the book does not cover 
+            1.6.1 Prevention 
+            1.6.2 Weighting procedures 
+            1.6.3 Likelihood-based approaches 
+        1.7 Structure of the book 
+        1.8 Exercises 
+    2 Multiple imputation 
+        2.1 Historic overview 
+            2.1.1 Imputation 
+            2.1.2 Multiple imputation 
+            2.1.3 The expanding literature on multiple imputation 
+        2.2 Concepts in incomplete data 
+            2.2.1 Incomplete-data perspective 
+            2.2.2 Causes of missing data 
+            2.2.3 Notation 
+            2.2.4 MCAR, MAR and MNAR again 
+            2.2.5 Ignorable and nonignorable ♠ ♠ 
+            2.2.6 Implications of ignorability 
+        2.3 Why and when multiple imputation works 
+            2.3.1 Goal of multiple imputation 
+            2.3.2 Three sources of variation ♠ 
+            2.3.3 Proper imputation 
+            2.3.4 Scope of the imputation model 
+            2.3.5 Variance ratios ♠ 
+            2.3.6 Degrees of freedom ♠ 
+            2.3.7 Numerical example 
+        2.4 Statistical intervals and tests 
+            2.4.1 Scalar or multi-parameter inference? 
+            2.4.2 Scalar inference 
+            2.4.3 Numerical example 
+        2.5 How to evaluate imputation methods 
+            2.5.1 Simulation designs and performance measures 
+            2.5.2 Evaluation criteria 
+            2.5.3 Example 
+        2.6 Imputation is not prediction 
+        2.7 When not to use multiple imputation 
+        2.8 How many imputations? 
+        2.9 Exercises 
+    3 Univariate missing data 
+        3.1 How to generate multiple imputations 
+            3.1.1 Predict method 
+            3.1.2 Predict + noise method 
+            3.1.3 Predict + noise + parameter uncertainty 
+            3.1.4 A second predictor 
+            3.1.5 Drawing from the observed data 
+            3.1.6 Conclusion 
+        3.2 Imputation under the normal linear normal 
+            3.2.1 Overview 
+            3.2.2 Algorithms ♠ 
+            3.2.3 Performance 
+            3.2.4 Generating MAR missing data 
+            3.2.5 MAR missing data generation in multivariate data 
+            3.2.6 Conclusion 
+        3.3 Imputation under non-normal distributions 
+            3.3.1 Overview 
+            3.3.2 Imputation from the t -distribution 
+        3.4 Predictive mean matching 
+            3.4.1 Overview 
+            3.4.2 Computational details ♠ 
+            3.4.3 Number of donors 
+            3.4.4 Pitfalls 
+            3.4.5 Conclusion 
+        3.5 Classification and regression trees 
+            3.5.1 Overview 
+        3.6 Categorical data 
+            3.6.1 Generalized linear model 
+            3.6.2 Perfect prediction ♠ 
+            3.6.3 Evaluation 
+        3.7 Other data types 
+            3.7.1 Count data 
+            3.7.2 Semi-continuous data 
+            3.7.3 Censored, truncated and rounded data 
+        3.8 Nonignorable missing data 
+            3.8.1 Overview 
+            3.8.2 Selection model 
+            3.8.3 Pattern-mixture model 
+            3.8.4 Converting selection and pattern-mixture models 
+            3.8.5 Sensitivity analysis 
+            3.8.6 Role of sensitivity analysis 
+            3.8.7 Recent developments 
+        3.9 Exercises 
+    4 Multivariate missing data 
+        4.1 Missing data pattern 
+            4.1.1 Overview 
+            4.1.2 Summary statistics 
+            4.1.3 Influx and outflux 
+        4.2 Issues in multivariate imputation 
+        4.3 Monotone data imputation 
+            4.3.1 Overview 
+            4.3.2 Algorithm 
+        4.4 Joint modeling 
+            4.4.1 Overview 
+            4.4.2 Continuous data 
+            4.4.3 Categorical data 
+        4.5 Fully conditional specification 
+            4.5.1 Overview 
+            4.5.2 The MICE algorithm 
+            4.5.3 Compatibility ♠ 
+            4.5.4 Congeniality or compatibility? 
+            4.5.5 Model-based and data-based imputation 
+            4.5.6 Number of iterations 
+            4.5.7 Example of slow convergence 
+            4.5.8 Performance 
+        4.6 FCS and JM 
+            4.6.1 Relations between FCS and JM 
+            4.6.2 Comparisons 
+            4.6.3 Illustration 
+        4.7 MICE extensions 
+            4.7.1 Skipping imputations and overimputation 
+            4.7.2 Blocks of variables, hybrid imputation 
+            4.7.3 Blocks of units, monotone blocks 
+            4.7.4 Tile imputation 
+        4.8 Conclusion 
+        4.9 Exercises 
+    5 Analysis of imputed data 
+        5.1 Workflow 
+            5.1.1 Recommended workflows 
+            5.1.2 Not recommended workflow: Averaging the data 
+            5.1.3 Not recommended workflow: Stack imputed data 
+            5.1.4 Repeated analyses 
+        5.2 Parameter pooling 
+            5.2.1 Scalar inference of normal quantities 
+            5.2.2 Scalar inference of non-normal quantities 
+        5.3 Multi-parameter inference 
+            5.3.1 D 1 Multivariate Wald test 
+            5.3.2 D 2 Combining test statistics ♠ 
+            5.3.3 D 3 Likelihood ratio test ♠ 
+            5.3.4 D 1 , D 2 or D 3 ? 
+        5.4 Stepwise model selection 
+            5.4.1 Variable selection techniques 
+            5.4.2 Computation 
+            5.4.3 Model optimism 
+        5.5 Parallel computation 
+        5.6 Conclusion 
+        5.7 Exercises 
+    II Part II: Advanced techniques 
+    6 Imputation in practice 
+        6.1 Overview of modeling choices 
+        6.2 Ignorable or nonignorable? 
+        6.3 Model form and predictors 
+            6.3.1 Model form 
+            6.3.2 Predictors 
+        6.4 Derived variables 
+            6.4.1 Ratio of two variables 
+            6.4.2 Interaction terms 
+            6.4.3 Quadratic relations ♠ 
+            6.4.4 Compositional data ♠ 
+            6.4.5 Sum scores 
+            6.4.6 Conditional imputation 
+        6.5 Algorithmic options 
+            6.5.1 Visit sequence 
+            6.5.2 Convergence 
+        6.6 Diagnostics 
+            6.6.1 Model fit versus distributional discrepancy 
+            6.6.2 Diagnostic graphs 
+        6.7 Conclusion 
+        6.8 Exercises 
+    7 Multilevel multiple imputation 
+        7.1 Introduction 
+        7.2 Notation for multilevel models 
+        7.3 Missing values in multilevel data 
+            7.3.1 Practical issues in multilevel imputation 
+            7.3.2 Ad-hoc solutions for multilevel data 
+            7.3.3 Likelihood solutions 
+        7.4 Multilevel imputation by joint modeling 
+        7.5 Multilevel imputation by fully conditional specification 
+            7.5.1 Add cluster means of predictors 
+            7.5.2 Model cluster heterogeneity 
+        7.6 Continuous outcome 
+            7.6.1 General principle 
+            7.6.2 Methods 
+            7.6.3 Example 
+        7.7 Discrete outcome 
+            7.7.1 Methods 
+            7.7.2 Example 
+        7.8 Imputation of level-2 variable 
+        7.9 Comparative work 
+        7.10 Guidelines and advice 
+            7.10.1 Intercept-only model, missing outcomes 
+            7.10.2 Random intercepts, missing level-1 predictor 
+            7.10.3 Random intercepts, contextual model 
+            7.10.4 Random intercepts, missing level-2 predictor 
+            7.10.5 Random intercepts, interactions 
+            7.10.6 Random slopes, missing outcomes and predictors 
+            7.10.7 Random slopes, interactions 
+            7.10.8 Recipes 
+        7.11 Future research 
+    8 Individual causal effects 
+        8.1 Need for individual causal effects 
+        8.2 Problem of causal inference 
+        8.3 Framework 
+        8.4 Generating imputations by FCS 
+            8.4.1 Naive FCS 
+            8.4.2 FCS with a prior for ρ 
+            8.4.3 Extensions 
+        8.5 Bibliographic notes 
+    III Part III: Case studies 
+    9 Measurement issues 
+        9.1 Too many columns 
+            9.1.1 Scientific question 
+            9.1.2 Leiden 85+ Cohort 
+            9.1.3 Data exploration 
+            9.1.4 Outflux 
+            9.1.5 Finding problems: loggedEvents 
+            9.1.6 Quick predictor selection: quickpred 
+            9.1.7 Generating the imputations 
+            9.1.8 A further improvement: Survival as predictor variable 
+            9.1.9 Some guidance 
+        9.2 Sensitivity analysis 
+            9.2.1 Causes and consequences of missing data 
+            9.2.2 Scenarios 
+            9.2.3 Generating imputations under the δ -adjustment 
+            9.2.4 Complete-data model 
+            9.2.5 Conclusion 
+        9.3 Correct prevalence estimates from self-reported data 
+            9.3.1 Description of the problem 
+            9.3.2 Don’t count on predictions 
+            9.3.3 The main idea 
+            9.3.4 Data 
+            9.3.5 Application 
+            9.3.6 Conclusion 
+        9.4 Enhancing comparability 
+            9.4.1 Description of the problem 
+            9.4.2 Full dependence: Simple equating 
+            9.4.3 Independence: Imputation without a bridge study 
+            9.4.4 Fully dependent or independent? 
+            9.4.5 Imputation using a bridge study 
+            9.4.6 Interpretation 
+            9.4.7 Conclusion 
+        9.5 Exercises 
+    10 Selection issues 
+        10.1 Correcting for selective drop-out 
+            10.1.1 POPS study: 19 years follow-up 
+            10.1.2 Characterization of the drop-out 
+            10.1.3 Imputation model 
+            10.1.4 A solution “that does not look good” 
+            10.1.5 Results 
+            10.1.6 Conclusion 
+        10.2 Correcting for nonresponse 
+            10.2.1 Fifth Dutch Growth Study 
+            10.2.2 Nonresponse 
+            10.2.3 Comparison to known population totals 
+            10.2.4 Augmenting the sample 
+            10.2.5 Imputation model 
+            10.2.6 Influence of nonresponse on final height 
+            10.2.7 Discussion 
+        10.3 Exercises 
+    11 Longitudinal data 
+        11.1 Long and wide format 
+        11.2 SE Fireworks Disaster Study 
+            11.2.1 Intention to treat 
+            11.2.2 Imputation model 
+            11.2.3 Inspecting imputations 
+            11.2.4 Complete-data model 
+            11.2.5 Results from the complete-data model 
+        11.3 Time raster imputation 
+            11.3.1 Change score 
+            11.3.2 Scientific question: Critical periods 
+            11.3.3 Broken stick model ♠ 
+            11.3.4 Terneuzen Birth Cohort 
+            11.3.5 Shrinkage and the change score ♠ 
+            11.3.6 Imputation 
+            11.3.7 Complete-data model 
+        11.4 Conclusion 
+        11.5 Exercises 
+    IV Part IV: Extensions 
+    12 Conclusion 
+        12.1 Some dangers, some do’s and some don’ts 
+            12.1.1 Some dangers 
+            12.1.2 Some do’s 
+            12.1.3 Some don’ts 
+        12.2 Reporting 
+            12.2.1 Reporting guidelines 
+            12.2.2 Template 
+        12.3 Other applications 
+            12.3.1 Synthetic datasets for data protection 
+            12.3.2 Analysis of coarsened data 
+            12.3.3 File matching of multiple datasets 
+            12.3.4 Planned missing data for efficient designs 
+            12.3.5 Adjusting for verification bias 
+        12.4 Future developments 
+            12.4.1 Derived variables 
+            12.4.2 Algorithms for blocks and batches 
+            12.4.3 Nested imputation 
+            12.4.4 Better trials with dynamic treatment regimes 
+            12.4.5 Distribution-free pooling rules 
+            12.4.6 Improved diagnostic techniques 
+            12.4.7 Building block in modular statistics 
+        12.5 Exercises 
+    Appendix 
+    A Technical information 
+    References 
+    Published with bookdown 
+ 
+Facebook Google+ Twitter LinkedIn Weibo Instapaper 
+A A 
+Serif Sans 
+White Sepia Night 
+ 

@@ -1,0 +1,182 @@
+/*
+Note the styles in here are deliberately using a Safari color palette.  This is because the CXS is an
+admin function of the site similar to the management portal so we want a safari style applied.
+*/
+
+.cxs-content-root .cxs-container {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.cxs-content-root .cxs-container:hover {
+  padding: 0;
+  border: dotted 1px #E98300;
+  margin: -1px;
+}
+
+.cxs-content-root .cxs-progress {
+  min-height: 50px;
+  padding-top: 0.8em;
+  padding-left: 75px;
+}
+
+.cxs-content-root .cxs-error {
+  display: none;
+  min-height: 50px;
+  background: transparent url(../img/error.png) top left no-repeat;
+  padding-left: 75px;
+}
+
+.cxs-content-root .cxs-progress .throbber {
+  margin: 0 0 0 -50px;
+  top: 30px;
+}
+
+.cxs-content-root .cxs-messages {
+  padding: 1.0em;
+}
+
+.cxs-content-root .cxs-messages p {
+  margin: 0;
+}
+
+.cxs-content-root .cxs-messages h3 {
+  color: #E98300;
+  margin: 0;
+}
+
+.cxs-content-root .cxs-exception {
+  margin-left: 1.0em;
+  padding-left: 0.5em;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+  border-top: solid 1px #cccccc;
+  border-left: solid 1px #cccccc;
+}
+
+.cxs-content-root .cxs-exception-message {
+  font-weight: bold;
+}
+
+.cxs-content-root .cxs-exception-cause {
+  margin-left: 1.0em;
+  padding-left: 0.5em;
+  border-top: solid 1px #cccccc;
+  border-left: solid 1px #cccccc;
+}
+
+.cxs-content-root .cxs-exception-label {
+  float: left;
+  font-weight: bold;
+}
+
+.cxs-content-root .cxs-exception-value {
+  display: block;
+  margin-left: 4.5em
+}
+
+.cxs-content-root .cxs-root-cause {
+  background: #eeeeee;
+}
+
+.cxs-content-root .cxs-root-cause .cxs-exception-value-cause {
+  font-weight: bold;
+  color: red;
+}
+
+.cxs-content-root .cxs-controls {
+  display: none;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  list-style: none;
+  border-style: solid;
+  border-color: #dedbd3;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0.5em;
+  background-color: #F4F3F0;
+}
+
+.cxs-content-root .cxs-controls li {
+  float: right;
+}
+
+.cxs-content-root .cxs-control {
+  display: inline-block;
+  height: 1.5em;
+  width: 1.5em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5em;
+  font-size: 1.0em;
+}
+
+.cxs-content-root .cxs-container:hover .cxs-controls {
+  display: block;
+}
+
+.cxs-content-root .cxs-params {
+  display: none;
+  position: absolute;
+  bottom: -200px;
+  right: 57px;
+  background: #F4F3F0;
+  color: #333333;
+  width: 400px;
+  font-size: 0.8em;
+  padding: 0.5em;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border: solid 1px #000000;
+  cursor: text;
+  z-index: 10000;
+}
+
+.cxs-content-root .cxs-params h3 {
+  font-weight: bold;
+  font-size: 1.0em;
+  color: #000000;
+}
+
+.cxs-content-root .cxs-params:after,
+.cxs-content-root .cxs-params:before {
+  left: 100%;
+  bottom: 200px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.cxs-content-root .cxs-params:after {
+  border-color: rgba(238, 238, 238, 0);
+  border-left-color: #F4F3F0;
+  border-width: 10px;
+  margin-top: -10px;
+  bottom: 201px;
+}
+.cxs-content-root .cxs-params:before {
+  border-color: rgba(0, 0, 0, 0);
+  border-left-color: #000000;
+  border-width: 11px;
+  margin-top: -11px;
+}
+
+.cxs-content-root .cxs-params .cxs-param {
+  clear: both;
+  display: block;
+  margin-top: 0.3em;
+}
+
+.cxs-content-root .cxs-params .cxs-param-name {
+  font-weight: bold;
+}

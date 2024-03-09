@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.54.0">
+
+
+<title>Getting Started with Multiple Imputation in R - StatLab Articles</title>
+<meta property="og:title" content="Getting Started with Multiple Imputation in R - StatLab Articles">
+
+
+  <link href="https://uvastatlab.github.io/favicon.ico" rel="icon" type="image/x-icon">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href="github.css" rel="stylesheet" type="text/css">
+
+
+
+<link rel="stylesheet" href="fonts.css" media="all">
+<link rel="stylesheet" href="main.css" media="all">
+
+
+
+  <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+  <body><div id="MathJax_Message" style="display: none;"></div>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="https://uvastatlab.github.io/" class="nav-logo">
+    <img src="logo.png" alt="Logo" width="378" height="71">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="https://uvastatlab.github.io/about/"> About</a></li>
+    
+    <li><a href="https://uvastatlab.github.io/tags/"> Tags</a></li>
+    
+    <li><a href="https://data.library.virginia.edu/">RDS</a></li>
+    
+    <li><a href="https://www.library.virginia.edu/">UVA Library</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">25 min read</span>
+    
+
+    <h1 class="article-title">Getting Started with Multiple Imputation in R</h1>
+
+    
+    <span class="article-date">2019-05-01</span>
+    
+
+    <div class="article-content">
+      
+
+
+<p>Whenever we are dealing with a dataset, we almost always run into a 
+problem that may decrease our confidence in the results that we are 
+getting - missing data! Examples of missing data can be found in surveys
+ - where respondents intentionally refrained from answering a question, 
+didn’t answer a question because it is not applicable to them, or simply
+ forgot to give an answer. Or our dataset on trade in agricultural 
+products for country-pairs over years could suffer from missing data as 
+some countries fail to report their accounts for certain years. One 
+important distinction to make here - when a country records 0 trade with
+ another country, this doesn’t count as missing data. Missing data 
+occurs when we have no information about that data point in the dataset 
+because of missing information.</p>
+<p>What should we do when we encounter missing data in our datasets? 
+There are a couple of strategies you can employ in this case, but you 
+have to be careful with what you choose, because all options have pros 
+and cons:</p>
+<ol style="list-style-type: decimal">
+<li><p>Listwise-deletion (also called Complete Case Analysis): You can 
+choose to delete rows in your dataset that contains missing data (NAs, 
+NaN, ., in whichever form they come). If the amount of missing data is 
+very small, this might be the best way to go to ensure you are not 
+biasing your analysis. However, deleting datapoints will nevertheless 
+deprive you of important information, especially if your dataset is 
+small. It will reduce your degrees of freedom in statistical analysis 
+and force you to get rid of valid data points just because one column 
+value is missing. Nevertheless, this is the most common approach in 
+quantitative research to deal with missing data.</p></li>
+<li><p>Mean/median substitution: Another quick fix is to take the 
+mean/median of the existing data points and substitute missing data 
+points with the mean/median. This might look like a fine approach since 
+it doesn’t change the mean of the dataset, but could cause bias in the 
+analysis since it decreases variance (if you have a lot of missing data 
+and you are replacing them with a fixed number). In reality, those 
+datapoints could have been different numbers, which causes a decrease in
+ variance.</p></li>
+<li><p>Multiple Imputation: This requires more work than the other two 
+options. With this approach, rather than replacing missing values with a
+ single value, we use the distribution of the observed data/variables to
+ estimate multiple possible values for the data points. This allows us 
+to account for the uncertainty around the true value, and obtain 
+approximately unbiased estimates (under certain conditions). Moreover, 
+accounting for uncertainity allows us to calculate standard errors 
+around estimations, which in turn leads to a better sense of uncertainty
+ for the analysis. This method is also more flexible since it can be 
+applied to any kind of data and any kind of analysis, and the researcher
+ has flexibility in deciding how many imputations are necessary for the 
+data at hand.</p></li>
+</ol>
+<p>In this bog post, I am going to talk about the third option - 
+multiple imputation - to deal with missing values. Although there are 
+several packages (<code>mi</code> developed by Gelman, Hill and others; <code>hot.deck</code> by Gill and Cramner, <code>Amelia</code> by Honaker, King, Blackwell) in R that can be used for multiple imputation, in this blog post I’ll be using the <code>mice</code>
+ package, developed by Stef van Buuren. Before getting into the package 
+details, I’d like to present some information on the theory behind 
+multiple imputation, proposed by Rubin in 1976.</p>
+<p>Rubin proposed a five-step procedure in order to impute the missing data. These 5 steps are (courtesy of <a href="https://www.statisticssolutions.com/multiple-imputation-for-missing-data/">this website</a>):</p>
+<ol style="list-style-type: decimal">
+<li>impute the missing values by using an appropriate model which incorporates random variation.</li>
+<li>repeat the first step 3-5 times.</li>
+<li>perform the desired analysis on <em>each data set</em> by using standard, complete data methods.</li>
+<li>average the values of the parameter estimates across the missing value samples in order to obtain a single point estimate.</li>
+<li>calculate the standard errors by averaging the squared standard 
+errors of the missing value estimates. After this, the researcher must 
+calculate the variance of the missing value parameter across the 
+samples. Finally, the researcher must combine the two quantities in 
+multiple imputation for missing data to calculate the standard errors.</li>
+</ol>
+<p>Put in a simpler way, we a) choose values that keep the relationship 
+in the dataset intact in place of missing values b) create independently
+ drawn imputed (usually 5) datasets c) calculate new standard errors 
+using variation across datasets to take into account the uncertainty 
+created by these imputed datasets (Kropko et al.&nbsp;2014)</p>
+<div id="missing-data-assumptions" class="section level2">
+<h2>Missing Data Assumptions</h2>
+<p>Rubin (1976) classified types of missing data in three categories: MCAR, MAR, MNAR</p>
+<ol style="list-style-type: decimal">
+<li><p>MCAR: Missing Completely at Random - the reason for the 
+missingness of data points are at random, meaning that the pattern of 
+missing values is uncorrelated with the structure of the data. An 
+example would be a random sample taken from the population: data on some
+ people will be missing, but it will be at random since everyone had the
+ same chance of being included in the sample.</p></li>
+<li><p>MAR: Missing at Random - the missingness is not completely 
+random, but the propensity of missingness depends on the observed data, 
+not the missing data. An example would be a survey respondent choosing 
+not to answer a question on income because they believe the privacy of 
+personal information. As seen in this case, the missing value for income
+ can be predicted by looking at the answers for the personal information
+ question.</p></li>
+<li><p>MNAR: Missing Not at Random - the missing is not random, it 
+correlates with unobservable characteristics unknown to a researcher. An
+ example would be social desirability bias in survey - where respondents
+ with certain characteristics we can’t observe systematically shy away 
+from answering questions on racial issues.</p></li>
+</ol>
+<p>All multiple imputation techniques start with the MAR assumption. 
+While MCAR is desirable, in general it is unrealistic for the data. 
+Thus, researchers make the assumption that missing values can be 
+replaced by predictions derived by the observable portion of the 
+dataset. This is a fundamental assumption to make, otherwise we wouldn’t
+ be able to predict plausible values of missing data points from the 
+observed data.</p>
+</div>
+<div id="mice-package---how-the-package-works-in-theory" class="section level2">
+<h2>Mice package - How the Package Works in Theory</h2>
+<p><code>mice</code> stands for Multivariate Imputation by Chained 
+Equations. We use this package in order to replace missing values with 
+plausible values to estimate more realistic regression coefficients that
+ are not affected by missing values. The <code>mice</code> package 
+allows us to create a number of imputed datasets that replace missing 
+values with plausible values and conduct our analysis on these separate,
+ complete datasets in order to obtain one regression coefficient.</p>
+<p>There are two approaches to multiple imputation, implemented by different packages in R:</p>
+<ol style="list-style-type: decimal">
+<li><p>Joint Multivariate Normal Distribution Multiple Imputation: The 
+main assumption in this technique is that the observed data follows a 
+multivariate normal distribution. Therefore, the algorithm that R 
+packages use to impute the missing values draws values from this assumed
+ distribution. <code>Amelia</code> and <code>norm</code> packages use 
+this technique. The biggest problem with this technique is that the 
+imputed values are incorrect if the data doesn’t follow a multivariate 
+normal distribution.</p></li>
+<li><p>Conditional Multiple Imputation: Conditional MI, as indicated in 
+its name, follows an iterative procedure, modeling the conditional 
+distribution of a certain variable given the other variables. This 
+technique allows users to be more flexible as a distribution is assumed 
+for each variable rather than the whole dataset.</p></li>
+</ol>
+<p><code>mice</code> package uses Conditional MI in order to impute 
+values in the dataset. The figure below depicts the three main steps to 
+multiple imputation:</p>
+<p><img src="figure1.jpg"></p>
+<p>At the start of the process, we have a dataframe that contains 
+missing values for several cases. What we would like to do is estimate a
+ regression coefficient, for example to determine the effect of age on 
+income, from this dataset. If there were no missing values, we would run
+ an ols regression with lm() command, using our original dataset. Yet, 
+we don’t want to delete all rows that have missing values from the 
+dataset, as this will throw out important information and lower the 
+number of observations in our data which will effect the statistical 
+significance. Let’s say the number of observations in this dataset is 
+1,000. If we delete the rows with missing values, we will have 567 
+observations left. Therefore, we decide to impute the missing values.</p>
+<p>As the first step, the <code>mice</code> command creates several 
+complete datasets (in the figure above, n=3). It considers each missing 
+value to follow a specific distribution, and draws from this 
+distribution a plausible value to replace the missing value.</p>
+<p>These complete datasets are stored in an object class called <strong>mids</strong>, short for <em>multiply imputed dataset</em>. These datasets are copies of the original dataframe except that missing values are now replaced with values generated by <code>mice</code>.
+ Since these values are generated, they create additional uncertainty 
+about what the real values of these missing data points are. We will 
+need to factor in this uncertainty in the future as we are estimating 
+the regression coefficients from these datasets.</p>
+<p>Now that we have 3 complete datasets, the next step is to run an ols 
+regression on all these 3 datasets with 1,000 observations each 
+(originally, we were going to run only 1 ols regression on the 
+incomplete dataset with 567 observations). With <code>with_mids</code> 
+command, we run the ols regression and obtain a different regression 
+coefficient for each dataset, reflecting the effect of age on income. 
+These 3 coefficients are different from each other because each dataset 
+contains different imputed values, and we are uncertain about which 
+imputed values are the correct ones. The analysis results are stored in a
+ <strong>mira</strong> object class, short for <em>multiply imputed repeated analysis</em>.</p>
+<p>Finally, we pool together the 3 coefficients estimated by the imputed
+ dataset into 1 final regression coefficient, and estimate the variance 
+using the <code>pool</code> command. With the assumption that regression
+ coefficients are obtained from a multivariate normal distribution, in 
+order to obtain the final coefficient we just take the mean of 3 values.
+ We calculate the variance of the estimated coefficient by factoring in 
+the within (accounting for differences in predicted values from the 
+dataset regarding each observation) and between (accounting for 
+differences between 3 datasets) imputation variance.</p>
+</div>
+<div id="practical-application-of-mice-package-with-american-national-election-survey-2012-anes-dataset" class="section level2">
+<h2>Practical Application of <code>mice</code> package with American National Election Survey 2012 (ANES) Dataset</h2>
+<p>If you would like to follow along, here are the links to the datasets I use in this blog post:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://static.lib.virginia.edu/statlab/materials/data/anesimputation.dta">ANES 2012 - simplified version</a></li>
+<li><a href="http://static.lib.virginia.edu/statlab/materials/data/anesocc.csv">ANES 2012 - text supplement</a></li>
+<li><a href="http://static.lib.virginia.edu/statlab/materials/data/ma.dta">Chinese M&amp;A dataset (taken from Rhodium Group)</a></li>
+</ol>
+<p>In this blog post, we are going to use a sample from the American 
+National Election Studies (ANES 2012) survey in order to impute the 
+missing values. Most multiple imputation tutorials use small, simple 
+datasets. While it is easier to showcase the basics of multiple 
+imputation with these datasets, the datasets we work with for our 
+research tends to be more complicated than that. Therefore, in this blog
+ post, I try to highlight some complications regarding multiple 
+imputation with relatively larger, more complicated data sets.</p>
+</div>
+<div id="analysis-with-missing-values" class="section level2">
+<h2>Analysis with Missing Values</h2>
+<p>First, we conduct our analysis with the ANES dataset using 
+listwise-deletion. In this example, we are going to run a simple OLS 
+regression, regressing sentiments towards Hillary Clinton in 2012 on 
+occupation, party id, nationalism, views on China’s economic rise and 
+the number of Chinese Mergers and Acquisitions (M&amp;A) activity, 
+2000-2012, in a respondent’s state.</p>
+<p><strong>Dependent variable</strong>: Sentiment towards Hillary Clinton: ANES Feeling Thermometer question on Hillary Clinton</p>
+<p><strong>Independent variables</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Occupation (taken from ANES supplementary files): Dichotomous variables, 1 if the respondent works in manufacturing 0 if not</li>
+<li>Party ID: Continuous index that ranges from 0 (Strong Democrat) to 6 (Strong Republican)</li>
+<li>Nationalism: Continuous index that ranges from 0 (Not at all Important) to 4 (Extremely Important)</li>
+<li>Views on China’s economic rise: Dichotomous variable, 0 Good/No Effect 1 Bad</li>
+<li>The number of Chinese M&amp;A activity: 2000-2012, Continuous variable that ranges from 0 to 60</li>
+</ol>
+<pre class="r"><code class="hljs"><span class="hljs-keyword">library</span>(dplyr)
+<span class="hljs-keyword">library</span>(mice)
+<span class="hljs-keyword">library</span>(foreign) <span class="hljs-comment"># to import Stata DTA files</span>
+<span class="hljs-keyword">library</span>(car)     <span class="hljs-comment"># for recode</span>
+
+set.seed(<span class="hljs-number">145</span>)</code></pre>
+<pre class="r"><code class="hljs"><span class="hljs-comment">## Import ANES dataset</span>
+anesimp &lt;- read.dta(<span class="hljs-string">"anesimputation.dta"</span>, 
+                    convert.factors = <span class="hljs-literal">FALSE</span>, missing.type = <span class="hljs-literal">TRUE</span>)</code></pre>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># Dataset contains values &lt;0. Code all of them as missing </span>
+
+<span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:ncol(anesimp)){
+  anesimp[,i] &lt;- ifelse(anesimp[,i]&lt;<span class="hljs-number">0</span>, <span class="hljs-literal">NA</span>, anesimp[,i]) 
+}</code></pre>
+<pre class="r"><code class="hljs"><span class="hljs-comment">## Add occupation variable </span>
+
+anesocc &lt;- read.csv(<span class="hljs-string">"anesocc.csv"</span>,sep=<span class="hljs-string">";"</span>,na.strings=c(<span class="hljs-string">""</span>,<span class="hljs-string">"NA"</span>))</code></pre>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># Selecting occupation now and industry now variables</span>
+anesocc2 &lt;- anesocc %&gt;%
+  dplyr::select(caseid, dem_occnow, dem_indnow)
+
+<span class="hljs-comment"># Coding any text that includes "manu" in it as respondent working in</span>
+<span class="hljs-comment"># manufacturing, excluding manuver</span>
+
+anesocc2 &lt;- anesocc2 %&gt;% 
+  mutate(manuf = case_when((grepl(<span class="hljs-string">"manu"</span>,dem_occnow)&amp;!grepl(<span class="hljs-string">"manuver"</span>,dem_occnow)) ~ <span class="hljs-number">1</span>,
+                           grepl(<span class="hljs-string">"manu"</span>,anesocc2$dem_indnow) ~ <span class="hljs-number">1</span>,
+                           is.na(dem_occnow) ~ <span class="hljs-literal">NA_real_</span>,
+                           is.na(dem_indnow) ~ <span class="hljs-literal">NA_real_</span>,
+                           !is.na(dem_occnow) ~ <span class="hljs-number">0</span>,
+                           !is.na(dem_indnow) ~ <span class="hljs-number">0</span>)
+  )
+
+
+anesocc2 &lt;- anesocc2 %&gt;% 
+  dplyr::select(manuf)
+
+<span class="hljs-comment"># combining by columns as they are sorted in the same order</span>
+anesimp &lt;- cbind(anesimp,anesocc2)</code></pre>
+<pre class="r"><code class="hljs"><span class="hljs-comment">## Merge M&amp;A data </span>
+
+maimp &lt;- read.dta(<span class="hljs-string">"ma.dta"</span>)</code></pre>
+<pre class="r"><code class="hljs">anesimp &lt;- merge(x=anesimp, y=maimp, by=c(<span class="hljs-string">"sample_state"</span>))
+
+<span class="hljs-comment"># Recode variables </span>
+
+anesimp$patriot_amident &lt;- recode(anesimp$patriot_amident, 
+                                  <span class="hljs-string">"5=0; 4=1; 3=2; 2=3; 1=4"</span>)
+
+anesimp$econ_ecnext_x &lt;- recode(anesimp$econ_ecnext_x, 
+                                <span class="hljs-string">"1=0; 2=1; 3=2; 4=3; 5=4"</span>)
+
+anesimp$pid_x &lt;- recode(anesimp$pid_x, 
+                        <span class="hljs-string">"1=0; 2=1; 3=2; 4=3; 5=4; 6=5; 7=6"</span>)
+
+anesimp$dem_edugroup_x &lt;- recode(anesimp$dem_edugroup_x, 
+                                 <span class="hljs-string">"1=0; 2=1; 3=2; 4=3; 5=4"</span>)
+
+<span class="hljs-comment"># Treat manuf as a factor </span>
+anesimp$manuf &lt;- as.factor(anesimp$manuf)
+
+
+<span class="hljs-comment"># Save the dataframe as another object so that we can use the original dataframe</span>
+<span class="hljs-comment"># for multiple imputation</span>
+anesimpor &lt;- anesimp 
+
+<span class="hljs-comment">## Transform variables for regression</span>
+<span class="hljs-comment"># Treat nationalism as continuous</span>
+anesimpor$patriot_amident &lt;- as.numeric(anesimpor$patriot_amident)
+<span class="hljs-comment"># Treat party id as continuous </span>
+anesimpor$pid_x &lt;- as.numeric(anesimpor$pid_x)
+<span class="hljs-comment"># Treat china_econ as dichotomous </span>
+anesimpor$china_econ &lt;- recode(anesimpor$china_econ, <span class="hljs-string">"1=0; 3=0; 2=1"</span>)
+anesimpor$china_econ &lt;- as.factor(anesimpor$china_econ)
+
+<span class="hljs-comment"># Take the log of Chinese M&amp;A variables - add a small number as variable</span>
+<span class="hljs-comment"># contains 0s</span>
+anesimpor$LogMANO &lt;- log(anesimpor$MANo+<span class="hljs-number">1.01</span>)
+<span class="hljs-comment"># Treat party id as continuous </span>
+
+<span class="hljs-comment">## Estimate an OLS regression</span>
+
+fitols &lt;- lm(ft_hclinton ~ manuf + pid_x + patriot_amident + 
+               china_econ + LogMANO, data=anesimpor)
+
+summary(fitols)</code></pre>
+<pre><code class="hljs">## 
+## Call:
+## lm(formula = ft_hclinton ~ manuf + pid_x + patriot_amident + 
+##     china_econ + LogMANO, data = anesimpor)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -86.971 -14.317   2.212  15.778  69.790 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      78.2660     1.4681  53.310  &lt; 2e-16 ***
+## manuf1           -0.2394     3.1894  -0.075   0.9402    
+## pid_x            -8.6788     0.1638 -52.976  &lt; 2e-16 ***
+## patriot_amident   1.8378     0.3703   4.963 7.18e-07 ***
+## china_econ1      -3.6590     0.6995  -5.231 1.77e-07 ***
+## LogMANO           0.4883     0.2963   1.648   0.0994 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 22.85 on 4444 degrees of freedom
+##   (1464 observations deleted due to missingness)
+## Multiple R-squared:  0.4008, Adjusted R-squared:  0.4001 
+## F-statistic: 594.5 on 5 and 4444 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>As we can see in the table above, 1,464 rows were deleted because one
+ of these variables were missing. Our dataset contains 5,914 
+observations. This means that to conduct the regression, we had to throw
+ away %25 of observations due to missingness. In this case, what we can 
+do is to use multiple imputation to replace missing values with 
+plausible values depending on the structure of the dataset and 
+distribution of variables. In this example, we will use <code>mice</code> package to implement the multiple imputation.</p>
+</div>
+<div id="preprocessing-data" class="section level2">
+<h2>Preprocessing Data</h2>
+<p>Since we have already constructed our dataset to run the linear 
+regression, we don’t need to do much preprocessing of the data in this 
+step. In general, it is best to impute data in its rawest form possible,
+ as any change could be derailing from its original distribution (such 
+as creating a new variable based on existing variables, or any 
+transformation of variables). One exception here is the manufacturing 
+variable I’ve created based on open-ended text questions. I choose to 
+create and code this variable, instead of imputing text as factor.</p>
+<p>We include party identification and nationalism as continuous indices
+ and views on China’s economic rise as a dichotomous variable. However, 
+the first two in ANES are treated as ordered categorical and the latter 
+is an unordered categorical variable. While we are imputing the dataset,
+ it is important to keep the types of variables as they are, and 
+determine different distributions for each variable according to their 
+types.</p>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># Use anesimp as the raw dataset </span>
+
+anesimp2 &lt;- anesimp
+
+<span class="hljs-comment"># Treat variables as factors</span>
+anesimp2$patriot_amident = as.factor(anesimp2$patriot_amident)
+anesimp2$china_econ = as.factor(anesimp2$china_econ)
+anesimp2$pid_x = as.factor(anesimp2$pid_x)</code></pre>
+</div>
+<div id="pattern-of-missing-data-exploration" class="section level2">
+<h2>Pattern of Missing Data Exploration</h2>
+<p>Before moving on to determining the specifics of multiple imputation,
+ we should first explore and see the pattern of missing data in our 
+dataset.</p>
+<pre class="r"><code class="hljs">p_missing &lt;- unlist(lapply(anesimp2, <span class="hljs-keyword">function</span>(x) sum(is.na(x))))/nrow(anesimp)
+sort(p_missing[p_missing &gt; <span class="hljs-number">0</span>], decreasing = <span class="hljs-literal">TRUE</span>)</code></pre>
+<pre><code class="hljs">##           relig_ident_1st        iwrobspre_skintone 
+##              0.6687521136              0.6628339533 
+##        iwrobspre_interest         iwrobspre_levinfo 
+##              0.6569157930              0.6567467027 
+##          iwrobspre_intell          prevote_primvwho 
+##              0.6567467027              0.6396685830 
+##           gayrt_discrev_x      interest_whovote2008 
+##              0.5285762597              0.2357118701 
+##         prevote_intpresst             prevote_inths 
+##              0.2336827866              0.1758539060 
+##           prevote_intpres                     manuf 
+##              0.1660466689              0.1511667230 
+##             prevote_voted                china_econ 
+##              0.1220831924              0.1180250254 
+##              libcpre_self          inc_incgroup_pre 
+##              0.1038214406              0.0879269530 
+##                   ft_rvpc             dem2_cellpers 
+##              0.0867433209              0.0722015556 
+##           patriot_amident             congapp_job_x 
+##              0.0713561042              0.0684815692 
+##           prmedia_wkinews                   ft_dvpc 
+##              0.0507270883              0.0483598241 
+##         presapp_foreign_x             presapp_war_x 
+##              0.0437943862              0.0405816706 
+##             owngun_owngun               war_worthit 
+##              0.0317889753              0.0307744335 
+##              orientn_rgay          presapp_health_x 
+##              0.0295908015              0.0272235374 
+##            presapp_econ_x             wealth_stocks 
+##              0.0262089956              0.0250253635 
+##            campfin_banads             econ_ecnext_x 
+##              0.0233344606              0.0233344606 
+##             presapp_job_x         finance_finnext_x 
+##              0.0231653703              0.0211362868 
+##           preknow_senterm             presapp_track 
+##              0.0199526547              0.0196144741 
+##             ineq_incgap_x           trustgov_corrpt 
+##              0.0196144741              0.0194453838 
+##              usworld_stay               ineq_incgap 
+##              0.0179235712              0.0165708488 
+##                  aa_uni_x                    aa_uni 
+##              0.0152181265              0.0145417653 
+##            candaff_prdrpc           divgov_splitgov 
+##              0.0143726750              0.0140344944 
+##                 aa_work_x          health_2010hcr_x 
+##              0.0126817721              0.0123435915 
+##            wealth_vachome         finance_finpast_x 
+##              0.0116672303              0.0113290497 
+##             candaff_hprpc          wealth_ownrental 
+##              0.0113290497              0.0113290497 
+##                    ft_rep              immig_checks 
+##              0.0106526885              0.0103145079 
+##          wealth_investbus               dem_age_r_x 
+##              0.0103145079              0.0101454177 
+##                war_terror         preknow_prestimes 
+##              0.0099763274              0.0099763274 
+##                    ft_dem            candaff_angrpc 
+##              0.0098072371              0.0098072371 
+##          usworld_stronger                    ft_rpc 
+##              0.0098072371              0.0087926953 
+##             econ_unpast_x            candaff_afrrpc 
+##              0.0087926953              0.0084545147 
+##            dem_edugroup_x              immig_policy 
+##              0.0084545147              0.0079472438 
+##           preknow_leastsp             prevote_primv 
+##              0.0079472438              0.0072708827 
+##             econ_ecpast_x            dem3_yearscomm 
+##              0.0072708827              0.0072708827 
+##            candaff_prddpc           happ_lifesatisf 
+##              0.0069327021              0.0060872506 
+##                econ_ecnow            candaff_angdpc 
+##              0.0057490700              0.0055799797 
+##              relig_import          preknow_medicare 
+##              0.0054108894              0.0054108894 
+##                    ft_gwb           preknow_sizedef 
+##              0.0052417991              0.0052417991 
+##            candaff_afrdpc      preswin_dutychoice_x 
+##              0.0050727088              0.0050727088 
+##             immig_citizen               dem_unionhh 
+##              0.0050727088              0.0049036185 
+##             dem_raceeth_x             dem3_passport 
+##              0.0049036185              0.0049036185 
+##               ft_hclinton             candaff_hpdpc 
+##              0.0047345282              0.0045654379 
+##               gun_control              dem3_ownhome 
+##              0.0042272574              0.0042272574 
+##                     pid_x        interest_voted2008 
+##              0.0040581671              0.0037199865 
+##              dem_nativity       relig_mastersummary 
+##              0.0035508962              0.0028745350 
+##                    ft_dpc            finance_finfam 
+##              0.0025363544              0.0025363544 
+##              health_smoke dem_empstatus_1digitfin_x 
+##              0.0023672641              0.0021981738 
+##            health_insured               health_self 
+##              0.0020290835              0.0020290835 
+##            gun_importance           prmedia_wkrdnws 
+##              0.0020290835              0.0016909029 
+##               dem_marital         prmedia_wkpaprnws 
+##              0.0016909029              0.0013527224 
+##           prmedia_wktvnws        interest_following 
+##              0.0010145418              0.0008454515 
+##               dem_veteran        interest_attention 
+##              0.0006763612              0.0005072709 
+##             dem2_numchild 
+##              0.0005072709</code></pre>
+<p>The code above calculates what percent of data is missing. A simple 
+look at this table warns us about several variables that have more than 
+25% missing - such as prevote_primvwho, iwrobspre_skintone and 
+relig_ident_1st. It is useful to remove these variables from the dataset
+ first as they might mess up the imputation. I also remove additional 
+variables that are highly correlated with others that stop the 
+imputation working otherwise (see Troubleshooting section for more 
+information).</p>
+<p>Looking at the table, we also see that some variables are character 
+variables indicating state names. We have both sample_state and 
+Statename serving for the same purpose. I delete Statename variable, and
+ turn sample_state character vector into a factor (see Troubleshooting 
+for more information). I don’t create any new variables or conduct 
+variable transformations at this point.</p>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># Select out variables that could cause problems in the imputation process</span>
+anesimp2 &lt;- anesimp2 %&gt;% 
+  dplyr::select(-interest_whovote2008,-prevote_primvwho, -prevote_intpresst,-relig_ident_1st,-iwrobspre_skintone,-iwrobspre_levinfo,-iwrobspre_intell, -iwrobspre_interest,-gayrt_discrev_x,-Statename)
+
+anesimp2$sample_state &lt;- as.factor(anesimp2$sample_state)</code></pre>
+<p>At this step, we need to specify distributions for our to-be imputed 
+variables and determine which variable we would like to leave out of the
+ imputation prediction process. We will extract information on the 
+predictor matrix and imputation methods to change them.</p>
+<p>The Predictor Matrix informs us which variables are going to be used 
+to predict a plausible value for variables (1 means a variable is used 
+to predict another variable, 0 otherwise). Since no variable can predict
+ itself, the intersection of one variable with itself in the matrix 
+takes the value 0. We can manually determine if we would like to leave 
+certain variables out of prediction. In this case, I’d like to leave out
+ the manufacturing variable I constructed, state indicators and all the 
+state-level variables I merged into the dataset when I merged in Chinese
+ M&amp;A variable.</p>
+<p>The <code>mice</code> package assumes a distribution for each 
+variable and imputes missing variables according to that distribution. 
+Hence, it is important to correctly specify each of these distributions.
+ <code>mice</code> automatically chooses distributions for variables. If
+ we would like to change them, we can do it by changing the methods’ 
+characteristics. Even though we are going to use variables such as 
+patriot_amident and pid_x as continuous later on, I’ll specify their 
+imputation methods suited for ordered categorical variables.</p>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># We run the mice code with 0 iterations </span>
+
+imp &lt;- mice(anesimp2, maxit=<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># Extract predictorMatrix and methods of imputation </span>
+
+predM = imp$predictorMatrix
+meth = imp$method
+
+<span class="hljs-comment"># Setting values of variables I'd like to leave out to 0 in the predictor matrix</span>
+predM[, c(<span class="hljs-string">"sample_state"</span>)]=<span class="hljs-number">0</span>
+predM[, c(<span class="hljs-string">"Total_mil"</span>)]=<span class="hljs-number">0</span>
+predM[, c(<span class="hljs-string">"PriOwn_mil"</span>)]=<span class="hljs-number">0</span>
+predM[, c(<span class="hljs-string">"GovValue_mil"</span>)]=<span class="hljs-number">0</span>
+predM[, c(<span class="hljs-string">"PriOwn"</span>)]=<span class="hljs-number">0</span>
+predM[, c(<span class="hljs-string">"GovOwn"</span>)]=<span class="hljs-number">0</span>
+predM[, c(<span class="hljs-string">"MANo"</span>)]=<span class="hljs-number">0</span>
+predM[, c(<span class="hljs-string">"manuf"</span>)]=<span class="hljs-number">0</span>
+
+<span class="hljs-comment"># If you like, view the first few rows of the predictor matrix</span>
+<span class="hljs-comment"># head(predM)</span>
+
+<span class="hljs-comment"># Specify a separate imputation model for variables of interest </span>
+
+<span class="hljs-comment"># Ordered categorical variables </span>
+poly &lt;- c(<span class="hljs-string">"patriot_amident"</span>, <span class="hljs-string">"pid_x"</span>)
+
+<span class="hljs-comment"># Dichotomous variable</span>
+log &lt;- c(<span class="hljs-string">"manuf"</span>)
+
+<span class="hljs-comment"># Unordered categorical variable </span>
+poly2 &lt;- c(<span class="hljs-string">"china_econ"</span>)
+
+<span class="hljs-comment"># Turn their methods matrix into the specified imputation models</span>
+meth[poly] = <span class="hljs-string">"polr"</span>
+meth[log] = <span class="hljs-string">"logreg"</span>
+meth[poly2] = <span class="hljs-string">"polyreg"</span>
+
+meth</code></pre>
+<pre><code class="hljs">##              sample_state       gender_respondent_x 
+##                        ""                        "" 
+##        interest_attention        interest_following 
+##                     "pmm"                     "pmm" 
+##        interest_voted2008           prmedia_wkinews 
+##                     "pmm"                     "pmm" 
+##           prmedia_wktvnws         prmedia_wkpaprnws 
+##                     "pmm"                     "pmm" 
+##           prmedia_wkrdnws             prevote_primv 
+##                     "pmm"                     "pmm" 
+##             prevote_voted           prevote_intpres 
+##                     "pmm"                     "pmm" 
+##             prevote_inths             congapp_job_x 
+##                     "pmm"                     "pmm" 
+##             presapp_track             presapp_job_x 
+##                     "pmm"                     "pmm" 
+##            presapp_econ_x         presapp_foreign_x 
+##                     "pmm"                     "pmm" 
+##          presapp_health_x             presapp_war_x 
+##                     "pmm"                     "pmm" 
+##                    ft_dpc                    ft_rpc 
+##                     "pmm"                     "pmm" 
+##                   ft_dvpc                   ft_rvpc 
+##                     "pmm"                     "pmm" 
+##               ft_hclinton                    ft_gwb 
+##                     "pmm"                     "pmm" 
+##                    ft_dem                    ft_rep 
+##                     "pmm"                     "pmm" 
+##            finance_finfam         finance_finpast_x 
+##                     "pmm"                     "pmm" 
+##         finance_finnext_x            health_insured 
+##                     "pmm"                     "pmm" 
+##          health_2010hcr_x               health_self 
+##                     "pmm"                     "pmm" 
+##              health_smoke            candaff_angdpc 
+##                     "pmm"                     "pmm" 
+##             candaff_hpdpc            candaff_afrdpc 
+##                     "pmm"                     "pmm" 
+##            candaff_prddpc            candaff_angrpc 
+##                     "pmm"                     "pmm" 
+##             candaff_hprpc            candaff_afrrpc 
+##                     "pmm"                     "pmm" 
+##            candaff_prdrpc              libcpre_self 
+##                     "pmm"                     "pmm" 
+##           divgov_splitgov            campfin_banads 
+##                     "pmm"                     "pmm" 
+##               ineq_incgap             ineq_incgap_x 
+##                     "pmm"                     "pmm" 
+##                econ_ecnow             econ_ecpast_x 
+##                     "pmm"                     "pmm" 
+##             econ_ecnext_x             econ_unpast_x 
+##                     "pmm"                     "pmm" 
+##      preswin_dutychoice_x          usworld_stronger 
+##                     "pmm"                     "pmm" 
+##              usworld_stay                     pid_x 
+##                     "pmm"                    "polr" 
+##               war_worthit                war_terror 
+##                     "pmm"                     "pmm" 
+##               gun_control            gun_importance 
+##                     "pmm"                     "pmm" 
+##              immig_policy             immig_citizen 
+##                     "pmm"                     "pmm" 
+##              immig_checks                    aa_uni 
+##                     "pmm"                     "pmm" 
+##                  aa_uni_x                 aa_work_x 
+##                     "pmm"                     "pmm" 
+##           trustgov_corrpt              relig_import 
+##                     "pmm"                     "pmm" 
+##       relig_mastersummary               dem_age_r_x 
+##                     "pmm"                     "pmm" 
+##               dem_marital            dem_edugroup_x 
+##                     "pmm"                     "pmm" 
+##               dem_veteran dem_empstatus_1digitfin_x 
+##                     "pmm"                     "pmm" 
+##               dem_unionhh             dem_raceeth_x 
+##                     "pmm"                     "pmm" 
+##              dem_nativity             dem2_numchild 
+##                     "pmm"                     "pmm" 
+##             dem2_cellpers            dem3_yearscomm 
+##                     "pmm"                     "pmm" 
+##              dem3_ownhome             dem3_passport 
+##                     "pmm"                     "pmm" 
+##             wealth_stocks            wealth_vachome 
+##                     "pmm"                     "pmm" 
+##          wealth_ownrental          wealth_investbus 
+##                     "pmm"                     "pmm" 
+##          inc_incgroup_pre             owngun_owngun 
+##                     "pmm"                     "pmm" 
+##              orientn_rgay         preknow_prestimes 
+##                     "pmm"                     "pmm" 
+##           preknow_sizedef           preknow_senterm 
+##                     "pmm"                     "pmm" 
+##          preknow_medicare           preknow_leastsp 
+##                     "pmm"                     "pmm" 
+##           happ_lifesatisf           patriot_amident 
+##                     "pmm"                    "polr" 
+##                china_econ             sample_stfips 
+##                 "polyreg"                        "" 
+##             sample_region                     manuf 
+##                        ""                  "logreg" 
+##                      MANo                    GovOwn 
+##                        ""                        "" 
+##                    PriOwn              GovValue_mil 
+##                        ""                        "" 
+##                PriOwn_mil                 Total_mil 
+##                        ""                        ""</code></pre>
+<p>As we can see above, our variables of interest are now configured to 
+be imputed with the imputation method we specified. Empty cells in the 
+method matrix means that those variables aren’t going to be imputed. 
+Automatically, variables with no missing values are set to be empty. We 
+can also manually set variables to not be imputed with the meth[<em>variable</em>]="" command. For more information on additional imputation methods, see the <code>mice</code> help page.</p>
+<p>Now that we are ready for multiple imputation, we can start the 
+process by typing the code below. Our dataset consists of 5,914 rows and
+ 106 variables, so this will probably take several minutes, or more, 
+depending on the power of your computer.</p>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># With this command, we tell mice to impute the anesimp2 data, create 5</span>
+<span class="hljs-comment"># datasets, use predM as the predictor matrix and don't print the imputation</span>
+<span class="hljs-comment"># process. If you would like to see the process, set print as TRUE</span>
+
+imp2 &lt;- mice(anesimp2, maxit = <span class="hljs-number">5</span>, 
+             predictorMatrix = predM, 
+             method = meth, print =  <span class="hljs-literal">FALSE</span>)</code></pre>
+<p>We now have 5 imputed datasets. Across all datasets, non-missing 
+values are the same. The imputation created 5 datasets with different 
+plausible values for missing values. You can look at imputed datasets 
+and values with the following commands:</p>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># Look at head and tail of imputed values for china_econ variable </span>
+head(imp2$imp$china_econ)</code></pre>
+<pre><code class="hljs">##    1 2 3 4 5
+## 4  3 3 2 3 2
+## 6  3 2 2 2 2
+## 7  2 2 3 3 2
+## 17 2 1 1 3 1
+## 26 3 3 2 2 2
+## 36 2 2 2 3 2</code></pre>
+<pre class="r"><code class="hljs">tail(imp2$imp$china_econ)</code></pre>
+<pre><code class="hljs">##      1 2 3 4 5
+## 5861 2 1 1 1 2
+## 5868 2 2 2 2 1
+## 5871 2 2 2 3 3
+## 5876 1 1 3 1 1
+## 5893 1 2 2 2 3
+## 5902 2 2 2 1 2</code></pre>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># Can also extract the first imputed, complete dataset and look at the first</span>
+<span class="hljs-comment"># rows using the complete function</span>
+
+<span class="hljs-comment"># anescomp &lt;- mice::complete(imp2, 1)</span>
+<span class="hljs-comment"># head(anescomp)</span></code></pre>
+<p>Finally, we need to run the regression on each of the 5 datasets and 
+pool the estimates together to get average regression coefficients and 
+correct standard errors. The <code>with</code> function in the <code>mice</code> package allows us to do this.</p>
+<pre class="r"><code class="hljs"><span class="hljs-comment"># First, turn the datasets into long format</span>
+anesimp_long &lt;- mice::complete(imp2, action=<span class="hljs-string">"long"</span>, include = <span class="hljs-literal">TRUE</span>)
+
+<span class="hljs-comment"># Convert two variables into numeric</span>
+anesimp_long$patriot_amident &lt;- with(anesimp_long, 
+                                     as.integer(anesimp_long$patriot_amident))
+anesimp_long$pid_x &lt;- with(anesimp_long, 
+                           as.integer(anesimp_long$pid_x))
+
+<span class="hljs-comment"># Take log of M&amp;A variable </span>
+anesimp_long$LogMANO&lt;-log(anesimp_long$MANo+<span class="hljs-number">1.01</span>)
+
+<span class="hljs-comment"># Convert back to mids type - mice can work with this type</span>
+anesimp_long_mids&lt;-as.mids(anesimp_long)
+<span class="hljs-comment"># Regression </span>
+
+
+fitimp &lt;- with(anesimp_long_mids,
+               lm(ft_hclinton ~ manuf + pid_x +
+                    patriot_amident + china_econ + LogMANO))
+
+summary(pool(fitimp))</code></pre>
+<pre><code class="hljs">##                   estimate std.error   statistic         df      p.value
+## (Intercept)     85.2463594 1.7199020  49.5646605  533.92817 0.000000e+00
+## manuf1          -2.1889267 3.0489110  -0.7179372   38.15083 4.728247e-01
+## pid_x           -8.3825919 0.1460527 -57.3942947 2978.97122 0.000000e+00
+## patriot_amident  1.8537042 0.3364319   5.5098947  410.25972 3.744069e-08
+## china_econ2     -4.9288737 0.8754884  -5.6298558   74.40750 1.887622e-08
+## china_econ3     -2.3493172 0.9941761  -2.3630795  177.40494 1.815637e-02
+## LogMANO          0.5511566 0.2578248   2.1377176 5838.81197 3.258108e-02</code></pre>
+<p>The pooled coefficients from the imputed datasets gave us more or 
+less similar results as we got with the listwise-deletion technique. 
+P-values obtained from imputed datasets are also almost similar, except 
+for one variable - log of Chinese M&amp;A. After imputation, we observe a
+ statistically significant effect of Chinese M&amp;As on positive 
+feeling towards Hillary Clinton. This effect was only significant at 90%
+ confidence level before with listwise deletion technique. This shows 
+that multiple imputation can make a difference, but it is always useful 
+to check, re-impute, and do sensitivity analyses in order to make sure 
+that the imputation doesn’t shed light on a false effect.</p>
+</div>
+<div id="troubleshooting" class="section level2">
+<h2>Troubleshooting</h2>
+<p>Now that we have covered the basics of multiple imputation, I’d like 
+to finish my blog post with various problems I’ve encountered during the
+ process and how to possibly overcome these problems.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Character vectors in dataset</strong>:
+Multiple imputation doesn’t deal well with character vectors in the 
+dataset. One possible solution is to delete the character vectors, but 
+if you would like to impute them or use them for a multilevel model 
+after imputation, this solution is not practical. You can either,</p>
+<ul>
+<li>Get rid of the character vector</li>
+<li>Convert the character vector into a factor</li>
+</ul></li>
+<li><p><strong>High proportions of missing data in variables</strong>:
+Multiple imputation algorithms might not like to include variables that 
+have missing values in high proportions. While you are in the data 
+exploration stage, it might be useful to eliminate variables with more 
+than 50% missing from the imputation process.</p></li>
+<li><p><strong>High multicollinearity</strong>:
+Multiple imputation doesn’t like variables that are highly correlated 
+with each other. In most cases, the mice algorithm will leave these 
+variables out of the imputation process. However, in some cases, 
+multiple imputation might fail to start from the beginning. If the code 
+is giving you an error, it might be useful to run the imputation with 
+only a subset of variables, and keep increasing the number of variables 
+included until you find the problematic variable. If you set <code>print=TRUE</code>, you will most likely see where the algorithm is having trouble as it will stop working while imputing that variable.</p></li>
+<li><p><strong>Missing values after imputation</strong>:
+Always check how your variables are imputed by inpecting the <code>imp</code> element in the mids object (For example, as we did earlier: <code>head(imp2$imp$china_econ)</code>).
+ If you still see missing values after imputation, this means the 
+algorithm didn’t work as intended. There shouldn’t be huge differences 
+between your analysis pre-imputation and after-imputation, unless 
+missing values are highly affecting your analysis (in that case, it 
+might be useful to think about other strategies to collect more data). 
+I’d suggest you impute the whole dataset, rather than only the variable 
+of interest.</p></li>
+<li><p><strong>Non-missing value variables</strong>:
+If you have variables with no missing values, you’ll most likely have to
+ exclude them from the imputation process. This especially causes 
+problems if your dataset is hierarchically ordered, like the one in this
+ example. All state-level predictors needed to be excluded from 
+imputation as no values were missing from these variables.</p></li>
+</ol>
+<div id="references" class="section level3">
+<h3>References</h3>
+<ul>
+<li><p>Groothuis-Oudshoorn, K., and S. Van Buuren. 2011. “Mice: multivariate imputation by chained equations in R.” <strong>Journal of Statistical Software</strong> 45, no. 3: 1-67.</p></li>
+<li><p>Kropko, Jonathan, Ben Goodrich, Andrew Gelman, and Jennifer Hill.
+ 2014. “Multiple imputation for continuous and categorical data: 
+Comparing joint multivariate normal and conditional approaches.” <strong>Political Analysis</strong> 22, no. 4.</p></li>
+<li><p>Rubin, Donald B. 1976. “Inference and missing data.” <strong>Biometrika</strong> 63, no. 3: 581-592.</p></li>
+<li><p>Van Buuren, Stef. 2018. <strong>Flexible imputation of missing data.</strong> Chapman and Hall/CRC.</p></li>
+<li><p>Zhang Z. 2015. “Missing data exploration: highlighting graphical presentation of missing pattern.”" <strong>Annals of Translational Medicine</strong>, 3(22), 356.</p></li>
+<li><p><a href="https://datascienceplus.com/imputing-missing-data-with-r-mice-package/">Imputing missing data with mice package</a></p></li>
+<li><p><a href="https://datascienceplus.com/handling-missing-data-with-mice-package-a-simple-approach/">Simple Approach to Missing Data</a></p></li>
+<li><p>The American National Election Studies 2012 
+(www.electionstudies.org). These materials are based on work supported 
+by the National Science Foundation under grant numbers SES 1444721, 
+2014-2017, the University of Michigan, and Stanford University</p></li>
+<li><p>Chinese Investment Monitor, Rhodium Group. (<a href="https://rhg.com/impact/china-investment-monitor/" class="uri">https://rhg.com/impact/china-investment-monitor/</a>)</p></li>
+</ul>
+<p>For questions or clarifications regarding this article, contact the UVa Library StatLab: <a href="mailto:statlab@virginia.edu">statlab@virginia.edu</a></p>
+<p><em>Aycan Katitas</em><br>
+<em>Statistical Consulting Associate</em><br>
+<em>University of Virginia Library</em></p>
+<pre class="r"><code class="hljs">sessionInfo()</code></pre>
+<pre><code class="hljs">## R version 3.6.0 (2019-04-26)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 17134)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] car_3.0-2       carData_3.0-2   foreign_0.8-71  mice_3.4.0     
+## [5] lattice_0.20-38 dplyr_0.8.0.1  
+## 
+## loaded via a namespace (and not attached):
+##  [1] tidyselect_0.2.5  xfun_0.6          purrr_0.3.2      
+##  [4] splines_3.6.0     haven_2.1.0       generics_0.0.2   
+##  [7] htmltools_0.3.6   yaml_2.2.0        pan_1.6          
+## [10] survival_2.44-1.1 rlang_0.3.4       jomo_2.6-7       
+## [13] pillar_1.3.1      nloptr_1.2.1      glue_1.3.1       
+## [16] readxl_1.3.1      stringr_1.4.0     cellranger_1.1.0 
+## [19] blogdown_0.11     zip_2.0.1         evaluate_0.13    
+## [22] knitr_1.22        rio_0.5.16        forcats_0.4.0    
+## [25] parallel_3.6.0    curl_3.3          broom_0.5.2      
+## [28] Rcpp_1.0.1        backports_1.1.4   abind_1.4-5      
+## [31] lme4_1.1-21       hms_0.4.2         digest_0.6.18    
+## [34] stringi_1.4.3     openxlsx_4.1.0    bookdown_0.9     
+## [37] grid_3.6.0        tools_3.6.0       magrittr_1.5     
+## [40] tibble_2.1.1      crayon_1.3.4      tidyr_0.8.3      
+## [43] pkgconfig_2.0.2   MASS_7.3-51.4     Matrix_1.2-17    
+## [46] data.table_1.12.2 assertthat_0.2.1  minqa_1.2.4      
+## [49] rmarkdown_1.12    mitml_0.3-7       R6_2.4.0         
+## [52] boot_1.3-22       rpart_4.1-15      nnet_7.3-12      
+## [55] nlme_3.1-139      compiler_3.6.0</code></pre>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="https://uvastatlab.github.io/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+		<p>© 2020 by the Rector and Visitors of the <a href="http://www.virginia.edu/">University of Virginia</a></p>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="highlight.js"></script>
+
+
+
+<script src="r.js"></script>
+<script src="yaml.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="math-code.js"></script>
+<script async="" src="MathJax.js"></script>
+
+
+    
+  
+
+
+</body></html>

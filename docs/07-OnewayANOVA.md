@@ -1920,7 +1920,7 @@ ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
     color = "Stage", title = "Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition")  #
 ```
 
-![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-83-1.png)<!-- -->
+![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-157-1.png)<!-- -->
 
 
 #### Evaluate statistical assumptions {-} 
@@ -1970,7 +1970,7 @@ It is possible to plot the residuals to see how and where they deviate from the 
 ggpubr::ggqqplot(residuals(TradPed_res))
 ```
 
-![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-86-1.png)<!-- -->
+![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-160-1.png)<!-- -->
 Ooof!  at the ends of the distribution they really deviate. 
 
 **Should we remove outliers?**
@@ -2128,7 +2128,7 @@ ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
         hide.ns = TRUE, y.position = c(5.5))
 ```
 
-![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-93-1.png)<!-- -->
+![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-167-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 

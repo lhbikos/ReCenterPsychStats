@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Mixed Design ANOVA | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 10 Mixed Design ANOVA | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Mixed Design ANOVA | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -1701,7 +1701,7 @@ URL: http://psychstat.org/rmanova</code></pre>
 <span id="cb1283-3"><a href="Mixed.html#cb1283-3" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Socially Responsive Course Evaluations as a Function of Centering and Time&quot;</span>,</span>
 <span id="cb1283-4"><a href="Mixed.html#cb1283-4" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>)</span>
 <span id="cb1283-5"><a href="Mixed.html#cb1283-5" tabindex="-1"></a>mixt_box</span></code></pre></div>
-<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 </div>
 <div id="evaluate-statistical-assumptions-6" class="section level4 unnumbered hasAnchor">
 <h4>Evaluate statistical assumptions<a href="Mixed.html#evaluate-statistical-assumptions-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1758,10 +1758,10 @@ W = 0.85873, p-value = 0.000000000001378</code></pre>
 <p>Our test result is <span class="math inline">\(W = 0.859, p &lt; .001.\)</span>. The significant <em>p</em> value indicates that we have violated the normality assumption. When cell sizes have at least 15 cases each and are roughly equivalent in size, ANOVA models are generally robust to this violation. None-the-less, we should keep it in mind.</p>
 <p>We can plot the residuals to “see” how bad it is:</p>
 <div class="sourceCode" id="cb1291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1291-1"><a href="Mixed.html#cb1291-1" tabindex="-1"></a><span class="fu">hist</span>(mixt_resid)</span></code></pre></div>
-<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-59-1.png" width="672" />
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-103-1.png" width="672" />
 Like the data itself, the residuals have a negative skew with a pile-up of scores on the “high” side.</p>
 <div class="sourceCode" id="cb1292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1292-1"><a href="Mixed.html#cb1292-1" tabindex="-1"></a><span class="fu">qqnorm</span>(mixt_resid)</span></code></pre></div>
-<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-60-1.png" width="672" />
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-104-1.png" width="672" />
 Similarly, we see that the residuals sharply deviate from the diagonal at the top.</p>
 <p><strong>Is there evidence of outliers? Are they extreme?</strong></p>
 <p>The <em>rstatix::identify_outliers()</em> function identifies outliers and extreme outliers.</p>
@@ -1916,7 +1916,7 @@ Note. M and SD represent mean and standard deviation, respectively. </code></pre
 <span id="cb1306-4"><a href="Mixed.html#cb1306-4" tabindex="-1"></a>mixt_box <span class="ot">&lt;-</span> mixt_box <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(Simple_Course, <span class="at">label =</span> <span class="st">&quot;p.signif&quot;</span>,</span>
 <span id="cb1306-5"><a href="Mixed.html#cb1306-5" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.3</span>))</span>
 <span id="cb1306-6"><a href="Mixed.html#cb1306-6" tabindex="-1"></a>mixt_box</span></code></pre></div>
-<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="10-MixedANOVA_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-5" class="section level4 unnumbered hasAnchor">
 <h4>Conduct power analyses to determine the power of the current study and a recommended sample size<a href="Mixed.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>

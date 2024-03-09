@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Paired Samples t-test | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 6 Paired Samples t-test | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Paired Samples t-test | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -848,8 +848,8 @@ Although these types of research design and analyses are quite handy, they have 
 <div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="tPaired.html#cb461-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1539,7 +1539,7 @@ DIFF             3.15 0.09</code></pre>
 <p>Results of the Shapiro-Wilk test of normality are statistically significant <span class="math inline">\((W = 0.943, p = 0.002)\)</span>. This means that the distribution of difference scores are statistically significantly different from a normal distribution.</p>
 <p>Although not required in the formal test of instructions, a <em>pairs panel</em> of correlations and distributions can be useful in undersatnding our data.</p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="tPaired.html#cb538-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(paired_wide)</span></code></pre></div>
-<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-47-1.png" width="672" />
+<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-80-1.png" width="672" />
 Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.</p>
 <p>Before moving forward, I want to capture my analysis of assumptions:</p>
 <blockquote>
@@ -1645,7 +1645,7 @@ that could have caused the sample correlation (Cumming, 2014).
 <span id="cb549-11"><a href="tPaired.html#cb549-11" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb549-12"><a href="tPaired.html#cb549-12" tabindex="-1"></a></span>
 <span id="cb549-13"><a href="tPaired.html#cb549-13" tabindex="-1"></a>pairT.box</span></code></pre></div>
-<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="06-tPairedSamples_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-2" class="section level4 unnumbered hasAnchor">
 <h4>Conduct power analyses to determine the power of the current study and a recommended sample size<a href="tPaired.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>

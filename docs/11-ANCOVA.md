@@ -1205,7 +1205,7 @@ ggpubr::ggscatter(ANCOVA_wide, x = "SRPed_ANV", y = "SRPed_MLTV", color = "Cente
     ..rr.label.., sep = "~~~~"), color = Centering))
 ```
 
-![](11-ANCOVA_files/figure-docx/unnamed-chunk-50-1.png)<!-- -->
+![](11-ANCOVA_files/figure-docx/unnamed-chunk-89-1.png)<!-- -->
 
 The plot looks a little funny. This is likely because there are no values below 3(ish) for ANOVA when courses were re-centered. Although we are looking for a linear relationship, the angled lines suggest there could be an interaction effect. The previous lesson (when we included all three courses [ANOVA, psychometrics, multivariate]) showed that there was. Spoiler alert -- mixed design ANOVA is a better analysis for this question, but the data does allow me (statistically) to use it for a homework demonstration.
 
@@ -1429,7 +1429,7 @@ ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = "Centering", y = "emmean"
         , y.position = c(5))
 ```
 
-![](11-ANCOVA_files/figure-docx/unnamed-chunk-61-1.png)<!-- -->
+![](11-ANCOVA_files/figure-docx/unnamed-chunk-100-1.png)<!-- -->
 
 
 

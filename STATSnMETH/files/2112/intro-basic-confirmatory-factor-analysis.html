@@ -1,0 +1,257 @@
+<html><head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="https://quantdev.ssri.psu.edu/sites/qdev/files/favicon_5.ico" type="image/vnd.microsoft.icon">
+<meta name="generator" content="Drupal 7 (https://www.drupal.org)">
+<link rel="canonical" href="https://quantdev.ssri.psu.edu/tutorials/intro-basic-confirmatory-factor-analysis">
+<link rel="shortlink" href="https://quantdev.ssri.psu.edu/node/324">
+  <title>Intro - Basic Confirmatory Factor Analysis | Quantdev</title>
+  <style>
+@import url("https://quantdev.ssri.psu.edu/modules/system/system.base.css?py3r5g");
+</style>
+<style>
+@import url("https://quantdev.ssri.psu.edu/modules/field/theme/field.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/modules/node/node.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/views/css/views.css?py3r5g");
+</style>
+<style>
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/ctools/css/ctools.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/contrib/panels/css/panels.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/contrib/biblio/biblio.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/contrib/panels_bootstrap_layout_builder/plugins/layouts/bootstrap/bootstrap.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/psu_search-master/css/search_block.css?py3r5g");
+</style>
+<link type="text/css" rel="stylesheet" href="bootstrap.css" media="all">
+<link type="text/css" rel="stylesheet" href="drupal-bootstrap-simplex.css" media="all">
+<style>
+@import url("https://quantdev.ssri.psu.edu/sites/all/themes/qdev/cdn/font-awesome/css/font-awesome.min.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/themes/qdev/cdn/css/style.css?py3r5g");
+</style>
+  <!-- HTML5 element support for IE6-8 -->
+  <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/javascript" async="" src="analytics.js"></script><script type="text/javascript" async="" defer="defer" src="matomo_002.js"></script><script type="text/javascript" defer="defer" async="" src="piwik.html"></script><script src="jquery.js"></script>
+<script src="jquery-extend-3.js"></script>
+<script src="jquery_002.js"></script>
+<script src="drupal.js"></script>
+<script src="bootstrap.js"></script>
+<script src="iframe.js"></script>
+<script src="insertFrame.js"></script>
+<script src="search_box.js"></script>
+<script src="matomo.js"></script>
+<script>var _paq = _paq || [];(function(){var u=(("https:" == document.location.protocol) ? "" : "http://piwik.ssridrupal.ssri.psu.edu/");_paq.push(["setSiteId", "9"]);_paq.push(["setTrackerUrl", u+"piwik.php"]);_paq.push(["setDocumentTitle", "Intro%20-%20Basic%20Confirmatory%20Factor%20Analysis"]);_paq.push(["setDoNotTrack", 1]);_paq.push(["trackPageView"]);_paq.push(["setIgnoreClasses", ["no-tracking","colorbox"]]);_paq.push(["enableLinkTracking"]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.type="text/javascript";g.defer=true;g.async=true;g.src=u+"piwik.js";s.parentNode.insertBefore(g,s);})();</script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"qdev","theme_token":"6ppATFA3LuB3IH8iHMT8a80tDvW0jSSbsqVUE9D4WEg","js":{"sites\/all\/themes\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/modules\/contrib\/jquery_update\/replace\/jquery\/1.10\/jquery.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"https:\/\/cdn.jsdelivr.net\/npm\/bootstrap@3.3.5\/dist\/js\/bootstrap.js":1,"sites\/all\/modules\/contrib\/iframe\/iframe.js":1,"sites\/all\/modules\/contrib\/insertFrame\/insertFrame.js":1,"sites\/all\/modules\/psu_search-master\/js\/search_box.js":1,"sites\/all\/modules\/contrib\/matomo\/matomo.js":1,"0":1},"css":{"modules\/system\/system.base.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/contrib\/panels\/css\/panels.css":1,"sites\/all\/modules\/contrib\/biblio\/biblio.css":1,"sites\/all\/modules\/contrib\/panels_bootstrap_layout_builder\/plugins\/layouts\/bootstrap\/bootstrap.css":1,"sites\/all\/modules\/psu_search-master\/css\/search_block.css":1,"https:\/\/cdn.jsdelivr.net\/npm\/bootswatch@3.3.5\/simplex\/bootstrap.css":1,"https:\/\/cdn.jsdelivr.net\/npm\/@unicorn-fail\/drupal-bootstrap-styles@0.0.2\/dist\/3.1.1\/7.x-3.x\/drupal-bootstrap-simplex.css":1,"sites\/all\/themes\/qdev\/cdn\/font-awesome\/css\/font-awesome.min.css":1,"sites\/all\/themes\/qdev\/cdn\/css\/style.css":1}},"matomo":{"trackMailto":1},"urlIsAjaxTrusted":{"\/tutorials\/intro-basic-confirmatory-factor-analysis":true},"bootstrap":{"anchorsFix":"0","anchorsSmoothScrolling":"0","formHasError":1,"popoverEnabled":1,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+</head>
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-324 node-type-tutourial">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    
+     <header id="navbar" role="banner" class="navbar navbar-default">
+          <div id="logo">
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+               <a class="ssri-wrapper" title="SSRI" target="_blank" href="http://www.ssri.psu.edu/">
+                  <img title="" alt="Penn State Social Science Research Institute" src="logo2.png">
+               </a></div>
+              <div class="col-sm-6"><form action="/tutorials/intro-basic-confirmatory-factor-analysis" method="post" id="psu-search-form" accept-charset="UTF-8"><div><div class="form-item form-item-textfield form-type-textfield form-group"> <label class="control-label" for="edit-textfield">Search</label>
+<input placeholder="Search" class="form-control form-text" id="edit-textfield" name="textfield" size="30" maxlength="128" type="text"><span class="input-group-btn"><button type="submit" class="btn btn-primary"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button></span></div><div class="form-item form-item-options form-type-radios form-group element-invisible"> <label class="control-label" for="edit-options">Options</label>
+<div id="edit-options" class="form-radios"><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-this-site"><input id="edit-options-this-site" name="options" value="this_site" checked="checked" class="form-radio" type="radio">This Site</label>
+</div><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-penn-state"><input id="edit-options-penn-state" name="options" value="penn_state" class="form-radio" type="radio">Penn State</label>
+</div><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-people"><input id="edit-options-people" name="options" value="people" class="form-radio" type="radio">People</label>
+</div><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-departments"><input id="edit-options-departments" name="options" value="departments" class="form-radio" type="radio">Departments</label>
+</div></div></div>
+<input name="form_build_id" value="form-sYK3gMWha0lj6I1OoAB7aXDFid_ZCu8C_RxuI1ZmMyI" type="hidden">
+<input name="form_id" value="psu_search_form" type="hidden">
+</div></form></div>
+            </div>
+             <div class="row"> <a class="csa-wrapper" href="https://quantdev.ssri.psu.edu/" title="Home"><span class="btitle">Quant</span>itative <span class="btitle">Dev</span>elopmental Systems Methodology Core</a></div>
+            </div>
+          </div>
+          <div id="main-menu">
+            <div class="container">
+               <div class="navbar-header">
+             
+
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                   <span class="sr-only">Toggle navigation</span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                 </button>
+                              </div>
+                                  <div class="navbar-collapse collapse">
+                     <nav role="navigation">
+                                                <ul class="menu nav navbar-nav"><li class="first leaf"><a href="https://quantdev.ssri.psu.edu/">Home</a></li>
+<li class="leaf"><a href="https://quantdev.ssri.psu.edu/about">About</a></li>
+<li class="leaf"><a href="https://quantdev.ssri.psu.edu/people">People</a></li>
+<li class="leaf"><a href="https://quantdev.ssri.psu.edu/projects">Projects</a></li>
+<li class="leaf"><a href="https://quantdev.ssri.psu.edu/publications" title="">Publications</a></li>
+<li class="leaf"><a href="https://quantdev.ssri.psu.edu/resources">Resources</a></li>
+<li class="last leaf"><a href="https://quantdev.ssri.psu.edu/tutorials">Tutorials</a></li>
+</ul>                                                                                          </nav>
+                   </div>
+                               
+          </div>
+        </div>
+        
+          
+          
+        
+
+        
+     
+    </header>
+
+<div class="main-container container">
+
+  <header role="banner" id="page-header">
+    
+      </header> <!-- /#page-header -->
+
+  <div class="row">
+
+    
+    <section class="col-sm-12">
+            <ol class="breadcrumb"><li><a href="https://quantdev.ssri.psu.edu/">Home</a></li>
+<li><a href="https://quantdev.ssri.psu.edu/tutorials">Tutorials</a></li>
+<li class="active">Intro - Basic Confirmatory Factor Analysis</li>
+</ol>      <a id="main-content"></a>
+                    <h1 class="page-header">Intro - Basic Confirmatory Factor Analysis</h1>
+                                                          <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  <div class="panel-bootstrap panels-bootstrap-people_page">
+<div id="panel-bootstrap-row-4" class="row panels-bootstrap-row panels-bootstrap-row-people_page-4 row-inside-first clearfix inside">
+<div id="panel-bootstrap-column-5" class="column panels-bootstrap-column col-xs-12 col-sm-12 col-md-12 col-lg-12 panels-bootstrap-column-people_page-5 column-inside-first column-inside-last inside">
+<div id="panel-bootstrap-region-top" class="panels-bootstrap-region panels-bootstrap-region-people_page-top region-inside-first region-inside-last inside">
+  </div>
+  </div>
+  </div>
+<div id="panel-bootstrap-row-main" class="row panels-bootstrap-row-people_page-main">
+<div id="panel-bootstrap-column-main-column" class="panels-bootstrap-column col-xs-12 col-sm-4 col-md-3 col-lg-3 panels-bootstrap-column-people_page-main-column">
+<div id="panel-bootstrap-region-center" class="panels-bootstrap-region panels-bootstrap-region-people_page-center region-inside-first region-inside-last inside">
+<div class="panel-pane pane-entity-field pane-node-field-contributors">
+  
+        <h2 class="pane-title">
+      Contributors    </h2>
+    
+  
+  <div class="pane-content">
+    <div class="field field-name-field-contributors field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><a href="https://quantdev.ssri.psu.edu/people/leb237"><div class="field field-name-field-name-with-credential field-type-name field-label-hidden"><div class="field-items"><div class="field-item even">Lizbeth  Benson</div></div></div></a>
+</div><div class="field-item odd"><a href="https://quantdev.ssri.psu.edu/people/nur5"><div class="field field-name-field-name-with-credential field-type-name field-label-hidden"><div class="field-items"><div class="field-item even">Nilam Ram, PhD</div></div></div></a>
+</div></div></div>  </div>
+
+  
+  </div>
+<div class="panel-separator"></div><div class="panel-pane pane-entity-field pane-node-field-file-upload">
+  
+        <h2 class="pane-title">
+      Download    </h2>
+    
+  
+  <div class="pane-content">
+    <div class="field field-name-field-file-upload field-type-file field-label-hidden"><div class="field-items"><div class="field-item even"><span class="file"><img class="file-icon" alt="" title="text/html" src="text-html.png"> <a href="https://quantdev.ssri.psu.edu/sites/qdev/files/IntroBasicCFA_2017_1018.html" type="text/html; length=1678179" target="_blank">IntroBasicCFA_2017_1018.html</a></span></div></div></div>  </div>
+
+  
+  </div>
+<div class="panel-separator"></div><div class="panel-pane pane-entity-field pane-node-field-other-download-files">
+  
+      
+  
+  <div class="pane-content">
+    <div class="field field-name-field-other-download-files field-type-file field-label-hidden"><div class="field-items"><div class="field-item even"><span class="file"><img class="file-icon" alt="" title="text/csv" src="text-x-generic.png"> <a href="https://quantdev.ssri.psu.edu/sites/qdev/files/WISC_CFAexample.csv" type="text/csv; length=43211" target="_blank">WISC_CFAexample.csv</a></span></div><div class="field-item odd"><span class="file"><img class="file-icon" alt="" title="application/zip" src="package-x-generic.png"> <a href="https://quantdev.ssri.psu.edu/sites/qdev/files/IntroBasicCFA_2017_1018.Rmd_.zip" type="application/zip; length=4321" target="_blank">IntroBasicCFA_2017_1018.Rmd_.zip</a></span></div></div></div>  </div>
+
+  
+  </div>
+  </div>
+  </div>
+<div id="panel-bootstrap-column-1" class="column panels-bootstrap-column col-xs-12 col-md-9 col-sm-8 col-lg-9 panels-bootstrap-column-people_page-1 column-inside-last inside">
+<div id="panel-bootstrap-region-right" class="panels-bootstrap-region panels-bootstrap-region-people_page-right region-inside-first inside">
+<div class="panel-pane pane-custom pane-1">
+  
+      
+  
+  <div class="pane-content">
+    <iframe src="/sites/qdev/files/IntroBasicCFA_2017_1018.html" onload="adjustHeight(this,15)" scrolling="auto" id="iframe1" name="iframe1" style="height: 27804px;" frameborder="0" width="100%" height="100%"></iframe>  </div>
+
+  
+  </div>
+  </div>
+<div id="panel-bootstrap-region-right_2" class="panels-bootstrap-region panels-bootstrap-region-people_page-right_2 inside">
+  </div>
+<div id="panel-bootstrap-region-right_3" class="panels-bootstrap-region panels-bootstrap-region-people_page-right_3 region-inside-last inside">
+  </div>
+  </div>
+  </div>
+<div id="panel-bootstrap-row-2" class="row panels-bootstrap-row panels-bootstrap-row-people_page-2 row-inside-last clearfix inside">
+<div id="panel-bootstrap-column-3" class="column panels-bootstrap-column col-xs-12 col-sm-12 col-md-12 col-lg-12 panels-bootstrap-column-people_page-3 column-inside-first column-inside-last inside">
+<div id="panel-bootstrap-region-middle" class="panels-bootstrap-region panels-bootstrap-region-people_page-middle region-inside-first inside">
+  </div>
+<div id="panel-bootstrap-region-bottom" class="panels-bootstrap-region panels-bootstrap-region-people_page-bottom region-inside-last inside">
+  </div>
+  </div>
+  </div>
+</div>
+
+</section>
+  </div>
+    </section>
+
+    
+  </div>
+</div>
+
+  <div id="footer">
+  <footer class="footer container">
+      <div class="region region-footer">
+    <section id="block-block-1" class="block block-block clearfix">
+
+      
+  <p>The Social Science Research Institute is committed to making its 
+websites accessible to all users, and welcomes comments or suggestions 
+on access improvements. Please send comments or suggestions on 
+accessibility to <a href="mailto:web@ssri.psu.edu">web@ssri.psu.edu</a>.</p>
+<p>Copyright © 2019, <a href="https://www.psu.edu/">The Pennsylvania State University</a> | <a href="https://www.psu.edu/legal-statements">Privacy and Legal Statements</a></p>
+<p><a href="mailto:web@ssri.psu.edu">Contact the SSRI Web</a></p>
+
+</section>
+<section id="block-block-2" class="block block-block clearfix">
+
+      
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138215252-1');
+</script>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.ssridrupal.ssri.psu.edu/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</section>
+  </div>
+  </footer>
+  </div>
+  <script src="bootstrap_002.js"></script>
+
+
+</body></html>

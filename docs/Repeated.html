@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 One-Way Repeated Measures ANOVA | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 9 One-Way Repeated Measures ANOVA | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 One-Way Repeated Measures ANOVA | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -1684,7 +1684,7 @@ URL: http://psychstat.org/rmanova</code></pre>
 <span id="cb1157-2"><a href="Repeated.html#cb1157-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Course&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Statistics Course&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Traditional Pedagogy Course Eval Ratings&quot;</span>,</span>
 <span id="cb1157-3"><a href="Repeated.html#cb1157-3" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Course Evaluations across Doctoral Statistics Courses&quot;</span>)</span>
 <span id="cb1157-4"><a href="Repeated.html#cb1157-4" tabindex="-1"></a>bxp</span></code></pre></div>
-<p><img src="09-OneWayRepeated_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="09-OneWayRepeated_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 </div>
 <div id="evaluate-statistical-assumptions-5" class="section level4 unnumbered hasAnchor">
 <h4>Evaluate statistical assumptions<a href="Repeated.html#evaluate-statistical-assumptions-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1736,7 +1736,7 @@ F-statistic: 1.472 on 2 and 207 DF,  p-value: 0.2317</code></pre>
 <p>The distribution of model residuals is statistically significantly different than a normal distribution <span class="math inline">\((W = 0.876, p &lt; .001)\)</span>. Although we have violated the assumption of normality, ANOVA models are relatively robust to such a violation when cell sizes are roughly equal and greater than 15 each <span class="citation">(<a href="#ref-green_one-way_2017-1">Green &amp; Salkind, 2017b</a>)</span>.</p>
 <p>Creating a QQ plot can let us know how badly the distribution departs from a normal one.</p>
 <div class="sourceCode" id="cb1164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1164-1"><a href="Repeated.html#cb1164-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggqqplot</span>(<span class="fu">residuals</span>(RMres_TradPed))</span></code></pre></div>
-<p><img src="09-OneWayRepeated_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="09-OneWayRepeated_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p>We can identify outliers and see if they are reasonable or should be removed.</p>
 <div class="sourceCode" id="cb1165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1165-1"><a href="Repeated.html#cb1165-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1165-2"><a href="Repeated.html#cb1165-2" tabindex="-1"></a>rm1wLONG_df <span class="sc">%&gt;%</span></span>
@@ -1822,7 +1822,7 @@ $`Sphericity Corrections`
 <span id="cb1171-4"><a href="Repeated.html#cb1171-4" tabindex="-1"></a>bxp <span class="ot">&lt;-</span> bxp <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwc, <span class="at">label =</span> <span class="st">&quot;p.adj.signif&quot;</span>, <span class="at">tip.length =</span> <span class="fl">0.01</span>,</span>
 <span id="cb1171-5"><a href="Repeated.html#cb1171-5" tabindex="-1"></a>    <span class="at">hide.ns =</span> <span class="cn">FALSE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.25</span>, <span class="fl">5.5</span>, <span class="fl">5.75</span>))</span>
 <span id="cb1171-6"><a href="Repeated.html#cb1171-6" tabindex="-1"></a>bxp</span></code></pre></div>
-<p><img src="09-OneWayRepeated_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="09-OneWayRepeated_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-4" class="section level4 unnumbered hasAnchor">
 <h4>Conduct power analyses to determine the power of the current study and a recommended sample size<a href="Repeated.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>

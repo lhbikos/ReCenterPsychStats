@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="https://quantdev.ssri.psu.edu/sites/qdev/files/favicon_5.ico" type="image/vnd.microsoft.icon" />
+<meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
+<link rel="canonical" href="https://quantdev.ssri.psu.edu/tutorials/piwik.js" />
+<link rel="shortlink" href="https://quantdev.ssri.psu.edu/tutorials/piwik.js" />
+  <title>Tutorials | Quantdev</title>
+  <style>
+@import url("https://quantdev.ssri.psu.edu/modules/system/system.base.css?py3r5g");
+</style>
+<style>
+@import url("https://quantdev.ssri.psu.edu/modules/field/theme/field.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/modules/node/node.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/views/css/views.css?py3r5g");
+</style>
+<style>
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/ctools/css/ctools.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/contrib/panels/css/panels.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/contrib/biblio/biblio.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/modules/psu_search-master/css/search_block.css?py3r5g");
+</style>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@3.3.5/simplex/bootstrap.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unicorn-fail/drupal-bootstrap-styles@0.0.2/dist/3.1.1/7.x-3.x/drupal-bootstrap-simplex.css" media="all" />
+<style>
+@import url("https://quantdev.ssri.psu.edu/sites/all/themes/qdev/cdn/font-awesome/css/font-awesome.min.css?py3r5g");
+@import url("https://quantdev.ssri.psu.edu/sites/all/themes/qdev/cdn/css/style.css?py3r5g");
+</style>
+  <!-- HTML5 element support for IE6-8 -->
+  <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="https://quantdev.ssri.psu.edu/sites/all/modules/contrib/jquery_update/replace/jquery/1.10/jquery.min.js?v=1.10.2"></script>
+<script src="https://quantdev.ssri.psu.edu/misc/jquery-extend-3.4.0.js?v=1.10.2"></script>
+<script src="https://quantdev.ssri.psu.edu/misc/jquery.once.js?v=1.2"></script>
+<script src="https://quantdev.ssri.psu.edu/misc/drupal.js?py3r5g"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/js/bootstrap.js"></script>
+<script src="https://quantdev.ssri.psu.edu/sites/all/modules/contrib/iframe/iframe.js?py3r5g"></script>
+<script src="https://quantdev.ssri.psu.edu/sites/all/modules/contrib/insertFrame/insertFrame.js?py3r5g"></script>
+<script src="https://quantdev.ssri.psu.edu/sites/all/modules/psu_search-master/js/search_box.js?py3r5g"></script>
+<script src="https://quantdev.ssri.psu.edu/sites/all/modules/contrib/matomo/matomo.js?py3r5g"></script>
+<script>var _paq = _paq || [];(function(){var u=(("https:" == document.location.protocol) ? "" : "http://piwik.ssridrupal.ssri.psu.edu/");_paq.push(["setSiteId", "9"]);_paq.push(["setTrackerUrl", u+"piwik.php"]);_paq.push(["setDocumentTitle", "Tutorials"]);_paq.push(["setDoNotTrack", 1]);_paq.push(["trackPageView"]);_paq.push(["setIgnoreClasses", ["no-tracking","colorbox"]]);_paq.push(["enableLinkTracking"]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.type="text/javascript";g.defer=true;g.async=true;g.src=u+"piwik.js";s.parentNode.insertBefore(g,s);})();</script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"qdev","theme_token":"kI7uskxD6HId-CIWXZER0lRmSSgWCPWjEytH_mpvcf4","js":{"sites\/all\/themes\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/modules\/contrib\/jquery_update\/replace\/jquery\/1.10\/jquery.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"https:\/\/cdn.jsdelivr.net\/npm\/bootstrap@3.3.5\/dist\/js\/bootstrap.js":1,"sites\/all\/modules\/contrib\/iframe\/iframe.js":1,"sites\/all\/modules\/contrib\/insertFrame\/insertFrame.js":1,"sites\/all\/modules\/psu_search-master\/js\/search_box.js":1,"sites\/all\/modules\/contrib\/matomo\/matomo.js":1,"0":1},"css":{"modules\/system\/system.base.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/contrib\/panels\/css\/panels.css":1,"sites\/all\/modules\/contrib\/biblio\/biblio.css":1,"sites\/all\/modules\/psu_search-master\/css\/search_block.css":1,"https:\/\/cdn.jsdelivr.net\/npm\/bootswatch@3.3.5\/simplex\/bootstrap.css":1,"https:\/\/cdn.jsdelivr.net\/npm\/@unicorn-fail\/drupal-bootstrap-styles@0.0.2\/dist\/3.1.1\/7.x-3.x\/drupal-bootstrap-simplex.css":1,"sites\/all\/themes\/qdev\/cdn\/font-awesome\/css\/font-awesome.min.css":1,"sites\/all\/themes\/qdev\/cdn\/css\/style.css":1}},"matomo":{"trackMailto":1},"urlIsAjaxTrusted":{"\/tutorials\/piwik.js":true},"bootstrap":{"anchorsFix":"0","anchorsSmoothScrolling":"0","formHasError":1,"popoverEnabled":1,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+</head>
+<body class="html not-front not-logged-in no-sidebars page-tutorials page-tutorials-piwikjs">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    
+     <header id="navbar" role="banner" class="navbar navbar-default">
+          <div id="logo">
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+               <a class="ssri-wrapper" title="SSRI" target="_blank" href="http://www.ssri.psu.edu">
+                  <img title="" alt="Penn State Social Science Research Institute" src="/sites/all/themes/csa/images/logo2.png" />
+               </a></div>
+              <div class="col-sm-6"><form action="/tutorials/piwik.js" method="post" id="psu-search-form" accept-charset="UTF-8"><div><div class="form-item form-item-textfield form-type-textfield form-group"> <label class="control-label" for="edit-textfield">Search</label>
+<input placeholder="Search" class="form-control form-text" type="text" id="edit-textfield" name="textfield" value="" size="30" maxlength="128" /></div><div class="form-item form-item-options form-type-radios form-group"> <label class="control-label" for="edit-options">Options</label>
+<div id="edit-options" class="form-radios"><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-this-site"><input type="radio" id="edit-options-this-site" name="options" value="this_site" checked="checked" class="form-radio" />This Site</label>
+</div><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-penn-state"><input type="radio" id="edit-options-penn-state" name="options" value="penn_state" class="form-radio" />Penn State</label>
+</div><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-people"><input type="radio" id="edit-options-people" name="options" value="people" class="form-radio" />People</label>
+</div><div class="form-item form-item-options form-type-radio radio"> <label class="control-label" for="edit-options-departments"><input type="radio" id="edit-options-departments" name="options" value="departments" class="form-radio" />Departments</label>
+</div></div></div><button type="submit" id="edit-submit" name="op" value="Submit" class="btn btn-default form-submit">Submit</button>
+<input type="hidden" name="form_build_id" value="form-XSgfKzhTiOmzizC4nW71CSePWyb82kqOoOfH3hrcsdQ" />
+<input type="hidden" name="form_id" value="psu_search_form" />
+</div></form></div>
+            </div>
+             <div class="row"> <a class="csa-wrapper" href="/" title="Home"><span class="btitle">Quant</span>itative <span class="btitle">Dev</span>elopmental Systems Methodology Core</a></div>
+            </div>
+          </div>
+          <div id="main-menu">
+            <div class="container">
+               <div class="navbar-header">
+             
+
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                   <span class="sr-only">Toggle navigation</span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                 </button>
+                              </div>
+                                  <div class="navbar-collapse collapse">
+                     <nav role="navigation">
+                                                <ul class="menu nav navbar-nav"><li class="first leaf"><a href="/">Home</a></li>
+<li class="leaf"><a href="/about">About</a></li>
+<li class="leaf"><a href="/people">People</a></li>
+<li class="leaf"><a href="/projects">Projects</a></li>
+<li class="leaf"><a href="/publications" title="">Publications</a></li>
+<li class="leaf"><a href="/resources">Resources</a></li>
+<li class="last leaf active-trail active"><a href="/tutorials" class="active-trail active">Tutorials</a></li>
+</ul>                                                                                          </nav>
+                   </div>
+                               
+          </div>
+        </div>
+        
+          
+          
+        
+
+        
+     
+    </header>
+
+<div class="main-container container">
+
+  <header role="banner" id="page-header">
+    
+      </header> <!-- /#page-header -->
+
+  <div class="row">
+
+    
+    <section class="col-sm-12">
+            <ol class="breadcrumb"><li><a href="/">Home</a></li>
+<li><a href="/tutorials">Tutorials</a></li>
+<li class="active">Tutorials</li>
+</ol>      <a id="main-content"></a>
+                    <h1 class="page-header">Tutorials</h1>
+                                                          <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  <div class="view view-tutorials view-id-tutorials view-display-id-page view-dom-id-2d722820d1dc7107898108f4401502f9">
+        
+  
+  
+      <div class="view-content">
+      <div class="table-responsive">
+<table class="views-table cols-4 table table-hover table-striped" >
+        <thead>
+      <tr>
+                  <th >
+            Related Resources          </th>
+                  <th class="views-field views-field-title" >
+            Tutorial Name          </th>
+                  <th class="views-field views-field-field-contributors" >
+            Contributors          </th>
+                  <th class="views-field views-field-view-node" >
+            Link          </th>
+              </tr>
+    </thead>
+    <tbody>
+          <tr class="odd views-row-first depth-0">
+                  <td class=" cell-rowspan"  rowspan="12">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/actor-partner-interdependence-model-apim-basic-dyadicbivariate-analysis">Actor Partner Interdependence Model (APIM): A Basic Dyadic/Bivariate Analysis</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/actor-partner-interdependence-model-apim-basic-dyadicbivariate-analysis">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/cluster-analysis-example">Cluster Analysis: An Example</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/cluster-analysis-example">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-basics">Growth Modeling Basics</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-basics">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-trajectory-generator">Growth Trajectory Generator</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-trajectory-generator">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/intro-data-reshape-plots-wisc">Intro Data Reshape Plots (WISC)</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/intro-data-reshape-plots-wisc">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/probing-interactions-multilevel-models-change-start">Probing Interactions in Multilevel Models of Change: A Start</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/probing-interactions-multilevel-models-change-start">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/regression-continuous-count-and-binary-outcomes">Regression with Continuous, Count, and Binary Outcomes</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/regression-continuous-count-and-binary-outcomes">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/rm-anova-rm-manova-growth-curves-connections-within-multilevel-framework-part-2">RM ANOVA to RM MANOVA to Growth Curves: Connections within a Multilevel Framework: Part 2</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/rm-anova-rm-manova-growth-curves-connections-within-multilevel-framework-part-2">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/rmanova-towards-multilevel-framework-part-1">RMANOVA - Towards a Multilevel Framework: Part 1</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/rmanova-towards-multilevel-framework-part-1">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/survival-analysis-example">Survival Analysis: An Example</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jpl33">Jessica P.  Lougheed, PhD</a>
+/ <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/survival-analysis-example">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/cortisol-data-growth-modeling-simple-complex">The Cortisol Data - Growth Modeling: Simple to Complex</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/cortisol-data-growth-modeling-simple-complex">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            <a href="/resources/multivariate-analysis-developmental-science">Multivariate Analysis in Developmental Science</a>          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/two-occasion-change">Two-Occasion Change </a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/two-occasion-change">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-rowspan"  rowspan="13">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-1-introduction-data-files-descriptives-plots">Analysis of Experience Sampling &amp; EMA Data - Chapter 1: Introduction, Data Files, Descriptives &amp; Plots</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-1-introduction-data-files-descriptives-plots">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-21-univariate-intraindividual-variability">Analysis of Experience Sampling &amp; EMA Data - Chapter 2.1: Univariate Intraindividual Variability Metrics (Part 1)</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-21-univariate-intraindividual-variability">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-22-univariate-intraindividual-variability">Analysis of Experience Sampling &amp; EMA Data - Chapter 2.2: Univariate Intraindividual Variability Metrics (Part 2)</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-22-univariate-intraindividual-variability">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-31-bivariate-intraindividual-covariation">Analysis of Experience Sampling &amp; EMA Data - Chapter 3.1: Bivariate Intraindividual Covariation  (Part 1)</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-31-bivariate-intraindividual-covariation">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-32-bivariate-intraindividual-covariation">Analysis of Experience Sampling &amp; EMA Data - Chapter 3.2: Bivariate Intraindividual Covariation (Part 2)</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-32-bivariate-intraindividual-covariation">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-4-generalized-mlm-bivariate-intraindividual">Analysis of Experience Sampling &amp; EMA Data - Chapter 4: Generalized MLM for Bivariate Intraindividual Covariation </a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-4-generalized-mlm-bivariate-intraindividual">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-5-part1-dyadic-mlm-intradyad-dynamics">Analysis of Experience Sampling &amp; EMA Data - Chapter 5 (Part1): Dyadic MLM for Intradyad Dynamics</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+/ <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-5-part1-dyadic-mlm-intradyad-dynamics">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-5-part2-multivariate-mlm-intraindividual">Analysis of Experience Sampling &amp; EMA Data - Chapter 5 (Part2): Multivariate MLM for Intraindividual Coupling </a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-5-part2-multivariate-mlm-intraindividual">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-6-multilevel-model-heterogeneous-variance">Analysis of Experience Sampling &amp; EMA Data - Chapter 6: Multilevel Model with Heterogeneous Variance</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-6-multilevel-model-heterogeneous-variance">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-7-within-person-1-1-1-mediation">Analysis of Experience Sampling &amp; EMA Data - Chapter 7: Within-Person (1-1-1) Mediation</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-7-within-person-1-1-1-mediation">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/analysis-experience-sampling-ema-data-chapter-8-p-technique-factor-analysis-multivariate">Analysis of Experience Sampling &amp; EMA Data - Chapter 8: P-technique Factor Analysis for Multivariate Intraindividual Variability</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/analysis-experience-sampling-ema-data-chapter-8-p-technique-factor-analysis-multivariate">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/psychometrics-intensive-longitudinal-measures-emotional-states">Psychometrics of Intensive Longitudinal Measures of Emotional States</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/axg5562">Allison Gray, MS</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/psychometrics-intensive-longitudinal-measures-emotional-states">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            <a href="/resources/intensive-longitudinal-data-analysis-experience-sampling-and-ema-data">Intensive Longitudinal Data: Analysis of Experience Sampling and EMA Data</a>          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/amib-data-multiple-time-scale-experience-sampling-study">The AMIB Data - A Multiple Time-Scale Experience Sampling Study</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/amib-data-multiple-time-scale-experience-sampling-study">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td class=" cell-rowspan"  rowspan="11">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-z-power-analysis">APA ATI Intensive Longitudinal Data: Session Z - Power Analysis</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-z-power-analysis">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-c-data-descriptives-data-viz">APA-ATI Intensive Longitudinal Data: Session C - Data, Descriptives &amp; Data Viz</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-c-data-descriptives-data-viz">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-e-intraindividual-variability-metrics">APA-ATI Intensive Longitudinal Data: Session E - Intraindividual Variability Metrics </a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-e-intraindividual-variability-metrics">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-h-basic-multilevel-model">APA-ATI Intensive Longitudinal Data: Session H - Basic Multilevel Model</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-h-basic-multilevel-model">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-j-generalized-multilevel-model-poisson">APA-ATI Intensive Longitudinal Data: Session J - Generalized Multilevel Model (Poisson) </a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-j-generalized-multilevel-model-poisson">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-m-dyadic-multilevel-model">APA-ATI Intensive Longitudinal Data: Session M - Dyadic Multilevel Model</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-m-dyadic-multilevel-model">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-o-within-person-mediation">APA-ATI Intensive Longitudinal Data: Session O - Within-Person Mediation</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-o-within-person-mediation">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-r-multivariate-dynamics-networks">APA-ATI Intensive Longitudinal Data: Session R - Multivariate Dynamics &amp; Networks </a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-r-multivariate-dynamics-networks">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-t-random-effect-tree-models">APA-ATI Intensive Longitudinal Data: Session T - Random Effect Tree Models</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-t-random-effect-tree-models">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-v-diff-eq-models">APA-ATI Intensive Longitudinal Data: Session V - Diff-Eq Models</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-v-diff-eq-models">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            <a href="/resources/apa-ati-analysis-intensive-longitudinal-data-experience-sampling-and-ecological-momentary">APA-ATI Analysis of Intensive Longitudinal Data: Experience Sampling and Ecological Momentary Assessment</a>          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/apa-ati-intensive-longitudinal-data-session-w-time-series-clustering">APA-ATI Intensive Longitudinal Data: Session W - Time Series Clustering</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/apa-ati-intensive-longitudinal-data-session-w-time-series-clustering">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-rowspan"  rowspan="26">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/basics-brain-graph-analysis-r-igraph">Basics of brain graph analysis in R with igraph</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/basics-brain-graph-analysis-r-igraph">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/calculating-fear-sensitivity-scores-using-hyperbolic-tangent-growth-model">Calculating Fear Sensitivity scores using a Hyperbolic Tangent Growth Model</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+                      </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/calculating-fear-sensitivity-scores-using-hyperbolic-tangent-growth-model">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/cross-recurrence-quantification-analysis">Cross Recurrence Quantification Analysis </a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/axg5562">Allison Gray, MS</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/cross-recurrence-quantification-analysis">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/diversity-type-intraindividual-variability-calculation">Diversity-type Intraindividual Variability Calculation</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/diversity-type-intraindividual-variability-calculation">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/emodiversity-supplementary-analyses-u-live-data">Emodiversity Supplementary Analyses - As U Live Data</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+/ <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/emodiversity-supplementary-analyses-u-live-data">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/five-ish-steps-create-pretty-interaction-plots-multi-level-model-r">Five-ish Steps to Create Pretty Interaction Plots for a Multi-level Model in R</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/rek183">Rachel Koffer, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/five-ish-steps-create-pretty-interaction-plots-multi-level-model-r">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/gatzke-kopp-ram-2018-developmental-dynamics-autonomic-function-childhood">Gatzke-Kopp &amp; Ram (2018): Developmental Dynamics of Autonomic Function in Childhood</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/gatzke-kopp-ram-2018-developmental-dynamics-autonomic-function-childhood">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/generating-custom-color-palette-function-r">Generating a Custom Color Palette Function in R</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/generating-custom-color-palette-function-r">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/generating-and-plotting-data-ode-models-part-1">Generating and Plotting Data from ODE Models: Part 1</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/generating-and-plotting-data-ode-models-part-1">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/generating-and-plotting-data-ode-models-part-2">Generating and Plotting Data from ODE Models: Part 2</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/generating-and-plotting-data-ode-models-part-2">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/grid-sequence-analysis-tutorial">Grid-Sequence Analysis Tutorial</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/grid-sequence-analysis-tutorial">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/high-performance-computing-r">High Performance Computing in R</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/high-performance-computing-r">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/intraindividual-variability-network-analysis">Intraindividual Variability + Network Analysis</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/intraindividual-variability-network-analysis">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/intro-basic-confirmatory-factor-analysis">Intro - Basic Confirmatory Factor Analysis</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+/ <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/intro-basic-confirmatory-factor-analysis">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/intro-basic-exploratory-factor-analysis">Intro - Basic Exploratory Factor Analysis</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/intro-basic-exploratory-factor-analysis">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/intro-basics-longitudinal-measurement-invariance">Intro - Basics of Longitudinal Measurement Invariance</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/intro-basics-longitudinal-measurement-invariance">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/intro-geospatial-data-and-maps-r">Intro to Geospatial Data and Maps in R</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+/ <a href="/people/jfw5255">Julie Wood</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/intro-geospatial-data-and-maps-r">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/introduction-irt-modeling">Introduction to IRT Modeling</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jfw5255">Julie Wood</a>
+/ <a href="/people/pxm21">Peter C.M.  Molenaar, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/introduction-irt-modeling">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/introductory-odes">Introductory ODEs</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jfw5255">Julie Wood</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/introductory-odes">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/morales-et-al-2017-age-related-changes-dynamics-fear-related-regulation-early-childhood">Morales et al (2017) Age-related changes in the dynamics of fear-related regulation in early childhood</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+                      </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/morales-et-al-2017-age-related-changes-dynamics-fear-related-regulation-early-childhood">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/obtaining-finance-data-tidyquant">Obtaining Finance Data with tidyquant</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/axg5562">Allison Gray, MS</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/obtaining-finance-data-tidyquant">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/r-bootcamp-introduction-multilevel-model-and-interactions">R Bootcamp: Introduction to Multilevel Model and Interactions</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+/ <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/r-bootcamp-introduction-multilevel-model-and-interactions">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/socioemotional-dynamics-emotion-regulation-and-depressive-symptoms-person-specific-network">Socioemotional Dynamics of Emotion Regulation and Depressive Symptoms: A Person-Specific Network Approach</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/socioemotional-dynamics-emotion-regulation-and-depressive-symptoms-person-specific-network">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/structural-equation-modeling-r-using-lavaan">Structural Equation Modeling in R using lavaan</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/structural-equation-modeling-r-using-lavaan">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/using-functional-data-analysis-compute-derivative-estimates">Using Functional Data Analysis to Compute Derivative Estimates</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/quc16">Sy-Miin Chow, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/using-functional-data-analysis-compute-derivative-estimates">Read More</a>          </td>
+              </tr>
+          <tr class="even views-row-last depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            Others          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/using-qualtrics-and-boxr-r-packages">Using the qualtRics and boxr R Packages</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/using-qualtrics-and-boxr-r-packages">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-rowspan"  rowspan="9">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/cross-validation-tutorial">Cross-Validation Tutorial</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/cross-validation-tutorial">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/ensemble-methods-bagging-random-forests-boosting">Ensemble Methods - Bagging, Random Forests, Boosting</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/ensemble-methods-bagging-random-forests-boosting">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/introduction-classification-regression-trees">Introduction to Classification &amp; Regression Trees</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/introduction-classification-regression-trees">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/k-nearest-neighbors-introductory-example">k Nearest Neighbors: An Introductory Example</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+/ <a href="/people/ruw168">Roisin White</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/k-nearest-neighbors-introductory-example">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/regression-statistical-learning-tool-cross-validation">Regression as a Statistical Learning Tool + Cross-Validation</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/regression-statistical-learning-tool-cross-validation">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/sequence-analysis-clustering-edit-distance">Sequence Analysis: Clustering on Edit Distance</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/sequence-analysis-clustering-edit-distance">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/supervised-machine-learning-caret-package">Supervised Machine Learning: The Caret Package</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/supervised-machine-learning-caret-package">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/topic-modeling-just-start">Topic Modeling: Just a Start</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/topic-modeling-just-start">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            <a href="/resources/data-mining">Data Mining </a>          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/unsupervised-machine-learning-hclust-pvclust-cluster-mclust-and-more">Unsupervised Machine Learning: The hclust, pvclust, cluster, mclust, and more</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+            <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/unsupervised-machine-learning-hclust-pvclust-cluster-mclust-and-more">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td class=" cell-rowspan"  rowspan="7">
+            <a href="/resources/what%E2%80%99s-dynr-package-linear-and-nonlinear-dynamic-modeling-r">What’s for dynr: A package for linear and nonlinear dynamic modeling in R</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/dynrmi-multiple-imputation-dynr">dynr.mi: Multiple Imputation in dynr</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/yxl823"> Yanling Li</a>
+/ <a href="/people/lzj114">Linying Ji</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/dynrmi-multiple-imputation-dynr">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/what%E2%80%99s-dynr-package-linear-and-nonlinear-dynamic-modeling-r">What’s for dynr: A package for linear and nonlinear dynamic modeling in R</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/dynr-linearsde">dynr: LinearSDE</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/lzj114">Linying Ji</a>
+/ <a href="/people/mxc681">Meng Chen</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/dynr-linearsde">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/what%E2%80%99s-dynr-package-linear-and-nonlinear-dynamic-modeling-r">What’s for dynr: A package for linear and nonlinear dynamic modeling in R</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/dynr-rslineardiscreteexample">dynr: RSLinearDiscreteExample</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/lzj114">Linying Ji</a>
+/ <a href="/people/mxc681">Meng Chen</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/dynr-rslineardiscreteexample">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/what%E2%80%99s-dynr-package-linear-and-nonlinear-dynamic-modeling-r">What’s for dynr: A package for linear and nonlinear dynamic modeling in R</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/dynr-rsnonlineardiscreteexample">dynr: RSNonlinearDiscreteExample</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/lzj114">Linying Ji</a>
+/ <a href="/people/mxc681">Meng Chen</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/dynr-rsnonlineardiscreteexample">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/what%E2%80%99s-dynr-package-linear-and-nonlinear-dynamic-modeling-r">What’s for dynr: A package for linear and nonlinear dynamic modeling in R</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/r-bootcamp-gcm-demo-dynr">R Bootcamp: GCM demo in dynr</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+                      </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/r-bootcamp-gcm-demo-dynr">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/what%E2%80%99s-dynr-package-linear-and-nonlinear-dynamic-modeling-r">What’s for dynr: A package for linear and nonlinear dynamic modeling in R</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/r-bootcamp-pfa-dynr">R Bootcamp: PFA in dynr</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+                      </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/r-bootcamp-pfa-dynr">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            <a href="/resources/what%E2%80%99s-dynr-package-linear-and-nonlinear-dynamic-modeling-r">What’s for dynr: A package for linear and nonlinear dynamic modeling in R</a>          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/r-bootcamp-var-demo-dynr">R Bootcamp: VAR demo in dynr</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+                      </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/r-bootcamp-var-demo-dynr">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-rowspan"  rowspan="12">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-10-growth-models-nonlinearity-time">Growth Modeling Chapter 10: Growth Models with Nonlinearity in Time</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/axg5562">Allison Gray, MS</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-10-growth-models-nonlinearity-time">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-11-growth-models-nonlinearity-parameters">Growth Modeling Chapter 11: Growth Models with Nonlinearity in Parameters</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jpl33">Jessica P.  Lougheed, PhD</a>
+/ <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+/ <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-11-growth-models-nonlinearity-parameters">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-12-models-nonlinearity-random-coefficients">Growth Modeling Chapter 12: Models with Nonlinearity in Random Coefficients</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+/ <a href="/people/nur5">Nilam Ram, PhD</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-12-models-nonlinearity-random-coefficients">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-13-modeling-change-latent-entities">Growth Modeling Chapter 13: Modeling Change with Latent Entities</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/axg5562">Allison Gray, MS</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-13-modeling-change-latent-entities">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-14-modeling-change-latent-variables-measured-continuous-indicators">Growth Modeling Chapter 14: Modeling Change with Latent Variables Measured by Continuous Indicators</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jfw5255">Julie Wood</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-14-modeling-change-latent-variables-measured-continuous-indicators">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-16-introduction-latent-change-score-modeling">Growth Modeling Chapter 16: Introduction to Latent Change Score Modeling</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-16-introduction-latent-change-score-modeling">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-17-multivariate-latent-change-score-models">Growth Modeling Chapter 17: Multivariate Latent Change Score Models</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-17-multivariate-latent-change-score-models">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-2-practical-preliminaries">Growth Modeling Chapter 2: Practical Preliminaries</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-2-practical-preliminaries">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-3-linear-growth-models">Growth Modeling Chapter 3: Linear Growth Models</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/mjb6504">Miriam (Mimi)  Brinberg</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-3-linear-growth-models">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-4-continuous-time-metrics">Growth Modeling Chapter 4: Continuous Time Metrics</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jfw5255">Julie Wood</a>
+/ <a href="/people/eml5482">Eric Layland</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-4-continuous-time-metrics">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/growth-modeling-chapter-5-linear-growth-models-time-invariant-covariates">Growth Modeling Chapter 5: Linear Growth Models with Time-Invariant Covariates</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jfw5255">Julie Wood</a>
+/ <a href="/people/eml5482">Eric Layland</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/growth-modeling-chapter-5-linear-growth-models-time-invariant-covariates">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            <a href="/resources/growth-modeling-structural-equation-and-multilevel-modeling-approaches">Growth Modeling: Structural Equation and Multilevel Modeling Approaches</a>          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/growth-modeling-chapter-8-multivariate-growth-models-and-dynamic-parameters">Growth Modeling Chapter 8: Multivariate Growth Models and Dynamic Parameters</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+            <a href="/people/xfy5031">Xiao Yang</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/growth-modeling-chapter-8-multivariate-growth-models-and-dynamic-parameters">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-rowspan"  rowspan="5">
+            <a href="/resources/survival-analysis">Survival Analysis</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/part-1-how-format-data-several-types-survival-analysis-models">Part 1: How to format data for several types of survival analysis models</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jpl33">Jessica P.  Lougheed, PhD</a>
+/ <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/part-1-how-format-data-several-types-survival-analysis-models">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/survival-analysis">Survival Analysis</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/part-2-single-episode-cox-regression-model-time-invariant-predictors">Part 2: Single-episode Cox regression model with time-invariant predictors</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jpl33">Jessica P.  Lougheed, PhD</a>
+/ <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/part-2-single-episode-cox-regression-model-time-invariant-predictors">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td  style="display:none">
+            <a href="/resources/survival-analysis">Survival Analysis</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/part-3-single-episode-cox-regression-model-time-varying-predictors">Part 3: Single-episode Cox regression model with time-varying predictors</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jpl33">Jessica P.  Lougheed, PhD</a>
+/ <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/part-3-single-episode-cox-regression-model-time-varying-predictors">Read More</a>          </td>
+              </tr>
+          <tr class="even depth-0">
+                  <td  style="display:none">
+            <a href="/resources/survival-analysis">Survival Analysis</a>          </td>
+                  <td class="views-field views-field-title" >
+            <strong><a href="/tutorials/part-4-recurring-episode-cox-regression-model-time-invariant-predictors">Part 4: Recurring-episode Cox regression model with time-invariant predictors</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors" >
+            <a href="/people/jpl33">Jessica P.  Lougheed, PhD</a>
+/ <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent" >
+            <a href="/tutorials/part-4-recurring-episode-cox-regression-model-time-invariant-predictors">Read More</a>          </td>
+              </tr>
+          <tr class="odd depth-0">
+                  <td class=" cell-seperator"  style="display:none">
+            <a href="/resources/survival-analysis">Survival Analysis</a>          </td>
+                  <td class="views-field views-field-title cell-seperator" >
+            <strong><a href="/tutorials/part-5-recurring-episode-cox-regression-model-time-varying-predictors">Part 5: Recurring-episode Cox regression model with time-varying predictors</a></strong>          </td>
+                  <td class="views-field views-field-field-contributors cell-seperator" >
+            <a href="/people/jpl33">Jessica P.  Lougheed, PhD</a>
+/ <a href="/people/leb237">Lizbeth  Benson</a>
+          </td>
+                  <td class="views-field views-field-view-node buttonparent cell-seperator" >
+            <a href="/tutorials/part-5-recurring-episode-cox-regression-model-time-varying-predictors">Read More</a>          </td>
+              </tr>
+      </tbody>
+</table>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>
+</section>
+  </div>
+    </section>
+
+    
+  </div>
+</div>
+
+  <div id="footer">
+  <footer class="footer container">
+      <div class="region region-footer">
+    <section id="block-block-1" class="block block-block clearfix">
+
+      
+  <p>The Social Science Research Institute is committed to making its websites accessible to all users, and welcomes comments or suggestions on access improvements. Please send comments or suggestions on accessibility to <a href="mailto:web@ssri.psu.edu">web@ssri.psu.edu</a>.</p>
+<p>Copyright © 2019, <a href="https://www.psu.edu">The Pennsylvania State University</a> | <a href="https://www.psu.edu/legal-statements">Privacy and Legal Statements</a></p>
+<p><a href="mailto:web@ssri.psu.edu">Contact the SSRI Web</a></p>
+
+</section>
+<section id="block-block-2" class="block block-block clearfix">
+
+      
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138215252-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138215252-1');
+</script>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.ssridrupal.ssri.psu.edu/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</section>
+  </div>
+  </footer>
+  </div>
+  <script src="https://quantdev.ssri.psu.edu/sites/all/themes/bootstrap/js/bootstrap.js?py3r5g"></script>
+</body>
+</html>

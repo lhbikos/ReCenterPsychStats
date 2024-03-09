@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Analysis of Covariance | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 11 Analysis of Covariance | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Analysis of Covariance | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -1723,7 +1723,7 @@ Using the lecture and workflow (chart) as a guide, please work through all the s
 <span id="cb1392-2"><a href="ANCOVA.html#cb1392-2" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(ANCOVA_wide, <span class="at">x =</span> <span class="st">&quot;SRPed_ANV&quot;</span>, <span class="at">y =</span> <span class="st">&quot;SRPed_MLTV&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Centering&quot;</span>,</span>
 <span id="cb1392-3"><a href="ANCOVA.html#cb1392-3" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label..,</span>
 <span id="cb1392-4"><a href="ANCOVA.html#cb1392-4" tabindex="-1"></a>    ..rr.label.., <span class="at">sep =</span> <span class="st">&quot;~~~~&quot;</span>), <span class="at">color =</span> Centering))</span></code></pre></div>
-<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p>The plot looks a little funny. This is likely because there are no values below 3(ish) for ANOVA when courses were re-centered. Although we are looking for a linear relationship, the angled lines suggest there could be an interaction effect. The previous lesson (when we included all three courses [ANOVA, psychometrics, multivariate]) showed that there was. Spoiler alert – mixed design ANOVA is a better analysis for this question, but the data does allow me (statistically) to use it for a homework demonstration.</p>
 <p><strong>Are the regression lines formed by the covariate and the outcome variable the same for each group?</strong></p>
 <p>This would mean that there is no interaction between the outcome and covariate. We can test this with an ANOVA model that specifies an interaction.</p>
@@ -1905,7 +1905,7 @@ SRPed_MLTV2   5  1.75 -1.730808  2.90925 0.080228</code></pre>
 <span id="cb1412-5"><a href="ANCOVA.html#cb1412-5" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
 <span id="cb1412-6"><a href="ANCOVA.html#cb1412-6" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(emmeans_MLTV, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>,</span>
 <span id="cb1412-7"><a href="ANCOVA.html#cb1412-7" tabindex="-1"></a>        , <span class="at">y.position =</span> <span class="fu">c</span>(<span class="dv">5</span>))</span></code></pre></div>
-<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="11-ANCOVA_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 
 </div>
 </div>

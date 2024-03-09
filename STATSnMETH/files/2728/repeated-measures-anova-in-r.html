@@ -1,0 +1,1641 @@
+<!DOCTYPE html> <html style class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang=en-US><!--
+ Page saved with SingleFileZ 
+ url: https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/ 
+ saved date: Mon Oct 19 2020 16:13:52 GMT-0700 (Pacific Daylight Time)
+--><meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel=profile href=http://gmpg.org/xfn/11>
+<link rel=pingback href=https://www.datanovia.com/en/xmlrpc.php>
+<link rel=alternate hreflang=en href=https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/>
+<link rel=alternate hreflang=fr href=https://www.datanovia.com/en/fr/lessons/anova-sur-mesures-repetees-dans-r/>
+<title>Repeated Measures ANOVA in R: The Ultimate Guide - Datanovia</title>
+<meta name=robots content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel=canonical href=https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/>
+<meta property=og:locale content=en_US>
+<meta property=og:type content=article>
+<meta property=og:title content="Repeated Measures ANOVA in R: The Ultimate Guide - Datanovia">
+<meta property=og:description content="The repeated-measures ANOVA is used for analyzing data where same subjects are measured more than once. This chapter describes the different types of repeated measures ANOVA, including:    1) One-way repeated measures ANOVA, an extension of the paired-samples t-test for comparing the means of three or more levels of a within-subjects variable. 2) two-way repeated measures ANOVA used to evaluate simultaneously the effect of two within-subject factors on a continuous outcome variable.  3) three-way repeated measures ANOVA used to evaluate simultaneously the effect of three within-subject factors on a continuous outcome variable.">
+<meta property=og:url content=https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/>
+<meta property=og:site_name content=Datanovia>
+<meta property=og:image content=https://www.datanovia.com/en/wp-content/uploads/2019/05/X25660197_558627331143882_7150400490780998089_n.jpg>
+<meta property=og:image:width content=1024>
+<meta property=og:image:height content=512>
+<meta name=twitter:card content=summary_large_image>
+<script type=application/ld+json class=yoast-schema-graph>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.datanovia.com/en/#organization","name":"Datanovia","url":"https://www.datanovia.com/en/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://www.datanovia.com/en/#logo","inLanguage":"en-US","url":"https://www.datanovia.com/en/wp-content/uploads/2018/09/datanovia-logo.png","width":98,"height":99,"caption":"Datanovia"},"image":{"@id":"https://www.datanovia.com/en/#logo"}},{"@type":"WebSite","@id":"https://www.datanovia.com/en/#website","url":"https://www.datanovia.com/en/","name":"Datanovia","description":"Data Mining and Statistics for Decision Support","publisher":{"@id":"https://www.datanovia.com/en/#organization"},"potentialAction":[{"@type":"SearchAction","target":"https://www.datanovia.com/en/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/#primaryimage","inLanguage":"en-US","url":"https://www.datanovia.com/en/wp-content/uploads/2019/05/X25660197_558627331143882_7150400490780998089_n.jpg","width":1024,"height":512},{"@type":"WebPage","@id":"https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/#webpage","url":"https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/","name":"Repeated Measures ANOVA in R: The Ultimate Guide - Datanovia","isPartOf":{"@id":"https://www.datanovia.com/en/#website"},"primaryImageOfPage":{"@id":"https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/#primaryimage"},"datePublished":"2019-11-29T06:25:52+00:00","dateModified":"2019-11-29T06:25:52+00:00","inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/"]}]}]}</script>
+<link rel=alternate type=application/rss+xml title="Datanovia » Feed" href=https://www.datanovia.com/en/feed/>
+<link rel=alternate type=application/rss+xml title="Datanovia » Comments Feed" href=https://www.datanovia.com/en/comments/feed/>
+<link rel=alternate type=text/calendar title="Datanovia » iCal Feed" href="https://www.datanovia.com/en/events/?ical=1">
+<link rel=alternate type=application/rss+xml title="Datanovia » Repeated Measures ANOVA in R Comments Feed" href=https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/feed/>
+<link rel=stylesheet id=dt-sc-timepicker-addon-css-css href=stylesheet_0.css type=text/css>
+<link rel=stylesheet id=dt-animation-css-css href=stylesheet_1.css type=text/css>
+<link rel=stylesheet id=dt-sc-css-css href=stylesheet_2.css type=text/css>
+<link rel=stylesheet id=dt-woocommerce-css-css href=stylesheet_3.css type=text/css>
+<link rel=stylesheet id=layerslider-css href=stylesheet_4.css type=text/css>
+<link rel=stylesheet id=tribe-common-skeleton-style-css href=stylesheet_5.css type=text/css>
+<link rel=stylesheet id=tribe-tooltip-css href=stylesheet_6.css type=text/css>
+<link rel=stylesheet id=wp-block-library-css href=stylesheet_7.css type=text/css>
+<link rel=stylesheet id=wp-block-library-theme-css href=stylesheet_8.css type=text/css>
+<link rel=stylesheet id=wc-block-vendors-style-css href=stylesheet_9.css type=text/css>
+<link rel=stylesheet id=wc-block-style-css href=stylesheet_10.css type=text/css>
+<link rel=stylesheet id=contact-form-7-css href=stylesheet_11.css type=text/css>
+<link rel=stylesheet id=resmap-css href=stylesheet_12.css type=text/css>
+<link rel=stylesheet id=rs-plugin-settings-css href=stylesheet_13.css type=text/css>
+<link rel=stylesheet id=ewd-ufaq-style-css href=stylesheet_14.css type=text/css>
+<link rel=stylesheet id=ewd-ufaq-rrssb-css href=stylesheet_15.css type=text/css>
+<link rel=stylesheet id=wcs-timetable-css href=stylesheet_16.css type=text/css>
+<link rel=stylesheet id=wp-postratings-css href=stylesheet_17.css type=text/css>
+<link rel=stylesheet id=wpml-legacy-dropdown-0-css href=stylesheet_18.css type=text/css>
+<link rel=stylesheet id=wpml-legacy-post-translations-0-css href=stylesheet_19.css type=text/css>
+<link rel=stylesheet id=wpml-menu-item-0-css href=stylesheet_20.css type=text/css>
+<link rel=stylesheet id=cms-navigation-style-base-css href=stylesheet_21.css type=text/css media=screen>
+<link rel=stylesheet id=cms-navigation-style-css href=stylesheet_22.css type=text/css media=screen>
+<link rel=stylesheet id=mr-frontend-style-css href=stylesheet_23.css type=text/css>
+<link rel=stylesheet id=font-awesome-css href=stylesheet_24.css type=text/css>
+<link rel=stylesheet id=parent-style-css href=stylesheet_25.css type=text/css>
+<link rel=stylesheet id=child-style-css href=stylesheet_26.css type=text/css>
+<link rel=stylesheet id=bsf-Defaults-css href=stylesheet_27.css type=text/css>
+<link rel=stylesheet id=lms-style-css href=stylesheet_28.css type=text/css>
+<link rel=stylesheet id=custom-font-awesome-css href=stylesheet_29.css type=text/css>
+<link rel=stylesheet id=stoke-gap-icons-css href=stylesheet_30.css type=text/css>
+<link rel=stylesheet id=lms-skin-css href=stylesheet_31.css type=text/css>
+<style id=lms-skin-inline-css>#main-menu{margin:10px 0px 30px!important;width:100%!important}</style>
+<link rel=stylesheet id=font-raleway-css href=stylesheet_32.css type=text/css>
+<link rel=stylesheet id=font-opensans-css href=stylesheet_33.css type=text/css>
+<link rel=stylesheet id=font-dancingscript-css href=stylesheet_34.css type=text/css>
+<link rel=stylesheet id=magnific-popup-css href=stylesheet_35.css type=text/css>
+<link rel=stylesheet id=lms-gutenberg-css href=stylesheet_36.css type=text/css>
+<link rel=stylesheet id=jquery-ui-css href=stylesheet_37.css type=text/css>
+<link rel=stylesheet id=responsive-css href=stylesheet_38.css type=text/css>
+<link rel=stylesheet id=ws-plugin--s2member-css href=stylesheet_39.css type=text/css>
+<meta name=generator content="Powered by LayerSlider 6.7.6 - Multi-Purpose, Responsive, Parallax, Mobile-Friendly Slider Plugin for WordPress.">
+<link rel=https://api.w.org/ href=https://www.datanovia.com/en/wp-json/><link rel=alternate type=application/json href=https://www.datanovia.com/en/wp-json/wp/v2/dt_lessons/10873><link rel=EditURI type=application/rsd+xml title=RSD href=https://www.datanovia.com/en/xmlrpc.php?rsd>
+<link rel=wlwmanifest type=application/wlwmanifest+xml href=https://www.datanovia.com/en/wp-includes/wlwmanifest.xml>
+<meta name=generator content="WordPress 5.5.1">
+<meta name=generator content="WooCommerce 4.6.0">
+<link rel=shortlink href="https://www.datanovia.com/en/?p=10873">
+<link rel=alternate type=application/json+oembed href="https://www.datanovia.com/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.datanovia.com%2Fen%2Flessons%2Frepeated-measures-anova-in-r%2F">
+<link rel=alternate type=text/xml+oembed href="https://www.datanovia.com/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.datanovia.com%2Fen%2Flessons%2Frepeated-measures-anova-in-r%2F&amp;format=xml">
+<meta name=generator content="WPML ver:4.4.3 stt:1,4;">
+<meta name=tec-api-version content=v1><meta name=tec-api-origin content=https://www.datanovia.com/en><link rel=https://theeventscalendar.com/ href=https://www.datanovia.com/en/wp-json/tribe/events/v1/>
+
+<meta name=generator content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress.">
+<meta name=generator content="Powered by Slider Revolution 6.2.23 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
+<style>.at-icon-wrapper{overflow:hidden}a .at-icon-wrapper{cursor:pointer}#_atssh{width:1px!important;height:1px!important;border:0!important}#MathJax_Message{position:fixed;left:1px;bottom:2px;background-color:#E6E6E6;border:1px solid #959595;margin:0px;padding:2px 8px;z-index:102;color:black;font-size:80%;width:auto;white-space:nowrap}.at-share-dock.atss{top:auto;left:0;right:0;bottom:0;width:100%;max-width:100%;z-index:1000200;box-shadow:0 0 1px 1px #e2dfe2}.at-share-dock a{color:#fff;text-decoration:none;box-sizing:content-box;-webkit-box-sizing:content-box;-moz-box-sizing:content-box}.at-share-dock a:hover{width:auto}.at-share-dock .at4-count{padding:5px 0 0;background:#fff;font-family:Helvetica neue,arial}.at-share-dock .at4-count span{width:100%}.at-share-dock .at4-count .at4-share-label{letter-spacing:1px}.at-share-dock .at4-count .at4-counter{top:2px;position:relative;display:block}.at-share-dock.at-shfs-small .at4-count{height:26px;line-height:1;padding-top:3px}.at-share-dock.at-shfs-small .at4-count .at4-share-label{font-size:8px}.at-share-dock.at-shfs-small .at4-count .at4-counter{font-size:14px}.at-share-dock.at-shfs-small .at-share-btn .at-icon-wrapper{padding:4px 0}.atss{position:fixed;top:20%;width:3pc;z-index:100020;background:none}.at-share-open-control-left{position:fixed;top:20%;z-index:100020;left:0;width:22px}.atss-left{left:0;float:left;right:auto}.atss .at-share-btn,.atss a{position:relative;display:block;margin:0;outline-offset:-1px;text-align:center;float:left;transition:width .15s ease-in-out;overflow:hidden;background:#e8e8e8;z-index:100030;cursor:pointer}.at-share-btn::-moz-focus-inner{border:0;padding:0}.atss .at-share-btn{border:0;padding:0}.atss .at-share-btn:focus,.atss .at-share-btn:hover,.atss a:focus,.atss a:hover{width:4pc}.atss .at-share-btn .at-icon-wrapper{display:block}.atss .at-share-btn:last-child,.atss a:last-child{border:none}.atss .at-share-btn span .at-icon{position:relative;top:0;left:0;display:block;background-repeat:no-repeat;background-position:50% 50%;line-height:2pc;border:none;padding:0;margin:0 auto;overflow:hidden;cursor:pointer}@keyframes atRecommendedJumboAnimatedBackground{0%{transform:scale(1,1)}to{transform:scale(1.1,1.1)}}.at4-thankyou-background .at4lb-inner{position:relative;width:100%;height:100%}.at4-whatsnext .at-whatsnext-content{height:90pt;position:relative}.at4-whatsnext .at-whatsnext-close-control{position:absolute;top:0;right:0;display:block;width:20px;height:20px;line-height:20px;margin:0 5px 0 0;padding:0;text-indent:-9999em}.at-whatsnext-open-control{position:fixed;bottom:0;z-index:100020}.addthis-smartlayers,div#at4-share{padding:0;margin:0}#at4-share-label,#at4-whatsnext-label{padding:0;border:none;background:none;position:absolute;top:0;left:0;height:0;width:0;overflow:hidden;text-indent:-9999em}.addthis-smartlayers .at4-arrow:hover{cursor:pointer}.addthis-smartlayers .at4-arrow:after,.addthis-smartlayers .at4-arrow:before{content:none}div.at4-arrow{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAoCAYAAABpYH0BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAV1JREFUeNrsmesOgyAMhQfxwfrofTM3E10ME2i5Oeppwr9a5OMUCrh1XV+wcvNAAIAA+BiAzrmtUWln27dbjEcC3AdODfo0BdEPhmcO4nIDvDNELi2jggk4/k8dT7skfeKzWIEd4VUpMQKvNB7X+OZSmAZkATWC1xvipbpnLmOosbJZC08CkAeA4E6qFUEMwLAGnlSBPCE8lW8CYnZTcimH2HoT7kSFOx5HBmCnDhTIu1p5s98G+QZrxGPhZVMY1vgyAQaAAAiAAAgDQACcBOD+BvJtBWfRy7NpJK5tBe4FNzXokywV734wPHMQlxvgnSGyNoUP/2ACjv/7iSeYKO3YWKzAjvCqlBiBVxqPa3ynexNJwOsN8TJbzL6JNIYYXWpMv4lIIAZgWANPqkCeEJ7KNwExu8lpLlSpAVQarO77TyKdBsyRPuwV0h0gmoGnTWFYzVkYBoAA+I/2FmAAt6+b5XM9mFkAAAAASUVORK5CYII=);background-repeat:no-repeat;width:20px;height:20px;margin:0;padding:0;overflow:hidden;text-indent:-9999em;text-align:left;cursor:pointer}div.at4-arrow.at-down{background-position:-60px 0}div.at4-arrow.at-up{background-position:-40px 0}.at4-visually-hidden{position:absolute;clip:rect(1px,1px,1px,1px);padding:0;border:0;overflow:hidden}.at4-hide{display:none!important;opacity:0!important}.addthis-animated{animation-fill-mode:both;animation-timing-function:ease-out;animation-duration:.3s}.slideInLeft.addthis-animated{animation-duration:.4s}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeInDown{0%{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeInLeft{0%{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}@keyframes fadeInRight{0%{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOutUp{0%{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-20px)}}@keyframes fadeOutDown{0%{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(20px)}}@keyframes fadeOutLeft{0%{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-20px)}}@keyframes fadeOutRight{0%{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(20px)}}@keyframes slideInUp{0%{transform:translateY(1500px)}0%,to{opacity:1}to{transform:translateY(0)}}.slideInUp{animation-name:slideInUp}.slideInUp.addthis-animated{animation-duration:.4s}@keyframes slideInDown{0%{transform:translateY(-850px)}0%,to{opacity:1}to{transform:translateY(0)}}@keyframes slideOutUp{0%{transform:translateY(0)}0%,to{opacity:1}to{transform:translateY(-250px)}}@keyframes slideOutUpFast{0%{transform:translateY(0)}0%,to{opacity:1}to{transform:translateY(-1250px)}}@keyframes slideOutDown{0%{transform:translateY(0)}0%,to{opacity:1}to{transform:translateY(350px)}}@keyframes slideOutDownFast{0%{transform:translateY(0)}0%,to{opacity:1}to{transform:translateY(1250px)}}@keyframes slideInLeft{0%{opacity:0;transform:translateX(-850px)}to{transform:translateX(0)}}.slideInLeft{animation-name:slideInLeft}@keyframes slideInRight{0%{opacity:0;transform:translateX(1250px)}to{transform:translateX(0)}}@keyframes slideOutLeft{0%{transform:translateX(0)}to{opacity:0;transform:translateX(-350px)}}@keyframes slideOutRight{0%{transform:translateX(0)}to{opacity:0;transform:translateX(350px)}}.cc-color-override--1364123673.cc-window{color:rgb(92,114,145);background-color:rgb(234,247,247)}</style><style id=at4-whatsnext-offset media=screen>#at4-share,#at4-soc{top:20%!important;bottom:auto}#at4-wnoc{left:0px!important;bottom:0px!important;top:auto}</style><style>@keyframes ellipses{to{width:1.25em}}#at-expanded-menu-host *{box-sizing:border-box}#at-expanded-menu-host .at-expanded-menu{font-family:helvetica neue,helvetica,arial,sans-serif}#at-expanded-menu-host .at-expanded-menu-mask{background-color:rgba(0,0,0,.9);position:fixed;top:0;right:0;left:0;bottom:0;z-index:16777270}#at-expanded-menu-host .at-expanded-menu{position:absolute;top:10%;left:50%;width:100%;margin-left:-20pc;overflow-x:hidden;overflow-y:auto;padding-top:40px;z-index:16777271;text-align:left;background:transparent}#at-expanded-menu-host .at-expanded-menu-fade{width:100%;height:151px;position:fixed;bottom:0;left:0;z-index:16777272;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,#000 100%)}#at-expanded-menu-host .at-expanded-menu-close{position:fixed;right:20px;top:20px;width:30px;height:30px;margin:0;padding:0;z-index:16777274;background:none;background-color:#fff;border:none;border-radius:50%;color:#000;font-family:arial,sans-serif;font-size:11px;font-weight:400;line-height:normal;cursor:pointer;transition:all .4s ease}#at-expanded-menu-host .at-expanded-menu-close:after{content:'';display:inline-block;height:22px}#at-expanded-menu-host .at-expanded-menu-close:hover{background-color:#666;color:#fff}@media screen and (max-width:950px){#at-expanded-menu-host .at-expanded-menu:not(.at-expanded-menu-email){margin-left:-289px}}@media screen and (max-width:569px){#at-expanded-menu-host .at-expanded-menu:not(.at-expanded-menu-email){margin-left:-214px}}@media screen and (max-width:449px){#at-expanded-menu-host .at-expanded-menu:not(.at-expanded-menu-email){margin-left:-180px}}@media screen and (max-width:369px){#at-expanded-menu-host .at-expanded-menu:not(.at-expanded-menu-email){margin-left:-10pc}}@media screen and (max-width:347px){#at-expanded-menu-host .at-expanded-menu-close{right:10px;top:10px}}</style><link href=images/5.png rel="shortcut icon" type=image/x-icon><style>.sf-hidden{display:none!important}</style></head>
+<body class="dt_lessons-template-default single single-dt_lessons postid-10873 wp-embed-responsive theme-lms woocommerce-js tribe-js wpb-js-composer js-comp-ver-6.2.0 vc_responsive"><noscript>
+					<div style="width: 302px;">
+						<div style="width: 302px; height: 422px; position: relative;">
+							<div style="width: 302px; height: 422px; position: absolute;">
+								<iframe src="https://www.google.com/recaptcha/api/fallback?k=6LdNo3EUAAAAAEQybBUhVO50L0BaecKzfRlj7o6q" frameborder="0" scrolling="no" style="width: 302px; height:422px; border-style: none;"></iframe>
+							</div>
+						</div>
+						<div style="border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px; height: 60px; width: 300px;">
+							<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px !important; height: 40px !important; border: 1px solid #c1c1c1 !important; margin: 10px 25px !important; padding: 0px !important; resize: none !important;"></textarea>
+						</div>
+					</div>
+				</noscript><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript><div id=MathJax_Message style=display:none></div><div role=dialog aria-live=polite aria-label=cookieconsent aria-describedby=cookieconsent:desc class="cc-window cc-floating cc-type-info cc-theme-block cc-bottom cc-left cc-color-override--1364123673 cc-invisible" style=display:none><span id=cookieconsent:desc class=cc-message>This website uses cookies to ensure you get the best experience on our website, to personalize content, ads, and to analyze our traffic. By using our site you agree to our use of cookies </span><div class=cc-compliance></div></div>
+<div class=wrapper style=height:auto!important>
+ 
+ <div class=inner-wrapper style=height:auto!important>
+ 
+ <div id=header-wrapper-sticky-wrapper class="sticky-wrapper is-sticky" style=height:229px><div id=header-wrapper style=position:fixed;top:0px;height:51px> 
+ <header id=header class="header1 header-animate" style=top:0px>
+ 
+ <div class=container>
+ 
+ <div id=logo>
+ <a href=https://www.datanovia.com/en/ title=Datanovia>
+ <img class="normal_logo sf-hidden" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=Datanovia title=Datanovia>
+ <img class=retina_logo src=images/7.png alt=Datanovia title=Datanovia style=width:98px;height:99px>
+ </a> </div>
+ 
+ <div class=header-register> 
+ <ul class=dt-sc-custom-login><li><a href=https://www.datanovia.com/en/wp-login.php title=Login><i class="fa fa-user"></i>Login</a></li><span> | </span><li><a href="https://www.datanovia.com/en/wp-login.php?action=register" title=Register><i class="fa fa-user-plus"></i>Register</a><li class=dt-sc-cart>
+ <a href=https://www.datanovia.com/en/cart/><i class="fa fa-shopping-cart"></i><span class=cart-count>0</span></a>
+ </ul> </div>
+ 
+ 
+ <nav id=main-menu>
+ <div class="dt-menu-toggle sf-hidden" id=dt-menu-toggle>
+ Menu <span class=dt-menu-toggle-icon></span>
+ </div>
+ <ul id=menu-top-menu class=menu><li id=menu-item-5028 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-depth-0 menu-item-simple-parent"><a href=https://www.datanovia.com/en/><i class="fa fa-home sf-hidden"></i>Home</a></li>
+<li id=menu-item-7595 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-depth-0 menu-item-simple-parent"><span class=nolink-menu>Learn</span>
+<ul class=sub-menu style=display:none>
+ <li id=menu-item-4749 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1"></li>
+ <li id=menu-item-8057 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-1"></li>
+ <li id=menu-item-7457 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1"></li>
+</ul>
+<a class="dt-menu-expand sf-hidden">+</a></li>
+<li id=menu-item-8147 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-depth-0 menu-item-simple-parent"><span class=nolink-menu>Topics</span>
+<ul class=sub-menu style=opacity:1;display:none>
+ <li id=menu-item-8151 class="menu-item menu-item-type-post_type menu-item-object-post menu-item-depth-1"></li>
+</ul>
+<a class="dt-menu-expand sf-hidden">+</a></li>
+<li id=menu-item-7450 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-0 menu-item-simple-parent"><a href=https://www.datanovia.com/en/pricing-2/>Pricing</a></li>
+<li id=menu-item-4338 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-depth-0 menu-item-megamenu-parent megamenu-3-columns-group"><a href=https://www.datanovia.com/en/shop/><i class="fa fa-shopping-cart sf-hidden"></i>Shop</a>
+<div class=megamenu-child-container style=left:-364.967px;display:none>
+<ul class=sub-menu>
+ 
+ 
+ 
+</ul>
+<a class=dt-menu-expand>+</a>
+</div>
+<a class="dt-menu-expand sf-hidden">+</a></li>
+<li id=menu-item-16331 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-0 menu-item-simple-parent"><a href=https://www.datanovia.com/en/data-science-and-online-business-resources/>Resources</a></li>
+<li id=menu-item-4355 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-0 menu-item-simple-parent"><a href=https://www.datanovia.com/en/about/>About</a></li>
+<li id=menu-item-4300 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-0 menu-item-simple-parent"><a href=https://www.datanovia.com/en/contact-2/>Contact</a></li>
+<li id=menu-item-wpml-ls-58-en class="menu-item-language menu-item-language-current menu-item wpml-ls-slot-58 wpml-ls-item wpml-ls-item-en wpml-ls-current-language wpml-ls-menu-item wpml-ls-first-item menu-item-type-wpml_ls_menu_item menu-item-object-wpml_ls_menu_item menu-item-has-children menu-item-depth-0 menu-item-simple-parent"><a href=https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/><img class=wpml-ls-flag src=images/12.png alt=English></a>
+<ul class=sub-menu style=display:none>
+ <li id=menu-item-wpml-ls-58-fr class="menu-item-language menu-item wpml-ls-slot-58 wpml-ls-item wpml-ls-item-fr wpml-ls-menu-item wpml-ls-last-item menu-item-type-wpml_ls_menu_item menu-item-object-wpml_ls_menu_item menu-item-depth-1"></li>
+</ul>
+<a class="dt-menu-expand sf-hidden">+</a></li>
+</ul> </nav>
+ </div> 
+ </header> </div></div>
+ 
+ 
+ <div id=main style=height:auto!important>
+ 
+ 
+ 
+ <section class=main-title-section-wrapper style=height:auto!important><div style=width:100%;height:auto;clear:both;text-align:center class=google-auto-placed><ins style="display:block;margin:10px auto;background-color:transparent;height:280px" data-ad-format=auto class="adsbygoogle adsbygoogle-noablate" data-ad-client=ca-pub-5474463749888038 data-adsbygoogle-status=done><ins id=aswift_4_expand style=display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent><ins id=aswift_4_anchor style="display:block;border:medium none;height:280px;margin:0px;padding:0px;position:relative;visibility:visible;width:1200px;background-color:transparent;overflow:visible"></ins></ins></ins></div>	<div class=container> <div class=main-title-section><h1>Comparing Multiple Means in R</h1><div class=breadcrumb>
+ <a href=https://www.datanovia.com/en/>Home</a><span class="fa default"> </span><a href=https://www.datanovia.com/en/courses/comparing-multiple-means-in-r/>Comparing Multiple Means in R</a><span class="fa default"> </span><span class=current>Repeated Measures ANOVA in R</span></div> </div> <div class=header-search> 
+<form id=searchform class=searchform action=https://www.datanovia.com/en/>
+ <input id=s name=s type=text value class=text_input placeholder=Search>
+ 
+ <input type=submit value>
+</form> </div>	</div></section> 
+ 
+ <div class=container>
+ 
+ <section id=primary class=content-full-width style=height:auto!important>
+ <div class="column dt-sc-two-third first dt-sc-lessons-content-container" style=height:auto!important;min-height:0px!important>
+ <article id=post-10873 class="dt-sc-lesson-single post-10873 dt_lessons type-dt_lessons status-publish has-post-thumbnail hentry" style=height:auto!important>
+ <h2>Repeated Measures ANOVA in R </h2>
+ 
+ 
+ <div class=lesson-metadata>
+ 
+ 
+ 
+ 
+ <p><i class="fa fa-clock-o"> </i> 25 mins </p> <p> <i class="fa fa-book"> </i>
+ <a href=https://www.datanovia.com/en/courses/comparing-multiple-means-in-r/>Comparing Multiple Means in R</a> </p>
+ 
+ </div>
+ 
+ <div class=dt-sc-clear></div>
+ <div class=dt-sc-hr-invisible-small></div>
+ <div class=entry style=height:auto!important>
+ <div id=rdoc style=height:auto!important>
+<p>The <strong>repeated-measures ANOVA</strong> is used for analyzing data where same subjects are measured more than once. This test is also referred to as a <em>within-subjects ANOVA</em> or <em>ANOVA with repeated measures</em>. The “within-subjects” term means that the same individuals are measured on the same outcome variable under different time points or conditions.</p>
+<p>For example, you might have measured 10 individuals’ self-esteem score (the outcome or dependent variable) on three time points during a specific diet to determine whether their self-esteem improved.</p>
+<p>This chapter describes the different types of repeated measures ANOVA, including:</p>
+<ul>
+<li><strong>One-way repeated measures ANOVA</strong>, an extension of the paired-samples t-test for comparing the means of three or more levels of a <em>within-subjects</em> variable.</li>
+<li><strong>two-way repeated measures ANOVA</strong> used to evaluate simultaneously the effect of two within-subject factors on a continuous outcome variable.</li>
+<li><strong>three-way repeated measures ANOVA</strong> used to evaluate simultaneously the effect of three within-subject factors on a continuous outcome variable.</li>
+</ul>
+<div class=block>
+<p>The main goal of two-way and three-way repeated measures ANOVA is, respectively, to evaluate if there is a statistically significant interaction effect between two and three within-subjects factors in explaining a continuous outcome variable.</p>
+</div>
+<p>You will learn how to:</p>
+<ul>
+<li><strong>Compute and interpret the different repeated measures ANOVA in R</strong>.</li>
+<li><strong>Check repeated measures ANOVA test assumptions</strong></li>
+<li><strong>Perform post-hoc tests</strong>, multiple pairwise comparisons between groups to identify which groups are different</li>
+<li><strong>Visualize the data</strong> using box plots, add ANOVA and pairwise comparisons p-values to the plot</li>
+</ul>
+ <center style=height:auto!important>
+ <br>
+ <div class=annonce_adaptable_top>
+ 
+ <ins class=adsbygoogle style=display:block;height:280px data-ad-client=ca-pub-5474463749888038 data-ad-slot=2200070562 data-ad-format=auto data-full-width-responsive=true data-adsbygoogle-status=done><ins id=aswift_0_expand style=display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:594px;background-color:transparent><ins id=aswift_0_anchor style="display:block;border:medium none;height:280px;margin:0px;padding:0px;position:relative;visibility:visible;width:594px;background-color:transparent;overflow:visible"></ins></ins></ins>
+ 
+ </div>
+ </center>
+ <br>
+ <p>Contents:</p>
+<div id=TOC>
+<ul>
+<li><a href=#assumptions>Assumptions</a></li>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#one-way-repeated-measures-anova>One-way repeated measures ANOVA</a>
+<ul>
+<li><a href=#data-preparation>Data preparation</a></li>
+<li><a href=#summary-statistics>Summary statistics</a></li>
+<li><a href=#visualization>Visualization</a></li>
+<li><a href=#check-assumptions>Check assumptions</a></li>
+<li><a href=#computation>Computation</a></li>
+<li><a href=#post-hoc-tests>Post-hoc tests</a></li>
+<li><a href=#report>Report</a></li>
+</ul>
+</li>
+<li><a href=#two-way-repeated-measures-anova>Two-way repeated measures ANOVA</a>
+<ul>
+<li><a href=#data-preparation-1>Data preparation</a></li>
+<li><a href=#summary-statistics-1>Summary statistics</a></li>
+<li><a href=#visualization-1>Visualization</a></li>
+<li><a href=#chek-assumptions>Chek assumptions</a></li>
+<li><a href=#computation-1>Computation</a></li>
+<li><a href=#post-hoc-tests-1>Post-hoc tests</a></li>
+<li><a href=#report-1>Report</a></li>
+</ul>
+</li>
+<li><a href=#three-way>Three-way repeated measures ANOVA</a>
+<ul>
+<li><a href=#data-preparation-2>Data preparation</a></li>
+<li><a href=#summary-statistics-2>Summary statistics</a></li>
+<li><a href=#visualization-2>Visualization</a></li>
+<li><a href=#check-assumptions-1>Check assumptions</a></li>
+<li><a href=#computation-2>Computation</a></li>
+<li><a href=#post-hoc-tests-2>Post-hoc tests</a></li>
+<li><a href=#report-2>Report</a></li>
+</ul>
+</li>
+<li><a href=#summary>Summary</a></li>
+</ul>
+</div>
+<div class=dt-sc-hr-invisible-medium></div>
+<div class="dt-sc-ico-content type1"><div class=custom-icon><a href=https://www.datanovia.com/en/product/practical-statistics-in-r-for-comparing-groups-numerical-variables/ target=_blank><span class="fa fa-book"></span></a></div><h4><a href=https://www.datanovia.com/en/product/practical-statistics-in-r-for-comparing-groups-numerical-variables/ target=_blank> Related Book </a></h4>Practical Statistics in R II - Comparing Groups: Numerical Variables</div>
+<div class=dt-sc-hr-invisible-medium></div>
+<div id=assumptions class="section level2">
+<h2>Assumptions</h2>
+<p>The repeated measures ANOVA makes the following assumptions about the data:</p>
+<ul>
+<li><strong>No significant outliers</strong> in any cell of the design. This can be checked by visualizing the data using box plot methods and by using the function <code>identify_outliers()</code> [rstatix package].</li>
+<li><strong>Normality</strong>: the outcome (or dependent) variable should be approximately normally distributed in each cell of the design. This can be checked using the <strong>Shapiro-Wilk normality test</strong> (<code>shapiro_test()</code> [rstatix]) or by visual inspection using <strong>QQ plot</strong> (<code>ggqqplot()</code> [ggpubr package]).</li>
+<li><strong>Assumption of sphericity</strong>: the variance of the differences between groups should be equal. This can be checked using the <strong>Mauchly’s test of sphericity</strong>, which is automatically reported when using the R function <code>anova_test()</code> [rstatix package]. Read more in Chapter @ref(mauchly-s-test-of-sphericity-in-r).</li>
+</ul>
+<p>Before computing repeated measures ANOVA test, you need to perform some preliminary tests to check if the assumptions are met.</p>
+<div class=warning>
+<p>Note that, if the above assumptions are not met there are a non-parametric alternative (<em>Friedman test</em>) to the one-way repeated measures ANOVA.</p>
+<p>Unfortunately, there are no non-parametric alternatives to the two-way and the three-way repeated measures ANOVA. Thus, in the situation where the assumptions are not met, you could consider running the two-way/three-way repeated measures ANOVA on the transformed and non-transformed data to see if there are any meaningful differences.</p>
+<p>If both tests lead you to the same conclusions, you might not choose to transform the outcome variable and carry on with the two-way/three-way repeated measures ANOVA on the original data.</p>
+<p>It’s also possible to perform robust ANOVA test using the <strong>WRS2</strong> R package.</p>
+<p>No matter your choice, you should report what you did in your results.</p>
+</div>
+</div>
+<div id=prerequisites class="section level2">
+<h2>Prerequisites</h2>
+<p>Make sure that you have installed the following R packages:</p>
+<ul>
+<li><code>tidyverse</code> for data manipulation and visualization</li>
+<li><code>ggpubr</code> for creating easily publication ready plots</li>
+<li><code>rstatix</code> provides pipe-friendly R functions for easy statistical analyses</li>
+<li><code>datarium</code>: contains required data sets for this chapter</li>
+</ul>
+<p>Start by loading the following R packages:</p>
+<pre class=r><code class=hljs><span class=hljs-keyword>library</span>(tidyverse)
+<span class=hljs-keyword>library</span>(ggpubr)
+<span class=hljs-keyword>library</span>(rstatix)</code></pre>
+<p>Key R functions:</p>
+<ul>
+<li><code>anova_test()</code> [rstatix package], a wrapper around <code>car::Anova()</code> for making easy the computation of repeated measures ANOVA. Key arguments for performing repeated measures ANOVA:
+<ul>
+<li><code>data</code>: data frame</li>
+<li><code>dv</code>: (numeric) the dependent (or outcome) variable name.</li>
+<li><code>wid</code>: variable name specifying the case/sample identifier.</li>
+<li><code>within</code>: within-subjects factor or grouping variable</li>
+</ul>
+</li>
+<li><code>get_anova_table()</code> [rstatix package]. Extracts the ANOVA table from the output of <code>anova_test()</code>. It returns ANOVA table that is automatically corrected for eventual deviation from the sphericity assumption. The default is to apply automatically the Greenhouse-Geisser sphericity correction to only within-subject factors violating the sphericity assumption (i.e., Mauchly’s test p-value is significant, p &lt;= 0.05). Read more in Chapter @ref(mauchly-s-test-of-sphericity-in-r).</li>
+</ul>
+</div>
+<div id=one-way-repeated-measures-anova class="section level2">
+<h2>One-way repeated measures ANOVA</h2>
+<div id=data-preparation class="section level3">
+<h3>Data preparation</h3>
+<p>We’ll use the self-esteem score dataset measured over three time points. The data is available in the datarium package.</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Data preparation</span>
+<span class=hljs-comment># Wide format</span>
+data(<span class=hljs-string>"selfesteem"</span>, package = <span class=hljs-string>"datarium"</span>)
+head(selfesteem, <span class=hljs-number>3</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 4
+##      id    t1    t2    t3
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1  4.01  5.18  7.11
+## 2     2  2.56  6.91  6.31
+## 3     3  3.24  4.44  9.78</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Gather columns t1, t2 and t3 into long format</span>
+<span class=hljs-comment># Convert id and time into factor variables</span>
+selfesteem &lt;- selfesteem %&gt;%
+  gather(key = <span class=hljs-string>"time"</span>, value = <span class=hljs-string>"score"</span>, t1, t2, t3) %&gt;%
+  convert_as_factor(id, time)
+head(selfesteem, <span class=hljs-number>3</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 3
+##   id    time  score
+##   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
+## 1 1     t1     4.01
+## 2 2     t1     2.56
+## 3 3     t1     3.24</code></pre>
+<div class=block>
+<p>The one-way repeated measures ANOVA can be used to determine whether the means self-esteem scores are significantly different between the three time points.</p>
+</div>
+</div>
+<div id=summary-statistics class="section level3">
+<h3>Summary statistics</h3>
+<p>Compute some summary statistics of the self-esteem <code>score</code> by groups (<code>time</code>): mean and sd (standard deviation)</p>
+<pre class=r><code class=hljs>selfesteem %&gt;%
+  group_by(time) %&gt;%
+  get_summary_stats(score, type = <span class=hljs-string>"mean_sd"</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 5
+##   time  variable     n  mean    sd
+##   &lt;fct&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 t1    score       10  3.14 0.552
+## 2 t2    score       10  4.93 0.863
+## 3 t3    score       10  7.64 1.14</code></pre>
+</div>
+<div id=visualization class="section level3">
+<h3>Visualization</h3>
+<p>Create a box plot and add points corresponding to individual values:</p>
+<pre class=r><code class=hljs>bxp &lt;- ggboxplot(selfesteem, x = <span class=hljs-string>"time"</span>, y = <span class=hljs-string>"score"</span>, add = <span class=hljs-string>"point"</span>)
+bxp</code></pre>
+<p><img src=images/10.png width=336></p>
+</div>
+<div id=check-assumptions class="section level3">
+<h3>Check assumptions</h3>
+<div id=outliers class="section level4">
+<h4>Outliers</h4>
+<p>Outliers can be easily identified using box plot methods, implemented in the R function <code>identify_outliers()</code> [rstatix package].</p>
+<pre class=r><code class=hljs>selfesteem %&gt;%
+  group_by(time) %&gt;%
+  identify_outliers(score)</code></pre>
+<pre><code class=hljs>## # A tibble: 2 x 5
+##   time  id    score is.outlier is.extreme
+##   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
+## 1 t1    6      2.05 TRUE       FALSE     
+## 2 t2    2      6.91 TRUE       FALSE</code></pre>
+<div class=success>
+<p>There were no extreme outliers.</p>
+</div>
+<div class=warning>
+<p>Note that, in the situation where you have extreme outliers, this can be due to: 1) data entry errors, measurement errors or unusual values.</p>
+<p>You can include the outlier in the analysis anyway if you do not believe the result will be substantially affected. This can be evaluated by comparing the result of the ANOVA with and without the outlier.</p>
+<p>It’s also possible to keep the outliers in the data and perform robust ANOVA test using the WRS2 package.</p>
+</div>
+</div>
+<div id=normality-assumption class="section level4">
+<h4>Normality assumption</h4>
+<p>The normality assumption can be checked by computing Shapiro-Wilk test for each time point. If the data is normally distributed, the p-value should be greater than 0.05.</p>
+<pre class=r><code class=hljs>selfesteem %&gt;%
+  group_by(time) %&gt;%
+  shapiro_test(score)</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 4
+##   time  variable statistic     p
+##   &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+## 1 t1    score        0.967 0.859
+## 2 t2    score        0.876 0.117
+## 3 t3    score        0.923 0.380</code></pre>
+<div class=success>
+<p>The self-esteem score was normally distributed at each time point, as assessed by Shapiro-Wilk’s test (p &gt; 0.05).</p>
+</div>
+<p>Note that, if your sample size is greater than 50, the normal QQ plot is preferred because at larger sample sizes the Shapiro-Wilk test becomes very sensitive even to a minor deviation from normality.</p>
+<p>QQ plot draws the correlation between a given data and the normal distribution. Create QQ plots for each time point:</p>
+<pre class=r><code class=hljs>ggqqplot(selfesteem, <span class=hljs-string>"score"</span>, facet.by = <span class=hljs-string>"time"</span>)</code></pre>
+<p><img src=images/14.png width=480></p>
+<div class=success>
+<p>From the plot above, as all the points fall approximately along the reference line, we can assume normality.</p>
+</div>
+</div>
+<div id=assumption-of-sphericity class="section level4">
+<h4>Assumption of sphericity</h4>
+<p>As mentioned in previous sections, the assumption of sphericity will be automatically checked during the computation of the ANOVA test using the R function <code>anova_test()</code> [rstatix package]. The Mauchly’s test is internally used to assess the sphericity assumption.</p>
+<p>By using the function <code>get_anova_table()</code> [rstatix] to extract the ANOVA table, the Greenhouse-Geisser sphericity correction is automatically applied to factors violating the sphericity assumption.</p>
+</div>
+</div>
+<div id=computation class="section level3">
+<h3>Computation</h3>
+<pre class=r><code class=hljs>res.aov &lt;- anova_test(data = selfesteem, dv = score, wid = id, within = time)
+get_anova_table(res.aov)</code></pre>
+<pre><code class=hljs>## ANOVA Table (type III tests)
+## 
+##   Effect DFn DFd    F        p p&lt;.05   ges
+## 1   time   2  18 55.5 2.01e-08     * 0.829</code></pre>
+<div class=success>
+<p>The self-esteem score was statistically significantly different at the different time points during the diet, F(2, 18) = 55.5, p &lt; 0.0001, eta2[g] = 0.83.</p>
+</div>
+<p>where,</p>
+<ul>
+<li><code>F</code> Indicates that we are comparing to an F-distribution (F-test); <code>(2, 18)</code> indicates the degrees of freedom in the numerator (DFn) and the denominator (DFd), respectively; <code>55.5</code> indicates the obtained F-statistic value</li>
+<li><code>p</code> specifies the p-value</li>
+<li><code>ges</code> is the generalized effect size (amount of variability due to the within-subjects factor)</li>
+</ul>
+</div>
+<div id=post-hoc-tests class="section level3">
+<h3>Post-hoc tests</h3>
+<p>You can perform multiple <strong>pairwise paired t-tests</strong> between the levels of the within-subjects factor (here <code>time</code>). P-values are adjusted using the Bonferroni multiple testing correction method.</p>
+<pre class=r><code class=hljs><span class=hljs-comment># pairwise comparisons</span>
+pwc &lt;- selfesteem %&gt;%
+  pairwise_t_test(
+    score ~ time, paired = <span class=hljs-literal>TRUE</span>,
+    p.adjust.method = <span class=hljs-string>"bonferroni"</span>
+    )
+pwc</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 10
+##   .y.   group1 group2    n1    n2 statistic    df           p    p.adj p.adj.signif
+## * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       
+## 1 score t1     t2        10    10     -4.97     9 0.000772    0.002    **          
+## 2 score t1     t3        10    10    -13.2      9 0.000000334 0.000001 ****        
+## 3 score t2     t3        10    10     -4.87     9 0.000886    0.003    **</code></pre>
+<div class=success>
+<p>All the pairwise differences are statistically significant.</p>
+</div>
+</div>
+<div id=report class="section level3">
+<h3>Report</h3>
+<p>We could report the result as follow:</p>
+<p>The self-esteem score was statistically significantly different at the different time points, F(2, 18) = 55.5, p &lt; 0.0001, generalized eta squared = 0.82.</p>
+<p>Post-hoc analyses with a Bonferroni adjustment revealed that all the pairwise differences, between time points, were statistically significantly different (p &lt;= 0.05).</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Visualization: box plots with p-values</span>
+pwc &lt;- pwc %&gt;% add_xy_position(x = <span class=hljs-string>"time"</span>)
+bxp + 
+  stat_pvalue_manual(pwc) +
+  labs(
+    subtitle = get_test_label(res.aov, detailed = <span class=hljs-literal>TRUE</span>),
+    caption = get_pwc_label(pwc)
+  )</code></pre>
+<p><img src=images/15.png width=480></p>
+</div>
+</div>
+<div id=two-way-repeated-measures-anova class="section level2" style=height:auto!important>
+<h2>Two-way repeated measures ANOVA</h2>
+<div id=data-preparation-1 class="section level3">
+<h3>Data preparation</h3>
+<p>We’ll use the <code>selfesteem2</code> dataset [in datarium package] containing the self-esteem score measures of 12 individuals enrolled in 2 successive short-term trials (4 weeks): control (placebo) and special diet trials.</p>
+<p>Each participant performed all two trials. The order of the trials was counterbalanced and sufficient time was allowed between trials to allow any effects of previous trials to have dissipated.</p>
+<p>The self-esteem score was recorded at three time points: at the beginning (t1), midway (t2) and at the end (t3) of the trials.</p>
+<p>The question is to investigate if this short-term diet treatment can induce a significant increase of self-esteem score over time. In other terms, we wish to know if there is significant interaction between <code>diet</code> and <code>time</code> on the self-esteem score.</p>
+<div class=block>
+<p>The two-way repeated measures ANOVA can be performed in order to determine whether there is a significant interaction between diet and time on the self-esteem score.</p>
+</div>
+<p>Load and show one random row by treatment group:</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Wide format</span>
+set.seed(<span class=hljs-number>123</span>)
+data(<span class=hljs-string>"selfesteem2"</span>, package = <span class=hljs-string>"datarium"</span>)
+selfesteem2 %&gt;% sample_n_by(treatment, size = <span class=hljs-number>1</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 2 x 5
+##   id    treatment    t1    t2    t3
+##   &lt;fct&gt; &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 4     ctr          92    92    89
+## 2 10    Diet         90    93    95</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Gather the columns t1, t2 and t3 into long format.</span>
+<span class=hljs-comment># Convert id and time into factor variables</span>
+selfesteem2 &lt;- selfesteem2 %&gt;%
+  gather(key = <span class=hljs-string>"time"</span>, value = <span class=hljs-string>"score"</span>, t1, t2, t3) %&gt;%
+  convert_as_factor(id, time)
+<span class=hljs-comment># Inspect some random rows of the data by groups</span>
+set.seed(<span class=hljs-number>123</span>)
+selfesteem2 %&gt;% sample_n_by(treatment, time, size = <span class=hljs-number>1</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 6 x 4
+##   id    treatment time  score
+##   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt;
+## 1 4     ctr       t1       92
+## 2 10    ctr       t2       84
+## 3 5     ctr       t3       68
+## 4 11    Diet      t1       93
+## 5 12    Diet      t2       80
+## 6 1     Diet      t3       88</code></pre>
+<div class=block>
+<p>In this example, the effect of “time” on self-esteem score is our <strong>focal variable</strong>, that is our primary concern.</p>
+<p>However, it is thought that the effect “time” will be different if treatment is performed or not. In this setting, the “treatment” variable is considered as <strong>moderator variable</strong>.</p>
+</div>
+</div>
+<div id=summary-statistics-1 class="section level3">
+<h3>Summary statistics</h3>
+<p>Group the data by <code>treatment</code> and <code>time</code>, and then compute some summary statistics of the <code>score</code> variable: mean and sd (standard deviation).</p>
+<pre class=r><code class=hljs>selfesteem2 %&gt;%
+  group_by(treatment, time) %&gt;%
+  get_summary_stats(score, type = <span class=hljs-string>"mean_sd"</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 6 x 6
+##   treatment time  variable     n  mean    sd
+##   &lt;fct&gt;     &lt;fct&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 ctr       t1    score       12  88    8.08
+## 2 ctr       t2    score       12  83.8 10.2 
+## 3 ctr       t3    score       12  78.7 10.5 
+## 4 Diet      t1    score       12  87.6  7.62
+## 5 Diet      t2    score       12  87.8  7.42
+## 6 Diet      t3    score       12  87.7  8.14</code></pre>
+</div>
+<div id=visualization-1 class="section level3">
+<h3>Visualization</h3>
+<p>Create box plots of the score colored by treatment groups:</p>
+<pre class=r><code class=hljs>bxp &lt;- ggboxplot(
+  selfesteem2, x = <span class=hljs-string>"time"</span>, y = <span class=hljs-string>"score"</span>,
+  color = <span class=hljs-string>"treatment"</span>, palette = <span class=hljs-string>"jco"</span>
+  )
+bxp</code></pre>
+<p><img src=images/16.png width=384></p>
+</div>
+<div id=chek-assumptions class="section level3">
+<h3>Chek assumptions</h3>
+<div id=outliers-1 class="section level4">
+<h4>Outliers</h4>
+<pre class=r><code class=hljs>selfesteem2 %&gt;%
+  group_by(treatment, time) %&gt;%
+  identify_outliers(score)</code></pre>
+<pre><code class=hljs>## [1] treatment  time       id         score      is.outlier is.extreme
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<div class=success>
+<p>There were no extreme outliers.</p>
+</div>
+</div>
+<div id=normality-assumption-1 class="section level4">
+<h4>Normality assumption</h4>
+<p>Compute Shapiro-Wilk test for each combinations of factor levels:</p>
+<pre class=r><code class=hljs>selfesteem2 %&gt;%
+  group_by(treatment, time) %&gt;%
+  shapiro_test(score)</code></pre>
+<pre><code class=hljs>## # A tibble: 6 x 5
+##   treatment time  variable statistic      p
+##   &lt;fct&gt;     &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 ctr       t1    score        0.828 0.0200
+## 2 ctr       t2    score        0.868 0.0618
+## 3 ctr       t3    score        0.887 0.107 
+## 4 Diet      t1    score        0.919 0.279 
+## 5 Diet      t2    score        0.923 0.316 
+## 6 Diet      t3    score        0.886 0.104</code></pre>
+<div class=success>
+<p>The self-esteem score was normally distributed at each time point (p &gt; 0.05), except for ctr treatment at t1, as assessed by Shapiro-Wilk’s test.</p>
+</div>
+<p>Create QQ plot for each cell of design:</p>
+<pre class=r><code class=hljs>ggqqplot(selfesteem2, <span class=hljs-string>"score"</span>, ggtheme = theme_bw()) +
+  facet_grid(time ~ treatment, labeller = <span class=hljs-string>"label_both"</span>)</code></pre>
+<p><img src=images/19.png width=480></p>
+<div class=success>
+<p>From the plot above, as all the points fall approximately along the reference line, we can assume normality.</p>
+</div>
+</div>
+</div>
+<div id=computation-1 class="section level3" style=height:auto!important>
+ <center style=height:auto!important>
+ <br>
+ <div class=annonce_adaptable_top>
+ 
+ <ins class=adsbygoogle style=display:block;height:280px data-ad-client=ca-pub-5474463749888038 data-ad-slot=2200070562 data-ad-format=auto data-full-width-responsive=true data-adsbygoogle-status=done><ins id=aswift_1_expand style=display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:594px;background-color:transparent><ins id=aswift_1_anchor style="display:block;border:medium none;height:280px;margin:0px;padding:0px;position:relative;visibility:visible;width:594px;background-color:transparent;overflow:visible"></ins></ins></ins>
+ 
+ </div>
+ </center>
+ <br>
+ <h3>Computation</h3>
+<pre class=r><code class=hljs>res.aov &lt;- anova_test(
+  data = selfesteem2, dv = score, wid = id,
+  within = c(treatment, time)
+  )
+get_anova_table(res.aov)</code></pre>
+<pre><code class=hljs>## ANOVA Table (type III tests)
+## 
+##           Effect  DFn  DFd    F        p p&lt;.05   ges
+## 1      treatment 1.00 11.0 15.5 2.00e-03     * 0.059
+## 2           time 1.31 14.4 27.4 5.03e-05     * 0.049
+## 3 treatment:time 2.00 22.0 30.4 4.63e-07     * 0.050</code></pre>
+<div class=success>
+<p>There is a statistically significant two-way interactions between treatment and time, F(2, 22) = 30.4, p &lt; 0.0001.</p>
+</div>
+</div>
+<div id=post-hoc-tests-1 class="section level3">
+<h3>Post-hoc tests</h3>
+<p>A <strong>significant two-way interaction</strong> indicates that the impact that one factor (e.g., treatment) has on the outcome variable (e.g., self-esteem score) depends on the level of the other factor (e.g., time) (and vice versa). So, you can decompose a significant two-way interaction into:</p>
+<ul>
+<li><strong>Simple main effect</strong>: run one-way model of the first variable (factor A) at each level of the second variable (factor B),</li>
+<li><strong>Simple pairwise comparisons</strong>: if the simple main effect is significant, run multiple pairwise comparisons to determine which groups are different.</li>
+</ul>
+<p>For a <strong>non-significant two-way interaction</strong>, you need to determine whether you have any statistically significant <strong>main effects</strong> from the ANOVA output.</p>
+<div id=procedure-for-a-significant-two-way-interaction class="section level4">
+<h4>Procedure for a significant two-way interaction</h4>
+<p><strong>Effect of treatment</strong>. In our example, we’ll analyze the effect of <code>treatment</code> on self-esteem <code>score</code> at every <code>time</code> point.</p>
+<div class=warning>
+<p>Note that, the <code>treatment</code> factor variable has only two levels (“ctr” and “Diet”); thus, ANOVA test and paired t-test will give the same p-values.</p>
+</div>
+<pre class=r><code class=hljs><span class=hljs-comment># Effect of treatment at each time point</span>
+one.way &lt;- selfesteem2 %&gt;%
+  group_by(time) %&gt;%
+  anova_test(dv = score, wid = id, within = treatment) %&gt;%
+  get_anova_table() %&gt;%
+  adjust_pvalue(method = <span class=hljs-string>"bonferroni"</span>)
+one.way</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 9
+##   time  Effect      DFn   DFd      F       p `p&lt;.05`      ges   p.adj
+##   &lt;fct&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+## 1 t1    treatment     1    11  0.376 0.552   ""      0.000767 1      
+## 2 t2    treatment     1    11  9.03  0.012   *       0.052    0.036  
+## 3 t3    treatment     1    11 30.9   0.00017 *       0.199    0.00051</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Pairwise comparisons between treatment groups</span>
+pwc &lt;- selfesteem2 %&gt;%
+  group_by(time) %&gt;%
+  pairwise_t_test(
+    score ~ treatment, paired = <span class=hljs-literal>TRUE</span>,
+    p.adjust.method = <span class=hljs-string>"bonferroni"</span>
+    )
+pwc</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 11
+##   time  .y.   group1 group2    n1    n2 statistic    df       p   p.adj p.adj.signif
+## * &lt;fct&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
+## 1 t1    score ctr    Diet      12    12     0.613    11 0.552   0.552   ns          
+## 2 t2    score ctr    Diet      12    12    -3.00     11 0.012   0.012   *           
+## 3 t3    score ctr    Diet      12    12    -5.56     11 0.00017 0.00017 ***</code></pre>
+<div class=success>
+<p>Considering the Bonferroni adjusted p-value (p.adj), it can be seen that the simple main effect of treatment was not significant at the time point t1 (p = 1). It becomes significant at t2 (p = 0.036) and t3 (p = 0.00051).</p>
+<p>Pairwise comparisons show that the mean self-esteem score was significantly different between ctr and Diet group at t2 (p = 0.12) and t3 (p = 0.00017) but not at t1 (p = 0.55).</p>
+</div>
+<p><strong>Effect of time</strong>. Note that, it’s also possible to perform the same analysis for the <code>time</code> variable at each level of <code>treatment</code>. You don’t necessarily need to do this analysis.</p>
+<p>The R code:</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Effect of time at each level of treatment</span>
+one.way2 &lt;- selfesteem2 %&gt;%
+  group_by(treatment) %&gt;%
+  anova_test(dv = score, wid = id, within = time) %&gt;%
+  get_anova_table() %&gt;%
+  adjust_pvalue(method = <span class=hljs-string>"bonferroni"</span>)
+<span class=hljs-comment># Pairwise comparisons between time points</span>
+pwc2 &lt;- selfesteem2 %&gt;%
+  group_by(treatment) %&gt;%
+  pairwise_t_test(
+    score ~ time, paired = <span class=hljs-literal>TRUE</span>,
+    p.adjust.method = <span class=hljs-string>"bonferroni"</span>
+    )
+pwc2</code></pre>
+<div class=success>
+<p>After executing the R code above, you can see that the effect of <code>time</code> is significant only for the control trial, F(2, 22) = 39.7, p &lt; 0.0001. Pairwise comparisons show that all comparisons between time points were statistically significant for control trial.</p>
+</div>
+</div>
+<div id=procedure-for-non-significant-two-way-interaction class="section level4">
+<h4>Procedure for non-significant two-way interaction</h4>
+<p>If the interaction is not significant, you need to interpret the main effects for each of the two variables: <code>treatment</code> and <code>time</code>. A significant main effect can be followed up with pairwise comparisons.</p>
+<div class=success>
+<p>In our example (see ANOVA table in <code>res.aov</code>), there was a statistically significant main effects of treatment (F(1, 11) = 15.5, p = 0.002) and time (F(2, 22) = 27.4, p &lt; 0.0001) on the self-esteem score.</p>
+</div>
+<p>Pairwise paired t-test comparisons:</p>
+<pre class=r><code class=hljs><span class=hljs-comment># comparisons for treatment variable</span>
+selfesteem2 %&gt;%
+  pairwise_t_test(
+    score ~ treatment, paired = <span class=hljs-literal>TRUE</span>, 
+    p.adjust.method = <span class=hljs-string>"bonferroni"</span>
+    )
+<span class=hljs-comment># comparisons for time variable</span>
+selfesteem2 %&gt;%
+  pairwise_t_test(
+    score ~ time, paired = <span class=hljs-literal>TRUE</span>, 
+    p.adjust.method = <span class=hljs-string>"bonferroni"</span>
+    )</code></pre>
+<div class=success>
+<p>All pairwise comparisons are significant.</p>
+</div>
+</div>
+</div>
+<div id=report-1 class="section level3">
+<h3>Report</h3>
+<p>We could report the result as follow:</p>
+<p>A two-way repeated measures ANOVA was performed to evaluate the effect of different diet treatments over time on self-esteem score.</p>
+<p>There was a statistically significant interaction between <code>treatment</code> and <code>time</code> on self-esteem score, F(2, 22) = 30.4, p &lt; 0.0001. Therefore, the effect of <code>treatment</code> variable was analyzed at each <code>time</code> point. P-values were adjusted using the Bonferroni multiple testing correction method. The effect of treatment was significant at t2 (p = 0.036) and t3 (p = 0.00051) but not at the time point t1 (p = 1).</p>
+<p>Pairwise comparisons, using paired t-test, show that the mean self-esteem score was significantly different between ctr and Diet trial at time points t2 (p = 0.012) and t3 (p = 0.00017) but not at t1 (p = 0.55).</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Visualization: box plots with p-values</span>
+pwc &lt;- pwc %&gt;% add_xy_position(x = <span class=hljs-string>"time"</span>)
+bxp + 
+  stat_pvalue_manual(pwc, tip.length = <span class=hljs-number>0</span>, hide.ns = <span class=hljs-literal>TRUE</span>) +
+  labs(
+    subtitle = get_test_label(res.aov, detailed = <span class=hljs-literal>TRUE</span>),
+    caption = get_pwc_label(pwc)
+  )</code></pre>
+<p><img src=images/17.png width=528></p>
+</div>
+</div>
+<div id=three-way class="section level2">
+<h2>Three-way repeated measures ANOVA</h2>
+<div id=data-preparation-2 class="section level3">
+<h3>Data preparation</h3>
+<p>We’ll use the <code>weightloss</code> dataset [datarium package]. In this study, a researcher wanted to assess the effects of Diet and Exercises on weight loss in 10 sedentary individuals.</p>
+<p>The participants were enrolled in four trials: (1) no diet and no exercises; (2) diet only; (3) exercises only; and (4) diet and exercises combined.</p>
+<p>Each participant performed all four trials. The order of the trials was counterbalanced and sufficient time was allowed between trials to allow any effects of previous trials to have dissipated.</p>
+<p>Each trial lasted nine weeks and the weight loss score was measured at the beginning (t1), at the midpoint (t2) and at the end (t3) of each trial.</p>
+<div class=block>
+<p>Three-way repeated measures ANOVA can be performed in order to determine whether there is a significant interaction between diet, exercises and time on the weight loss score.</p>
+</div>
+<p>Load the data and show some random rows by groups:</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Wide format</span>
+set.seed(<span class=hljs-number>123</span>)
+data(<span class=hljs-string>"weightloss"</span>, package = <span class=hljs-string>"datarium"</span>)
+weightloss %&gt;% sample_n_by(diet, exercises, size = <span class=hljs-number>1</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 4 x 6
+##   id    diet  exercises    t1    t2    t3
+##   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 4     no    no         11.1   9.5  11.1
+## 2 10    no    yes        10.2  11.8  17.4
+## 3 5     yes   no         11.6  13.4  13.9
+## 4 11    yes   yes        12.7  12.7  15.1</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Gather the columns t1, t2 and t3 into long format.</span>
+<span class=hljs-comment># Convert id and time into factor variables</span>
+weightloss &lt;- weightloss %&gt;%
+  gather(key = <span class=hljs-string>"time"</span>, value = <span class=hljs-string>"score"</span>, t1, t2, t3) %&gt;%
+  convert_as_factor(id, time)
+<span class=hljs-comment># Inspect some random rows of the data by groups</span>
+set.seed(<span class=hljs-number>123</span>)
+weightloss %&gt;% sample_n_by(diet, exercises, time, size = <span class=hljs-number>1</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 12 x 5
+##   id    diet  exercises time  score
+##   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt;
+## 1 4     no    no        t1     11.1
+## 2 10    no    no        t2     10.7
+## 3 5     no    no        t3     12.3
+## 4 11    no    yes       t1     10.2
+## 5 12    no    yes       t2     13.2
+## 6 1     no    yes       t3     15.8
+## # … with 6 more rows</code></pre>
+<div class=success>
+<p>In this example, the effect of the “time” is our <strong>focal variable</strong>, that is our primary concern.</p>
+<p>It is thought that the effect of “time” on the weight loss score will depend on two other factors, “diet” and “exercises”, which are called <strong>moderator variables</strong>.</p>
+</div>
+</div>
+<div id=summary-statistics-2 class="section level3">
+<h3>Summary statistics</h3>
+<p>Group the data by <code>diet</code>, <code>exercises</code> and <code>time</code>, and then compute some summary statistics of the <code>score</code> variable: mean and sd (standard deviation)</p>
+<pre class=r><code class=hljs>weightloss %&gt;%
+  group_by(diet, exercises, time) %&gt;%
+  get_summary_stats(score, type = <span class=hljs-string>"mean_sd"</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 12 x 7
+##   diet  exercises time  variable     n  mean    sd
+##   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 no    no        t1    score       12  10.9 0.868
+## 2 no    no        t2    score       12  11.6 1.30 
+## 3 no    no        t3    score       12  11.4 0.935
+## 4 no    yes       t1    score       12  10.8 1.27 
+## 5 no    yes       t2    score       12  13.4 1.01 
+## 6 no    yes       t3    score       12  16.8 1.53 
+## # … with 6 more rows</code></pre>
+</div>
+<div id=visualization-2 class="section level3">
+<h3>Visualization</h3>
+<p>Create box plots:</p>
+<pre class=r><code class=hljs>bxp &lt;- ggboxplot(
+  weightloss, x = <span class=hljs-string>"exercises"</span>, y = <span class=hljs-string>"score"</span>,
+  color = <span class=hljs-string>"time"</span>, palette = <span class=hljs-string>"jco"</span>,
+  facet.by = <span class=hljs-string>"diet"</span>, short.panel.labs = <span class=hljs-literal>FALSE</span>
+  )
+bxp</code></pre>
+<p><img src=images/18.png width=480></p>
+</div>
+<div id=check-assumptions-1 class="section level3">
+<h3>Check assumptions</h3>
+<div id=outliers-2 class="section level4">
+<h4>Outliers</h4>
+<pre class=r><code class=hljs>weightloss %&gt;%
+  group_by(diet, exercises, time) %&gt;%
+  identify_outliers(score)</code></pre>
+<pre><code class=hljs>## # A tibble: 5 x 7
+##   diet  exercises time  id    score is.outlier is.extreme
+##   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
+## 1 no    no        t3    2      13.2 TRUE       FALSE     
+## 2 yes   no        t1    1      10.2 TRUE       FALSE     
+## 3 yes   no        t1    3      13.2 TRUE       FALSE     
+## 4 yes   no        t1    4      10.2 TRUE       FALSE     
+## 5 yes   no        t2    10     15.3 TRUE       FALSE</code></pre>
+<div class=success>
+<p>There were no extreme outliers.</p>
+</div>
+</div>
+<div id=normality-assumption-2 class="section level4">
+<h4>Normality assumption</h4>
+<p>Compute Shapiro-Wilk test for each combinations of factor levels:</p>
+<pre class=r><code class=hljs>weightloss %&gt;%
+  group_by(diet, exercises, time) %&gt;%
+  shapiro_test(score)</code></pre>
+<pre><code class=hljs>## # A tibble: 12 x 6
+##   diet  exercises time  variable statistic     p
+##   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+## 1 no    no        t1    score        0.917 0.264
+## 2 no    no        t2    score        0.957 0.743
+## 3 no    no        t3    score        0.965 0.851
+## 4 no    yes       t1    score        0.922 0.306
+## 5 no    yes       t2    score        0.912 0.229
+## 6 no    yes       t3    score        0.953 0.674
+## # … with 6 more rows</code></pre>
+<div class=success>
+<p>The weight loss score was normally distributed, as assessed by Shapiro-Wilk’s test of normality (p &gt; .05).</p>
+</div>
+<p>Create QQ plot for each cell of design:</p>
+<pre class=r><code class=hljs>ggqqplot(weightloss, <span class=hljs-string>"score"</span>, ggtheme = theme_bw()) +
+  facet_grid(diet + exercises ~ time, labeller = <span class=hljs-string>"label_both"</span>)</code></pre>
+<p><img src=images/23.png width=576></p>
+<div class=success>
+<p>From the plot above, as all the points fall approximately along the reference line, we can assume normality.</p>
+</div>
+</div>
+</div>
+<div id=computation-2 class="section level3">
+<h3>Computation</h3>
+<pre class=r><code class=hljs>res.aov &lt;- anova_test(
+  data = weightloss, dv = score, wid = id,
+  within = c(diet, exercises, time)
+  )
+get_anova_table(res.aov)</code></pre>
+<pre><code class=hljs>## ANOVA Table (type III tests)
+## 
+##                Effect  DFn  DFd       F        p p&lt;.05   ges
+## 1                diet 1.00 11.0   6.021 3.20e-02     * 0.028
+## 2           exercises 1.00 11.0  58.928 9.65e-06     * 0.284
+## 3                time 2.00 22.0 110.942 3.22e-12     * 0.541
+## 4      diet:exercises 1.00 11.0  75.356 2.98e-06     * 0.157
+## 5           diet:time 1.38 15.2   0.603 5.01e-01       0.013
+## 6      exercises:time 2.00 22.0  20.826 8.41e-06     * 0.274
+## 7 diet:exercises:time 2.00 22.0  14.246 1.07e-04     * 0.147</code></pre>
+<div class=success>
+<p>From the output above, it can be seen that there is a statistically significant three-way interactions between diet, exercises and time, F(2, 22) = 14.24, p = 0.00011.</p>
+</div>
+<div class=warning>
+<p>Note that, if the three-way interaction is not statistically significant, you need to consult the two-way interactions in the output.</p>
+<p>In our example, there was a statistically significant two-way diet:exercises interaction (p &lt; 0.0001), and two-way exercises:time (p &lt; 0.0001). The two-way diet:time interaction was not statistically significant (p = 0.5).</p>
+</div>
+</div>
+<div id=post-hoc-tests-2 class="section level3">
+<h3>Post-hoc tests</h3>
+<p>If there is a significant three-way interaction effect, you can decompose it into:</p>
+<ul>
+<li><strong>Simple two-way interaction</strong>: run two-way interaction at each level of third variable,</li>
+<li><strong>Simple simple main effect</strong>: run one-way model at each level of second variable, and</li>
+<li><strong>simple simple pairwise comparisons</strong>: run pairwise or other post-hoc comparisons if necessary.</li>
+</ul>
+<div id=compute-simple-two-way-interaction class="section level4">
+<h4>Compute simple two-way interaction</h4>
+<p>You are free to decide which two variables will form the simple two-way interactions and which variable will act as the third (moderator) variable. In the following R code, we have considered the simple two-way interaction of <code>exercises*time</code> at each level of <code>diet</code>.</p>
+<p>Group the data by <code>diet</code> and analyze the simple two-way interaction between <code>exercises</code> and <code>time</code>:</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Two-way ANOVA at each diet level</span>
+two.way &lt;- weightloss %&gt;%
+  group_by(diet) %&gt;%
+  anova_test(dv = score, wid = id, within = c(exercises, time))
+two.way</code></pre>
+<pre><code class=hljs>## # A tibble: 2 x 2
+##   diet  anova     
+##   &lt;fct&gt; &lt;list&gt;    
+## 1 no    &lt;anov_tst&gt;
+## 2 yes   &lt;anov_tst&gt;</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Extract anova table</span>
+get_anova_table(two.way)</code></pre>
+<pre><code class=hljs>## # A tibble: 6 x 8
+##   diet  Effect           DFn   DFd     F        p `p&lt;.05`   ges
+##   &lt;fct&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 no    exercises          1    11 72.8  3.53e- 6 *       0.526
+## 2 no    time               2    22 71.7  2.32e-10 *       0.587
+## 3 no    exercises:time     2    22 28.9  6.92e- 7 *       0.504
+## 4 yes   exercises          1    11 13.4  4.00e- 3 *       0.038
+## 5 yes   time               2    22 20.5  9.30e- 6 *       0.49 
+## 6 yes   exercises:time     2    22  2.57 9.90e- 2 ""      0.06</code></pre>
+<div class=success>
+<p>There was a statistically significant simple two-way interaction between exercises and time for “diet no” trial, F(2, 22) = 28.9, p &lt; 0.0001, but not for “diet yes” trial, F(2, 22) = 2.6, p = 0.099.</p>
+</div>
+<div class=warning>
+<p>Note that, it’s recommended to adjust the p-value for multiple testing. One common approach is to apply a Bonferroni adjustment to downgrade the level at which you declare statistical significance.</p>
+<p>This can be done by dividing the current level you declare statistical significance at (i.e., p &lt; 0.05) by the number of simple two-way interaction you are computing (i.e., 2).</p>
+<p>Thus, you only declare a two-way interaction as statistically significant when p &lt; 0.025 (i.e., p &lt; 0.05/2). Applying this to our current example, we would still make the same conclusions.</p>
+</div>
+</div>
+<div id=compute-simple-simple-main-effect class="section level4">
+<h4>Compute simple simple main effect</h4>
+<p>A statistically significant simple two-way interaction can be followed up with <strong>simple simple main effects</strong>.</p>
+<p>In our example, you could therefore investigate the effect of <code>time</code> on the weight loss <code>score</code> at every level of <code>exercises</code> or investigate the effect of <code>exercises</code> at every level of <code>time</code>.</p>
+<div class=warning>
+<p>You will only need to consider the result of the simple simple main effect analyses for the “diet no” trial as this was the only simple two-way interaction that was statistically significant (see previous section).</p>
+</div>
+<p>Group the data by <code>diet</code> and <code>exercises</code>, and analyze the simple main effect of <code>time</code>. The Bonferroni adjustment will be considered leading to statistical significance being accepted at the p &lt; 0.025 level (that is 0.05 divided by the number of tests (here 2) considered for “diet:no” trial.</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Effect of time at each diet X exercises cells</span>
+time.effect &lt;- weightloss %&gt;%
+  group_by(diet, exercises) %&gt;%
+  anova_test(dv = score, wid = id, within = time)
+time.effect</code></pre>
+<pre><code class=hljs>## # A tibble: 4 x 3
+##   diet  exercises anova     
+##   &lt;fct&gt; &lt;fct&gt;     &lt;list&gt;    
+## 1 no    no        &lt;anov_tst&gt;
+## 2 no    yes       &lt;anov_tst&gt;
+## 3 yes   no        &lt;anov_tst&gt;
+## 4 yes   yes       &lt;anov_tst&gt;</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Extract anova table</span>
+get_anova_table(time.effect) %&gt;%
+  filter(diet == <span class=hljs-string>"no"</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 2 x 9
+##   diet  exercises Effect   DFn   DFd     F        p `p&lt;.05`   ges
+##   &lt;fct&gt; &lt;fct&gt;     &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 no    no        time       2    22  1.32 2.86e- 1 ""      0.075
+## 2 no    yes       time       2    22 78.8  9.30e-11 *       0.801</code></pre>
+<div class=success>
+<p>There was a statistically significant simple simple main effect of time on weight loss score for “diet:no,exercises:yes” group (p &lt; 0.0001), but not for when neither diet nor exercises was performed (p = 0.286).</p>
+</div>
+</div>
+<div id=compute-simple-simple-comparisons class="section level4">
+<h4>Compute simple simple comparisons</h4>
+<p>A statistically significant simple simple main effect can be followed up by <strong>multiple pairwise comparisons</strong> to determine which group means are different.</p>
+<p>Group the data by <code>diet</code> and <code>exercises</code>, and perform pairwise comparisons between <code>time</code> points with Bonferroni adjustment:</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Pairwise comparisons</span>
+pwc &lt;- weightloss %&gt;%
+  group_by(diet, exercises) %&gt;%
+  pairwise_t_test(score ~ time, paired = <span class=hljs-literal>TRUE</span>, p.adjust.method = <span class=hljs-string>"bonferroni"</span>) %&gt;%
+  select(-df, -statistic) <span class=hljs-comment># Remove details</span>
+<span class=hljs-comment># Show comparison results for "diet:no,exercises:yes" groups</span>
+pwc %&gt;% filter(diet == <span class=hljs-string>"no"</span>, exercises == <span class=hljs-string>"yes"</span>) %&gt;%
+  select(-p)     <span class=hljs-comment># remove p columns</span></code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 9
+##   diet  exercises .y.   group1 group2    n1    n2        p.adj p.adj.signif
+##   &lt;fct&gt; &lt;fct&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;chr&gt;       
+## 1 no    yes       score t1     t2        12    12 0.000741     ***         
+## 2 no    yes       score t1     t3        12    12 0.0000000121 ****        
+## 3 no    yes       score t2     t3        12    12 0.000257     ***</code></pre>
+<p>In the pairwise comparisons table above, we are interested only in the simple simple comparisons for “diet:no,exercises:yes” groups. In our example, there are three possible combinations of group differences. We could report the pairwise comparison results as follow.</p>
+<div class=success>
+<p>All simple simple pairwise comparisons were run between the different time points for “diet:no,exercises:yes” trial. The Bonferroni adjustment was applied. The mean weight loss score was significantly different in all time point comparisons when exercises are performed (p &lt; 0.05).</p>
+</div>
+</div>
+</div>
+<div id=report-2 class="section level3">
+<h3>Report</h3>
+<p>A three-way repeated measures ANOVA was performed to evaluate the effects of diet, exercises and time on weight loss. There was a statistically significant three-way interaction between diet, exercises and time, F(2, 22) = 14.2, p = 0.00011.</p>
+<p>For the simple two-way interactions and simple simple main effects analyses, a Bonferroni adjustment was applied leading to statistical significance being accepted at the p &lt; 0.025 level.</p>
+<p>There was a statistically significant simple two-way interaction between exercises and time for “diet no” trial, F(2, 22) = 28.9, p &lt; 0.0001, but not for “diet yes”" trial, F(2, 22) = 2.6, p = 0.099.</p>
+<p>There was a statistically significant simple simple main effect of time on weight loss score for “diet:no,exercises:yes” trial (p &lt; 0.0001), but not for when neither diet nor exercises was performed (p = 0.286).</p>
+<p>All simple simple pairwise comparisons were run between the different time points for “diet:no,exercises:yes” trial with a Bonferroni adjustment applied. The mean weight loss score was significantly different in all time point comparisons when exercises are performed (p &lt; 0.05).</p>
+<pre class=r><code class=hljs><span class=hljs-comment># Visualization: box plots with p-values</span>
+pwc &lt;- pwc %&gt;% add_xy_position(x = <span class=hljs-string>"exercises"</span>)
+pwc.filtered &lt;- pwc %&gt;% 
+  filter(diet == <span class=hljs-string>"no"</span>, exercises == <span class=hljs-string>"yes"</span>)
+bxp + 
+  stat_pvalue_manual(pwc.filtered, tip.length = <span class=hljs-number>0</span>, hide.ns = <span class=hljs-literal>TRUE</span>) +
+  labs(
+    subtitle = get_test_label(res.aov, detailed = <span class=hljs-literal>TRUE</span>),
+    caption = get_pwc_label(pwc)
+  )</code></pre>
+<p><img src=images/29.png width=576></p>
+</div>
+</div>
+<div id=summary class="section level2">
+<h2>Summary</h2>
+<p>This chapter describes how to compute, interpret and report repeated measures ANOVA in R. We also explain the assumptions made by repeated measures ANOVA tests and provide practical examples of R codes to check whether the test assumptions are met.</p>
+</div>
+</div>
+<p></p>
+ <center style=height:auto!important>
+ <br>
+ <div class=annonce_adaptable_bottom>
+ 
+ <ins class=adsbygoogle style=display:block;height:280px data-ad-client=ca-pub-5474463749888038 data-ad-slot=5770815769 data-ad-format=auto data-full-width-responsive=true data-adsbygoogle-status=done><ins id=aswift_2_expand style=display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:594px;background-color:transparent><ins id=aswift_2_anchor style="display:block;border:medium none;height:280px;margin:0px;padding:0px;position:relative;visibility:visible;width:594px;background-color:transparent;overflow:visible"></ins></ins></ins>
+ 
+ </div>
+ </center>
+ <br>
+ <div id=recommended-for-you class="section level2"><h2>Recommended for you</h2><div class=success><p>This section contains best data science and self-development resources to help you on your path.</p></div><div class=affiliate-marketing><h3>Coursera - Online Courses and Specialization</h3><h4>Data science</h4><ul><li><a href=https://www.datanovia.com/en/xkkk target=_blank rel=nofollow>Course: Machine Learning: Master the Fundamentals</a> by Standford<li><a href=https://www.datanovia.com/en/e85g target=_blank rel=nofollow>Specialization: Data Science</a> by Johns Hopkins University<li><a href=https://www.datanovia.com/en/xepy target=_blank rel=nofollow>Specialization: Python for Everybody</a> by University of Michigan<li><a href=https://www.datanovia.com/en/mm6m target=_blank rel=nofollow>Courses: Build Skills for a Top Job in any Industry</a> by Coursera<li><a href=https://www.datanovia.com/en/xxae target=_blank rel=nofollow>Specialization: Master Machine Learning Fundamentals</a> by University of Washington<li><a href=https://www.datanovia.com/en/2j0s target=_blank rel=nofollow>Specialization: Statistics with R</a> by Duke University<li><a href=https://www.datanovia.com/en/ih09 target=_blank rel=nofollow>Specialization: Software Development in R</a> by Johns Hopkins University<li><a href=https://www.datanovia.com/en/sprm target=_blank rel=nofollow>Specialization: Genomic Data Science</a> by Johns Hopkins University</ul><h4>Popular Courses Launched in 2020</h4><ul><li><a href=https://www.datanovia.com/en/bmsr target=_blank rel=nofollow>Google IT Automation with Python</a> by Google<li><a href=https://www.datanovia.com/en/qlmg target=_blank rel=nofollow>AI for Medicine</a> by deeplearning.ai<li><a href=https://www.datanovia.com/en/1fws target=_blank rel=nofollow>Epidemiology in Public Health Practice</a> by Johns Hopkins University<li><a href=https://www.datanovia.com/en/wp8o target=_blank rel=nofollow>AWS Fundamentals</a> by Amazon Web Services</ul><h4>Trending Courses</h4><ul><li><a href=https://www.datanovia.com/en/zo43 target=_blank rel=nofollow>The Science of Well-Being</a> by Yale University<li><a href=https://www.datanovia.com/en/hl6x target=_blank rel=nofollow>Google IT Support Professional</a> by Google<li><a href=https://www.datanovia.com/en/xepy target=_blank rel=nofollow>Python for Everybody</a> by University of Michigan<li><a href=https://www.datanovia.com/en/lhby target=_blank rel=nofollow>IBM Data Science Professional Certificate</a> by IBM<li><a href=https://www.datanovia.com/en/c59x target=_blank rel=nofollow>Business Foundations</a> by University of Pennsylvania<li><a href=https://www.datanovia.com/en/vb4s target=_blank rel=nofollow>Introduction to Psychology</a> by Yale University<li><a href=https://www.datanovia.com/en/u4tn target=_blank rel=nofollow>Excel Skills for Business</a> by Macquarie University<li><a href=https://www.datanovia.com/en/e68c target=_blank rel=nofollow>Psychological First Aid</a> by Johns Hopkins University<li><a href=https://www.datanovia.com/en/wetr target=_blank rel=nofollow>Graphic Design</a> by Cal Arts</ul><h3>Books - Data Science</h3><h4>Our Books</h4><ul><li><a href=https://www.datanovia.com/en/0cld target=_blank rel=nofollow>Practical Guide to Cluster Analysis in R</a> by A. Kassambara (Datanovia)<li><a href=https://www.datanovia.com/en/8ktk target=_blank rel=nofollow>Practical Guide To Principal Component Methods in R</a> by A. Kassambara (Datanovia)<li><a href=https://www.datanovia.com/en/4vs9 target=_blank rel=nofollow>Machine Learning Essentials: Practical Guide in R</a> by A. Kassambara (Datanovia)<li><a href=https://www.datanovia.com/en/lqti target=_blank rel=nofollow>R Graphics Essentials for Great Data Visualization</a> by A. Kassambara (Datanovia)<li><a href=https://www.datanovia.com/en/udft target=_blank rel=nofollow>GGPlot2 Essentials for Great Data Visualization in R</a> by A. Kassambara (Datanovia)<li><a href=https://www.datanovia.com/en/y7ld target=_blank rel=nofollow>Network Analysis and Visualization in R</a> by A. Kassambara (Datanovia)<li><a href=https://www.datanovia.com/en/pqs3 target=_blank rel=nofollow>Practical Statistics in R for Comparing Groups: Numerical Variables</a> by A. Kassambara (Datanovia)<li><a href=https://www.datanovia.com/en/a52c target=_blank rel=nofollow>Inter-Rater Reliability Essentials: Practical Guide in R</a> by A. Kassambara (Datanovia)</ul><h4>Others</h4><ul><li><a href=https://www.datanovia.com/en/7qlr target=_blank rel=nofollow>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</a> by Hadley Wickham &amp; Garrett Grolemund<li><a href=https://www.datanovia.com/en/11a4 target=_blank rel=nofollow>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems</a> by Aurelien Géron<li><a href=https://www.datanovia.com/en/cjm2 target=_blank rel=nofollow>Practical Statistics for Data Scientists: 50 Essential Concepts</a> by Peter Bruce &amp; Andrew Bruce<li><a href=https://www.datanovia.com/en/fu7j target=_blank rel=nofollow>Hands-On Programming with R: Write Your Own Functions And Simulations</a> by Garrett Grolemund &amp; Hadley Wickham<li><a href=https://www.datanovia.com/en/f7zj target=_blank rel=nofollow>An Introduction to Statistical Learning: with Applications in R</a> by Gareth James et al.<li><a href=https://www.datanovia.com/en/2u9i target=_blank rel=nofollow>Deep Learning with R</a> by François Chollet &amp; J.J. Allaire<li><a href=https://www.datanovia.com/en/1flt target=_blank rel=nofollow>Deep Learning with Python</a> by François Chollet</ul></div></div>
+ <p class="wpml-ls-statics-post_translations wpml-ls">Version: 
+ <span class="wpml-ls-slot-post_translations wpml-ls-item wpml-ls-item-fr wpml-ls-first-item wpml-ls-last-item wpml-ls-item-legacy-post-translations"><a href=https://www.datanovia.com/en/fr/lessons/anova-sur-mesures-repetees-dans-r/ class=wpml-ls-link><img class="wpml-ls-flag iclflag" src=images/20.png alt><span class="wpml-ls-native icl_lang_sel_native" lang=fr>Français</span></a></span></p> </div> 
+ 
+ 
+ <div class=dt-sc-clear></div>
+ <div class=dt-sc-hr-invisible-small></div>
+ 
+ 
+ 
+ 
+ <div class=post-nav-container>
+ <div class=post-prev-link><a href=https://www.datanovia.com/en/lessons/anova-in-r/><i class="fa fa-arrow-circle-left"> </i> ANOVA in R<span> (Prev Lesson)</span></a></div> <div class=post-next-link><a href=https://www.datanovia.com/en/lessons/mixed-anova-in-r/><span>(Next Lesson) </span>Mixed ANOVA in R <i class="fa fa-arrow-circle-right"> </i></a></div> </div>
+ 
+ <div class=dt-sc-hr-invisible-small> </div>
+ 
+ <a href=https://www.datanovia.com/en/courses/comparing-multiple-means-in-r/ class="dt-sc-button small alignright">Back to Comparing Multiple Means in R</a>
+ <div class=commententries>
+ 
+ <h3 class=border-title> Comments ( 70 )<span> </span></h3> 
+ 
+ 
+ <ul class=commentlist>
+ <li class="comment even thread-even depth-1" id=li-comment-9140><article class=comment id=comment-9140><header class=comment-author><img alt src=images/9 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Hanna</div>	<div class=commentmetadata>10 Feb 2020</div> <div class=comment-body> <div class=comment-content><p>What an excellent resource! Thank you for providing this website to the public. I will recommend it to my students, too.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-9140 data-commentid=9140 data-postid=10873 data-belowelement=comment-9140 data-respondelement=respond data-replyto="Reply to Hanna" aria-label="Reply to Hanna">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-9159><article class=comment id=comment-9159><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>10 Feb 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you for your positive feedback, highly appreciated!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-9159 data-commentid=9159 data-postid=10873 data-belowelement=comment-9159 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id=li-comment-9792><article class=comment id=comment-9792><header class=comment-author><img alt src=images/25 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Tom</div>	<div class=commentmetadata>17 Feb 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you so much, helps a lot! One thing that might be relevant for some people is when to use between subjects instead of within subjects. But, the main thing is that this is the best source for doing these types of analyses I could find on the web, so great job!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-9792 data-commentid=9792 data-postid=10873 data-belowelement=comment-9792 data-respondelement=respond data-replyto="Reply to Tom" aria-label="Reply to Tom">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-9811><article class=comment id=comment-9811><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>17 Feb 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you for your positive feedback! I’ll take your suggestion into account in the next update</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-9811 data-commentid=9811 data-postid=10873 data-belowelement=comment-9811 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-10852><article class=comment id=comment-10852><header class=comment-author><img alt src=images/26 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>TomO</div>	<div class=commentmetadata>27 Feb 2020</div> <div class=comment-body> <div class=comment-content><p>Hi! Thanks for such a wonderfully written intro to the topic with easy to read R code – a breath of fresh air! </p>
+<p>I had a question about the following section:</p>
+<p> “It’s also possible to keep the outliers in the data and perform robust ANOVA test using the WRS2 package.”</p>
+<p>I’ve been reading the Mair et al (2018) paper that introduces WRS2 titled “Robust Statistical Methods Using WRS2” and specifically section 6.1 on Repeated Measurement and Mixed ANOVA Designs that introduces the function I believe you are referring to (rmanova). However, the authors state that the function provides a “robust heteroscedastic repeated measurement ANOVA based on the trimmed means” which defaults to 20%. Would this trimmed mean not remove the outliers, rather than keep them? </p>
+<p>I’d be grateful for any help you could offer, maybe I’ve got the wrong function or the wrong end of the stick?</p>
+<p>Cheers!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-10852 data-commentid=10852 data-postid=10873 data-belowelement=comment-10852 data-respondelement=respond data-replyto="Reply to TomO" aria-label="Reply to TomO">Reply</a>	</div></section></article></li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id=li-comment-11058><article class=comment id=comment-11058><header class=comment-author><img alt src=images/27 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Richard</div>	<div class=commentmetadata>01 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+ 0 (non-NA) cases</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11058 data-commentid=11058 data-postid=10873 data-belowelement=comment-11058 data-respondelement=respond data-replyto="Reply to Richard" aria-label="Reply to Richard">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-11059><article class=comment id=comment-11059><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>01 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, could you please provide a reproducible example?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11059 data-commentid=11059 data-postid=10873 data-belowelement=comment-11059 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article><ul class=children>
+<li class="comment odd alt depth-3" id=li-comment-11099><article class=comment id=comment-11099><header class=comment-author><img alt src=images/28 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Anton</div>	<div class=commentmetadata>09 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>I am also having this problem, though the dataset you use in the example works fine :(.</p>
+<p>Data:</p>
+<p>id treatment t1 t2 t3<br>
+1 Diet 3 7 7<br>
+2 Diet 5 7 7<br>
+3 Diet 2 7 8<br>
+4 Diet 4 3 4<br>
+5 Diet 5 4 4<br>
+6 Diet 3 4 4<br>
+7 Diet 5 9 9<br>
+8 Diet 3 4 4<br>
+9 Diet 3 8 8<br>
+10 Diet 5 4 4<br>
+147 ctr 5 3 3<br>
+148 ctr 4 6 6<br>
+149 ctr 7 8 8<br>
+150 ctr 3 2 2<br>
+151 ctr 7 4 4<br>
+152 ctr 3 6 6<br>
+153 ctr 5 5 5<br>
+154 ctr 4 7 7<br>
+155 ctr 5 1 1<br>
+157 ctr 6 5 5</p>
+<p>zna &lt;- read.csv("zero_na.csv")<br>
+zna % gather(key = “time”, value = “score”, t1, t2, t3) %&gt;%<br>
+ convert_as_factor(id, time)</p>
+<p>res.aov &lt;- anova_test(<br>
+ data = zna, dv = score, wid = id,<br>
+ within = c(treatment, time)<br>
+ )<br>
+get_anova_table(res.aov)</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11099 data-commentid=11099 data-postid=10873 data-belowelement=comment-11099 data-respondelement=respond data-replyto="Reply to Anton" aria-label="Reply to Anton">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even depth-2" id=li-comment-11104><article class=comment id=comment-11104><header class=comment-author><img alt src=images/30 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Jake</div>	<div class=commentmetadata>09 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>I got this error message when I tried to do two-way anova. My case was different from the example because I had different participants in all (three) groups; I think this is why I got an error.</p>
+<p>Eventually, I analysed my data using lme function and setting a unique random effect to each participant.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11104 data-commentid=11104 data-postid=10873 data-belowelement=comment-11104 data-respondelement=respond data-replyto="Reply to Jake" aria-label="Reply to Jake">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-3" id=li-comment-11108><article class=comment id=comment-11108><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>09 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>If you have repeated measures on three different groups of participant, then it looks like you have a mixed two-way ANOVA design. <a href=https://www.datanovia.com/en/lessons/mixed-anova-in-r/ rel="nofollow ugc">https://www.datanovia.com/en/lessons/mixed-anova-in-r/</a></p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11108 data-commentid=11108 data-postid=10873 data-belowelement=comment-11108 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even depth-2" id=li-comment-20997><article class=comment id=comment-20997><header class=comment-author><img alt src=images/31 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Aziz</div>	<div class=commentmetadata>12 Sep 2020</div> <div class=comment-body> <div class=comment-content><p>I got the same error again and again. I was following all the steps. Later I discovered. that my data frame consisted of 2 additional variables that were not used. For some strange reasons, if I deleted the unwanted variables, the error no longer came. It is difficult to explain this situation.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20997 data-commentid=20997 data-postid=10873 data-belowelement=comment-20997 data-respondelement=respond data-replyto="Reply to Aziz" aria-label="Reply to Aziz">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-3" id=li-comment-20999><article class=comment id=comment-20999><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>13 Sep 2020</div> <div class=comment-body> <div class=comment-content><p>This issue has been fixed in the latest dev version of the rstatix package: <a href=https://github.com/kassambara/rstatix/issues/55 rel="nofollow ugc">https://github.com/kassambara/rstatix/issues/55</a></p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20999 data-commentid=20999 data-postid=10873 data-belowelement=comment-20999 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-11061><article class=comment id=comment-11061><header class=comment-author><img alt src=images/32 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>May</div>	<div class=commentmetadata>02 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>Hello! Thank’s a lot for this article, it helps a lot. I’m using three-way anova for my dataset and when I run function ‘anova_test’ (opy from this text here) i get an error: ‘Each row of output must be identified by a unique combination of keys.<br>
+Keys are shared for 715 rows:’. Maybe you could help and tell me what’s going on?</p>
+<p>My function looks like:<br>
+aov &lt;- anova_test(data=rtdata, dv=rt, wid=part, within=c(mod_sm, con, resp))<br>
+where:<br>
+rtdata – data in long format<br>
+part – factor, participant code from 1 to 12; each participant got 60 trials, so his code repeats 60 times in dataset<br>
+mod_sm – text, levels 'pos' and 'neg'<br>
+con – text, 'n' and 'y'<br>
+resp – factor, 1 and 2</p>
+<p>Thank you!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11061 data-commentid=11061 data-postid=10873 data-belowelement=comment-11061 data-respondelement=respond data-replyto="Reply to May" aria-label="Reply to May">Reply</a>	</div></section></article><ul class=children>
+<li class="comment odd alt depth-2" id=li-comment-20594><article class=comment id=comment-20594><header class=comment-author><img alt src=images/33 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Marie</div>	<div class=commentmetadata>19 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hey May, did you manage to figure out how to fix this issue? I have exactly the same issue and my data structure is similar.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20594 data-commentid=20594 data-postid=10873 data-belowelement=comment-20594 data-respondelement=respond data-replyto="Reply to Marie" aria-label="Reply to Marie">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id=li-comment-11100><article class=comment id=comment-11100><header class=comment-author><img alt src=images/28 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Anton</div>	<div class=commentmetadata>09 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>I have been trying to do a two-way repeated samples and spent many hours until I worked out what was wrong – my control and treatment groups aren’t the same, so don’t have the same ids repeated. So it is not “ctr” followed by “Diet” for the same subjects but separate subject</p>
+<p>Can you comment on how this would work? What kind of test would it be? Thanks!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11100 data-commentid=11100 data-postid=10873 data-belowelement=comment-11100 data-respondelement=respond data-replyto="Reply to Anton" aria-label="Reply to Anton">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-11109><article class=comment id=comment-11109><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>09 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>If you have repeated measures on different groups of participants, then it corresponds to a mixed measures ANOVA design. This article might help: <a href=https://www.datanovia.com/en/lessons/mixed-anova-in-r/ rel="nofollow ugc">https://www.datanovia.com/en/lessons/mixed-anova-in-r/</a></p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11109 data-commentid=11109 data-postid=10873 data-belowelement=comment-11109 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-11157><article class=comment id=comment-11157><header class=comment-author><img alt src=images/34 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Odi Makov</div>	<div class=commentmetadata>24 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>Very informative!<br>
+I’ll recommend this guide everywhere</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11157 data-commentid=11157 data-postid=10873 data-belowelement=comment-11157 data-respondelement=respond data-replyto="Reply to Odi Makov" aria-label="Reply to Odi Makov">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-11158><article class=comment id=comment-11158><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>24 Mar 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you for your positive feedback, highly appreciated!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11158 data-commentid=11158 data-postid=10873 data-belowelement=comment-11158 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id=li-comment-11272><article class=comment id=comment-11272><header class=comment-author><img alt src=images/35 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Hannah PW</div>	<div class=commentmetadata>16 Apr 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, I’ve been trying for days to run the 3-way repeated measures ANOVA for my dataset in a long format with 2x treatment groups (temp &amp; region) and then a time group (T0, T1, T2, T3). Whenever I run the ANOVA, I get the same error message that has been mentioned above and in many other R forums (StackExchange, etc.), although I’ve not as yet seen a solution as my data does not contain any null data and all my groups are in factor format (I’ve also tried them in numeric format without luck): </p>
+<p>Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+ 0 (non-NA) cases</p>
+<p>Can you help or offer any suggestions that I might not have tried?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-11272 data-commentid=11272 data-postid=10873 data-belowelement=comment-11272 data-respondelement=respond data-replyto="Reply to Hannah PW" aria-label="Reply to Hannah PW">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-18640><article class=comment id=comment-18640><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>18 Apr 2020</div> <div class=comment-body> <div class=comment-content><p>It seems that you have a mixed design, so try a mixed anova test as described at: <a href=https://www.datanovia.com/en/lessons/mixed-anova-in-r/ rel="nofollow ugc">https://www.datanovia.com/en/lessons/mixed-anova-in-r/</a>.</p>
+<p>Please provide a reproducible example with a demo dataset so that I can help. Please consider this article for inserting a reproducible R script in datanovia comments : <a href=https://www.datanovia.com/en/blog/publish-reproducible-examples-from-r-to-datanovia-website/ rel="nofollow ugc">https://www.datanovia.com/en/blog/publish-reproducible-examples-from-r-to-datanovia-website/</a></p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-18640 data-commentid=18640 data-postid=10873 data-belowelement=comment-18640 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article><ul class=children>
+<li class="comment even depth-3" id=li-comment-19716><article class=comment id=comment-19716><header class=comment-author><img alt src=images/36 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Hans Bourgeois</div>	<div class=commentmetadata>24 Apr 2020</div> <div class=comment-body> <div class=comment-content><p>Hi Kassambara,</p>
+<p>Thank you for your work.</p>
+<p>It seems there are a conflict with the packtage “tidyverse” and “rstatix”.<br>
+This conflict may explain the errors :<br>
+– “Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+0 (non-NA) cases”<br>
+– “Error: Unknown column `ID`”</p>
+<p>To remedy this i use the package “conflict_prefer”.</p>
+<p>Moreover, the first error also appears when i have unused columns (Factor or Numeric) in my dataframe. When i remove unused columns, the anova_test work fine.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19716 data-commentid=19716 data-postid=10873 data-belowelement=comment-19716 data-respondelement=respond data-replyto="Reply to Hans Bourgeois" aria-label="Reply to Hans Bourgeois">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-4" id=li-comment-19720><article class=comment id=comment-19720><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>25 Apr 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, thank you for your input. I can’t reproduce this error.</p>
+<p>Would you please provide a <a href=https://www.datanovia.com/en/blog/publish-reproducible-examples-from-r-to-datanovia-website/>reproducible R script</a> so that I can fix this issue.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19720 data-commentid=19720 data-postid=10873 data-belowelement=comment-19720 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-4" id=li-comment-20646><article class=comment id=comment-20646><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>27 Jun 2020</div> <div class=comment-body> <div class=comment-content><div class=rdoc>
+<p>Thanks, the root cause is fixed now in the latest dev version of the <code>rstatix</code>, which can be installed using: <code>devtools::install_github("kassambara/rstatix")</code>.</p>
+<p>The issue is documented at: <a href=https://github.com/kassambara/rstatix/issues/55 rel="nofollow ugc">rstatix fails to compute repeated measures when unused columns are present in the input</a></p>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20646 data-commentid=20646 data-postid=10873 data-belowelement=comment-20646 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id=li-comment-19738><article class=comment id=comment-19738><header class=comment-author><img alt src=images/37 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Jason Weber</div>	<div class=commentmetadata>29 Apr 2020</div> <div class=comment-body> <div class=comment-content><p>Hi great article!<br>
+Tried to produce graph report of one-way anova and error at bottom of code came up.<br>
+PS_tried to install pubr but got nothing.<br>
+Thx JW </p>
+<p># Repeated One-Way ANOVA<br>
+res.aov &lt;- anova_test(data = V3, dv=Data, wid=Name, within = Rep)<br>
+get_anova_table(res.aov)</p>
+<p># pairwise comparisons<br>
+pwc %<br>
+ pairwise_t_test(<br>
+ Data ~ Rep, paired = TRUE,<br>
+ p.adjust.method = “bonferroni”<br>
+ )<br>
+pwc</p>
+<p># Visualization: box plots with p-values<br>
+pwc % add_xy_position(x = “Rep”)<br>
+bxp +<br>
+ stat_pvalue_manual(pwc) +<br>
+ labs(<br>
+ subtitle = get_test_label(res.aov, detailed = TRUE),<br>
+ caption = get_pwc_label(pwc)</p>
+<p>Error in bxp + stat_pvalue_manual(pwc) + labs(subtitle = get_test_label(res.aov, :<br>
+ non-numeric argument to binary operator</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19738 data-commentid=19738 data-postid=10873 data-belowelement=comment-19738 data-respondelement=respond data-replyto="Reply to Jason Weber" aria-label="Reply to Jason Weber">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-19739><article class=comment id=comment-19739><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>29 Apr 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, </p>
+<p>It should be possible to install pubr using `devtools::install_github(“kassambara/pubr”)`.</p>
+<p>In order efficiently I need a reproducible example with a demo data.</p>
+<p>Thanks</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19739 data-commentid=19739 data-postid=10873 data-belowelement=comment-19739 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id=li-comment-19773><article class=comment id=comment-19773><header class=comment-author><img alt src=images/38 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Elizabeth</div>	<div class=commentmetadata>04 May 2020</div> <div class=comment-body> <div class=comment-content><p>Really great examples that are well explained.</p>
+<p>My issue is when trying to visualize the final box plot with the p-values for any of the examples. I receive the following error each time:</p>
+<p>Error in f(…) :<br>
+ Can only handle data with groups that are plotted on the x-axis<br>
+In addition: Warning messages:<br>
+1: Ignoring unknown parameters: hide.ns<br>
+2: Ignoring unknown aesthetics: xmin, xmax, annotations, y_position </p>
+<p>Please advise and what the issue may be. Thank you</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19773 data-commentid=19773 data-postid=10873 data-belowelement=comment-19773 data-respondelement=respond data-replyto="Reply to Elizabeth" aria-label="Reply to Elizabeth">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-19774><article class=comment id=comment-19774><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>04 May 2020</div> <div class=comment-body> <div class=comment-content><p>Please make sure you have the latest version of the rstatix and the ggpubr packages</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19774 data-commentid=19774 data-postid=10873 data-belowelement=comment-19774 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment byuser comment-author-echo odd alt thread-even depth-1" id=li-comment-19781><article class=comment id=comment-19781><header class=comment-author><img alt src=images/39 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Qian Yang</div>	<div class=commentmetadata>05 May 2020</div> <div class=comment-body> <div class=comment-content><p>Hi Kassambara,<br>
+Thanks a lot for your input, it’s really helpful. I have one question that the output of two-way repeated ANOVA analysis in R is not consistent with the results obtained in SPSS, what kind of reason do you think can explain this difference? thanks in advance.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19781 data-commentid=19781 data-postid=10873 data-belowelement=comment-19781 data-respondelement=respond data-replyto="Reply to Qian Yang" aria-label="Reply to Qian Yang">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-19783><article class=comment id=comment-19783><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>06 May 2020</div> <div class=comment-body> <div class=comment-content><div class=rdoc>
+<p>Hi!</p>
+<p>After checking, I found that the output of SPSS and rstatix are the same when considering the rstatix raw output (<code>res.aov</code>).</p>
+<p>When displaying the ANOVA table using the function <code>get_anova_table(res.aov)</code>, the sphericity correction is automatically applied when the sphericity can’t be assumed.</p>
+<p>The sphericity assumption can be checked using the <a href=https://www.datanovia.com/en/lessons/mauchlys-test-of-sphericity-in-r/>Mauchly’s test of sphericity</a>, which is automatically reported when using the R function <code>rstatix::anova_test()</code></p>
+<pre class=r><code class=hljs><span class=hljs-keyword>library</span>(rstatix)
+
+<span class=hljs-comment># Data preparation</span>
+data(<span class=hljs-string>"selfesteem2"</span>, package = <span class=hljs-string>"datarium"</span>)
+selfesteem2 &lt;- selfesteem2 %&gt;%
+  gather(key = <span class=hljs-string>"time"</span>, value = <span class=hljs-string>"score"</span>, t1, t2, t3) %&gt;%
+  convert_as_factor(id, time)
+head(selfesteem2, <span class=hljs-number>3</span>)</code></pre>
+<pre><code class=hljs>## # A tibble: 3 x 4
+##   id    treatment time  score
+##   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt;
+## 1 1     ctr       t1       83
+## 2 2     ctr       t1       97
+## 3 3     ctr       t1       93</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Anova result</span>
+res.aov &lt;- anova_test(
+  data = selfesteem2, dv = score, wid = id,
+  within = c(treatment, time)
+)
+
+<span class=hljs-comment># Display raw results</span>
+res.aov</code></pre>
+<pre><code class=hljs>## ANOVA Table (type III tests)
+## 
+## $ANOVA
+##           Effect DFn DFd      F        p p&lt;.05   ges
+## 1      treatment   1  11 15.541 2.00e-03     * 0.059
+## 2           time   2  22 27.369 1.08e-06     * 0.049
+## 3 treatment:time   2  22 30.424 4.63e-07     * 0.050
+## 
+## $`Mauchly's Test for Sphericity`
+##           Effect     W     p p&lt;.05
+## 1           time 0.469 0.023     *
+## 2 treatment:time 0.616 0.089      
+## 
+## $`Sphericity Corrections`
+##           Effect   GGe      DF[GG]    p[GG] p[GG]&lt;.05   HFe      DF[HF]    p[HF] p[HF]&lt;.05
+## 1           time 0.653 1.31, 14.37 5.03e-05         * 0.705 1.41, 15.52 2.81e-05         *
+## 2 treatment:time 0.723  1.45, 15.9 1.25e-05         * 0.803 1.61, 17.66 4.82e-06         *</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># Display ANOVA table</span>
+<span class=hljs-comment># Sphericity correction is applied by default if </span>
+<span class=hljs-comment># the the Mauchly's test is significant</span>
+<span class=hljs-comment># Read this: https://www.datanovia.com/en/lessons/mauchlys-test-of-sphericity-in-r/</span>
+get_anova_table(res.aov)</code></pre>
+<pre><code class=hljs>## ANOVA Table (type III tests)
+## 
+##           Effect  DFn   DFd      F        p p&lt;.05   ges
+## 1      treatment 1.00 11.00 15.541 2.00e-03     * 0.059
+## 2           time 1.31 14.37 27.369 5.03e-05     * 0.049
+## 3 treatment:time 2.00 22.00 30.424 4.63e-07     * 0.050</code></pre>
+<pre class=r><code class=hljs><span class=hljs-comment># No correction</span>
+get_anova_table(res.aov, correction = <span class=hljs-string>"none"</span>)</code></pre>
+<pre><code class=hljs>## ANOVA Table (type III tests)
+## 
+##           Effect DFn DFd      F        p p&lt;.05   ges
+## 1      treatment   1  11 15.541 2.00e-03     * 0.059
+## 2           time   2  22 27.369 1.08e-06     * 0.049
+## 3 treatment:time   2  22 30.424 4.63e-07     * 0.050</code></pre>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19783 data-commentid=19783 data-postid=10873 data-belowelement=comment-19783 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id=li-comment-19908><article class=comment id=comment-19908><header class=comment-author><img alt src=images/40 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Leon</div>	<div class=commentmetadata>27 May 2020</div> <div class=comment-body> <div class=comment-content><p>Hey, great tutorial! This is by far the easiest and most understandable approach I have found.<br>
+I am working on my bachelor thesis and using R instead of SPSS. I need to calculate several 2 way repeated Anovas and rstatix seems more than handy atm. However, I cannot find any explanation of the output: What is the value of DFd? I calculated a oneway repeated Anova with 1 factor of 3 levels. DFn seems to be the degree of freedom between the levels (2) and DFd’s value is 30.<br>
+I have 16 participants and I dont know how the degrees of freedom could go up this far… Though, my statistics courses were 2 years ago…</p>
+<p>Thanks in advance!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-19908 data-commentid=19908 data-postid=10873 data-belowelement=comment-19908 data-respondelement=respond data-replyto="Reply to Leon" aria-label="Reply to Leon">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-20446><article class=comment id=comment-20446><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>28 May 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, thank you for the positive feedback!</p>
+<div class=rdoc>
+<p><code>DFn</code> is the Degrees of Freedom in the numerator (i.e.&nbsp;DF for the effect of the experiment); <code>DFd</code> Degrees of Freedom in the denominator (i.e., DF for the residual, DFd Degrees of Freedom in the denominator (i.e., DF error)). This is explained in the documentation of anova_summary(), but obviously, we should clarify it in the current blog post.</p>
+<p>If only one factor is repeated measures, the number of degrees of freedom (DFd) can be calculated as <code>(n-1)(a-1)</code>, where <code>n</code> is the number of participants and <code>a</code> is the number of levels of the repeated measures factor.</p>
+<p>If two factors are repeated measures, the number of degrees of freedom (DFd) for the two-way interaction term can be calculated as <code>(n-1)(a-1)(b-1)</code> where <code>n</code> is the number of participants, <code>a</code> is the number of levels one factor, and <code>b</code> is the number of levels of the other factor. Note that, a <a href=https://www.datanovia.com/en/lessons/mauchlys-test-of-sphericity-in-r/>sphericity correction</a> is applied, when the sphericity assumtion is not met, resulting in a fractional degres of freedom.</p>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20446 data-commentid=20446 data-postid=10873 data-belowelement=comment-20446 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article><ul class=children>
+<li class="comment odd alt depth-3" id=li-comment-20447><article class=comment id=comment-20447><header class=comment-author><img alt src=images/41 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Leon</div>	<div class=commentmetadata>28 May 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you so much for the fast response!<br>
+(16-1) (3-2) = 30 should be fine then.</p>
+<p>Due to the pandemic I was not able to test all participants and I am allowed to set the alpha level to 0.10 instead of 0.05. Is it possible to adjust it within your package, so that get_anova_table() marks p&lt;.10 with * ? </p>
+<p>Even if not, your package worked great so far. Thanks again!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20447 data-commentid=20447 data-postid=10873 data-belowelement=comment-20447 data-respondelement=respond data-replyto="Reply to Leon" aria-label="Reply to Leon">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-4" id=li-comment-20451><article class=comment id=comment-20451><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>28 May 2020</div> <div class=comment-body> <div class=comment-content><p>It’s possible to do something like this: </p>
+<div class=rdoc>
+<pre class=r><code class=hljs>res &lt;- get_anova_table(res.aov)
+res[, <span class=hljs-string>"p&lt;.05"</span>] &lt;- ifelse(res$p &lt;= <span class=hljs-number>0.1</span>, <span class=hljs-string>"*"</span>, <span class=hljs-string>""</span>)
+res</code></pre>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20451 data-commentid=20451 data-postid=10873 data-belowelement=comment-20451 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id=li-comment-20437><article class=comment id=comment-20437><header class=comment-author><img alt src=images/42 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Gene Lu</div>	<div class=commentmetadata>28 May 2020</div> <div class=comment-body> <div class=comment-content><p>Hi,<br>
+Thank you very much for your website! It helps a lot with my analysis works.<br>
+I have one question, after running the rstatix::anova_test() code, it only shows the ANOVA table. I would like to check the sphericity assumption for my data but could not find it in the anova_test result. (I have tried to use your example data (selfesteem2) to do the analysis and can check the sphericity assumption in the ANOVA table. So I think the problem is from my data.) Do you have any idea what would be the possible reasons? (I run the two-wat rmANOVA) Thank you very much again!!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20437 data-commentid=20437 data-postid=10873 data-belowelement=comment-20437 data-respondelement=respond data-replyto="Reply to Gene Lu" aria-label="Reply to Gene Lu">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-20439><article class=comment id=comment-20439><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>28 May 2020</div> <div class=comment-body> <div class=comment-content><p>Note that the the Mauchly’s Test of Sphericity is only reported for variables or effects with &gt;2 levels because sphericity necessarily holds for effects with only 2 levels Read more: <a href=https://www.datanovia.com/en/lessons/mauchlys-test-of-sphericity-in-r/#computing-anova-and-mauchlys-test>Mauchly’s Test of Sphericity in R</a>. Does your within-measures variable contains only two levels?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20439 data-commentid=20439 data-postid=10873 data-belowelement=comment-20439 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id=li-comment-20457><article class=comment id=comment-20457><header class=comment-author><img alt src=images/42 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Gene Lu</div>	<div class=commentmetadata>29 May 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, thank you very much for your response! I found the solution from your answer in the previous question asked by Jack. My data is a mixed two-way ANOVA design (have 3 treatments). After changing the analysis method I get the Mauchly’s Test of Sphericity in my result. Thank you very much for your help!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20457 data-commentid=20457 data-postid=10873 data-belowelement=comment-20457 data-respondelement=respond data-replyto="Reply to Gene Lu" aria-label="Reply to Gene Lu">Reply</a>	</div></section></article></li>
+<li class="comment even thread-even depth-1" id=li-comment-20461><article class=comment id=comment-20461><header class=comment-author><img alt src=images/43 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>X32</div>	<div class=commentmetadata>30 May 2020</div> <div class=comment-body> <div class=comment-content><p>There are non-parametric method for 2/3 way repeated ANOVA. It’s WTS (Wald-Type Statistics), permuted WTS, ATS (ANOVA-Type Statistics) and ART (Aligned-Rank Transform) ANOVA. Both methods are available in R, not to mention Conover’s ANOVA (on “classic” ranks). Please check: nparLD, GFD, rankFD, ARTool and MANOVA packages.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20461 data-commentid=20461 data-postid=10873 data-belowelement=comment-20461 data-respondelement=respond data-replyto="Reply to X32" aria-label="Reply to X32">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20465><article class=comment id=comment-20465><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>30 May 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you for your input, very useful and instructive. Obviously, we’ll write on these packages!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20465 data-commentid=20465 data-postid=10873 data-belowelement=comment-20465 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id=li-comment-20515><article class=comment id=comment-20515><header class=comment-author><img alt src=images/44 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Sara</div>	<div class=commentmetadata>08 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi! Thanks for this beautiful and useful explanation.<br>
+I have a question regarding treating outliers:</p>
+<p>You say that if outliers are NOT extreme you keep in the analysis right?</p>
+<p>If I want to remove outliers from my dataset and compute anova, which is the command to remove them?</p>
+<p>Thank you in advance.</p>
+<p>Sara</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20515 data-commentid=20515 data-postid=10873 data-belowelement=comment-20515 data-respondelement=respond data-replyto="Reply to Sara" aria-label="Reply to Sara">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20517><article class=comment id=comment-20517><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>08 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you Sara, for your positive feedback, highly appreciated!</p>
+<div class=rdoc>
+<p>Once you identified outliers, you can filter out the corresponding samples (before computing ANOVA), by using the <a href=https://www.datanovia.com/en/lessons/subset-data-frame-rows-in-r/>R function dplyr::filter()</a>.</p>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20517 data-commentid=20517 data-postid=10873 data-belowelement=comment-20517 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-20518><article class=comment id=comment-20518><header class=comment-author><img alt src=images/45 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Viper</div>	<div class=commentmetadata>08 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Excellent guide and your hard work is very much appreciated.<br>
+ I am getting the same error code as several others:<br>
+Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+ 0 (non-NA) cases</p>
+<p>I have tried using the Mixed ANOVA, but that will not run either. I also tried using the “conflict_prefer”as a poster suggested, but that does not help either. There are no NA’s in any of my data columns. I have three categorical IVs (speaker, complexity, format) and not sure where I am going wrong. </p>
+<p>I will try and post a reproducible R script here later. </p>
+<p>Thanks for the help and thanks for the excellent guides.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20518 data-commentid=20518 data-postid=10873 data-belowelement=comment-20518 data-respondelement=respond data-replyto="Reply to Viper" aria-label="Reply to Viper">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20522><article class=comment id=comment-20522><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>09 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>I appreciate positive feedback. </p>
+<p>If you can send to me a reproducible script with your data, I will be able to check closely this issue. </p>
+<p>Thanks</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20522 data-commentid=20522 data-postid=10873 data-belowelement=comment-20522 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-20524><article class=comment id=comment-20524><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>09 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Please consider providing reproducible example with a demo data as described at : <a href=https://www.datanovia.com/en/blog/publish-reproducible-examples-from-r-to-datanovia-website/ rel="nofollow ugc">https://www.datanovia.com/en/blog/publish-reproducible-examples-from-r-to-datanovia-website/</a></p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20524 data-commentid=20524 data-postid=10873 data-belowelement=comment-20524 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20647><article class=comment id=comment-20647><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>27 Jun 2020</div> <div class=comment-body> <div class=comment-content><div class=rdoc>
+<p>Thanks, fixed now in the latest dev version of the <code>rstatix</code>, which can be installed using: <code>devtools::install_github("kassambara/rstatix")</code>.</p>
+<p>The issue is documented at: <a href=https://github.com/kassambara/rstatix/issues/55 rel="nofollow ugc">rstatix fails to compute repeated measures when unused columns are present in the input</a></p>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20647 data-commentid=20647 data-postid=10873 data-belowelement=comment-20647 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id=li-comment-20536><article class=comment id=comment-20536><header class=comment-author><img alt src=images/46 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Pi</div>	<div class=commentmetadata>11 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Great article! Only one aspect, a non-significant p-value for the Shapiro test doesn’t guarantee that the data is normally distributed. It may happen that the data you have is not enough to reject the null. The q-q plot is always a good double check as you did!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20536 data-commentid=20536 data-postid=10873 data-belowelement=comment-20536 data-respondelement=respond data-replyto="Reply to Pi" aria-label="Reply to Pi">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20547><article class=comment id=comment-20547><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>12 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you for your input!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20547 data-commentid=20547 data-postid=10873 data-belowelement=comment-20547 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-20543><article class=comment id=comment-20543><header class=comment-author><img alt src=images/47 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Daniel</div>	<div class=commentmetadata>12 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi,<br>
+Thank for build so amazing tool!<br>
+My question is: My data is not perfectly normal and I have some outliers, but results are consistent. In these cases, I am more calm if I can see model residuals. Any way to obtain anova_test residuals?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20543 data-commentid=20543 data-postid=10873 data-belowelement=comment-20543 data-respondelement=respond data-replyto="Reply to Daniel" aria-label="Reply to Daniel">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20549><article class=comment id=comment-20549><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>12 Jun 2020</div> <div class=comment-body> <div class=comment-content><div class=rdoc>
+<p>The returned object by the <code>anova_test()</code> function has an attribute called args, which is a list holding the arguments used to fit the ANOVA model, including: data, dv, within, between, type, model, etc.</p>
+<p>You can access to the residuals as follow: <code>residuals(attr(res.aov, "args")$model)</code></p>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20549 data-commentid=20549 data-postid=10873 data-belowelement=comment-20549 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article><ul class=children>
+<li class="comment even depth-3" id=li-comment-20558><article class=comment id=comment-20558><header class=comment-author><img alt src=images/47 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Daniel</div>	<div class=commentmetadata>13 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Are you the best? maybe… jejeje<br>
+Thanks!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20558 data-commentid=20558 data-postid=10873 data-belowelement=comment-20558 data-respondelement=respond data-replyto="Reply to Daniel" aria-label="Reply to Daniel">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id=li-comment-20559><article class=comment id=comment-20559><header class=comment-author><img alt src=images/48 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Danny</div>	<div class=commentmetadata>13 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, I’m trying to run Two-way repeated measures ANOVA but I kept getting this message:<br>
+Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+ 0 (non-NA) cases<br>
+And I don’t see any missing data for my data. This is what I did:</p>
+<p>res.aov &lt;- anova_test(<br>
+ data = Tab14_4, dv = Behavior, wid = Subject,<br>
+ within = c(Group, Interval)<br>
+)</p>
+<p>Pls help!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20559 data-commentid=20559 data-postid=10873 data-belowelement=comment-20559 data-respondelement=respond data-replyto="Reply to Danny" aria-label="Reply to Danny">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-20560><article class=comment id=comment-20560><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>13 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Please send a demo data so that I can reproduce the error and help.<br>
+Thanks</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20560 data-commentid=20560 data-postid=10873 data-belowelement=comment-20560 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20648><article class=comment id=comment-20648><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>27 Jun 2020</div> <div class=comment-body> <div class=comment-content><div class=rdoc>
+<p>Is this related to the issue is documented at: <a href=https://github.com/kassambara/rstatix/issues/55 rel="nofollow ugc">rstatix fails to compute repeated measures when unused columns are present in the input</a></p>
+<p>If yes, then it is fixed now in the latest dev version of the <code>rstatix</code>, which can be installed using: <code>devtools::install_github("kassambara/rstatix")</code>.</p>
+</div>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20648 data-commentid=20648 data-postid=10873 data-belowelement=comment-20648 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-20561><article class=comment id=comment-20561><header class=comment-author><img alt src=images/49 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Peggy</div>	<div class=commentmetadata>13 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, I’m also trying to run Two-way repeated measures ANOVA like Danny but I kept getting this message:<br>
+Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+0 (non-NA) cases<br>
+And I don’t see any missing data for my data. This is what I did:</p>
+<p>anova_test(data = mydata2,dv = Score,wid = Subjects,within = c(Drinks,Gender))</p>
+<p>May I sent my demo to you?<br>
+I really need your help!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20561 data-commentid=20561 data-postid=10873 data-belowelement=comment-20561 data-respondelement=respond data-replyto="Reply to Peggy" aria-label="Reply to Peggy">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20570><article class=comment id=comment-20570><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>14 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, In order to fix this issue I need a reproducible example with a data. Would you like to send your data with a reproducible R script?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20570 data-commentid=20570 data-postid=10873 data-belowelement=comment-20570 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id=li-comment-20568><article class=comment id=comment-20568><header class=comment-author><img alt src=images/50 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Lauren</div>	<div class=commentmetadata>14 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi there, I am also experiencing the same issue as Peggy and Danny. I have spent hours trying to get this to work (after it had successfully worked many times the other day) and have had no luck. It works perfectly fine with the data presented on this site, but is no longer working with my data. I also have no missing cases present within my dataset. </p>
+<p>res.aov &lt;- anova_test(data = newanova, dv = score, wid = id, within = c(treatment, time))</p>
+<p>Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+ 0 (non-NA) cases</p>
+<p>Please help!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20568 data-commentid=20568 data-postid=10873 data-belowelement=comment-20568 data-respondelement=respond data-replyto="Reply to Lauren" aria-label="Reply to Lauren">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20569><article class=comment id=comment-20569><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>14 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, In order to fix this issue I need a reproducible example with a data. Would you like to send your data with a reproducible R script?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20569 data-commentid=20569 data-postid=10873 data-belowelement=comment-20569 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+<li class="comment even depth-2" id=li-comment-20598><article class=comment id=comment-20598><header class=comment-author><img alt src=images/51 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Laurianne</div>	<div class=commentmetadata>19 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Have you find a solution? I am in the same situation.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20598 data-commentid=20598 data-postid=10873 data-belowelement=comment-20598 data-respondelement=respond data-replyto="Reply to Laurianne" aria-label="Reply to Laurianne">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment byuser comment-author-kitdzlove odd alt thread-even depth-1" id=li-comment-20590><article class=comment id=comment-20590><header class=comment-author><img alt src=images/52 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Dongze chen</div>	<div class=commentmetadata>18 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>If the data is an imbalance between groups, Does this still work?<br>
+Cause in my data, the first group has 100 samples, the second group only has 10 samples<br>
+I am looking forward to your reply! Thank you very much!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20590 data-commentid=20590 data-postid=10873 data-belowelement=comment-20590 data-respondelement=respond data-replyto="Reply to dongze chen" aria-label="Reply to dongze chen">Reply</a>	</div></section></article></li>
+<li class="comment byuser comment-author-laurianne even thread-odd thread-alt depth-1" id=li-comment-20606><article class=comment id=comment-20606><header class=comment-author><img alt src=images/53 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Laurianne Schoenberger</div>	<div class=commentmetadata>19 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hi ! Thank you so much for this explanation. I found this so helpful.<br>
+However, I have some issues when doing this with my data. I removed the NA from my dataset. I tried to do as your “example 1: Reproducible R script using R built-in data” but I am not sure this works… I had error mesage while running “pubr::render_r()”.<br>
+My independent variable is secondhand smoke (SHS yes or no) and cognitive test score at 2 points of time.</p>
+<p>When I compute the anova test. I got this message:<br>
+“Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) : 0 (non-NA) cases”</p>
+<p># Computation<br>
+res.aov2 &lt;- anova_test(data = ds, dv = score, wid = ID,<br>
+ within = c(SHSCAT, time))<br>
+get_anova_table(res.aov2)</p>
+<p>Then when I want to see the effect of independent variable at each time point, I got an error message:<br>
+"Error: Problem with `mutate()` input `data`. x 0 (non-NA) cases i Input `data` is `map(.data$data, .f, …)`"</p>
+<p># Effect of SHS smoke at each time point<br>
+one.way % group_by(time) %&gt;%<br>
+ anova_test(dv = score, wid = ID, within = SHSCAT) %&gt;%<br>
+ get_anova_table() %&gt;%<br>
+ adjust_pvalue(method = “bonferroni”)</p>
+<p>I really need your help. I tried to find other codes, to watch videos, but nothing fixed my problem.<br>
+Thank you for time.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20606 data-commentid=20606 data-postid=10873 data-belowelement=comment-20606 data-respondelement=respond data-replyto="Reply to Laurianne Schoenberger" aria-label="Reply to Laurianne Schoenberger">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20607><article class=comment id=comment-20607><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>19 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Please, provide your data and the R script you used so that we can help, thanks</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20607 data-commentid=20607 data-postid=10873 data-belowelement=comment-20607 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-20616><article class=comment id=comment-20616><header class=comment-author><img alt src=images/54 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Chiara</div>	<div class=commentmetadata>21 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>Hello,<br>
+thank you for the great article! I would like to use this procedure in my master’s thesis. Do you have some references to literature for me ?<br>
+Thank you so much!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20616 data-commentid=20616 data-postid=10873 data-belowelement=comment-20616 data-respondelement=respond data-replyto="Reply to Chiara" aria-label="Reply to Chiara">Reply</a>	</div></section></article><ul class=children>
+<li class="comment odd alt depth-2" id=li-comment-20617><article class=comment id=comment-20617><header class=comment-author><img alt src=images/54 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Chiara</div>	<div class=commentmetadata>21 Jun 2020</div> <div class=comment-body> <div class=comment-content><p>I need references for the pairwise paired t-tests and the one way ANOVA with repeated measures. Thank you so much!</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20617 data-commentid=20617 data-postid=10873 data-belowelement=comment-20617 data-respondelement=respond data-replyto="Reply to Chiara" aria-label="Reply to Chiara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment byuser comment-author-berman even thread-odd thread-alt depth-1" id=li-comment-20751><article class=comment id=comment-20751><header class=comment-author><img alt src=images/55 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Berman</div>	<div class=commentmetadata>16 Jul 2020</div> <div class=comment-body> <div class=comment-content><p>Hi there, is there any way to hide ” eta square” value when adding pvalues on ggplot?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20751 data-commentid=20751 data-postid=10873 data-belowelement=comment-20751 data-respondelement=respond data-replyto="Reply to Berman" aria-label="Reply to Berman">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-berman odd alt depth-2" id=li-comment-20752><article class=comment id=comment-20752><header class=comment-author><img alt src=images/55 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Berman</div>	<div class=commentmetadata>16 Jul 2020</div> <div class=comment-body> <div class=comment-content><p>adding Cohen.d instead of eta square ?</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20752 data-commentid=20752 data-postid=10873 data-belowelement=comment-20752 data-respondelement=respond data-replyto="Reply to Berman" aria-label="Reply to Berman">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id=li-comment-20771><article class=comment id=comment-20771><header class=comment-author><img alt src=images/56 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Stine</div>	<div class=commentmetadata>21 Jul 2020</div> <div class=comment-body> <div class=comment-content><p>Hey Kassambara,</p>
+<p>Thanks for your amazing instructions on repeated measures ANOVA. However, like many others it seem, I also receive the error message: </p>
+<p>“Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) :<br>
+ 0 (non-NA) cases” </p>
+<p>when trying to run the 2-way repeated ANOVA. I have removed any unused variables from the data set and tried running the: “suppressPackageStartupMessages(library(rstatix))” as well. And if I try to install your rstatix package, I get this message ‘kassambara/rstatix’ is not available (for R version 4.0.1) . I have just updated my Rstudio and believe I have the newest version?</p>
+<p>My data looks like this:<br>
+&gt;head(data)<br>
+ ID Site Day Sediment</p>
+<p>1 1 Site 1 Day 1 5.5<br>
+2 2 Site 1 Day 1 -2.75<br>
+3 3 Site 1 Day 1 -9.65<br>
+4 1 Site 1 Day 3 9.3<br>
+5 2 Site 1 Day 3 -0.2<br>
+6 3 Site 1 Day 3 -2.45 </p>
+<p>I have three Sites (site 1, Site 2, Site 3) which are measured 5 times (Day 1, Day 3, Day 7, Day 14, Day 33) and my dependent variable is sediment levels (Sediment).</p>
+<p>I would be very grateful if you can help me solve this problem.</p>
+<p>Kind regards</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20771 data-commentid=20771 data-postid=10873 data-belowelement=comment-20771 data-respondelement=respond data-replyto="Reply to Stine" aria-label="Reply to Stine">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor odd alt depth-2" id=li-comment-20773><article class=comment id=comment-20773><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>22 Jul 2020</div> <div class=comment-body> <div class=comment-content><p>Thank you for the feedback! This has been fixed now in the latest dev version (see <a href=https://github.com/kassambara/rstatix/issues/55 rel="nofollow ugc">https://github.com/kassambara/rstatix/issues/55</a>), which can be installed using devtools::install_github(“kassambara/rstatix”)</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20773 data-commentid=20773 data-postid=10873 data-belowelement=comment-20773 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id=li-comment-20809><article class=comment id=comment-20809><header class=comment-author><img alt src=images/57 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Anna</div>	<div class=commentmetadata>27 Jul 2020</div> <div class=comment-body> <div class=comment-content><p>Hi Kassambara, thank you for your great explanations and examples! I would have one question on you. How to compare more than two treatment groups in 2-way repeated-measures ANOVA?</p>
+<p> I am trying to do a two-way repeated-measures ANOVA, only I have 3 treatment groups (independent variable 1) over time (independent variable 2). I got significant two-way interaction and a simple main effect. You used paired t-test in your example to compare the treatment groups so I tried anova_test instead. That was significant for some of the time points. But now, I cannot figure out how to do a posthoc Tuckey to know how they differ? I can’t get TukeyHSD working with the output from anova_test (I always used aov function, but there you cannot use group_by()). </p>
+<p>I ran my anova as follows:<br>
+comparison %<br>
+ group_by(time) %&gt;%<br>
+ anova_test(dependent variable ~ treatment) %&gt;%<br>
+ get_anova_table() %&gt;%<br>
+ adjust_pvalue(method = “bonferroni”)</p>
+<p>Kind regards</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20809 data-commentid=20809 data-postid=10873 data-belowelement=comment-20809 data-respondelement=respond data-replyto="Reply to Anna" aria-label="Reply to Anna">Reply</a>	</div></section></article></li>
+<li class="comment odd alt thread-even depth-1" id=li-comment-20942><article class=comment id=comment-20942><header class=comment-author><img alt src=images/58 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Charles</div>	<div class=commentmetadata>28 Aug 2020</div> <div class=comment-body> <div class=comment-content><p>Hi Kassambara, </p>
+<p>Thanks for the amazing tutorial! </p>
+<p>I have a question that whether partial counterbalance design can be analyzed with anova_test(). </p>
+<p>I have two IV: tool (N, R, S) and topic (T, F, K), each one has three levels. If it is a complete counterbalancing design, each participants should has 9 treatment. But that is impratical. So in my study, each participant experienced 3 treatment (e.g. [NT, RF, SK], [RT, NK, SF]), each tool and topic only appear once for each participant. </p>
+<p>When I used anova_test(), I got the same error as above: Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, …) : 0 (non-NA) cases. I do not have NA in my dataset. </p>
+<p>Should I use mixed model instead? But every IV is within subject variable, I think I should use repeated measurement ANOVA. </p>
+<p>If it does not make sense I will provide reproducible demo data.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20942 data-commentid=20942 data-postid=10873 data-belowelement=comment-20942 data-respondelement=respond data-replyto="Reply to Charles" aria-label="Reply to Charles">Reply</a>	</div></section></article><ul class=children>
+<li class="comment byuser comment-author-kassambara bypostauthor even depth-2" id=li-comment-20943><article class=comment id=comment-20943><header class=comment-author><img alt src=images/11 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Kassambara</div>	<div class=commentmetadata>28 Aug 2020</div> <div class=comment-body> <div class=comment-content><p>Hi, this issue seems to be related to the issue described at <a href=https://github.com/kassambara/rstatix/issues/55 rel="nofollow ugc">https://github.com/kassambara/rstatix/issues/55</a>, which has been fixed in the rstatix dev version available on Github. Please make sure you have installed the latest dev version of the rstatix package.</p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20943 data-commentid=20943 data-postid=10873 data-belowelement=comment-20943 data-respondelement=respond data-replyto="Reply to kassambara" aria-label="Reply to kassambara">Reply</a>	</div></section></article><ul class=children>
+<li class="comment odd alt depth-3" id=li-comment-20965><article class=comment id=comment-20965><header class=comment-author><img alt src=images/58 srcset class="avatar avatar-81 photo" loading=lazy sizes width=81 height=81></header><section class=comment-details>	<div class=author-name>Charles</div>	<div class=commentmetadata>03 Sep 2020</div> <div class=comment-body> <div class=comment-content><p>Hi Kassambara, </p>
+<p>I installed the package using devtools::install_github(“kassambara/rstatix”)</p>
+<p>But still get this error. </p>
+<p>Here is a script: </p>
+<p><code>demo &lt;- data.frame(<br>
+ id = c(1L,1L,1L,2L,2L,<br>
+ 2L,3L,3L,3L,4L,4L,4L,5L,5L,5L,6L,6L,6L,<br>
+ 7L,7L,7L,8L,8L,8L,9L,9L,9L,10L,10L,10L,<br>
+ 11L,11L,11L,12L,12L,12L,13L,13L,13L,14L,14L,<br>
+ 14L,15L,15L,15L,16L,16L,16L,17L,17L,17L,<br>
+ 18L,18L,18L,19L,19L,19L,20L,20L,20L,21L,21L,<br>
+ 21L,22L,22L,22L,23L,23L,23L,24L,24L,24L,<br>
+ 25L,25L,25L,26L,26L,26L,27L,27L,27L,28L,<br>
+ 28L,28L,29L,29L,29L,30L,30L,30L,31L,31L,31L,<br>
+ 32L,32L,32L,33L,33L,33L,34L,34L,34L,35L,<br>
+ 35L,35L,36L,36L,36L),<br>
+ result = c(4,4,4,4,4.5,3.5,<br>
+ 4,2,4,4,2,4,4,4,4,2,3.5,3,6,1,4,4,<br>
+ 4.5,3.5,3.5,2,5.5,5.5,6,6.5,3,2,5,1,6,<br>
+ 6.5,3.5,4.5,4.5,3,5,5.5,2,2,3.5,2,5,5,4,<br>
+ 6,7,5,5,5,3,5,5,4,4.5,5,4.5,6.5,6.5,5,<br>
+ 4.5,3,5,5,6,6,6,7,4,5.5,5,6,6,5.5,2,<br>
+ 4.5,5,1,7,7,1,4,4.5,3,5,6,6,2.5,7,3,3,<br>
+ 5,2,5,7,1.5,2,2,1.5,4.5,5,1,3,1),<br>
+ topic = c(1L,2L,3L,2L,3L,<br>
+ 1L,3L,1L,2L,3L,2L,1L,2L,1L,3L,1L,3L,2L,<br>
+ 2L,3L,1L,3L,1L,2L,1L,2L,3L,1L,3L,2L,3L,<br>
+ 2L,1L,2L,1L,3L,3L,1L,2L,1L,2L,3L,2L,3L,<br>
+ 1L,2L,1L,3L,1L,3L,2L,3L,2L,1L,1L,2L,3L,<br>
+ 2L,3L,1L,3L,1L,2L,3L,2L,1L,2L,1L,3L,1L,<br>
+ 3L,2L,2L,3L,1L,3L,1L,2L,1L,2L,3L,1L,3L,<br>
+ 2L,3L,2L,1L,2L,1L,3L,3L,1L,2L,1L,2L,3L,<br>
+ 2L,3L,1L,2L,1L,3L,1L,3L,2L,3L,2L,1L),<br>
+ tool = c(1L,2L,3L,2L,3L,<br>
+ 1L,3L,1L,2L,3L,2L,1L,2L,1L,3L,1L,3L,2L,<br>
+ 1L,2L,3L,2L,3L,1L,3L,1L,2L,3L,2L,1L,2L,<br>
+ 1L,3L,1L,3L,2L,1L,2L,3L,2L,3L,1L,3L,1L,<br>
+ 2L,3L,2L,1L,2L,1L,3L,1L,3L,2L,1L,2L,3L,<br>
+ 2L,3L,1L,3L,1L,2L,3L,2L,1L,2L,1L,3L,1L,<br>
+ 3L,2L,1L,2L,3L,2L,3L,1L,3L,1L,2L,3L,2L,<br>
+ 1L,2L,1L,3L,1L,3L,2L,1L,2L,3L,2L,3L,1L,<br>
+ 3L,1L,2L,3L,2L,1L,2L,1L,3L,1L,3L,2L),<br>
+ trial = c(1L,2L,3L,1L,2L,<br>
+ 3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,<br>
+ 1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,<br>
+ 2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,<br>
+ 3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,<br>
+ 1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,<br>
+ 2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,<br>
+ 3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L,<br>
+ 1L,2L,3L,1L,2L,3L,1L,2L,3L,1L,2L,3L)<br>
+ )</code></p><code>
+</code><p><code>anova_test(<br>
+ data = demo, dv = result, wid = id,<br>
+ within = c(topic, tool, trial)<br>
+)</code></p>
+ </div>	</div>	<div class=reply><a rel=nofollow class=comment-reply-link href=#comment-20965 data-commentid=20965 data-postid=10873 data-belowelement=comment-20965 data-respondelement=respond data-replyto="Reply to Charles" aria-label="Reply to Charles">Reply</a>	</div></section></article></li>
+</ul>
+</li>
+</ul>
+</li>
+ </ul>
+ 
+ 
+ 
+ <div id=respond class=comment-respond>
+ <h3 id=reply-title class=comment-reply-title>Give a comment <small><a rel=nofollow id=cancel-comment-reply-link href=#respond style=display:none>Cancel reply</a></small></h3><form action=https://www.datanovia.com/en/wp-comments-post.php method=post id=commentform class=comment-form novalidate><div class="commentnotice warning">Want to post an issue with R? If yes, please make sure you have read this: <a href=https://www.datanovia.com/en/blog/publish-reproducible-examples-from-r-to-datanovia-website/ target=_blank>How to Include Reproducible R Script Examples in Datanovia Comments</a></div><div class="column dt-sc-one-half first"><textarea autocomplete=new-password id=comment name=c16337433e cols=5 rows=3 placeholder="Your Comment"></textarea><textarea id=af46044cb6aa9105bb2a578b8db47d43 aria-hidden=true name=comment autocomplete=new-password style=padding:0;clip:rect(1px,1px,1px,1px);position:absolute!important;white-space:nowrap;height:1px;width:1px;overflow:hidden tabindex=-1></textarea></div><div class="column dt-sc-one-half"><p><input id=author name=author type=text placeholder="Your Name" required value></p></div>
+<div class="column dt-sc-one-half"> <p> <input id=email name=email type=text placeholder="Your Email" required value> </p></div>
+<div style=clear:both></div><div class="g-recaptcha ivole-recaptcha" data-sitekey=6LdNo3EUAAAAAEQybBUhVO50L0BaecKzfRlj7o6q id=gglcptch_recaptcha_310><div style=width:304px;height:78px><div></div><textarea id=g-recaptcha-response-1 name=g-recaptcha-response class=g-recaptcha-response style="width:250px;height:40px;border:1px solid rgb(193,193,193);margin:10px 25px;padding:0px;resize:none;display:none"></textarea></div></div><div class="gglcptch gglcptch_v2"><div id=gglcptch_recaptcha_1433793785 class=gglcptch_recaptcha><div style=width:304px;height:78px><div></div><textarea id=g-recaptcha-response name=g-recaptcha-response class=g-recaptcha-response style="width:250px;height:40px;border:1px solid rgb(193,193,193);margin:10px 25px;padding:0px;resize:none;display:none"></textarea></div></div>
+ </div><p class=form-submit><input name=submit type=submit id=submit class=submit value=Comment> 
+</p></form>	</div>
+ </div> 
+ </article>
+ </div>
+ <div class="column dt-sc-one-third dt-sc-lessons-menu-container">
+ 
+ <div class=dt-sc-lessons-menu>
+ 
+ <h4> Course Curriculum </h4>
+ 
+ <ul><li><a href=https://www.datanovia.com/en/lessons/anova-in-r/ class=dt-sc-lesson-menu-name>ANOVA in R</a><div class=dt-sc-lesson-menu-duration> <i class="fa fa-clock-o"> </i>25 mins</div><li class=current><a href=https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/ class=dt-sc-lesson-menu-name>Repeated Measures ANOVA in R</a><div class=dt-sc-lesson-menu-duration> <i class="fa fa-clock-o"> </i>25 mins</div><li><a href=https://www.datanovia.com/en/lessons/mixed-anova-in-r/ class=dt-sc-lesson-menu-name>Mixed ANOVA in R</a><div class=dt-sc-lesson-menu-duration> <i class="fa fa-clock-o"> </i>25 mins</div><li><a href=https://www.datanovia.com/en/lessons/ancova-in-r/ class=dt-sc-lesson-menu-name>ANCOVA in R</a><div class=dt-sc-lesson-menu-duration> <i class="fa fa-clock-o"> </i>25 mins</div><li><a href=https://www.datanovia.com/en/lessons/one-way-manova-in-r/ class=dt-sc-lesson-menu-name>One-Way MANOVA in R</a><div class=dt-sc-lesson-menu-duration> <i class="fa fa-clock-o"> </i>20 mins</div><li><a href=https://www.datanovia.com/en/lessons/kruskal-wallis-test-in-r/ class=dt-sc-lesson-menu-name>Kruskal-Wallis Test in R</a><div class=dt-sc-lesson-menu-duration> <i class="fa fa-clock-o"> </i>15 mins</div><li><a href=https://www.datanovia.com/en/lessons/friedman-test-in-r/ class=dt-sc-lesson-menu-name>Friedman Test in R</a><div class=dt-sc-lesson-menu-duration> <i class="fa fa-clock-o"> </i>15 mins</div></ul> 
+ 
+ </div>
+ 
+ <div class=dt-sc-lesson-staff>
+ <div class=lesson-staff-title>
+ <h5>Teacher</h5>
+ </div>
+ <div class=lesson-staff-details>
+ <div class=team-thumb> 
+ <img src=images/59.jpg class="attachment-full size-full wp-post-image" alt loading=lazy srcset sizes width=224 height=224> </div>
+ <div class=team-meta> 
+ <h5>Alboukadel Kassambara</h5>
+ <h6> Role : Founder of Datanovia </h6>
+ </div>
+ <div class=clear> </div>
+ <ul class=teachers-details>
+ <li> Website : <a href=https://www.datanovia.com/en>https://www.datanovia.com/en</a> </li>
+ <li> Experience : &gt;10 years </li>
+ <li> Specialist in : Bioinformatics and Cancer Biology </li>
+ </ul>
+ <a class="dt-sc-button small" href=https://www.datanovia.com/en/teachers/alboukadel-kassambara/>Read More</a>
+ </div>
+ </div>
+ 
+ 
+ </div>
+ 
+ 
+ </section> </div>
+ </div>
+ 
+ <footer id=footer>
+ 
+ <div class=footer-logo> 
+ <img class="normal_logo sf-hidden" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Footer Logo" title="Footer Logo">
+ <img class=retina_logo src=images/7.png alt=Datanovia title=Datanovia style=width:98px;height:99px> 
+ </div>
+ <div class=footer-widgets-wrapper><div style=width:100%;height:auto;clear:none;text-align:center class=google-auto-placed><ins style="display:block;margin:10px auto;background-color:transparent;height:280px" data-ad-format=auto class="adsbygoogle adsbygoogle-noablate" data-ad-client=ca-pub-5474463749888038 data-adsbygoogle-status=done><ins id=aswift_5_expand style=display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent><ins id=aswift_5_anchor style=display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent></ins></ins></ins></div>
+ <div class=container><div class="column dt-sc-one-fourth first"><div style=width:100%;height:auto;clear:none;text-align:center class=google-auto-placed><ins style="display:block;margin:10px auto;background-color:transparent;height:600px" data-ad-format=auto class="adsbygoogle adsbygoogle-noablate" data-ad-client=ca-pub-5474463749888038 data-adsbygoogle-status=done><ins id=aswift_6_expand style=display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:212px;background-color:transparent><ins id=aswift_6_anchor style=display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:212px;background-color:transparent></ins></ins></ins></div><aside id=text_icl-2 class="widget widget_text_icl"><h3 class=widgettitle>DataNovia</h3> <div class=textwidget>DataNovia is dedicated to data mining and statistics to help you make sense of your data.
+<br><br>
+We offer data science courses on a large variety of topics, including: R programming, Data processing and visualization, Biostatistics and Bioinformatics, and Machine learning
+<br><br>
+<a class="dt-sc-button small" title href=https://www.datanovia.com/en/dtcourses/> Start Learning Now </a>
+</div>
+ </aside></div><div class="column dt-sc-one-fourth"><aside id=text-13 class="widget widget_text"><h3 class=widgettitle>Learn</h3> <div class=textwidget><ul>
+<li><a href=https://www.datanovia.com/en/dtcourses/>All courses</a></li>
+<li><a href=https://www.datanovia.com/en/blog/>Data science tutorials</a></li>
+<li><a href=https://www.datanovia.com/en/pricing-2/>Pricing</a></li>
+<li><a href=https://www.datanovia.com/en/contact>Become an Instructor</a></li>
+</ul>
+</div>
+ </aside></div><div class="column dt-sc-one-fourth"></div><div class="column dt-sc-one-fourth"><aside id=text-14 class="widget widget_text"><h3 class=widgettitle>About</h3> <div class=textwidget><ul>
+<li><a href=https://www.datanovia.com/en/about/>About Us</a></li>
+<li><a href=https://www.datanovia.com/en/contact/>Contact</a></li>
+<li><a href=https://www.datanovia.com/en/privacy-policy/>Privacy Policy</a></li>
+<li><a href=https://www.datanovia.com/en/terms-conditions/>Terms of Use</a></li>
+</ul>
+<p></p>
+</div>
+ </aside></div></div>
+ </div>
+ 
+ <div class=copyright>
+ <div class=container><div class=copyright-info>Copyright © 2018 DataNovia </div> <ul class=social-icons><li><a href=https://www.facebook.com/datanovia target=_blank><span class="fa fa-facebook"></span></a><li><a href=https://twitter.com/datanovia target=_blank><span class="fa fa-twitter"></span></a></ul> </div>
+ </div>
+ </footer>
+ </div>
+</div>
+ 
+ <link rel=stylesheet type=text/css href=stylesheet_40.css>
+ 
+ <link rel=stylesheet id=gglcptch-css href=stylesheet_41.css type=text/css>
+<div style=visibility:hidden;height:1px;width:1px;position:absolute;top:-9999px;z-index:100000 id=_atssh></div>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.datanovia.com/en/wp-content/themes/lms/framework//js/public/html5shiv.min.js?ver=5.5.1' id='html5shiv-js'></script>
+<![endif]-->
+<a href=# id=toTop style=display:block><span id=toTopHover style=opacity:0></span>To Top</a><ins class="adsbygoogle adsbygoogle-noablate" style=display:none!important data-adsbygoogle-status=done><ins id=aswift_3_expand style=display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent></ins></ins><div><div class=grecaptcha-badge data-style=bottomright style="width:256px;height:60px;display:block;transition:right 0.3s ease 0s;position:fixed;bottom:14px;right:-186px;box-shadow:gray 0px 0px 5px;border-radius:2px;overflow:hidden"><div class=grecaptcha-logo></div><div class=grecaptcha-error></div><textarea id=g-recaptcha-response-100000 name=g-recaptcha-response class=g-recaptcha-response style="width:250px;height:40px;border:1px solid rgb(193,193,193);margin:10px 25px;padding:0px;resize:none;display:none">03AGdBq24jaAxaA2i-jUMW1ZMDZpfDqSqZaM26tp57tWA7_LlvIKTV4pkSRKR4syd4uoOebI45ZQzGvE0rDrdMP466hG7zUTlNPgYiBuBo_w9VqOvWZv5ylqcbRUW6yX6XW1YZ02IUB6stniD0iSYj6DrmFJK_KOHIjJbE0rqMM4oM1PY90qw1migjbNgDxblklb-ejcYSTT_fxWm5FCG-Yw_yj3FXsUl7sez1znjPfVTnzveGLm8QDsE2ux9dvRmaup_dVFBxXwFS-ijU3dwYdxc8JLVe8xjkuu6vkvVwlRVy6XiScR4ocZN5Bci9XEt3RWWqXO8t7Oqj__bpEv4am0oSV8gx5meE5Ck0XtJBRNEauRQI-ps8usCyJy9XGwFvPFvJaxVC6HAW5E8VgY6giOdhghzpwntCtNPREew4HY2dbiE7lvx-hoHs4-6-37dodjgp2Tbhkxa0</textarea></div></div><div style="background-color:rgb(255,255,255);border:1px solid rgb(204,204,204);box-shadow:rgba(0,0,0,0.2) 2px 2px 3px;position:absolute;transition:visibility 0s linear 0.3s,opacity 0.3s linear 0s;opacity:0;visibility:hidden;z-index:2000000000;left:0px;top:-10000px"><div style=width:100%;height:100%;position:fixed;top:0px;left:0px;z-index:2000000000;background-color:rgb(255,255,255);opacity:0.05></div><div style="border:11px solid transparent;width:0px;height:0px;position:absolute;pointer-events:none;margin-top:-11px;z-index:2000000000" class=g-recaptcha-bubble-arrow></div><div style="border:10px solid transparent;width:0px;height:0px;position:absolute;pointer-events:none;margin-top:-10px;z-index:2000000000" class=g-recaptcha-bubble-arrow></div><div style=z-index:2000000000;position:relative></div></div><div style="background-color:rgb(255,255,255);border:1px solid rgb(204,204,204);box-shadow:rgba(0,0,0,0.2) 2px 2px 3px;position:absolute;transition:visibility 0s linear 0.3s,opacity 0.3s linear 0s;opacity:0;visibility:hidden;z-index:2000000000;left:0px;top:-10000px"><div style=width:100%;height:100%;position:fixed;top:0px;left:0px;z-index:2000000000;background-color:rgb(255,255,255);opacity:0.05></div><div style="border:11px solid transparent;width:0px;height:0px;position:absolute;pointer-events:none;margin-top:-11px;z-index:2000000000" class=g-recaptcha-bubble-arrow></div><div style="border:10px solid transparent;width:0px;height:0px;position:absolute;pointer-events:none;margin-top:-10px;z-index:2000000000" class=g-recaptcha-bubble-arrow></div><div style=z-index:2000000000;position:relative></div></div><div class="addthis-smartlayers addthis-smartlayers-desktop at4-hide sf-hidden" aria-labelledby=at4-share-label role=region><div id=at4-share-label>AddThis Sharing Sidebar</div><div id=at4-share class="at4-share addthis_32x32_style atss atss-left addthis-animated slideInLeft"></div><div id=at4-soc class="at-share-open-control at-share-open-control-left ats-transparent at4-hide" title=Show></div></div><div id=at4-thankyou class="at4-thankyou at4-thankyou-background at4-hide ats-transparent at4-thankyou-desktop addthis-smartlayers addthis-animated fadeIn at4-show sf-hidden" role=dialog aria-labelledby=at-thankyou-label><div class=at4lb-inner></div></div><div class="at-share-dock-outer addthis-smartlayers at4-visually-hidden addthis-smartlayers-mobile" aria-labelledby=at-share-dock-label role=region><div id=at-share-dock-label class="at4-hide sf-hidden">AddThis Sharing</div><div id=at-share-dock class="at-share-dock atss atss-bottom at-shfs-small addthis-animated slideInUp"><a style=width:20%;background-color:rgb(71,139,202) href=# class=at4-count><span style=color:rgb(255,255,255) class=at4-counter></span><span style=color:rgb(255,255,255) class=at4-share-label>SHARES</span></a><a style=width:20% role=button tabindex=0 title=Facebook class="at-share-btn at-svc-facebook"><span class=at-icon-wrapper style=background-color:rgb(71,139,202)><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink viewBox="0 0 32 32" version=1.1 role=img aria-labelledby=at-svg-facebook-5 class="at-icon at-icon-facebook" style=fill:rgb(255,255,255);width:24px;height:24px title=Facebook alt=Facebook><title id=at-svg-facebook-5>Facebook</title><g><path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z" fill-rule=evenodd></path></g></svg></span></a><a style=width:20% role=button tabindex=0 title=Twitter class="at-share-btn at-svc-twitter"><span class=at-icon-wrapper style=background-color:rgb(71,139,202)><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink viewBox="0 0 32 32" version=1.1 role=img aria-labelledby=at-svg-twitter-6 class="at-icon at-icon-twitter" style=fill:rgb(255,255,255);width:24px;height:24px title=Twitter alt=Twitter><title id=at-svg-twitter-6>Twitter</title><g><path d="M27.996 10.116c-.81.36-1.68.602-2.592.71a4.526 4.526 0 0 0 1.984-2.496 9.037 9.037 0 0 1-2.866 1.095 4.513 4.513 0 0 0-7.69 4.116 12.81 12.81 0 0 1-9.3-4.715 4.49 4.49 0 0 0-.612 2.27 4.51 4.51 0 0 0 2.008 3.755 4.495 4.495 0 0 1-2.044-.564v.057a4.515 4.515 0 0 0 3.62 4.425 4.52 4.52 0 0 1-2.04.077 4.517 4.517 0 0 0 4.217 3.134 9.055 9.055 0 0 1-5.604 1.93A9.18 9.18 0 0 1 6 23.85a12.773 12.773 0 0 0 6.918 2.027c8.3 0 12.84-6.876 12.84-12.84 0-.195-.005-.39-.014-.583a9.172 9.172 0 0 0 2.252-2.336" fill-rule=evenodd></path></g></svg></span></a><a style=width:20% role=button tabindex=0 title=LinkedIn class="at-share-btn at-svc-linkedin"><span class=at-icon-wrapper style=background-color:rgb(71,139,202)><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink viewBox="0 0 32 32" version=1.1 role=img aria-labelledby=at-svg-linkedin-7 class="at-icon at-icon-linkedin" style=fill:rgb(255,255,255);width:24px;height:24px title=LinkedIn alt=LinkedIn><title id=at-svg-linkedin-7>LinkedIn</title><g><path d="M26 25.963h-4.185v-6.55c0-1.56-.027-3.57-2.175-3.57-2.18 0-2.51 1.7-2.51 3.46v6.66h-4.182V12.495h4.012v1.84h.058c.558-1.058 1.924-2.174 3.96-2.174 4.24 0 5.022 2.79 5.022 6.417v7.386zM8.23 10.655a2.426 2.426 0 0 1 0-4.855 2.427 2.427 0 0 1 0 4.855zm-2.098 1.84h4.19v13.468h-4.19V12.495z" fill-rule=evenodd></path></g></svg></span></a><a style=width:20% role=button tabindex=0 title=More class="at-share-btn at-svc-compact"><span class=at-icon-wrapper style=background-color:rgb(71,139,202)><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink viewBox="0 0 32 32" version=1.1 role=img aria-labelledby=at-svg-addthis-8 class="at-icon at-icon-addthis" style=fill:rgb(255,255,255);width:24px;height:24px title=More alt=More><title id=at-svg-addthis-8>AddThis</title><g><path d="M18 14V8h-4v6H8v4h6v6h4v-6h6v-4h-6z" fill-rule=evenodd></path></g></svg></span></a></div></div><div class="at4-whatsnext-outer-container addthis-smartlayers-desktop addthis-smartlayers"><div class="at4-whatsnext-outer ats-light"><div title=Show id=at4-wnoc class="at-whatsnext-open-control at4-arrow at-up addthis-animated" style=right:18px>Show</div><div role=region aria-labelledby=at4-whatsnext-label id=at4-whatsnext class="at4-whatsnext ats-light addthis-animated slideOutDown at4-hide sf-hidden"><div id=at4-whatsnext-label>AddThis What's Next</div><div class=at-whatsnext-content></div><div title=Hide id=at4-wncc class="at-whatsnext-close-control at4-arrow at-down at4-hide">Hide</div></div></div></div><div id=at-expanded-menu-host><div id=at-expanded-menu-container role=dialog arialabeledby=at-expanded-menu-title tabindex=0 class="at-expanded-menu-hidden sf-hidden"><button aria-label=Close class=at-expanded-menu-close></button><div class="at-win-mask at-expanded-menu-mask"></div><div class="at-expanded-menu at-expanded-menu-round"></div><div>&lt;a class="at-branding-logo" href="https://www.addthis.com/website-tools/overview?utm_source=AddThis%20Tools&amp;amp;utm_medium=image&amp;amp;utm_campaign=AddThis%20expanded%20menu" title="Powered by AddThis" target="_blank"&gt;&lt;div class="at-branding-icon"&gt;&lt;/div&gt;&lt;span class="at-branding-addthis"&gt;AddThis&lt;/span&gt;&lt;/a&gt;</div><div class=at-expanded-menu-fade></div></div></div>

@@ -1223,7 +1223,7 @@ bxp <- ggpubr::ggboxplot(rm1wLONG_df, x = "Course", y = "TradPed", add = "point"
 bxp
 ```
 
-![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
+![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-105-1.png)<!-- -->
 
 #### Evaluate statistical assumptions {-}
 
@@ -1305,7 +1305,7 @@ Creating a QQ plot can let us know how badly the distribution departs from a nor
 ggpubr::ggqqplot(residuals(RMres_TradPed))
 ```
 
-![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-62-1.png)<!-- -->
+![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-109-1.png)<!-- -->
 
 We can identify outliers and see if they are reasonable or should be removed.
 
@@ -1416,7 +1416,7 @@ bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length 
 bxp
 ```
 
-![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-66-1.png)<!-- -->
+![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-113-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 

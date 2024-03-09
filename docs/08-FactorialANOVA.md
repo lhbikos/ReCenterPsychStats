@@ -319,7 +319,7 @@ ggpubr::ggline(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
 ```
 
 ```
-## Warning: Computation failed in `stat_summary()`
+## Warning: Computation failed in `stat_summary()`.
 ## Caused by error in `get()`:
 ## ! object 'mean_se_' of mode 'function' was not found
 ```
@@ -2127,7 +2127,7 @@ Box2way <- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stag
 Box2way
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-90-1.png)<!-- -->
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-167-1.png)<!-- -->
 
 #### Evaluate statistical assumptions {-}
 
@@ -2198,14 +2198,14 @@ Let's plot the residuals
 hist(resid_TradPed)
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-94-1.png)<!-- -->
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-171-1.png)<!-- -->
 The histogram does look somewhat different (negatively skewed) from a normal distribution.
 
 ```r
 qqnorm(resid_TradPed)
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-95-1.png)<!-- -->
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-172-1.png)<!-- -->
 
 The dots stray from the expected diagonal; this also visualizes the non-normality of the data.
 
@@ -2399,7 +2399,7 @@ Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif"
 Box2way
 ```
 
-![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-102-1.png)<!-- -->
+![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-179-1.png)<!-- -->
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 
 The *pwr.2way()* and *ss.2way()* functions require the following:

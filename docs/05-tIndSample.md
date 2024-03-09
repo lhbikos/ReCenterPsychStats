@@ -449,33 +449,33 @@ psych::describeBy(dfIndSamples ~ PatientRace, mat = TRUE, type = 1)
 ```
 
 ```
-              item group1 vars  n      mean        sd    median   trimmed
-ID*1             1  Black    1 33 17.000000 9.6695398 17.000000 17.000000
-ID*2             2  White    1 33 50.000000 9.6695398 50.000000 50.000000
-PatientRace*1    3  Black    2 33  1.000000 0.0000000  1.000000  1.000000
-PatientRace*2    4  White    2 33  2.000000 0.0000000  2.000000  2.000000
-Verbal1          5  Black    3 33  7.614884 2.9854116  7.693516  7.733412
-Verbal2          6  White    3 33  8.891483 3.2032222  7.979546  8.606615
-Nonverbal1       7  Black    4 33  2.943125 0.9251164  2.885724  2.931841
-Nonverbal2       8  White    4 33  2.965472 0.7001442  2.936787  2.995131
-                     mad        min       max     range       skew   kurtosis
-ID*1          11.8608000  1.0000000 33.000000 32.000000  0.0000000 -1.2022059
-ID*2          11.8608000 34.0000000 66.000000 32.000000  0.0000000 -1.2022059
-PatientRace*1  0.0000000  1.0000000  1.000000  0.000000        NaN        NaN
-PatientRace*2  0.0000000  2.0000000  2.000000  0.000000        NaN        NaN
-Verbal1        2.9075794  0.3507447 13.011100 12.660355 -0.3705014 -0.1377654
-Verbal2        3.2861809  4.5891699 19.311207 14.722037  1.0651306  1.5382575
-Nonverbal1     0.9185825  0.8333731  5.000000  4.166627  0.1204796  0.1380025
-Nonverbal2     0.5560620  1.1311619  4.350886  3.219724 -0.4338806  0.3937160
-                     se
-ID*1          1.6832508
-ID*2          1.6832508
-PatientRace*1 0.0000000
-PatientRace*2 0.0000000
-Verbal1       0.5196935
-Verbal2       0.5576094
-Nonverbal1    0.1610421
-Nonverbal2    0.1218795
+             item group1 vars  n      mean        sd    median   trimmed
+ID1             1  Black    1 33 17.000000 9.6695398 17.000000 17.000000
+ID2             2  White    1 33 50.000000 9.6695398 50.000000 50.000000
+PatientRace1    3  Black    2 33  1.000000 0.0000000  1.000000  1.000000
+PatientRace2    4  White    2 33  2.000000 0.0000000  2.000000  2.000000
+Verbal1         5  Black    3 33  7.614884 2.9854116  7.693516  7.733412
+Verbal2         6  White    3 33  8.891483 3.2032222  7.979546  8.606615
+Nonverbal1      7  Black    4 33  2.943125 0.9251164  2.885724  2.931841
+Nonverbal2      8  White    4 33  2.965472 0.7001442  2.936787  2.995131
+                    mad        min       max     range       skew   kurtosis
+ID1          11.8608000  1.0000000 33.000000 32.000000  0.0000000 -1.2022059
+ID2          11.8608000 34.0000000 66.000000 32.000000  0.0000000 -1.2022059
+PatientRace1  0.0000000  1.0000000  1.000000  0.000000        NaN        NaN
+PatientRace2  0.0000000  2.0000000  2.000000  0.000000        NaN        NaN
+Verbal1       2.9075794  0.3507447 13.011100 12.660355 -0.3705014 -0.1377654
+Verbal2       3.2861809  4.5891699 19.311207 14.722037  1.0651306  1.5382575
+Nonverbal1    0.9185825  0.8333731  5.000000  4.166627  0.1204796  0.1380025
+Nonverbal2    0.5560620  1.1311619  4.350886  3.219724 -0.4338806  0.3937160
+                    se
+ID1          1.6832508
+ID2          1.6832508
+PatientRace1 0.0000000
+PatientRace2 0.0000000
+Verbal1      0.5196935
+Verbal2      0.5576094
+Nonverbal1   0.1610421
+Nonverbal2   0.1218795
 ```
 In this analysis we are interested in the verbal variable. We see that patients who are Black received verbal interactions from physicians that were quantified by a mean score of 7.61 (*SD* = 2.99); physicians' scores for White patients were 8.89 (*SD* = 3.20). Skew and kurtosis values for the verbal ratings with Black patients were -.37 and -.14, respectively. They were 1.07 and 1.54 for White patients. As before, these fall well below the absolute values of 3 (skew) and 10 (kurtosis) that are considered to be concerning.
 
@@ -489,8 +489,8 @@ library(tidyverse)  #opening this package so I can use the pipes
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -966,13 +966,13 @@ psych::describeBy(IndT_df ~ Dept, type = 1, mat = TRUE)
 
 ```
          item group1 vars  n     mean        sd median  trimmed     mad min max
-Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
-Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
+Dept1       1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
+Dept2       2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
 TradPed1    3    CPY    2 81 4.129630 0.7547259    4.2 4.210769 0.88956 1.8   5
 TradPed2    4    ORG    2 31 3.870968 1.0948953    4.0 4.040000 1.18608 1.0   5
          range       skew  kurtosis         se
-Dept*1     0.0        NaN       NaN 0.00000000
-Dept*2     0.0        NaN       NaN 0.00000000
+Dept1      0.0        NaN       NaN 0.00000000
+Dept2      0.0        NaN       NaN 0.00000000
 TradPed1   3.2 -0.7630015 0.1555318 0.08385843
 TradPed2   4.0 -1.1832786 0.5826528 0.19664900
 ```
@@ -1012,7 +1012,7 @@ For fun (not required), let's produce a pairs.panels.
 psych::pairs.panels(IndT_df)
 ```
 
-![](05-tIndSample_files/figure-docx/unnamed-chunk-44-1.png)<!-- -->
+![](05-tIndSample_files/figure-docx/unnamed-chunk-76-1.png)<!-- -->
 
 We can see that we'll have more CPY students than ORG students. Although our kurtosis was below |10| our distribution looks negatively skewed, with the majority of the scores being on the high end of the scale.
 
@@ -1116,7 +1116,7 @@ indT.box <- indT.box + ggpubr::stat_pvalue_manual(ind.testT, label = "p.signif",
 indT.box
 ```
 
-![](05-tIndSample_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
+![](05-tIndSample_files/figure-docx/unnamed-chunk-81-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-} 
 
@@ -1185,13 +1185,13 @@ psych::describeBy(IndT_df ~ Dept, type = 1, mat = TRUE)
 
 ```
          item group1 vars  n     mean        sd median  trimmed     mad min max
-Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
-Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
+Dept1       1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
+Dept2       2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
 TradPed1    3    CPY    2 81 4.129630 0.7547259    4.2 4.210769 0.88956 1.8   5
 TradPed2    4    ORG    2 31 3.870968 1.0948953    4.0 4.040000 1.18608 1.0   5
          range       skew  kurtosis         se
-Dept*1     0.0        NaN       NaN 0.00000000
-Dept*2     0.0        NaN       NaN 0.00000000
+Dept1      0.0        NaN       NaN 0.00000000
+Dept2      0.0        NaN       NaN 0.00000000
 TradPed1   3.2 -0.7630015 0.1555318 0.08385843
 TradPed2   4.0 -1.1832786 0.5826528 0.19664900
 ```

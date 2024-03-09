@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html class=" js canvas canvastext postmessage history backgroundsize borderradius boxshadow textshadow cssgradients video audio svg svgclippaths" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8"><script src="cbgapi.loaded_1" async=""></script><script src="cbgapi.loaded_0" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="www-widgetapi.js" async=""></script><script async="" src="analytics.js"></script><script src="iframe_api"></script><script type="text/javascript" async="" src="analytics.js"></script><script async="" src="gtm.js"></script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"e226d3b87c",applicationID:"51934178"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var i=n[t]={exports:{}};e[t][0].call(i.exports,function(n){var i=e[t][1][n];return r(i||n)},i,i.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<t.length;i++)r(t[i]);return r}({1:[function(e,n,t){function r(){}function i(e,n,t){return function(){return o(e,[u.now()].concat(c(arguments)),n?null:this,t),n?void 0:this}}var o=e("handle"),a=e(5),c=e(6),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,n){s[n]=i(p+n,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,i="function"==typeof n;return o(l+"tracer",[u.now(),e,t],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],t),i)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[u.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=i(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){var t=e.getEntries();t.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,n){var t=e.getEntries();t.length>0&&d("lcp",[t[t.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var n=Math.round(e.timeStamp),t={type:e.type};n<=p.now()?t.fid=p.now()-n:n>p.offset&&n<=Date.now()?(n-=p.offset,t.fid=p.now()-n):n=p.now(),g=!0,d("timing",["fi",n,t])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(4),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,y=["click","keydown","mousedown","pointerdown","touchstart"];y.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],3:[function(e,n,t){function r(e,n){if(!i)return!1;if(e!==i)return!1;if(!n)return!0;if(!o)return!1;for(var t=o.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}n.exports={agent:i,version:o,match:r}},{}],4:[function(e,n,t){function r(e){function n(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,n,!1)}n.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],5:[function(e,n,t){function r(e,n){var t=[],r="",o=0;for(r in e)i.call(e,r)&&(t[o]=n(r,e[r]),o+=1);return t}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],6:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,i=t-n||0,o=Array(i<0?0:i);++r<i;)o[r]=e[n+r];return o}n.exports=r},{}],7:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function i(e){function n(e){return e&&e instanceof r?e:e?f(e,c,o):o()}function t(t,r,i,o){if(!p.aborted||o){e&&e(t,r,i);for(var a=n(i),c=v(t),f=c.length,u=0;u<f;u++)c[u].apply(a,r);var d=s[w[t]];return d&&d.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return d[e]=d[e]||i(t)}function y(e,n){u(e,function(e,t){n=n||"feature",w[t]=n,n in s||(s[n]=[])})}var h={},w={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:y,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var c="nr@context",f=e("gos"),u=e(5),s={},d={},p=n.exports=i();p.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(i.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[n]=r,r}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){i.buffer([e],r),i.emit(e,n,t)}var i=e("ee").get("handle");n.exports=r,r.ee=i},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=E.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();u(w,function(n,t){e[n]||(e[n]=t)});var t=a();f("mark",["onload",t+E.offset],null,"api"),f("timing",["load",t]);var r=l.createElement("script");r.src="https://"+e.agent,n.parentNode.insertBefore(r,n)}}function i(){"complete"===l.readyState&&o()}function o(){f("mark",["domContent",a()+E.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(c=Math.max((new Date).getTime(),c))-E.offset}var c=(new Date).getTime(),f=e("handle"),u=e(5),s=e("ee"),d=e(3),p=window,l=p.document,m="addEventListener",v="attachEvent",g=p.XMLHttpRequest,y=g&&g.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:g,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var h=""+location,w={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1177.min.js"},b=g&&y&&y[m]&&!/CriOS/.test(navigator.userAgent),E=n.exports={offset:c,now:a,origin:h,features:{},xhrWrappable:b,userAgent:d};e(1),e(2),l[m]?(l[m]("DOMContentLoaded",o,!1),p[m]("load",r,!1)):(l[v]("onreadystatechange",i),p[v]("onload",r)),f("mark",["firstbyte",c],null,"api");var x=0,O=e(7)},{}],"wrap-function":[function(e,n,t){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(6),a="nr@original",c=Object.prototype.hasOwnProperty,f=!1;n.exports=function(e,n){function t(e,n,t,i){function nrWrapper(){var r,a,c,f;try{a=this,r=o(arguments),c="function"==typeof t?t(r,a):t||{}}catch(u){p([u,"",[r,a,i],c])}s(n+"start",[r,a,i],c);try{return f=e.apply(a,r)}catch(d){throw s(n+"err",[r,a,d],c),d}finally{s(n+"end",[r,a,f],c)}}return r(e)?e:(n||(n=""),nrWrapper[a]=e,d(e,nrWrapper),nrWrapper)}function u(e,n,i,o){i||(i="");var a,c,f,u="-"===i.charAt(0);for(f=0;f<n.length;f++)c=n[f],a=e[c],r(a)||(e[c]=t(a,u?c+i:i,o,c))}function s(t,r,i){if(!f||n){var o=f;f=!0;try{e.emit(t,r,i,n)}catch(a){p([a,t,r,i])}f=o}}function d(e,n){if(Object.defineProperty&&Object.keys)try{var t=Object.keys(e);return t.forEach(function(t){Object.defineProperty(n,t,{get:function(){return e[t]},set:function(n){return e[t]=n,n}})}),n}catch(r){p([r])}for(var i in e)c.call(e,i)&&(n[i]=e[i]);return n}function p(n){try{e.emit("internal-error",n)}catch(t){}}return e||(e=i),t.inPlace=u,t.flag=a,t}},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"e226d3b87c","agent":"","transactionName":"b1YGbEADVhAHUBBfC1YcIk1cAUwKCV1LWwVMVhZRUw5LTRBaAUEXFkUNXUU9URcDXl5iC1dfBllANFEGEXoQUwluWgFPHAVdFw==","applicationID":"51934178","errorBeacon":"bam.nr-data.net","applicationTime":85}</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="a8208111d182.css" type="text/css">
+    
+  <script type="text/javascript" src="live.js"></script><style type="text/css">.txlive {display: none;}
+</style>
+  <script type="text/javascript">
+    window.liveSettings={
+      api_key:"acf957e1d7874a7c842f5958e376e00d",
+      picker: false,
+      detectlang: function() {
+        //return language code
+        return "en";
+      },
+      ignore_class: ["js-transifex-ignore"]
+    };
+  </script>
+
+
+    <title>Social Science Research: Principles, Methods, and Practices | OER Commons</title>
+    
+  <meta property="og:site_name" content="OER Commons">
+
+
+  <meta property="og:title" content="Social Science Research: Principles, Methods, and Practices">
+
+
+  <meta property="og:image" content="https://oercommons.s3.amazonaws.com/media/upload/materials/screenshots/materials-course-66263.png">
+
+
+  <meta property="og:description" content="This book is designed to introduce doctoral and graduate students to the process of scientific research in the social sciences,  business, education, public health, and related  disciplines. This book is based on my lecture materials developed over a decade of teaching the  doctoral-level class on Research Methods at the University of South Florida.   The target  audience for this book includes Ph.D. and graduate students, junior researchers, and professors teaching courses on research methods, although senior researchers can also use this book as a handy and compact reference.">
+
+
+    <link rel="shortcut icon" href="https://www.oercommons.org/static/images/favicon.ico?5ea7dcf3fcd2">
+
+    
+
+<script>
+  var dataLayer = window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    "user" : {"hubMembership": "", "abtesting": "", "userGroups": ""},
+    "page" : {"providerSet": "University of South Florida Scholar Commons", "provider": "University of South Florida"},
+    "fireGtm": true
+  });
+</script>
+<script src="data-layer-utils.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NT9GH9');</script>
+<!-- End Google Tag Manager -->
+
+
+    
+
+<script type="text/javascript" src="modernizr.js"></script><script type="text/javascript" src="manifest.jsonp"></script>
+
+  <link id="freshworks-frame" rel="stylesheet" href="frame.css"></head>
+  <body class="toolbar-view ">
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT9GH9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+    <div class="toolbar-collapsed">
+      <a href="https://www.oercommons.org/" id="logo" class="logo-small"></a>
+      <a href="#" class="toggle-toolbar show-toolbar js-show-toolbar">
+        <i class="fa fa-plus"></i>
+      </a>
+    </div>
+
+    <nav class="mobile-menu js-mobile-menu" style="width: 350px; height: 233px;">
+      <div class="mobile-menu-item">
+        <a href="#" class="comment js-open-mobile-comments-form"><i class="fa fa-comment"></i>Comment</a>
+        <div class="mobile-comments-form js-mobile-comments-form" style="width: 310px;">
+          <form action="/comments/35/66263/create/" method="post" id="mobile-comment-form" class="formatted comment">
+            
+              
+                <div class="help"></div>
+                <div class="errors">
+                  
+                </div>
+                <div class="field"><textarea cols="40" id="id_text" name="text" placeholder="Leave your comment" rows="10" required=""></textarea></div>
+              
+            
+            <div class="buttons">
+                <button type="submit" class="add-comment-button btn btn-primary js-submit-comment">Add comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="mobile-menu-item visible-sm-block visible-md-block visible-lg-block">
+        <a href="https://www.oercommons.org/evaluate?id=35.66263&amp;from=https://www.oercommons.org/courses/social-science-research-principles-methods-and-practices/view" class="js-open-mobile-evaluation-form"><i class="fa fa-eye"></i>Evaluate</a>
+      </div>
+      <div class="mobile-menu-item js-mobile-tags-item">
+        <a href="https://www.oercommons.org/tags/add/materials/course/66263" class="tags js-open-tags-form"><i class="fa fa-tag"></i>Tags</a>
+      </div>
+      <div class="mobile-menu-item">
+        <a href="https://www.oercommons.org/my"><i class="fa fa-bars"></i>Go to My Items</a>
+      </div>
+    </nav>
+
+    <div id="toolbar" class="toolbar">
+      <div class="toolbar-main-part"><div class="mobile-menu-toggle-wrapper visible-xs-inline-block visible-sm-inline-block"><button type="button" class="btn mobile-menu-toggle-button js-toggle-mobile-menu"><i class="fa fa-bars"></i></button></div><a href="https://www.oercommons.org/" id="logo" class="logo"></a><div class="action-item rating js-rating"><span>Rating: </span><div class="stars" data-identifier="materials.course.66263" data-rating-value="0.0"><i class="fa fa-star js-star" aria-hidden="true" data-number="1"></i><i class="fa fa-star js-star" aria-hidden="true" data-number="2"></i><i class="fa fa-star js-star" aria-hidden="true" data-number="3"></i><i class="fa fa-star js-star" aria-hidden="true" data-number="4"></i><i class="fa fa-star js-star" aria-hidden="true" data-number="5"></i></div></div><div class="action-item save-item"><div class="js-save-widget save-widget dropdown " data-item-id="35.66263" data-save-url="" data-undo-url="" data-reload-url=""><button type="button" class="btn btn-primary dropdown-toggle" id="save-widget-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    
+    
+      Save<i class="fa fa-caret-down"></i></button><div class="js-save-widget-popup save-widget-popup dropdown-menu" aria-labelledby="save-widget-button"><p>
+        Please log in to save materials.
+        <a href="#" class="js-save-widget-login">Log in</a></p></div></div></div><div class="action-item"><div style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent none repeat scroll 0% 0%; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 32px; height: 32px;" id="___sharetoclassroom_0"><iframe ng-non-bindable="" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 32px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 32px;" tabindex="0" vspace="0" id="I0_1598135924880" name="I0_1598135924880" src="https://www.gstatic.com/classroom/sharewidget/widget_stable.html?usegapi=1&amp;url=https%3A%2F%2Fwww.oercommons.org%2Fcourses%2Fsocial-science-research-principles-methods-and-practices%2Fview&amp;title=Social%20Science%20Research%3A%20Principles%2C%20Methods%2C%20and%20Practices&amp;size=32&amp;origin=https%3A%2F%2Fwww.oercommons.org&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en_US.hc3rLxj9u8o.O%2Fam%3DwQE%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCMtAagp6kGxB19Nep_bTJunj37kww%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Consharestart%2Consharecomplete&amp;id=I0_1598135924880&amp;_gfid=I0_1598135924880&amp;parent=https%3A%2F%2Fwww.oercommons.org&amp;pfname=&amp;rpctoken=25263976" data-gapiattached="true" width="100%" frameborder="0"></iframe></div></div></div><div class="toolbar-second-part visible-md-inline-block visible-lg-inline-block"><div class="action-item"><a class="btn btn-link" href="https://www.oercommons.org/my"><i class="fa fa-bars"></i>My items</a></div><div class="action-item"><a href="#" class="btn btn-link js-open-comments-form"><i class="fa fa-comment"></i>Comment</a></div><div class="action-item visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><a class="btn btn-link js-open-evaluation-form" href="https://www.oercommons.org/evaluate?id=35.66263&amp;from=https://www.oercommons.org/courses/social-science-research-principles-methods-and-practices/view"><i class="fa fa-eye"></i>Evaluate</a></div><div class="action-item"><a class="btn btn-link js-open-tags-form" href="https://www.oercommons.org/tags/add/materials/course/66263"><i class="fa fa-tag"></i>Tags</a></div><div class="action-item"><a class="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-link"></i>Link</a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="https://scholarcommons.usf.edu/oa_textbooks/3/" target="_blank"> https://scholarcommons.usf.edu/oa_textbooks/3/</a></div></div><div class="action-item"><div id="react-social-share-widget-wrapper"><div title="Social Science Research: Principles, Methods, and Practices" class="dropdown btn-group"><button id="react-social-share-widget" role="button" aria-haspopup="true" aria-expanded="false" type="button" class="dropdown-toggle btn btn-link"><i class="fa fa-share-alt"></i>Share <span class="caret"></span></button><ul role="menu" class="dropdown-menu" aria-labelledby="react-social-share-widget"><li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-twitter"></i> Twitter</a></li><li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-whatsapp"></i> WhatsApp</a></li><li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-pinterest"></i> Pinterest</a></li></ul></div></div></div></div><div class="right-buttons-ct"><span class="login-link-ct global"><a rel="nofollow" class="login js-login" href="https://www.oercommons.org/login">Log In</a></span><a class="login-form-url hide" href="https://www.oercommons.org/login/form"></a><a href="#" id="close-toolbar" class="toggle-toolbar close-toolbar js-close-toolbar"><i class="fa fa-times"></i></a></div>
+    </div>
+
+    <div id="status-messages" aria-live="polite"></div>
+
+    <div class="tags-form js-tags-form js-modal-form" style="left: 406.7px; top: 50px;">
+      
+
+<script id="tagTemplate" type="text/x-jquery-tmpl">
+  <li data-id="${id}" class="tag"><a class="tag-name" href="${url}">${name}</a><a href="#" class="delete"><i class="fa fa-times"></i></a></li>
+</script>
+
+<a href="#" class="close-modal-form js-close-modal-form"><i class="fa fa-times"></i></a>
+<ul class="user-tags clearfix list-unstyled js-user-tags"></ul>
+<form action="" method="post" id="add-tags-form" name="add-tags-form" class="tag-form js-add-tags-form">
+  <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="text tag-input form-control tt-hint" data-autocomplete-url="/autocomplete/tags/tag/name" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: rgb(255, 255, 255) none repeat scroll 0% 0%;" readonly="readonly" autocomplete="off" spellcheck="false" tabindex="-1" dir="ltr" type="text"><input name="tags" id="id_tags" class="text tag-input form-control tt-input" placeholder="Add new tag" data-autocomplete-url="/autocomplete/tags/tag/name" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;" type="text"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Open Sans&quot;, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 300; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><div class="tag-dropdown" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div class="tag-dataset tag-dataset-tags"></div></div></span>
+</form>
+
+    </div>
+
+    <div id="comment-dialog" class="comments-form js-comments-form js-modal-form" style="left: -36.1167px; top: 50px;">
+      <a href="#" class="close-modal-form js-close-modal-form"><i class="fa fa-times"></i></a>
+      <form action="/comments/35/66263/create/" method="post" id="comment-form" class="formatted comment">
+        
+          
+            <div class="help"></div>
+            <div class="errors">
+              
+            </div>
+            <div class="field"><textarea cols="40" id="id_text" name="text" placeholder="Leave your comment" rows="10" required=""></textarea></div>
+          
+        
+        <div class="buttons">
+            <button type="submit" class="add-comment-button btn btn-primary js-submit-comment">Add comment</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="iframe-loading js-iframe-loading" title="Social Science Research: Principles, Methods, and Practices" style="display: none;"></div>
+
+    <div class="modal fade js-resource-error-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header resource-modal-header">
+            <a href="https://www.oercommons.org/" id="logo" class="logo"></a>
+          </div>
+          <div class="modal-body">
+            <p class="resource-message">
+              We're sorry but the resource you're looking for has moved.
+              A support ticket has been generated so that the OER Commons curation staff can review this resource.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" href="https://www.oercommons.org/browse">
+              Return to your search results
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade js-resource-redirect-modal">
+      <div class="modal-dialog redirect-modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header resource-modal-header">
+            <a href="https://www.oercommons.org/" id="logo" class="logo"></a>
+          </div>
+          <div class="modal-body">
+            <p class="resource-message">
+              Your resource will open in a new tab.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <a href="https://www.oercommons.org/courses/social-science-research-principles-methods-and-practices" class="btn btn-link js-return-to-asset-page">Return to OER Commons</a>
+            <a href="https://scholarcommons.usf.edu/oa_textbooks/3/" class="btn btn-primary js-continue-redirect-button" target="_blank">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+
+    
+
+
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery-ui.js"></script>
+
+
+    
+<script src="polyfill.js"></script><script type="text/javascript" id="gtm-youtube-tracking">(function(k,g,l){function n(){var a=[].slice.call(k.getElementsByTagName("iframe")).concat([].slice.call(k.getElementsByTagName("embed"))),b;for(b=0;b<a.length;b++){var c=p(a[b]);if(c){c=a[b];var e=g.location,d=k.createElement("a");d.href=c.src;d.hostname="www.youtube.com";d.protocol=e.protocol;var f="/"===d.pathname.charAt(0)?d.pathname:"/"+d.pathname;-1<d.search.indexOf("enablejsapi")||(d.search=(0<d.search.length?d.search+"\x26":"")+"enablejsapi\x3d1");if(!(-1<d.search.indexOf("origin"))&&-1===
+e.hostname.indexOf("localhost")){var h=e.port?":"+e.port:"";e=e.protocol+"%2F%2F"+e.hostname+h;d.search=d.search+"\x26origin\x3d"+e}"application/x-shockwave-flash"===c.type&&(e=k.createElement("iframe"),e.height=c.height,e.width=c.width,f=f.replace("/v/","/embed/"),c.parentNode.parentNode.replaceChild(e,c.parentNode),c=e);d.pathname=f;c.src!==d.href+d.hash&&(c.src=d.href+d.hash);q(c)}}"addEventListener"in k&&k.addEventListener("load",x,!0)}function p(a){a=a.src||"";return-1<a.indexOf("youtube.com/embed/")||
+-1<a.indexOf("youtube.com/v/")?!0:!1}function q(a){var b=YT.get(a.id);b||(b=new YT.Player(a,{}));"undefined"===typeof a.pauseFlag&&(a.pauseFlag=!1,b.addEventListener("onStateChange",function(b){y(b,a)}))}function z(a){var b={};h.events["Watch to End"]&&(b["Watch to End"]=Math.min(a-3,Math.floor(.99*a)));if(h.percentageTracking){var c=[],e;h.percentageTracking.each&&(c=c.concat(h.percentageTracking.each));if(h.percentageTracking.every){var d=parseInt(h.percentageTracking.every,10),f=100/d;for(e=1;e<
+f;e++)c.push(e*d)}for(e=0;e<c.length;e++)f=c[e],d=f+"%",f=a*f/100,b[d]=Math.floor(f)}return b}function y(a,b){var c=a.data,e=a.target;a=e.getVideoUrl();a=a.match(/[?&]v=([^&#]*)/)[1];var d=e.getPlayerState(),f=Math.floor(e.getDuration()),h=z(f);f={1:"Play",2:"Pause"};f=f[c];b.playTracker=b.playTracker||{};1!==d||b.timer?(clearInterval(b.timer),b.timer=!1):(clearInterval(b.timer),b.timer=setInterval(function(){var a=e,c=h,d=b.videoId,f=a.getCurrentTime(),g;a[d]=a[d]||{};for(g in c)c[g]<=f&&!a[d][g]&&
+(a[d][g]=!0,r(d,g))},1E3));1===c&&(b.playTracker[a]=!0,b.videoId=a,b.pauseFlag=!1);if(!b.playTracker[b.videoId])return!1;if(2===c){if(b.pauseFlag)return!1;b.pauseFlag=!0}t[f]&&r(b.videoId,f)}function r(a,b){a="https://www.youtube.com/watch?v\x3d"+a;var c=g.GoogleAnalyticsObject;if("undefined"===typeof g[u]||h.forceSyntax)if("function"===typeof g[c]&&"function"===typeof g[c].getAll&&2!==h.forceSyntax)g[c]("send","event","Videos",b,a);else"undefined"!==typeof g._gaq&&1!==A&&g._gaq.push(["_trackEvent",
+"Videos",b,a]);else g[u].push({event:"youTubeTrack",attributes:{videoUrl:a,videoAction:b}})}function v(a,b,c){if(a.addEventListener)a.addEventListener(b,c);else if(a.attachEvent)a.attachEvent("on"+b,function(b){b.target=b.target||b.srcElement;c.call(a,b)});else if("undefined"===typeof a["on"+b]||null===a["on"+b])a["on"+b]=function(b){b.target=b.target||b.srcElement;c.call(a,b)}}function x(a){a=a.target||a.srcElement;var b=p(a);"IFRAME"===a.tagName&&b&&-1<a.src.indexOf("enablejsapi")&&-1<a.src.indexOf("origin")&&
+q(a)}var h=l||{},A=h.forceSyntax||0,u=h.dataLayerName||"dataLayer",t={Play:!0,Pause:!0,"Watch to End":!0},m;l=k.createElement("script");l.src="//www.youtube.com/iframe_api";var w=k.getElementsByTagName("script")[0];w.parentNode.insertBefore(l,w);for(m in h.events)h.events.hasOwnProperty(m)&&(t[m]=h.events[m]);g.onYouTubeIframeAPIReady=function(){var a=g.onYouTubeIframeAPIReady;return function(){a&&a.apply(this,arguments);navigator.userAgent.match(/MSIE [67]\./gi)||("loading"!==k.readyState?n():k.addEventListener?
+v(k,"DOMContentLoaded",n):v(g,"load",n))}}()})(document,window,{events:{Play:!0,Pause:!0,"Watch to End":!0},percentageTracking:{every:25,each:[10,90]}});</script><script type="text/javascript" id="">try{(function(){var a=google_tag_manager["GTM-NT9GH9"].macro(8);a="undefined"==typeof a?google_tag_manager["GTM-NT9GH9"].macro(9):a;var b=new Date;b.setTime(b.getTime()+18E5);var c="gtm-session-start";b=b.toGMTString();var d="/";document.cookie=c+"\x3d"+a+"; Expires\x3d"+b+"; Path\x3d"+d})()}catch(a){};</script> <script type="text/javascript" id="">(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b;a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-5033010-1","auto",{name:"hewlett"});ga("hewlett.send","pageview");</script><script type="text/javascript" id="gtm-scroll-tracking">(function(c){function d(a){if(!(this instanceof d))return new d(a);a=a||{};var b=a.context||"body";"string"===typeof b&&(b=h.querySelector(b));if(!b)throw Error("Unable to find context "+b);this._context=b;this.minHeight=a.minHeight||0;this._marks={};this._tracked={};this._config={percentages:{each:{},every:{}},pixels:{each:{},every:{}},elements:{each:{},every:{}}};a=n(this._checkDepth.bind(this),500);b=this._update.bind(this);var g=n(b,500);c.addEventListener("scroll",a,!0);c.addEventListener("resize",
+g);this._artifacts={timer:q(b),resize:g,scroll:a}}function r(a){return a.handlers.map(function(b){return b.bind(this,{data:{depth:a.depth,label:a.label}})})}function p(a){var b=Math.floor(a.numerator/a.n),g;for(g=1;g<=b;g++)a.callback(g*a.n)}function q(a){var b=m();return setInterval(function(){m()!==b&&(a(),b=m())},500)}function m(){var a=h.body,b=h.documentElement;return Math.max(a.scrollHeight,a.offsetHeight,b.clientHeight,b.scrollHeight,b.offsetHeight)}function t(a){a=a.getBoundingClientRect().top;
+var b=void 0!==c.pageYOffset?c.pageYOffset:(h.documentElement||h.body.parentNode||h.body).scrollTop;return a+b}function u(){}function n(a,b){var g,e,d,l=null,c=0,f=function(){c=new Date;l=null;d=a.apply(g,e)};return function(){var k=new Date;c||(c=k);var h=b-(k-c);g=this;e=arguments;0>=h?(clearTimeout(l),l=null,c=k,d=a.apply(g,e)):l||(l=setTimeout(f,h));return d}}function v(){var a={},b;for(b in d)a[b]=u;c.ScrollTracker=a}if(c.navigator.userAgent.match(/MSIE [678]/gi))return v();var h=c.document;
+d.prototype.destroy=function(){clearInterval(this._artifacts._timer);c.removeEventListener("resize",this._artifacts.resize);c.removeEventListener("scroll",this._artifacts.scroll,!0)};d.prototype.on=function(a,b){var g=this._config;["percentages","pixels","elements"].forEach(function(e){a[e]&&["each","every"].forEach(function(c){a[e][c]&&a[e][c].forEach(function(a){g[e][c][a]=g[e][c][a]||[];g[e][c][a].push(b)})})});this._update()};d.prototype._update=function(){this._calculateMarks();this._checkDepth()};
+d.prototype._calculateMarks=function(){function a(a,b){return function(b,c){var g=b.getBoundingClientRect().top-h._context.getBoundingClientRect().top;d({label:a+"["+c+"]",depth:g,handlers:e.elements.every[a]})}}function b(a){return function(a){var b=Math.floor(a*c/100);d({label:String(a)+"%",depth:b,handlers:e.percentages.every[f]})}}function g(a){return function(b){d({label:String(b)+"px",depth:b,handlers:a})}}delete this._marks;this._fromTop=t(this._context);this._marks={};var e=this._config,c=
+this._contextHeight(),d=this._addMark.bind(this),h=this,f;if(!(c<this.minHeight)){for(f in e.percentages.every)p({n:Number(f),numerator:100,callback:b(e.percentages.every[f])});for(f in e.pixels.every)p({n:Number(f),numerator:c,callback:g(e.pixels.every[f])});for(f in e.percentages.each){var k=Math.floor(c*Number(f)/100);d({label:f+"%",depth:k,handlers:e.percentages.each[f]})}for(f in e.pixels.each)k=Number(f),d({label:f+"px",depth:k,handlers:e.pixels.each[f]});for(f in e.elements.every)k=[].slice.call(this._context.querySelectorAll(f)),
+k.length&&k.forEach(a(f,e.elements.every[f]));for(f in e.elements.each)if(k=this._context.querySelector(f))k=k.getBoundingClientRect().top-h._context.getBoundingClientRect().top,d({label:f,depth:k,handlers:e.elements.each[f]})}};d.prototype._checkDepth=function(){var a=this._marks,b=this._currentDepth(),c;for(c in a)b>=c&&!this._tracked[c]&&(a[c].forEach(function(a){a()}),this._tracked[c]=!0)};d.prototype.reset=function(){this._tracked={};delete this._marks;this.marks={}};d.prototype._contextHeight=
+function(){return this._context!==h.body?this._context.scrollHeight-5:this._context.clientHeight-5};d.prototype._currentDepth=function(){var a=this._context;var b=a.offsetHeight;var d="CSS1Compat"===h.compatMode?h.documentElement:h.body;d=d.clientHeight;a=a.getBoundingClientRect();b=Math.max(0,0<a.top?Math.min(b,d-a.top):a.bottom<d?a.bottom:d);this._context.scrollTop?a=this._context.scrollTop+b:(this._context.scrollTop=1,this._context.scrollTop?(this._context.scrollTop=0,a=this._context.scrollTop+
+b):a=c.pageYOffset||h.documentElement.scrollTop||h.body.scrollTop||0);return b?a+b:a>=this._fromTop?a:-1};d.prototype._addMark=function(a){var b=a.depth;this._marks[b]=(this._marks[b]||[]).concat(r(a))};c.ScrollTracker=d})(this);
+(function(c){function d(){var d=c.ScrollTracker();d.on({percentages:{each:[10,90],every:[25]}},function(c){dataLayer.push({event:"scrollTracking",attributes:{distance:c.data.label,label:document.location.pathname}})});delete c.ScrollTracker}"loading"!==document.readyState?d():document.addEventListener("DOMContentLoaded",d)})(window);</script>
+<script src="fetch.js"></script>
+<script src="url-search-params.js"></script>
+<script src="system.js"></script>
+<script>
+  System.config({
+    map: {
+      "prop-types": "https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.min.js",
+      "react": "https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js",
+      "react-dom": "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js",
+      "react-bootstrap": "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.1/react-bootstrap.min.js",
+      "classnames": "https://cdnjs.cloudflare.com/ajax/libs/classnames/2.2.5/index.min.js",
+      "redux": "https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js",
+      "react-redux": "https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.6/react-redux.min.js",
+      "react-router": "https://cdnjs.cloudflare.com/ajax/libs/react-router/3.2.0/ReactRouter.min.js",
+      "react-router-redux": "https://cdnjs.cloudflare.com/ajax/libs/react-router-redux/4.0.7/ReactRouterRedux.min.js",
+    },
+    baseURL: "/static/COMPILED"
+  });
+  System.defaultJSExtensions = true;
+
+  // https://github.com/systemjs/systemjs/issues/172
+  var systemLocate = System.locate;
+  System.locate = function (load) {
+      var System = this;
+      return Promise.resolve(systemLocate.call(this, load)).then(function (address) {
+          return address + System.cacheBust;
+      });
+  };
+  System.cacheBust = "?4c86b9ef564f8a7d7e0e240dcc00d293ecf50869";
+</script>
+
+
+    <script type="text/javascript" src="78006c033347.js"></script>
+
+    <script type="text/javascript" src="24530f6dde69.js"></script>
+    <script src="platform.js" async="" defer="defer" gapi_processed="true"></script>
+    <script type="text/javascript">
+      
+      $.ajaxSetup({
+        headers: {
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        xhrFields: {
+          withCredentials: true
+        }
+      });
+      ITEM_TITLE = "Social Science Research: Principles, Methods, and Practices";
+      $(function() {
+          $(".dropdown-toggle").dropdown();
+          new SaveWidget();
+          new Rating("/rate");
+          new BaseTagWidget();
+          oer.login.init();
+          new Toolbar("", "False");
+          System.import("/static/COMPILED/socialshare/widget.js?596afae1634b").then(function(){
+            window.createSocialShareWidget({
+              buttonStyle: "link",
+              buttonIconClass: "fa-share-alt",
+              id: "react-social-share-widget",
+              url: "https://www.oercommons.org/courses/social-science-research-principles-methods-and-practices",
+              title: "Social Science Research: Principles, Methods, and Practices",
+              imageURL: "https://oercommons.s3.amazonaws.com/media/upload/materials/screenshots/materials-course-66263.png",
+            }, document.getElementById("react-social-share-widget-wrapper"));
+          });
+      });
+    </script>
+
+    
+      
+        
+          <div class="login-popup js-login-popup is-hidden" role="dialog" tabindex="-1">
+  
+
+
+
+
+
+<form method="post" class="formatted login-form" name="login" action="https://www.oercommons.org/login" novalidate="novalidate">
+
+
+  <link rel="stylesheet" href="buttons.css">
+
+
+<div class="login-title">Sign in / Register</div>
+  <div class="col-md-6 login-form-ct">
+    
+
+    
+
+    <div class="errors global" aria-live="polite">
+      
+    </div>
+
+    
+      
+
+<div class="field required" id="div_id_login-username" aria-live="polite">
+  
+    <div class="label">
+      <label for="id_login-username">Your email or username:</label>
+       <span class="required-asterisk">*</span>
+    </div>
+  
+  
+    
+  
+  <div class="errors">
+    
+  </div>
+  <input class="text" id="id_login-username" name="login-username" size="25" required="" type="text">
+  
+</div>
+
+    
+
+    
+      <div class="mailcheck-message" style="display: none;">
+        Did you mean <a href="#"></a>?
+      </div>
+    
+
+    
+      
+
+<div class="field required" id="div_id_login-password" aria-live="polite">
+  
+    <div class="label">
+      <label for="id_login-password">Password:</label>
+       <span class="required-asterisk">*</span>
+    </div>
+  
+  
+    
+  
+  <div class="errors">
+    
+  </div>
+  <input class="text" id="id_login-password" name="login-password" size="25" required="" type="password">
+  
+</div>
+
+    
+
+    <div class="login-form-extra">
+      <a href="https://www.oercommons.org/reset-password-init" class="forgot-password">Forgot password?</a>
+      <label class="toggle-show-password"><input name="password-toggle" class="password-toggle" type="checkbox"> Show password</label>
+    </div>
+
+    <div class="buttons">
+      <input class="btn btn-success btn-sign-in btn-green-plain" value="Sign in" type="submit">
+    </div>
+  </div>
+
+
+
+  <div class="col-md-6 custom-login-buttons-ct">
+    <div class="custom-login-buttons">
+      <div class="col-md-12 col-xs-6 btn-social-provider-ct">
+        <div class="buttons">
+          <label>Create an account</label>
+          <a href="https://www.oercommons.org/registration" class="btn btn-register">Register</a>
+        </div>
+        <div class="dividing-text">or</div>
+        
+<a title="Clever" class="btn btn-social-provider mod-clever" href="https://clever.com/oauth/authorize?response_type=code&amp;client_id=2b251d5a88339f0fd5d9&amp;redirect_uri=https%3A%2F%2Fwww.oercommons.org%2Fclever%2Finstant-login%2F&amp;scope=read%3Auser_id+read%3Asis&amp;state=BsH0b1eaCpnr7PhuaaZE5UM1axaJtR">
+   Sign in with Clever
+</a>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="login-form-divider"></div>
+
+</form>
+
+</div>
+
+        
+      
+    
+
+    
+<script>window.fwSettings={'widget_id':42000000027};</script>
+<script type="text/javascript" src="42000000027" async="" defer="defer"></script>
+<script>
+  !function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}()
+</script>
+
+
+
+  
+
+<div id="freshworks-container" style="width: 0px; height: 0px; bottom: 0px; right: 0px; z-index: 2147483647;" data-html2canvas-ignore="true"><div aria-live="polite"><iframe allowfullscreen="" style="display: none;" id="lightbox-frame" data-testid="lightbox-frame"></iframe></div></div><iframe title="FreshworksWidget" id="freshworks-frame" data-html2canvas-ignore="true" style="display: none;"></iframe><iframe name="oauth2relay582482210" id="oauth2relay582482210" src="https://accounts.google.com/o/oauth2/postmessageRelay?parent=https%3A%2F%2Fwww.oercommons.org&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en_US.hc3rLxj9u8o.O%2Fam%3DwQE%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCMtAagp6kGxB19Nep_bTJunj37kww%2Fm%3D__features__#rpctoken=871870407&amp;forcesecure=1" style="width: 1px; height: 1px; position: absolute; top: -100px;" tabindex="-1" aria-hidden="true"></iframe><iframe id="resource" src="https://scholarcommons.usf.edu/oa_textbooks/3/" title="Social Science Research: Principles, Methods, and Practices" width="100%" height="100%"> </iframe><script async="async" defer="defer" src="//assets.pinterest.com/js/pinit.js"></script></body></html>

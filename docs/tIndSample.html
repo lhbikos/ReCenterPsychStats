@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Independent Samples t-test | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 5 Independent Samples t-test | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Independent Samples t-test | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -1031,40 +1031,40 @@ X1    1 66 8.25 3.14   7.93     8.2 3.08 0.35 19.31 18.96 0.44     1.34 0.39</co
 <p>Recall that one of the assumptions for independent samples <em>t</em>-test is that the variable of interest is normally distributed within each level of the grouping variable. The <em>describeBy()</em> function in the <em>psych</em> package allows us to obtain these skew and kurtosis at both levels of the grouping variable.</p>
 <p>If we feed the function the entire df, it will give us results for each level of PatientRace for each variable, including variables for which such disaggregation is nonsensible (i.e., ID, PatientRace). If we had a large df, we might want to create a tiny df that only includes our variable(s) of interest. For now, it is not problematic to include all the variables.</p>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="tIndSample.html#cb389-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(dfIndSamples <span class="sc">~</span> PatientRace, <span class="at">mat =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>              item group1 vars  n      mean        sd    median   trimmed
-ID*1             1  Black    1 33 17.000000 9.6695398 17.000000 17.000000
-ID*2             2  White    1 33 50.000000 9.6695398 50.000000 50.000000
-PatientRace*1    3  Black    2 33  1.000000 0.0000000  1.000000  1.000000
-PatientRace*2    4  White    2 33  2.000000 0.0000000  2.000000  2.000000
-Verbal1          5  Black    3 33  7.614884 2.9854116  7.693516  7.733412
-Verbal2          6  White    3 33  8.891483 3.2032222  7.979546  8.606615
-Nonverbal1       7  Black    4 33  2.943125 0.9251164  2.885724  2.931841
-Nonverbal2       8  White    4 33  2.965472 0.7001442  2.936787  2.995131
-                     mad        min       max     range       skew   kurtosis
-ID*1          11.8608000  1.0000000 33.000000 32.000000  0.0000000 -1.2022059
-ID*2          11.8608000 34.0000000 66.000000 32.000000  0.0000000 -1.2022059
-PatientRace*1  0.0000000  1.0000000  1.000000  0.000000        NaN        NaN
-PatientRace*2  0.0000000  2.0000000  2.000000  0.000000        NaN        NaN
-Verbal1        2.9075794  0.3507447 13.011100 12.660355 -0.3705014 -0.1377654
-Verbal2        3.2861809  4.5891699 19.311207 14.722037  1.0651306  1.5382575
-Nonverbal1     0.9185825  0.8333731  5.000000  4.166627  0.1204796  0.1380025
-Nonverbal2     0.5560620  1.1311619  4.350886  3.219724 -0.4338806  0.3937160
-                     se
-ID*1          1.6832508
-ID*2          1.6832508
-PatientRace*1 0.0000000
-PatientRace*2 0.0000000
-Verbal1       0.5196935
-Verbal2       0.5576094
-Nonverbal1    0.1610421
-Nonverbal2    0.1218795</code></pre>
+<pre><code>             item group1 vars  n      mean        sd    median   trimmed
+ID1             1  Black    1 33 17.000000 9.6695398 17.000000 17.000000
+ID2             2  White    1 33 50.000000 9.6695398 50.000000 50.000000
+PatientRace1    3  Black    2 33  1.000000 0.0000000  1.000000  1.000000
+PatientRace2    4  White    2 33  2.000000 0.0000000  2.000000  2.000000
+Verbal1         5  Black    3 33  7.614884 2.9854116  7.693516  7.733412
+Verbal2         6  White    3 33  8.891483 3.2032222  7.979546  8.606615
+Nonverbal1      7  Black    4 33  2.943125 0.9251164  2.885724  2.931841
+Nonverbal2      8  White    4 33  2.965472 0.7001442  2.936787  2.995131
+                    mad        min       max     range       skew   kurtosis
+ID1          11.8608000  1.0000000 33.000000 32.000000  0.0000000 -1.2022059
+ID2          11.8608000 34.0000000 66.000000 32.000000  0.0000000 -1.2022059
+PatientRace1  0.0000000  1.0000000  1.000000  0.000000        NaN        NaN
+PatientRace2  0.0000000  2.0000000  2.000000  0.000000        NaN        NaN
+Verbal1       2.9075794  0.3507447 13.011100 12.660355 -0.3705014 -0.1377654
+Verbal2       3.2861809  4.5891699 19.311207 14.722037  1.0651306  1.5382575
+Nonverbal1    0.9185825  0.8333731  5.000000  4.166627  0.1204796  0.1380025
+Nonverbal2    0.5560620  1.1311619  4.350886  3.219724 -0.4338806  0.3937160
+                    se
+ID1          1.6832508
+ID2          1.6832508
+PatientRace1 0.0000000
+PatientRace2 0.0000000
+Verbal1      0.5196935
+Verbal2      0.5576094
+Nonverbal1   0.1610421
+Nonverbal2   0.1218795</code></pre>
 <p>In this analysis we are interested in the verbal variable. We see that patients who are Black received verbal interactions from physicians that were quantified by a mean score of 7.61 (<em>SD</em> = 2.99); physicians’ scores for White patients were 8.89 (<em>SD</em> = 3.20). Skew and kurtosis values for the verbal ratings with Black patients were -.37 and -.14, respectively. They were 1.07 and 1.54 for White patients. As before, these fall well below the absolute values of 3 (skew) and 10 (kurtosis) that are considered to be concerning.</p>
 <p>Beyond skew and kurtosis, we can formally test for deviations from normality with a Shapiro-Wilk. The script below first groups the data by PatientRace and then applies the <em>rstatix::shapiro_test()</em>. We want the results to be non-significant.</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="tIndSample.html#cb391-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#opening this package so I can use the pipes</span></span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1502,13 +1502,13 @@ NOTE: n is number in *each* group</code></pre>
 </ul>
 <div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="tIndSample.html#cb426-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">mat =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         item group1 vars  n     mean        sd median  trimmed     mad min max
-Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
-Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
+Dept1       1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
+Dept2       2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
 TradPed1    3    CPY    2 81 4.129630 0.7547259    4.2 4.210769 0.88956 1.8   5
 TradPed2    4    ORG    2 31 3.870968 1.0948953    4.0 4.040000 1.18608 1.0   5
          range       skew  kurtosis         se
-Dept*1     0.0        NaN       NaN 0.00000000
-Dept*2     0.0        NaN       NaN 0.00000000
+Dept1      0.0        NaN       NaN 0.00000000
+Dept2      0.0        NaN       NaN 0.00000000
 TradPed1   3.2 -0.7630015 0.1555318 0.08385843
 TradPed2   4.0 -1.1832786 0.5826528 0.19664900</code></pre>
 <p>Although I included Dept in the descriptives, it is a factor and therefore the values around distribution are rather senseless.</p>
@@ -1530,7 +1530,7 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 <p>Should we be concerned? A general rule of thumb is that when cell sizes are larger than 15 the independent <em>t</em>-test should be relatively robust to violations of normality <span class="citation">(<a href="#ref-green_using_2017">Green &amp; Salkind, 2017c</a>)</span>. Although there are more CPY than ORG students, we are well-powered.</p>
 <p>For fun (not required), let’s produce a pairs.panels.</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="tIndSample.html#cb430-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(IndT_df)</span></code></pre></div>
-<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <p>We can see that we’ll have more CPY students than ORG students. Although our kurtosis was below |10| our distribution looks negatively skewed, with the majority of the scores being on the high end of the scale.</p>
 <p>And now for homogeneity of variance:</p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="tIndSample.html#cb431-1" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">levene_test</span>(IndT_df, TradPed <span class="sc">~</span> Dept, <span class="at">center =</span> median)</span></code></pre></div>
@@ -1601,7 +1601,7 @@ Note. M and SD represent mean and standard deviation, respectively.
 <span id="cb439-7"><a href="tIndSample.html#cb439-7" tabindex="-1"></a>    <span class="at">detailed =</span> <span class="cn">TRUE</span>))  <span class="co">#adds t-test results</span></span>
 <span id="cb439-8"><a href="tIndSample.html#cb439-8" tabindex="-1"></a></span>
 <span id="cb439-9"><a href="tIndSample.html#cb439-9" tabindex="-1"></a>indT.box</span></code></pre></div>
-<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="05-tIndSample_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1" class="section level4 unnumbered hasAnchor">
 <h4>Conduct power analyses to determine the power of the current study and a recommended sample size<a href="tIndSample.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1652,13 +1652,13 @@ NOTE: n is number in *each* group</code></pre>
 <h4>Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable<a href="tIndSample.html#using-an-r-package-or-functions-in-base-r-calculate-the-means-and-standard-deviations-for-both-levels-of-the-dependent-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="tIndSample.html#cb444-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(IndT_df <span class="sc">~</span> Dept, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">mat =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         item group1 vars  n     mean        sd median  trimmed     mad min max
-Dept*1      1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
-Dept*2      2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
+Dept1       1    CPY    1 81 1.000000 0.0000000    1.0 1.000000 0.00000 1.0   1
+Dept2       2    ORG    1 31 2.000000 0.0000000    2.0 2.000000 0.00000 2.0   2
 TradPed1    3    CPY    2 81 4.129630 0.7547259    4.2 4.210769 0.88956 1.8   5
 TradPed2    4    ORG    2 31 3.870968 1.0948953    4.0 4.040000 1.18608 1.0   5
          range       skew  kurtosis         se
-Dept*1     0.0        NaN       NaN 0.00000000
-Dept*2     0.0        NaN       NaN 0.00000000
+Dept1      0.0        NaN       NaN 0.00000000
+Dept2      0.0        NaN       NaN 0.00000000
 TradPed1   3.2 -0.7630015 0.1555318 0.08385843
 TradPed2   4.0 -1.1832786 0.5826528 0.19664900</code></pre>
 <p>CPY: <em>M</em> = 4.130, <em>SD</em> = 0.755

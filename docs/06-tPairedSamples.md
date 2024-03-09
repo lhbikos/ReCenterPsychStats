@@ -124,8 +124,8 @@ library(tidyverse)
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1015,7 +1015,7 @@ Although not required in the formal test of instructions, a *pairs panel* of cor
 psych::pairs.panels(paired_wide)
 ```
 
-![](06-tPairedSamples_files/figure-docx/unnamed-chunk-47-1.png)<!-- -->
+![](06-tPairedSamples_files/figure-docx/unnamed-chunk-80-1.png)<!-- -->
 Visual inspection of the distributions of the specific course variables were negatively skewed, with values clustered at the high end of the course evaluation ratings. However, the distribution for the DIFF variable seems relatively normal (although maybe a bit leptokurtic). This is consistent with the statistically significant Shapiro-Wilk test.
 
 Before moving forward, I want to capture my analysis of assumptions:
@@ -1159,7 +1159,7 @@ pairT.box <- pairT.box + ggpubr::stat_pvalue_manual(paired_T, tip.length = 0.02,
 pairT.box
 ```
 
-![](06-tPairedSamples_files/figure-docx/unnamed-chunk-53-1.png)<!-- -->
+![](06-tPairedSamples_files/figure-docx/unnamed-chunk-86-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 

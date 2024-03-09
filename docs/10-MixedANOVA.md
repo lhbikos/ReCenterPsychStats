@@ -1239,7 +1239,7 @@ mixt_box <- ggpubr::ggboxplot(mixt_df, x = "Course", y = "SRPed", color = "Cente
 mixt_box
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-54-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-98-1.png)<!-- -->
 
 #### Evaluate statistical assumptions {-}
 
@@ -1325,7 +1325,7 @@ We can plot the residuals to "see" how bad it is:
 hist(mixt_resid)
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-59-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-103-1.png)<!-- -->
 Like the data itself, the residuals have a negative skew with a pile-up of scores on the "high" side.
 
 
@@ -1333,7 +1333,7 @@ Like the data itself, the residuals have a negative skew with a pile-up of score
 qqnorm(mixt_resid)
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-60-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-104-1.png)<!-- -->
 Similarly, we see that the residuals sharply deviate from the diagonal at the top.
 
 **Is there evidence of outliers?  Are they extreme?**
@@ -1534,7 +1534,7 @@ mixt_box <- mixt_box + ggpubr::stat_pvalue_manual(Simple_Course, label = "p.sign
 mixt_box
 ```
 
-![](10-MixedANOVA_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
+![](10-MixedANOVA_files/figure-docx/unnamed-chunk-111-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 

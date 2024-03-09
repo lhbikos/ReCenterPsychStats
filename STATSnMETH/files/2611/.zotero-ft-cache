@@ -1,0 +1,220 @@
+ 
+statistics you can probably trust 
+Help with learning statistics 
+Menu Skip to content 
+ 
+    Home 
+    About 
+ 
+Treating Time More Flexibly (Ch 5 of ALDA) 
+4 Replies 
+ 
+Through 4 chapters of Applied Longitudinal Data Analysis (ALDA), the data sets have had the following constraints: 
+ 
+    Balanced – all subjects have the same number of measurements. 
+    Time structured – all subjects measured at the same time. 
+    Time-invariant predictors – predictors that do not change over time, such as gender or treatment group. 
+ 
+In chapter 5 these constraints are relaxed. We work with unbalanced datasets with variably-spaced measurements and time-varying predictors. As usual, the UCLA stats consulting site replicates the chapter’s examples in 18 different stats programs. I won’t redo their work, but I will give you my boiled-down-most-important-points that I took away from this chapter. I’ll also show a couple of examples using the lmer() function from the lme4 package. 
+ 
+Section 5.1 Variably Spaced Measurement Occasions 
+Analyzing data sets with variably spaced measurement occasions is no different than analyzing data sets with identical occasions across individuals (time structured). 
+ 
+Example with unstructured data set (variably spaced measurements) 
+Data: reading scores recorded at three different times (i.e., 3 waves of data) 
+Fit two unconditional growth models 
+ 
+ reading <- read.table("http://www.ats.ucla.edu/stat/r/examples/ 
+                      alda/data/reading_pp.txt", header=T, sep=",") 
+mat2 <- reading[ ,3:4]-6.5 
+dimnames(mat2)[[2]] <- c("agegrp.c", "age.c")   
+reading <- cbind(reading, mat2) 
+ 
+library(lme4) 
+# forcing structure on data 
+lmer.agegrp <- lmer(piat ~ agegrp.c + (agegrp.c | id), reading, REML = FALSE) 
+summary(lmer.agegrp) 
+# using unstructured data 
+lmer.age <- lmer(piat ~ age.c + (age.c | id), reading, REML = FALSE) 
+summary(lmer.age) 
+ 
+The first model treats the data as structured. Instead of using child’s precise age, we are using their age classification group (6.5, 8.5, 10.5). The second model uses the child’s precise age. Notice the second model’s lower deviance: 1803 versus 1820. “Treating the unstructured data as though it is time-structured introduces error in the analysis – error that we can reduce by using the child’s age at testing as the temporal predictor.” (p. 145) 
+ 
+Lesson: never force an unstructured data set to be structured. 
+ 
+Section 5.2 Varying Numbers of Measurement Occasions 
+Section 5.1 concerned varying spacing of measurements. This section concerns varying number of measurements . AKA Unbalanced data. Multilevel modeling allows analysis of data sets with varying numbers of waves of data. 
+ 
+All subjects can contribute to a multilevel model regardless of how many waves of data they contribute. No special procedures are needed to fit a multilevel model to unbalanced data, provided it’s not too unbalanced (i.e., too many people with too few waves with respect to the complexity of your specified model). 
+ 
+Potential Problems with unbalanced data 
+ 
+    The iterative estimation algorithms may not converge. This affects variance components, not fixed effects. “Estimation of variance components requires that enough people have sufficient data to allow quantification of within-person residual variation.” (p. 152) 
+    Exceeding boundary constraints, such as negative variance components. Your output may have an estimate of 0 to indicate this. Simplifying your model by removing random effects is usually the fix. 
+    Nonconvergence. This can result from poorly specified models and insufficient data. Can also result from the outcome variable’s scale (too small, make larger) or the temporal predictor’s variable scale (too brief, make longer) 
+ 
+5.3 Time-Varying Predictors 
+ 
+A time-varying predictor is a variable whose values may differ over time. Examples: hours worked per week, money earned per year, employment status. No special strategies are needed to include a time-varying predictor in a multilevel model. 
+ 
+Examples with time-varying predictor 
+Data: depression scores (cesd) for unemployed; status of employment (unemp; 0 or 1) changes over time 
+ 
+ unemployment <- read.table("http://www.ats.ucla.edu/stat/r/examples/ 
+                           alda/data/unemployment_pp.txt", header=T, sep=",") 
+ 
+# time-varying predictor is unemp 
+lmer.unb <- lmer(cesd ~ months + unemp + (months | id),  
+                 unemployment, REML = FALSE) 
+summary(lmer.unb) 
+ 
+# allow effect of time-varying predictor (unemp) to vary over time 
+lmer.unc <- lmer(cesd ~ months + unemp*months + (months | id),  
+                 unemployment, REML = FALSE) 
+summary(lmer.unc) 
+ 
+# constant slope for unemp=0, changing slope for unemp=1 
+lmer.und <- lmer(cesd ~ unemp + unemp:months + (unemp + unemp:months | id),  
+                 unemployment, REML = FALSE) 
+summary(lmer.und) 
+ 
+5.3 Recentering the Effect of Time 
+ 
+Recentering time can produce interpretive advantages such as an intercept that represents initial status. Time can also be recentered in such a way to produce an intercept that represents final status. This is useful when final status is of special concern. Changes in recentering produce different intercept parameters but leave slope and deviance statistics unchanged. It can also lead to an intercept being significant when it previously was not (and vice versa). 
+This entry was posted in Longitudinal Data Analysis , Multilevel Modeling , Using R and tagged ALDA , lme4 on August 4, 2013 by Clay Ford . 
+Post navigation 
+← A Probability Problem in Heredity – Part 3 Modeling Discontinuous Change (Ch 6 of ALDA) → 
+4 thoughts on “ Treating Time More Flexibly (Ch 5 of ALDA) ” 
+ 
+    Tyler September 24, 2014 at 6:09 pm 
+ 
+    Where you able to get lmer.und to estimate? When I try, I get the message: 
+ 
+    Error: number of observations (=674) <= number of random effects (=762) for term (unemp + unemp:months | id); the random-effects parameters and the residual variance (or scale parameter) are probably unidentifiable 
+ 
+    I see it was estimated on the UCLA ATS page using 'lme' with a newton-type optimization. Tired the same code and it wouldn't work either. 
+ 
+    Thanks! 
+    Reply ↓ 
+        Clay Ford Post author October 9, 2014 at 4:25 pm 
+ 
+        I swear it worked for me way back whenever I posted this. But I get the same error message you get. Weird. I’ll update the post if I learn more and I’m able to get it work. Thanks for pointing this out! 
+        Reply ↓ 
+    Andrea October 27, 2014 at 4:20 am 
+ 
+    Hi! For the time-varying predictors is it necessary to do the unconditional means and growth model first? 
+    Thank you! 
+    Reply ↓ 
+        Clay Ford Post author October 27, 2014 at 11:05 am 
+ 
+        Well, Singer and Willett say you should. The unconditional means model helps you quantify variation across subjects without regard to time while the unconditional growth model helps you quantify variation across both people and time. This allows you to establish whether there is systematic variation in your outcome that is worth exploring and where the variation resides: within or between people. And they allow you to establish baselines against which you can evaluate the success of subsequent models. I’m basically quoting from their book, the first paragraph of section 4.4, page 92. In chapter 5 where they introduce time varying predictors, their model building example starts with an unconditional growth model (page 162). 
+ 
+        Hope this helps. 
+        Reply ↓ 
+ 
+Leave a Reply Cancel reply 
+ 
+Your email address will not be published. Required fields are marked * 
+ 
+Comment 
+ 
+Name * 
+ 
+Email * 
+ 
+Website 
+ 
+This site uses Akismet to reduce spam. Learn how your comment data is processed . 
+Search for: 
+Sites I Recommend 
+ 
+    Little Handbook of Statistical Practice 
+    R Language Tips & Tricks 
+    R-bloggers 
+    Revolutions 
+    Rtips. Revival 2012! 
+    Simply Statistics 
+    Statistical Modeling, Causal Inference, and Social Science 
+    UVa StatLab Articles 
+ 
+Recent Posts 
+ 
+    Fixing the p-value note in a HTML stargazer table 
+    Most useful tests for an ANCOVA model 
+    Using natural splines in linear modeling 
+    Recreating a Geometric CDF plot from Casella and Berger 
+    Revisiting some old R-code 
+ 
+Recent Comments 
+ 
+    Roksolana Petrovska on Using natural splines in linear modeling 
+    Clay Ford on The Multilevel Model for Change (Ch 3 of ALDA) 
+    Amber Ward on The Multilevel Model for Change (Ch 3 of ALDA) 
+    Martin Stjernman on Exploring Unordered Contrasts in R 
+    Evaluation metrics for classification model – Dynamic logic, probability and statistics on Profile likelihood ratio confidence intervals 
+ 
+Archives 
+ 
+    February 2019 
+    January 2019 
+    December 2018 
+    November 2017 
+    February 2017 
+    October 2016 
+    May 2016 
+    April 2016 
+    November 2015 
+    September 2015 
+    April 2015 
+    March 2015 
+    December 2014 
+    August 2014 
+    May 2014 
+    December 2013 
+    October 2013 
+    September 2013 
+    August 2013 
+    July 2013 
+    June 2013 
+    May 2013 
+    March 2013 
+    February 2013 
+    January 2013 
+    December 2012 
+    November 2012 
+    October 2012 
+    April 2012 
+    March 2012 
+    February 2012 
+    January 2012 
+    October 2011 
+    September 2011 
+    August 2011 
+    July 2011 
+ 
+Categories 
+ 
+    Continuous distributions 
+    Discrete distributions 
+    Expectation 
+    Hypothesis Testing 
+    Longitudinal Data Analysis 
+    Machine Learning for Hackers 
+    MLE 
+    Multilevel Modeling 
+    Power and sample size 
+    Probability 
+    Regression 
+    Simulation 
+    Survival analysis 
+    Uncategorized 
+    Using R 
+ 
+Meta 
+ 
+    Log in 
+    Entries feed 
+    Comments feed 
+    WordPress.org 
+ 
+Proudly powered by WordPress 

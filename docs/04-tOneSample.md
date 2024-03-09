@@ -1053,8 +1053,8 @@ library(tidyverse)
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1174,7 +1174,7 @@ ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings",
     xlab = FALSE, add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
 ```
 
-![](04-tOneSample_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
+![](04-tOneSample_files/figure-docx/unnamed-chunk-104-1.png)<!-- -->
 
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-}
 

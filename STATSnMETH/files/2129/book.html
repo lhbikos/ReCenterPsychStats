@@ -1,0 +1,415 @@
+<html><head><meta name="viewport" content="width=1040"><script async="" src="analytics"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41196344-1', 'personality-project.org');
+  ga('send', 'pageview');
+
+</script>
+
+	
+		<title>The Personality Project: An introduction to psychometric theory</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="description" content="Personality Project">
+		<meta name="keywords" content="Personality Project, William Revelle, Psychometrics">
+		<noscript><link rel="stylesheet" href="core.html"><link rel="stylesheet" href="core-desktop.css"><link rel="stylesheet" href="core-1200px.css"><link rel="stylesheet" href="core-noscript.css"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="style-desktop.css"></noscript>
+		<script src="jquery.js"></script>
+		<script src="init.js"></script><link rel="stylesheet" href="core.css"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="core-desktop.css"><link rel="stylesheet" href="style-desktop.css"><link rel="stylesheet" href="core-1000px.css"><link rel="stylesheet" href="style-1000px.css">
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../css/style-ie9.css" /><![endif]-->
+		<!-- google-code-prettify stylesheets for R highlighting -->
+		<link href="prettify.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="prettify.js"></script>
+	</head>
+	<body class="subpage is-desktop is-1000px" onload="prettyPrint()">
+		<!-- Header -->
+			<div id="header-wrapper">
+				<header id="header" class="5grid-layout 5grid">
+					<div class="row">
+						<div class="12u">
+
+							<!-- Logo -->
+								<h1><a href="#" class="mobileUI-site-name">Personality Project</a></h1>
+							
+							<!-- Nav -->
+								<nav class="mobileUI-site-nav">
+									<a href="http://www.personality-project.org/index.html">Homepage</a>
+									<a href="http://sapa-project.org/">Big Five Test</a>
+									<a href="http://www.personality-project.org/pmc.html">PMC Lab</a>
+									<a href="#">Psychometric Theory</a>
+									<a href="http://personality-project.org/r/r.guide.html">R Guide</a>					
+								</nav>
+						</div>
+					</div>
+				</header>
+			</div>
+
+		<!-- Content -->
+			<div id="content-wrapper">
+				<div id="content">
+					<div class="5grid-layout 5grid">
+						<div class="row">
+							<div class="3u">
+								
+								<!-- Sidebar -->
+									<section>
+										<header>
+											<h2>Table of Contents</h2>
+										</header>
+										<ul class="link-list">
+											<li><a href="#chapter1">Chapter 1</a>: Introduction</li>
+											<li><a href="#chapter2">Chapter 2</a>: A Theory of Data</li>
+											<li><a href="#chapter3">Chapter 3</a>: The Problem of Scale</li>
+											<li><a href="#chapter4">Chapter 4</a>: Correlation and Covariance</li>
+											<li><a href="#chapter5">Chapter 5</a>: Multiple Correlation and Multiple Regression</li>
+											<li><a href="#chapter6">Chapter 6</a>: Constructs, components, and factor models</li>
+											<li><a href="#chapter7">Chapter 7</a>: Reliability</li>
+											<li><a href="#chapter8">Chapter 8</a>: The "New Psychometrics" Item Response Theory</li>
+										</ul>
+									</section>
+
+									<section>
+										<header>
+											<h2>Introductions to R</h2>
+										</header> 
+								         <h3> <a href="http://www.personality-project.org/r/tutorials/R_short_brazil/short.syllabus.pdf"> Psychometric Theory with applications in R </a> </h3>
+								         <ul class="link-list">
+								           <li>5 day course given in Sao Paulo, Brazil, February, 2014.</li>
+										  </ul>
+										<h3><a href="http://www.psychologicalscience.org/">Association for Psychological Science</a>, May, 2013</h3>
+										<ul class="link-list">
+										    <li> <a href="http://www.personality-project.org/r/psych/short_courses/aps-short.pdf">2 hour short course</a></li>
+										</ul>
+										<h3> <a href="http://www.perpsy.org/">World Conference on Personality </a>, March, 2013  </h3> 
+										<ul class="link-list">
+										 <li><a href="http://www.personality-project.org/r/psych/short_courses/wcp-short.pdf"> 4 hour short course</a></li>
+										 </ul>
+										<ul class="link-list">
+										
+										
+										<h3>5 day "Short" Course at NU </h3>
+																			
+										
+										<ul class="link-list">
+											<li><a href="http://www.personality-project.org/r/book/R_short_course.pdf">Introduction to R</a>. Overview</li>
+										
+										
+											<li>Day 1 - <a href="http://www.personality-project.org/r/book/R.short.Day1.pdf">PDF</a> - <a href="http://www.personality-project.org/r/book/R.short.course.slides.pdf">Slides</a></li>
+											<li>Day 2 - <a href="http://www.personality-project.org/r/book/R.short.Day2.pdf">PDF</a> - <a href="http://www.personality-project.org/r/book/R.short.course.slides.pdf">Slides</a></li>
+											<li>Day 3 - <a href="http://www.personality-project.org/r/book/R.short.Day3.pdf">PDF</a> - <a href="http://www.personality-project.org/r/book/Day3.notes.pdf">Slides</a></li>
+											<li>Day 4 - <a href="http://www.personality-project.org/r/book/R_short.Day4.pdf">PDF</a> - <a href="http://www.personality-project.org/r/book/R.notes.day4.pdf">Slides</a></li>
+											<li>Day 5 - <a href="http://www.personality-project.org/r/book/R.short.Day5.pdf">Slides</a></li>
+										</ul>
+										
+										<h3>1st SMEP Short Course</h3>
+										
+										<ul class="link-list">
+											<li>Introduction to R - <a href="http://www.personality-project.org/r/book/R.short.course.smep.pdf">PDF</a></li>
+											<li>Programming in R - <a href="http://www.personality-project.org/r/book/R.short.course.smep2.pdf">PDF</a></li>
+										</ul>
+										
+										<h3>2nd SMEP Short Course</h3>
+										
+										<ul class="link-list">
+											<li>R:  a continued short course - <a href="http://www.personality-project.org/r/book/Smep_R_course.pdf">PDF</a></li>
+										</ul>
+										
+										
+									</ul></section>
+									<section>
+										<header>
+											<h2>Documentation for the psych package</h2>
+										</header>
+										<ul class="link-list">
+										
+										    <li> Individual help pages<a href="http://www.personality-project.org/r/psych/help/00Index.html"> (html)</a> </li>
+											<li>Manual <a href="http://www.personality-project.org/r/psych/psych-manual.pdf">(pdf)</a> </li>
+											<li>Overview of the psych package <a href="http://www.personality-project.org/r/psych/vignettes/overview.pdf">(pdf) </a></li>
+											<li>Psych for SEM <a href="http://www.personality-project.org/r/psych/vignettes/psych_for_sem.pdf"> (pdf) </a></li>
+											<li>Determining the number of factors<a href="http://www.personality-project.org/r/book/numberoffactors.pdf"> (pdf)</a></li>
+										</ul>
+									</section>
+							</div>
+
+							<div class="9u mobileUI-main-content">
+								
+								<!-- Main Content -->
+									<section>
+										<header>
+											<h2>An introduction to psychometric theory with applications in R</h2>
+											<h3>An Overview</h3>
+										</header>
+										<p>
+											This page is devoted to teaching others about psychometric 
+theory as well as R. It consists of chapters of an in progress text as 
+well as various short courses on R.
+										</p>
+										<p>
+											The e-book is a work in progress. Chapters will appear 
+sporadically. Parts of it are from the draft of a book being prepared 
+for the Springer series on using R, other parts are just interesting 
+tid-bits that would not be appropriate as chapters.
+										</p>
+										<p>
+											It is written in the hope that I can instill in a new 
+generation of psychologists the love for quantitative methodology 
+imparted to me by reading the popular and then later the scientific 
+texts of Ray Cattell [Cattell, 1966b] and Hans Eysenck [Eysenck, 1964, 
+Eysenck, 1953, Eysenck, 1965]. Those Penguin and Pelican paperbacks by 
+Cattell and Eysenck were the first indications that I had that it was 
+possible to study personality and psychology with a quantitative 
+approach.
+										</p>
+										<p>
+											My <a href="http://personality-project.org/courses/405.syllabus.html">course in psychometric theory</a>,
+ on which much of this book is based, was inspired by a course of the 
+same name by Warren Norman. The organizational structure of this text 
+owes a great deal to the structure of Warren's course. Warren introduced
+ me, as well as a generation of graduate students at the University of 
+Michigan, to the role of theory and measurement in the study of 
+psychology. He introduced to me to the "bible" of psychometrics: Jum 
+Nunnally's Psychometric Theory [Nunnally, 1967].
+										</p>
+										<p>
+											The students in my psychometric theory classes over the 
+years, by their continuing questions and sometimes confusion, have given
+ me the motivation to try to make this text as understandable and useful
+ as I can. The members of the Society of Multivariate Experimental 
+Psychology, by their willingness to share cutting (and sometimes 
+bleeding) edge ideas freely and with respect for alternative 
+interpretations have been a never ending source of new and exciting 
+ideas.
+										</p>
+										<p>
+											This book would not be possible without the amazing 
+contributions of the R-Core Team and the many contributers to R and the 
+R-Help listserve. 
+										</p>
+										 <p> Lecture notes to accompany these chapters are found in the syllabus for my course on <a href="http://personality-project.org/revelle/syllabi/405.syllabus.html"> psychometric theory</a>. 
+										</p><header>
+											<h2 id="chapter1">Chapter 1:  Introduction - <a href="http://www.personality-project.org/r/book/Chapter1.pdf">PDF</a></h2>
+										</header>
+										<p>
+											Psychometrics is that area of psychology that specializes in 
+how to measure what we talk and think about. It is how to assign numbers
+ to observations in a way that best allows us to summarize our 
+observations in order to advance our knowledge. Although in particular 
+it is the study of how to measure psychological constructs, the 
+techniques of psychometrics are applicable to most problems in 
+measurement. The measurement of intelligence, extraversion, severity of 
+crimes, or even batting averages in baseball are all grist for the 
+psychometric mill. Any set of observations that are not perfect 
+exemplars of the construct of interest is open to questions of 
+reliability and validity and to psychometric analysis.
+										</p>
+										<p>
+											Although it is possible to make the study of psychometrics 
+seem dauntingly difficult, in fact the basic concepts are 
+straightforward. This text is an attempt to introduce the fundamental 
+concepts in psychometric theory so that the reader will be able to 
+understand how to apply them to real data sets of interest. It is not 
+meant to make one an expert, but merely to instill confidence and an 
+understanding of the fundamentals of measurement so that the reader can 
+better understand and contribute to the research enterprise.
+										</p>
+										<header>
+											<h2 id="chapter2">Chapter 2: A Theory of Data - <a href="http://www.personality-project.org/r/book/Chapter2.pdf">PDF</a></h2>
+										</header>
+										<p>
+											At first glance, it would seem that we have an infinite way 
+to collect data. Measuring the diameter of the earth by finding the 
+distance to the horizon, measuring the height of waves produced by a 
+nuclear blast by nailing (empty) beer cans to a palm tree, or finding 
+Avogadro's number by dropping oil into water are techniques that do not 
+require great sophistication in the theory of measurement. In psychology
+ we can use self report, peer ratings, reaction times, 
+psychophysiological measures such as the Electric Encephelagram (EEG), 
+the basal level of Skin Conductance (SC), or the Galvanic Skin Response 
+(GSR). We can measure the number of voxels showing activation greater 
+than some threshold in a functional Magnetic Resonance Image (fMRI), or 
+we can measure life time risk of cancer, length of life, risk of 
+mortality, etc. Indeed, the basic forms of data we can collect probably 
+are unlimited. But in fact, it is possible to organize these disparate 
+forms of data in terms of an abstract organization in terms of what is 
+being measured and in comparison to what.
+										</p>
+										<header>
+											<h2 id="chapter3">Chapter 3: The Problem of Scale - <a href="http://www.personality-project.org/r/book/Chapter3.pdf">PDF</a></h2>
+										</header>
+										<p>
+											The challenge of psychometrics is assign numbers to 
+observations in a way that best summarizes the underlying constructs. 
+The ways to collect observations are multiple and can be based upon 
+comparisons of order or of proximity (Chapter 2). But given a set of 
+observations, how best to describe them? This is a problem not just for 
+observational but also for experimental psychologists for both 
+approaches are attempting to make inferences about latent variables in 
+terms of statistics based upon observed variables.
+										</p>
+										<p>
+											For the experimentalist, the problem becomes interpreting the
+ effect of an experimental manipulation upon some outcome variable in 
+terms of the effect of manipulation on the latent outcome variable and 
+the relationship between the latent and observed outcome variables. For 
+the observationalist, the observed correlation between the observed 
+Person Variable and Outcome variable is interpreted as a function of the
+ relationship between the latent person trait variable and the observed 
+trait variable, the latent outcome variable and the observed outcome 
+variable and most importantly for inference, the relationship between 
+the two latent variables.
+										</p>
+										<header>
+											<h2 id="chapter4">Chapter 4: Correlation and Covariance - <a href="http://www.personality-project.org/r/book/chapter4.pdf">PDF</a></h2>
+										</header>
+										<p>
+											A fundamental question in science is how to measure the 
+relationship between two variables. The answer, developed in the late 
+19th century, in the the form of the correlation coefficient is arguably
+ the most important contribution to psychological theory and method- 
+ology in the past two centuries. Whether we are examining the effect of 
+education upon later income, of parental height upon the height of 
+offspring, or the likelihood of graduating from college as a function of
+ SAT score, the question remains the same: what is the strength of the 
+relationship? This chapter examines measures of relationship between two
+ variables. Generalizations to the problem of how to measure the 
+relationships between sets of variables (multiple correlation and 
+multiple regression) are left to Chapter 5.
+										</p>
+										<header>
+											<h2 id="chapter5">Chapter 5: Multiple Correlation and Multiple Regression - <a href="http://www.personality-project.org/r/book/chapter5.pdf">PDF</a></h2>
+										</header>
+										<p>
+											 The previous chapter considered how to determine the 
+relationship between two variables and how to predict one from the 
+other. The general solution was to consider the ratio of the covariance 
+between two variables to the variance of the predictor variable 
+(regression) or the ratio of the covariance to the square root of the 
+product the variances (correlation). This solution may be generalized to
+ the problem of how to predict a single variable from the weighted 
+linear sum of multiple variables (multiple regression) or to measure the
+ strength of this relationship (multiple correlation). As part of the 
+problem of finding the weights, the concepts of partial covariance and 
+partial correlation will be introduced. To do all of this will require 
+finding the variance of a composite score, and the covariance of this 
+composite with another score, which might itself be a composite. Much of
+ psychometric theory is merely an extension, an elaboration, or a 
+generalization of these concepts. Almost all tests are composites of 
+items or subtests. An understanding how to decompose test variance into 
+its component parts, and conversely, an understanding how to analyze 
+tests as composites of items, allows us to analyze the meaning of tests.
+ But tests are not merely composites of items. Tests relate to other 
+tests. A deep appreciation of the basic Pearson correlation coefficient 
+facilitates an understanding of its generalization to multiple and 
+partial correlation, to factor analysis, and to questions of validity.
+										</p>
+										<header>
+											<h2 id="chapter6">Chapter 6: Constructs, Components, and Factor Models - <a href="http://www.personality-project.org/r/book/Chapter6.pdf">PDF</a></h2>
+										</header>
+										<p>
+											Parsimony of description has been a goal of science since at 
+least the famous dictum commonly attributed to William of Ockham to not 
+multiply entities beyond necessity1. The goal for parsimony is seen in 
+psychometrics as an attempt either to describe (components) or to 
+explain (factors) the relationships between many observed variables in 
+terms of a more limited set of components or latent factors.
+										</p>
+										<p>
+											The typical data matrix represents multiple items or scales 
+usually thought to reflect fewer underlying constructs2. At the most 
+simple, a set of items can be be thought of representing random samples 
+from one underlying domain or perhaps a small set of domains. The ques- 
+tion for the psychometrician is how many domains are represented and how
+ well does each item represent the domains. Solutions to this problem 
+are examples of factor analysis (FA), principal components analysis 
+(PCA), and cluster analysis (CA). All of these procedures aim to reduce 
+the complexity of the observed data. In the case of FA, the goal is to 
+identify fewer underlying constructs to explain the observed data. In 
+the case of PCA, the goal can be mere data reduction, but the 
+interpretation of components is frequently done in terms similar to 
+those used when describing the latent variables estimated by FA. Cluster
+ analytic techniques, although usually used to partition the subject 
+space rather than the variable space, can also be used to group 
+variables to reduce the complexity of the data by forming fewer and more
+ homogeneous sets of tests or items.
+										</p>
+										<header>
+											<h2 id="chapter7">Chapter 7: Reliability - <a href="http://www.personality-project.org/r/book/Chapter7.pdf">PDF</a></h2>
+										</header>
+										<p>
+											Whether discussing ability, affect, or climate change, as 
+scientists we are interested in the relationships between our 
+theoretical constructs. We recognize, however, that our measure- ments 
+are not perfect and that any particular observation has some unknown 
+amount of error associated with that measurement for all measurement is 
+befuddled by error (McNemar, 1946, p 294). When estimating central 
+tendencies, the confidence interval of the mean may be estimated by the 
+standard error of the sample observations, and may be calculated from 
+the observed standard deviation and the number of observations. This is,
+ of course, the basic concept of Gossett and Fisher.
+										</p>
+										<p>
+											Error may be both random as well systematic. Random error 
+reflects trial by trial variabil- ity due to unknown sources while 
+systematic error may reflect situational or individual effects that may 
+be specified. Perhaps the classic example of systematic error (known as 
+the personal equation) is the analysis of individual differences in 
+reaction time in making astronomical observations. "The personal 
+equation of an observer is the interval of time which habitually 
+intervenes between the actual and the observed transit of a star..." 
+(Rogers, 1869). Before systematic individual differences were analyzed, 
+the British astronomer Maskelyn fired his as- sistant Kennebrook for 
+making measurements that did not agree with his own (Stigler, 1986). 
+Subsequent investigations of the systematic bias (Safford, 1898; 
+Sanford, 1889) showed con- sistent individual differences as well as the
+ effect of situational manipulations such as hunger and sleep 
+deprivation (Rogers, 1869).
+										</p>
+										<header>
+											<h2 id="chapter8">Chapter 8: Item Response Theory - <a href="http://www.personality-project.org/r/book/Chapter8.pdf">PDF</a></h2>
+										</header>
+										<p>
+											Classical test theory is concerned with the reliability of a 
+test and assumes that the items within the test are sampled at random 
+from a domain of relevant items. Reliability is seen as a characteristic
+ of the test and of the variance of the trait it measures. Items are 
+treated as random replicates of each other and their characteristics, if
+ examined at all, are expressed as correlations with total test score or
+ as factor loadings on the putative latent variable(s) of interest. 
+Characteristics of their properties are not analyzed in detail. This led
+ Mellenbergh (1996) to the distinction between theories of tests (Lord 
+and Novick, 1968) and a theories of items (Lord, 1952; Rasch, 1960). The
+ so-called "New Psychometrics" (Embretson and Hershberger, 1999; 
+Embretson and Reise, 2000; Van der Linden and Hambleton, 1997) is a 
+theory of how people respond to items and is known as Item Response 
+Theory or IRT. Over the past twenty years there has been explosive 
+growth in programs that can do IRT, and within R there are at least four
+ very powerful packages: eRm (Mair and Hatzinger, 2007), ltm Rizopoulos 
+(2006), lme4 (Doran et al., 2007) and MiscPsycho, (Doran, 2010). 
+Additional packages include mokken (van der Ark, 2010) to do non-metric 
+IRT and plink (Weeks, 2010) to link multiple groups together. More IRT 
+packages are being added all of the time.
+										</p>
+										<header>
+											<h2>Appendix A: <a href="http://www.personality-project.org/r/book/AppendixA.pdf">Getting Started (with R)</a></h2>
+											<h2>Appendix B: <a href="http://www.personality-project.org/r/book/Appendix.B.pdf">R Commands</a></h2>
+											<h2>Appendix E: <a href="http://www.personality-project.org/r/book/A5.pdf">Review of Matrix Algebra</a></h2>
+											<h2><a href="http://www.personality-project.org/r/book/references.pdf">References</a></h2>
+										</header>
+									</section>
+											
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		
+
+		<!-- Copyright -->
+			<div id="copyright">
+				© William Revelle and the Personality Project. All rights reserved. | Design: <a href="http://html5up.net/">HTML5 Up!</a> | Modified by <a href="http://www.jason-french.com/">Jason A. French</a> and William Revelle
+			</div>
+
+	
+</body></html>

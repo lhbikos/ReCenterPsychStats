@@ -1,0 +1,73 @@
+#freshworks-frame-wrapper {
+  border-radius: 12px;
+  z-index: 2147483647;
+  width: 384px;
+  position: fixed;
+  right: 30px;
+  bottom: 68px;
+  bottom: calc(20px + 80px);
+  height: calc(100% - 84px);
+  min-height: 288px;
+  max-height: 624px;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+  transition: height 0.3s ease-in;
+  overflow: hidden !important;
+}
+
+@media only screen and (max-device-width: 667px), screen and (max-width: 450px) {
+  #freshworks-frame-wrapper {
+    z-index: 2147483001 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+}
+
+#freshworks-frame-wrapper.frame-right {
+  animation: slideupright 0.3s ease;
+}
+
+#freshworks-frame-wrapper.frame-left {
+  animation: slideupleft 0.3s ease;
+}
+
+#lightbox-frame {
+  border: none;
+  bottom: 0px;
+  height: 100%;
+  left: 0px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 2147483647;
+  display: none;
+}
+
+@keyframes slideupright {
+  0% {
+    transform: scale(0);
+    transform-origin: bottom right;
+  }
+
+  100% {
+    transform: scale(1);
+    transform-origin: bottom right;
+  }
+}
+
+@keyframes slideupleft {
+  0% {
+    transform: scale(0);
+    transform-origin: bottom left;
+  }
+
+  100% {
+    transform: scale(1);
+    transform-origin: bottom left;
+  }
+}

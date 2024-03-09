@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 One-way ANOVA | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 7 One-way ANOVA | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 One-way ANOVA | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -2188,7 +2188,7 @@ NOTE: n is number in each group</code></pre>
 <p>Although the assignment doesn’t require it, I will make a quick plot to provide a visualizaiton of our analysis.</p>
 <div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="oneway.html#cb735-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(OneWay_df, <span class="at">x =</span> <span class="st">&quot;Stage&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TradPed&quot;</span>, <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>,</span>
 <span id="cb735-2"><a href="oneway.html#cb735-2" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Stage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition&quot;</span>)  <span class="co">#</span></span></code></pre></div>
-<p><img src="07-OnewayANOVA_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<p><img src="07-OnewayANOVA_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
 </div>
 <div id="evaluate-statistical-assumptions-3" class="section level4 unnumbered hasAnchor">
 <h4>Evaluate statistical assumptions<a href="oneway.html#evaluate-statistical-assumptions-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -2215,7 +2215,7 @@ TradPed3 -0.289   -0.629 0.133</code></pre>
 <p>The Shapiro-Wilk test suggests that the our distribution of residuals is statistically significantly different from a normal distribution <span class="math inline">\((W = 0.941, p &lt; .001)\)</span>.</p>
 <p>It is possible to plot the residuals to see how and where they deviate from the line.</p>
 <div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="oneway.html#cb740-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggqqplot</span>(<span class="fu">residuals</span>(TradPed_res))</span></code></pre></div>
-<p><img src="07-OnewayANOVA_files/figure-html/unnamed-chunk-86-1.png" width="672" />
+<p><img src="07-OnewayANOVA_files/figure-html/unnamed-chunk-160-1.png" width="672" />
 Ooof! at the ends of the distribution they really deviate.</p>
 <p><strong>Should we remove outliers?</strong></p>
 <p>The <em>rstatix::identify_outliers()</em> function identifies outliers and extreme outliers.</p>
@@ -2323,7 +2323,7 @@ Note: Values in square brackets indicate the bounds of the 90% confidence interv
 <span id="cb753-5"><a href="oneway.html#cb753-5" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Stage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition&quot;</span>) <span class="sc">+</span></span>
 <span id="cb753-6"><a href="oneway.html#cb753-6" tabindex="-1"></a>    ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(phoc, <span class="at">label =</span> <span class="st">&quot;p.adj.signif&quot;</span>, <span class="at">tip.length =</span> <span class="fl">0.02</span>,</span>
 <span id="cb753-7"><a href="oneway.html#cb753-7" tabindex="-1"></a>        <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.5</span>))</span></code></pre></div>
-<p><img src="07-OnewayANOVA_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><img src="07-OnewayANOVA_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 </div>
 <div id="conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-3" class="section level4 unnumbered hasAnchor">
 <h4>Conduct power analyses to determine the power of the current study and a recommended sample size<a href="oneway.html#conduct-power-analyses-to-determine-the-power-of-the-current-study-and-a-recommended-sample-size-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>

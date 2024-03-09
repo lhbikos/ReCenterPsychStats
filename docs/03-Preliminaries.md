@@ -1513,7 +1513,7 @@ MyContribution    -0.55 0.08
 psych::pairs.panels(tiny3)
 ```
 
-![](03-Preliminaries_files/figure-docx/unnamed-chunk-68-1.png)<!-- -->
+![](03-Preliminaries_files/figure-docx/unnamed-chunk-129-1.png)<!-- -->
 
 #### Produce an apaTables matrix {-}
 

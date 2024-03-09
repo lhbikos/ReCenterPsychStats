@@ -1,0 +1,206 @@
+html,
+body,
+#contentWrapper,
+.home #contentWrapper *,
+#contentWrapper #headerWrap,
+#contentWrapper #header,
+#contentWrapper #headerUtilityBar,
+#contentWrapper #loginNav,
+#contentWrapper #utilityNav,
+#contentWrapper #columnWrapper,
+#contentWrapper #pageBody,
+#contentWrapper #columnOne,
+#contentWrapper #mainContent,
+#contentWrapper #readPanel,
+#contentWrapper #footerWrap,
+#contentWrapper #footer,
+#contentWrapper #footerDetail,
+#contentWrapper #footerCopyright,
+#contentWrapper #footerLogoWrap {
+	background: transparent none;
+	position: static;
+	float: none;
+	height: auto;
+	width: auto;
+	margin: 10px 0;
+	padding: 0;
+	min-height: 0;
+	border:0 none;
+}
+
+#contentWrapper #headerUtilityBar,
+#contentWrapper #quickSearch,
+#contentWrapper #navigation,
+#contentWrapper #columnsTop,
+#contentWrapper #tocWrapper,
+#contentWrapper #toc,
+#contentWrapper #entryPrevNextNav,
+#contentWrapper #pageLinks,
+#contentWrapper #columnsBottom,
+#contentWrapper #footerNav,
+#contentWrapper #sideSearchBox,
+#contentWrapper .resultsBar,
+#contentWrapper #searchWithinDocument,
+#contentWrapper .smartNavWrapper,
+#contentWrapper #columnOne,
+#contentWrapper a.clearAll,
+#contentWrapper a.modifySearch,
+#contentWrapper .searchHeader .remove
+{
+	display: none;
+}
+
+*,#contentWrapper *{color:black;}
+
+#contentWrapper #headerLogo{position:static;font-size:25px;line-height:40px;color:black;background:transparent none; height: 40px; width: auto;}
+#contentWrapper #headerLogo a{ display:inline; height: 40px; width: auto;}
+#contentWrapper #headerLogo a span{position:static;}
+
+#readPanel .popoutContent{display:block;}
+#readPanel table.popoutContent{display:table;}
+#readPanel .popoutContentLink{display:none;}
+
+.bookDetail dl.metaInfo,
+.bookDetail dl#citations{display:block;margin:10px 0;overflow:hidden;}
+.bookDetail dl.metaInfo dt,
+.bookDetail dl#citations dt {float: left;clear:both;margin-right:0.333em;font-weight:bold;}
+.bookDetail #citations {display:block;}
+
+#contentWrapper #footerAccounts{width:auto;height:auto;position:static;float:none;}
+#contentWrapper #footerAccounts div{position:static;font-size:20px;line-height:40px;color:black;background:transparent none;float:none;padding:0;height:auto;width:auto;}
+#contentWrapper #footerAccounts a{position:static;font-size:20px;line-height:40px;color:black;background:transparent none;float:none;display:block;padding:0;height:auto;width:auto;text-indent:0;}
+#contentWrapper #institutioninfo {display:none;}
+
+
+#contentWrapper #footerLogoWrap .attribution{float:none;font-size:12px;line-height:40px;display:inline;}
+#contentWrapper #footerLogo{position:static;font-size:20px;line-height:40px;color:black;background:transparent none;float:none;display:inline;}
+#contentWrapper #footerLogo a{display:inline;}
+#contentWrapper #footerLogo a span{position:static;}
+
+
+.collapsibleShut > p,
+.collapsibleShut > div,
+.collapsibleShut > ul,
+.collapsibleShut > ol,
+.collapsibleShut > table { 
+  display: block;
+} 
+ 
+#usageLoggingDiv {
+  display: none;
+}
+#cssXslControls {
+	display: none;
+}
+
+/** PDF STYLE OVERRIDES */
+
+/** DejaVu LGC Sans" is the default sans-serif font on our CentOS servers **/
+.pdfPrintPreview p,
+.pdfPrintPreview #contentRoot {
+  font-size: 13px;
+  font-family: "DejaVu LGC Sans", sans-serif;
+}
+
+.pdfPrintPreview #printFooterCopyright,
+.pdfPrintPreview #feedbackZone,
+.pdfPrintPreview .findthisresourcehead,
+.pdfPrintPreview #interstitialMessageZone,
+.pdfPrintPreview .figure .links .fullSize,
+.pdfPrintPreview .figure .links .ppt,
+.pdfPrintPreview #contentWrapper #footerAccounts a,
+.pdfPrintPreview #MathJax_Message {
+  display: none !important;
+}
+
+.pdfPrintPreview .figureGroup .articleimage, .pdfPrintPreview .figureGroup, .pdfPrintPreview .tableGroup {
+  width: auto !important;
+  float: none;
+  page-break-inside: avoid;
+  max-width: none;
+  padding: 0 60px;
+}
+
+.pdfPrintPreview .figureGroup .articleimage a {
+  display: block;
+} 
+
+.pdfPrintPreview .figureGroup .articleimage .caption a {
+  display: inline;
+}
+
+/* OUP-1676: The objective is to prevent .sc text from being displayed as boxes or being displayed over other text */
+.pdfPrintPreview .sc {
+  text-transform: uppercase;
+  font-variant: normal;
+  font-size: 1em;
+}
+
+/* OUP-2642: The objective is to attempt to prevent lines from breaking after subscripts in MathJax */
+
+/* OUP-2276: Media and article tabs should be hidden on the PDF*/
+.pdfPrintPreview .tabList, .pdfPrintPreview .tab-list {
+  display:none;
+}
+
+/* OUP-2276: Text should wrap image per display on content page */
+.pdfPrintPreview .figureGroup .articleimage {
+	clear: none !important;
+	float: left;
+	margin: 5px 28px 8px 0;
+	max-width: 300px; 
+}
+
+.pdfPrintPreview img {
+	max-width:100% !important;
+	height:auto !important;
+}
+
+
+.pdfPrintPreview table {
+	max-width:100% !important;
+	height:auto !important;
+	table-layout:auto;
+}
+
+.pdfPrintPreview div.math-content {
+    text-align: center;
+    font-size: 1.15em;
+    margin: 1em 0em;
+    position: relative;
+    display: block !important;
+    text-indent: 0;
+    max-width: none;
+    max-height: none;
+    min-width: 0;
+    min-height: 0;
+    line-height: 1.47;
+    width: 100%;
+	
+}
+
+/* OUP-6110: Equations labels should have space after them */
+div.math-content + .enumerator { margin-bottom:16px; display:inline-block; }
+div.math-content, div.math-content div { text-align:center; }
+.figureGroup + p, .figureGroup + div { clear:both; }
+
+@media print {
+    html {
+        overflow:visible;
+        hyphens: auto;
+    }
+}
+
+.printPreview .content-table-xl, .pdfPrintPreview .content-table-xl {
+  page: landscape;
+  display:block;
+}
+
+/**** DO NOT DELETE THESE TWO STYLE DECLARATIONS ****/
+#contentWrapper{width:994px;margin:10px auto;}
+@media print{#contentWrapper{width:auto;margin:0;}}
+@media print {
+	#underbar-wrapper, .ui-widget-header {
+		display: none;
+	}
+}

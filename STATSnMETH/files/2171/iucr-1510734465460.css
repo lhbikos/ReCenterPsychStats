@@ -1,0 +1,89 @@
+/* Hide publication history */
+
+body.iucr-content .publication-history {
+	display:none;
+}
+
+/*  change references text */
+body.iucr-content #pane-pcw-references * {
+	display:none;
+}
+
+body.iucr-content #pane-pcw-references:before {
+    content: "Please see full text for references";
+}
+
+/* Same for Figures */
+body.iucr-content #pane-pcw-figures .NoContentMessage {
+    display: none;
+}
+
+body.iucr-content #pane-pcw-figures:before {
+    content: "Please see full text for Figures";
+}
+
+
+/* PPV button */
+/*
+#iucr-ppv  {
+	display:none;	
+}
+
+#iucr-ppv a {
+	display:block;
+	margin-top: 1em;
+	color:white;
+}
+
+body.iucr-content #iucr-ppv {
+	display:block;
+	background: rgb(37, 114, 161);
+	border: 1px solid white;
+	border-radius: 4px;
+	height: 4em;
+    text-align: center;
+    margin-bottom:1em;
+}
+*/
+
+
+/* MRW check access button */ 
+#iucr-check-mrw-access  {
+	display:none;	
+}
+
+
+body.iucr-content #iucr-check-mrw-access {
+	display:block;
+	margin-bottom:1em;
+	margin-top:1em;
+}
+
+
+/* IUCR failure */
+#iucr-failure {
+	display:none;
+	
+}
+#iucr-failure:target {
+	display:block;
+	position: fixed;
+	top:0;
+	width:100%;
+	height:4em;
+
+	background:grey;
+	text-align: center;
+	z-index:100000;
+}
+
+
+#iucr-failure i.icon-notice {
+	color: red;
+
+}
+
+#iucr-failure a.close-iucr-failure {
+    margin-left: 1em;
+    border: 1px solid;
+}

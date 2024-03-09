@@ -1,0 +1,292 @@
+/* CSS to fix problems with migrated pages using the WileyOTIS template */
+.wileyotis-template table td, .wileyotis-template table th {
+	padding: 5px;
+	vertical-align: top;
+}
+
+.wileyotis-template table td img {
+	max-width: none;
+}
+
+/* fix for image in tables */
+
+table img {
+	max-width: none;
+}
+
+/* Generic Styles & helper classes */
+
+.reset-type {
+	font-size: 16px;
+	line-height: 1.5;
+	font-weight: 400;
+}
+.reset-type p {
+	margin-bottom: 1em;
+}
+.reset-type p>a, .reset-type li>a {	
+	font-weight: 600;
+	text-decoration: underline;
+}
+.reset-type h1, .reset-type h2, .reset-type h3, .reset-type h4, .reset-type h5, .reset-type h6 {
+	margin-bottom: 0.5em;
+	font-weight: 600;
+	line-height: 1.2;
+}
+.reset-type h1 {
+	font-size: 2.5em;
+}
+.reset-type h2 {
+	font-size: 2em;
+}
+.reset-type h3 {
+	font-size: 1.75em;
+}
+.reset-type h4 {
+	font-size: 1.5em;
+}
+.reset-type h5 {
+	font-size: 1.25em;
+}
+.reset-type h6 {
+	font-size: 1em;
+}
+/* Buttons */
+
+.reset-type .btn {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 16px;
+	padding: .375em .75em;
+	line-height: 1.5;
+	text-decoration: none;
+}
+.reset-type .btn-block {
+	display: block;
+	width: 100%;
+}
+
+/*tables*/
+
+.table-styled {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 1rem;
+	background-color: transparent;
+}
+
+.table-styled th,
+.table-styled td {
+	padding: 0.3rem;
+	vertical-align: top;
+	border-top: 1px solid rgba(0,0,0,0.25);
+}
+
+.table-styled thead th {
+	vertical-align: bottom;
+	border-bottom: 2px solid rgba(0,0,0,0.25);
+}
+
+.table-styled tbody+tbody {
+	border-top: 2px solid rgba(0,0,0,0.25);
+}
+
+.table-styled .table-styled {
+	background-color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-styled tbody tr:hover {
+	background-color: rgba(0, 0, 0, 0.075);
+}
+
+/*make text serif at the correct font weight*/
+.serif {
+	font-family: 'Source Serif Pro', 'Times New Roman', Times, Baskerville, Georgia, serif;
+	font-weight: 400 !important;
+}
+.sans-serif {
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+/*make all headings within this wrapper serif with correct weight*/
+.serif-headings h1, .serif-headings h2, .serif-headings h3, .serif-headings h4, .serif-headings h5, .serif-headings h6 {
+	font-family: 'Source Serif Pro', 'Times New Roman', Times, Baskerville, Georgia, serif;
+	font-weight: 400;
+}
+
+hr {
+	box-sizing: content-box;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	border-top: 1px solid rgba(0,0,0,.15);
+	height: 0;
+	overflow: visible;
+}
+
+.border {
+	border: 1px solid rgba(0,0,0,.15);
+}
+.border-top {
+	border-top: 1px solid rgba(0,0,0,.15);
+}
+.border-right {
+	border-right: 1px solid rgba(0,0,0,.15);
+}
+.border-bottom {
+	border-bottom: 1px solid rgba(0,0,0,.15);
+}
+.border-left {
+	border-left: 1px solid rgba(0,0,0,.15);
+}
+
+/* Styles that might need to be migrated into the entire new WOL platform, ie. pericles and hubs. */
+
+.journal-banner-image {
+	max-height: 80px;
+	image-rendering: -webkit-optimize-contrast;
+}
+/* fix for society logos widget having two borders - the #societyText styles in the global CSS need to be formally removed, this is just a fix */
+#societyText {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+/* Template - basic-hero */
+
+.hero {
+	background-color: #005274;
+	background-image: linear-gradient(45deg,#005274 0,#068853 100%);
+	padding: 25px 0;
+	color: #ffffff;
+}
+
+.hero h1 {
+	position: relative;
+	margin-bottom: 1em;
+}
+.hero h1:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -.2em;
+	width: 1.5em;
+	border-bottom: 1px solid;
+}
+
+/* INFO PAGE STYLES */
+.full-width-header {
+	padding-top: 50px;
+	padding-bottom: 40px;
+}
+
+.librarians .full-width-header,
+.researchers .full-width-header,
+.societies .full-width-header {
+	background: url(/pb-assets/hub-assets/pericles/info-pages-librarians.jpg) no-repeat center center,linear-gradient(45deg,#005274 0,#068853 100%);
+	background-size: cover;
+	color: #f1f1f1;
+}
+
+.librarians .full-width-header {
+	background-image: url(/pb-assets/hub-assets/pericles/info-pages-librarians.jpg);
+}
+.researchers .full-width-header {
+	background-image: url(/pb-assets/hub-assets/pericles/info-pages-researchers.jpg);
+}
+.societies .full-width-header {
+	background-image: url(/pb-assets/hub-assets/pericles/info-pages-societies.jpg);
+}
+
+/* Cover Gallery */
+
+.heading-link {
+	font-size: 16px;
+	display: inline-block;
+}
+.cg-cover {
+	display: block;
+}
+.cg-cover:hover .cg-cover__image {
+	transform: scale(1.25);
+	box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.cg-cover__image {
+	display: block;
+	margin: auto;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	transition-duration: 0.25s;
+	transition-property: transform, box-shadow;
+}
+.cg-cover__description {
+	text-align: center;
+	text-decoration: none;
+}
+
+/* Main menu colors */
+/*
+.librarians .main-nav {
+background-color: orange;
+}
+
+.librarians .dropdown__menu {
+border-color: red;
+}
+
+.librarians .dropdown:hover {
+background-color: green;
+}
+
+.librarians .dropdown__menu li:hover {
+background-color: blue;
+}
+*/
+
+/* Accordion adjustments. Implement with the wrapper class 'new-accordion' */
+
+.new-accordion .accordion .accordion-tabbed {
+	font-size: inherit;
+}
+.new-accordion .accordion-tabbed__control {
+	font-weight: 600;
+	background-color: #005274;
+	color: #ffffff;
+	padding: 8px 24px 8px 8px;
+	position: relative;
+	transition-duration: 0.25s;
+	transition-property: background-color;
+}
+.new-accordion .accordion-tabbed__tab.js--open .accordion-tabbed__control {
+	background-color: #003951;
+}
+.new-accordion .accordion-tabbed__control:hover, .new-accordion .accordion-tabbed__control:focus, .accordion-tabbed__control:active {
+	color: #ffffff;
+}
+.new-accordion .accordion-tabbed__control:hover, .new-accordion .accordion-tabbed__tab.js--open .accordion-tabbed__control:hover {
+	background-color: #003951;
+}
+.new-accordion .accordion-tabbed__control:after {
+	font-family: icomoon!important;
+	content: "\e904";
+	display: block;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	transition-duration: 0.25s;
+	transition-property: transform;
+}
+.new-accordion .accordion-tabbed__tab.js--open .accordion-tabbed__control:after {
+	transform: rotate(180deg);
+}
+.new-accordion .accordion-tabbed__content {
+	border-color: #ffffff;
+}
+.accordion-hide {
+    display: none;
+}

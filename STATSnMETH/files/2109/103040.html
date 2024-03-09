@@ -1,0 +1,183 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>RPubs - sem (lavaan) tables</title>
+<link href="application-0f4a38981ee7b1c077577f51e3f33627.css" media="all" rel="stylesheet" type="text/css">
+<link href="show-060a5f99c65c577dbbcb45abae19cefc.css" media="all" rel="stylesheet" type="text/css">
+<script type="text/javascript" async="" src="ga.js"></script><script src="application-b0fb18b4aea86fb908a4b406708b8b1b.js" type="text/javascript"></script>
+<script type="text/javascript" src="uao6mzv.txt"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20375833-2']);
+  _gaq.push(['_setDomainName', 'rpubs.com']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript" async="" src="embed.js"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.953a2bd009935f47a8e815c3ee2bfc5a.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.9ae27258a9490b17fbb3b9cdf530aff0.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.0adc4cfceff8c3ab4259d467d6ea3419.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"></head>
+<body class="show-pub show-toolbars">
+<div class="modal fade" id="login" style="display: none">
+<div class="modal-header">
+<h1>Sign In</h1>
+</div>
+<div class="modal-body">
+<div class="alert" id="login_message" style="display: none"></div>
+<form accept-charset="UTF-8" action="/auth/login" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="Ts9yFp7Itn+XCgdROpaAi9NRCoEHkaMOl93E+E54o4g=" type="hidden"></div>
+<input name="return_url" type="hidden">
+<div class="fieldset">
+<div class="control-group">
+<label class="control-label" for="login_username">Username or Email</label>
+<div class="controls">
+<input class="input-xlarge" id="login_username" name="username" type="text">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="login_password">Password</label>
+<div class="controls">
+<input class="input-xlarge" id="login_password" name="password" type="password">
+</div>
+</div>
+</div>
+</form>
+
+
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary" id="login-modal-submit">Sign In</button>
+<button class="btn" id="login-modal-cancel">Cancel</button>
+</div>
+</div>
+<div class="navbar-inner" id="pageheader">
+<div id="branding">
+<h1 id="logo">
+<a href="https://rpubs.com/"><span id="R">R</span>Pubs
+</a>
+</h1>
+<span id="tagline">brought to you by RStudio</span>
+</div>
+<div id="identity">
+<div class="btn-group">
+<a class="btn btn-inverse btn-small pull-right" href="#" onclick="rpubs_showLogin(); return false">
+Sign in
+</a>
+<a class="btn btn-inverse btn-small pull-right" href="https://rpubs.com/users/new">
+Register
+</a>
+</div>
+</div>
+</div>
+<div id="pagebody">
+<div id="payload">
+<iframe src="//rstudio-pubs-static.s3.amazonaws.com/103040_34b79fb4f2784d5a8b896fe6a6eee4a6.html"></iframe>
+<button class="btn btn-tiny" id="btn-show-toolbars">
+<i class="icon-resize-small"></i>
+</button>
+</div>
+<div class="navbar navbar-fixed-bottom" id="pagefooter">
+<div class="navbar-inner">
+<div class="container-fluid">
+<ul class="nav" id="pubmeta">
+<li id="pubtitle">
+<label>sem (lavaan) tables</label>
+</li>
+<li id="pubauthor">
+<a href="https://rpubs.com/mkearney">by Michael W. Kearney</a>
+</li>
+<li id="pubtime">
+<label>
+Last updated
+<time datetime="2015-08-22T16:50:42+00:00">about 4 years ago</time>
+</label>
+</li>
+</ul>
+<ul class="nav pull-right">
+<li>
+<button class="btn btn-small btn-success" id="btn-comments">
+<i class="icon-comment icon-white"></i>
+<span id="comment-verb-hide">
+Hide
+</span>
+Comments
+<span id="comment-count">
+(–)
+</span>
+</button>
+<button class="btn btn-small btn-info" id="btn-share">
+<i class="icon-share icon-white"></i>
+Share
+</button>
+<button class="btn btn-small btn-inverse" id="btn-hide-toolbars">
+Hide Toolbars
+</button>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="modal fade hide" id="modal-share">
+<div class="modal-body">
+<btn class="close" data-dismiss="modal" type="button">×</btn>
+<h2 class="first">Post on:</h2>
+<p>
+<a class="btn btn-primary btn-large" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Frpubs.com%2Fmkearney%2F103040&amp;source=tweetbutton&amp;text=sem%20%28lavaan%29%20tables&amp;url=http%3A%2F%2Frpubs.com%2Fmkearney%2F103040" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=275,width=660');return false;">
+Twitter
+</a>
+<a class="btn btn-primary btn-large" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Frpubs.com%2Fmkearney%2F103040&amp;t=sem%20%28lavaan%29%20tables" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=660');return false;">
+Facebook
+</a>
+<a class="btn btn-primary btn-large" href="https://plus.google.com/share?url=http%3A%2F%2Frpubs.com%2Fmkearney%2F103040" onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+Google+
+</a>
+</p>
+<hr>
+<h3>Or copy &amp; paste this link into an email or IM:</h3>
+<input onclick="this.select()" readonly="readonly" value="http://rpubs.com/mkearney/103040">
+</div>
+</div>
+<script>
+  $('#btn-edit').click(function() {
+    location.href = "/mkearney/103040/edit";
+  });
+  $('#btn-delete').mouseover(function() {
+    $('#btn-delete').removeClass('btn-inverse').addClass('btn-danger');
+  });
+  $('#btn-delete').mouseout(function() {
+    $('#btn-delete').addClass('btn-inverse').removeClass('btn-danger');
+  });
+  $('#btn-hide-toolbars').click(function() {
+    $(document.body).addClass('hide-toolbars');
+    $(document.body).removeClass('show-toolbars');
+  });
+  $('#btn-show-toolbars').click(function() {
+    $(document.body).addClass('show-toolbars');
+    $(document.body).removeClass('hide-toolbars');
+  });
+  $('#btn-share').click(function() {
+    $('#modal-share').modal().css({
+      'margin-left': function () {
+        return -($(this).width() / 2);
+      }
+    });
+  });
+  $('#btn-comments').click(function() {
+    $(document.body).toggleClass('show-comments');
+  });
+  setInterval(function() {
+    // Poll for comment count. Barf.
+    var text = $('#dsq-num-posts').text();
+    if (text && /^\d+$/.test(text))
+      $('#comment-count').text('(' + text + ')');
+  }, 1000);
+</script>
+<div id="comment-wrapper">
+<div id="disqus_thread"><iframe id="dsq-app4904" name="dsq-app4904" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 1289px !important;" src="https://disqus.com/embed/comments/?base=default&amp;f=rpubs&amp;t_i=pub-103040&amp;t_u=https%3A%2F%2Frpubs.com%2Fmkearney%2F103040&amp;t_d=RPubs%20-%20sem%20%28lavaan%29%20tables&amp;t_t=RPubs%20-%20sem%20%28lavaan%29%20tables&amp;s_o=default#version=049b9d4c8356e0d7fe6487ff57f30ea3" horizontalscrolling="no" verticalscrolling="no" frameborder="0" width="100%"></iframe></div>
+</div>
+
+</div>
+
+
+<iframe style="display: none;"></iframe></body></html>

@@ -1,0 +1,212 @@
+/* DR 20180305 - Article header cleanup PERICLES-6400*/
+/* note use of article node to make each rule more specific than the current one, so these override*/
+
+article .article-section .article-section__content.Box, .article-section__abstract{
+	padding-left:20px;
+}
+
+/* selector specificity needed to override styles targeting section number rather than heading number*/
+article .article__content h2.article-section__title,
+article .article__content h3.article-section__sub-title,
+article .article__content h4.article-section__sub-title,
+article .article__content h5.article-section__sub-title,
+article .article__content h6.article-section__sub-title
+{
+  font-family: 'Open Sans', Arial, icomoon, sans-serif;
+  line-height:1.2;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  color: #1f1f1f;
+}
+article .article__body h2, article .article__content h2.article-section__title{
+	color: #00a185;
+	font-size: 26px;
+}
+article .article__body h3, article .article__content h3.article-section__sub-title{
+	font-size:22px;
+	font-weight: 400;
+}
+article .article__body h4, article .article__content h4.section3{
+	font-size:18px;
+}
+article .article__body h5, article .article__content h4.section4{
+	font-size:16px;
+}
+article .article__body h6, article .article__content h4.section5{
+	color: #00a185;
+	font-size:14px;
+}
+article .article-section__sub-content{
+	margin-top: 10px;
+}
+.article-section__content p{
+	margin-bottom: 16px;
+}
+
+article .feature h3 .feature-label{
+  display:inline;
+  border-bottom: none;
+  font-style: normal;
+}
+
+article .unordered-list li{
+	line-height: 1.4em;
+}
+article .article-section__content{
+	font-size: 16px;
+}
+article .feature{
+	margin:20px 0;
+}
+/*
+article h3{
+	font-size: 19px;
+	font-size: 1.1875rem;
+	font-weight:400;
+}
+article h4{
+	font-size: 16px
+	font-size: 1rem;
+	font-weight: 600;
+}
+*/
+
+
+/* THIS SECTION WILL BE MIGRATED TO PRODUCT CSS WITH 1830 */
+/* --- begin --- */
+article .article-table-content{
+	border: none;
+}
+article .article-table-content table{
+	border: 1px solid #9e9e9e;
+	color: #000;
+	margin: 15px 0;
+}
+article .article-section__table thead{
+	background-color:#eee;
+	border: 1px solid #9e9e9e;
+	/*border-bottom: 2px solid #9e9e9e;*/
+	font-weight: 600;
+}
+article .article-section__table  th{
+    border: none;
+	border-left: 1px solid #b2b2b2;
+	color: #000;
+	font-weight: 600;
+}
+article .article-section__table th:first-child{
+	border-left:none;
+}
+article .article-section__table td{
+	font-size: 12px;
+	padding: 12px;
+}
+article .article-section__table-footnotes{
+	font-size: 14px;
+}
+/* --- end --- */
+
+
+/* DR 20180314 Mobile Cleanup - temporary styles*/
+
+@media (max-width: 767px){
+	/* Fix issue with page contents spilling outside of viewport on mobile hubs - adding .row to make this rule more specific for cascade over hub-pages.scss which sets these to 0*/
+	.hub-main-content .row .col-md-12, .hub-main-content .row .col-sm-8,  .hub-main-content .row  .col-sm-4{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	/* indent side section content as it is currently outdented relative to header */
+	.side-section-content{
+		padding-left: 12px;
+		padding-left: 0.75rem;
+		padding-right: 12px;
+		padding-right: 0.75rem;
+	}
+	/* restore left padding as discs are still rendering in this breakpoint */
+	.journal-side-section .unordered-bordered-list li{
+		padding: 0 0 0 20px !important;
+	}
+	.journal-side-section>.unordered-bordered-list{
+		padding-left: 12px;
+	}
+
+}
+
+@media (max-width: 991px){
+	/*  journal nav headers are black on blue, need better contrast */
+	.pages-nav--res .side-section-header{
+		background: #ddd;
+		box-shadow: 1px 1px rgba(0,0,0,0.2);
+		margin-bottom:5px;
+		color: #1c1d1e;
+	}
+/*	.hubpage-menu .hubpage-menu__nav li a{
+		display:block;
+		padding:18px 17px;
+		margin:-18px -17px
+	} */
+	.hubMenu-slide .w-slide__content li a{
+		display:block;
+		padding:16px 20px;
+		margin:-16px -20px;
+	}
+}
+/* hub menu cleanup */
+.hubpage-menu .dropdown__menu li.menu-item>a{
+	padding:0;
+	font-weight: 500;
+}
+
+/* short abstracts on tocs cleanup */
+
+.abstract-preview .unordered-list li{
+	line-height:1.4em;
+}
+.abstract-preview .article-section__content{
+	font-size: 14px;
+}
+
+/* global classes for social icons in widgets */
+.widget-social-icon {
+    background-image: url(/pb-assets/images/sprite-1507727985923.svg);
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-indent: -999em;
+    vertical-align: baseline;
+    height: 37px;
+    width: 37px;
+}
+
+.widget-social-icon--sign-up {
+    background-position: 0 -270px;
+    background-color: #00a47a;
+    border: solid #00a47a;
+    border-width: 9px 6px;
+}
+.widget-social-icon--twitter {
+    background-position: 0 -289px;
+    background-color: #55acee;
+    border: solid #55acee;
+    border-width: 8px 7px;
+}
+
+.widget-social-icon--facebook {
+    background-position: 0 -168px;
+    background-color: #3b5999;
+    border: solid #3b5999;
+    border-width: 3px 10px;
+}
+
+.widget-social-icon--facebook, .widget-social-icon--sign-up, .widget-social-icon--twitter {
+    display:inline-block;
+}
+/* BES journal logos blown out in IE11 on articles - give parent a width */
+.article-citation a.citation--logo{
+	max-width:100%;
+}
+
+/* 20180327 - JIRA 6865 */
+.search-header-section .intro-text{
+	padding-right: 10px;
+}

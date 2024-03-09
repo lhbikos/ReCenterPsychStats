@@ -1,0 +1,1 @@
+(function($){"use strict";$(function(){$('.bikeindex-list').dataTable({"order":[[0,"desc"]]});});}(jQuery));

@@ -1,0 +1,234 @@
+/* My Stuff Pages [from baseapp responsive skin]
+========================================================================== */
+
+.myStuff #mainContent {
+	float: left;
+	width: 75.353535%; /* 746 */
+}
+.myStuff #columnOne { 
+	float: right;
+	margin: 5em 0 3.6363636% 2.8282828%;
+}
+
+#saveToProject {
+	/* 	padding: 2.7100271%; 20 / 738 */
+	padding: 1.6666667em;
+	background-color: #ffffff;
+	border: 1px solid #cfd4d6;
+}
+
+#accountForm label {
+	width: 30%;
+}
+
+#projectDetailsForm .formRow {
+	margin-bottom: 1em;
+}
+#projectDetailsForm label {
+	width: 12%;
+}
+#projectDetailsForm .formHint {
+	display: block;
+	margin-left: 13%;
+}
+
+
+.annotationNav {
+	float: right;
+	margin: 0 -32.707775% 0 2.8282828%; /* 244 / 746 */
+	width: 28.954423592%; /* 216 / 746 */
+}
+@media screen and (max-width: $breakpoint-med) {
+	.annotationNav {
+		float: left;
+		margin: 0;
+		width: 100%;
+	}
+}
+
+
+/* Tabular Data */
+
+.sortingTable,
+.myData {
+	margin: 0 0 1.16666667em 0;
+	border-top: 1px solid #cfd4d6;
+	border-bottom: 1px solid #cfd4d6;
+	background-color: #ffffff;
+	width: 100%;
+}
+.sortingTable thead,
+.myData thead {
+	background: #cfd4d6;
+}
+.sortingTable thead th,
+.myData thead th {
+	background: #cfd4d6;
+	text-align: left;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+.sortingTable th,
+.sortingTable td,
+.myData th,
+.myData td {
+	vertical-align: top;
+	padding: 1em 0 1em 1em;
+	border: none;
+	border-bottom: 1px solid #cfd4d6;
+}
+.sortingTable th:last-child,
+.sortingTable td:last-child,
+.myData th:last-child,
+.myData td:last-child {
+	padding-right: 1em;
+}
+.sortingTable .actions,
+.myData .actions { 
+	width: 12%;
+	padding-right: 1em;
+}
+.myData .actions > .actions {
+	width: 100%;
+}
+.sortingTable .savedTitle,
+.myData .savedTitle {
+	width: 50%;
+}
+.myData .chunkTitle,
+.myData .quoteText,
+.myData .annotationText {
+	width: 22%;
+}
+.sortingTable .order,
+.myData .checkbox {
+	padding-right: 0;
+	
+}
+.myData .checkbox {
+	width: 4%;
+}
+.sortingTable .order .rowOrder {
+	width: 3em;
+}
+.sortingTable .nav {	
+	width: 1.5em;
+}
+.sortingTable .nav .sortOrderNav {
+	display: block;
+	position: relative;
+	margin: 0;
+}
+.sortingTable .nav .moveLink {
+	position: absolute;
+	display: block;
+	font-size: 1.3333333em;
+	line-height: 1;
+}
+.sortingTable .nav .moveUp {
+	top: -.3333333em;
+}
+.sortingTable .nav .moveDown {
+	top: .8333333em;
+}
+.myData .tags {
+	margin: 0;
+	list-style: none;
+}
+.myData .tags li {}
+
+/* The following table columns should be removed from the markup */
+.myData .documentUri,
+.myData .associationType {
+	display: none;
+}
+@media screen and (max-width: $breakpoint-sm) {
+
+	.myData thead {
+		display: none;
+	}
+	.myData td {
+		vertical-align: top;
+	}
+	.myData .actions {
+		width: 20%;
+		text-align: right;
+	}
+	.myData .checkbox {
+		width: 5%;
+	}
+	.myData .savedTitle {
+		width: 75%;
+	}
+	.myData .type,
+	.myData .createdDate,
+	.myData .annotationCreateDate,
+	.myData .author,
+	.myData .tagSet {
+		display: none;
+	}
+
+}
+
+/* Tabbed Navigation
+   ========================================================================== */
+.myStuff .tabList {
+	margin: 0;
+	padding: 0 1.6666667em;
+	border-bottom: 1px solid #d9d9d9;
+	list-style: none;
+}
+/* .myStuff.bookmark .tabList, */
+/* .myStuff.annotations .tabList, */
+.myStuff .tabList.myTabs { 
+	margin-right: -32.707774798%; /* 244 / 746 */
+}
+.myStuff .tabList li {
+	position: relative;
+	display: inline-block;
+	margin: 0 0 -1px 0;
+	z-index: 1;
+}
+.myStuff .tabList a {
+	display: block;
+	padding: 0.6666667em; /* 8 */
+	background-color: #d5d3c7;
+	border: 1px solid #ccc;
+	-moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	color: #444;
+	font-size: .8333333em;
+	font-weight: 700;
+	-moz-transition: color 0.2s ease-in-out;
+	-webkit-transition: color 0.2s ease-in-out;
+	-o-transition: color 0.2s ease-in-out;
+	transition: color 0.2s ease-in-out;
+}
+.myStuff .tabList a:hover {
+	background-color: #ccc;
+	color: #666;
+}
+.myStuff .tabList li.active > a {
+	background-color: #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
+	color: #666;
+}
+.myStuff .tabList.myTabs li.active > a { 
+	background-color: white;
+	border-bottom: 1px solid white;
+}
+
+/* Tab Panels */
+.tab-panel {
+	margin-top: -1px;
+	margin-bottom: 1.16666667em;
+	padding: 1.6666667em;
+	background-color: white;
+	border: 1px solid #d9d9d9;
+}
+.tab-panel.myPanel {
+	padding: 1.6666667em 0;
+	background-color: transparent;
+	border: none;
+}

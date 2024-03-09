@@ -1,0 +1,198 @@
+/**
+ * blueSteel.css
+ *
+ * Copyright (c) 2013-2014 Simon Fraser University Library
+ * Copyright (c) 2003-2014 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * BlueSteel theme.
+ *
+ *  a, a:link, a:visited {
+ *	color: #2E2E2E;
+ *	text-decoration: none;
+ *	border-bottom: 1px solid #C8C8C;
+ *	line-height: 1.5em;
+ *}
+ *
+ *
+ *
+ */
+
+body {
+	background-color: #FFFFFF;
+	font-family: Arial,Verdana,Helvetica,sans-serif;
+}
+
+a, a:link, a:visited {
+	color: #2E2E2E;
+	text-decoration: none;
+	border-bottom: 1px solid #000000;
+	line-height: 1.5em;
+}
+
+a:hover {
+background-color: hsla(0, 100%, 50%, 0);
+}
+
+#header {
+
+	left: -100px;
+	top: 0px;
+	height: 78px;
+	width: 100%;
+	border-bottom: 3px solid #FFFFFF;
+	margin: -9px 0 36px 0;
+}
+	#headerTitle {
+		margin-top: 9px;
+                color: #FFFFFF;
+	}
+		#headerTitle h1 {
+			text-shadow: 0px 0px 0px #000000;
+			font-size: 3em;
+			margin: 0;
+			padding: 10px 0 0 10%;
+			text-align: center;
+			font-family: Lucida Calligraphy,Arial,serif;
+		}
+			#headerTitle h1 img {
+				vertical-align: middle;
+				margin: 5px;
+			}
+
+
+#navbar {
+	position: absolute;
+	left: 0px;
+	top: 92px;
+	height: 22px;
+	width: 100%;
+	text-align: left;
+
+	border-bottom: 0px solid #000000;
+	border-top: 0px solid #000000;
+	line-height: normal;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+	#navbar .menu {
+		list-style: none;
+		padding: 0 20px 0 0;
+	}
+		#navbar .menu li {
+			font-family: Times, Arial, Helvetica, sans-serif;
+			font-size: 1.2em;
+			font-weight: ;
+			padding: 0 8px 0 5px;
+			text-shadow: 0px 0px 0px #000000;
+		}
+		#navbar .menu li a {
+			color: #000000;
+			padding: 0px 0px 0px 0px;
+			border: 3px solid transparent; /* Prevents menu flickering */
+
+			-webkit-border-top-left-radius: 2px;
+			-webkit-border-top-right-radius: 2px;
+			-moz-border-radius-topleft: 2px;
+			-moz-border-radius-topright: 2px;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+		}
+		#navbar .menu li a:hover, #navbar .menu li a:active {
+			color: #000000;
+			border: 3px solid #FFFFFF;
+
+			background: rgb(255,255,255); /* Old browsers */
+			/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZmNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiZGJkYmQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+			background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+			background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#bdbdbd',GradientType=0 ); /* IE6-8 */
+		}
+
+#header{
+	background: rgb(40,136,184); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(40, 136, 184,1) 0%, rgba(40, 136, 184,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(40, 136, 184,1)), color-stop(100%,rgba(40, 136, 184,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(40, 136, 184,1) 0%,rgba(40, 136, 184,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(40, 136, 184,1) 0%,rgba(40, 136, 184,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(40, 136, 184,1) 0%,rgba(40, 136, 184,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(40, 136, 184,1) 0%,rgba(40, 136, 184,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#acbdcc', endColorstr='#758ba3',GradientType=0 ); /* IE6-9 */
+}
+
+#navbar {
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#acbdcc', endColorstr='#758ba3',GradientType=0 ); /* IE6-9 */
+}
+
+
+
+
+
+#main {
+	padding: 10px 0 0 5px;
+	margin-bottom: 50px;
+	margin-top: 10px;
+	position: static;
+}
+
+div #sidebar {
+	margin-left: 0;
+}
+
+#rightSidebar, #leftSidebar {
+	padding-top: 30px;
+}
+
+div.block, div#main {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.block {
+	padding: 5px 10px 10px 10px;
+	margin: 8px 0;
+}
+
+.blockTitle {
+	font-weight: bold;
+	text-shadow: 0px 1px 0px #FFF;
+}
+
+#main h2, #content h3, #content h4 {
+	font-family: Gill Sans,Arial,Verdana,Helvetica,sans-serif;
+}
+
+#content {
+	width: 98%;
+	border-top: 2px solid #000000;
+}
+
+input.defaultButton, input.button {
+}
+
+input.button, input.defaultButton {
+    background-color: none;
+	border-radius: 3px;
+}
+
+input.button:hover {
+	border: 2px solid black;
+}
+
+input.textField, select.selectMenu, textarea.textArea, input.uploadField {
+	background-color: white;
+	border: 2px solid #BDBDBD;
+}

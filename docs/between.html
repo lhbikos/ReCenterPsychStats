@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Factorial (Between-Subjects) ANOVA | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 8 Factorial (Between-Subjects) ANOVA | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Factorial (Between-Subjects) ANOVA | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -978,7 +978,7 @@ div.csl-indent {
 <span id="cb799-3"><a href="between.html#cb799-3" tabindex="-1"></a>        <span class="st">&quot;dotplot&quot;</span>), <span class="at">title =</span> <span class="st">&quot;Lineplots Custered by Ethnicity in Photo Stimulus&quot;</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with
 ## `binwidth`.</code></pre>
-<pre><code>## Warning: Computation failed in `stat_summary()`
+<pre><code>## Warning: Computation failed in `stat_summary()`.
 ## Caused by error in `get()`:
 ## ! object &#39;mean_se_&#39; of mode &#39;function&#39; was not found</code></pre>
 <p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
@@ -2430,7 +2430,7 @@ Helpful resources are found here:</p>
 <span id="cb955-2"><a href="between.html#cb955-2" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Academic Department&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Students&#39; Evaluations of Traditional Pedagogy&quot;</span>,</span>
 <span id="cb955-3"><a href="between.html#cb955-3" tabindex="-1"></a>    <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Course Evaluations as a Function of Department and Stage in Transition&quot;</span>)</span>
 <span id="cb955-4"><a href="between.html#cb955-4" tabindex="-1"></a>Box2way</span></code></pre></div>
-<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 </div>
 <div id="evaluate-statistical-assumptions-4" class="section level4 unnumbered hasAnchor">
 <h4>Evaluate statistical assumptions<a href="between.html#evaluate-statistical-assumptions-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -2474,10 +2474,10 @@ Helpful resources are found here:</p>
 <p>A statistically significant Shapiro-Wilks’ test of normality suggests that we violated the assumption <span class="math inline">\(W = 0.949, p &lt; 0.001\)</span>.</p>
 <p>Let’s plot the residuals</p>
 <div class="sourceCode" id="cb962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb962-1"><a href="between.html#cb962-1" tabindex="-1"></a><span class="fu">hist</span>(resid_TradPed)</span></code></pre></div>
-<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-94-1.png" width="672" />
+<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-171-1.png" width="672" />
 The histogram does look somewhat different (negatively skewed) from a normal distribution.</p>
 <div class="sourceCode" id="cb963"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb963-1"><a href="between.html#cb963-1" tabindex="-1"></a><span class="fu">qqnorm</span>(resid_TradPed)</span></code></pre></div>
-<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <p>The dots stray from the expected diagonal; this also visualizes the non-normality of the data.</p>
 <p>Summary so far:</p>
 <blockquote>
@@ -2617,7 +2617,7 @@ The histogram does look somewhat different (negatively skewed) from a normal dis
 <span id="cb976-3"><a href="between.html#cb976-3" tabindex="-1"></a>Box2way <span class="ot">&lt;-</span> Box2way <span class="sc">+</span> ggpubr<span class="sc">::</span><span class="fu">stat_pvalue_manual</span>(pwTRwiDP, <span class="at">label =</span> <span class="st">&quot;p.adj.signif&quot;</span>,</span>
 <span id="cb976-4"><a href="between.html#cb976-4" tabindex="-1"></a>    <span class="at">tip.length =</span> <span class="fl">0.02</span>, <span class="at">hide.ns =</span> <span class="cn">TRUE</span>, <span class="at">y.position =</span> <span class="fu">c</span>(<span class="fl">5.3</span>, <span class="fl">5.5</span>))</span>
 <span id="cb976-5"><a href="between.html#cb976-5" tabindex="-1"></a>Box2way</span></code></pre></div>
-<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-102-1.png" width="672" />
+<p><img src="08-FactorialANOVA_files/figure-html/unnamed-chunk-179-1.png" width="672" />
 #### Conduct power analyses to determine the power of the current study and a recommended sample size {-}</p>
 <p>The <em>pwr.2way()</em> and <em>ss.2way()</em> functions require the following:</p>
 <ul>

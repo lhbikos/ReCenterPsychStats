@@ -1,0 +1,41 @@
+/*  This file contains front-end styles needed for CXS that OUP needs because it doesn't import the baseskin */
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../shared/fonts/fontawesome-webfont.eot?v=4.3.0');
+    src: url('../shared/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), 
+        url('../shared/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), 
+        url('../shared/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), 
+        url('../shared/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), 
+        url('../shared/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.cxs-content-root .ico-xml:before {content: '\f1c9'; }
+.cxs-content-root .ico-refresh:before {content: '\f021'; }
+.cxs-content-root .ico-list:before {content: '\f03a'; }
+
+.cxs-content-root .ico-xml:before,
+.cxs-content-root .ico-refresh:before,
+.cxs-content-root .ico-list:before {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1; 
+}
+
+.cxs-content-root [class*="ico-"] {
+    cursor: pointer;
+}
+
+.cxs-content-root [class*="ico-"] span {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    height: 1px;
+    width: 1px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
