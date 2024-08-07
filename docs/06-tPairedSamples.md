@@ -47,17 +47,17 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(psych)){install.packages('psych')}
-# if(!require(faux)){install.packages('faux')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(dplyr)){install.packages('dplyr')}
-# if(!require(ggpubr)){install.packages('ggpubr')}
-# if(!require(pwr)){install.packages('pwr')}
-# if(!require(apaTables)){install.packages('apaTables')}
-# if(!require(knitr)){install.packages('knitr')}
-# if(!require(rstatix)){install.packages('rstatix')}
+``` r
+#will install the package if not already installed
+#if(!require(psych)){install.packages("psych")}
+#if(!require(faux)){install.packages("faux")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(ggpubr)){install.packages("ggpubr")}
+#if(!require(pwr)){install.packages("pwr")}
+#if(!require(apaTables)){install.packages("apaTables")}
+#if(!require(knitr)){install.packages("knitr")}
+#if(!require(rstatix)){install.packages("rstatix")}
 ```
 
 ## Introducing the Paired Samples *t*-test
@@ -117,30 +117,27 @@ Below is the code I used to simulate the data. The following code assumes 33 phy
 In the lesson, we will compare verbal communication scores. The nonverbal communication score is available as an option for practice.
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
-# Setting the seed. If you choose this practice option, change the
-# number below to something different.
+``` r
+#Setting the seed. If you choose this practice option, change the number below to something different.
 set.seed(220817)
-# These define the characteristics of the verbal variable. It is
-# essential that the object names (e.g., A_mean) are not changed
-# because they will be fed to the function in the faux package.
+#These define the characteristics of the verbal variable. It is essential that the object names (e.g., A_mean) are not changed because they will be fed to the function in the faux package.
 sub_n <- 33
 A_mean <- 8.37
 B_mean <- 8.41
@@ -148,43 +145,48 @@ A_sd <- 3.36
 B_sd <- 3.21
 AB_r <- 0.3
 
-# the faux package can simulate a variety of data. This function
-# within the faux package will use the objects above to simulate
-# paired samples data
-paired_V <- faux::rnorm_multi(n = sub_n, vars = 2, r = AB_r, mu = c(A_mean,
-    B_mean), sd = c(A_sd, B_sd), varnames = c("Verbal_BL", "Verbal_WH"))
+#the faux package can simulate a variety of data. This function within the faux package will use the objects above to simulate paired samples data
+paired_V <- faux::rnorm_multi(
+    n = sub_n, 
+    vars = 2, 
+    r = AB_r, 
+    mu = c(A_mean, B_mean), 
+    sd = c(A_sd, B_sd), 
+    varnames = c("Verbal_BL", "Verbal_WH")
+  )
 
-paired_V <- paired_V %>%
-    dplyr::mutate(PhysID = row_number())
+paired_V <- paired_V %>% dplyr::mutate(PhysID = row_number())
 
-# Here, I repeated the process for the nonverbal variable.
+#Here, I repeated the process for the nonverbal variable.
 sub_n <- 33
 A_mean <- 2.68
 B_mean <- 2.93
-A_sd <- 0.84
-B_sd <- 0.77
+A_sd <- .84
+B_sd <- .77
 AB_r <- 0.9
 
-paired_NV <- faux::rnorm_multi(n = sub_n, vars = 2, r = AB_r, mu = c(A_mean,
-    B_mean), sd = c(A_sd, B_sd), varnames = c("NVerb_BL", "NVerb_WH"))
+paired_NV <- faux::rnorm_multi(
+    n = sub_n, 
+    vars = 2, 
+    r = AB_r, 
+    mu = c(A_mean, B_mean), 
+    sd = c(A_sd, B_sd), 
+    varnames = c("NVerb_BL", "NVerb_WH")
+  )
 
-# This code produced an ID number for each physician
-paired_NV <- paired_NV %>%
-    dplyr::mutate(PhysID = row_number())
+#This code produced an ID number for each physician
+paired_NV <- paired_NV %>% dplyr::mutate(PhysID = row_number())
 
-# This data joined the two sets of data.  Note, I did not write any
-# code that assumed tha the verbal and nonverbal data came from the
-# same physician.  Full confession: I'm not quite sure how to do that
-# just yet.
+#This data joined the two sets of data. 
+#Note, I did not write any code that assumed tha the verbal and nonverbal data came from the same physician.  Full confession:  I'm not quite sure how to do that just yet.
 dfPairedSamples <- dplyr::full_join(paired_V, paired_NV, by = c("PhysID"))
-dfPairedSamples <- dfPairedSamples %>%
-    dplyr::select(PhysID, everything())
+dfPairedSamples <- dfPairedSamples%>%dplyr::select(PhysID, everything())
 ```
 
 Before beginning our analysis, let's check the format of the variables to see if they are consistent with the scale of measurement of the variables. In our case, we expect to see four variables representing the verbal and nonverbal communication of the physicians with the patients who are identified as Black and White. Each of the variables should be continuously scaled and, therefore, should be formatted as *num* (numerical).
 
 
-```r
+``` r
 str(dfPairedSamples)
 ```
 
@@ -202,21 +204,20 @@ Below is code for saving (and then importing) the data in .csv or .rds files. I 
 
 Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.
 
-```r
-# writing the simulated data as a .csv write.table(dfPairedSamples,
-# file = 'dfPairedSamples.csv', sep = ',', col.names=TRUE,
-# row.names=FALSE) at this point you could clear your environment and
-# then bring the data back in as a .csv reading the data back in as a
-# .csv file dfPairedSamples<- read.csv ('dfPairedSamples.csv', header
-# = TRUE)
+``` r
+#writing the simulated data as a .csv 
+#write.table(dfPairedSamples, file = "dfPairedSamples.csv", sep = ',', col.names=TRUE, row.names=FALSE) 
+#at this point you could clear your environment and then bring the data back in as a .csv
+#reading the data back in as a .csv file
+#dfPairedSamples<- read.csv ('dfPairedSamples.csv', header = TRUE)
 ```
 
 The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.
 
 
-```r
-# saveRDS(dfPairedSamples, 'dfPairedSamples.rds') dfPairedSamples <-
-# readRDS('dfPairedSamples.rds')
+``` r
+#saveRDS(dfPairedSamples, 'dfPairedSamples.rds') 
+#dfPairedSamples <- readRDS('dfPairedSamples.rds')
 ```
 ### Quick Peek at the Data
 
@@ -225,10 +226,8 @@ Plotting the data is a helpful early step in any data analysis. Further, visuali
 Especially unique about this function is that the lines connect the scores of each person across time or conditions. In this research scenario, the lines present the amount of time the physicians spent with each of the two patients they treated.
 
 
-```r
-ggpubr::ggpaired(dfPairedSamples, cond1 = "Verbal_BL", cond2 = "Verbal_WH",
-    color = "condition", line.color = "gray", palette = c("npg"), xlab = "Patient Race",
-    ylab = "Verbal Communication Rating")
+``` r
+ggpubr::ggpaired(dfPairedSamples, cond1 = "Verbal_BL", cond2 ="Verbal_WH", color = "condition",  line.color = "gray", palette =c("npg"), xlab = "Patient Race", ylab = "Verbal Communication Rating")
 ```
 
 ![](06-tPairedSamples_files/figure-docx/unnamed-chunk-7-1.png)<!-- -->
@@ -247,12 +246,11 @@ $$H_{A}: \mu _{D} \neq 0$$
 Notice the focus on a *difference* score. Even though the R package we will use does not require one for calculation, creating one in our df will be useful for preliminary exploration.
 
 
-```r
-# Creating the Verbal_D variable within the dfPairedSamples df Doing
-# the 'math' that informs that variable
+``` r
+#Creating the Verbal_D variable within the dfPairedSamples df
+#Doing the "math" that informs that variable
 dfPairedSamples$Verbal_D <- (dfPairedSamples$Verbal_BL - dfPairedSamples$Verbal_WH)
-# Displaying the first six rows of the df to show that the difference
-# score now exists
+#Displaying the first six rows of the df to show that the difference score now exists
 head(dfPairedSamples)
 ```
 
@@ -274,7 +272,7 @@ Let's take another look at the formula for calculating paired samples *t*-test.
 $$t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}$$
 We can use the data from our preliminary exploration in the calculation.
 
-```r
+``` r
 psych::describe(dfPairedSamples$Verbal_D)
 ```
 
@@ -288,8 +286,8 @@ X1    1 33 0.08 4.14   0.61    0.27 4.11 -9.55 7.61 17.17 -0.41    -0.69 0.72
 * The sample size is 33
 
 
-```r
-0.08/(4.14/sqrt(33))
+``` r
+.08/(4.14/sqrt(33))
 ```
 
 ```
@@ -315,16 +313,16 @@ In the linked table, when the degrees of freedom reaches 30, there larger interv
 We can also use the *qt()* function in base R. In the script below, I have indicated an alpha of .05. The "2" that follows indicates I want a two-tailed test. The 32 represents my degrees of freedom ($N-1$). In a two-tailed test, the regions of rejection will be below the lowerbound (lower.tail=TRUE) and above the upperbound (lower.tail=FALSE).
 
 
-```r
-qt(0.05/2, 32, lower.tail = TRUE)
+``` r
+qt(.05/2, 32, lower.tail=TRUE)
 ```
 
 ```
 [1] -2.036933
 ```
 
-```r
-qt(0.05/2, 32, lower.tail = FALSE)
+``` r
+qt(.05/2, 32, lower.tail=FALSE)
 ```
 
 ```
@@ -347,16 +345,16 @@ Let's calculate it:
 First, let's get the proper *t* critical value:
 
 
-```r
-qt(0.05/2, 32, lower.tail = TRUE)
+``` r
+qt(.05/2, 32, lower.tail=TRUE)
 ```
 
 ```
 [1] -2.036933
 ```
 
-```r
-qt(0.05/2, 32, lower.tail = FALSE)
+``` r
+qt(.05/2, 32, lower.tail=FALSE)
 ```
 
 ```
@@ -364,16 +362,16 @@ qt(0.05/2, 32, lower.tail = FALSE)
 ```
 
 
-```r
-0.08 - (2.037 * ((4.14/(sqrt(33)))))
+``` r
+.08-(2.037*((4.14/(sqrt(33)))))
 ```
 
 ```
 [1] -1.388028
 ```
 
-```r
-0.08 + (2.037 * ((4.14/sqrt(33))))
+``` r
+.08+(2.037*((4.14/sqrt(33))))
 ```
 
 ```
@@ -391,8 +389,8 @@ $$d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}$$
 
 The first is to use the mean and standard deviation associated with the difference score:
 
-```r
-0.08/4.14
+``` r
+.08/4.14
 ```
 
 ```
@@ -400,7 +398,7 @@ The first is to use the mean and standard deviation associated with the differen
 ```
 The formula uses the *t* value and *N*.
 
-```r
+``` r
 0.111/(sqrt(33))
 ```
 
@@ -414,8 +412,8 @@ Eta squared, $\eta^2$ is the proportion of variance of a test variable that is a
 $$\eta^{2} =\frac{N(\bar{D}^{2})}{N(\bar{D}^{2}+(N-1)(\hat\sigma_D^{^{2}})}=\frac{t^{2}}{t^{2}+(N_{1}-1)}$$
 The first calculation option uses the N and the mean difference score:
 
-```r
-(33 * (0.08^2))/((33 * (0.08^2)) + ((33 - 1) * (4.14^2)))
+``` r
+(33*(.08^2))/((33*(.08^2)) + ((33-1)*(4.14^2)))
 ```
 
 ```
@@ -423,8 +421,8 @@ The first calculation option uses the N and the mean difference score:
 ```
 The second calculation option uses the *t* values and sample size:
 
-```r
-(0.111^2)/((0.111^2) + (33 - 1))
+``` r
+(0.111^2)/((0.111^2)+(33-1))
 ```
 
 ```
@@ -456,8 +454,8 @@ All statistical tests have some assumptions about the data. The paired-samples *
 We can begin to evaluate normality by obtaining the descriptive statistics with the *describe()* function from the *psych* package.
 
 
-```r
-psych::describe(dfPairedSamples, type = 1)
+``` r
+psych::describe(dfPairedSamples, type=1)
 ```
 
 ```
@@ -484,7 +482,7 @@ Recall, though that the normality assumption for the paired samples *t*-test con
 Beyond skew and kurtosis, we can formally test for deviations from normality with a Shapiro-Wilk.  We want the results to be non-significant.
 
 
-```r
+``` r
 rstatix::shapiro_test(dfPairedSamples, Verbal_D)
 ```
 
@@ -515,14 +513,14 @@ A challenge in evaluating within-persons data is the *shape* of the data. The si
 In the script below we are using the *melt()* and *setDT* functions from the *data.table* package. We put stable (i.e., time-invarient, "one-per-person") variables in a concatonated variable list of "id.vars."  We create separate lists of the variables that change over time. In this case, each physician saw one Black patient and one White patient. Therefore, every physician will have two rows of data. For each variable collected at both points, we create concatonated lists.
 
 
-```r
-df_long <- data.table::melt(data.table::setDT(dfPairedSamples), id.vars = c("PhysID"),
-    measure.vars = list(c("Verbal_BL", "Verbal_WH"), c("NVerb_BL", "NVerb_WH")))
+``` r
+df_long <- data.table::melt(data.table::setDT(dfPairedSamples), id.vars=c("PhysID"), measure.vars=list(c("Verbal_BL", "Verbal_WH"), c("NVerb_BL", "NVerb_WH")))
 head(df_long)
 ```
 
 ```
    PhysID variable    value1    value2
+    <int>   <fctr>     <num>     <num>
 1:      1        1  8.190342 3.0991101
 2:      2        1  3.297486 4.2338398
 3:      3        1  6.176386 0.4288566
@@ -533,14 +531,14 @@ head(df_long)
 While that code performed the magic, it did not name the variables. We must provide that in separate code.
 
 
-```r
-df_long <- rename(df_long, PatientRace = variable, Verbal = value1, Nonverbal = value2)
+``` r
+df_long <- rename(df_long, PatientRace = variable, Verbal = value1, Nonverbal = value2 )
 ```
 
 After the reshaping, let's recheck the structure of our data:
 
 
-```r
+``` r
 str(df_long)
 ```
 
@@ -555,9 +553,8 @@ Classes 'data.table' and 'data.frame':	66 obs. of  4 variables:
 The dependent variables Verbal and Nonverbal are continuously scaled, so the *num* designation is appropriate. Similarly, PatientRace is categorical, so *Factor* is appropriate. Because labels (instead of numbers) can minimize misinterpretation (or forgetting), I would prefer to use "Black" and "White" as opposed to "1" and "2". To further reduce the possibility of error, it is easy enough to create a second, parallel, variable. 
 
 
-```r
-df_long$PtRace <- plyr::mapvalues(df_long$PatientRace, from = c(1, 2),
-    to = c("Black", "White"))
+``` r
+df_long$PtRace <- plyr::mapvalues(df_long$PatientRace, from = c(1, 2), to = c("Black", "White"))
 ```
 
 We are now ready to perform the paired samples *t*-test. In the script below:
@@ -569,8 +566,8 @@ We are now ready to perform the paired samples *t*-test. In the script below:
 
 
 
-```r
-rstatix::t_test(df_long, Verbal ~ PtRace, paired = TRUE, detailed = TRUE)
+``` r
+rstatix::t_test(df_long, Verbal ~ PtRace, paired=TRUE, detailed=TRUE)
 ```
 
 ```
@@ -586,8 +583,8 @@ This output provides information to get us started in drafting the APA style res
 We still need to calculate the effect size.
 
 
-```r
-rstatix::cohens_d(df_long, Verbal ~ PtRace, paired = TRUE)
+``` r
+rstatix::cohens_d(df_long, Verbal ~ PtRace, paired=TRUE)
 ```
 
 ```
@@ -609,16 +606,14 @@ Putting it altogether we can assemble an APA style results section. Code for a t
 
 
 
-```r
-library(tidyverse)  #needed to use the pipe 
-# Creating a smaller df to include only the variables I want in the
-# table
-PairedDescripts <- dfPairedSamples %>%
-    select(Verbal_BL, Verbal_WH, Verbal_D)
-# using the apa.cor.table function for means, standard deviations,
-# and correlations the filename command will write the table as a
-# word document to your file
-apaTables::apa.cor.table(PairedDescripts, table.number = 1, filename = "Tab1_PairedV.doc")
+``` r
+library(tidyverse)#needed to use the pipe 
+#Creating a smaller df to include only the variables I want in the table
+PairedDescripts <- dfPairedSamples%>%
+  select(Verbal_BL, Verbal_WH, Verbal_D)
+#using the apa.cor.table function for means, standard deviations, and correlations
+#the filename command will write the table as a word document to your file
+apaTables::apa.cor.table(PairedDescripts, table.number=1, filename="Tab1_PairedV.doc")
 ```
 
 ```
@@ -654,10 +649,10 @@ The figure we created earlier in the lesson would be sufficient for a journal ar
 We could have done this in the initial run (but I didn't want to make the test-statistic unnecessarily confusing).
 
 
-```r
+``` r
 library(tidyverse)
-pair.test <- rstatix::t_test(df_long, Verbal ~ PtRace, paired = TRUE, detailed = TRUE) %>%
-    rstatix::add_significance()
+pair.test <- rstatix::t_test(df_long, Verbal ~ PtRace, paired=TRUE, detailed=TRUE) %>%
+  rstatix::add_significance()
 pair.test
 ```
 
@@ -673,17 +668,14 @@ pair.test
 Next, we create boxplot code with the long form of our data:
 
 
-```r
-pair.box <- ggpubr::ggpaired(df_long, x = "PtRace", y = "Verbal", order = c("Black",
-    "White"), line.color = "gray", palette = c("npg"), color = "PtRace",
-    ylab = "Verbal Communication Rating", xlab = "Patient Race", title = "Figure 1. Physician Verbal Engagement as a Function of Patient Race")
+``` r
+pair.box <- ggpubr::ggpaired(df_long, x = "PtRace", y = "Verbal", order = c("Black", "White"),  line.color = "gray", palette =c("npg"), color = "PtRace",  ylab = "Verbal Communication Rating", xlab = "Patient Race",  title = "Figure 1. Physician Verbal Engagement as a Function of Patient Race") 
 
-pair.test <- pair.test %>%
-    rstatix::add_xy_position(x = "PtRace")  #autocomputes p-value labels positions
+pair.test <- pair.test %>% rstatix::add_xy_position(x = "PtRace") #autocomputes p-value labels positions
 
-pair.box <- pair.box + ggpubr::stat_pvalue_manual(pair.test, tip.length = 0.01,
-    y.position = c(15)) + labs(subtitle = rstatix::get_test_label(pair.test,
-    detailed = TRUE))
+pair.box <- pair.box +
+  ggpubr::stat_pvalue_manual(pair.test, tip.length=.01, y.position = c(15) ) + 
+  labs(subtitle = rstatix::get_test_label(pair.test, detailed=TRUE)) 
 
 pair.box
 ```
@@ -710,9 +702,8 @@ In this script, we must specify *all-but-one* parameter; the remaining parameter
 When we conduct a "power analysis" (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, "power=NULL". Using the data from our results, we learn from this first run, that our statistical power was at 5%. That is, given the low value of the mean difference (.08) and the relatively large standard deviation (4.14), we had only a 5% chance of detecting a statistically significant effect if there was one.
 
 
-```r
-pwr::pwr.t.test(d = 0.02, n = 33, power = NULL, sig.level = 0.05, type = "paired",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d=0.02,n = 33, power=NULL,sig.level=0.05,type="paired",alternative="two.sided")
 ```
 
 ```
@@ -731,9 +722,8 @@ The results indicate that we were powered at 5%. That is, we had a 5% chance of 
 
 Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set *n* to *NULL*. 
 
-```r
-pwr::pwr.t.test(d = 0.02, n = NULL, power = 0.8, sig.level = 0.05, type = "paired",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d=0.02,n = NULL, power=0.8,sig.level=0.05,type="paired",alternative="two.sided")
 ```
 
 ```
@@ -753,11 +743,9 @@ Using the results from the simulation of our research vignette, you can see that
 Let's see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:
 
 
-```r
+``` r
 set.seed(220820)
-# These define the characteristics of the verbal variable. It is
-# essential that the object names (e.g., A_mean) are not changed
-# because they will be fed to the function in the faux package.
+#These define the characteristics of the verbal variable. It is essential that the object names (e.g., A_mean) are not changed because they will be fed to the function in the faux package.
 sub_n <- 19624
 A_mean <- 8.37
 B_mean <- 8.41
@@ -765,27 +753,28 @@ A_sd <- 3.36
 B_sd <- 3.21
 AB_r <- 0.3
 
-# the faux package can simulate a variety of data. This function
-# within the faux package will use the objects above to simulate
-# paired samples data
-paired_V2 <- faux::rnorm_multi(n = sub_n, vars = 2, r = AB_r, mu = c(A_mean,
-    B_mean), sd = c(A_sd, B_sd), varnames = c("Verbal_BL", "Verbal_WH"))
+#the faux package can simulate a variety of data. This function within the faux package will use the objects above to simulate paired samples data
+paired_V2 <- faux::rnorm_multi(
+    n = sub_n, 
+    vars = 2, 
+    r = AB_r, 
+    mu = c(A_mean, B_mean), 
+    sd = c(A_sd, B_sd), 
+    varnames = c("Verbal_BL", "Verbal_WH")
+  )
 
-paired_V2 <- paired_V2 %>%
-    dplyr::mutate(PhysID = row_number())
+paired_V2 <- paired_V2 %>% dplyr::mutate(PhysID = row_number())
 
-# restructuring data to the long form
-df_longV2 <- data.table::melt(data.table::setDT(paired_V2), id.vars = c("PhysID"),
-    measure.vars = list(c("Verbal_BL", "Verbal_WH")))
+#restructuring data to the long form
+df_longV2 <- data.table::melt(data.table::setDT(paired_V2), id.vars=c("PhysID"), measure.vars=list(c("Verbal_BL", "Verbal_WH")))
 df_longV2 <- rename(df_longV2, PatientRace = variable, Verbal = value)
-df_longV2$PtRace <- plyr::mapvalues(df_longV2$PatientRace, from = c("Verbal_BL",
-    "Verbal_WH"), to = c("Black", "White"))
+df_longV2$PtRace <- plyr::mapvalues(df_longV2$PatientRace, from = c("Verbal_BL", "Verbal_WH"), to = c("Black", "White"))
 ```
 
 Now I will conduct the paired samples *t*-test and corresponding effect size.
 
-```r
-rstatix::t_test(df_longV2, Verbal ~ PtRace, paired = TRUE, detailed = TRUE)
+``` r
+rstatix::t_test(df_longV2, Verbal ~ PtRace, paired=TRUE, detailed=TRUE)
 ```
 
 ```
@@ -796,8 +785,8 @@ rstatix::t_test(df_longV2, Verbal ~ PtRace, paired = TRUE, detailed = TRUE)
 # ℹ 3 more variables: conf.high <dbl>, method <chr>, alternative <chr>
 ```
 
-```r
-rstatix::cohens_d(df_longV2, Verbal ~ PtRace, paired = TRUE)
+``` r
+rstatix::cohens_d(df_longV2, Verbal ~ PtRace, paired=TRUE)
 ```
 
 ```
@@ -885,41 +874,38 @@ Like most data, some manipulation is required before we can begin the analyses.
 
 Let's import the larger dataset. 
 
-```r
+``` r
 larger <- readRDS("ReC.rds")
 ```
 
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
-```r
-# Creates a list of the variables that belong to that scale
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
+``` r
+#This code was recently updated and likely differs from the screencasted lecture
 
-# Calculates a mean if at least 75% of the items are non-missing;
-# adjusts the calculating when there is missingness
-larger$TradPed <- sjstats::mean_n(larger[, ..TradPed_vars], 0.75)
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+larger$TradPed <- datawizard::row_means(larger, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 From the "larger" data, let's select only the variable we will use in the analysis. I have included "long" in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.
 
 We need both "long" and "wide" forms to conduct the analyses required for both testing the statistical assumptions and performing the paired samples *t*-test.
 
-```r
-paired_long <- (dplyr::select(larger, deID, Course, TradPed))
+``` r
+paired_long <-(dplyr::select (larger, deID, Course, TradPed))
 ```
 
 From that reduced variable set, let's create a subset with students only from those two courses.
 
-```r
-paired_long <- subset(paired_long, Course == "ANOVA" | Course == "Multivariate")
+``` r
+paired_long <- subset(paired_long, Course == "ANOVA" | Course == "Multivariate") 
 ```
 
 Regarding the structure of the data, we want the conditions (ANOVA, multivariate) to be factors and the TradPed variable to be continuously scaled. The format of the deID variable can be any numerical or categorical format -- just not a "chr" (character) variable.
 
 
-```r
+``` r
 str(paired_long)
 ```
 
@@ -935,14 +921,13 @@ R correctly interpreted our variables.
 For analyzing the assumptions associated with the paired-samples *t*-test, the format needs to be "wide" form (where each student has both observations on one row). Our data is presently in "long" form (where each observation is listed in each row). Here's how to reshape the data.
 
 
-```r
-paired_wide <- reshape2::dcast(data = paired_long, formula = deID ~ Course,
-    value.var = "TradPed")
+``` r
+paired_wide <- reshape2::dcast(data = paired_long, formula =deID ~ Course, value.var = "TradPed")
 ```
 
 Let's recheck the structure.
 
-```r
+``` r
 str(paired_wide)
 ```
 
@@ -957,7 +942,7 @@ You will notice that there is a good deal of missingness in the Multivariate con
 Doing so should also help with the hand-calculations later in the worked example.
 
 
-```r
+``` r
 paired_wide <- na.omit(paired_wide)
 ```
 
@@ -968,13 +953,13 @@ We need to evaluate the *distribution of the difference score* in terms of skew 
 This means we need to create a difference score:  
 
 
-```r
+``` r
 paired_wide$DIFF <- paired_wide$ANOVA - paired_wide$Multivariate
 ```
 
 We can use the *psych::describe()* function to obtain skew and kurtosis. 
 
-```r
+``` r
 psych::describe(paired_wide)
 ```
 
@@ -996,7 +981,7 @@ Regarding the DIFF score, the skew (0.56) and kurtosis (3.15) values were well b
 We can formally test for deviations from normality with a Shapiro-Wilk. We want the results to be non-significant.
 
 
-```r
+``` r
 rstatix::shapiro_test(paired_wide, DIFF)
 ```
 
@@ -1011,7 +996,7 @@ Results of the Shapiro-Wilk test of normality are statistically significant $(W 
 Although not required in the formal test of instructions, a *pairs panel* of correlations and distributions can be useful in undersatnding our data.
 
 
-```r
+``` r
 psych::pairs.panels(paired_wide)
 ```
 
@@ -1027,9 +1012,8 @@ Before moving forward, I want to capture my analysis of assumptions:
 So this may be a bit tricky, but our original "long" form of the data has more ANOVA evaluations (students who had taken ANOVA had not yet taken multivariate) than multivariate. The paired samples *t* test requires the design to be balanced.  When we used the *na.omit()* function with the wide case, we effectively balanced the design, eliminating students who lacked observations across both courses. Let's restructure that wide format back to long format so that the design will be balanced.
 
 
-```r
-paired_long2 <- data.table::melt(data.table::setDT(paired_wide), id.vars = c("deID"),
-    measure.vars = list(c("ANOVA", "Multivariate")))
+``` r
+paired_long2 <- data.table::melt(data.table::setDT(paired_wide), id.vars = c("deID"), measure.vars = list(c("ANOVA", "Multivariate")))
 
 paired_long2 <- dplyr::rename(paired_long2, Course = variable, TradPed = value)
 
@@ -1037,17 +1021,18 @@ head(paired_long2)
 ```
 
 ```
-   deID Course TradPed
-1:   11  ANOVA     4.0
-2:   12  ANOVA     4.2
-3:   13  ANOVA     3.6
-4:   14  ANOVA     3.6
-5:   15  ANOVA     3.4
-6:   16  ANOVA     2.2
+    deID Course TradPed
+   <int> <fctr>   <num>
+1:    11  ANOVA     4.0
+2:    12  ANOVA     4.2
+3:    13  ANOVA     3.6
+4:    14  ANOVA     3.6
+5:    15  ANOVA     3.4
+6:    16  ANOVA     2.2
 ```
 
 
-```r
+``` r
 rstatix::t_test(paired_long2, TradPed ~ Course, paired = TRUE, detailed = TRUE)
 ```
 
@@ -1064,7 +1049,7 @@ I'll begin the *t* string with this output:  $t(76) = -1.341, p = 0.184, CI95(-0
 We calculate the Cohen's *d* (the effect size) this way:
 
 
-```r
+``` r
 rstatix::cohens_d(paired_long2, TradPed ~ Course, paired = TRUE)
 ```
 
@@ -1085,7 +1070,7 @@ The value of -0.153 is quite small. We can add this value to our statistical str
 >Results of the paired samples *t*-test suggested nonsignificant differences $t(76) = -1.341, p = 0.184,d = -0.153$. The 95% confidence interval crossed zero, ranging from -0.305 to 0.069. Means and standard deviations are presented in Table 1 and illustrated in Figure 1.
 
 
-```r
+``` r
 library(tidyverse)  #needed to use the pipe 
 # Creating a smaller df to include only the variables I want in the
 # table
@@ -1125,10 +1110,9 @@ that could have caused the sample correlation (Cumming, 2014).
 For the figure, let's re-run the paired samples *t* test, save it as an object, and use the "add_significance" function so that we can add it to our figure.
 
 
-```r
-paired_T <- rstatix::t_test(paired_long2, TradPed ~ Course, paired = TRUE,
-    detailed = TRUE) %>%
-    rstatix::add_significance()
+``` r
+paired_T <- rstatix::t_test(paired_long2, TradPed ~ Course, paired = TRUE, detailed = TRUE)%>%
+  rstatix::add_significance()
 paired_T
 ```
 
@@ -1143,18 +1127,15 @@ paired_T
 Next, we create boxplot:
 
 
-```r
-pairT.box <- ggpubr::ggpaired(paired_long2, x = "Course", y = "TradPed",
-    order = c("ANOVA", "Multivariate"), line.color = "gray", palette = c("npg"),
-    color = "Course", ylab = "Traditional Pedagogy", xlab = "Statistics Course",
-    title = "Figure 1. Evaluation of Traditional Pedagogy as a Function of Course")
+``` r
+pairT.box <- ggpubr::ggpaired(paired_long2, x = "Course", y = "TradPed", order = c("ANOVA",
+    "Multivariate"), line.color = "gray", palette = c("npg"), color = "Course",
+    ylab = "Traditional Pedagogy", xlab = "Statistics Course", title = "Figure 1. Evaluation of Traditional Pedagogy as a Function of Course")
 
 paired_T <- paired_T %>%
     rstatix::add_xy_position(x = "Course")  #autocomputes p-value labels positions
 
-pairT.box <- pairT.box + ggpubr::stat_pvalue_manual(paired_T, tip.length = 0.02,
-    y.position = c(5.5)) + labs(subtitle = rstatix::get_test_label(paired_T,
-    detailed = TRUE))
+pairT.box <- pairT.box + ggpubr::stat_pvalue_manual(paired_T, tip.length = 0.02, y.position = c(5.5)) + labs(subtitle = rstatix::get_test_label(paired_T, detailed = TRUE))
 
 pairT.box
 ```
@@ -1173,9 +1154,8 @@ Script for estimating current power:
 * alternative indicates one or two.sided
 
 
-```r
-pwr::pwr.t.test(d = -0.153, n = 77, power = NULL, sig.level = 0.05, type = "paired",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d=-0.153, n = 77, power=NULL, sig.level=0.05, type="paired", alternative="two.sided")
 ```
 
 ```
@@ -1193,9 +1173,8 @@ NOTE: n is number of *pairs*
 We had a 26% chance of finding a statistically significant result if, in fact, one existed.
 
 
-```r
-pwr::pwr.t.test(d = -0.153, n = NULL, power = 0.8, sig.level = 0.05, type = "paired",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d=-0.153,n = NULL, power=.80,sig.level=0.05,type="paired",alternative="two.sided")
 ```
 
 ```
@@ -1228,7 +1207,7 @@ $H_{A}: \mu _{D}\neq 0$
 
 We had already calculated a difference score in the earlier assignment. Here it is again. 
 
-```r
+``` r
 paired_wide$DIFF <- paired_wide$ANOVA - paired_wide$Multivariate
 ```
 
@@ -1238,7 +1217,7 @@ paired_wide$DIFF <- paired_wide$ANOVA - paired_wide$Multivariate
 We can obtain the mean and standard deviation for the difference score with this script.
 
 
-```r
+``` r
 psych::describe(paired_wide$DIFF)
 ```
 
@@ -1258,7 +1237,7 @@ Using the values we located we can calculate the value of the *t* statistic.
 
 
 
-```r
+``` r
 -0.12/(0.8/sqrt(77))
 ```
 
@@ -1278,7 +1257,7 @@ I could look at the [table of critical values](https://www.statology.org/t-distr
 I can also use the *qt()* function in base R. This function requires that I specify the alpha level (0.05), whether the test is one- or two-tailed (2), and my degrees of freedom (76). Specifying "TRUE" and "FALSE" after the lower.tail command gives the positive and negative regions of rejection.
 
 
-```r
+``` r
 qt(0.05/2, 76, lower.tail = TRUE)
 ```
 
@@ -1286,7 +1265,7 @@ qt(0.05/2, 76, lower.tail = TRUE)
 [1] -1.991673
 ```
 
-```r
+``` r
 qt(0.05/2, 76, lower.tail = FALSE)
 ```
 
@@ -1313,16 +1292,16 @@ $$\bar{D}\pm t_{cv}(s_{d}/\sqrt{n})$$
 Let's calculate it:
 
 
-```r
--0.12 - (-1.991673 * ((0.8/(sqrt(77)))))
+``` r
+-0.12-(-1.991673*((0.8/(sqrt(77)))))
 ```
 
 ```
 [1] 0.06157776
 ```
 
-```r
--0.12 + (-1.991673 * ((0.8/sqrt(77))))
+``` r
+-0.12+(-1.991673*((0.8/sqrt(77))))
 ```
 
 ```
@@ -1340,7 +1319,7 @@ $$d=\frac{\bar{D}}{\hat\sigma_D}=\frac{t}{\sqrt{N}}$$
 Here's a demonstration of both:
 
 
-```r
+``` r
 -0.12/.8
 ```
 
@@ -1348,7 +1327,7 @@ Here's a demonstration of both:
 [1] -0.15
 ```
 
-```r
+``` r
 -1.316245/sqrt(77)
 ```
 

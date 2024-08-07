@@ -22,51 +22,43 @@ In the study [@ramdhani_affective_2018], participants viewed facial pictures of 
 Below is script to simulate data for the negative reactions variable from the information available from the manuscript [@ramdhani_affective_2018]. If you would like more information about the details of this simulation, please visit the lesson on [factorial ANOVA](#between).
 
 
-```r
+``` r
 library(tidyverse)
 set.seed(210731)
-# sample size, M and SD for each cell; this will put it in a long
-# file
-Negative <- round(c(rnorm(17, mean = 1.91, sd = 0.73), rnorm(18, mean = 3.16,
-    sd = 0.19), rnorm(19, mean = 3.3, sd = 1.05), rnorm(20, mean = 3, sd = 1.07),
-    rnorm(18, mean = 2.64, sd = 0.95), rnorm(19, mean = 2.99, sd = 0.8)),
-    3)
-# sample size, M and SD for each cell; this will put it in a long
-# file
-Positive <- round(c(rnorm(17, mean = 4.99, sd = 1.38), rnorm(18, mean = 3.83,
-    sd = 1.13), rnorm(19, mean = 4.2, sd = 0.82), rnorm(20, mean = 4.19,
-    sd = 0.91), rnorm(18, mean = 4.17, sd = 0.6), rnorm(19, mean = 3.26,
-    sd = 0.94)), 3)
-ID <- factor(seq(1, 111))
-Rater <- c(rep("Dayaknese", 35), rep("Madurese", 39), rep("Javanese", 37))
-Photo <- c(rep("Dayaknese", 17), rep("Madurese", 18), rep("Dayaknese",
-    19), rep("Madurese", 20), rep("Dayaknese", 18), rep("Madurese", 19))
-# groups the 3 variables into a single df: ID#, DV, condition
-Ramdhani_df <- data.frame(ID, Negative, Positive, Rater, Photo)
+#sample size, M and SD for each cell; this will put it in a long file
+Negative<-round(c(rnorm(17,mean=1.91,sd=0.73),rnorm(18,mean=3.16,sd=0.19),rnorm(19, mean=3.3, sd=1.05), rnorm(20, mean=3.00, sd=1.07), rnorm(18, mean=2.64, sd=0.95), rnorm(19, mean=2.99, sd=0.80)),3) 
+#sample size, M and SD for each cell; this will put it in a long file
+Positive<-round(c(rnorm(17,mean=4.99,sd=1.38),rnorm(18,mean=3.83,sd=1.13),rnorm(19, mean=4.2, sd=0.82), rnorm(20, mean=4.19, sd=0.91), rnorm(18, mean=4.17, sd=0.60), rnorm(19, mean=3.26, sd=0.94)),3) 
+ID <- factor(seq(1,111))
+Rater <- c(rep("Dayaknese",35), rep("Madurese", 39), rep ("Javanese", 37))
+Photo <- c(rep("Dayaknese", 17), rep("Madurese", 18), rep("Dayaknese", 19), rep("Madurese", 20), rep("Dayaknese", 18), rep("Madurese", 19))
+#groups the 3 variables into a single df: ID#, DV, condition
+Ramdhani_df<- data.frame(ID, Negative, Positive, Rater, Photo) 
 
-Ramdhani_df[, "Rater"] <- as.factor(Ramdhani_df[, "Rater"])
-Ramdhani_df[, "Photo"] <- as.factor(Ramdhani_df[, "Photo"])
+Ramdhani_df[,'Rater'] <- as.factor(Ramdhani_df[,'Rater'])
+Ramdhani_df[,'Photo'] <- as.factor(Ramdhani_df[,'Photo'])
 ```
 
 If you want to export this data as a file to your computer, remove the hashtags to save it (and re-import it) as a .csv ("Excel lite") or .rds (R object) file. This is not a necessary step.
 
 The code for .csv will likely lose the formatting (i.e., making the Rater and Photo variables factors), but it is easy to view in Excel.
 
-```r
-# write the simulated data as a .csv write.table(Ramdhani_df,
-# file='RamdhaniCSV.csv', sep=',', col.names=TRUE, row.names=FALSE)
-# bring back the simulated dat from a .csv file Ramdhani_df <-
-# read.csv ('RamdhaniCSV.csv', header = TRUE) str(Ramdhani_df)
+``` r
+#write the simulated data as a .csv
+#write.table(Ramdhani_df, file="RamdhaniCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#Ramdhani_df <- read.csv ("RamdhaniCSV.csv", header = TRUE)
+#str(Ramdhani_df)
 ```
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R.
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(Ramdhani_df, 'Ramdhani_RDS.rds') bring back the
-# simulated dat from an .rds file Ramdhani_df <-
-# readRDS('Ramdhani_RDS.rds') str(Ramdhani_RDS)
+``` r
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(Ramdhani_df, "Ramdhani_RDS.rds")
+#bring back the simulated dat from an .rds file
+#Ramdhani_df <- readRDS("Ramdhani_RDS.rds")
+#str(Ramdhani_RDS)
 ```
 
 
@@ -95,7 +87,7 @@ Such contrasts should be theoretically or rationally defensible. In the case of 
 It helps to know what the default contrast codes are; we can get that information with the *contrasts()* function.
 
 
-```r
+``` r
 contrasts(Ramdhani_df$Rater)
 ```
 
@@ -112,19 +104,19 @@ Next, we set up the contrast conditions. In the code below,
 * c2 indicates that the Dayaknese (-1) and Madurese (1) are compared; Javanese (0) is removed from the contrast.
 
 
-```r
+``` r
 # tell R which groups to compare
-c1 <- c(1, -2, 1)
-c2 <- c(-1, 0, 1)
-mat <- cbind(c1, c2)  #combine the above bits
-contrasts(Ramdhani_df$Rater) <- mat  # attach the contrasts to the variable
+c1 <- c(1, -2, 1) 
+c2 <- c(-1, 0, 1) 
+mat <- cbind(c1,c2) #combine the above bits
+contrasts(Ramdhani_df$Rater) <- mat # attach the contrasts to the variable
 ```
 
 This allows us to recheck the contrasts.
 
 
-```r
-contrasts(Ramdhani_df$Rater)
+``` r
+contrasts (Ramdhani_df$Rater)
 ```
 
 ```
@@ -138,17 +130,17 @@ With this output we can confirm that, in contrast 1 (the first column) we are co
 We will conduct these contrasts with one group at a time. First, we must create a subset of all observations of the Dayaknese photo:
 
 
-```r
-# subset data
-Dayaknese_Ph <- subset(Ramdhani_df, Photo == "Dayaknese")
+``` r
+#subset data
+Dayaknese_Ph <- subset(Ramdhani_df, Photo == "Dayaknese") 
 ```
 
 Next we use the *aov()* function from base R for the one-way ANOVA. Like magic, the contrast that we specified is assigned to the Rater variable. We can apply the *summary()* function to the *aov()* object that we created to see the results.
 
 
-```r
-Dykn_simple <- aov(Negative ~ Rater, data = Dayaknese_Ph)
-summary(Dykn_simple)
+``` r
+Dykn_simple <- aov(Negative ~ Rater, data = Dayaknese_Ph) 
+summary(Dykn_simple) 
 ```
 
 ```
@@ -162,10 +154,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 We can apply the *etaSquared()* function from the *lsr* package to retrieve an $\eta^2$.
 
 
-```r
-# effect size for simple main effect can add 'type = 1,2,3,4' to
-# correspond with the ANOVA that was run
-lsr::etaSquared(Dykn_simple, anova = FALSE)
+``` r
+#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run
+lsr::etaSquared(Dykn_simple, anova = FALSE ) 
 ```
 
 ```
@@ -178,9 +169,8 @@ We can capture the *F* string from this output: *F* [2, 51]) = 13.32, *p* < .001
 This code produces the contrasts we specified. Note that in our code we can improve the interpretability of the output by adding labels. We know the specific contrasts from our prior work.
 
 
-```r
-summary.aov(Dykn_simple, split = list(Rater = list(`Javanese v Dayaknese and Madurese` = 1,
-    `Dayaknese Madurese` = 2)))
+``` r
+summary.aov(Dykn_simple, split=list(Rater=list("Javanese v Dayaknese and Madurese"=1, "Dayaknese Madurese" = 2)))
 ```
 
 ```
@@ -204,13 +194,13 @@ An APA style reporting of results-so-far might look like this
 We repeat the simple main effect process for evaluation of the Madurese photos.
 
 
-```r
-# subset data
-Madurese_Ph <- subset(Ramdhani_df, Photo == "Madurese")
-# change df to subset, new model name
+``` r
+#subset data
+Madurese_Ph <- subset(Ramdhani_df, Photo == "Madurese") 
+#change df to subset, new model name 
 Mdrs_simple <- aov(Negative ~ Rater, data = Madurese_Ph)
-# output for simple main effect
-summary(Mdrs_simple)
+#output for simple main effect
+summary(Mdrs_simple) 
 ```
 
 ```
@@ -219,10 +209,9 @@ Rater        2   1.04  0.5207   0.679  0.512
 Residuals   54  41.44  0.7674               
 ```
 
-```r
-# effect size for simple main effect can add 'type = 1,2,3,4' to
-# correspond with the ANOVA that was run
-lsr::etaSquared(Mdrs_simple, anova = FALSE)
+``` r
+#effect size for simple main effect can add "type = 1,2,3,4" to correspond with the ANOVA that was run
+lsr::etaSquared(Mdrs_simple, anova = FALSE ) 
 ```
 
 ```
@@ -234,9 +223,8 @@ Let's capture the *F* string for ratings of the Madurese photos: $F(2, 54) = 0.6
 We can use the procedure described above to obtain our orthogonal contrasts.
 
 
-```r
-summary.aov(Mdrs_simple, split = list(Rater = list(`Javanese v Dayaknese and Madurese` = 1,
-    `Dayaknese Madurese` = 2)))
+``` r
+summary.aov(Mdrs_simple, split=list(Rater=list("Javanese v Dayaknese and Madurese"=1, "Dayaknese Madurese" = 2)))
 ```
 
 ```
@@ -253,8 +241,8 @@ Here's a write-up of this portion of the result.
 In this series of analyses we did not have an opportunity to "let R manage Type I error for us." Therefore, we will need to do it manually. We had 4 follow-up contrasts (2 for Dayaknese, 2 for Madurese). Using a traditional Bonferroni we could control Type I error with .05/4 = .0125
 
 
-```r
-0.05/4
+``` r
+.05/4
 ```
 
 ```
@@ -270,11 +258,8 @@ This would be added to the write-up of the omnibus two-way ANOVA test.
 I am not aware of an integration of packages that would represent this type of orthogonal contrast in a figure. Therefore, I would simply present the boxplots clustered by photo stimulus.
 
 
-```r
-ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
-    xlab = "Rater Ethnicity Represented within Photo Stimulus", ylab = "Negative Reaction",
-    add = "jitter", title = "Figure 1. Simple Main Effect of Rater within Photo Stimulus",
-    ylim = c(1, 7))
+``` r
+ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",xlab = "Rater Ethnicity Represented within Photo Stimulus", ylab = "Negative Reaction", add = "jitter", title = "Figure 1. Simple Main Effect of Rater within Photo Stimulus", ylim = c(1, 7))
 ```
 
 ![](13-moReTwoWay_files/figure-docx/unnamed-chunk-15-1.png)<!-- -->
@@ -296,9 +281,9 @@ In our example, Rater has three groups. Thus, we could evaluate a polynomial for
 If you haven't already, we need to subset the data, creating separate datasets for the evaluations of the Dayaknese photos and Madurese photos:
 
 
-```r
-Dayaknese_Ph <- subset(Ramdhani_df, Photo == "Dayaknese")
-Madurese_Ph <- subset(Ramdhani_df, Photo == "Madurese")
+``` r
+Dayaknese_Ph <- subset(Ramdhani_df, Photo == "Dayaknese") 
+Madurese_Ph <- subset(Ramdhani_df, Photo == "Madurese") 
 ```
 
 We will work the entire contrast for each of the datasets, separately.
@@ -308,9 +293,9 @@ First, we assign the polynomial contrast to the Rater variable. This is easily a
 Second, we calculate the one-way ANOVA. Because we are using the *aov()* function in base R, we will need to extract the results. This time we need to use the *summary.lm()* function.
 
 
-```r
-contrasts(Dayaknese_Ph$Rater) <- contr.poly(3)
-poly_Dy <- aov(Negative ~ Rater, data = Dayaknese_Ph)
+``` r
+contrasts(Dayaknese_Ph$Rater)<-contr.poly(3)
+poly_Dy<-aov(Negative ~ Rater, data = Dayaknese_Ph)
 summary.lm(poly_Dy)
 ```
 
@@ -342,9 +327,9 @@ Results of polynomial trend analysis indicated a statistically significant linea
 Let's repeat the process for the Madurese photos.
 
 
-```r
-contrasts(Madurese_Ph$Rater) <- contr.poly(3)
-poly_Md <- aov(Negative ~ Rater, data = Madurese_Ph)
+``` r
+contrasts(Madurese_Ph$Rater)<-contr.poly(3)
+poly_Md<-aov(Negative ~ Rater, data = Madurese_Ph)
 summary.lm(poly_Md)
 ```
 
@@ -378,11 +363,8 @@ Here's how I might write up the results. In the case of polynomials, I will some
 The figure we have been using would be appropriate to illustrate the significant linear trend.
 
 
-```r
-ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
-    xlab = "Rater Ethnicity Represented within Photo Stimulus", ylab = "Negative Reaction",
-    add = "jitter", title = "Figure 1. Simple Main Effect of Rater within Photo Stimulus",
-    ylim = c(1, 7))
+``` r
+ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",xlab = "Rater Ethnicity Represented within Photo Stimulus", ylab = "Negative Reaction", add = "jitter", title = "Figure 1. Simple Main Effect of Rater within Photo Stimulus", ylim = c(1, 7))
 ```
 
 ![](13-moReTwoWay_files/figure-docx/unnamed-chunk-19-1.png)<!-- -->
@@ -400,8 +382,8 @@ As the numbers of levels increase, post hoc comparisons become somewhat unwieldy
 With rater ethnicity (3 levels) and photo stimulus (2 levels), we have 6 groupings. When *k* is the number of groups, the total number of paired comparisons is: k(k-1)*2
 
 
-```r
-6 * (6 - 1)/2
+``` r
+6*(6-1)/2
 ```
 
 ```
@@ -411,8 +393,8 @@ With rater ethnicity (3 levels) and photo stimulus (2 levels), we have 6 groupin
 Before running this analysis, we must calculate the omnibus ANOVA with the *aov()* function in base R and save the result as an object.
 
 
-```r
-TwoWay_neg <- aov(Negative ~ Rater * Photo, Ramdhani_df)
+``` r
+TwoWay_neg<-aov(Negative~Rater*Photo, Ramdhani_df)
 summary(TwoWay_neg)
 ```
 
@@ -429,7 +411,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 We can calculate the 15 post-hoc paired comparisons with the *TukeyHSD()* function from base R.
 
 
-```r
+``` r
 posthocs <- TukeyHSD(TwoWay_neg, ordered = TRUE)
 posthocs
 ```
@@ -491,16 +473,16 @@ If we want to consider all 15 pairwise comparisons and also control for Type I e
 With the Holms, we rank order the *p* values associated with the 15 comparisons in order from lowest (e.g., .0000018) to highest (e.g., 1.000). The first *p* value is evaluated with the most strict criterion (.05/15; the traditional Bonferonni approach). Then, each successive comparison calculates the *p* value by using the number of *remaining* comparisons as the denominator (e.g., .05/14, .05/13, .05/12). As the *p* values rise and the alpha levels relax, there will be a cut-point where remaining comparisons are not statistically significant.
 
 
-```r
-0.05/15
+``` r
+.05/15
 ```
 
 ```
 [1] 0.003333333
 ```
 
-```r
-0.05/14
+``` r
+.05/14
 ```
 
 ```
@@ -512,7 +494,7 @@ To facilitate this contrast, let's extract the 15 TukeyHSD tests and work with t
 First, obtain the structure of the *posthoc* object
 
 
-```r
+``` r
 str(posthocs)
 ```
 
@@ -537,8 +519,8 @@ List of 3
 ```
 
 
-```r
-write.csv(posthocs$"Rater:Photo", "posthocsOUT.csv")
+``` r
+write.csv(posthocs$'Rater:Photo', 'posthocsOUT.csv')
 ```
 
 In Excel, I would sort my results by their *p* values (low to high) and consider my threshold (*p* < .0033) to determine which effects were statistically significant. Using the strictest criteria of *p* < .0033, we would have four statistically significant values.
@@ -563,8 +545,8 @@ Second, focused on each photo, what are the relative ratings.
 This is only seven sets of comparisons and would considerably reduce the alpha:
 
 
-```r
-0.05/7
+``` r
+.05/7
 ```
 
 ```

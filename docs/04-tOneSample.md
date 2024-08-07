@@ -1,4 +1,4 @@
-# *t*-tests {-}
+# *T*-TESTS {-}
 
 The lessons offered in the *t*-tests section introduce *inferential statistics*. In the prior chapters, our use of measures of central tendency (i.e., mean, median, mode) and variance (i.e., range, variance, standard deviation) serve to *describe* a sample.
 
@@ -23,8 +23,8 @@ In addition to a conceptual presentation of of each statistic, each lesson inclu
 
 
 
-```r
-options(scipen = 999)  #eliminates scientific notation
+``` r
+options(scipen=999)#eliminates scientific notation
 ```
 
 Researchers and program evaluators, may wish to know if their data differs from an external standard. In today's research vignette, we will ask if the time physicians spent with their patients differed from an external benchmark. The one sample *t*-test is an appropriate tool for this type of analysis. As we work toward the one sample *t*-test we take some time to explore the standard normal curve and *z*-scores, particularly as they related to probability.
@@ -71,17 +71,17 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. Remove the hashtags for the code to work.
 
-```r
-# will install the package if not already installed
-# if(!require(psych)){install.packages('psych')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(dplyr)){install.packages('dplyr')}
-# if(!require(ggpubr)){install.packages('ggpubr')}
-# if(!require(knitr)){install.packages('knitr')}
-# if(!require(apaTables)){install.packages('apaTables')}
-# if(!require(pwr)){install.packages('pwr')}
-# if(!require(pastecs)){install.packages('pastecs')}
-# if(!require(rstatix)){install.packages('rstatix')}
+``` r
+#will install the package if not already installed
+#if(!require(psych)){install.packages("psych")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(ggpubr)){install.packages("ggpubr")}
+#if(!require(knitr)){install.packages("knitr")}
+#if(!require(apaTables)){install.packages("apaTables")}
+#if(!require(pwr)){install.packages("pwr")}
+#if(!require(pastecs)){install.packages("pastecs")}
+#if(!require(rstatix)){install.packages("rstatix")}
 ```
 
 ## *z* before *t*
@@ -111,16 +111,16 @@ The properties of the *z*-score and the standard normal curve allow us to make i
 Later in this larger section on *t*-tests we introduce a research vignette that focuses on time physicians spend with patients. Because working with the *z*-test requires a minimum sample size of 120 (and the research vignette has a sample size of 33), I will quickly create normally distributed sample of 200 with a mean of 10 minutes and a standard deviation of 2 minutes per patient. This will allow us to ask some important questions of the data.
 
 
-```r
-# https://r-charts.com/distribution/histogram-curves/
+``` r
+#https://r-charts.com/distribution/histogram-curves/
 set.seed(220821)
-PhysTime <- data.frame(minutes = rnorm(200, mean = 10, sd = 2))
+PhysTime <- data.frame(minutes = rnorm(200, mean=10, sd=2))
 ```
 
 Using the *describe()* function from the *psych* package, we can see the resulting descriptive statistics.
 
 
-```r
+``` r
 psych::describe(PhysTime$minutes)
 ```
 
@@ -136,16 +136,16 @@ Specifically, in this sample size of 200, our mean is 9.9 with a standard deviat
 With data in hand, let's ask, "What is the range of time that physicians spend with patients that fall within 1 standard deviation of the mean?" We would answer this question by applying the raw score formula ($X = \bar{X} + z(s)$) to +1 and -1 standard deviation.
 
 
-```r
-9.9 - 1 * (2)
+``` r
+9.9 - 1*(2)
 ```
 
 ```
 [1] 7.9
 ```
 
-```r
-9.9 + 1 * (2)
+``` r
+9.9 + 1*(2)
 ```
 
 ```
@@ -156,16 +156,16 @@ Because $\pm 1SD$ covers 68% of the distribution, we now know that 68% of patien
 What about $\pm 2SDs$? Similarly, we would apply the raw score formula, using 2 for the standard deviation.
 
 
-```r
-9.9 - 2 * (2)
+``` r
+9.9 - 2*(2)
 ```
 
 ```
 [1] 5.9
 ```
 
-```r
-9.9 + 2 * (2)
+``` r
+9.9 + 2*(2)
 ```
 
 ```
@@ -176,16 +176,16 @@ Two standard deviations around the mean captures 94.5% of patients; patients in 
 And what about $\pm 3SDs$? This time we use 3 to represent the standard deviation.
 
 
-```r
-9.9 - 3 * (2)
+``` r
+9.9 - 3*(2)
 ```
 
 ```
 [1] 3.9
 ```
 
-```r
-9.9 + 3 * (2)
+``` r
+9.9 + 3*(2)
 ```
 
 ```
@@ -200,8 +200,8 @@ We can also ask questions of **probability**. For example, what is the probabili
 
 $$z=\frac{X-\bar{X}}{s}$$
 
-```r
-(9.9 - 9.9)/2  #for 9.9 minutes
+``` r
+(9.9-9.9)/2 #for 9.9 minutes
 ```
 
 ```
@@ -214,16 +214,16 @@ Next, we examine a [table of critical *z* values](https://www.statology.org/z-ta
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-11-1.png)<!-- -->
 We can also obtain the probability value with the *pnorm()* function. We enter the score, the mean, and the standard deviation. As shown below, we can enter them in *z* score formula or from the raw scores.
 
-```r
-pnorm(0, mean = 0, sd = 1)
+``` r
+pnorm(0, mean=0, sd=1)
 ```
 
 ```
 [1] 0.5
 ```
 
-```r
-pnorm(9.9, mean = 9.9, sd = 2)
+``` r
+pnorm(9.9, mean=9.9, sd=2)
 ```
 
 ```
@@ -232,9 +232,9 @@ pnorm(9.9, mean = 9.9, sd = 2)
 Next, let's ask a question that requires careful inspection of the asymmetry of the curve. What is the probability that a physician spends less than 5 minutes with a patient? First, we calculate the corresponding *z*-score: 
 
 
-```r
-# calculating the z-score
-(5 - 9.9)/2  #for 5 minutes
+``` r
+#calculating the z-score
+(5-9.9)/2 #for 5 minutes
 ```
 
 ```
@@ -243,16 +243,16 @@ Next, let's ask a question that requires careful inspection of the asymmetry of 
 Second we locate the corresponding area under the normal curve. Examining the table of critical *z*-values we see that a *z*-score of -2.45 corresponds with an area of 0.0071. We can check this with the *pnorm()* function:
 
 
-```r
-pnorm(-2.45, mean = 0, sd = 1)  #using SD or standardized units
+``` r
+pnorm(-2.45, mean=0, sd=1) #using SD or standardized units
 ```
 
 ```
 [1] 0.007142811
 ```
 
-```r
-pnorm(5, mean = 9.9, sd = 2)  #using raw data units
+``` r
+pnorm(5, mean=9.9, sd=2) #using raw data units
 ```
 
 ```
@@ -264,8 +264,8 @@ There is a .7% (that is less than 1%) probability that physicians spend less tha
 What about operations at the other end of the curve?  What is the probability that a patient receives less than 12 minutes with a physician? Again, we start with the calculation of the *z*-score.
 
 
-```r
-(12 - 9.9)/2  #for 12 minutes
+``` r
+(12-9.9)/2 #for 12 minutes
 ```
 
 ```
@@ -274,7 +274,7 @@ What about operations at the other end of the curve?  What is the probability th
 The 12 minute mark is 1.05 *SD* above the mean. Checking the *z* table lets us know that an area of 0.8531 corresponds with a *z*-score of 1.05.
 
 
-```r
+``` r
 1-.8531
 ```
 
@@ -300,7 +300,7 @@ While this seems redundant, this something of a prelude to the importance of *z*
 At this point, we have hand-calculated each score. It is easy to transform a set of scores into a column of *z*-scores:
 
 
-```r
+``` r
 PhysTime$zMinutes <- (PhysTime$minutes - mean(PhysTime$minutes))/sd(PhysTime$minutes)
 
 head(PhysTime)
@@ -319,7 +319,7 @@ head(PhysTime)
 The transformation of scores is considered to be *linear*. That is, this 1:1 relationship would result in a correlation of 1.00. Further, the *z*-version of the variable could be used in analyses, just as the original raw score. Choices to do this are made carefully and usually done to optimize interpretation. I will demonstrate this with set of descriptive statistics produced by the *apa.cor.table()* function from the *apaTables* package.
 
 
-```r
+``` r
 apaTables::apa.cor.table(PhysTime)
 ```
 
@@ -387,7 +387,7 @@ $$
 We have already calculated these values. But let's calculate some of them again as a reminder:
 
 
-```r
+``` r
 psych::describe(PhysTime$minutes)
 ```
 
@@ -402,7 +402,7 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14
 * *N* is 200
 
 
-```r
+``` r
 (9.9 - 10.5)/(2/sqrt(200))
 ```
 
@@ -412,8 +412,8 @@ X1    1 200  9.9  2   9.98    9.93   2 3.68 15.15 11.47 -0.2     0.03 0.14
 The resulting value, $z = -4.242$ is our test value. Because this far exceeds $\pm 1.96$ we know (from memory) that there is a statistically significant effect. Just to be certain, let's use the *pnorm()* function to obtain the *p* value.
 
 
-```r
-pnorm(-4.24, mean = 9.9, sd = 2)
+``` r
+pnorm(-4.24, mean=9.9, sd=2)
 ```
 
 ```
@@ -476,15 +476,12 @@ In the research vignette Elliott et al. [-@elliott_differences_2016] indicated t
 I re-simulated (what may seem like identical data from above)to be consistent with the journal article's research sample of 33. 
 
 
-```r
-# Setting the 'random' seed ensures that everyone gets the same
-# result, every time they rerun the analysis. My personal practice is
-# to create a random seed that represents the day I write up the
-# problem (in this case August, 15, 2022) When the Suggestions for
-# Practice invite you to 'change the random seed,' simply change this
-# number to anything you like (maybe your birthday or today's date)
+``` r
+#Setting the "random" seed ensures that everyone gets the same result, every time they rerun the analysis.
+#My personal practice is to create a random seed that represents the day I write up the problem (in this case August, 15, 2022)
+#When the Suggestions for Practice invite you to "change the random seed," simply change this number to anything you like (maybe your birthday or today's date)
 set.seed(220822)
-dfOneSample <- data.frame(PhysMins = rnorm(33, mean = 10, sd = 2.5))
+dfOneSample <- data.frame(PhysMins = rnorm(33, mean=10, sd=2.5))
 
 head(dfOneSample)
 ```
@@ -504,7 +501,7 @@ A warning: this particularly analysis (the whole lesson, in fact) is "more simul
 With our data in hand, let's examine its structure. The variable representing physician minutes represents the ratio scale of measurement and therefore should be noted as *num* (numerical) in R.
 
 
-```r
+``` r
 str(dfOneSample)
 ```
 
@@ -516,20 +513,20 @@ Below is code for saving the data to your computer (and then re-importing) as .c
 
 Although you do not need to save nor re-import the data for this lesson, here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations.
 
-```r
-# writing the simulated data as a .csv write.table(dfOneSample, file
-# = 'dfOneSample.csv', sep = ',', col.names=TRUE, row.names=FALSE) at
-# this point you could clear your environment and then bring the data
-# back in as a .csv reading the data back in as a .csv file
-# dfOneSample<- read.csv ('dfOneSample.csv', header = TRUE)
+``` r
+#writing the simulated data as a .csv 
+#write.table(dfOneSample, file = "dfOneSample.csv", sep = ',', col.names=TRUE, row.names=FALSE) 
+#at this point you could clear your environment and then bring the data back in as a .csv
+#reading the data back in as a .csv file
+#dfOneSample<- read.csv ('dfOneSample.csv', header = TRUE)
 ```
 
 The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Again, you do not need to save nor re-import the data for this lesson. However, if you would like to do so, here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.
 
 
-```r
-# saveRDS(dfOneSample, 'dfOneSample.rds') dfOneSample <-
-# readRDS('dfOneSample.rds')
+``` r
+#saveRDS(dfOneSample, 'dfOneSample.rds')
+#dfOneSample <- readRDS('dfOneSample.rds')
 ```
 
 ### Quick Peek at the Data
@@ -537,9 +534,8 @@ The .rds form of saving variables preserves any formatting (e.g., creating order
 Plotting the data is best practice to any data analysis. Further, visualizing the data can help us with a conceptual notion of the statistic we are utilizing. The *ggpubr* package is one of my go-to-tools for quick and easy plots of data. Below, I have plotted the time-with-patient (Physician Seconds) variable and added the mean. As with most plotting packages, ggpubr will "bin" (or cluster) the data for plotting; this is especially true for data with a large number of units (a range from 220 to 1213 is quite large). The "rug = TRUE" command added a lower row of the table to identify where each of the datapoint follows.
 
 
-```r
-ggpubr::gghistogram(dfOneSample, x = "PhysMins", add = "mean", rug = TRUE,
-    color = "#993366")
+``` r
+ggpubr::gghistogram(dfOneSample, x = "PhysMins",  add = "mean",  rug = TRUE, color = "#993366")
 ```
 
 ```
@@ -562,15 +558,16 @@ Although the histogram is not perfectly normal, we can see at least the suggesti
 Another view of our data is with a boxplot. The box captures the middle 50% of data with the horizontal bar at the median. The whiskers extend three standard deviations around the mean with dots beyond the whiskers representing outliers. I personally like the *add="jitter"* statement because it shows where each case falls.
 
 
-```r
-ggpubr::ggboxplot(dfOneSample$PhysMins, ylab = "Minutes with Patient",
-    xlab = FALSE, add = "jitter")
+``` r
+ggpubr::ggboxplot(dfOneSample$PhysMins,
+         ylab = "Minutes with Patient", xlab = FALSE, add="jitter"
+         )
 ```
 
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-30-1.png)<!-- -->
 We can further evaluate normality by obtaining the descriptive statistics with the *describe()* function from the *psych* package.
 
-```r
+``` r
 psych::describe(dfOneSample$PhysMins)
 ```
 
@@ -607,7 +604,7 @@ $$
 The numerator of the formula below subtracts the test value from the sample mean. The denominator involves multiplying the standard deviation by the square root of the sample size. The descriptive statistics provided the values we need to complete the analysis:
 
 
-```r
+``` r
 (10.01 - 1.23)/(2.7/sqrt(33))
 ```
 
@@ -641,8 +638,8 @@ In our case, the *t* value of 18.68 far exceeded the test critical value of 2.04
 In base R, the *qt()* function will look up a test critical value. For the one-sample *t*-test, degrees of freedom (df) is equal to $N-1$. We "divide the *p* value by 2" when we want a two-tailed test. Finally, the "lower.tail" command results in positive or negative values in the tail.
 
 
-```r
-qt(p = 0.05/2, df = 32, lower.tail = FALSE)
+``` r
+qt(p=.05/2, df=32,lower.tail=FALSE)
 ```
 
 ```
@@ -664,8 +661,8 @@ Let's calculate it:
 First, let's calculate the proper *t* critical value. Even though these are identical to the one above, I am including them again. Why? Because if the original hypothesis had been one-tailed, we would need to calculate a two-tailed confidence interval; this is a placeholder to remind us.
 
 
-```r
-qt(p = 0.05/2, df = 32, lower.tail = FALSE)
+``` r
+qt(p=.05/2, df=32,lower.tail=FALSE)
 ```
 
 ```
@@ -673,16 +670,16 @@ qt(p = 0.05/2, df = 32, lower.tail = FALSE)
 ```
 Using the values from above, we can specify both the lower and upper bound of our confidence interval.
 
-```r
-(10.01) - ((2.0369) * (2.7/sqrt(33)))
+``` r
+(10.01) - ((2.0369)*(2.7/sqrt(33)))
 ```
 
 ```
 [1] 9.052637
 ```
 
-```r
-(10.01) + ((2.0369) * (2.7/sqrt(33)))
+``` r
+(10.01) + ((2.0369)*(2.7/sqrt(33)))
 ```
 
 ```
@@ -700,8 +697,8 @@ Calculating the *d* statistic is easy. Here are two equivalent formulas:
 
 $$d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}$$
 
-```r
-# First formula
+``` r
+#First formula
 (10.01 - 1.23)/2.7
 ```
 
@@ -709,8 +706,8 @@ $$d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}$$
 [1] 3.251852
 ```
 
-```r
-# Second formula
+``` r
+#Second formula
 18.68047/sqrt(33)
 ```
 
@@ -742,10 +739,10 @@ All statistical tests have some assumptions about the data. The one-sample *t*-t
 Thus, we need only to assess whether the test variable is normally distributed.  The *pastecs::stat.desc()* function will provide all of this information in one test. We need only add the specification, "norm=TRUE".
 
 
-```r
-# pastecs is the package, stat.desc is the function we point it to
-# the data and then add the norm=TRUE command
-pastecs::stat.desc(dfOneSample, norm = TRUE)
+``` r
+#pastecs is the package, stat.desc is the function
+#we point it to the data and then add the norm=TRUE command
+pastecs::stat.desc(dfOneSample, norm=TRUE)
 ```
 
 ```
@@ -796,7 +793,7 @@ In the script below:
   
 
 
-```r
+``` r
 rstatix::t_test(dfOneSample, PhysMins ~ 1, mu = 1.23, detailed = TRUE)
 ```
 
@@ -813,7 +810,7 @@ The results we obtained are identical to those we hand-calculated. The *rstatix*
 
 Knowing what the confidence interval is "around" can be tricky. Whatever the "topic" of the confidence interval will be exactly in the middle of (most) confidence intervals. We can check ourselves by adding the two ends of the confidence interval and dividing by two.
 
-```r
+``` r
 (9.050577 + 10.96577)/2
 ```
 
@@ -823,7 +820,7 @@ Knowing what the confidence interval is "around" can be tricky. Whatever the "to
 As we see, 10.008 is the reported as the "estimate."  We know from our earlier analysis of the descriptive statistics that this is the value of the mean. If we are uncertain, we can check:
 
 
-```r
+``` r
 mean(dfOneSample$PhysMins)
 ```
 
@@ -836,7 +833,7 @@ From these results, we can begin to create our *t* string: $t(32) = 18.67, p < .
 With a separate command, we can use the *rstatix* package to obtain the effect size, *d*. With the exception of including the "ref.group = NULL" statement, the script is quite similar.
 
 
-```r
+``` r
 rstatix::cohens_d(dfOneSample, PhysMins ~ 1, ref.group = NULL, mu = 1.23)
 ```
 
@@ -858,9 +855,10 @@ Let's write up the results. In-so-doing, I would include the boxplot we produced
 > A one-sample *t*-test was used to evaluate whether average amount of time that a sample of physicians (palliative care physicians in the ICU) enrolled in a research study on patient communication was statistically significantly different from the amount of time that ICU physicians spend with their patients, in general. The sample mean 10.008 (*SD* = 2.7016) was significantly different from 1.23, $t(32) = 18.672, p < .001., CI95(9.05, 10.97), d = 3.25$. The effect size, (*d*) indicates a very large effect. Figure 1 illustrates the distribution of time physicians in the research study spent with their patients. The results support the conclusion that physicians in the research study spent more time with their patients than ICU physicians in general.
 
 
-```r
-ggpubr::ggboxplot(dfOneSample$PhysMins, ylab = "Physician Minutes", xlab = FALSE,
-    add = "jitter", title = "Figure 1. Physician Time with Patients (in minutes)")
+``` r
+ggpubr::ggboxplot(dfOneSample$PhysMins,
+         ylab = "Physician Minutes", xlab = FALSE, add="jitter", title = "Figure 1. Physician Time with Patients (in minutes)"
+         )
 ```
 
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-42-1.png)<!-- -->
@@ -886,9 +884,8 @@ In this script, we must specify *all-but-one* parameter; the remaining parameter
 When we conduct a "power analysis" (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, "power=NULL". Using the data from our results, we learn from this first run, that our statistical power was 1.00. That is, given the value of the mean difference relative to the pooled standard deviation we had a 100% chance of detecting a statistically significant effect if there was one.
 
 
-```r
-pwr::pwr.t.test(d = 3.25, n = 33, power = NULL, sig.level = 0.05, type = "one.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d= 3.25,n = 33, power=NULL,sig.level=0.05,type="one.sample",alternative="two.sided")
 ```
 
 ```
@@ -904,9 +901,8 @@ pwr::pwr.t.test(d = 3.25, n = 33, power = NULL, sig.level = 0.05, type = "one.sa
 Researchers frequently use these tools to estimate the sample size required to obtain a statistically significant effect. In these scenarios we set *n* to *NULL*. 
 
 
-```r
-pwr::pwr.t.test(d = 3.25, n = NULL, power = 0.8, sig.level = 0.05, type = "one.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d= 3.25, n = NULL, power=0.8,sig.level=0.05,type="one.sample",alternative="two.sided")
 ```
 
 ```
@@ -922,9 +918,9 @@ pwr::pwr.t.test(d = 3.25, n = NULL, power = 0.8, sig.level = 0.05, type = "one.s
 Shockingly, this suggests that a sample size of 3 could result in a statistically significant result. Let's see if this is true. Below I will re-simulate the data for the verbal scores, changing only the sample size:
 
 
-```r
+``` r
 set.seed(220822)
-rdfOneSample <- data.frame(rPhysMins = rnorm(3, mean = 10, sd = 2.5))
+rdfOneSample <- data.frame(rPhysMins = rnorm(3, mean=10, sd=2.5))
 
 head(rdfOneSample)
 ```
@@ -938,7 +934,7 @@ head(rdfOneSample)
 With the newly simulated data, I will run the one-sample *t*-test:
 
 
-```r
+``` r
 rstatix::t_test(rdfOneSample, rPhysMins ~ 1, mu = 1.23, detailed = TRUE)
 ```
 
@@ -950,7 +946,7 @@ rstatix::t_test(rdfOneSample, rPhysMins ~ 1, mu = 1.23, detailed = TRUE)
 # ℹ 2 more variables: method <chr>, alternative <chr>
 ```
 
-```r
+``` r
 rstatix::cohens_d(rdfOneSample, rPhysMins ~ 1, ref.group = NULL, mu = 1.23)
 ```
 
@@ -1034,50 +1030,50 @@ From my course evaluation data, I want to ask the question, "Are ratings for the
 
 First I will open the entire dataset.
 
-```r
+``` r
 ReCdf <- readRDS("ReC.rds")
 ```
 
 Let's first trim it to just students who took ANOVA
 
-```r
-JustANOVA <- subset(ReCdf, Course == "ANOVA")
+``` r
+JustANOVA <- subset(ReCdf, Course == "ANOVA") 
 ```
 
 And further trim to our variable of interest
 
-```r
+``` r
 library(tidyverse)
 ```
 
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 tiny1 <- JustANOVA %>%
-    dplyr::select(OvInstructor)
+    dplyr::select (OvInstructor)
 ```
 
 And further trim to non-missing data
 
-```r
+``` r
 tiny1 <- na.omit(tiny1)
 ```
 
 * Is the sample variable on a continuous scale of measurement and formatted as *num* or *int* in R?
 * Is the external score evaluated on the same continuous scale?
 
-```r
+``` r
 str(tiny1$OvInstructor)
 ```
 
@@ -1093,8 +1089,8 @@ Yes. The format for the OvInstructor variable is integer (which is numerical); t
 * Does the distribution of the variable differ significantly from a normal distribution?
 
 
-```r
-pastecs::stat.desc(tiny1$OvInstructor, norm = TRUE)
+``` r
+pastecs::stat.desc(tiny1$OvInstructor, norm=TRUE)
 ```
 
 ```
@@ -1125,7 +1121,7 @@ The Shapiro Wilk test value is 0.7728 (*p* < 0.001). This significant value sugg
 We will compare the overall instructor from the data to the CPY average of 4.4.
 
 
-```r
+``` r
 rstatix::t_test(tiny1, OvInstructor ~ 1, mu = 4.4, detailed = TRUE)
 ```
 
@@ -1144,7 +1140,7 @@ Let's interpret the results.  With 112 degrees of freedom, our *t* value is -2.2
 
 Let's calculate the effect size. We will use a Cohen's *d* which is interpreted in standard deviation units. 
 
-```r
+``` r
 rstatix::cohens_d(tiny1, OvInstructor ~ 1, ref.group = NULL, mu = 4.4)
 ```
 
@@ -1169,9 +1165,8 @@ $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374), d = -0.211$
 >A one-sample *t*-test was used to evaluate whether the *overall instructor* course evaluation ratings from the ANOVA courses were statistically significant different from the departmental averages for the Clinical (CPY; *M* = 4.4) department.  The sample mean for the ANOVA course evaluations was 4.186 (*SD* = 1.013). Although this mean was statistically significantly different from the average CPY course evaluation ratings of the same item, $t(112) = -2.246, p = 0.027, CI95(3.997, 4.374)$, the effect size was quite small $(d = -0.211)$. A distribution of the ANOVA course ratings is found in Figure 1.
 
 
-```r
-ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings",
-    xlab = FALSE, add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
+``` r
+ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings", xlab = FALSE, add = "jitter", title = "Figure 1. Overall Instructor Ratings for ANOVA")
 ```
 
 ![](04-tOneSample_files/figure-docx/unnamed-chunk-104-1.png)<!-- -->
@@ -1181,9 +1176,8 @@ ggpubr::ggboxplot(tiny1$OvInstructor, ylab = "Course Evaluation Ratings",
 A quick reminder that the *d* in the power analysis is the difference between the means divided by the pooled standard deviation. This is the same as Cohen's d that we just calculated.
 
 
-```r
-pwr::pwr.t.test(d = -0.211, n = 113, power = NULL, sig.level = 0.05, type = "one.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d = -0.211	, n = 113, power = NULL, sig.level = 0.05, type = "one.sample", alternative = "two.sided")
 ```
 
 ```
@@ -1200,9 +1194,8 @@ pwr::pwr.t.test(d = -0.211, n = 113, power = NULL, sig.level = 0.05, type = "one
 For the comparison to the CPY departmental average, power was 60%. That is, given the value of the mean difference relative to the pooled standard deviation we had a 60% chance of detecting a statistically significant effect if there was one.
 
 
-```r
-pwr::pwr.t.test(d = -0.211, n = NULL, power = 0.8, sig.level = 0.05, type = "one.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d = -0.211, n = NULL, power = 0.8, sig.level = 0.05, type = "one.sample", alternative = "two.sided")
 ```
 
 ```
@@ -1233,8 +1226,8 @@ $$
 I will continue with the *tiny1* dataset and calculate the mean of the OvInstructor variable from my ANOVA course evaluations.
 
 
-```r
-mean(tiny1$OvInstructor, na.rm = TRUE)
+``` r
+mean(tiny1$OvInstructor, na.rm=TRUE)
 ```
 
 ```
@@ -1246,15 +1239,15 @@ The mean of my benchmarking sample is 4.4. This number is a "departmental standa
 #### Using the steps from the previous lesson, hand-calculate the standard deviation of your sample. This should involve variables representing the mean, mean deviation, and mean deviation squared {-}
 
 
-```r
-# first the mean
-tiny1$M_OvInst <- mean(tiny1$OvInstructor, na.rm = TRUE)
-# second the mean deviation
-tiny1$Mdev_OvInst <- (tiny1$OvInstructor - tiny1$M_OvInst)
-# third the mean deviation squared
-tiny1$mdev2_OvInst <- (tiny1$Mdev_OvInst * tiny1$Mdev_OvInst)
-# fourth the variance
-var_OvInst <- sum(tiny1$mdev2_OvInst/((nrow(tiny1) - 1)))
+``` r
+#first the mean
+tiny1$M_OvInst <- mean(tiny1$OvInstructor, na.rm=TRUE)
+#second the mean deviation
+tiny1$Mdev_OvInst <- (tiny1$OvInstructor-tiny1$M_OvInst)
+#third the mean deviation squared
+tiny1$mdev2_OvInst <- (tiny1$Mdev_OvInst  * tiny1$Mdev_OvInst)
+#fourth the variance
+var_OvInst <- sum(tiny1$mdev2_OvInst /((nrow(tiny1) - 1)))
 var_OvInst
 ```
 
@@ -1262,8 +1255,8 @@ var_OvInst
 [1] 1.027655
 ```
 
-```r
-# finally the standard deviation
+``` r
+#finally the standard deviation
 sd_OvInst <- sqrt(var_OvInst)
 sd_OvInst
 ```
@@ -1272,7 +1265,7 @@ sd_OvInst
 [1] 1.013733
 ```
 
-```r
+``` r
 head(tiny1)
 ```
 
@@ -1288,8 +1281,8 @@ head(tiny1)
 The variance is 1.028; the standard deviation is 1.014.
 
 
-```r
-sd(tiny1$OvInstructor)  #checking my work
+``` r
+sd(tiny1$OvInstructor)#checking my work
 ```
 
 ```
@@ -1305,7 +1298,7 @@ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 $$
 
 
-```r
+``` r
 (4.185841 - 4.4)/(1.013733/sqrt(113))
 ```
 
@@ -1318,7 +1311,7 @@ $$
 For the one-sample *t*-test, $df = N - 1$. In our case
 
 
-```r
+``` r
 113 - 1
 ```
 
@@ -1334,7 +1327,7 @@ A 2-tail test, when p - .05, with ~120 individuals is 1.98
 Or, this code:
 
 
-```r
+``` r
 qt(p = 0.05/2, df = 112, lower.tail = FALSE)
 ```
 
@@ -1352,16 +1345,16 @@ Here is a reminder of the formula:
 $$\bar{X} \pm t_{cv}(\frac{s}{\sqrt{n}})$$
 
 
-```r
-(4.185841) - ((1.98118) * (1.013733/sqrt(113)))
+``` r
+(4.185841) - ((1.98118)*(1.013733/sqrt(113)))
 ```
 
 ```
 [1] 3.996908
 ```
 
-```r
-(4.185841) + ((1.98118) * (1.013733/sqrt(113)))
+``` r
+(4.185841) + ((1.98118)*(1.013733/sqrt(113)))
 ```
 
 ```
@@ -1376,8 +1369,8 @@ A reminder of the two formula:
 
 $$d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}$$
 
-```r
-# First formula
+``` r
+#First formula
 (4.185841 - 4.4)/1.013733
 ```
 
@@ -1385,8 +1378,8 @@ $$d = \frac{Mean Difference}{SD}=\frac{t}{\sqrt{N}}$$
 [1] -0.2112578
 ```
 
-```r
-# Second formula
+``` r
+#Second formula
 -2.245701/sqrt(113)
 ```
 

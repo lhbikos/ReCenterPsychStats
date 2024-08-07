@@ -29,12 +29,10 @@ larger <- readRDS("ReC.rds")
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#Creates a list of the variables that belong to that scale
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+#This code was recently updated and likely differs from the screencasted lecture
 
 #Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-larger$TradPed <- sjstats::mean_n(larger[, ..TradPed_vars], .75)
-
+larger$TradPed <- datawizard::row_means(larger, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 From the "larger" data, let's select only the variable we will use in the analysis. I have included "long" in the filename because the structure of the dataset is that course evaluation by each student is in its own row. That is, each student could have up to three rows of data.

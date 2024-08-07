@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats</title>
-  <meta name="description" content="Chapter 14 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <title>Chapter 15 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats</title>
+  <meta name="description" content="Chapter 15 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats" />
+  <meta property="og:title" content="Chapter 15 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReCenterPsychStats-bookcover2.jpg" />
-  <meta property="og:description" content="Chapter 14 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta property="og:description" content="Chapter 15 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
   <meta name="github-repo" content="lhbikos/ReCenterPsychStats" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats" />
+  <meta name="twitter:title" content="Chapter 15 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats" />
   
-  <meta name="twitter:description" content="Chapter 14 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
+  <meta name="twitter:description" content="Chapter 15 One-Way Repeated Measures with a Multivariate Approach | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
   <meta name="twitter:image" content="https://lhbikos.github.io/ReCenterPsychStats/images/ReCenterPsychStats-bookcover2.jpg" />
 
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP (she/her)" />
@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -127,6 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -172,9 +173,10 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
 <li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
 <li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a></li>
-<li class="chapter" data-level="1.4" data-path="ReCintro.html"><a href="ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples"><i class="fa fa-check"></i><b>1.4</b> Introduction to the Data Set Used for Homeworked Examples</a>
+<li class="chapter" data-level="1.4" data-path="ReCintro.html"><a href="ReCintro.html#when-code-fails"><i class="fa fa-check"></i><b>1.4</b> When Code Fails</a></li>
+<li class="chapter" data-level="1.5" data-path="ReCintro.html"><a href="ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples"><i class="fa fa-check"></i><b>1.5</b> Introduction to the Data Set Used for Homeworked Examples</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="ReCintro.html"><a href="ReCintro.html#the-data-set"><i class="fa fa-check"></i><b>1.4.1</b> The Data Set</a></li>
+<li class="chapter" data-level="1.5.1" data-path="ReCintro.html"><a href="ReCintro.html#the-data-set"><i class="fa fa-check"></i><b>1.5.1</b> The Data Set</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
@@ -256,7 +258,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.11.2" data-path="preliminaries.html"><a href="preliminaries.html#hand-calculations"><i class="fa fa-check"></i><b>3.11.2</b> Hand Calculations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="t-tests.html"><a href="t-tests.html"><i class="fa fa-check"></i><em>t</em>-tests</a></li>
+<li class="chapter" data-level="" data-path="t-tests.html"><a href="t-tests.html"><i class="fa fa-check"></i><em>T</em>-TESTS</a></li>
 <li class="chapter" data-level="4" data-path="tOneSample.html"><a href="tOneSample.html"><i class="fa fa-check"></i><b>4</b> One Sample <em>t</em>-tests</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="tOneSample.html"><a href="tOneSample.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
@@ -398,7 +400,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.9.2" data-path="tPaired.html"><a href="tPaired.html#hand-calculations-3"><i class="fa fa-check"></i><b>6.9.2</b> Hand Calculations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i>Analysis of Variance</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i>ANALYSIS OF VARIANCE</a></li>
 <li class="chapter" data-level="7" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>7</b> One-way ANOVA</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
@@ -648,42 +650,88 @@ div.csl-indent {
 <li class="chapter" data-level="11.8.1" data-path="ANCOVA.html"><a href="ANCOVA.html#working-the-problem-with-r-and-r-packages-8"><i class="fa fa-check"></i><b>11.8.1</b> Working the Problem with R and R Packages</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="correlation-regression.html"><a href="correlation-regression.html"><i class="fa fa-check"></i>CORRELATION &amp; REGRESSION</a></li>
+<li class="chapter" data-level="12" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>12</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlation.html"><a href="correlation.html#navigating-this-lesson-10"><i class="fa fa-check"></i><b>12.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlation.html"><a href="correlation.html#learning-objectives-10"><i class="fa fa-check"></i><b>12.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.1.2" data-path="correlation.html"><a href="correlation.html#planning-for-practice-9"><i class="fa fa-check"></i><b>12.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="12.1.3" data-path="correlation.html"><a href="correlation.html#readings-resources-9"><i class="fa fa-check"></i><b>12.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="12.1.4" data-path="correlation.html"><a href="correlation.html#packages-8"><i class="fa fa-check"></i><b>12.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlation.html"><a href="correlation.html#introducing-correlations"><i class="fa fa-check"></i><b>12.2</b> Introducing correlations</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="correlation.html"><a href="correlation.html#workflow-for-choosing-which-correlation"><i class="fa fa-check"></i><b>12.2.1</b> Workflow for Choosing which Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="correlation.html"><a href="correlation.html#assumptions-of-correlation"><i class="fa fa-check"></i><b>12.3</b> Assumptions of correlation</a></li>
+<li class="chapter" data-level="12.4" data-path="correlation.html"><a href="correlation.html#research-vignette-9"><i class="fa fa-check"></i><b>12.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="correlation.html"><a href="correlation.html#data-simulation-7"><i class="fa fa-check"></i><b>12.4.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="12.4.2" data-path="correlation.html"><a href="correlation.html#data-visualization"><i class="fa fa-check"></i><b>12.4.2</b> Data Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="correlation.html"><a href="correlation.html#working-pearsons-r-by-hand"><i class="fa fa-check"></i><b>12.5</b> Working Pearson’s <em>r</em> (by hand)</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlation.html"><a href="correlation.html#stating-the-hypothesis-3"><i class="fa fa-check"></i><b>12.5.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="12.5.2" data-path="correlation.html"><a href="correlation.html#calculating-pearsons-r"><i class="fa fa-check"></i><b>12.5.2</b> Calculating Pearson’s <em>r</em></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="correlation.html"><a href="correlation.html#finding-a-correlation-in-r"><i class="fa fa-check"></i><b>12.6</b> Finding a Correlation in R</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="correlation.html"><a href="correlation.html#evaluating-the-statistical-assumptions-and-choosing-a-test"><i class="fa fa-check"></i><b>12.6.1</b> Evaluating the Statistical Assumptions and Choosing a Test</a></li>
+<li class="chapter" data-level="12.6.2" data-path="correlation.html"><a href="correlation.html#computing-pearsons-r"><i class="fa fa-check"></i><b>12.6.2</b> Computing Pearson’s <em>r</em></a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="correlation.html"><a href="correlation.html#correlation-matrices"><i class="fa fa-check"></i><b>12.7</b> Correlation Matrices</a></li>
+<li class="chapter" data-level="12.8" data-path="correlation.html"><a href="correlation.html#apa-style-results-6"><i class="fa fa-check"></i><b>12.8</b> APA Style Results</a></li>
+<li class="chapter" data-level="12.9" data-path="correlation.html"><a href="correlation.html#power-for-pearsons-r-correlations"><i class="fa fa-check"></i><b>12.9</b> Power for Pearson’s <span class="math inline">\(r\)</span> correlations</a></li>
+<li class="chapter" data-level="12.10" data-path="correlation.html"><a href="correlation.html#other-types-of-correlations"><i class="fa fa-check"></i><b>12.10</b> Other Types of Correlations</a>
+<ul>
+<li class="chapter" data-level="12.10.1" data-path="correlation.html"><a href="correlation.html#spearman-and-kendall"><i class="fa fa-check"></i><b>12.10.1</b> Spearman and Kendall</a></li>
+</ul></li>
+<li class="chapter" data-level="12.11" data-path="correlation.html"><a href="correlation.html#practice-problems-10"><i class="fa fa-check"></i><b>12.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="12.11.1" data-path="correlation.html"><a href="correlation.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-3"><i class="fa fa-check"></i><b>12.11.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="12.11.2" data-path="correlation.html"><a href="correlation.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-3"><i class="fa fa-check"></i><b>12.11.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="12.11.3" data-path="correlation.html"><a href="correlation.html#problem-3-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>12.11.3</b> Problem #3: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="12.11.4" data-path="correlation.html"><a href="correlation.html#problem-4-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>12.11.4</b> Problem #4: Use other data that is available to you</a></li>
+<li class="chapter" data-level="12.11.5" data-path="correlation.html"><a href="correlation.html#grading-rubric-8"><i class="fa fa-check"></i><b>12.11.5</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>APPENDICES</a></li>
-<li class="chapter" data-level="12" data-path="type-i-error.html"><a href="type-i-error.html"><i class="fa fa-check"></i><b>12</b> Type I Error</a>
+<li class="chapter" data-level="13" data-path="type-i-error.html"><a href="type-i-error.html"><i class="fa fa-check"></i><b>13</b> Type I Error</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="type-i-error.html"><a href="type-i-error.html#type-i-error-defined"><i class="fa fa-check"></i><b>12.1</b> Type I Error Defined</a></li>
-<li class="chapter" data-level="12.2" data-path="type-i-error.html"><a href="type-i-error.html#methods-for-managing-type-i-error"><i class="fa fa-check"></i><b>12.2</b> Methods for Managing Type I Error</a>
+<li class="chapter" data-level="13.1" data-path="type-i-error.html"><a href="type-i-error.html#type-i-error-defined"><i class="fa fa-check"></i><b>13.1</b> Type I Error Defined</a></li>
+<li class="chapter" data-level="13.2" data-path="type-i-error.html"><a href="type-i-error.html#methods-for-managing-type-i-error"><i class="fa fa-check"></i><b>13.2</b> Methods for Managing Type I Error</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="type-i-error.html"><a href="type-i-error.html#lsd-least-significant-difference-method"><i class="fa fa-check"></i><b>12.2.1</b> LSD (Least Significant Difference) Method</a></li>
-<li class="chapter" data-level="12.2.2" data-path="type-i-error.html"><a href="type-i-error.html#traditional-bonferroni"><i class="fa fa-check"></i><b>12.2.2</b> Traditional Bonferroni</a></li>
-<li class="chapter" data-level="12.2.3" data-path="type-i-error.html"><a href="type-i-error.html#tukey-hsd"><i class="fa fa-check"></i><b>12.2.3</b> Tukey HSD</a></li>
-<li class="chapter" data-level="12.2.4" data-path="type-i-error.html"><a href="type-i-error.html#holms-sequential-bonferroni"><i class="fa fa-check"></i><b>12.2.4</b> Holms Sequential Bonferroni</a></li>
+<li class="chapter" data-level="13.2.1" data-path="type-i-error.html"><a href="type-i-error.html#lsd-least-significant-difference-method"><i class="fa fa-check"></i><b>13.2.1</b> LSD (Least Significant Difference) Method</a></li>
+<li class="chapter" data-level="13.2.2" data-path="type-i-error.html"><a href="type-i-error.html#traditional-bonferroni"><i class="fa fa-check"></i><b>13.2.2</b> Traditional Bonferroni</a></li>
+<li class="chapter" data-level="13.2.3" data-path="type-i-error.html"><a href="type-i-error.html#tukey-hsd"><i class="fa fa-check"></i><b>13.2.3</b> Tukey HSD</a></li>
+<li class="chapter" data-level="13.2.4" data-path="type-i-error.html"><a href="type-i-error.html#holms-sequential-bonferroni"><i class="fa fa-check"></i><b>13.2.4</b> Holms Sequential Bonferroni</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html"><i class="fa fa-check"></i><b>13</b> Examples for Follow-up to Factorial ANOVA</a>
+<li class="chapter" data-level="14" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html"><i class="fa fa-check"></i><b>14</b> Examples for Follow-up to Factorial ANOVA</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#research-vignette-9"><i class="fa fa-check"></i><b>13.1</b> Research Vignette</a>
+<li class="chapter" data-level="14.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#research-vignette-10"><i class="fa fa-check"></i><b>14.1</b> Research Vignette</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#quick-resimulating-of-the-data"><i class="fa fa-check"></i><b>13.1.1</b> Quick Resimulating of the Data</a></li>
+<li class="chapter" data-level="14.1.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#quick-resimulating-of-the-data"><i class="fa fa-check"></i><b>14.1.1</b> Quick Resimulating of the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-orthogonal-contrasts"><i class="fa fa-check"></i><b>13.2</b> Analysis of Simple Main Effects with Orthogonal Contrasts</a></li>
-<li class="chapter" data-level="13.3" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-a-polynomial-trend"><i class="fa fa-check"></i><b>13.3</b> Analysis of Simple Main Effects with a Polynomial Trend</a></li>
-<li class="chapter" data-level="13.4" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#all-possible-post-hoc-comparisons"><i class="fa fa-check"></i><b>13.4</b> All Possible Post Hoc Comparisons</a></li>
+<li class="chapter" data-level="14.2" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-orthogonal-contrasts"><i class="fa fa-check"></i><b>14.2</b> Analysis of Simple Main Effects with Orthogonal Contrasts</a></li>
+<li class="chapter" data-level="14.3" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-a-polynomial-trend"><i class="fa fa-check"></i><b>14.3</b> Analysis of Simple Main Effects with a Polynomial Trend</a></li>
+<li class="chapter" data-level="14.4" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#all-possible-post-hoc-comparisons"><i class="fa fa-check"></i><b>14.4</b> All Possible Post Hoc Comparisons</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html"><i class="fa fa-check"></i><b>14</b> One-Way Repeated Measures with a Multivariate Approach</a>
+<li class="chapter" data-level="15" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html"><i class="fa fa-check"></i><b>15</b> One-Way Repeated Measures with a Multivariate Approach</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#research-vignette-10"><i class="fa fa-check"></i><b>14.1</b> Research Vignette</a>
+<li class="chapter" data-level="15.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#research-vignette-11"><i class="fa fa-check"></i><b>15.1</b> Research Vignette</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#data-simulation-7"><i class="fa fa-check"></i><b>14.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="15.1.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#data-simulation-8"><i class="fa fa-check"></i><b>15.1.1</b> Data Simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#computing-the-omnibus-f"><i class="fa fa-check"></i><b>14.2</b> Computing the Omnibus F</a>
+<li class="chapter" data-level="15.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#computing-the-omnibus-f"><i class="fa fa-check"></i><b>15.2</b> Computing the Omnibus F</a>
 <ul>
-<li class="chapter" data-level="14.2.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#univariate-results"><i class="fa fa-check"></i><b>14.2.1</b> Univariate Results</a></li>
-<li class="chapter" data-level="14.2.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#multivariate-results"><i class="fa fa-check"></i><b>14.2.2</b> Multivariate Results</a></li>
-<li class="chapter" data-level="14.2.3" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#a-brief-commentary-on-wrappers"><i class="fa fa-check"></i><b>14.2.3</b> A Brief Commentary on Wrappers</a></li>
+<li class="chapter" data-level="15.2.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#univariate-results"><i class="fa fa-check"></i><b>15.2.1</b> Univariate Results</a></li>
+<li class="chapter" data-level="15.2.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#multivariate-results"><i class="fa fa-check"></i><b>15.2.2</b> Multivariate Results</a></li>
+<li class="chapter" data-level="15.2.3" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#a-brief-commentary-on-wrappers"><i class="fa fa-check"></i><b>15.2.3</b> A Brief Commentary on Wrappers</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>REFERENCES</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -704,13 +752,13 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="one-way-repeated-measures-with-a-multivariate-approach" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chapter 14</span> One-Way Repeated Measures with a Multivariate Approach<a href="one-way-repeated-measures-with-a-multivariate-approach.html#one-way-repeated-measures-with-a-multivariate-approach" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="one-way-repeated-measures-with-a-multivariate-approach" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> One-Way Repeated Measures with a Multivariate Approach<a href="one-way-repeated-measures-with-a-multivariate-approach.html#one-way-repeated-measures-with-a-multivariate-approach" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><a href="https://youtu.be/1c3N733nSM0">Screencasted Lecture Link</a></p>
 <p>As noted in the lesson on <a href="Repeated.html#Repeated">one-way repeated measures ANOVA</a>, the researcher can use a univariate or multivariate approach to analyzing the data. The <em>rstatix::anova_test()</em> is limited to the univariate approach. In order to maintain a streamlined chapter with minimal distractions to student learning I have chosen to provide a quick and separate demonstration of the multivariate approach in this appendix. In-so-doing, I will use the <em>car</em> package.</p>
 <p>As a quick reminder, I will describe and resimulate the data. The narration will presume familiarity with the <a href="Repeated.html#Repeated">one-way repeated measures ANOVA</a> lesson.</p>
-<div id="research-vignette-10" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Research Vignette<a href="one-way-repeated-measures-with-a-multivariate-approach.html#research-vignette-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="research-vignette-11" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Research Vignette<a href="one-way-repeated-measures-with-a-multivariate-approach.html#research-vignette-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Amodeo <span class="citation">(<a href="#ref-amodeo_empowering_2018">Amodeo et al., 2018</a>)</span> and colleagues conducted a mixed methods study (qualitative and quantitative) to evaluate the effectiveness of an empowerment, peer-group-based, intervention with participants (<em>N</em> = 8) who experienced transphobic episodes. Focus groups used qualitative methods to summarize emergent themes from the program (identity affirmation, self-acceptance, group as support) and a one-way, repeated measures ANOVA provided evidence of increased resilience from pre to three-month followup.</p>
 <p>Eight participants (seven transgender women and one genderqueer person) participated in the intervention. The mean age was 28.5 (<em>SD</em> = 5.85). All participants were located in Italy.</p>
 <p>The within-subjects condition was wave, represented by T1, T2, and T3:</p>
@@ -725,39 +773,36 @@ div.csl-indent {
 <li>T3, at the conclusion of the +3 month follow-up session</li>
 </ul>
 <p>The dependent variable (assessed at each wave) was a 14-item resilience scale <span class="citation">(<a href="#ref-wagnild_development_1993">Wagnild &amp; Young, 1993</a>)</span>. Items were assessed on a 7-point scale ranging from <em>strongly disagree</em> to <em>strongly agree</em> with higher scores indicating higher levels of resilience. An example items was, “I usually manage one way or another.”</p>
-<div id="data-simulation-7" class="section level3 hasAnchor" number="14.1.1">
-<h3><span class="header-section-number">14.1.1</span> Data Simulation<a href="one-way-repeated-measures-with-a-multivariate-approach.html#data-simulation-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="data-simulation-8" class="section level3 hasAnchor" number="15.1.1">
+<h3><span class="header-section-number">15.1.1</span> Data Simulation<a href="one-way-repeated-measures-with-a-multivariate-approach.html#data-simulation-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup). The sript produces “long” and “wide” forms are created.</p>
-<div class="sourceCode" id="cb1462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1462-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
-<span id="cb1462-2"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-2" tabindex="-1"></a><span class="co"># gives me 8 numbers, assigning each number 3 consecutive spots, in</span></span>
-<span id="cb1462-3"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-3" tabindex="-1"></a><span class="co"># sequence</span></span>
-<span id="cb1462-4"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-4" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="at">each =</span> <span class="dv">3</span>)))</span>
-<span id="cb1462-5"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-5" tabindex="-1"></a><span class="co"># gives me a column of 24 numbers with the specified Ms and SD</span></span>
-<span id="cb1462-6"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-6" tabindex="-1"></a>Resilience <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">24</span>, <span class="at">mean =</span> <span class="fu">c</span>(<span class="fl">5.7</span>, <span class="fl">6.21</span>, <span class="fl">6.26</span>), <span class="at">sd =</span> <span class="fu">c</span>(<span class="fl">0.88</span>, <span class="fl">0.79</span>, <span class="fl">0.37</span>))</span>
-<span id="cb1462-7"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-7" tabindex="-1"></a><span class="co"># repeats pre, post, follow-up once each, 8 times</span></span>
-<span id="cb1462-8"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-8" tabindex="-1"></a>Wave <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>, <span class="st">&quot;FollowUp&quot;</span>), <span class="at">each =</span> <span class="dv">1</span>, <span class="dv">8</span>)</span>
-<span id="cb1462-9"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-9" tabindex="-1"></a>Amodeo_long <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Wave, Resilience)</span>
-<span id="cb1462-10"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-10" tabindex="-1"></a></span>
-<span id="cb1462-11"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-11" tabindex="-1"></a>Amodeo_long<span class="sc">$</span>Wave <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_long<span class="sc">$</span>Wave, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>,</span>
-<span id="cb1462-12"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-12" tabindex="-1"></a>    <span class="st">&quot;FollowUp&quot;</span>))</span>
-<span id="cb1462-13"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-13" tabindex="-1"></a></span>
-<span id="cb1462-14"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-14" tabindex="-1"></a><span class="co"># Create a new df (Amodeo_wide) Identify the original df We are</span></span>
-<span id="cb1462-15"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-15" tabindex="-1"></a><span class="co"># telling it to connect the values of the Resilience variable its</span></span>
-<span id="cb1462-16"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-16" tabindex="-1"></a><span class="co"># respective Wave designation</span></span>
-<span id="cb1462-17"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-17" tabindex="-1"></a>Amodeo_wide <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Amodeo_long, <span class="at">formula =</span> ID <span class="sc">~</span> Wave,</span>
-<span id="cb1462-18"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-18" tabindex="-1"></a>    <span class="at">value.var =</span> <span class="st">&quot;Resilience&quot;</span>)</span>
-<span id="cb1462-19"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-19" tabindex="-1"></a><span class="co"># doublecheck to see if they did what you think</span></span>
-<span id="cb1462-20"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1462-20" tabindex="-1"></a><span class="fu">str</span>(Amodeo_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb1516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1516-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
+<span id="cb1516-2"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-2" tabindex="-1"></a><span class="co">#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence</span></span>
+<span id="cb1516-3"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-3" tabindex="-1"></a>ID<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="at">each=</span><span class="dv">3</span>)))</span>
+<span id="cb1516-4"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-4" tabindex="-1"></a><span class="co">#gives me a column of 24 numbers with the specified Ms and SD</span></span>
+<span id="cb1516-5"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-5" tabindex="-1"></a>Resilience<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">24</span>,<span class="at">mean=</span><span class="fu">c</span>(<span class="fl">5.7</span>,<span class="fl">6.21</span>,<span class="fl">6.26</span>),<span class="at">sd=</span><span class="fu">c</span>(.<span class="dv">88</span>,.<span class="dv">79</span>,.<span class="dv">37</span>)) </span>
+<span id="cb1516-6"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-6" tabindex="-1"></a><span class="co">#repeats pre, post, follow-up once each, 8 times</span></span>
+<span id="cb1516-7"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-7" tabindex="-1"></a>Wave<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>,<span class="st">&quot;Post&quot;</span>, <span class="st">&quot;FollowUp&quot;</span>),<span class="at">each=</span><span class="dv">1</span>,<span class="dv">8</span>) </span>
+<span id="cb1516-8"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-8" tabindex="-1"></a>Amodeo_long<span class="ot">&lt;-</span><span class="fu">data.frame</span>(ID, Wave, Resilience)</span>
+<span id="cb1516-9"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-9" tabindex="-1"></a></span>
+<span id="cb1516-10"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-10" tabindex="-1"></a>Amodeo_long<span class="sc">$</span>Wave <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_long<span class="sc">$</span>Wave, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span>, <span class="st">&quot;Post&quot;</span>, <span class="st">&quot;FollowUp&quot;</span>))</span>
+<span id="cb1516-11"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-11" tabindex="-1"></a></span>
+<span id="cb1516-12"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-12" tabindex="-1"></a><span class="co"># Create a new df (Amodeo_wide)</span></span>
+<span id="cb1516-13"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-13" tabindex="-1"></a><span class="co"># Identify the original df</span></span>
+<span id="cb1516-14"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-14" tabindex="-1"></a><span class="co"># We are telling it to connect the values of the Resilience variable its respective Wave designation</span></span>
+<span id="cb1516-15"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-15" tabindex="-1"></a>Amodeo_wide <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(<span class="at">data =</span> Amodeo_long, <span class="at">formula =</span>ID<span class="sc">~</span>Wave, <span class="at">value.var =</span> <span class="st">&quot;Resilience&quot;</span>)</span>
+<span id="cb1516-16"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-16" tabindex="-1"></a><span class="co">#doublecheck to see if they did what you think</span></span>
+<span id="cb1516-17"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1516-17" tabindex="-1"></a><span class="fu">str</span>(Amodeo_wide)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   8 obs. of  4 variables:
  $ ID      : Factor w/ 8 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8
  $ Pre     : num  6.49 4.43 4.77 5.91 4.84 ...
  $ Post    : num  5.28 5.95 6.43 7 6.28 ...
  $ FollowUp: num  5.93 5.19 6.54 6.19 6.24 ...</code></pre>
-<div class="sourceCode" id="cb1464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1464-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1464-1" tabindex="-1"></a>Amodeo_wide<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_wide<span class="sc">$</span>ID)</span></code></pre></div>
+<div class="sourceCode" id="cb1518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1518-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1518-1" tabindex="-1"></a>Amodeo_wide<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(Amodeo_wide<span class="sc">$</span>ID)</span></code></pre></div>
 </div>
 </div>
-<div id="computing-the-omnibus-f" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Computing the Omnibus F<a href="one-way-repeated-measures-with-a-multivariate-approach.html#computing-the-omnibus-f" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="computing-the-omnibus-f" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Computing the Omnibus F<a href="one-way-repeated-measures-with-a-multivariate-approach.html#computing-the-omnibus-f" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Without the <em>rstatix</em> helper package, here is how the analysis would be run in the package, <em>car.</em> Although this package is less intuitive to use, it results in both univariate output (both sphericity assumed and sphericity violated) and multivariate output (which does not require the sphericity assumption).</p>
 <p>Evaluating the data requires that we create some objects that will be fed into function. We can name these objects anything we like.</p>
 <p>In ths script below I define the objects that are required.</p>
@@ -767,13 +812,13 @@ div.csl-indent {
 <li>waveBind column-binds (i.e., cbind) the pre, post, and follow-up variables from the wide form of the Amodeo dataset</li>
 <li>waveModel calculates the intercept (i.e., the means) of the pre, post, and follow-up levels</li>
 </ul>
-<div class="sourceCode" id="cb1465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1465-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1465-1" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb1465-2"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1465-2" tabindex="-1"></a>waveLevels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb1465-3"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1465-3" tabindex="-1"></a>waveFactor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(waveLevels)</span>
-<span id="cb1465-4"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1465-4" tabindex="-1"></a>waveFrame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(waveFactor)</span>
-<span id="cb1465-5"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1465-5" tabindex="-1"></a>waveBind <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Amodeo_wide<span class="sc">$</span>Pre, Amodeo_wide<span class="sc">$</span>Post, Amodeo_wide<span class="sc">$</span>FollowUp)</span>
-<span id="cb1465-6"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1465-6" tabindex="-1"></a>waveModel <span class="ot">&lt;-</span> <span class="fu">lm</span>(waveBind <span class="sc">~</span> <span class="dv">1</span>)</span>
-<span id="cb1465-7"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1465-7" tabindex="-1"></a>waveModel</span></code></pre></div>
+<div class="sourceCode" id="cb1519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1519-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1519-1" tabindex="-1"></a><span class="co">#library(car)</span></span>
+<span id="cb1519-2"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1519-2" tabindex="-1"></a>waveLevels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb1519-3"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1519-3" tabindex="-1"></a>waveFactor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(waveLevels)</span>
+<span id="cb1519-4"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1519-4" tabindex="-1"></a>waveFrame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(waveFactor)</span>
+<span id="cb1519-5"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1519-5" tabindex="-1"></a>waveBind <span class="ot">&lt;-</span><span class="fu">cbind</span>(Amodeo_wide<span class="sc">$</span>Pre, Amodeo_wide<span class="sc">$</span>Post, Amodeo_wide<span class="sc">$</span>FollowUp)</span>
+<span id="cb1519-6"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1519-6" tabindex="-1"></a>waveModel<span class="ot">&lt;-</span> <span class="fu">lm</span>(waveBind<span class="sc">~</span><span class="dv">1</span>)</span>
+<span id="cb1519-7"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1519-7" tabindex="-1"></a>waveModel</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = waveBind ~ 1)
@@ -787,9 +832,9 @@ Coefficients:
 <li>waveFrame is assigned to the <em>idata</em> command,</li>
 <li>waveFactor is assigned to the <em>idesign</em> command</li>
 </ul>
-<div class="sourceCode" id="cb1467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1467-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1467-1" tabindex="-1"></a>analysis <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Anova</span>(waveModel, <span class="at">idata =</span> waveFrame, <span class="at">idesign =</span> <span class="sc">~</span>waveFactor)</span></code></pre></div>
+<div class="sourceCode" id="cb1521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1521-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1521-1" tabindex="-1"></a>analysis <span class="ot">&lt;-</span>car<span class="sc">::</span><span class="fu">Anova</span>(waveModel, <span class="at">idata=</span>waveFrame, <span class="at">idesign=</span><span class="sc">~</span>waveFactor)</span></code></pre></div>
 <pre><code>Note: model has only an intercept; equivalent type-III tests substituted.</code></pre>
-<div class="sourceCode" id="cb1469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1469-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1469-1" tabindex="-1"></a><span class="fu">summary</span>(analysis)</span></code></pre></div>
+<div class="sourceCode" id="cb1523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1523-1"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#cb1523-1" tabindex="-1"></a><span class="fu">summary</span>(analysis)</span></code></pre></div>
 <pre><code>
 Type III Repeated Measures MANOVA Tests:
 
@@ -864,8 +909,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
               HF eps Pr(&gt;F[HF])
 waveFactor 0.8172743 0.05734876</code></pre>
 <p>The <em>car::Anova()</em> function produces both univariate and multivariate results. To begin to understand this data, let’s start with what we learned in the <a href="Repeated.html#Repeated">one-way repeated measures ANOVA lesson</a>.</p>
-<div id="univariate-results" class="section level3 hasAnchor" number="14.2.1">
-<h3><span class="header-section-number">14.2.1</span> Univariate Results<a href="one-way-repeated-measures-with-a-multivariate-approach.html#univariate-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="univariate-results" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Univariate Results<a href="one-way-repeated-measures-with-a-multivariate-approach.html#univariate-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When we ran the univariate approach in the lesson, we first checked the sphericity assumption. Our results here are identical to those from <em>rstatix::anova_test</em>. That is, we did not violate the sphericity assumption: Mauchley’s test <span class="math inline">\(= .566 p = 0.182\)</span>. The <em>F</em> test with univariate results was <span class="math inline">\(F(2, 14) = 3.910, p = 0.045\)</span>.</p>
 <blockquote>
 <p>The Greenhouse Geiser estimate was 0.698 the corrected <em>p</em> = .068.
@@ -873,8 +918,8 @@ The Huyhn Feldt estimate was 0.817 and the corrected <em>p</em> = .057.</p>
 </blockquote>
 <p>The univariate ANOVA results are under the “Univariate Type III Repeated-Measures ANOVA Assuming Sphericity” heading. We find the ANOVA output on the row titled, “waveFactor.” The results are identical to what we found in the lesson: <span class="math inline">\(F(2,14) = 3.91, p = 0.045\)</span>. I do not see that an effect size is reported.</p>
 </div>
-<div id="multivariate-results" class="section level3 hasAnchor" number="14.2.2">
-<h3><span class="header-section-number">14.2.2</span> Multivariate Results<a href="one-way-repeated-measures-with-a-multivariate-approach.html#multivariate-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="multivariate-results" class="section level3 hasAnchor" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> Multivariate Results<a href="one-way-repeated-measures-with-a-multivariate-approach.html#multivariate-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Researchers may prefer the multivariate approach because it does not require the sphericity assumption. Stated another way, if the sphericity assumption is violated, researchers can report the results of the multivariate analysis.</p>
 <p>We find the multivariate results in the middle of the output, under the heading, “Multivariate Tests: waveFactor.” There are four choices: Pillai, Wilks, Hotelling-Lawley, and Roy. Green and Salkind <span class="citation">(<a href="#ref-green_one-way_2017-1">2017b</a>)</span> have noted that in the one-way within-subjects ANOVA, all four will yield the same <em>F</em> and <em>p</em> values. They recommended reporting Wilks’ lambda because researchers will have greatest familiarity with it. Thus, I would write up the result of this omnibus test like this:</p>
 <blockquote>
@@ -882,19 +927,20 @@ The Huyhn Feldt estimate was 0.817 and the corrected <em>p</em> = .057.</p>
 </blockquote>
 <p>Because follow-up testing is <em>pairwise</em> (i.e., there are only two levels being compared), the sphericity assumption is not required and those could proceed in the manner demonstrated in the <a href="Repeated.html#Repeated">one-way repeated measures ANOVA lesson</a>.</p>
 </div>
-<div id="a-brief-commentary-on-wrappers" class="section level3 hasAnchor" number="14.2.3">
-<h3><span class="header-section-number">14.2.3</span> A Brief Commentary on Wrappers<a href="one-way-repeated-measures-with-a-multivariate-approach.html#a-brief-commentary-on-wrappers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-brief-commentary-on-wrappers" class="section level3 hasAnchor" number="15.2.3">
+<h3><span class="header-section-number">15.2.3</span> A Brief Commentary on Wrappers<a href="one-way-repeated-measures-with-a-multivariate-approach.html#a-brief-commentary-on-wrappers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As noted several times, because of its relative ease-of-use, the relevance of information included in the results, and its integration with the <em>ggpubr</em> package, I chose to use <em>rstatix</em> package in all of the ANOVA lessons. As I worked through this example, I spent several hours creating and interpreting the code. For me, there was value in this exercise:</p>
 <ul>
 <li>I am encouraged and reassured with the consistency of results between the two approaches,</li>
 <li>I am in awe of the power of these programs and a little intimidated by all the options that are available within a given package, and</li>
 <li>I am deeply grateful to package developers who take the time to create packages for discipline-specific use-cases and then freely share their work with others. Thank you <a href="https://github.com/kassambara/rstatix">Alboukadel Kassambara</a>!</li>
 </ul>
+
 </div>
 </div>
 </div>
-<h3>References<a href="refs.html#refs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<h3>REFERENCES<a href="refs.html#refs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-amodeo_empowering_2018" class="csl-entry">
 Amodeo, A. L., Picariello, S., Valerio, P., &amp; Scandurra, C. (2018). Empowering transgender youths: <span>Promoting</span> resilience through a group training program. <em>Journal of Gay &amp; Lesbian Mental Health</em>, <em>22</em>(1), 3–19. <a href="https://alliance-primo.hosted.exlibrisgroup.com">https://alliance-primo.hosted.exlibrisgroup.com</a>
 </div>
@@ -942,7 +988,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhbikos/ReCenterPsychStats/edit/BRANCH/14-RMmultivariate.Rmd",
+"link": "https://github.com/lhbikos/ReCenterPsychStats/edit/BRANCH/33-RMmultivariate.Rmd",
 "text": "Edit"
 },
 "history": {

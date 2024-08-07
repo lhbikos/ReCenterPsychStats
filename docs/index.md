@@ -1,7 +1,7 @@
 --- 
 title: "ReCentering Psych Stats"
 author: "Lynette H. Bikos, PhD, ABPP (she/her)"
-date: "Last updated 09 Mar 2024" 
+date: "Last updated 07 Aug 2024" 
 documentclass: book
 site: bookdown::bookdown_site
 bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
@@ -36,7 +36,7 @@ This open education resource is available in three formats:
 
 All materials used in creating this OER are available at its [GitHub repo](https://github.com/lhbikos/ReCenterPsychStats).
 
-As a perpetually-in-progress, open education resource, feedback is always welcome. This IRB-approved (SPU IRB #202102010R, no expiration) [Qualtrics-hosted survey](https://spupsych.az1.qualtrics.com/jfe/form/SV_0OnBLfut3VIOIS2) includes formal rating scales, open-ended text boxes, and a portal for uploading attachments (e.g., marked up PDFs). You are welcome to complete only the portions that are relevant to you.
+As a perpetually-in-progress, open education resource, feedback is always welcome. This IRB-approved (SPU IRB #202102010R, no expiration) [Qualtrics-hosted survey](https://spupsych.az1.qualtrics.com/jfe/form/SV_0OnBLfut3VIOIS2) includes formal rating scales, open-ended text boxes, and a portal for uploading attachments (e.g., marked up PDFs). You are welcome to complete only the portions that are relevant to you. You are also welcome to leave feedback in the comments at the GitHub site that hosts the book or to e-mail: recenterpsychstats@gmail.com
 
 Copyright © 2023 by Lynette Bikos
 Seattle Pacific University Library, Seattle, WA
@@ -46,7 +46,7 @@ ISBN-13:  979-8-9868768-2-5 (Ebook - online); ISBN-13:  979-8-9868768-3-2 (Ebook
 
 # PREFACE {-}
 
-**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 09 Mar 2024**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
+**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 07 Aug 2024**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
 
 [Screencasted Lecture Link](https://youtu.be/yy0z85Wla7o)
 

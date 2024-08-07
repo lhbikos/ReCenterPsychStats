@@ -1,4 +1,4 @@
-# Analysis of Variance {-}
+# ANALYSIS OF VARIANCE {-}
 # One-way ANOVA {#oneway}
 
 
@@ -57,29 +57,18 @@ In preparing this chapter, I drew heavily from the following resource(s) that ar
 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed #easy plotting
-# for simple ANOVA if(!require(knitr)){install.packages('knitr')}
-# #not needed for conducting the statistics, but necessary for
-# knitting the document (if desired)
-# if(!require(tidyverse)){install.packages('tidyverse')} #a specific
-# part of the tidyverse with useful tools for manipulating data
-# if(!require(dplyr)){install.packages('dplyr')} #for descriptive
-# statistics and writing them as csv files
-# if(!require(psych)){install.packages('psych')} #a number of
-# wrappers for ANOVA models; today for evaluating the Shapiro
-# if(!require(ggpubr)){install.packages('ggpubr')} #the package we
-# will use to create figures
-# if(!require(rstatix)){install.packages('rstatix')} #the package we
-# will use for the majority of the ANOVA computations
-# if(!require(apaTAbles)){install.packages('apaTables')} #helps with
-# formats like decimals and percentages for inline code
-# if(!require(effectsize)){install.packages('effectsize')}
-# if(!require(pwr)){install.packages('pwr')} #produces an APA style
-# table for ANOVAs and other models
-# if(!require(car)){install.packages('car')}#although we don't call
-# this package directly, there are rstatix functions that are a
-# wrapper for it and therefore it needs to be installed
+``` r
+#will install the package if not already installed  #easy plotting for simple ANOVA
+#if(!require(knitr)){install.packages("knitr")} #not needed for conducting the statistics, but necessary for knitting the document (if desired)
+#if(!require(tidyverse)){install.packages("tidyverse")} #a specific part of the tidyverse with useful tools for manipulating data
+#if(!require(dplyr)){install.packages("dplyr")} #for descriptive statistics and writing them as csv files
+#if(!require(psych)){install.packages("psych")} #a number of wrappers for ANOVA models; today for evaluating the Shapiro
+#if(!require(ggpubr)){install.packages("ggpubr")} #the package we will use to create figures
+#if(!require(rstatix)){install.packages("rstatix")} #the package we will use for the majority of the ANOVA computations
+#if(!require(apaTAbles)){install.packages("apaTables")} #helps with formats like decimals and percentages for inline code
+#if(!require(effectsize)){install.packages("effectsize")} 
+#if(!require(pwr)){install.packages("pwr")} #produces an APA style table for ANOVAs and other models
+#if(!require(car)){install.packages("car")}#although we don't call this package directly, there are rstatix functions that are a wrapper for it and therefore it needs to be installed
 ```
 
 ## Workflow for One-Way ANOVA
@@ -124,32 +113,28 @@ In the article, the one-way ANOVA is a relatively smaller focus. In fact, Tran a
 Simulating data for a one-way ANOVA requires the sample size (listed first), mean (mean=), and standard deviation (sd=) for each of the groups [@crump_simulating_2018]. In creating this simulation, I used the data from Table 1 in the Tran and Lee [-@tran_you_2014] article. Having worked the problem several times, I made one change. The group sizes in the original study were 23, 22, and 23. To increase the probability that we would have statistically significant results in our worked example, I increased the sample sizes to 30 for each group. In this way we have a perfectly *balanced* (equal cell sizes) design. 
 
 
-```r
-# Note, this script results in a different simulation than is in the
-# ReadySetR lesson sets a random seed so that we get the same results
-# each time
-set.seed(210820)
-# sample size, M and SD for each group
-Accurate <- c(rnorm(30, mean = 1.18, sd = 0.8), rnorm(30, mean = 1.83,
-    sd = 0.58), rnorm(30, mean = 1.76, sd = 0.56))
-# set upper bound for DV
-Accurate[Accurate > 3] <- 3
-# set lower bound for DV
-Accurate[Accurate < 0] <- 0
-# sample size, M and SD for each group
-moreTalk <- c(rnorm(30, mean = -0.82, sd = 0.91), rnorm(30, mean = -0.39,
-    sd = 0.66), rnorm(30, mean = -0.04, sd = 0.71))
-# set upper bound for DV
-moreTalk[moreTalk > 2] <- 2
-# set lower bound for DV
-moreTalk[moreTalk <- 2] <- -2
-# IDs for participants
-ID <- factor(seq(1, 90))
-# name factors and identify how many in each group; should be in same
-# order as first row of script
-COND <- c(rep("High", 30), rep("Low", 30), rep("Control", 30))
-# groups the 3 variables into a single df: ID#, DV, condition
-accSIM30 <- data.frame(ID, COND, Accurate, moreTalk)
+``` r
+#Note, this script results in a different simulation than is in the ReadySetR lesson
+#sets a random seed so that we get the same results each time
+set.seed(210820) 
+#sample size, M and SD for each group
+Accurate <- c(rnorm(30, mean=1.18, sd=0.80), rnorm(30, mean=1.83, sd = 0.58), rnorm(30, mean = 1.76, sd = 0.56))
+#set upper bound for DV
+Accurate[Accurate>3]<-3 
+#set lower bound for DV
+Accurate[Accurate<0]<-0 
+#sample size, M and SD for each group
+moreTalk <- c(rnorm(30, mean=-.82, sd=0.91), rnorm(30, mean=-0.39, sd = 0.66), rnorm(30, mean = -0.04, sd = 0.71))
+#set upper bound for DV
+moreTalk[moreTalk>2]<- 2 
+#set lower bound for DV
+moreTalk[moreTalk<-2]<- -2 
+#IDs for participants
+ID<-factor(seq(1,90)) 
+#name factors and identify how many in each group; should be in same order as first row of script
+COND<-c(rep("High", 30), rep("Low", 30), rep("Control", 30))
+#groups the 3 variables into a single df:  ID#, DV, condition
+accSIM30 <-data.frame(ID, COND, Accurate, moreTalk) 
 ```
 
 Examining the data is important for several reasons. First, we can begin our inspection for anomalies. Second, if we are confused about what statistic we wish to apply, understanding the characteristics of the data can provide clues. 
@@ -159,7 +144,7 @@ We can see the entire dataframe by clicking open the dataframe object found in t
 Alternatively the *head()* function from base R displays a static view of the first six rows of data.
  
 
-```r
+``` r
 head(accSIM30)
 ```
 
@@ -175,7 +160,7 @@ head(accSIM30)
 
 Yet another option is to use the *str()* function from base R. This provides a list of variables and provides detail about their formats. 
 
-```r
+``` r
 str(accSIM30)
 ```
 
@@ -198,7 +183,7 @@ If we look at this simple dataset, we see that we see that
 There are many ways to convert variables to factors; here is one of the simplest.
 
 
-```r
+``` r
 #convert variable to factor
 accSIM30$COND <- factor(accSIM30$COND)
 ```
@@ -206,7 +191,7 @@ accSIM30$COND <- factor(accSIM30$COND)
 Let's recheck the structure
 
 
-```r
+``` r
 str(accSIM30)
 ```
 
@@ -222,14 +207,14 @@ By default, R orders factors alphabetically. This means, analyses will assume th
 Here is the script to create an ordered factor. The order in which the variables are entered in the concatenated list ("c") establishes the order (e.g., levels).
 
 
-```r
-# ordering the factor
+``` r
+#ordering the factor
 accSIM30$COND <- factor(accSIM30$COND, levels = c("Control", "Low", "High"))
 ```
 
 Again, we can check our work.
 
-```r
+``` r
 #another structure check
 str(accSIM30)
 ```
@@ -248,40 +233,40 @@ Although you may continue working with the simulated data, at this point, you ma
 I have hashtagged out the code. If you wish to use it, delete the hashtags. Although I show the .csv code first, my personal preference is to save R data as .rds files. While they aren't easy to "see" as an independent file, they retain the formatting of the variables. For a demonstration, refer back to the [Ready_Set_R](#Ready) lesson.
 
 
-```r
-# write the simulated data as a .csv write.table(accSIM30,
-# file='accSIM.csv', sep=',', col.names=TRUE, row.names=FALSE) bring
-# back the simulated dat from a .csv file acc_csv <-
-# read.csv('accSIM.csv', header = TRUE)
+``` r
+#write the simulated data as a .csv
+#write.table(accSIM30, file="accSIM.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#acc_csv <- read.csv("accSIM.csv", header = TRUE)
 ```
 
 If you have cleared the environment and then imported the .csv file, examining the structure of the .csv file shows that the prior formatting is lost. This is demonstrated in the accompanying screencast.
 
-```r
-# a quick demo to show that the .csv format loses the variable
-# formatting str(acc_csv)
+``` r
+#a quick demo to show that the .csv format loses the variable formatting
+#str(acc_csv)
 ```
 
 Below is the code to write and then import the data as an .rds file.
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(accSIM30, 'accSIM.rds') bring back the simulated dat
-# from an .rds file acc_RDS <- readRDS('accSIM.rds')
+``` r
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(accSIM30, "accSIM.rds")
+#bring back the simulated dat from an .rds file
+#acc_RDS <- readRDS("accSIM.rds")
 ```
 
 By examining the structure of the .rds file we can see that the .rds file preserves the variable formatting. This is demonstrated in the accompanying screencast.
 
-```r
-# a quick demo to show that the .rds format preserves the variable
-# formatting str(acc_RDS)
+``` r
+#a quick demo to show that the .rds format preserves the variable formatting
+#str(acc_RDS)
 ```
 
 Note that I renamed each of these data objects to reflect the form in whic I saved them (i.e., "acc_csv", "acc_RDS"). If you have followed this step, you will want to rename the file before continuing with the rest of the chapter. Alternatively, you can start from scratch, re-run the code to simulate the data, and skip this portion on importing/exporting data.
 
 
-```r
+``` r
 #accSIM30 <- acc_RDS
 #or
 #accSIM30 <- acc_csv
@@ -294,7 +279,7 @@ This lesson's exploration of the data is designed to introduce multiple tools fo
 The *aggregate()* function lets R know we want output by a grouping variable. We then list the variable of interest, a tilda (I think of the word "by"), and then the grouping variable (I think "Accurate by COND"). Finally we list the dataframe and the statistic (e.g., mean or standard deviation). R is case sensitive -- so check your capitalization if your code fails to execute.
 
 
-```r
+``` r
 aggregate(Accurate ~ COND, accSIM30, mean)
 ```
 
@@ -305,7 +290,7 @@ aggregate(Accurate ~ COND, accSIM30, mean)
 3    High 1.152815
 ```
 
-```r
+``` r
 aggregate(Accurate ~ COND, accSIM30, sd)
 ```
 
@@ -321,9 +306,8 @@ Inspection of the means and standard deviations shows that the racially loaded *
 Graphing data is a best practice for early exploration and inspection of the data. In ANOVA models the boxplot is especially useful. The *ggpubr* package offers terrific options. After calling *ggpubr::ggboxplot()*, we list the data frame and name the x and y variables. That would be sufficient to produce a simple boxplot. The "add = jitter" command will plot each individual case, but "jitter" them to the right and left such that they are not overlapping and we can see all scores. For fun I added some color. 
 
 
-```r
-ggpubr::ggboxplot(accSIM30, x = "COND", y = "Accurate", add = "jitter",
-    color = "COND", )
+``` r
+ggpubr::ggboxplot(accSIM30, x = "COND", y = "Accurate", add = "jitter", color = "COND",)
 ```
 
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-15-1.png)<!-- -->
@@ -387,7 +371,7 @@ Let's take a moment to *hand-calculate* $SS_{T}$. Not to worry -- we'll get R to
 Our grand (i.e., overall) mean is 
 
 
-```r
+``` r
 GrandMean <- mean(accSIM30$Accurate)
 GrandMean
 ```
@@ -397,7 +381,7 @@ GrandMean
 ```
 Subtracting the grand mean from each Accurate rating yields a mean difference. In the script below I have used the *mutate()* function from the *dplyr* package (a part of the *tidyverse*) to  created a new variable (" m_dev") in the dataframe. The *tidyverse* package is one of the few exceptions that I will open via the library. This is because we need it if we are going to use the pipe (%>%) to string parts of our script together.
 
-```r
+``` r
 library(tidyverse)
 
 accSIM30 <- accSIM30 %>% 
@@ -418,7 +402,7 @@ head(accSIM30)
 Pop quiz: What's the sum of our new *m_dev* variable? Let's check.
 
 
-```r
+``` r
 mean(accSIM30$m_dev)
 ```
 
@@ -430,7 +414,7 @@ Unless you run the script at the top of this document ("options(scipen=999)"), R
 Back to the point of sums of squares total, the sum of deviations around the grand mean will always be zero. To make them useful, we must square them:
 
 
-```r
+``` r
 accSIM30 <- accSIM30 %>% 
   dplyr::mutate(m_devSQ = m_dev^2)
 
@@ -450,7 +434,7 @@ head(accSIM30)
 If we sum the squared mean deviations we will obtain the total variance (sums of squares total):
 
 
-```r
+``` r
 SST <- sum(accSIM30$m_devSQ)
 SST
 ```
@@ -480,7 +464,7 @@ To calculate this, we start with the grand mean (previously calculated): 1.603.
 
 We also estimate the group means. The script below provides the formula, the dataset, and the particular statistic (mean) that we want calculated.
 
-```r
+``` r
 GroupMeans <- aggregate(Accurate ~ COND, accSIM30, mean)
 GroupMeans
 ```
@@ -494,7 +478,7 @@ GroupMeans
 
 This script is used to extract the specific means so that I can demonstrate the formulas with the words/terms as well as the numbers. 
 
-```r
+``` r
 ControlMean <- (GroupMeans$Accurate[1])
 ControlMean
 ```
@@ -503,7 +487,7 @@ ControlMean
 [1] 1.756195
 ```
 
-```r
+``` r
 LowMean <- (GroupMeans$Accurate[2])
 LowMean
 ```
@@ -512,7 +496,7 @@ LowMean
 [1] 1.900116
 ```
 
-```r
+``` r
 HighMean <- (GroupMeans$Accurate[3])
 HighMean
 ```
@@ -521,9 +505,8 @@ HighMean
 [1] 1.152815
 ```
 
-```r
-nGroup <- accSIM30 %>%
-    count(COND)
+``` r
+nGroup <- accSIM30 %>% count(COND)
 nGroup
 ```
 
@@ -534,7 +517,7 @@ nGroup
 3    High 30
 ```
 
-```r
+``` r
 nControl <- nGroup$n[1]
 nControl
 ```
@@ -543,7 +526,7 @@ nControl
 [1] 30
 ```
 
-```r
+``` r
 nLow <- nGroup$n[2]
 nLow
 ```
@@ -552,8 +535,8 @@ nLow
 [1] 30
 ```
 
-```r
-nHigh <- nGroup$n[3]
+``` r
+nHigh<- nGroup$n[3]
 nHigh
 ```
 
@@ -562,10 +545,9 @@ nHigh
 ```
 This formula occurs in three chunks, representing the control, low, and high racial loading conditions. In each of the chunks we have the $n$, group mean, and grand mean.
 
-```r
-# Calculated by using object names from our calculations
-SSM <- nControl * (ControlMean - GrandMean)^2 + nLow * (LowMean - GrandMean)^2 +
-    nHigh * (HighMean - GrandMean)^2
+``` r
+#Calculated by using object names from our calculations
+SSM <- nControl*(ControlMean - GrandMean)^2 + nLow*(LowMean - GrandMean)^2 + nHigh*(HighMean - GrandMean)^2
 SSM
 ```
 
@@ -573,17 +555,17 @@ SSM
 [1] 9.432402
 ```
 
-```r
-# calculated by specifying the actual values from our calculations
-30 * (1.756 - 1.603)^2 + 30 * (1.9 - 1.603)^2 + 30 * (1.153 - 1.603)^2
+``` r
+#calculated by specifying the actual values from our calculations
+30*(1.756 - 1.603)^2 + 30*(1.900 - 1.603)^2 + 30*(1.153 - 1.603)^2
 ```
 
 ```
 [1] 9.42354
 ```
 
-```r
-# Both result in the same
+``` r
+#Both result in the same
 ```
 This value, $SS_M$ is the amount of variance accounted for by the model; that is, the the amount of variance accounted for by the grouping variable/factor, COND. Degrees of freedom for $SS_M$ is always one less than the number of elements (e.g., groups) used in its calculation ($k-1$). Because we have three groups, our degrees of freedom for the model is two.
 
@@ -599,8 +581,8 @@ Below is another approach to calculating$SS_R$. In this one the variance for eac
 $$SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1))$$
 Again, the formula is in three chunks -- but this time the calculations are *within-group*. We need the variance (the standard deviation squared) for the calculation.
 
-```r
-SDs <- aggregate(Accurate ~ COND, accSIM30, sd)
+``` r
+SDs <- aggregate (Accurate ~ COND, accSIM30, sd)
 SDs
 ```
 
@@ -613,7 +595,7 @@ SDs
 
 This script is used to create objects for each of the SDs associated with the grouping level. I created this so that I could demonstrate the formulas with words/terms as well as with numbers. 
 
-```r
+``` r
 sdControl <- (SDs$Accurate[1])
 sdControl
 ```
@@ -622,7 +604,7 @@ sdControl
 [1] 0.4603964
 ```
 
-```r
+``` r
 sdLow <- (SDs$Accurate[2])
 sdLow
 ```
@@ -631,7 +613,7 @@ sdLow
 [1] 0.6301138
 ```
 
-```r
+``` r
 sdHigh <- (SDs$Accurate[3])
 sdHigh
 ```
@@ -644,7 +626,7 @@ sdHigh
 
 Early in statistics training the difference between standard deviation (*s* or $\sigma_{n-1}$) and variance($s^{2}$ or $\sigma^{2}$) can be confusing. This calculation demonstrates the relationship between standard deviation and variance. Variance is the standard deviation, squared.
 
-```r
+``` r
 #when squared, the standard deviation of the control group, 
 #hould equal the variance reported in the next chunk
 sdControl^2
@@ -655,8 +637,8 @@ sdControl^2
 ```
 
 
-```r
-VARs <- aggregate(Accurate ~ COND, accSIM30, var)
+``` r
+VARs <- aggregate (Accurate ~ COND, accSIM30, var)
 VARs
 ```
 
@@ -669,7 +651,7 @@ VARs
 
 This script is used to extract the variances for each level of the grouping variable. I created them to be able to demonstrate the later formulas with words/terms as well as numbers.
 
-```r
+``` r
 varControl <- (VARs$Accurate[1])
 varControl
 ```
@@ -678,7 +660,7 @@ varControl
 [1] 0.2119648
 ```
 
-```r
+``` r
 varLow <- (VARs$Accurate[2])
 varLow
 ```
@@ -687,7 +669,7 @@ varLow
 [1] 0.3970434
 ```
 
-```r
+``` r
 varHigh <- (VARs$Accurate[3])
 varHigh
 ```
@@ -699,15 +681,14 @@ varHigh
 We will use the second formula to calculate $SS_R$. For each of the groups, we multiply the variance by the respective degrees of freedom for the group (*n* - 1).
 
 
-```r
-# Calculated by using object names from our calculations
-SSR <- varControl * (nControl - 1) + varLow * (nLow - 1) + varHigh * (nHigh -
-    1)
+``` r
+#Calculated by using object names from our calculations
+SSR <- varControl*(nControl-1) + varLow*(nLow-1) + varHigh*(nHigh-1)
 ```
 
 
-```r
-# Re-calculated by specifying the actual values from our calculations
+``` r
+#Re-calculated by specifying the actual values from our calculations
 SSR
 ```
 
@@ -715,16 +696,16 @@ SSR
 [1] 30.24578
 ```
 
-```r
-0.212 * (30 - 1) + 0.397 * (30 - 1) + 0.434 * (30 - 1)
+``` r
+0.212*(30-1) + 0.397*(30-1) + 0.434*(30-1)
 ```
 
 ```
 [1] 30.247
 ```
 
-```r
-# Both result in the same
+``` r
+#Both result in the same
 ```
 
 The value for our $SS_R$ is 30.246. Degrees of freedom for the residual is $df_T - df_M$. 
@@ -742,7 +723,7 @@ In case it is not clear:
 $SS_T$ = 9.432 + 30.246
 
 
-```r
+``` r
 #calculated with object names 
 SSM + SSR
 ```
@@ -752,7 +733,7 @@ SSM + SSR
 ```
 
 
-```r
+``` r
 #Re-calculated with the actual values
 9.432 + 30.247
 ```
@@ -761,7 +742,7 @@ SSM + SSR
 [1] 39.679
 ```
 
-```r
+``` r
 #Both result in the same
 ```
 Our SST, calculated from above was 39.678.
@@ -780,7 +761,7 @@ Regarding the calculation of our model mean squares:
 * Therefore, $MS_M=$is:
 
 
-```r
+``` r
 #mean squares for the model
 #calculated with object names
 MSM <- SSM/dfM
@@ -792,7 +773,7 @@ MSM
 ```
 
 
-```r
+``` r
 #Re-calculated with actual values 
 9.432/2
 ```
@@ -801,7 +782,7 @@ MSM
 [1] 4.716
 ```
 
-```r
+``` r
 #Both result in the same
 ```
 
@@ -813,7 +794,7 @@ Regarding the calculation of our model residual squares:
 * Therefore, $MS_R$ is:
 
 
-```r
+``` r
 #mean squares for the residual
 #calculated with object names 
 MSR <- SSR/ dfR
@@ -824,7 +805,7 @@ MSR
 [1] 0.3476526
 ```
 
-```r
+``` r
 #calculated with actual values
 30.247/87
 ```
@@ -833,7 +814,7 @@ MSR
 [1] 0.3476667
 ```
 
-```r
+``` r
 #Both result in the same
 ```
 
@@ -849,7 +830,7 @@ Regarding the calculation of our *F*-ratio:
 * Therefore, $F$ is:
 
 
-```r
+``` r
 #calculated with object names 
 Fratio <- MSM / MSR
 Fratio
@@ -860,7 +841,7 @@ Fratio
 ```
 
 
-```r
+``` r
 #calculated with actual values
 #Both result in the same
 4.716/0.348
@@ -905,8 +886,8 @@ Our example has 2 (numerator) and 87 (denominator) degrees of freedom. Rolling d
 
 We can also use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 
-```r
-qf(0.05, 2, 87, lower.tail = FALSE)
+``` r
+qf(.05, 2, 87, lower.tail=FALSE)
 ```
 
 ```
@@ -942,9 +923,10 @@ All statistical tests have some assumptions about the data. The one-way ANOVA ha
 From the *psych* package, the *describe()* function can be used to provide descriptive statistics (or, "descriptives") of continuously scaled variables (i.e., variables measured on the interval or ratio scale). In this simple example, we can specify the specific continuous, DV.
 
 
-```r
-# we name the function in parentheses we list data source
-psych::describe(accSIM30$Accurate, type = 1)  #the type=1 argument provides the specific skew and kurtosis values for which Kline's recommendations are intended
+``` r
+#we name the function
+#in parentheses we list data source
+psych::describe(accSIM30$Accurate, type=1) #the type=1 argument provides the specific skew and kurtosis values for which Kline's recommendations are intended
 ```
 
 ```
@@ -955,25 +937,16 @@ X1    1 90  1.6 0.67   1.73    1.62 0.68   0   3     3 -0.29    -0.43 0.07
 If we want descriptives for each level of the grouping variable (factor), we can use the *describeBy()* function of the *psych* package. The order of entry within the script is the DV followed by the grouping variable (IV). In our research vignette below, I mentally interpret the *Accurate ~ COND* formula as, "Accurate by condition."
 
 
-```r
-# It is unnecessary to create an object, but an object allows you to
-# do cool stuff, like write it to a .csv file and use that as a basis
-# for APA style tables In this script we can think 'Accurate by COND'
-# meaning that the descriptives for accuracy will be grouped by COND
-# which is a categorical variable mat = TRUE presents the output in
-# matrix (table) form digits = 3 rounds the output to 3 decimal
-# places data = accSIM30 is a different (I think easier) way to
-# identify the object that holds the dataframe
-des.mat <- psych::describeBy(Accurate ~ COND, mat = TRUE, digits = 3, data = accSIM30,
-    type = 1)
-# Note. Recently my students and I have been having intermittent
-# struggles with the describeBy function in the psych package. We
-# have noticed that it is problematic when using .rds files and when
-# using data directly imported from Qualtrics. If you are having
-# similar difficulties, try uploading the .csv file and making the
-# appropriate formatting changes. displays the matrix object that we
-# just created
-des.mat
+``` r
+#It is unnecessary to create an object, but an object allows you to do cool stuff, like write it to a .csv file and use that as a basis for APA style tables
+#In this script we can think "Accurate by COND" meaning that the descriptives for accuracy will be grouped by COND which is a categorical variable
+#mat = TRUE presents the output in matrix (table) form
+#digits = 3 rounds the output to 3 decimal places
+#data = accSIM30 is a different (I think easier) way to identify the object that holds the dataframe
+des.mat <- psych::describeBy (Accurate ~ COND, mat=TRUE, digits=3, data=accSIM30, type=1) 
+#Note. Recently my students and I have been having intermittent struggles with the describeBy function in the psych package. We have noticed that it is problematic when using .rds files and when using data directly imported from Qualtrics. If you are having similar difficulties, try uploading the .csv file and making the appropriate formatting changes.
+#displays the matrix object that we just created
+des.mat 
 ```
 
 ```
@@ -987,10 +960,9 @@ Accurate2 2.345 -0.398   -0.288 0.115
 Accurate3 2.669  0.218   -0.528 0.120
 ```
 
-```r
-# optional to write it to a .csv file for further manipulation and
-# formatting for a paper or presentation
-write.csv(des.mat, file = "Table1.csv")
+``` r
+#optional to write it to a .csv file for further manipulation and formatting for a paper or presentation
+write.csv(des.mat, file="Table1.csv") 
 ```
 
 Skew and kurtosis are one way to evaluate whether or not data are normally distributed. When we use the "type=1" argument, the skew and kurtosis indices in the *psych* package can be interpreted according to Kline's [-@kline_data_2016] guidelines. Regarding skew, values greater than the absolute value of 3.0 are generally considered "severely skewed." Regarding kurtosis, "severely kurtotic" is argued to be anywhere greater 8 to 20. Kline recommended using a conservative threshold of the absolute value of 10.
@@ -998,11 +970,11 @@ Skew and kurtosis are one way to evaluate whether or not data are normally distr
 The *Shapiro-Wilk* test evaluates the hypothesis that the distribution of the data deviates from a comparable normal distribution. If the test is non-significant (*p* >.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (*p* < .05), then the sample distribution is significantly different from a normal distribution. The *rstatix* package can conduct this test for us.
 
 
-```r
+``` r
 library(tidyverse)
 shapiro <- accSIM30 %>%
-    group_by(COND) %>%
-    rstatix::shapiro_test(Accurate)
+  group_by(COND) %>%
+  rstatix::shapiro_test(Accurate)
 shapiro
 ```
 
@@ -1022,7 +994,7 @@ Especially in the more simple "ANOVA's" I like this form of the Shapiro-Wilk tes
 Although that model (a regression model) has information about our primary statistic, we are using it to carefully investigate the assumption of normality. One product of the analysis is *residuals*. Residuals are the unexplained variance in the outcome (or dependent) variable after accounting for the predictor (or independent) variable. When we plot these "leftovers" against the values of x, we can visualize the fit of the model in a QQ plot. The dots represent the residuals. When they are relatively close to the line they not only suggest good fit of the model, but we know they are small and evenly distributed around zero (i.e., normally distributed). 
 
 
-```r
+``` r
 res_model <- lm(Accurate ~ COND, data = accSIM30)
 ggpubr::ggqqplot(residuals(res_model))
 ```
@@ -1031,7 +1003,7 @@ ggpubr::ggqqplot(residuals(res_model))
 We can also use the model in a Shapiro-Wilk test. As before, we want a non-significant result.
 
 
-```r
+``` r
 rstatix::shapiro_test(residuals(res_model))
 ```
 
@@ -1053,9 +1025,9 @@ If our data pointed to significant violations of normality, we could consider id
 We can think of outlier identification in a couple of ways. First, we might look at dependent variable across the entire dataset. That is, without regard to the levels of the grouping variable. We can point *rstatix::identify_outliers()* to the data.
 
 
-```r
-accSIM30 %>%
-    rstatix::identify_outliers(Accurate)
+``` r
+accSIM30%>%
+  rstatix::identify_outliers(Accurate)
 ```
 
 ```
@@ -1067,10 +1039,10 @@ accSIM30 %>%
 The output "0 rows" is not an error. It means if we consider the distribution of the Accurate variable as a whole, there are no outliers.  Let's re-run the code, this time requiring it to look within each of the grouping levels of the condition variable.
 
 
-```r
-accSIM30 %>%
-    group_by(COND) %>%
-    rstatix::identify_outliers(Accurate)
+``` r
+accSIM30%>%
+  group_by(COND)%>%
+  rstatix::identify_outliers(Accurate)
 ```
 
 ```
@@ -1086,8 +1058,8 @@ This output tells us that in the low-racial loading condition there are two case
 Let's say that, after very careful consideration, we decided to remove the case with ID = 31. We could use *dplyr::filter()* to do so. In this code, the *filter()* function locates all the cases where ID = 31. The exclamation point that precedes the equal sign indicates that the purpose is to remove the case. 
 
 
-```r
-# accSIM30 <- dplyr::filter (accSIM30, ID != '31')
+``` r
+#accSIM30 <- dplyr::filter (accSIM30, ID != "31")
 ```
 
 Once executed, we can see that this case is no longer in the dataframe. Although I demonstrated this in the accompanying lecture, I have hashtagged out the command because I would not delete the case. If you already deleted the case, you can return the hashtag and re-run all the code up to this point.
@@ -1096,7 +1068,7 @@ Once executed, we can see that this case is no longer in the dataframe. Although
 
 The Levene's test evaluates the ANOVA assumption that variances of the dependent variable for each level of the independent variable are similarly distributed. We want this to be non-significant ($p$ > .05). If violated, we need to use an ANOVA test that is "robust to the violation of the homogeneity of variance" (e.g., Welch's oneway).
 
-```r
+``` r
 rstatix::levene_test(accSIM30, Accurate ~ COND)
 ```
 
@@ -1123,8 +1095,8 @@ Having met all the assumptions, we are now ready to calculate the omnibus $F$ te
 We will use *rstatix::anova_test* to calculate the omnibus. In script we must point to the data and provide the formula (Accurate ~ COND). By specifying "detailed=TRUE" we get can view our sums of squares values. When we run this test, we will save all of the results in an object. We can name this object anything -- I will call it *omnibus1w*. When we create objects, we have to re-type the name of the object below our formula in order for the results to display. Objects are incredibly useful because we can later use them in follow-up tests, in creating figures, and in exporting results that we can use outside of R (e.g., to create tables for papers or presentations).
 
 
-```r
-omnibus1w <- rstatix::anova_test(accSIM30, Accurate ~ COND, detailed = FALSE)
+``` r
+omnibus1w <- rstatix::anova_test(accSIM30, Accurate ~ COND, detailed=FALSE)
 omnibus1w
 ```
 
@@ -1151,7 +1123,7 @@ $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 Hand calculation, then, is straightforward.:
 
 
-```r
+``` r
 9.432/(9.432 + 30.246)
 ```
 
@@ -1183,7 +1155,7 @@ Next, we determine how many pairwise comparisons that we are going to conduct. I
 In the current research vignette, the COND factor had three levels: control, low, high. Thus, if we wanted to conduct all possible comparisons we would determine $N_{pc}$ this way:
 
 
-```r
+``` r
 3*(3-1)/2
 ```
 
@@ -1196,7 +1168,7 @@ Subsequently, we would compute a new alpha that would be used for each compariso
 In the current research vignette we would calculate it this way:
 
 
-```r
+``` r
 .05/3
 ```
 
@@ -1227,9 +1199,8 @@ By specifying the *formula* of the ANOVA, the *rstatix::t_test()* function will 
 We will request the traditional Bonferroni using the *p.adjust.method*. The *rstatix::t_test()* offers multiple options for adjusting the *p* values.
 
 
-```r
-ttest <- rstatix::t_test(accSIM30, Accurate ~ COND, p.adjust.method = "bonferroni",
-    detailed = TRUE)
+``` r
+ttest <- rstatix::t_test(accSIM30, Accurate ~ COND, p.adjust.method="bonferroni", detailed=TRUE)
 ttest
 ```
 
@@ -1254,21 +1225,14 @@ An APA style results section of this follow-up might read like this:
 Below is an augmentation of the figure that appeared at the beginning of the chapter. We can use the objects from the omnibus tests (named, "omnibus1w") and post hoc pairwise comparisons ("ttest") to add the ANOVA string and significance bars to the figure. Although they may not be appropriate in every circumstance, such detail can assist the figure in conveying maximal amounts of information.
 
 
-```r
-# updates the ttest object so that it will auto-compute p-value
-# positions in the graph
-ttest <- ttest %>%
-    rstatix::add_xy_position(x = "COND")
+``` r
+#updates the ttest object so that it will auto-compute p-value positions in the graph
+ttest <- ttest %>% rstatix::add_xy_position(x = "COND") 
 
-# our original plot
-Fig1 <- ggpubr::ggboxplot(accSIM30, x = "COND", y = "Accurate", add = "jitter",
-    color = "COND", title = "Figure 1. Accuracy Perception as a Function of Racial Loading Condition") +
-    ggpubr::stat_pvalue_manual(ttest, label = "p.adj.signif", tip.length = 0.02,
-        hide.ns = TRUE, y.position = c(3.25, 3.75))
-# tip.length instructs how long to make the dropped edges of the
-# significance bar; hide.ns will suppress or display non-significant
-# bars; step.increase will separate the bars from each other so that
-# they do not overlap
+#our original plot
+Fig1 <- ggpubr::ggboxplot(accSIM30, x = "COND", y = "Accurate", add = "jitter", color = "COND", title = "Figure 1. Accuracy Perception as a Function of Racial Loading Condition") + 
+ggpubr::stat_pvalue_manual(ttest, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(3.25, 3.75))  
+#tip.length instructs how long to make the dropped edges of the significance bar; hide.ns will suppress or display non-significant bars; step.increase will separate the bars from each other so that they do not overlap
 
 Fig1
 ```
@@ -1297,9 +1261,8 @@ Planned contrasts involve further considerations regarding the *partitioning of 
 If the researcher chooses this route, they must decide which two comparisons will best tell the story of the data as it relates to the hypotheses and a priori theory. I will compare differences between the no and low racial loading conditions, and then between low and high racial loading conditions. I have chosen to not adjust the *p* values. In the results write-up, I will reference the LSD method as my rationale for this approach.
 
 
-```r
-contr2 <- rstatix::pairwise_t_test(accSIM30, Accurate ~ COND, comparison = list(c("Control",
-    "Low"), c("Low", "High")), p.adjust.method = "none", detailed = TRUE)
+``` r
+contr2 <- rstatix::pairwise_t_test(accSIM30, Accurate ~ COND, comparison = list(c("Control", "Low"), c("Low", "High")), p.adjust.method="none", detailed=TRUE)
 contr2
 ```
 
@@ -1319,20 +1282,15 @@ An APA style results section of this follow-up might read like this:
 Below is an augmentation of the figure that appeared at the beginning of the chapter. We can use the previously created objects from the omnibus test ("omnibus1w") and post hoc pairwise comparisons ("ttest") to add the ANOVA string and significance bars to the figure. Although they may not be appropriate in every circumstance, such detail can assist the figure in conveying maximal amounts of information.
 
 
-```r
-# updates the ttest object so that it will autocompute p-value
-# positions in the graph
-contr2 <- contr2 %>%
-    rstatix::add_xy_position(x = "COND")
+``` r
+#updates the ttest object so that it will autocompute p-value positions in the graph
+contr2 <- contr2 %>% rstatix::add_xy_position(x = "COND") 
 
-# our original plot
-ggpubr::ggboxplot(accSIM30, x = "COND", y = "Accurate", add = "jitter",
-    color = "COND", title = "Figure 2. Accuracy Perception as a Function of Racial Loading Condition") +
+#our original plot
+ggpubr::ggboxplot(accSIM30, x = "COND", y = "Accurate", add = "jitter", color = "COND", title = "Figure 2. Accuracy Perception as a Function of Racial Loading Condition") + 
 
-# retrieves information from the contr2 object; label tells the
-# figure to use the 'p.adj.signif' column in the contr2 output
-ggpubr::stat_pvalue_manual(contr2, label = "p.adj.signif", tip.length = 0.01,
-    hide.ns = TRUE, y.position = c(3.3))  #tip.length instructs how long to make the drop edges of the significance bar; hide.ns will suppress or display non-significant bars; step.increase will separate the bars from each other so that they do not overlap
+#retrieves information from the contr2 object; label tells the figure to use the "p.adj.signif" column in the contr2 output
+ggpubr::stat_pvalue_manual(contr2, label = "p.adj.signif", tip.length = 0.01, hide.ns = TRUE, y.position = c(3.3)) #tip.length instructs how long to make the drop edges of the significance bar; hide.ns will suppress or display non-significant bars; step.increase will separate the bars from each other so that they do not overlap
 ```
 
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
@@ -1351,7 +1309,7 @@ Especially in scenarios where there are no, low and high dose (or exposure) cond
 To work toward our orthogonal contrasts, we first need to create an object ("omnibus1w_b") from a one-way ANOVA test using the base R, *aov()* function. You can see that the script involves the same elements as in *rstatix*.  We can view the results byusing the *summary()* function.
 
 
-```r
+``` r
 omnibus1w_b <- aov(Accurate ~ COND, data = accSIM30)
 summary(omnibus1w_b)
 ```
@@ -1365,7 +1323,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 This foray into orthogonal contrasts gives us a peek into multiple regression. Let's take a peek at "regression results" from our ANOVA model.
 
-```r
+``` r
 summary.lm(omnibus1w_b)
 ```
 
@@ -1409,16 +1367,15 @@ This is sensible because we likely hypothesize that any degree of racially loade
 
 In the second step we must bind the contrasts together and check the output to ensure that we've mapped them correctly. 
 
-```r
-# Contrast1 compares Control against the combined effects of Low and
-# High.
-contrast1 <- c(-2, 1, 1)
+``` r
+#Contrast1 compares Control against the combined effects of Low and High.
+contrast1 <- c(-2,1,1)
 
-# Contrast2 excludes Control; compares Low to High.
-contrast2 <- c(0, -1, 1)
+#Contrast2 excludes Control; compares Low to High.
+contrast2 <- c(0,-1,1)
 
-# binding the contrasts together
-contrasts(accSIM30$COND) <- cbind(contrast1, contrast2)
+#binding the contrasts together
+contrasts(accSIM30$COND)<-cbind(contrast1, contrast2)
 accSIM30$COND
 ```
 
@@ -1448,8 +1405,8 @@ Thinking back to the hand-calculations and contrast mapping, the table of weight
 
 Finally, we create a new *aov()* model and apply the contrasts.
 
-```r
-# create a new objects
+``` r
+#create a new objects
 accPlanned <- aov(Accurate ~ COND, data = accSIM30)
 summary.lm(accPlanned)
 ```
@@ -1490,7 +1447,7 @@ Polynomial contrasts let us see if there is a linear (or curvilinear) pattern to
 To detect a trend, the data must be coded in an ascending order and the comparison needs to be sensible and theoretically defensible. Our data has a theoretically ordered effect (control/none, low, and high racially loaded conditions). Recall that we created an ordered factor when we imported the data. However, we can use use the *contrasts()* function from base R to verify the order.
 
 
-```r
+``` r
 contrasts(accSIM30$COND)
 ```
 
@@ -1506,9 +1463,9 @@ In a polynomial analysis, the statistical analysis looks across the ordered mean
 To the best of my knowledge, *rstatix* does not offer these contrasts. We can fairly easily make these calculations in base R by creating a set of polynomial contrasts. In the prior example we specified our contrasts through coding. Here we can the *contr.poly(3)* function. The "3" lets R know that there are three levels in COND. The *aov()* function will automatically test for quadratic (one hump) and linear (straight line) trends.
 
 
-```r
-contrasts(accSIM30$COND) <- contr.poly(3)
-accTrend <- aov(Accurate ~ COND, data = accSIM30)
+``` r
+contrasts(accSIM30$COND)<-contr.poly(3)
+accTrend<-aov(Accurate ~ COND, data = accSIM30)
 summary.lm(accTrend)
 ```
 
@@ -1558,7 +1515,7 @@ Although I would report either the post hoc or planned contrasts, I will sometim
 The *rstatix::welch_anova_test* produces Welch's *F* -- a test that is robust to violation of the homogeneity of variance assumption. The Welch's approach  adjusts the residual degrees of freedom used to produce the Welch's *F*-ratio. The format of the argument is quite similar to what we have been doing all along.
 
 
-```r
+``` r
 omnibus_w <- rstatix::welch_anova_test(accSIM30, Accurate ~ COND)
 omnibus_w
 ```
@@ -1575,9 +1532,8 @@ Note that the denominator *df* is now 56.34 (not 87) and *p* value is a little l
 In terms of follow-up to the omnibus test, *rstatix* includes Games-Howell pairwise comparisons and pairwise t-tests. Neither of these follow-up options requires the assumption of equal variance. Consequently either could be used as a follow-up. Here's an example from the Games-Howell test.
 
 
-```r
-gw_pwc <- rstatix::games_howell_test(accSIM30, Accurate ~ COND, conf.level = 0.95,
-    detailed = TRUE)
+``` r
+gw_pwc <- rstatix::games_howell_test(accSIM30, Accurate ~ COND, conf.level = 0.95, detailed=TRUE)
 gw_pwc
 ```
 
@@ -1600,12 +1556,10 @@ All that's left to do to decide which set of follow-up tests to report and assem
 The package *apaTables* can produce journal-ready tables. Deciding what to report in text and table is important. First, I create Table 1 with means and standard deviations (plus a 95% confidence interval around each mean).
 
 
-```r
-# table.number = 1 assigns a table number to the top of the table
-# filename = 'Table1.doc' writes the table to Microsoft Word and puts
-# it in your project folder
-apaTables::apa.1way.table(iv = COND, dv = Accurate, show.conf.interval = TRUE,
-    data = accSIM30, table.number = 1, filename = "Table1.doc")
+``` r
+#table.number = 1 assigns a table number to the top of the table 
+#filename = "Table1.doc" writes the table to Microsoft Word and puts it in your project folder
+apaTables::apa.1way.table(iv=COND, dv=Accurate, show.conf.interval = TRUE, data=accSIM30, table.number = 1, filename = "Table1.doc")
 ```
 
 ```
@@ -1630,9 +1584,9 @@ have caused a sample mean (Cumming, 2014).
 Next, I create Table 2 with source table for the one-way ANOVA. The result can be edited in Microsoft Word for the paper or presentation (e.g., I would replace the partial-eta squared with $\eta^2$). One trick about *apaTables::aov* is that it requires an object from the base R's *aov* function. Recall that we used this in our contrasts. None-the-less, I will repeat it in this code.
 
 
-```r
+``` r
 omnibus1w_b <- aov(Accurate ~ COND, data = accSIM30)
-apaTables::apa.aov.table(omnibus1w_b, table.number = 2, filename = "Table2.doc")
+apaTables::apa.aov.table (omnibus1w_b, table.number = 2, filename = "Table2.doc")
 ```
 
 ```
@@ -1661,7 +1615,7 @@ With table and figure at hand, here is how I would write up these results:
 >Results of the omnibus ANOVA indicated a significant effect of COND on accuracy perception $(F[2,87] = 13.566, p < .001, \eta ^{2} = 0.238$). We followed up the significant omnibus with a series of post hoc, pairwise comparisons. We controlled for Type I error with the traditional Bonferroni adjustment. Results suggested that there were statistically significant differences between the control and high ($M_{diff} = 0.601, p < .001$) and low and high ($M_{diff} = 0.75, p < 0.001$) conditions, but not  control and low conditions ($M_{diff} = -.14, p = 0.951$). Consequently, it appeared that only the highest degree of racial loading (e.g., "You speak English well for an Asian") resulted in the decreased perceptions of accuracy of impressions from the confederate. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
 
 
-```r
+``` r
 Fig1
 ```
 
@@ -1704,8 +1658,8 @@ In the script below, we simply add our values. So long as we have four values, t
 Because this calculator requires the effect size in the metric of Cohen's *f* (this is not the same as the *F* ratio), we need to convert it. The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
 
-```r
-effectsize::eta2_to_f(0.238)
+``` r
+effectsize::eta2_to_f(.238) 
 ```
 
 ```
@@ -1714,8 +1668,8 @@ effectsize::eta2_to_f(0.238)
 We simply plug this value into the "f =".
 
 
-```r
-pwr::pwr.anova.test(k = 3, f = 0.5589, sig.level = 0.05, power = 0.8)
+``` r
+pwr::pwr.anova.test (k = 3, f = .5589, sig.level = .05, power = .80)
 ```
 
 ```
@@ -1736,8 +1690,8 @@ This result suggested that we would need 11 people per group.
 If we were unsure about what to expect in terms of our results, we could take a guess. I like to be on the safe(r) side and go with a smaller effect. What would happen if we had a Cohen's *f* that represented a small effect?
 
 
-```r
-pwr::pwr.anova.test(k = 3, f = 0.1, sig.level = 0.05, power = 0.8)
+``` r
+pwr::pwr.anova.test (k = 3, f = .1, sig.level = .05, power = .80)
 ```
 
 ```
@@ -1763,7 +1717,7 @@ Doctoral student (and student in one of my classes) Emi Ichimura and I were able
 Among others, we asked:
 
 * What were unexpected challenges to the research method or statistical analysis?
-* What were the experiences of the confederates as they offered the statements in teh racial loading conditions? And in the debriefings, did the research participants share anything more anecdotally in their experiences as research participants?
+* What were the experiences of the confederates as they offered the statements in the racial loading conditions? And in the debriefings, did the research participants share anything more anecdotally in their experiences as research participants?
 * What are your current ideas about interventions or methods for mitigating the harm caused by racial microaggressions?
 * How do you expect the article to change science, practice, and/or advocacy?
 
@@ -1852,30 +1806,29 @@ This is not a variable that was included in the dataset posted to the OSF reposi
 #### Simulate (or import) and format data {-}  
 
 
-```r
+``` r
 big <- readRDS("ReC.rds")
 ```
 
 This df includes course evaluations from ANOVA, multivariate, and psychometrics. To include up to three evaluations per student would violate the assumption of independence, therefore, I will only select the students in ANOVA course.
 
 
-```r
-big <- subset(big, Course == "ANOVA")
+``` r
+big <- subset(big, Course == "ANOVA") 
 ```
 
 Let's first create the "Stage" variable that represents the three levels of transition.
 
 The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.
 
-```r
-big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition",
-    "First"), to = c("Stable", "Transition", "Resettled"))
+``` r
+big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition", "First"), to = c("Stable", "Transition", "Resettled"))
 ```
 
 Let's check the structure:
 
 
-```r
+``` r
 str(big$Stage)
 ```
 
@@ -1886,38 +1839,32 @@ str(big$Stage)
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
-```r
-# Creates a list of the variables that belong to that scale
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
+``` r
+#This code was recently updated and likely differs from the screencasted lecture
 
-# Calculates a mean if at least 75% of the items are non-missing;
-# adjusts the calculating when there is missingness
-big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
-# If the above code doesn't work use the one below; the difference is
-# the two periods in front of the variable list big$TradPed <-
-# sjstats::mean_n(big[, ..TradPed_vars], .75)
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+big$TradPed <- datawizard::row_means(big, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 With our variables properly formatted, let's trim it to just the variables we need.
 
-```r
-OneWay_df <- (dplyr::select(big, Stage, TradPed))
+``` r
+OneWay_df <-(dplyr::select (big, Stage, TradPed))
 ```
 
 Although we would handle missing data more carefully in a "real study," I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
 
 
-```r
+``` r
 OneWay_df <- na.omit(OneWay_df)
 ```
 
 Although the assignment doesn't require it, I will make a quick plot to provide a visualizaiton of our analysis.
 
 
-```r
+``` r
 ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
-    color = "Stage", title = "Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition")  #
+    color = "Stage", title = "Figure 1. Evaluations of Traditional Pedagogy as a Result of Transition") #
 ```
 
 ![](07-OnewayANOVA_files/figure-docx/unnamed-chunk-157-1.png)<!-- -->
@@ -1928,9 +1875,8 @@ ggpubr::ggboxplot(OneWay_df, x = "Stage", y = "TradPed", add = "jitter",
 **Is the dependent variable normally distributed across levels of the factor?**
 
 
-```r
-psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df,
-    type = 1)
+``` r
+psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, type = 1)
 ```
 
 ```
@@ -1949,9 +1895,9 @@ We'll use Kline's (2016) threshholds of the absolute values of 3 (skew) and 10 (
 the Shapiro-wilk test is a formal assessment of normality. It is a 2-part test that begins with creating an ANOVA model from which we can extract residuals, then testing the residuals.  
 
 
-```r
+``` r
 TradPed_res <- lm(TradPed ~ Stage, data = OneWay_df)
-# TradPed_res
+#TradPed_res
 rstatix::shapiro_test(residuals(TradPed_res))
 ```
 
@@ -1966,7 +1912,7 @@ The Shapiro-Wilk test suggests that the our distribution of residuals is statist
 It is possible to plot the residuals to see how and where they deviate from the line.
 
 
-```r
+``` r
 ggpubr::ggqqplot(residuals(TradPed_res))
 ```
 
@@ -1978,10 +1924,10 @@ Ooof!  at the ends of the distribution they really deviate.
 The *rstatix::identify_outliers()* function identifies outliers and extreme outliers.
 
 
-```r
+``` r
 library(tidyverse)
 OneWay_df %>%
-    rstatix::identify_outliers(TradPed)
+  rstatix::identify_outliers(TradPed)
 ```
 
 ```
@@ -1999,7 +1945,7 @@ There are 4 cases identified with outliers; none of those is extreme. I also not
 We want the results of the Levene's homogeneity of variance test to be non-significant. This would support the notion that the TradPed variance is equivalent across the three stages of the transition.
 
 
-```r
+``` r
 rstatix::levene_test(OneWay_df, TradPed ~ Stage)
 ```
 
@@ -2021,7 +1967,7 @@ Before moving on, I will capture our findings in an APA style write-up of the te
 The *rstatix::anova_test()* function calculates the one-way ANOVA and includes the effect size, $\eta^2$ in the column, *ges*. 
 
 
-```r
+``` r
 omnibus1w <- rstatix::anova_test(OneWay_df, TradPed ~ Stage, detailed = FALSE)
 omnibus1w
 ```
@@ -2039,9 +1985,8 @@ The one-way ANOVA is statistically significant. This means that there should be 
 I will simply calculate post-hoc comparisons. That is, all possible pairwise comparisons. I will specify the traditional Bonferroni as the approach to managing Type I error.
 
 
-```r
-phoc <- rstatix::t_test(OneWay_df, TradPed ~ Stage, p.adjust.method = "bonferroni",
-    detailed = TRUE)
+``` r
+phoc <- rstatix::t_test(OneWay_df, TradPed ~ Stage, p.adjust.method = "bonferroni", detailed = TRUE)
 phoc
 ```
 
@@ -2071,9 +2016,8 @@ We used the Bonferroni. The Bonferroni divides the overall alpha (.05) by the nu
 >Results of the omnibus ANOVA indicated a statistically significant effect of stage on students assessments of traditional pedagogy, $F(2, 109) = 7.199, p = 0.001, \eta^2 = 0.117$. The effect size was medium-to-large. We followed up the significant omnibus with all possible pairwise comparisons. We controlled for Type I error with the traditional Bonferroni adjustment. Results suggested that there were statistically significant differences between the stable and transition stages $(Mdiff = 0.655, p = 0.003)$, but not between stable and resettled $(Mdiff = 0.267,p = 0.324)$ or transition and resettled $(Mdiff= -0.388,p = 0.217)$ stages. Given that the doctoral programs are unlikely to transition back to SPSS or into the second year, the instructor(s) are advised to consider ways that could result in greater student satisfaction. Means and standard deviations are presented in Table 1 and complete ANOVA results are presented in Table 2. Figure 1 provides an illustration of the results.
 
 
-```r
-apaTables::apa.1way.table(iv = Stage, dv = TradPed, show.conf.interval = TRUE,
-    data = OneWay_df, table.number = 1, filename = "1wayHWTable.doc")
+``` r
+apaTables::apa.1way.table(iv = Stage, dv = TradPed, show.conf.interval = TRUE, data = OneWay_df, table.number = 1, filename = "1wayHWTable.doc")
 ```
 
 ```
@@ -2096,7 +2040,7 @@ have caused a sample mean (Cumming, 2014).
 ```
 
 
-```r
+``` r
 omnibus1wHW_b <- aov(TradPed ~ Stage, data = OneWay_df)
 apaTables::apa.aov.table(omnibus1wHW_b, table.number = 2, filename = "1wayHWTable2.doc")
 ```
@@ -2118,7 +2062,7 @@ Note: Values in square brackets indicate the bounds of the 90% confidence interv
 ```
 
 
-```r
+``` r
 phoc <- phoc %>%
     rstatix::add_xy_position(x = "Stage")
 
@@ -2146,8 +2090,8 @@ In the script below, we simply add our values. So long as we have four values, t
 Because this calculator requires the effect size in the metric of Cohen's *f* (this is not the same as the *F* ratio), we need to convert it. The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
 
-```r
-effectsize::eta2_to_f(0.117)
+``` r
+effectsize::eta2_to_f(.117) 
 ```
 
 ```
@@ -2160,8 +2104,8 @@ First let's ask what our level of power was?  Our goal would be 80%.
 Given that our design was unbalanced (21, 44, 47 across the three stages), I used 38 (114/3).
 
 
-```r
-pwr::pwr.anova.test(k = 3, f = 0.3640094, sig.level = 0.05, n = 38)
+``` r
+pwr::pwr.anova.test (k = 3, f = .3640094, sig.level = .05, n = 38)
 ```
 
 ```
@@ -2179,8 +2123,8 @@ NOTE: n is number in each group
 Our power was 0.94. That is, we had 94% chance to find a statistically significant result if one existed. In the next power analysis, let's see what sample size is recommended.
 
 
-```r
-pwr::pwr.anova.test(k = 3, f = 0.3640094, sig.level = 0.05, power = 0.8)
+``` r
+pwr::pwr.anova.test (k = 3, f = .3640094, sig.level = .05, power = .80)
 ```
 
 ```
@@ -2224,7 +2168,7 @@ $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}$$
 I will use the *psych::describe()* function to obtain the overall mean:
 
 
-```r
+``` r
 psych::describe(OneWay_df)
 ```
 
@@ -2241,11 +2185,11 @@ Next, I will subtract this value from each person's TradPed value. This will cre
 
 
 
-```r
+``` r
 OneWay_df$mdevTP <- OneWay_df$TradPed - 4.06
-# I could also calculate it by using the 'mean' function I had to
-# include an na.rm=TRUE; this appears to be connected to missingness
-OneWay_df$mdevTPb <- OneWay_df$TradPed - mean(OneWay_df$TradPed, na.rm = TRUE)
+#I could also calculate it by using the "mean" function
+#I had to include an na.rm=TRUE; this appears to be connected to missingness
+OneWay_df$mdevTPb <- OneWay_df$TradPed - mean(OneWay_df$TradPed, na.rm=TRUE)
 head(OneWay_df)
 ```
 
@@ -2260,12 +2204,12 @@ head(OneWay_df)
 ```
 
 
-```r
+``` r
 library(tidyverse)
-OneWay_df <- OneWay_df %>%
-    dplyr::mutate(m_devSQTP = mdevTP^2)
+OneWay_df <- OneWay_df %>% 
+  dplyr::mutate(m_devSQTP = mdevTP^2)
 
-# so we can see this in the textbook
+#so we can see this in the textbook
 head(OneWay_df)
 ```
 
@@ -2281,7 +2225,7 @@ head(OneWay_df)
 
 I will ask for a sum of the mean deviation squared column. The function was not running, sometimes this occurs when there is missing data. While I didn't think that was true, adding "na.rm = TRUE" solved the problem.
 
-```r
+``` r
 SST <- sum(OneWay_df$m_devSQTP, na.rm = TRUE)
 SST
 ```
@@ -2304,9 +2248,8 @@ We will need:
 We can obtain the group means several ways. I think the *psych::describeBy()* function is one of the easiest.
 
 
-```r
-psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df,
-    type = 1)
+``` r
+psych::describeBy(TradPed ~ Stage, mat = TRUE, digits = 3, data = OneWay_df, type = 1)
 ```
 
 ```
@@ -2323,8 +2266,8 @@ TradPed3 -0.289   -0.629 0.133
 Now we can pop these values into the formula.
 
 
-```r
-SSM <- 50 * (4.348 - 4.06)^2 + 41 * (3.693 - 4.06)^2 + 21 * (4.081 - 4.06)^2
+``` r
+SSM <- 50 * (4.348 -4.06)^2 + 41 * (3.693 - 4.06)^2 + 21 * (4.081 - 4.06)^2
 SSM
 ```
 
@@ -2346,8 +2289,8 @@ We will need:
 We can obtain these values from the previous run of the *psych::describeBy()* function.
 
 
-```r
-SSR <- (0.658^2) * (50 - 1) + (1.057^2) * (41 - 1) + (0.61^2) * (21 - 1)
+``` r
+SSR <- (0.658^2)*(50 - 1) + (1.057^2)*(41 - 1) + (0.610^2)*(21-1)
 SSR
 ```
 
@@ -2365,7 +2308,7 @@ The formula for mean square model is $$MS_M = \frac{SS_{M}}{df{_{M}}}$$
 * $df_M$ is *k* - 1 (where *k* is number of groups/levels)
 
 
-```r
+``` r
 MSM <- 9.67871/2
 MSM
 ```
@@ -2381,7 +2324,7 @@ The formula for mean square residual is $$MS_R = \frac{SS_{R}}{df{_{R}}}$$
 * $df_R$ is $N - k$ (112 - 3 = 109)
 
 
-```r
+``` r
 MSR = 73.3472/109
 MSR
 ```
@@ -2393,7 +2336,7 @@ MSR
 The formula for the *F* ratio is $$F = \frac{MS_{M}}{MS_{R}}$$
 
 
-```r
+``` r
 F <- 4.839/0.6729101
 F
 ```
@@ -2417,8 +2360,8 @@ The closest *N* in the table I am using is 120. If we set alpha at 0.05, our tes
 
 We can also use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 
-```r
-qf(0.05, 2, 109, lower.tail = FALSE)
+``` r
+qf(.05, 2, 109, lower.tail=FALSE)
 ```
 
 ```
@@ -2438,7 +2381,7 @@ The formula to calculate the effect size is $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 * $SS_T$ was 83.0332
 
 
-```r
+``` r
 etaSQ <- 9.679/83.0332
 etaSQ
 ```

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Ready_Set_R | ReCentering Psych Stats</title>
   <meta name="description" content="Chapter 2 Ready_Set_R | ReCentering Psych Stats is an open education resource for teaching statistics with the open-source program, R, in a socially and culturally responsive manner. The series provides workflows and worked examples in R and each statistic is accompanied by an example APA style presentation of results. A core focus of the ReCentering series is simulated data from published articles that focus on issues of social justice and are, themselves, conducted in a socially responsive manner." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Ready_Set_R | ReCentering Psych Stats" />
   <meta property="og:type" content="book" />
@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -127,6 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -172,9 +173,10 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
 <li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
 <li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a></li>
-<li class="chapter" data-level="1.4" data-path="ReCintro.html"><a href="ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples"><i class="fa fa-check"></i><b>1.4</b> Introduction to the Data Set Used for Homeworked Examples</a>
+<li class="chapter" data-level="1.4" data-path="ReCintro.html"><a href="ReCintro.html#when-code-fails"><i class="fa fa-check"></i><b>1.4</b> When Code Fails</a></li>
+<li class="chapter" data-level="1.5" data-path="ReCintro.html"><a href="ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples"><i class="fa fa-check"></i><b>1.5</b> Introduction to the Data Set Used for Homeworked Examples</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="ReCintro.html"><a href="ReCintro.html#the-data-set"><i class="fa fa-check"></i><b>1.4.1</b> The Data Set</a></li>
+<li class="chapter" data-level="1.5.1" data-path="ReCintro.html"><a href="ReCintro.html#the-data-set"><i class="fa fa-check"></i><b>1.5.1</b> The Data Set</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Ready.html"><a href="Ready.html"><i class="fa fa-check"></i><b>2</b> Ready_Set_R</a>
@@ -256,7 +258,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.11.2" data-path="preliminaries.html"><a href="preliminaries.html#hand-calculations"><i class="fa fa-check"></i><b>3.11.2</b> Hand Calculations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="t-tests.html"><a href="t-tests.html"><i class="fa fa-check"></i><em>t</em>-tests</a></li>
+<li class="chapter" data-level="" data-path="t-tests.html"><a href="t-tests.html"><i class="fa fa-check"></i><em>T</em>-TESTS</a></li>
 <li class="chapter" data-level="4" data-path="tOneSample.html"><a href="tOneSample.html"><i class="fa fa-check"></i><b>4</b> One Sample <em>t</em>-tests</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="tOneSample.html"><a href="tOneSample.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
@@ -398,7 +400,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.9.2" data-path="tPaired.html"><a href="tPaired.html#hand-calculations-3"><i class="fa fa-check"></i><b>6.9.2</b> Hand Calculations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i>Analysis of Variance</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i>ANALYSIS OF VARIANCE</a></li>
 <li class="chapter" data-level="7" data-path="oneway.html"><a href="oneway.html"><i class="fa fa-check"></i><b>7</b> One-way ANOVA</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="oneway.html"><a href="oneway.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
@@ -648,42 +650,88 @@ div.csl-indent {
 <li class="chapter" data-level="11.8.1" data-path="ANCOVA.html"><a href="ANCOVA.html#working-the-problem-with-r-and-r-packages-8"><i class="fa fa-check"></i><b>11.8.1</b> Working the Problem with R and R Packages</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="correlation-regression.html"><a href="correlation-regression.html"><i class="fa fa-check"></i>CORRELATION &amp; REGRESSION</a></li>
+<li class="chapter" data-level="12" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>12</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlation.html"><a href="correlation.html#navigating-this-lesson-10"><i class="fa fa-check"></i><b>12.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlation.html"><a href="correlation.html#learning-objectives-10"><i class="fa fa-check"></i><b>12.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.1.2" data-path="correlation.html"><a href="correlation.html#planning-for-practice-9"><i class="fa fa-check"></i><b>12.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="12.1.3" data-path="correlation.html"><a href="correlation.html#readings-resources-9"><i class="fa fa-check"></i><b>12.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="12.1.4" data-path="correlation.html"><a href="correlation.html#packages-8"><i class="fa fa-check"></i><b>12.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlation.html"><a href="correlation.html#introducing-correlations"><i class="fa fa-check"></i><b>12.2</b> Introducing correlations</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="correlation.html"><a href="correlation.html#workflow-for-choosing-which-correlation"><i class="fa fa-check"></i><b>12.2.1</b> Workflow for Choosing which Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="correlation.html"><a href="correlation.html#assumptions-of-correlation"><i class="fa fa-check"></i><b>12.3</b> Assumptions of correlation</a></li>
+<li class="chapter" data-level="12.4" data-path="correlation.html"><a href="correlation.html#research-vignette-9"><i class="fa fa-check"></i><b>12.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="correlation.html"><a href="correlation.html#data-simulation-7"><i class="fa fa-check"></i><b>12.4.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="12.4.2" data-path="correlation.html"><a href="correlation.html#data-visualization"><i class="fa fa-check"></i><b>12.4.2</b> Data Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="correlation.html"><a href="correlation.html#working-pearsons-r-by-hand"><i class="fa fa-check"></i><b>12.5</b> Working Pearson’s <em>r</em> (by hand)</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlation.html"><a href="correlation.html#stating-the-hypothesis-3"><i class="fa fa-check"></i><b>12.5.1</b> Stating the Hypothesis</a></li>
+<li class="chapter" data-level="12.5.2" data-path="correlation.html"><a href="correlation.html#calculating-pearsons-r"><i class="fa fa-check"></i><b>12.5.2</b> Calculating Pearson’s <em>r</em></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="correlation.html"><a href="correlation.html#finding-a-correlation-in-r"><i class="fa fa-check"></i><b>12.6</b> Finding a Correlation in R</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="correlation.html"><a href="correlation.html#evaluating-the-statistical-assumptions-and-choosing-a-test"><i class="fa fa-check"></i><b>12.6.1</b> Evaluating the Statistical Assumptions and Choosing a Test</a></li>
+<li class="chapter" data-level="12.6.2" data-path="correlation.html"><a href="correlation.html#computing-pearsons-r"><i class="fa fa-check"></i><b>12.6.2</b> Computing Pearson’s <em>r</em></a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="correlation.html"><a href="correlation.html#correlation-matrices"><i class="fa fa-check"></i><b>12.7</b> Correlation Matrices</a></li>
+<li class="chapter" data-level="12.8" data-path="correlation.html"><a href="correlation.html#apa-style-results-6"><i class="fa fa-check"></i><b>12.8</b> APA Style Results</a></li>
+<li class="chapter" data-level="12.9" data-path="correlation.html"><a href="correlation.html#power-for-pearsons-r-correlations"><i class="fa fa-check"></i><b>12.9</b> Power for Pearson’s <span class="math inline">\(r\)</span> correlations</a></li>
+<li class="chapter" data-level="12.10" data-path="correlation.html"><a href="correlation.html#other-types-of-correlations"><i class="fa fa-check"></i><b>12.10</b> Other Types of Correlations</a>
+<ul>
+<li class="chapter" data-level="12.10.1" data-path="correlation.html"><a href="correlation.html#spearman-and-kendall"><i class="fa fa-check"></i><b>12.10.1</b> Spearman and Kendall</a></li>
+</ul></li>
+<li class="chapter" data-level="12.11" data-path="correlation.html"><a href="correlation.html#practice-problems-10"><i class="fa fa-check"></i><b>12.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="12.11.1" data-path="correlation.html"><a href="correlation.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-3"><i class="fa fa-check"></i><b>12.11.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="12.11.2" data-path="correlation.html"><a href="correlation.html#problem-2-rework-the-research-vignette-but-change-something-about-the-simulation-3"><i class="fa fa-check"></i><b>12.11.2</b> Problem #2: Rework the research vignette, but change something about the simulation</a></li>
+<li class="chapter" data-level="12.11.3" data-path="correlation.html"><a href="correlation.html#problem-3-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>12.11.3</b> Problem #3: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="12.11.4" data-path="correlation.html"><a href="correlation.html#problem-4-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>12.11.4</b> Problem #4: Use other data that is available to you</a></li>
+<li class="chapter" data-level="12.11.5" data-path="correlation.html"><a href="correlation.html#grading-rubric-8"><i class="fa fa-check"></i><b>12.11.5</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>APPENDICES</a></li>
-<li class="chapter" data-level="12" data-path="type-i-error.html"><a href="type-i-error.html"><i class="fa fa-check"></i><b>12</b> Type I Error</a>
+<li class="chapter" data-level="13" data-path="type-i-error.html"><a href="type-i-error.html"><i class="fa fa-check"></i><b>13</b> Type I Error</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="type-i-error.html"><a href="type-i-error.html#type-i-error-defined"><i class="fa fa-check"></i><b>12.1</b> Type I Error Defined</a></li>
-<li class="chapter" data-level="12.2" data-path="type-i-error.html"><a href="type-i-error.html#methods-for-managing-type-i-error"><i class="fa fa-check"></i><b>12.2</b> Methods for Managing Type I Error</a>
+<li class="chapter" data-level="13.1" data-path="type-i-error.html"><a href="type-i-error.html#type-i-error-defined"><i class="fa fa-check"></i><b>13.1</b> Type I Error Defined</a></li>
+<li class="chapter" data-level="13.2" data-path="type-i-error.html"><a href="type-i-error.html#methods-for-managing-type-i-error"><i class="fa fa-check"></i><b>13.2</b> Methods for Managing Type I Error</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="type-i-error.html"><a href="type-i-error.html#lsd-least-significant-difference-method"><i class="fa fa-check"></i><b>12.2.1</b> LSD (Least Significant Difference) Method</a></li>
-<li class="chapter" data-level="12.2.2" data-path="type-i-error.html"><a href="type-i-error.html#traditional-bonferroni"><i class="fa fa-check"></i><b>12.2.2</b> Traditional Bonferroni</a></li>
-<li class="chapter" data-level="12.2.3" data-path="type-i-error.html"><a href="type-i-error.html#tukey-hsd"><i class="fa fa-check"></i><b>12.2.3</b> Tukey HSD</a></li>
-<li class="chapter" data-level="12.2.4" data-path="type-i-error.html"><a href="type-i-error.html#holms-sequential-bonferroni"><i class="fa fa-check"></i><b>12.2.4</b> Holms Sequential Bonferroni</a></li>
+<li class="chapter" data-level="13.2.1" data-path="type-i-error.html"><a href="type-i-error.html#lsd-least-significant-difference-method"><i class="fa fa-check"></i><b>13.2.1</b> LSD (Least Significant Difference) Method</a></li>
+<li class="chapter" data-level="13.2.2" data-path="type-i-error.html"><a href="type-i-error.html#traditional-bonferroni"><i class="fa fa-check"></i><b>13.2.2</b> Traditional Bonferroni</a></li>
+<li class="chapter" data-level="13.2.3" data-path="type-i-error.html"><a href="type-i-error.html#tukey-hsd"><i class="fa fa-check"></i><b>13.2.3</b> Tukey HSD</a></li>
+<li class="chapter" data-level="13.2.4" data-path="type-i-error.html"><a href="type-i-error.html#holms-sequential-bonferroni"><i class="fa fa-check"></i><b>13.2.4</b> Holms Sequential Bonferroni</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html"><i class="fa fa-check"></i><b>13</b> Examples for Follow-up to Factorial ANOVA</a>
+<li class="chapter" data-level="14" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html"><i class="fa fa-check"></i><b>14</b> Examples for Follow-up to Factorial ANOVA</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#research-vignette-9"><i class="fa fa-check"></i><b>13.1</b> Research Vignette</a>
+<li class="chapter" data-level="14.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#research-vignette-10"><i class="fa fa-check"></i><b>14.1</b> Research Vignette</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#quick-resimulating-of-the-data"><i class="fa fa-check"></i><b>13.1.1</b> Quick Resimulating of the Data</a></li>
+<li class="chapter" data-level="14.1.1" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#quick-resimulating-of-the-data"><i class="fa fa-check"></i><b>14.1.1</b> Quick Resimulating of the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-orthogonal-contrasts"><i class="fa fa-check"></i><b>13.2</b> Analysis of Simple Main Effects with Orthogonal Contrasts</a></li>
-<li class="chapter" data-level="13.3" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-a-polynomial-trend"><i class="fa fa-check"></i><b>13.3</b> Analysis of Simple Main Effects with a Polynomial Trend</a></li>
-<li class="chapter" data-level="13.4" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#all-possible-post-hoc-comparisons"><i class="fa fa-check"></i><b>13.4</b> All Possible Post Hoc Comparisons</a></li>
+<li class="chapter" data-level="14.2" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-orthogonal-contrasts"><i class="fa fa-check"></i><b>14.2</b> Analysis of Simple Main Effects with Orthogonal Contrasts</a></li>
+<li class="chapter" data-level="14.3" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#analysis-of-simple-main-effects-with-a-polynomial-trend"><i class="fa fa-check"></i><b>14.3</b> Analysis of Simple Main Effects with a Polynomial Trend</a></li>
+<li class="chapter" data-level="14.4" data-path="examples-for-follow-up-to-factorial-anova.html"><a href="examples-for-follow-up-to-factorial-anova.html#all-possible-post-hoc-comparisons"><i class="fa fa-check"></i><b>14.4</b> All Possible Post Hoc Comparisons</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html"><i class="fa fa-check"></i><b>14</b> One-Way Repeated Measures with a Multivariate Approach</a>
+<li class="chapter" data-level="15" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html"><i class="fa fa-check"></i><b>15</b> One-Way Repeated Measures with a Multivariate Approach</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#research-vignette-10"><i class="fa fa-check"></i><b>14.1</b> Research Vignette</a>
+<li class="chapter" data-level="15.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#research-vignette-11"><i class="fa fa-check"></i><b>15.1</b> Research Vignette</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#data-simulation-7"><i class="fa fa-check"></i><b>14.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="15.1.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#data-simulation-8"><i class="fa fa-check"></i><b>15.1.1</b> Data Simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#computing-the-omnibus-f"><i class="fa fa-check"></i><b>14.2</b> Computing the Omnibus F</a>
+<li class="chapter" data-level="15.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#computing-the-omnibus-f"><i class="fa fa-check"></i><b>15.2</b> Computing the Omnibus F</a>
 <ul>
-<li class="chapter" data-level="14.2.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#univariate-results"><i class="fa fa-check"></i><b>14.2.1</b> Univariate Results</a></li>
-<li class="chapter" data-level="14.2.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#multivariate-results"><i class="fa fa-check"></i><b>14.2.2</b> Multivariate Results</a></li>
-<li class="chapter" data-level="14.2.3" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#a-brief-commentary-on-wrappers"><i class="fa fa-check"></i><b>14.2.3</b> A Brief Commentary on Wrappers</a></li>
+<li class="chapter" data-level="15.2.1" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#univariate-results"><i class="fa fa-check"></i><b>15.2.1</b> Univariate Results</a></li>
+<li class="chapter" data-level="15.2.2" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#multivariate-results"><i class="fa fa-check"></i><b>15.2.2</b> Multivariate Results</a></li>
+<li class="chapter" data-level="15.2.3" data-path="one-way-repeated-measures-with-a-multivariate-approach.html"><a href="one-way-repeated-measures-with-a-multivariate-approach.html#a-brief-commentary-on-wrappers"><i class="fa fa-check"></i><b>15.2.3</b> A Brief Commentary on Wrappers</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>REFERENCES</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -800,18 +848,17 @@ div.csl-indent {
 <p>Syntax for simple formatting in the text (i.e., non-chunk) areas (e.g., using italics, making headings, bold) is found here: <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="uri">https://rmarkdown.rstudio.com/authoring_basics.html</a></p>
 <p>“Chunks” start and end with three tic marks and will show up in a shaded box. Chunks have three symbols in their upper right. Those controls will disappear (and your script will not run) if you have replaced them with double or single quotation marks or one or more of the tics are missing.</p>
 <p>The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Ready.html#cb3-1" tabindex="-1"></a><span class="co"># hashtags let me write comments to remind myself what I did here I</span></span>
-<span id="cb3-2"><a href="Ready.html#cb3-2" tabindex="-1"></a><span class="co"># am simply demonstrating arithmetic (but I would normally be running</span></span>
-<span id="cb3-3"><a href="Ready.html#cb3-3" tabindex="-1"></a><span class="co"># code)</span></span>
-<span id="cb3-4"><a href="Ready.html#cb3-4" tabindex="-1"></a><span class="dv">2021</span> <span class="sc">-</span> <span class="dv">1966</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Ready.html#cb3-1" tabindex="-1"></a><span class="co">#hashtags let me write comments to remind myself what I did</span></span>
+<span id="cb3-2"><a href="Ready.html#cb3-2" tabindex="-1"></a><span class="co">#here I am simply demonstrating arithmetic (but I would normally be running code)</span></span>
+<span id="cb3-3"><a href="Ready.html#cb3-3" tabindex="-1"></a><span class="dv">2021</span> <span class="sc">-</span> <span class="dv">1966</span></span></code></pre></div>
 <pre><code>[1] 55</code></pre>
 </div>
 <div id="managing-packages" class="section level3 hasAnchor" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> Managing packages<a href="Ready.html#managing-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As scientist-practitioners (and not coders), we will rely on <em>packages</em> to do much of the work. At first you may feel overwhelmed about the large number of packages that are available. Soon, though, you will become accustomed to the ones most applicable to our work (e.g., psych, tidyverse, rstatix, apaTables).</p>
 <p>Researchers treat packages differently. In these lectures, I list all the packages we will use in an opening chunk at the beginning of the lecture. When the hashtags are removed, the script will ask R to check to see if the package is installed on your machine. If it is, installation is skipped. If it is not, R installs it. Simply remove the hashtag to run the code the first time, then hashtag them back out so R is not always re-checking.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Ready.html#cb5-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
-<span id="cb5-2"><a href="Ready.html#cb5-2" tabindex="-1"></a><span class="co"># if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Ready.html#cb5-1" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb5-2"><a href="Ready.html#cb5-2" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)} </span></span></code></pre></div>
 <p>To make a package operable, you need to open it. There are two primary ways to do this. The first is to use the library function.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Ready.html#cb6-1" tabindex="-1"></a><span class="co">#install.packages (&quot;psych&quot;)</span></span>
 <span id="cb6-2"><a href="Ready.html#cb6-2" tabindex="-1"></a><span class="fu">library</span> (psych)</span></code></pre></div>
@@ -825,46 +872,39 @@ div.csl-indent {
 <p>In the context of this OER, I will be simulating data in each lesson for immediate use in the lesson. This makes this web-based OER more <em>portable.</em> This also means that when working the problems in the chapter we do notneed to (a) write the data to a file or (b) import data from files. Because these are essential skills, I will demonstrate this process here – starting with simulating data.</p>
 <p>At this point, simulating data is beyond the learning goals I have established for the chapter. I do need to include the code so that we get some data. The data I am simulating is used in the <a href="oneway.html#oneway">one-way ANOVA lesson</a>. The data is from the Tran and Lee <span class="citation">(<a href="#ref-tran_you_2014">2014</a>)</span> random clinical trial.</p>
 <p>In this simulation, I am simply creating an ID number, a condition (High, Low, Control), and a score on the dependent variable, “Accurate.” More information about this study is included in the <a href="oneway.html#oneway">one-way ANOVA chapter</a>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Ready.html#cb8-1" tabindex="-1"></a><span class="co"># Note, this simulation results in a different datset than is in the</span></span>
-<span id="cb8-2"><a href="Ready.html#cb8-2" tabindex="-1"></a><span class="co"># OnewayANOVA lesson sets a random seed so that we get the same</span></span>
-<span id="cb8-3"><a href="Ready.html#cb8-3" tabindex="-1"></a><span class="co"># results each time</span></span>
-<span id="cb8-4"><a href="Ready.html#cb8-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>)</span>
-<span id="cb8-5"><a href="Ready.html#cb8-5" tabindex="-1"></a><span class="co"># sample size, M and SD for each group</span></span>
-<span id="cb8-6"><a href="Ready.html#cb8-6" tabindex="-1"></a>Accurate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.18</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.83</span>,</span>
-<span id="cb8-7"><a href="Ready.html#cb8-7" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fl">0.58</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.76</span>, <span class="at">sd =</span> <span class="fl">0.56</span>))</span>
-<span id="cb8-8"><a href="Ready.html#cb8-8" tabindex="-1"></a><span class="co"># set upper bound for DV</span></span>
-<span id="cb8-9"><a href="Ready.html#cb8-9" tabindex="-1"></a>Accurate[Accurate <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb8-10"><a href="Ready.html#cb8-10" tabindex="-1"></a><span class="co"># set lower bound for DV</span></span>
-<span id="cb8-11"><a href="Ready.html#cb8-11" tabindex="-1"></a>Accurate[Accurate <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb8-12"><a href="Ready.html#cb8-12" tabindex="-1"></a><span class="co"># IDs for participants</span></span>
-<span id="cb8-13"><a href="Ready.html#cb8-13" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">90</span>))</span>
-<span id="cb8-14"><a href="Ready.html#cb8-14" tabindex="-1"></a><span class="co"># name factors and identify how many in each group; should be in same</span></span>
-<span id="cb8-15"><a href="Ready.html#cb8-15" tabindex="-1"></a><span class="co"># order as first row of script</span></span>
-<span id="cb8-16"><a href="Ready.html#cb8-16" tabindex="-1"></a>COND <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>))</span>
-<span id="cb8-17"><a href="Ready.html#cb8-17" tabindex="-1"></a><span class="co"># groups the 3 variables into a single df: ID, DV, condition</span></span>
-<span id="cb8-18"><a href="Ready.html#cb8-18" tabindex="-1"></a>Acc_sim30 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, COND, Accurate)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Ready.html#cb8-1" tabindex="-1"></a><span class="co">#Note, this simulation results in a different datset than is in the OnewayANOVA lesson</span></span>
+<span id="cb8-2"><a href="Ready.html#cb8-2" tabindex="-1"></a><span class="co">#sets a random seed so that we get the same results each time</span></span>
+<span id="cb8-3"><a href="Ready.html#cb8-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>) </span>
+<span id="cb8-4"><a href="Ready.html#cb8-4" tabindex="-1"></a><span class="co">#sample size, M and SD for each group</span></span>
+<span id="cb8-5"><a href="Ready.html#cb8-5" tabindex="-1"></a>Accurate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="fl">1.18</span>, <span class="at">sd=</span><span class="fl">0.80</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="fl">1.83</span>, <span class="at">sd =</span> <span class="fl">0.58</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">1.76</span>, <span class="at">sd =</span> <span class="fl">0.56</span>))</span>
+<span id="cb8-6"><a href="Ready.html#cb8-6" tabindex="-1"></a><span class="co">#set upper bound for DV</span></span>
+<span id="cb8-7"><a href="Ready.html#cb8-7" tabindex="-1"></a>Accurate[Accurate<span class="sc">&gt;</span><span class="dv">3</span>]<span class="ot">&lt;-</span><span class="dv">3</span> </span>
+<span id="cb8-8"><a href="Ready.html#cb8-8" tabindex="-1"></a><span class="co">#set lower bound for DV</span></span>
+<span id="cb8-9"><a href="Ready.html#cb8-9" tabindex="-1"></a>Accurate[Accurate<span class="sc">&lt;</span><span class="dv">0</span>]<span class="ot">&lt;-</span><span class="dv">0</span> </span>
+<span id="cb8-10"><a href="Ready.html#cb8-10" tabindex="-1"></a><span class="co">#IDs for participants</span></span>
+<span id="cb8-11"><a href="Ready.html#cb8-11" tabindex="-1"></a>ID<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">90</span>)) </span>
+<span id="cb8-12"><a href="Ready.html#cb8-12" tabindex="-1"></a><span class="co">#name factors and identify how many in each group; should be in same order as first row of script</span></span>
+<span id="cb8-13"><a href="Ready.html#cb8-13" tabindex="-1"></a>COND<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Low&quot;</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">&quot;Control&quot;</span>, <span class="dv">30</span>)) </span>
+<span id="cb8-14"><a href="Ready.html#cb8-14" tabindex="-1"></a><span class="co">#groups the 3 variables into a single df: ID, DV, condition</span></span>
+<span id="cb8-15"><a href="Ready.html#cb8-15" tabindex="-1"></a>Acc_sim30 <span class="ot">&lt;-</span><span class="fu">data.frame</span>(ID, COND, Accurate) </span></code></pre></div>
 <p>At this point, this data lives only in this .rmd file after the above code is run. Although there are numerous ways to export and import data, I have a preference for two.</p>
 <div id="to-and-from-.csv-files" class="section level4 hasAnchor" number="2.3.5.1">
 <h4><span class="header-section-number">2.3.5.1</span> To and from .csv files<a href="Ready.html#to-and-from-.csv-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The first is to write the data to a .csv file. In your computer’s environment (outside of R), these files are easily manipulated in Excel. I think of them as being “Excel lite” because although Excel can operate them, they lack some of the more advanced features of an Excel spreadsheet.</p>
 <p>In the code below, I identify the R object “Acc_sim30” and give it a file name, “to_CSV.csv”. This file name must have the .csv extension. I also indicate that it should preserve the column names (but ignore row names; since we don’t have row names).</p>
 <p>This file will save in the same folder as wherever you are using this .rmd file.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Ready.html#cb9-1" tabindex="-1"></a><span class="co"># to write it to an outfile as a .csv</span></span>
-<span id="cb9-2"><a href="Ready.html#cb9-2" tabindex="-1"></a><span class="fu">write.table</span>(Acc_sim30, <span class="at">file =</span> <span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-3"><a href="Ready.html#cb9-3" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Ready.html#cb9-1" tabindex="-1"></a><span class="co">#to write it to an outfile as a .csv</span></span>
+<span id="cb9-2"><a href="Ready.html#cb9-2" tabindex="-1"></a><span class="fu">write.table</span>(Acc_sim30, <span class="at">file=</span><span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Importing this object back into the R environment can be accomplished with some simple code. For the sake of demonstration,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Ready.html#cb10-1" tabindex="-1"></a><span class="co"># to save the df as an .csv (think &#39;Excel lite&#39;) file on your</span></span>
-<span id="cb10-2"><a href="Ready.html#cb10-2" tabindex="-1"></a><span class="co"># computer; it should save in the same file as the .rmd file you are</span></span>
-<span id="cb10-3"><a href="Ready.html#cb10-3" tabindex="-1"></a><span class="co"># working with</span></span>
-<span id="cb10-4"><a href="Ready.html#cb10-4" tabindex="-1"></a>from_CSV <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Ready.html#cb10-1" tabindex="-1"></a><span class="co">#to save the df as an .csv (think &quot;Excel lite&quot;) file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
+<span id="cb10-2"><a href="Ready.html#cb10-2" tabindex="-1"></a>from_CSV <span class="ot">&lt;-</span> <span class="fu">read.csv</span> (<span class="st">&quot;to_CSV.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The advantage of working with .csv files is that it is then easy to inspect and manipulate them outside of the R environment. The disadvantage of .csv files is that each time they are imported they lose any formatting you may have meticulously assigned to them.</p>
 </div>
 <div id="to-and-from-.rds-files" class="section level4 hasAnchor" number="2.3.5.2">
 <h4><span class="header-section-number">2.3.5.2</span> To and from .rds files<a href="Ready.html#to-and-from-.rds-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>While it is easy enough to rerun the code (or copy it from data prep .rmd and paste it into an .rmd you are using for advanced analysis), there is a better way! Saving the data as an R object preserves all of its characteristics.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Ready.html#cb11-1" tabindex="-1"></a><span class="co"># to save the df as an .rds file on your computer; it should save in</span></span>
-<span id="cb11-2"><a href="Ready.html#cb11-2" tabindex="-1"></a><span class="co"># the same file as the .rmd file you are working with</span></span>
-<span id="cb11-3"><a href="Ready.html#cb11-3" tabindex="-1"></a><span class="fu">saveRDS</span>(Acc_sim30, <span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Ready.html#cb11-1" tabindex="-1"></a><span class="co">#to save the df as an .rds file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
+<span id="cb11-2"><a href="Ready.html#cb11-2" tabindex="-1"></a><span class="fu">saveRDS</span>(Acc_sim30, <span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
 <p>This file will save to your computer (and you can send it to colleagues). However, it is not easy to “just open it” in Excel. To open an .rds file and use it (whether you created it or it is sent to you by a colleague), use the following code:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Ready.html#cb12-1" tabindex="-1"></a>from_rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;to_Robject.rds&quot;</span>)</span></code></pre></div>
 <p>If you are the recipient of an R object, but want to view it as a .csv, simply import the .rds then use the above code to export it as a .csv.</p>
@@ -872,16 +912,15 @@ div.csl-indent {
 <div id="from-spss-files" class="section level4 hasAnchor" number="2.3.5.3">
 <h4><span class="header-section-number">2.3.5.3</span> From SPSS files<a href="Ready.html#from-spss-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Your data may come to you in a variety of ways. One of the most common is SPSS. The <em>foreign</em> package is popular for importing SPSS data. Below is code which would import an SPSS file <em>if I had created one</em>. You’ll see that this script is hashtagged out because I rarely use SPSS and do not have a handy file to demo.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Ready.html#cb13-1" tabindex="-1"></a><span class="co"># opening an SPSS file requires the foreign package which I opened</span></span>
-<span id="cb13-2"><a href="Ready.html#cb13-2" tabindex="-1"></a><span class="co"># earlier from_SPSS &lt;- foreign::read.spss (&#39;SPSSdata.sav&#39;,</span></span>
-<span id="cb13-3"><a href="Ready.html#cb13-3" tabindex="-1"></a><span class="co"># use.value.labels = TRUE, to.data.frame = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Ready.html#cb13-1" tabindex="-1"></a><span class="co">#opening an SPSS file requires the foreign package which I opened earlier</span></span>
+<span id="cb13-2"><a href="Ready.html#cb13-2" tabindex="-1"></a><span class="co">#from_SPSS &lt;- foreign::read.spss (&quot;SPSSdata.sav&quot;, use.value.labels = TRUE, to.data.frame = TRUE)</span></span></code></pre></div>
 </div>
 </div>
 </div>
 <div id="quick-demonstration" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> quick demonstRation<a href="Ready.html#quick-demonstration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s run some simple descriptives. In the script below, I am using the <em>psych</em> package. Descriptive statistics will appear for all the data in the dataframe and the output will be rounded to three spaces. Note that rather than opening the psych package with the library function, I have used the double colon convention.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Ready.html#cb14-1" tabindex="-1"></a><span class="fu">round</span>(psych<span class="sc">::</span><span class="fu">describe</span>(Acc_sim30), <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Ready.html#cb14-1" tabindex="-1"></a><span class="fu">round</span>(psych<span class="sc">::</span><span class="fu">describe</span>(Acc_sim30),<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>         vars  n  mean    sd median trimmed   mad min max range  skew kurtosis
 ID*         1 90 45.50 26.12  45.50   45.50 33.36   1  90    89  0.00    -1.24
 COND*       2 90  2.00  0.82   2.00    2.00  1.48   1   3     2  0.00    -1.53
@@ -1102,8 +1141,8 @@ Accurate 0.07</code></pre>
 </div>
 </div>
 </div>
-<h3>References<a href="refs.html#refs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<h3>REFERENCES<a href="refs.html#refs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-gladwell_outliers_2008" class="csl-entry">
 Gladwell, M. (2008). <em>Outliers: The story of success</em> (First edition.). Little, Brown; Company.
 </div>

@@ -31,13 +31,10 @@ big <- readRDS("ReC.rds")
 The SRPed (socially responsive pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#Creates a list of the variables that belong to that scale
-SRPed_vars <- c('InclusvClassrm', 'EquitableEval','MultPerspectives', 'DEIintegration')
+#This code was recently updated and likely differs from the screencasted lecture
 
 #Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-big$SRPed <- sjstats::mean_n(big[, SRPed_vars], .75)
-#If the above code doesn't work use the one below; the difference is the two periods in front of the variable list
-#big$SRPed <- sjstats::mean_n(big[, ..SRPed_vars], .75)
+big$SRPed <- datawizard::row_means(big, select = c('InclusvClassrm', 'EquitableEval','MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 Let's trim it to just the variables of interest

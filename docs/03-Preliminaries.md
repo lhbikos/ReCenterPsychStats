@@ -46,35 +46,32 @@ We will use data that has been simulated data from Lui [-@lui_racial_2020] as th
 Using the means, standard deviations, correlation matrix, and group sizes (*n*) I simulated the data. Although I provide some narration of what I did, process of simulation is beyond the learning goals of this lesson, so you are welcome to skip it. Simulating data within each chapter makes the lesson more "portable."
 
 
-```r
-set.seed(210807)  #sets the random seed so that we consistently get the same results
-# for practice, you could change (or remove) the random seed and try
-# to interpret the results (they should be similar) There are
-# probably more efficient ways to simulate data. Given the
-# information available in the manuscript, my approach was to first
-# create separate datasets for each of the racial ethnic groups and
-# then bind them together.
+``` r
+set.seed(210807)#sets the random seed so that we consistently get the same results
+#for practice, you could change (or remove) the random seed and try to interpret the results (they should be similar)
+#There are probably more efficient ways to simulate data. Given the information available in the manuscript, my approach was to first create separate datasets for each of the racial ethnic groups and then bind them together.
 
-# First, the data for the students who identified as Asian American
-Asian_mu <- c(1.52, 1.72, 2.69, 1.71, 2.14, 2.35, 2.42)  #creating an object containing the means
-Asian_stddev <- c(2.52, 2.04, 0.47, 0.7, 0.8, 2.41, 3.36)  # creating an object containing thestandard deviations
-Asian_corMat <- matrix(c(1, 0.69, 0.19, 0.28, 0.32, 0.08, 0.23, 0.69, 1,
-    0.2, 0.29, 0.33, 0.13, 0.25, 0.19, 0.2, 1, 0.5, 0.5, -0.04, 0.09, 0.28,
-    0.29, 0.5, 1, 0.76, 0.04, 0.18, 0.32, 0.33, 0.5, 0.76, 1, 0.1, 0.21,
-    0.08, 0.13, -0.04, 0.04, 0.1, 1, 0.42, 0.23, 0.25, 0.09, 0.18, 0.21,
-    0.42, 1), ncol = 7)  # creating an object containing the correlation matrix
-Asian_covMat <- Asian_stddev %*% t(Asian_stddev) * Asian_corMat  #creating a covariance matrix from the above objects
+#First, the data for the students who identified as Asian American
+Asian_mu <- c(1.52, 1.72, 2.69, 1.71, 2.14, 2.35, 2.42) #creating an object containing the means
+Asian_stddev <- c(2.52, 2.04, 0.47, 0.70, 0.80, 2.41, 3.36) # creating an object containing thestandard deviations
+Asian_corMat <- matrix(c(1.00, 0.69, 0.19, 0.28, 0.32,  0.08,  0.23,
+                          0.69,  1.00,  0.20,  0.29,  0.33,  0.13,  0.25,
+                          0.19,  0.20,  1.00,  0.50,  0.50, -0.04,  0.09,
+                          0.28,  0.29,  0.50,  1.00,  0.76,  0.04,  0.18,
+                          0.32,  0.33,  0.50,  0.76,  1.00,  0.10,  0.21,
+                          0.08,  0.13, -0.04,  0.04,  0.10,  1.00,  0.42,
+                          0.23,  0.25,  0.09,  0.18,  0.21,  0.42,  1.00),
+                        ncol=7) # creating an object containing the correlation matrix
+Asian_covMat <- Asian_stddev %*% t(Asian_stddev) * Asian_corMat #creating a covariance matrix from the above objects
 
-Asian_dat <- MASS::mvrnorm(n = 398, mu = Asian_mu, Sigma = Asian_covMat,
-    empirical = TRUE)  #creating the dataset 
-Asian_df <- as.data.frame(Asian_dat)  #formatting the dataset as a data frame
+Asian_dat <- MASS::mvrnorm(n = 398, mu = Asian_mu, Sigma = Asian_covMat, empirical = TRUE) #creating the dataset 
+Asian_df <- as.data.frame(Asian_dat) #formatting the dataset as a data frame
 
 library(tidyverse)
-# renaming the variables
-Asian_df <- rename(Asian_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4,
-    psyDist = V5, Alcohol = V6, drProb = V7)
+#renaming the variables
+Asian_df <- rename(Asian_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7) 
 
-# set upper and lower bound for each variable
+#set upper and lower bound for each variable
 Asian_df$OvDisc[Asian_df$OvDisc > 16] <- 16
 Asian_df$OvDisc[Asian_df$OvDisc < 0] <- 0
 
@@ -98,23 +95,23 @@ Asian_df$drProb[Asian_df$drProb < 0] <- 0
 
 Asian_df$RacEth <- "Asian"
 
-# Second, the data for the students who identified as Black/African
-# American
-Black_mu <- c(4.45, 3.84, 2.6, 1.84, 2.1, 2.81, 2.14)
-Black_stddev <- c(4.22, 3.08, 0.89, 0.8, 0.81, 2.49, 3.24)
-Black_corMat <- matrix(c(1, 0.81, 0.17, 0.15, 0.09, 0.05, -0.16, 0.81,
-    1, 0.17, 0.21, 0.11, 0.09, -0.01, 0.17, 0.17, 1, 0.59, 0.54, 0.05,
-    0.24, 0.15, 0.21, 0.59, 1, 0.72, 0.12, 0.22, 0.09, 0.11, 0.54, 0.72,
-    1, 0.21, 0.4, 0.05, 0.09, 0.05, 0.12, 0.21, 1, 0.65, -0.16, -0.01,
-    0.24, 0.22, 0.4, 0.65, 1), ncol = 7)
+#Second, the data for the students who identified as Black/African American
+Black_mu <- c(4.45, 3.84, 2.60, 1.84, 2.10, 2.81, 2.14)
+Black_stddev <- c(4.22, 3.08, 0.89, 0.80, 0.81, 2.49, 3.24)
+Black_corMat <- matrix(c( 1.00,  0.81,  0.17,  0.15,  0.09,  0.05, -0.16,
+              0.81,  1.00,  0.17,  0.21,  0.11,  0.09, -0.01,
+              0.17,  0.17,  1.00,  0.59,  0.54,  0.05,  0.24,
+              0.15,  0.21,  0.59,  1.00,  0.72,  0.12,  0.22,
+              0.09,  0.11,  0.54,  0.72,  1.00,  0.21,  0.40,
+              0.05,  0.09,  0.05,  0.12,  0.21,  1.00,  0.65,
+              -0.16,-0.01,  0.24,  0.22,  0.40,  0.65,  1.00),
+           ncol = 7)
 Black_covMat <- Black_stddev %*% t(Black_stddev) * Black_corMat
-Black_dat <- MASS::mvrnorm(n = 133, mu = Black_mu, Sigma = Black_covMat,
-    empirical = TRUE)
+Black_dat <- MASS::mvrnorm(n = 133, mu = Black_mu, Sigma = Black_covMat, empirical = TRUE)
 Black_df <- as.data.frame(Black_dat)
-Black_df <- rename(Black_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4,
-    psyDist = V5, Alcohol = V6, drProb = V7)
+Black_df <- rename(Black_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7)
 
-# set upper and lower bound for each variable
+#set upper and lower bound for each variable
 Black_df$OvDisc[Black_df$OvDisc > 16] <- 16
 Black_df$OvDisc[Black_df$OvDisc < 0] <- 0
 
@@ -138,20 +135,21 @@ Black_df$drProb[Black_df$drProb < 0] <- 0
 
 Black_df$RacEth <- "Black"
 
-# Third, the data for the students who identified as Latinx American
+#Third, the data for the students who identified as Latinx American
 Latinx_mu <- c(1.56, 2.34, 2.69, 1.81, 2.17, 3.47, 2.69)
 Latinx_stddev <- c(2.46, 2.49, 0.86, 0.71, 0.78, 2.59, 3.76)
-Latinx_corMat <- matrix(c(1, 0.78, 0.27, 0.36, 0.42, -0.06, 0.08, 0.78,
-    1, 0.33, 0.26, 0.35, -0.11, -0.02, 0.27, 0.33, 1, 0.62, 0.64, -0.04,
-    0.15, 0.36, 0.26, 0.62, 1, 0.81, -0.08, 0.17, 0.42, 0.35, 0.64, 0.81,
-    1, -0.06, 0.15, -0.06, -0.11, -0.04, -0.08, -0.06, 1, 0.6, 0.08, -0.02,
-    0.15, 0.17, 0.15, 0.6, 1), ncol = 7)
+Latinx_corMat <- matrix(c( 1.00,  0.78,  0.27,  0.36,  0.42, -0.06,  0.08,
+                           0.78,  1.00,  0.33,  0.26,  0.35, -0.11, -0.02,
+                           0.27,  0.33,  1.00,  0.62,  0.64, -0.04,  0.15,
+                           0.36,  0.26,  0.62,  1.00,  0.81, -0.08,  0.17,
+                           0.42,  0.35,  0.64,  0.81,  1.00, -0.06,  0.15,
+                           -0.06,-0.11, -0.04, -0.08, -0.06,  1.00,  0.60,
+                           0.08, -0.02,  0.15,  0.17,  0.15,  0.60,  1.00),
+                        ncol = 7)
 Latinx_covMat <- Latinx_stddev %*% t(Latinx_stddev) * Latinx_corMat
-Latinx_dat <- MASS::mvrnorm(n = 182, mu = Latinx_mu, Sigma = Latinx_covMat,
-    empirical = TRUE)
+Latinx_dat <- MASS::mvrnorm(n = 182, mu = Latinx_mu, Sigma = Latinx_covMat, empirical = TRUE)
 Latinx_df <- as.data.frame(Latinx_dat)
-Latinx_df <- rename(Latinx_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4,
-    psyDist = V5, Alcohol = V6, drProb = V7)
+Latinx_df <- rename(Latinx_df, OvDisc = V1, mAggr = V2, Neuro = V3, nAff = V4, psyDist = V5, Alcohol = V6, drProb = V7)
 
 Latinx_df$OvDisc[Latinx_df$OvDisc > 16] <- 16
 Latinx_df$OvDisc[Latinx_df$OvDisc < 0] <- 0
@@ -176,26 +174,27 @@ Latinx_df$drProb[Latinx_df$drProb < 0] <- 0
 
 Latinx_df$RacEth <- "Latinx"
 
-# binding the datasets together
-Lui_sim_df <- bind_rows(Asian_df, Black_df, Latinx_df)
+#binding the datasets together
+Lui_sim_df <-bind_rows(Asian_df, Black_df, Latinx_df)
 ```
 
 If you have simulated the data, you can continue using the the "Lui_sim_df" object that we created. In your own research you will likely work with a datafile stored on your computer. Although I will hashtag the code out (making it inoperable until the hashtags are removed), here is script to save the simulated data both .csv (think "Excel lite") and .rds (it retains all the properties we specified in R) files and then bring/import them back into R. For more complete instructions see the [Ready_Set_R](#Ready) lesson.
 
 
-```r
-# write the simulated data as a .csv write.table(Lui_sim_df,
-# file='Lui_CSV.csv', sep=',', col.names=TRUE, row.names=FALSE) bring
-# back the simulated dat from a .csv file df <- read.csv
-# ('Lui_CSV.csv', header = TRUE)
+``` r
+#write the simulated data as a .csv
+#write.table(Lui_sim_df, file="Lui_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#df <- read.csv ("Lui_CSV.csv", header = TRUE)
 ```
 
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(Lui_sim_df, 'Lui_RDS.rds') bring back the simulated
-# dat from an .rds file df <- readRDS('Lui_RDS.rds')
+``` r
+#to save the df as an .rds (think "R object") file on your computer; 
+#it should save in the same file as the .rmd file you are working with
+#saveRDS(Lui_sim_df, "Lui_RDS.rds")
+#bring back the simulated dat from an .rds file
+#df <- readRDS("Lui_RDS.rds")
 ```
 
 You may have noticed a couple of things in each of these operations
@@ -208,7 +207,7 @@ You may have noticed a couple of things in each of these operations
 Because the data is simulated, I can simply use the data I created in the simulation, however, I will go ahead and use the convention of renaming it, "df", which (in this case) stands for *dataframe* and is the common term for a dataset for users of R. *A quick note: in statistics "df" is also an abbreviation for "degrees of freedom."*
 
 
-```r
+``` r
 df <- Lui_sim_df
 ```
 
@@ -252,7 +251,7 @@ Looking back at the Lui [-@lui_racial_2020] article we can determine what the sc
 
 We can examine the accuracy with which R interpreted the type of data with the *structure()* command.
 
-```r
+``` r
 str(df)
 ```
 
@@ -271,17 +270,18 @@ str(df)
 Only Race/Ethnicity needs to be transformed from a character ("chr) variable to a factor. I will use the *mutate()* function in the *dplyr* package to convert the RacEth variable to be a factor with three levels.
 
 
-```r
+``` r
 library(tidyverse)
 df <- df %>%
-    dplyr::mutate(RacEth = as.factor(RacEth))
+    dplyr::mutate(
+        RacEth = as.factor(RacEth))
 ```
 
 Let's check the structure again. Below we see that the RacEth variable is now a factor. R has imposed an alphabetical order:  Asian, Black, Latinx.
 
 
-```r
-# checking the structure of the data
+``` r
+#checking the structure of the data
 str(df)
 ```
 
@@ -306,9 +306,8 @@ Our research vignette contains a number of variables. Lui [-@lui_racial_2020] wa
 As we begin to explore the descriptive and distributional characteristics of this variable, it may be helpful to visualize it through a histogram.
 
 
-```r
-ggpubr::gghistogram(df$nAff, xlab = "Negative Affect", ylab = "Frequency",
-    add = "mean", rug = TRUE, color = "#00AFBB", title = "Frequencies of Negative Affect")
+``` r
+ggpubr::gghistogram(df$nAff, xlab="Negative Affect", ylab = "Frequency", add = "mean", rug=TRUE, color = "#00AFBB", title = "Frequencies of Negative Affect")
 ```
 
 ![](03-Preliminaries_files/figure-docx/unnamed-chunk-10-1.png)<!-- -->
@@ -333,7 +332,7 @@ $$\bar{X}=\frac{1}{N}\sum_{i=1}^{N}X_{i}$$
 R is an incredible tool in that we can type out mathematical operations, use functions from base R, and use packages to do the work for us. If we had the following toy dataset (2, 3, 2, 1, 5, NA) we could calculate the mean by typing it out:
 
 
-```r
+``` r
 (2 + 3 + 2 + 1 + 5)/5
 ```
 
@@ -342,16 +341,16 @@ R is an incredible tool in that we can type out mathematical operations, use fun
 ```
 Alternatively we could use the built-in functions in base R to do the work for us.  Let me add a little complexity by creating a single variable (a vector of data) and  introducing  a little missingness (i.e., the "NA").
 
-```r
+``` r
 toy <- c(2, 3, 2, 1, 5, NA)
-toy <- as.data.frame(toy)
+toy<-as.data.frame(toy)
 ```
 
 I can use the base R function *mean()*. Inside the parentheses I point to the data. The function automatically sums the values. When there is missingness, adding *na.rm=TRUE* tells the function to exclude the missing variables from the count (i.e., the denominator would still be 5).
 
 
-```r
-mean(toy$toy, na.rm = TRUE)
+``` r
+mean(toy$toy, na.rm=TRUE)
 ```
 
 ```
@@ -360,8 +359,8 @@ mean(toy$toy, na.rm = TRUE)
 In my simulation of the research vignette, we have no missing values, none-the-less, it is, perhaps a good habit to include the *na.rm=TRUE* specification in our code. Because we have an entire dataframe, we just point to the dataframe and the specific variable (i.e., negative affect).
 
 
-```r
-mean(df$nAff, na.rm = TRUE)
+``` r
+mean(df$nAff, na.rm=TRUE)
 ```
 
 ```
@@ -380,8 +379,8 @@ And select the middle value. Because we have an odd number of values (*N* = 5), 
 
 We can use a base R function to calculate the median for us. Let's do it first with the toy data:
 
-```r
-median(toy$toy, na.rm = TRUE)
+``` r
+median(toy$toy, na.rm=TRUE)
 ```
 
 ```
@@ -389,8 +388,8 @@ median(toy$toy, na.rm = TRUE)
 ```
 Let's also calculate it for the negative affect variable from the research vignette.
 
-```r
-median(df$nAff, na.rm = TRUE)
+``` r
+median(df$nAff, na.rm=TRUE)
 ```
 
 ```
@@ -404,7 +403,7 @@ The **mode** is the score that occurs most frequently. When a histogram is avail
 Unfortunately, there is no base R function that will call a mode. In response, Navarro developed and included a function in the *lsr* package that accompanies her [-@navarro_book_2020] textbook. Once the package is installed, you can include two colons, the function name, and then the dataset to retrieve the mode.
 
 
-```r
+``` r
 lsr::modeOf(toy$toy)
 ```
 
@@ -415,7 +414,7 @@ From our toy data, we the *modeOf()* function returns a 2.
 
 Let's retrieve the mode from the negative affect variable in our research vignette.
 
-```r
+``` r
 lsr::modeOf(df$nAff)
 ```
 
@@ -431,7 +430,7 @@ Many inferential statistics rely on manipulations of the mean. The mean, though,
 As a bit of an advanced cognitive organizer, it may be helpful to know that in a normal distribution, the mean, median, and mode are the same number (or quite close). In a positively skewed distribution, the mean is higher than the median which is higher than the mode.  In a negatively skewed distribution, the mean is lower than the median, which is lower than the mode.
 
 
-```r
+``` r
 mean(df$nAff, na.rm=TRUE)
 ```
 
@@ -439,7 +438,7 @@ mean(df$nAff, na.rm=TRUE)
 [1] 1.813748
 ```
 
-```r
+``` r
 median(df$nAff, na.rm=TRUE)
 ```
 
@@ -447,7 +446,7 @@ median(df$nAff, na.rm=TRUE)
 [1] 1.765367
 ```
 
-```r
+``` r
 lsr::modeOf(df$nAff, na.rm=TRUE)
 ```
 
@@ -457,9 +456,8 @@ lsr::modeOf(df$nAff, na.rm=TRUE)
 In our research vignette, the mean (1.81) is higher than the median (1.75) is higher than the mode (1.0).  This would suggest a positive skew. Here is a reminder of our histogram:
 
 
-```r
-ggpubr::gghistogram(df$nAff, xlab = "Negative Affect", ylab = "Frequency",
-    add = "mean", rug = TRUE, color = "#00AFBB", title = "Frequencies of Negative Affect")
+``` r
+ggpubr::gghistogram(df$nAff, xlab="Negative Affect", ylab = "Frequency", add = "mean", rug=TRUE, color = "#00AFBB", title = "Frequencies of Negative Affect")
 ```
 
 ![](03-Preliminaries_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
@@ -473,24 +471,24 @@ Researchers are critically interested in the spread or dispersion of the scores.
 The **range** is the simplest assessment of variability and is calculated by identifying the highest and lowest scores and subtracting the lowest from the highest.  In our toy dataset, arranged from low-to-high (1, 2, 2, 3, 5 ) we see that the low is 1 and high is 5; 4 is the range. We can retrieve this data with three base R functions that ask for the minimum score, the maximum score, or both together -- the range:
 
 
-```r
-min(toy$toy, na.rm = TRUE)
+``` r
+min(toy$toy, na.rm=TRUE)
 ```
 
 ```
 [1] 1
 ```
 
-```r
-max(toy$toy, na.rm = TRUE)
+``` r
+max(toy$toy, na.rm=TRUE)
 ```
 
 ```
 [1] 5
 ```
 
-```r
-range(toy$toy, na.rm = TRUE)
+``` r
+range(toy$toy, na.rm=TRUE)
 ```
 
 ```
@@ -499,7 +497,7 @@ range(toy$toy, na.rm = TRUE)
 The negative affect variable from our research vignette has the following range:
 
 
-```r
+``` r
 min(df$nAff)
 ```
 
@@ -507,7 +505,7 @@ min(df$nAff)
 [1] 1
 ```
 
-```r
+``` r
 max(df$nAff)
 ```
 
@@ -515,7 +513,7 @@ max(df$nAff)
 [1] 4
 ```
 
-```r
+``` r
 range(df$nAff)
 ```
 
@@ -534,16 +532,16 @@ We have already learned the value of the median. The median is also the 50th per
 
 Let's first examine the toy dataset:
 
-```r
-median(toy$toy, na.rm = TRUE)
+``` r
+median(toy$toy, na.rm=TRUE)
 ```
 
 ```
 [1] 2
 ```
 
-```r
-quantile(toy$toy, probs = 0.5, na.rm = TRUE)
+``` r
+quantile(toy$toy, probs = .50, na.rm=TRUE )
 ```
 
 ```
@@ -553,16 +551,16 @@ quantile(toy$toy, probs = 0.5, na.rm = TRUE)
 As shown by our calculation, the value at the median and the 50th percentile is 2.0. Let's look at those values for the research vignette:
 
 
-```r
-median(df$nAff, na.rm = TRUE)
+``` r
+median (df$nAff, na.rm=TRUE)
 ```
 
 ```
 [1] 1.765367
 ```
 
-```r
-quantile(df$nAff, probs = 0.5, na.rm = TRUE)
+``` r
+quantile(df$nAff, probs = .50, na.rm=TRUE )
 ```
 
 ```
@@ -574,8 +572,8 @@ Again, we see the same result. Half of the values for negative affect are below 
 The *quantile()* function is extremely useful. We can retrieve the raw score at any percentile, and we could ask for as many as we desired. Here's an example.
 
 
-```r
-quantile(df$nAff, probs = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9))
+``` r
+quantile(df$nAff, probs=c(.10, .20, .30, .40, .50, .60, .70, .80, .90))
 ```
 
 ```
@@ -588,8 +586,8 @@ quantile(df$nAff, probs = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9))
 **Quartiles** divide the data into four equal parts. The **interquartile range** is the spread of data between the 25th and 75th percentiles (or quartiles). We calculate the interquartile range by first obtaining those values, and then subtracting the lower from the higher.
 
 
-```r
-quantile(df$nAff, probs = c(0.25, 0.75))
+``` r
+quantile(df$nAff, probs = c(.25,.75) )
 ```
 
 ```
@@ -599,7 +597,7 @@ quantile(df$nAff, probs = c(0.25, 0.75))
 We see that a score of 1.29 is at the 25th percentile and a score of 2.24 is at the 75th percentile. If we subtract 1.29 from 2.24...
 
 
-```r
+``` r
 2.24 - 1.29
 ```
 
@@ -609,8 +607,8 @@ We see that a score of 1.29 is at the 25th percentile and a score of 2.24 is at 
 ...we learn that the interquartile range is 0.95.  We could also obtain this value by using the *IQR()* function in base R.
 
 
-```r
-IQR(df$nAff, na.rm = TRUE)
+``` r
+IQR(df$nAff, na.rm=TRUE)
 ```
 
 ```
@@ -632,11 +630,11 @@ A first step in understanding mean deviation is to ask, "How far does each indiv
 
 First, I will create a variable representing the mean:
 
-```r
-# Dissecting the script, each variable is referenced by
-# df_nameDOLLARSIGNvariable_name
-toy$mean <- mean(toy$toy, na.rm = TRUE)
-head(toy)  #displays the first 6 rows of the data
+``` r
+#Dissecting the script, 
+#each variable is referenced by df_nameDOLLARSIGNvariable_name
+toy$mean <- mean(toy$toy, na.rm=TRUE)
+head(toy)#displays the first 6 rows of the data
 ```
 
 ```
@@ -651,9 +649,9 @@ head(toy)  #displays the first 6 rows of the data
 
 Next, I will subtract the mean from each individual score. The result
 
-```r
+``` r
 toy$mdev <- toy$toy - toy$mean
-head(toy)  #displays the first 6 rows of the data
+head(toy)#displays the first 6 rows of the data
 ```
 
 ```
@@ -668,19 +666,18 @@ head(toy)  #displays the first 6 rows of the data
 The variable, *mdev* (short for "mean deviation") lets us know how far the individual score is from the mean. Unfortunately, it does not provide an overall estimate of variation.  Further, summing and averaging these values all result in zero.  Take a look:
 
 
-```r
-# Dissecting the script, Wrapping the sum and mean script in 'round'
-# and following with the desired decimal places, provides a rounde
-# result.
-round(sum(toy$mdev, na.rm = TRUE), 3)
+``` r
+#Dissecting the script, 
+#Wrapping the sum and mean script in "round" and following with the desired decimal places, provides a rounde result.
+round(sum(toy$mdev, na.rm=TRUE),3)
 ```
 
 ```
 [1] 0
 ```
 
-```r
-round(mean(toy$mdev, na.rm = TRUE), 3)
+``` r
+round(mean(toy$mdev, na.rm=TRUE),3)
 ```
 
 ```
@@ -689,7 +686,7 @@ round(mean(toy$mdev, na.rm = TRUE), 3)
 One solution is to create the *mean absolute deviation*. We first transform the mean deviation score to their absolute values, and then sum them.
 
 
-```r
+``` r
 toy$abslt_m <- abs(toy$mdev)
 head(toy)
 ```
@@ -707,8 +704,8 @@ head(toy)
 And now to average them:
 
 
-```r
-round(mean(toy$abslt_m, na.rm = TRUE), 3)
+``` r
+round(mean(toy$abslt_m, na.rm=TRUE),3)
 ```
 
 ```
@@ -722,15 +719,14 @@ $$\sum_{i=1}^{n}|X_{i} - \bar{X}|$$
 Let's quickly repeat the process with the negative affect variable in our research vignette. So that we can more clearly see the relationship of the new variables to negative affect, let me create a df containing only nAff:
 
 
-```r
-library(tidyverse)
-df_nAff <- df %>%
-    dplyr::select(nAff)
+``` r
+library(tidyverse) 
+df_nAff <- df%>%dplyr::select(nAff)
 ```
 
 
-```r
-df_nAff$mdevNA <- df_nAff$nAff - mean(df_nAff$nAff, na.rm = TRUE)
+``` r
+df_nAff$mdevNA <- df_nAff$nAff - mean(df_nAff$nAff, na.rm=TRUE)
 df_nAff$abNAmdev <- abs(df_nAff$mdevNA)
 head(df_nAff)
 ```
@@ -746,8 +742,8 @@ head(df_nAff)
 ```
 
 
-```r
-round(mean(df_nAff$abNAmdev, na.rm = TRUE), 3)
+``` r
+round(mean(df_nAff$abNAmdev, na.rm=TRUE),3)
 ```
 
 ```
@@ -767,16 +763,16 @@ $$SS = \sum_{i=1}^{n}(X_{i} - \bar{X})^{^{2}}$$
 Let's do it with our toy data.
 
 
-```r
-toy$mdev2 <- (toy$mdev) * (toy$mdev)
-sum(toy$mdev2, na.rm = TRUE)  #sum of squared deviations
+``` r
+toy$mdev2 <- (toy$mdev)*(toy$mdev)
+sum(toy$mdev2, na.rm=TRUE)#sum of squared deviations
 ```
 
 ```
 [1] 9.2
 ```
 
-```r
+``` r
 head(toy)
 ```
 
@@ -796,19 +792,18 @@ To obtain the variance we divide by *N* (or *N* - 1; described in later lessons)
 $$s^{2}=\frac{SS}{N-1}=\frac{\sum_{i=1}^{n}(X_{i} - \bar{X})^{^{2}}}{N-1}$$
 Let's do this with the toy data:
 
-```r
-9.2/(5 - 1)  #calculated with the previously obtained values
+``` r
+9.2/(5-1)#calculated with the previously obtained values
 ```
 
 ```
 [1] 2.3
 ```
 
-```r
-# to obtain the 'correct' calculation by using each of these
-# individual R commands, we need to have non-missing data
+``` r
+#to obtain the "correct" calculation by using each of these individual R commands, we need to have non-missing data
 toy <- na.omit(toy)
-sum(toy$mdev2, na.rm = TRUE)/((nrow(toy) - 1))  #variance
+sum(toy$mdev2, na.rm=TRUE)/((nrow(toy)-1))#variance
 ```
 
 ```
@@ -817,16 +812,16 @@ sum(toy$mdev2, na.rm = TRUE)/((nrow(toy) - 1))  #variance
 Of course R also has a function that will do all the steps for us:
 
 
-```r
-mean(toy$toy, na.rm = TRUE)
+``` r
+mean(toy$toy, na.rm=TRUE)
 ```
 
 ```
 [1] 2.6
 ```
 
-```r
-var(toy$toy, na.rm = TRUE)
+``` r
+var(toy$toy, na.rm=TRUE)
 ```
 
 ```
@@ -837,8 +832,8 @@ The variance around the mean (2.6) of our toy data is 2.3.
 Let's quickly repeat this process with the negative affect variable from the research vignette. In prior steps we had calculated the mean deviations by subtracting the mean from each individual score. Next we square the mean deviations....
 
 
-```r
-df_nAff$NAmd2 <- (df_nAff$mdevNA) * (df_nAff$mdevNA)
+``` r
+df_nAff$NAmd2 <- (df_nAff$mdevNA)*(df_nAff$mdevNA)
 head(df_nAff)
 ```
 
@@ -853,8 +848,8 @@ head(df_nAff)
 ```
 ... and sum them.
 
-```r
-sum(df_nAff$NAmd2, na.rm = TRUE)  #sum of squared deviations
+``` r
+sum(df_nAff$NAmd2, na.rm=TRUE)#sum of squared deviations
 ```
 
 ```
@@ -863,24 +858,24 @@ sum(df_nAff$NAmd2, na.rm = TRUE)  #sum of squared deviations
 Our sums of squared deviations around the mean is 283.44. When we divide it by *N* - 1, we obtain the variance. We can check our work with (a) the values we calculated at each step, (b) the steps written in separate R code, and (c) the *var()* function.
 
 
-```r
-283.44/(713 - 1)  # calculating with the individual pre-calculated values
+``` r
+283.44/(713-1)# calculating with the individual pre-calculated values
 ```
 
 ```
 [1] 0.3980899
 ```
 
-```r
-sum(df_nAff$NAmd2, na.rm = TRUE)/((nrow(df_nAff) - 1))  #calculated with steps from separate R code
+``` r
+sum(df_nAff$NAmd2, na.rm=TRUE)/((nrow(df_nAff)-1))#calculated with steps from separate R code
 ```
 
 ```
 [1] 0.3987252
 ```
 
-```r
-var(df_nAff$nAff)  #calculated using the base R function
+``` r
+var(df_nAff$nAff) #calculated using the base R function
 ```
 
 ```
@@ -906,13 +901,13 @@ The 6th step is to take the square root of variance. It is represented in the fo
 $$s=\sqrt{\frac{SS}{N-1}}=\sqrt{\frac{\sum_{i=1}^{n}(X_{i} - \bar{X})^{^{2}}}{N-1}}$$
 Repeated below are each of the six steps for the toy data:
 
-```r
-# six steps wrapped into 1
-toy$mdev <- toy$toy - mean(toy$toy, na.rm = TRUE)
-toy$mdev2 <- (toy$mdev) * (toy$mdev)
-# I can save the variance calculation as an object for later use
-toy_var <- sum(toy$mdev2)/(nrow(toy) - 1)
-# checking work with the variance function
+``` r
+#six steps wrapped into 1
+toy$mdev <- toy$toy - mean(toy$toy, na.rm=TRUE)
+toy$mdev2 <- (toy$mdev)*(toy$mdev)
+#I can save the variance calculation as an object for later use
+toy_var <- sum(toy$mdev2)/(nrow(toy)-1)
+#checking work with the variance function
 var(toy$toy)
 ```
 
@@ -921,8 +916,8 @@ var(toy$toy)
 ```
 The seventh step is to take the square root of variance.
 
-```r
-# grabbing the mean for quick reference
+``` r
+#grabbing the mean for quick reference
 mean(toy$toy)
 ```
 
@@ -930,8 +925,8 @@ mean(toy$toy)
 [1] 2.6
 ```
 
-```r
-# below the 'toy_var' object was created in the prior step
+``` r
+#below the "toy_var" object was created in the prior step
 sqrt(toy_var)
 ```
 
@@ -939,8 +934,8 @@ sqrt(toy_var)
 [1] 1.516575
 ```
 
-```r
-# checking work with the R function to calculate standard deviation
+``` r
+#checking work with the R function to calculate standard deviation
 sd(toy$toy)
 ```
 
@@ -952,13 +947,13 @@ It is common to report means and standard deviations for continuous variables in
 Let's repeat the process for the negative affect variable in the research vignette. First the six steps to calculate variance.
 
 
-```r
-# six steps wrapped into 1
-df_nAff$mdevNA <- df_nAff$nAff - mean(df_nAff$nAff, na.rm = TRUE)
-df_nAff$NAmd2 <- (df_nAff$mdevNA) * (df_nAff$mdevNA)
-# I can save the variance calculation as an object for later use
-nAff_var <- sum(df_nAff$NAmd2)/(nrow(df) - 1)
-# checking work with the variance function
+``` r
+#six steps wrapped into 1
+df_nAff$mdevNA <- df_nAff$nAff - mean(df_nAff$nAff, na.rm=TRUE)
+df_nAff$NAmd2 <- (df_nAff$mdevNA)*(df_nAff$mdevNA)
+#I can save the variance calculation as an object for later use
+nAff_var <- sum(df_nAff$NAmd2)/(nrow(df)-1)
+#checking work with the variance function
 var(df_nAff$nAff)
 ```
 
@@ -967,8 +962,8 @@ var(df_nAff$nAff)
 ```
 The seventh step is to take the square root of variance.
 
-```r
-# grabbing the mean for quick reference
+``` r
+#grabbing the mean for quick reference
 mean(df_nAff$nAff)
 ```
 
@@ -976,8 +971,8 @@ mean(df_nAff$nAff)
 [1] 1.813748
 ```
 
-```r
-# below the 'toy_var' object was created in the prior step
+``` r
+#below the "toy_var" object was created in the prior step
 sqrt(nAff_var)
 ```
 
@@ -985,8 +980,8 @@ sqrt(nAff_var)
 [1] 0.6314469
 ```
 
-```r
-# checking work with the R function to calculate standard deviation
+``` r
+#checking work with the R function to calculate standard deviation
 sd(df_nAff$nAff)
 ```
 
@@ -1007,11 +1002,10 @@ Statistics that we use are accompanied by assumptions about the nature of variab
 For a streamlined presentation, let me create a df with three, continuously scaled, variables of interest.
 
 
-```r
-# I have opened the tidyverse library so that I can use the pipe
-library(tidyverse)
-df_3vars <- df %>%
-    dplyr::select(nAff, mAggr, drProb)
+``` r
+#I have opened the tidyverse library so that I can use the pipe
+library(tidyverse) 
+df_3vars <- df%>%dplyr::select(nAff, mAggr, drProb)
 ```
 
 ### Skew and Kurtosis
@@ -1028,8 +1022,8 @@ There have been numerous approaches to calculating and interpreting skew and kur
 The *psych::describe* specification of "type=1" results in the *skew index* and *kurtosis index*. For simplicity sake, I will refer to this specific variation of skew and kutosis as "type=1." This is a very quick way to obtain initial values.
 
 
-```r
-psych::describe(df_3vars, type = 1)
+``` r
+psych::describe(df_3vars, type=1)
 ```
 
 ```
@@ -1054,8 +1048,8 @@ $skew.2SE = \frac{S-0}{2*SE_{skewness}}$ and $kurt.2SE = \frac{S-0}{2*SE_{kurtos
 The skew.2SE and kurt.2SE values can be obtained with *pastecs::stat.desc* by adding the "norm = TRUE" statement. 
 
 
-```r
-pastecs::stat.desc(df_3vars, norm = TRUE)
+``` r
+pastecs::stat.desc(df_3vars, norm=TRUE)
 ```
 
 ```
@@ -1067,39 +1061,39 @@ min             1.000000000000000000000    0.0000000000000000000000000
 max             4.000000000000000000000   11.4193472349555946721011424
 range           3.000000000000000000000   11.4193472349555946721011424
 sum          1293.202396986186386129702 1772.9047547268992275348864496
-median          1.765366956719584212721    2.1702325413588932079278493
-mean            1.813748102364917569318    2.4865424329970533534606147
-SE.mean         0.023647871456839660714    0.0821091579065054283370628
-CI.mean.0.95    0.046427899159900143378    0.1612050247458937379807509
-var             0.398725160825158186917    4.8069845480383115443601127
-std.dev         0.631446878862472638083    2.1924836482943974580450686
-coef.var        0.348144749559841870656    0.8817398887706798804586583
-skewness        0.509847355388718947999    0.9072670817943200294308781
-skew.2SE        2.784775604496556589140    4.9554738480840363479273947
-kurtosis       -0.431370013354644310510    0.6446009591154999718298768
-kurt.2SE       -1.179701916057711574837    1.7628415583352385898052717
-normtest.W      0.947747894960071946002    0.9160358300310357249074400
+median          1.765366956719612634430    2.1702325413588674507536780
+mean            1.813748102364917569318    2.4865424329970537975498246
+SE.mean         0.023647871456839671123    0.0821091579065054283370628
+CI.mean.0.95    0.046427899159900164194    0.1612050247458937379807509
+var             0.398725160825158464473    4.8069845480383106561816930
+std.dev         0.631446878862472860128    2.1924836482943974580450686
+coef.var        0.348144749559841981679    0.8817398887706796584140534
+skewness        0.509847355388719059022    0.9072670817943200294308781
+skew.2SE        2.784775604496557477319    4.9554738480840363479273947
+kurtosis       -0.431370013354647863224    0.6446009591155026363651359
+kurt.2SE       -1.179701916057721344799    1.7628415583352459172772342
+normtest.W      0.947747894960070169645    0.9160358300310347257067178
 normtest.p      0.000000000000003548014    0.0000000000000000001931087
                                        drProb
 nbr.val       713.000000000000000000000000000
 nbr.null      176.000000000000000000000000000
 nbr.na          0.000000000000000000000000000
 min             0.000000000000000000000000000
-max            11.897269669625760712960982346
-range          11.897269669625760712960982346
+max            11.897269669625735843965230742
+range          11.897269669625735843965230742
 sum          2080.674335793011778150685131550
-median          2.327140791884834580827146056
-mean            2.918196824394125865609339598
-SE.mean         0.104209937080375208973137546
-CI.mean.0.95    0.204595515459292442983496585
-var             7.742973933228878280488061137
-std.dev         2.782619976430284580715124321
-coef.var        0.953540882907379039323814141
-skewness        0.777725776691186476696771024
-skew.2SE        4.247921945709623336995264253
-kurtosis       -0.215619970410508177138808605
-kurt.2SE       -0.589673098172587506482500430
-normtest.W      0.898257151085984140159723665
+median          2.327140791884810600009814152
+mean            2.918196824394126309698549449
+SE.mean         0.104209937080375195095349738
+CI.mean.0.95    0.204595515459292415227920969
+var             7.742973933228873839595962636
+std.dev         2.782619976430284136625914471
+coef.var        0.953540882907378706256906753
+skewness        0.777725776691185588518351324
+skew.2SE        4.247921945709618896103165753
+kurtosis       -0.215619970410508621228018455
+kurt.2SE       -0.589673098172588727727827518
+normtest.W      0.898257151085984917315840903
 normtest.p      0.000000000000000000002486005
 ```
 
@@ -1158,15 +1152,12 @@ Examining the first formula, some parts should look familiar:
 Let's work step-by-step through the calculation of a correlation coefficient. So that we can more easily see what we are doing with the variables, I will create a super tiny dataframe with the two variables of interest (negative affect and microaggressions):
 
 
-```r
-# just in case it turned off, I'm reopening tidyverse so that I can
-# use the pipe
-library(tidyverse)
-# using the dplyr package to select the two variables in this tiny df
-df4corr <- df %>%
-    dplyr::select(nAff, mAggr)
-# displaying the first 6 rows of df4corr ('dataframe for
-# correlations' -- I made this up)
+``` r
+#just in case it turned off, I'm reopening tidyverse so that I can use the pipe 
+library(tidyverse) 
+#using the dplyr package to select the two variables in this tiny df
+df4corr <- df%>%dplyr::select(nAff, mAggr)
+#displaying the first 6 rows of df4corr ("dataframe for correlations" -- I made this up)
 head(df4corr)
 ```
 
@@ -1183,12 +1174,12 @@ head(df4corr)
 First we calculate the mean deviations for negative affect and microaggressions.
 
 
-```r
-# calculating the mean deviation for negative affect
+``` r
+#calculating the mean deviation for negative affect
 df4corr$MDnAff <- df4corr$nAff - mean(df4corr$nAff)
-# calculating the mean deviation for microaggressions
+#calculating the mean deviation for microaggressions
 df4corr$MDmAggr <- df4corr$mAggr - mean(df4corr$mAggr)
-# displaying the first 6 rows of df4corr
+#displaying the first 6 rows of df4corr 
 head(df4corr)
 ```
 
@@ -1204,11 +1195,10 @@ head(df4corr)
 The next part of the formula $\sum_{i=1}^N \left( X_i - \bar{X} \right) \left( Y_i - \bar{Y} \right)$ suggests that we sum the cross-products of these mean deviations. Here we multiply the mean deviations to create the "cross-product." 
 
 
-```r
-# Creating a crossproduct variabl by multiplying negative affect by
-# psych distress
+``` r
+#Creating a crossproduct variabl by multiplying negative affect by psych distress
 df4corr$crossproductXY <- df4corr$MDnAff * df4corr$MDmAggr
-# displaying the first 6 rows of df4corr
+#displaying the first 6 rows of df4corr 
 head(df4corr)
 ```
 
@@ -1224,7 +1214,7 @@ head(df4corr)
 Next, we sum the column of cross-products.
 
 
-```r
+``` r
 sum(df4corr$crossproductXY)
 ```
 
@@ -1234,13 +1224,11 @@ sum(df4corr$crossproductXY)
 To obtain the covariance, the next part of the formula suggests that we multiply the sum of cross-products by $\frac{1}{N-1}$. I will do this in one step. 
 
 
-```r
-# I have created the object 'cov' so I can use it in a calculation,
-# later The 'nrow' function will count the number of rows and use
-# that value
-cov <- 1/(nrow(df4corr) - 1) * sum(df4corr$crossproductXY)
-# Because I created an object, R markdown won't automatically display
-# it; I have to request it by listing it
+``` r
+#I have created the object "cov" so I can use it in a calculation, later
+#The "nrow" function will count the number of rows and use that value
+cov <- 1/(nrow(df4corr) - 1)* sum(df4corr$crossproductXY)
+#Because I created an object, R markdown won't automatically display it; I have to request it by listing it
 cov
 ```
 
@@ -1257,8 +1245,8 @@ $$
 We will use our covariance value in the numerator. The denominator involves the multiplication of the standard deviations of X and Y. Because we have already learned how to calculate standard deviation in a step-by-step manner, I will use code to simplify that process:
 
 
-```r
-cov/(sd(df4corr$nAff) * sd(df4corr$mAggr))
+``` r
+cov/(sd(df4corr$nAff)*sd(df4corr$mAggr))
 ```
 
 ```
@@ -1269,7 +1257,7 @@ Our results suggest that the relationship between negative affect and psychologi
 Is it statistically significant?  Because this is an introductory chapter, we will not calculate this in a stepwise manner, but use the *cor.test()* function in base R to check our prior math and retrieve the *p* value associated with the correlation coefficient.
 
 
-```r
+``` r
 cor.test(df4corr$nAff, df4corr$mAggr)
 ```
 
@@ -1303,12 +1291,11 @@ The *pairs.panels()* function in the *psych* package produces a SPLOM (i.e., sca
 To provide a simple demonstration this, I will use our df with the three continuously scaled variables of interest:
 
 
-```r
-# in the code below, psych points to the package pairs.panels points
-# to the function we simply add the name of the df; if you want fewer
-# variables than that are in the df, you may wish to create a smaller
-# df adding the pch command is optional and produces a finer
-# resolution
+``` r
+#in the code below, psych points to the package
+#pairs.panels points to the function
+#we simply add the name of the df; if you want fewer variables than that are in the df, you may wish to create a smaller df
+#adding the pch command is optional and produces a finer resolution
 psych::pairs.panels(df_3vars, pch = ".")
 ```
 
@@ -1330,11 +1317,9 @@ Writing up an APA style results section frequently involves tables. A helpful pa
 We pass the desired df to the *apaTables::apa.cor.table*. Commands allow us to specify what is included in the table and whether it should be displayed in the console or saved as a document to the project's folder.
 
 
-```r
-# the apa.cor.table function removes any categorical variables that
-# might be in the df
-Table1_Cor <- apaTables::apa.cor.table(df_3vars, filename = "Table1_Cor.doc",
-    table.number = 1, show.conf.interval = FALSE, landscape = TRUE)
+``` r
+#the apa.cor.table function removes any categorical variables that might be in the df
+Table1_Cor <- apaTables::apa.cor.table(df_3vars, filename = "Table1_Cor.doc", table.number = 1, show.conf.interval = FALSE, landscape = TRUE)
 ```
 
 ```
@@ -1342,9 +1327,9 @@ The ability to suppress reporting of reporting confidence intervals has been dep
 The function argument show.conf.interval will be removed in a later version.
 ```
 
-```r
-# swap in this command to see it in the R Markdown file
-print(Table1_Cor)
+``` r
+#swap in this command to see it in the R Markdown file
+print(Table1_Cor) 
 ```
 
 ```
@@ -1464,7 +1449,7 @@ If you wanted to use this example and dataset as a basis for a homework assignme
 The ReC.rds is the entire dataset. Let's first open it. 
 
 
-```r
+``` r
 ReCdf <- readRDS("ReC.rds")
 ```
 
@@ -1473,8 +1458,8 @@ Recall that students (represented by the *deID* variable) could contribute up to
 To avoid this dependency and to practice an R skill, let's first filter the data, selecting only those students who took ANOVA.
 
 
-```r
-JustANOVA <- subset(ReCdf, Course == "ANOVA")
+``` r
+JustANOVA <- subset(ReCdf, Course == "ANOVA") 
 ```
 
 #### Create a df with 3 continuously scaled variables of interest {-}
@@ -1482,16 +1467,16 @@ JustANOVA <- subset(ReCdf, Course == "ANOVA")
 The assignment requires that we downsize to three variables. We could pick any three. 
 
 
-```r
+``` r
 library(tidyverse)
 tiny3 <- JustANOVA %>%
-    dplyr::select(OvInstructor, OvCourse, MyContribution)
+    dplyr::select (OvInstructor, OvCourse, MyContribution)
 ```
 
 #### Produce descriptive statistics {-}
 
 
-```r
+``` r
 psych::describe(tiny3)
 ```
 
@@ -1509,7 +1494,7 @@ MyContribution    -0.55 0.08
 #### Produce SPLOM/pairs.panels {-}
 
 
-```r
+``` r
 psych::pairs.panels(tiny3)
 ```
 
@@ -1518,7 +1503,7 @@ psych::pairs.panels(tiny3)
 #### Produce an apaTables matrix {-}
 
 
-```r
+``` r
 apaTables::apa.cor.table(tiny3)
 ```
 
@@ -1558,18 +1543,18 @@ I am going to continue with the *tiny3* dataset I used when I worked the problem
 If you need to reimport data, here is a quick recap of the code explained earlier.
 
 
-```r
+``` r
 ReCdf <- readRDS("ReC.rds")
-JustANOVA <- subset(ReCdf, Course == "ANOVA")
+JustANOVA <- subset(ReCdf, Course == "ANOVA") 
 
 library(tidyverse)
 tiny3 <- JustANOVA %>%
-    dplyr::select(OvInstructor, OvCourse, MyContribution)
+    dplyr::select (OvInstructor, OvCourse, MyContribution)
 ```
 
 To avoid problems in the code we are used that is caused by missingness, we will eliminate any rows with missing data.
 
-```r
+``` r
 tiny3 <- na.omit(tiny3)
 ```
 
@@ -1578,15 +1563,15 @@ tiny3 <- na.omit(tiny3)
 
 I will start with the OvInstructor variable. Inspect the dataframe to see that this new variable exists.
 
-```r
-tiny3$M_OvI <- mean(tiny3$OvInstructor, na.rm = TRUE)
+``` r
+tiny3$M_OvI <- mean(tiny3$OvInstructor, na.rm=TRUE)
 ```
 
 #### Create a variable that represents the mean deviation {-}
  
 
-```r
-tiny3$Mdev_OvI <- (tiny3$OvInstructor - tiny3$M_OvI)
+``` r
+tiny3$Mdev_OvI <- (tiny3$OvInstructor-tiny3$M_OvI)
 head(tiny3)
 ```
 
@@ -1606,7 +1591,7 @@ Inspect the dataframe to see that this new variable exists. Note that this funct
 #### What is the value of the sum of mean deviations? {-}
 
 
-```r
+``` r
 round(sum(tiny3$Mdev_OvI, na.rm = TRUE), 3)
 ```
 
@@ -1618,7 +1603,7 @@ Yes, zero!
 #### Create a variable that represents the absolute mean deviation {-}
 
 
-```r
+``` r
 tiny3$abslt_mOvI <- abs(tiny3$Mdev_OvI)
 head(tiny3)
 ```
@@ -1638,7 +1623,7 @@ Inspect the dataframe to see that this new variable no longer has negative value
 **What is the value of the sum of the absolute mean deviation?**
 
 
-```r
+``` r
 round(sum(tiny3$abslt_mOvI, na.rm = TRUE), 3)
 ```
 
@@ -1650,7 +1635,7 @@ round(sum(tiny3$abslt_mOvI, na.rm = TRUE), 3)
 **What is the value of the mean of the absolute mean deviation?**
 
 
-```r
+``` r
 round(mean(tiny3$abslt_mOvI, na.rm = TRUE), 3)
 ```
 
@@ -1665,7 +1650,7 @@ Average distance of each value from the mean.
 #### Create a variable that represents the mean deviation squared {-}
 
 
-```r
+``` r
 tiny3$mdev2_OvI <- (tiny3$Mdev_OvI * tiny3$Mdev_OvI)
 head(tiny3)
 ```
@@ -1690,7 +1675,7 @@ head(tiny3)
 **What is the value of the sum of squared deviations around the mean (also known as sums of squares; sometimes abbreviated as $SS$)?**
 
 
-```r
+``` r
 sum(tiny3$mdev2_OvI, na.rm = TRUE)
 ```
 
@@ -1704,7 +1689,7 @@ There are at least two ways to do this with basic code (and then we can check ou
 
 Here's how to do it with "more code."
 
-```r
+``` r
 var_OvI <- sum(tiny3$mdev2_OvI/((nrow(tiny3) - 1)))
 var_OvI
 ```
@@ -1715,8 +1700,8 @@ var_OvI
 
 Here's how to do it with the numbers that I calculated:
 
-```r
-115.0973/(113 - 1)
+``` r
+115.0973/(113-1)
 ```
 
 ```
@@ -1725,8 +1710,8 @@ Here's how to do it with the numbers that I calculated:
 
 Checking my work with the *var* function from base R. If it's wrong, I need to rework some of the previous steps.
 
-```r
-var(tiny3$OvInstructor, na.rm = TRUE)  #checking my work
+``` r
+var(tiny3$OvInstructor, na.rm = TRUE) #checking my work
 ```
 
 ```
@@ -1738,8 +1723,8 @@ var(tiny3$OvInstructor, na.rm = TRUE)  #checking my work
 There are two ways to calculate it with basic code; and then we can check it with more code from base R.
 
 
-```r
-sd_OvI <- sqrt(var_OvI)  #calculating with the object I created
+``` r
+sd_OvI <- sqrt(var_OvI)#calculating with the object I created
 sd_OvI
 ```
 
@@ -1747,16 +1732,16 @@ sd_OvI
 [1] 1.013733
 ```
 
-```r
-sqrt(1.027655)  #calculated with the actual numbers
+``` r
+sqrt (1.027655)#calculated with the actual numbers
 ```
 
 ```
 [1] 1.013733
 ```
 
-```r
-sd(tiny3$OvInstructor)  #checking my work with the code from baseR
+``` r
+sd(tiny3$OvInstructor)#checking my work with the code from baseR
 ```
 
 ```
@@ -1767,12 +1752,12 @@ sd(tiny3$OvInstructor)  #checking my work with the code from baseR
 
 My second variable is MyContribution
 
-```r
-# first the mean
-tiny3$M_MyC <- mean(tiny3$MyContribution, na.rm = TRUE)
-# second the mean deviation
-tiny3$Mdev_MyC <- (tiny3$MyContribution - tiny3$M_MyC)
-# third the mean deviation squared
+``` r
+#first the mean
+tiny3$M_MyC <- mean(tiny3$MyContribution, na.rm=TRUE)
+#second the mean deviation
+tiny3$Mdev_MyC <- (tiny3$MyContribution-tiny3$M_MyC)
+#third the mean deviation squared
 tiny3$mdev2_MyC <- (tiny3$Mdev_MyC * tiny3$Mdev_MyC)
 head(tiny3)
 ```
@@ -1794,8 +1779,8 @@ head(tiny3)
 6 1.40621818 3.964602 0.03539823 0.001253035
 ```
 
-```r
-# fourth the variance
+``` r
+#fourth the variance
 var_MyC <- sum(tiny3$mdev2_MyC/((nrow(tiny3) - 1)))
 var_MyC
 ```
@@ -1804,18 +1789,18 @@ var_MyC
 [1] 0.6951643
 ```
 
-```r
-# finally the standard deviation
+``` r
+#finally the standard deviation
 sd_MyC <- sqrt(var_MyC)
-sd_MyC  #checking my work
+sd_MyC#checking my work
 ```
 
 ```
 [1] 0.8337652
 ```
 
-```r
-sd(tiny3$MyContribution)  #checking my work
+``` r
+sd(tiny3$MyContribution)#checking my work
 ```
 
 ```
@@ -1825,7 +1810,7 @@ sd(tiny3$MyContribution)  #checking my work
 #### Create a variable that represents the *cross-product* (of the mean deviations). What is the sum of these cross-products? {-}
 
 
-```r
+``` r
 tiny3$crossproduct <- (tiny3$Mdev_OvI * tiny3$Mdev_MyC)
 head(tiny3)
 ```
@@ -1850,7 +1835,7 @@ head(tiny3)
 The sum of the crossproduct is:
 
 
-```r
+``` r
 xp_sum <- sum(tiny3$crossproduct)
 xp_sum
 ```
@@ -1862,7 +1847,7 @@ xp_sum
 #### Calculate the value of their covariance {-} 
 
 
-```r
+``` r
 cov <- (1/(113-1)) * 46.74336
 cov
 ```
@@ -1874,7 +1859,7 @@ cov
 #### Calculate value of correlation coefficient {-}
 
 
-```r
+``` r
 0.4173514/(1.013733*0.8338)
 ```
 
@@ -1883,7 +1868,7 @@ cov
 ```
 And now I can check my work with a function from base R.
 
-```r
+``` r
 cor.test(tiny3$OvInstructor, tiny3$MyContribution)
 ```
 

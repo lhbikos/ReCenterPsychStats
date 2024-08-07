@@ -1,0 +1,118 @@
+# One-Way Repeated Measures with a Multivariate Approach  
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+options(scipen=999)#eliminates scientific notation
+```
+
+[Screencasted Lecture Link](https://youtu.be/1c3N733nSM0)
+
+As noted in the lesson on [one-way repeated measures ANOVA](#Repeated), the researcher can use a univariate or multivariate approach to analyzing the data. The *rstatix::anova_test()* is limited to the univariate approach. In order to maintain a streamlined chapter with minimal distractions to student learning I have chosen to provide a quick and separate demonstration of the multivariate approach in this appendix.  In-so-doing, I will use the *car* package.
+
+As a quick reminder, I will describe and resimulate the data. The narration will presume familiarity with the [one-way repeated measures ANOVA](#Repeated) lesson.
+
+## Research Vignette  
+
+Amodeo [@amodeo_empowering_2018] and colleagues conducted a mixed methods study (qualitative and quantitative) to evaluate the effectiveness of an empowerment, peer-group-based, intervention with participants (*N* = 8) who experienced transphobic episodes. Focus groups used qualitative methods to summarize emergent themes from the program (identity affirmation, self-acceptance, group as support) and a one-way, repeated measures ANOVA provided evidence of increased resilience from pre to three-month followup.
+
+Eight participants (seven transgender women and one genderqueer person) participated in the intervention. The mean age was 28.5 (*SD* = 5.85). All participants were located in Italy.
+
+The within-subjects condition was wave, represented by T1, T2, and T3:
+
+* T1, beginning of training
+* Training, three 8-hour days, 
+  - content included identity and heterosexism, sociopolitical issues and minority stress, resilience, and empowerment
+* T2, at the conclusion of the 3-day training
+* Follow-up session 3 months later
+* T3, at the conclusion of the +3 month follow-up session
+
+The dependent variable (assessed at each wave) was a 14-item resilience scale [@wagnild_development_1993]. Items were assessed on a 7-point scale ranging from *strongly disagree* to *strongly agree* with higher scores indicating higher levels of resilience. An example items was, "I usually manage one way or another."
+
+### Data Simulation  
+
+Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup). The sript produces "long" and "wide" forms are created.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(2022)
+#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence
+ID<-factor(c(rep(seq(1,8),each=3)))
+#gives me a column of 24 numbers with the specified Ms and SD
+Resilience<-rnorm(24,mean=c(5.7,6.21,6.26),sd=c(.88,.79,.37)) 
+#repeats pre, post, follow-up once each, 8 times
+Wave<-rep(c("Pre","Post", "FollowUp"),each=1,8) 
+Amodeo_long<-data.frame(ID, Wave, Resilience)
+
+Amodeo_long$Wave <- factor(Amodeo_long$Wave, levels = c("Pre", "Post", "FollowUp"))
+
+# Create a new df (Amodeo_wide)
+# Identify the original df
+# We are telling it to connect the values of the Resilience variable its respective Wave designation
+Amodeo_wide <- reshape2::dcast(data = Amodeo_long, formula =ID~Wave, value.var = "Resilience")
+#doublecheck to see if they did what you think
+str(Amodeo_wide)
+Amodeo_wide$ID <- factor(Amodeo_wide$ID)
+```
+
+## Computing the Omnibus F  
+
+Without the *rstatix* helper package, here is how the analysis would be run in the package, *car.*  Although this package is less intuitive to use, it results in both univariate output (both sphericity assumed and sphericity violated) and multivariate output (which does not require the sphericity assumption).
+
+Evaluating the data requires that we create some objects that will be fed into function. We can name these objects anything we like.
+
+In ths script below I define the objects that are required.
+
+* waveLevels is an object that will specify three levels of the independent variable (pre, post, follow-up),
+* waveFactor simply makes "waveLevels" a factor
+* waveBind column-binds (i.e., cbind) the pre, post, and follow-up variables from the wide form of the Amodeo dataset
+* waveModel calculates the intercept (i.e., the means) of the pre, post, and follow-up levels
+
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#library(car)
+waveLevels <- c(1,2,3)
+waveFactor <- as.factor(waveLevels)
+waveFrame <- data.frame(waveFactor)
+waveBind <-cbind(Amodeo_wide$Pre, Amodeo_wide$Post, Amodeo_wide$FollowUp)
+waveModel<- lm(waveBind~1)
+waveModel
+
+```
+To run the analysis, we insert these objects into arguments:
+
+* waveModel is the first argument,
+* waveFrame is assigned to the *idata* command,
+* waveFactor is assigned to the *idesign* command
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+analysis <-car::Anova(waveModel, idata=waveFrame, idesign=~waveFactor)
+summary(analysis)
+```
+The *car::Anova()* function produces both univariate and multivariate results. To begin to understand this data, let's start with what we learned in the [one-way repeated measures ANOVA lesson](#Repeated).
+
+### Univariate Results  
+
+When we ran the univariate approach in the lesson, we first checked the sphericity assumption. Our results here are identical to those from *rstatix::anova_test*. That is, we did not violate the sphericity assumption:  Mauchley's test $= .566 p = 0.182$. The *F* test with univariate results was $F(2, 14) = 3.910, p = 0.045$.
+
+>The Greenhouse Geiser estimate was 0.698 the corrected  *p* = .068.
+>The Huyhn Feldt estimate was 0.817 and the corrected *p* = .057.
+
+The univariate ANOVA results are under the "Univariate Type III Repeated-Measures ANOVA Assuming Sphericity" heading. We find the ANOVA output on the row titled, "waveFactor." The results are identical to what we found in the lesson:   $F(2,14) = 3.91, p = 0.045$. I do not see that an effect size is reported.
+
+### Multivariate Results  
+
+Researchers may prefer the multivariate approach because it does not require the sphericity assumption. Stated another way, if the sphericity assumption is violated, researchers can report the results of the multivariate analysis.
+
+We find the multivariate results in the middle of the output, under the heading, "Multivariate Tests: waveFactor." There are four choices: Pillai, Wilks, Hotelling-Lawley, and Roy. Green and Salkind [-@green_one-way_2017-1] have noted that in the one-way within-subjects ANOVA, all four will yield the same *F* and *p* values. They recommended reporting Wilks' lambda because researchers will have greatest familiarity with it. Thus, I would write up the result of this omnibus test like this:
+
+>Results of the one-way repeated measures ANOVA indicated a significant wave effect, $Wilks' \lambda = .597, F(2,6) = 2.022, p = 0.213$.
+
+Because follow-up testing is *pairwise* (i.e., there are only two levels being compared), the sphericity assumption is not required and those could proceed in the manner demonstrated in the [one-way repeated measures ANOVA lesson](#Repeated).
+
+### A Brief Commentary on Wrappers  
+
+As noted several times, because of its relative ease-of-use, the relevance of information included in the results, and its integration with the *ggpubr* package, I chose to use *rstatix* package in all of the ANOVA lessons. As I worked through this example, I spent several hours creating and interpreting the code. For me, there was value in this exercise:
+
+* I am encouraged and reassured with the consistency of results between the two approaches,
+* I am in awe of the power of these programs and a little intimidated by all the options that are available within a given package, and
+* I am deeply grateful to package developers who take the time to create packages for discipline-specific use-cases and then freely share their work with others. Thank you [Alboukadel Kassambara](https://github.com/kassambara/rstatix)!
+

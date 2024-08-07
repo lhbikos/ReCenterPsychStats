@@ -39,14 +39,10 @@ JustANOVA <- subset(big, Course == "ANOVA")
 I will create a mean score of completed items from the traditional pedagogy scale.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#Creates a list of the variables that belong to that scale
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')
+#This code was recently updated and likely differs from the screencasted lecture
 
 #Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
-JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, TradPed_vars], .75)
-#If the above code doesn't work use the one below; the difference is the two periods in front of the variable list
-#JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, ..TradPed_vars], .75)
-
+JustANOVA$TradPed <- datawizard::row_means(JustANOVA, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.

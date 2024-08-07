@@ -93,10 +93,9 @@ Syntax for simple formatting in the text (i.e., non-chunk) areas (e.g., using it
 The easiest way to insert a chunk is to use the INSERT/R command at the top of this editor box. You can also insert a chunk with the keyboard shortcut: CTRL/ALT/i
 
 
-```r
-# hashtags let me write comments to remind myself what I did here I
-# am simply demonstrating arithmetic (but I would normally be running
-# code)
+``` r
+#hashtags let me write comments to remind myself what I did
+#here I am simply demonstrating arithmetic (but I would normally be running code)
 2021 - 1966
 ```
 
@@ -111,15 +110,15 @@ As scientist-practitioners (and not coders), we will rely on *packages* to do mu
 Researchers treat packages differently. In these lectures, I list all the packages we will use in an opening chunk at the beginning of the lecture. When the hashtags are removed, the script will ask R to check to see if the package is installed on your machine. If it is, installation is skipped. If it is not, R installs it. Simply remove the hashtag to run the code the first time, then hashtag them back out so R is not always re-checking.
 
 
-```r
-# will install the package if not already installed
-# if(!require(psych)){install.packages('psych')}
+``` r
+#will install the package if not already installed
+#if(!require(psych)){install.packages("psych")} 
 ```
 
 To make a package operable, you need to open it. There are two primary ways to do this. The first is to use the library function.
 
 
-```r
+``` r
 #install.packages ("psych")
 library (psych)
 ```
@@ -127,7 +126,7 @@ library (psych)
 The second way is to place a double colon between the package and function. This second method has become my preferred practice because it helps me remember what package goes with each function. It can also prevent R hiccups when there are identical function names and R does not know which package to use. Below is an example where I might ask for descriptives from the psych package. Because I have not yet uploaded data, I have hashtagged it out, making the command inoperable.
 
 
-```r
+``` r
 #psych::describe(mydata)
 ```
 
@@ -145,25 +144,22 @@ At this point, simulating data is beyond the learning goals I have established f
 In this simulation, I am simply creating an ID number, a condition (High, Low, Control), and a score on the dependent variable, "Accurate." More information about this study is included in the [one-way ANOVA chapter](#oneway). 
 
 
-```r
-# Note, this simulation results in a different datset than is in the
-# OnewayANOVA lesson sets a random seed so that we get the same
-# results each time
-set.seed(2021)
-# sample size, M and SD for each group
-Accurate <- c(rnorm(30, mean = 1.18, sd = 0.8), rnorm(30, mean = 1.83,
-    sd = 0.58), rnorm(30, mean = 1.76, sd = 0.56))
-# set upper bound for DV
-Accurate[Accurate > 3] <- 3
-# set lower bound for DV
-Accurate[Accurate < 0] <- 0
-# IDs for participants
-ID <- factor(seq(1, 90))
-# name factors and identify how many in each group; should be in same
-# order as first row of script
-COND <- c(rep("High", 30), rep("Low", 30), rep("Control", 30))
-# groups the 3 variables into a single df: ID, DV, condition
-Acc_sim30 <- data.frame(ID, COND, Accurate)
+``` r
+#Note, this simulation results in a different datset than is in the OnewayANOVA lesson
+#sets a random seed so that we get the same results each time
+set.seed(2021) 
+#sample size, M and SD for each group
+Accurate <- c(rnorm(30, mean=1.18, sd=0.80), rnorm(30, mean=1.83, sd = 0.58), rnorm(30, mean = 1.76, sd = 0.56))
+#set upper bound for DV
+Accurate[Accurate>3]<-3 
+#set lower bound for DV
+Accurate[Accurate<0]<-0 
+#IDs for participants
+ID<-factor(seq(1,90)) 
+#name factors and identify how many in each group; should be in same order as first row of script
+COND<-c(rep("High", 30), rep("Low", 30), rep("Control", 30)) 
+#groups the 3 variables into a single df: ID, DV, condition
+Acc_sim30 <-data.frame(ID, COND, Accurate) 
 ```
 
 At this point, this data lives only in this .rmd file after the above code is run. Although there are numerous ways to export and import data, I have a preference for two. 
@@ -177,20 +173,17 @@ In the code below, I identify the R object "Acc_sim30" and give it a file name, 
 This file will save in the same folder as wherever you are using this .rmd file.
 
 
-```r
-# to write it to an outfile as a .csv
-write.table(Acc_sim30, file = "to_CSV.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
+``` r
+#to write it to an outfile as a .csv
+write.table(Acc_sim30, file="to_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
 ```
 
 Importing this object back into the R environment can be accomplished with some simple code. For the sake of demonstration, 
 
 
-```r
-# to save the df as an .csv (think 'Excel lite') file on your
-# computer; it should save in the same file as the .rmd file you are
-# working with
-from_CSV <- read.csv("to_CSV.csv", header = TRUE)
+``` r
+#to save the df as an .csv (think "Excel lite") file on your computer; it should save in the same file as the .rmd file you are working with
+from_CSV <- read.csv ("to_CSV.csv", header = TRUE)
 ```
 
 The advantage of working with .csv files is that it is then easy to inspect and manipulate them outside of the R environment. The disadvantage of .csv files is that each time they are imported they lose any formatting you may have meticulously assigned to them. 
@@ -201,16 +194,15 @@ The advantage of working with .csv files is that it is then easy to inspect and 
 While it is easy enough to rerun the code (or copy it from data prep .rmd and paste it into an .rmd you are using for advanced analysis), there is a better way! Saving the data as an R object preserves all of its characteristics.
 
 
-```r
-# to save the df as an .rds file on your computer; it should save in
-# the same file as the .rmd file you are working with
+``` r
+#to save the df as an .rds file on your computer; it should save in the same file as the .rmd file you are working with
 saveRDS(Acc_sim30, "to_Robject.rds")
 ```
 
 This file will save to your computer (and you can send it to colleagues). However, it is not easy to "just open it" in Excel. To open an .rds file and use it (whether you created it or it is sent to you by a colleague), use the following code:
 
 
-```r
+``` r
 from_rds <- readRDS("to_Robject.rds")
 ```
 
@@ -221,10 +213,9 @@ If you are the recipient of an R object, but want to view it as a .csv, simply i
 Your data may come to you in a variety of ways. One of the most common is SPSS. The *foreign* package is popular for importing SPSS data. Below is code which would import an SPSS file *if I had created one*. You'll see that this script is hashtagged out because I rarely use SPSS and do not have a handy file to demo. 
 
 
-```r
-# opening an SPSS file requires the foreign package which I opened
-# earlier from_SPSS <- foreign::read.spss ('SPSSdata.sav',
-# use.value.labels = TRUE, to.data.frame = TRUE)
+``` r
+#opening an SPSS file requires the foreign package which I opened earlier
+#from_SPSS <- foreign::read.spss ("SPSSdata.sav", use.value.labels = TRUE, to.data.frame = TRUE)
 ```
 
 ## quick demonstRation
@@ -232,8 +223,8 @@ Your data may come to you in a variety of ways. One of the most common is SPSS. 
 Let's run some simple descriptives. In the script below, I am using the *psych* package. Descriptive statistics will appear for all the data in the dataframe and the output will be rounded to three spaces. Note that rather than opening the psych package with the library function, I have used the double colon convention.
 
 
-```r
-round(psych::describe(Acc_sim30), 3)
+``` r
+round(psych::describe(Acc_sim30),3)
 ```
 
 ```
@@ -341,7 +332,7 @@ Several elements of the practice problems (i.e., download base R and R studio) a
 In the .rmd file, open a chunk and perform a simple mathematical operation of your choice (e.g., subtract your birth year from this year).
 
 
-```r
+``` r
 2023 - 1966
 ```
 
@@ -354,7 +345,7 @@ In the .rmd file, open a chunk and perform a simple mathematical operation of yo
 
 Below is code for installing three packages. Because continuous reinstallation can be problematic, I have hashtagged them so that they will not re-run.
 
-```r
+``` r
 #install.packages("tidyverse")
 #install.packages("ggpubr")
 #install.packages("psych")
@@ -363,7 +354,7 @@ Below is code for installing three packages. Because continuous reinstallation c
 #### Copy the simulation in this lesson to your .rmd file. Change the random seed and run the simulation {-}
 
 
-```r
+``` r
 set.seed(2023)
 # sample size, M and SD for each group
 Accurate <- c(rnorm(30, mean = 1.18, sd = 0.8), rnorm(30, mean = 1.83,
@@ -387,14 +378,14 @@ You only need to save it as a .csv or .rds file. I have demonstrated both.
 
 Saving as a .csv file
 
-```r
+``` r
 write.table(Acc_sim30B, file = "to_CSVb.csv", sep = ",", col.names = TRUE,
     row.names = FALSE)
 ```
 
 Saving as an .rds file
 
-```r
+``` r
 saveRDS(Acc_sim30B, "to_RobjectB.rds")
 ```
 
@@ -403,13 +394,13 @@ saveRDS(Acc_sim30B, "to_RobjectB.rds")
 You only need to import the .csv or .rds file; I have demonstrated both. 
 Open the .csv file from my local drive.
 
-```r
+``` r
 from_CSV <- read.csv("to_CSVb.csv", header = TRUE)
 ```
 
 Open the .rds file from my local drive.
 
-```r
+``` r
 from_rds <- readRDS("to_RobjectB.rds")
 ```
 
@@ -417,7 +408,7 @@ from_rds <- readRDS("to_RobjectB.rds")
 
 You only need to retrieve descriptives from the .csv or .rds file; I have demonstrated both. 
 
-```r
+``` r
 psych::describe(from_CSV)
 ```
 
@@ -433,7 +424,7 @@ Accurate 0.07
 ```
 
 
-```r
+``` r
 psych::describe(from_rds)
 ```
 

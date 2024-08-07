@@ -21,7 +21,7 @@ Each chapter features functions and code from *R* packages that will efficiently
 
 The practice problems are suggestions for homework. Most chapters include suggestions for both working the problem with R and R packages as well as hand calculations. The suggestions for homework are designed to met you where you are. If you are feeling less confident about your ability (or, perhaps short on time), you can choose the easiest options (e.g., changing the random seed and reworking the problem which should be nearly identical to the worked example); with more confidence or time you might choose to work the problem with another variable; with abundant confident (or perhaps a need to do so) you might choose to your own data, data that is available to you, or simulated data from another source. Repetition and practice might mean that you do each of these options.
 
-Finally, each lesson concludes with a *homeworked example*. This section provides a streamlined working of the problem with R or R packages. When the ANOVA models become more complex, there are often a myriad of ways to approach a problem. I have tried to select one that is sensible to me.  The *homeworked examples* draw from a single dataset is available on the OER's [GitHub site](https://github.com/lhbikos/ReCenterPsychStats/blob/main/Worked_Examples/ReC.rds) as well as in a [pre-registered repository](https://osf.io/z84kh/) on the Open Science Framework (OSF). An explanation of this study and codebook for the variables is provided at the end of the this lesson.
+Finally, many lessons concludes with a *homeworked example*. This section provides a streamlined working of the problem with R or R packages. When the ANOVA models become more complex, there are often a myriad of ways to approach a problem. I have tried to select one that is sensible to me.  The *homeworked examples* draw from a project associated with a recently published project of my own [@bikos_grad_2024], focused on teaching statistics in a socially responsible way. The associated dataset is available on the OER's [GitHub site](https://github.com/lhbikos/ReCenterPsychStats/blob/main/Worked_Examples/ReC.rds) as well as in a [pre-registered repository](https://osf.io/z84kh/) on the Open Science Framework (OSF). An explanation of this study and codebook for the variables is provided at the end of the this lesson.
 
 
 ## Strategies for Accessing and Using this OER
@@ -54,6 +54,14 @@ In the remaining lessons, I have attempted to provide complete code for every st
 
 I've found that, somewhere on the internet, there's almost always a solution to what I'm trying to do. I am frequently stuck and stumped and have spent hours searching the internet for even the tiniest of tasks. When you watch my videos, you may notice that in my R studio, there is a "scRiptuRe" file. I take notes on the solutions and scripts here -- using keywords that are meaningful to me so that when I need to repeat the task, I can hopefully search my own prior solutions and find a fix or a hint. You may also find it useful to create a working document of your own tips and tricks.
 
+## When Code Fails
+
+R code changes frequently and without notice. We generally discover changes in packages and code, every few months, when we update R Studio, R, and R packages. As soon as feasible, we jump into the ReCentering OERs to test and fix code. This means that you may encounter code failures before we discover or fix them. 
+
+Updating the screencasted lectures often occurs much later. If there is a discrepancy between the screencasted lectures and the code, the code is more current.
+
+If you discover errors, please e-mail them to recenterpsychstats@gmail.com.
+
 
 
 
@@ -81,7 +89,7 @@ Because students could contribute up to three course evaluations, each, multilev
 The data file is titled *ReC.rds* and can be retrieved with this code:
 
 
-```r
+``` r
 dfReC <- readRDS("ReC.rds")
 ```
 
@@ -141,7 +149,7 @@ In the examples where the scale scores are used, I provide code for calculating 
 Here's how to import the data:
 
 
-```r
+``` r
 ReCdf <- readRDS("ReC.rds")
 ```
 

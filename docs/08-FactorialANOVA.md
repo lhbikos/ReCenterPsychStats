@@ -70,23 +70,19 @@ In preparing this chapter, I drew heavily from the following resource(s) that ar
 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(knitr)){install.packages('knitr')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(dplyr)){install.packages('dplyr')}
-# if(!require(ggpubr)){install.packages('ggpubr')}
-# if(!require(rstatix)){install.packages('rstatix')}
-# if(!require(effectsize)){install.packages('effectsize')}
-# if(!require(pwr2)){install.packages('pwr2')}
-# if(!require(apaTables)){install.packages('apaTables')}
-# if(!require(emmeans)){install.packages('emmeans')}#although we
-# don't call this package directly, there are rstatix functions that
-# are a wrapper for it and therefore it needs to be installed
-# if(!require(car)){install.packages('car')}#although we don't call
-# this package directly, there are rstatix functions that are a
-# wrapper for it and therefore it needs to be installed
+``` r
+#will install the package if not already installed
+#if(!require(knitr)){install.packages("knitr")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(ggpubr)){install.packages("ggpubr")}
+#if(!require(rstatix)){install.packages("rstatix")}
+#if(!require(effectsize)){install.packages("effectsize")}
+#if(!require(pwr2)){install.packages("pwr2")}
+#if(!require(apaTables)){install.packages("apaTables")}
+#if(!require(emmeans)){install.packages("emmeans")}#although we don't call this package directly, there are rstatix functions that are a wrapper for it and therefore it needs to be installed
+#if(!require(car)){install.packages("car")}#although we don't call this package directly, there are rstatix functions that are a wrapper for it and therefore it needs to be installed
 ```
 
 ## Introducing Factorial ANOVA
@@ -152,27 +148,18 @@ In the study [@ramdhani_affective_2018], participants viewed facial pictures of 
 Below is script to simulate data for the negative reactions variable from the information available from the manuscript [@ramdhani_affective_2018].
 
 
-```r
+``` r
 library(tidyverse)
 set.seed(210731)
-# sample size, M and SD for each cell; this will put it in a long
-# file
-Negative <- round(c(rnorm(17, mean = 1.91, sd = 0.73), rnorm(18, mean = 3.16,
-    sd = 0.19), rnorm(19, mean = 3.3, sd = 1.05), rnorm(20, mean = 3, sd = 1.07),
-    rnorm(18, mean = 2.64, sd = 0.95), rnorm(19, mean = 2.99, sd = 0.8)),
-    3)
-# sample size, M and SD for each cell; this will put it in a long
-# file
-Positive <- round(c(rnorm(17, mean = 4.99, sd = 1.38), rnorm(18, mean = 3.83,
-    sd = 1.13), rnorm(19, mean = 4.2, sd = 0.82), rnorm(20, mean = 4.19,
-    sd = 0.91), rnorm(18, mean = 4.17, sd = 0.6), rnorm(19, mean = 3.26,
-    sd = 0.94)), 3)
-ID <- factor(seq(1, 111))
-Rater <- c(rep("Dayaknese", 35), rep("Madurese", 39), rep("Javanese", 37))
-Photo <- c(rep("Dayaknese", 17), rep("Madurese", 18), rep("Dayaknese",
-    19), rep("Madurese", 20), rep("Dayaknese", 18), rep("Madurese", 19))
-# groups the 3 variables into a single df: ID#, DV, condition
-Ramdhani_df <- data.frame(ID, Negative, Positive, Rater, Photo)
+#sample size, M and SD for each cell; this will put it in a long file
+Negative<-round(c(rnorm(17,mean=1.91,sd=0.73),rnorm(18,mean=3.16,sd=0.19),rnorm(19, mean=3.3, sd=1.05), rnorm(20, mean=3.00, sd=1.07), rnorm(18, mean=2.64, sd=0.95), rnorm(19, mean=2.99, sd=0.80)),3) 
+#sample size, M and SD for each cell; this will put it in a long file
+Positive<-round(c(rnorm(17,mean=4.99,sd=1.38),rnorm(18,mean=3.83,sd=1.13),rnorm(19, mean=4.2, sd=0.82), rnorm(20, mean=4.19, sd=0.91), rnorm(18, mean=4.17, sd=0.60), rnorm(19, mean=3.26, sd=0.94)),3) 
+ID <- factor(seq(1,111))
+Rater <- c(rep("Dayaknese",35), rep("Madurese", 39), rep ("Javanese", 37))
+Photo <- c(rep("Dayaknese", 17), rep("Madurese", 18), rep("Dayaknese", 19), rep("Madurese", 20), rep("Dayaknese", 18), rep("Madurese", 19))
+#groups the 3 variables into a single df: ID#, DV, condition
+Ramdhani_df<- data.frame(ID, Negative, Positive, Rater, Photo) 
 ```
 
 For two-way ANOVA our variables need to be properly formatted. In our case:
@@ -183,7 +170,7 @@ For two-way ANOVA our variables need to be properly formatted. In our case:
 * Photo should be an unordered facor
 
 
-```r
+``` r
 str(Ramdhani_df)
 ```
 
@@ -198,9 +185,9 @@ str(Ramdhani_df)
 Our Negative variable is correctly formatted. Let's reformat Rater and Photo to be factors and re-evaluate the structure. R's default is to order the factors alphabetically. In this case this is fine. If we had ordered factors such as dosage (placebo, lo, hi) we would want to respecify the order.
 
 
-```r
-Ramdhani_df[, "Rater"] <- as.factor(Ramdhani_df[, "Rater"])
-Ramdhani_df[, "Photo"] <- as.factor(Ramdhani_df[, "Photo"])
+``` r
+Ramdhani_df[,'Rater'] <- as.factor(Ramdhani_df[,'Rater'])
+Ramdhani_df[,'Photo'] <- as.factor(Ramdhani_df[,'Photo'])
 str(Ramdhani_df)
 ```
 
@@ -216,21 +203,22 @@ If you want to export this data as a file to your computer, remove the hashtags 
 
 The code for .csv will likely lose the formatting (i.e., making the Rater and Photo variables factors), but it is easy to view in Excel.
 
-```r
-# write the simulated data as a .csv write.table(Ramdhani_df,
-# file='RamdhaniCSV.csv', sep=',', col.names=TRUE, row.names=FALSE)
-# bring back the simulated dat from a .csv file Ramdhani_df <-
-# read.csv ('RamdhaniCSV.csv', header = TRUE) str(Ramdhani_df)
+``` r
+#write the simulated data as a .csv
+#write.table(Ramdhani_df, file="RamdhaniCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#Ramdhani_df <- read.csv ("RamdhaniCSV.csv", header = TRUE)
+#str(Ramdhani_df)
 ```
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R.
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(Ramdhani_df, 'Ramdhani_RDS.rds') bring back the
-# simulated dat from an .rds file Ramdhani_df <-
-# readRDS('Ramdhani_RDS.rds') str(Ramdhani_RDS)
+``` r
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(Ramdhani_df, "Ramdhani_RDS.rds")
+#bring back the simulated dat from an .rds file
+#Ramdhani_df <- readRDS("Ramdhani_RDS.rds")
+#str(Ramdhani_RDS)
 ```
 
 ### Quick peek at the data
@@ -238,9 +226,8 @@ The code for the .rds file will retain the formatting of the variables, but is n
 Let's first examine the descriptive statistics (e.g., means of the variable, Negative) by group. We can use the *describeBy()* function from the *psych* package.
 
 
-```r
-negative.descripts <- psych::describeBy(Negative ~ Rater + Photo, mat = TRUE,
-    data = Ramdhani_df, digits = 3)  #digits allows us to round the output
+``` r
+negative.descripts <- psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df, digits = 3) #digits allows us to round the output
 negative.descripts
 ```
 
@@ -264,18 +251,15 @@ negative.descripts
 The *write.table()* function can be a helpful way to export output to .csv files so that you can manipulate it into tables. 
 
 
-```r
-write.table(negative.descripts, file = "NegativeDescripts.csv", sep = ",",
-    col.names = TRUE, row.names = FALSE)
+``` r
+write.table(negative.descripts, file="NegativeDescripts.csv", sep=",", col.names=TRUE, row.names=FALSE)
 ```
 
 At this stage, it would be useful to plot our data. Figures can assist in the conceptualization of the analysis. 
 
 
-```r
-ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",
-    xlab = "Ethnicity of Rater", ylab = "Negative Reaction", add = "jitter",
-    title = "Boxplots Clustered by Rater Ethnicity")
+``` r
+ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",xlab = "Ethnicity of Rater", ylab = "Negative Reaction", add = "jitter", title = "Boxplots Clustered by Rater Ethnicity")
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-10-1.png)<!-- -->
@@ -283,34 +267,30 @@ ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",
 Narrating results is sometimes made easier if variables are switched. There is usually not a right or wrong answer. Here is another view, switching the Rater and Photo predictors.
 
 
-```r
-ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
-    xlab = "Photo Stimulus", ylab = "Negative Reaction", add = "jitter",
-    title = "Boxplots Clustered by Ethnicity Represented in Photo Stimulus")
+``` r
+ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater", xlab = "Photo Stimulus",
+             ylab = "Negative Reaction", add = "jitter", title = "Boxplots Clustered by Ethnicity Represented in Photo Stimulus")
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-11-1.png)<!-- -->
 
 Yet another option plots the raw data as bubbles, the means as lines, and denotes differences in the moderator with color.
 
-```r
-ggpubr::ggline(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",
-    xlab = "Ethnicity of Rater", ylab = "Negative Reaction", add = c("mean_se",
-        "dotplot"), title = "Lineplot Clustered by Rater Ethnicity")
+``` r
+ggpubr::ggline(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo", xlab = "Ethnicity of Rater",
+             ylab = "Negative Reaction", add = c("mean_se", "dotplot"), title = "Lineplot Clustered by Rater Ethnicity")
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-12-1.png)<!-- -->
 
-```r
-# add this for a different color palette: palette = c('#00AFBB',
-# '#E7B800')
+``` r
+#add this for a different color palette:  palette = c("#00AFBB", "#E7B800")
 ```
 We can reverse this to see if it assists with our conceptualization.
 
-```r
-ggpubr::ggline(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",
-    xlab = "Photo Stimulus", ylab = "Negative Reaction", add = c("mean_se",
-        "dotplot"), title = "Lineplots Custered by Ethnicity in Photo Stimulus")
+``` r
+ggpubr::ggline(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater", xlab = "Photo Stimulus",
+             ylab = "Negative Reaction", add = c("mean_se", "dotplot"), title = "Lineplots Custered by Ethnicity in Photo Stimulus")
 ```
 
 ```
@@ -345,7 +325,7 @@ $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2}$$
 Let's calculate it for the Ramdhani et al. [-@ramdhani_affective_2018] data. Our grand (i.e., overall) mean is 
 
 
-```r
+``` r
 mean(Ramdhani_df$Negative)
 ```
 
@@ -355,10 +335,10 @@ mean(Ramdhani_df$Negative)
 
 Subtracting the grand mean from each Negative rating yields a mean difference.
 
-```r
+``` r
 library(tidyverse)
-Ramdhani_df <- Ramdhani_df %>%
-    mutate(m_dev = Negative - mean(Negative))
+Ramdhani_df <- Ramdhani_df %>% 
+  mutate(m_dev = Negative-mean(Negative))
 head(Ramdhani_df)
 ```
 
@@ -375,7 +355,7 @@ Pop quiz: What's the sum of our new *m_dev* variable?
 
 Let's find out!
 
-```r
+``` r
 sum(Ramdhani_df$m_dev)
 ```
 
@@ -385,9 +365,9 @@ sum(Ramdhani_df$m_dev)
 
 Of course! The sum of squared deviations around the mean is zero. Next we square those mean deviations.
 
-```r
-Ramdhani_df <- Ramdhani_df %>%
-    mutate(m_devSQ = m_dev^2)
+``` r
+Ramdhani_df <- Ramdhani_df %>% 
+  mutate(m_devSQ = m_dev^2)
 head(Ramdhani_df)
 ```
 
@@ -403,7 +383,7 @@ head(Ramdhani_df)
 
 Then we sum the squared mean deviations.
 
-```r
+``` r
 sum(Ramdhani_df$m_devSQ)
 ```
 
@@ -428,9 +408,8 @@ In factorial ANOVA, we need means for each of the combinations of the factors. W
 Let's repeat some code we used before to obtain the cell-level means and cell sizes.
 
 
-```r
-psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
-    digits = 3)
+``` r
+psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df, digits = 3)
 ```
 
 ```
@@ -450,18 +429,13 @@ psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
 ## Negative6 1.211 5.641 4.430  0.215   -1.238 0.298
 ```
 
-```r
-# Note. Recently my students and I have been having intermittent
-# struggles with the describeBy function in the psych package. We
-# have noticed that it is problematic when using .rds files and when
-# using data directly imported from Qualtrics. If you are having
-# similar difficulties, try uploading the .csv file and making the
-# appropriate formatting changes.
+``` r
+#Note. Recently my students and I have been having intermittent struggles with the describeBy function in the psych package. We have noticed that it is problematic when using .rds files and when using data directly imported from Qualtrics. If you are having similar difficulties, try uploading the .csv file and making the appropriate formatting changes.
 ```
 
 We also need the grand mean (i.e., the mean that disregards [or "collapses across"] the factors).
 
-```r
+``` r
 mean(Ramdhani_df$Negative)
 ```
 
@@ -471,9 +445,8 @@ mean(Ramdhani_df$Negative)
 This formula occurs in six chunks, representing the six cells of our designed. In each of the chunks we have the $n$, group mean, and grand mean.
 
 
-```r
-17 * (1.818 - 2.947)^2 + 18 * (2.524 - 2.947)^2 + 19 * (3.301 - 2.947)^2 +
-    18 * (3.129 - 2.947)^2 + 19 * (3.465 - 2.947)^2 + 20 * (3.297 - 2.947)^2
+``` r
+17*(1.818 - 2.947)^2 + 18*(2.524 - 2.947)^2 + 19*(3.301 - 2.947)^2 + 18*(3.129 - 2.947)^2 + 19*(3.465 - 2.947)^2 + 20*(3.297 - 2.947)^2
 ```
 
 ```
@@ -493,9 +466,8 @@ $$SS_{R}= s_{group1}^{2}(n-1) + s_{group2}^{2}(n-1) + s_{group3}^{2}(n-1) + s_{g
 Again, the formula is in six chunks -- but this time the calculations are *within-group*. We need the variance (the standard deviation squared) for the calculation. We can retrieve these from the descriptive statistics.
 
 
-```r
-psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
-    digits = 3)
+``` r
+psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df, digits = 3)
 ```
 
 ```
@@ -517,10 +489,8 @@ psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
 
 Calculating $SS_R$
 
-```r
-((0.768^2) * (17 - 1)) + ((0.742^2) * (18 - 1)) + ((1.03^2) * (19 - 1)) +
-    ((0.156^2) * (18 - 1)) + ((0.637^2) * (19 - 1)) + ((1.332^2) * (20 -
-    1))
+``` r
+((.768^2)*(17-1))+ ((.742^2)*(18-1)) + ((1.030^2)*(19-1)) + ((.156^2)*(18-1)) + ((.637^2)*(19-1)) + ((1.332^2)*(20-1))
 ```
 
 ```
@@ -529,7 +499,7 @@ Calculating $SS_R$
 
 The value for our $SS_R$ is 79.321. Its degrees of freedom is $N - k$. That is, the total $N$ minus the number of groups: 
 
-```r
+``` r
 111 - 6
 ```
 
@@ -548,7 +518,7 @@ In our case:
 
 Considering rounding error, we were successful!
 
-```r
+``` r
 35.415 + 79.321
 ```
 
@@ -567,7 +537,7 @@ Reminder of the formula: $SS_{a:Rater}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^
 There are three cells involved in the calculation of $SS_a:Rater$.
 
 
-```r
+``` r
 psych::describeBy(Negative ~ Rater, mat = TRUE, data = Ramdhani_df, digits = 3)
 ```
 
@@ -583,7 +553,7 @@ psych::describeBy(Negative ~ Rater, mat = TRUE, data = Ramdhani_df, digits = 3)
 ```
 Again, we need the grand mean.
 
-```r
+``` r
 mean(Ramdhani_df$Negative)
 ```
 
@@ -592,8 +562,8 @@ mean(Ramdhani_df$Negative)
 ```
 Now to calculate the Rater main effect.
 
-```r
-35 * (2.491 - 2.947)^2 + 37 * (3.007 - 2.947)^2 + 39 * (3.299 - 2.947)^2
+``` r
+35*(2.491 - 2.947)^2 + 37*(3.007 - 2.947)^2 +39*(3.299 - 2.947)^2 
 ```
 
 ```
@@ -608,7 +578,7 @@ Reminder of the formula: $SS_{a:Photo}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^
 With Photo, we have only two cells.
 
 
-```r
+``` r
 psych::describeBy(Negative ~ Photo, mat = TRUE, data = Ramdhani_df, digits = 3)
 ```
 
@@ -623,7 +593,7 @@ psych::describeBy(Negative ~ Photo, mat = TRUE, data = Ramdhani_df, digits = 3)
 
 Again, we need the grand mean.
 
-```r
+``` r
 mean(Ramdhani_df$Negative)
 ```
 
@@ -632,8 +602,8 @@ mean(Ramdhani_df$Negative)
 ```
 
 
-```r
-54 * (2.575 - 2.947)^2 + 57 * (3.3 - 2.947)^2
+``` r
+54*(2.575 - 2.947)^2 + 57*(3.300 - 2.947)^2 
 ```
 
 ```
@@ -646,7 +616,7 @@ The interaction term is simply the $SS_M$ remaining after subtracting the SS fro
 $SS_{axb} = SS_M - (SS_a + SS_b)$
 
 
-```r
+``` r
 35.415 - (12.243 + 14.575)
 ```
 
@@ -674,74 +644,74 @@ As in the lesson for one-way ANOVA, we can use the information in this source ta
 |Total     |         |           |       |       |       |
 
 
-```r
-# hand-calculating the MS values
-35.415/5  #Model
+``` r
+#hand-calculating the MS values
+35.415/5   #Model
 ```
 
 ```
 ## [1] 7.083
 ```
 
-```r
-12.243/2  #a: Rater
+``` r
+12.243/2   #a: Rater
 ```
 
 ```
 ## [1] 6.1215
 ```
 
-```r
-14.575/1  #b:  Photo
+``` r
+14.575/1   #b:  Photo
 ```
 
 ```
 ## [1] 14.575
 ```
 
-```r
-8.597/2  #axb interaction term
+``` r
+8.597/2    #axb interaction term
 ```
 
 ```
 ## [1] 4.2985
 ```
 
-```r
-79.321/105  #residual
+``` r
+79.321/105 #residual
 ```
 
 ```
 ## [1] 0.7554381
 ```
 
-```r
-# hand-calculating the F values
-7.083/0.755  #Model
+``` r
+#hand-calculating the F values
+7.083/.755  #Model
 ```
 
 ```
 ## [1] 9.381457
 ```
 
-```r
-6.122/0.755  #a: Rater
+``` r
+6.122/.755  #a: Rater
 ```
 
 ```
 ## [1] 8.108609
 ```
 
-```r
-14.575/0.755  #b:  Photo
+``` r
+14.575/.755 #b:  Photo
 ```
 
 ```
 ## [1] 19.30464
 ```
 
-```r
-4.299/0.755  #axb interaction term
+``` r
+4.299/.755  #axb interaction term
 ```
 
 ```
@@ -752,25 +722,25 @@ To find the $F_{CV}$ we can use an [F distribution table](https://www.statology.
 
 Or use a look-up function, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 
-```r
-# looking up the F critical values
-qf(0.05, 5, 105, lower.tail = FALSE)  #Model F critical value
+``` r
+#looking up the F critical values
+qf(.05, 5, 105, lower.tail=FALSE)#Model F critical value
 ```
 
 ```
 ## [1] 2.300888
 ```
 
-```r
-qf(0.05, 2, 105, lower.tail = FALSE)  #a and axb F critical value
+``` r
+qf(.05, 2, 105, lower.tail=FALSE)#a and axb F critical value
 ```
 
 ```
 ## [1] 3.082852
 ```
 
-```r
-qf(0.05, 1, 105, lower.tail = FALSE)  #b F critical value
+``` r
+qf(.05, 1, 105, lower.tail=FALSE)#b F critical value
 ```
 
 ```
@@ -830,8 +800,8 @@ The are four critical assumptions in factorial ANOVA:
 Even though we position the evaluation of assumptions first -- some of the best tests of the assumptions use the resulting ANOVA model. Because of this, I will quickly run the model now. I will not explain the results until after we evaluate the assumptions.
 
 
-```r
-TwoWay_neg <- aov(Negative ~ Rater * Photo, Ramdhani_df)
+``` r
+TwoWay_neg<-aov(Negative~Rater*Photo, Ramdhani_df)
 summary(TwoWay_neg)
 ```
 
@@ -845,8 +815,8 @@ summary(TwoWay_neg)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-```r
-model.tables(TwoWay_neg, "means")
+``` r
+model.tables(TwoWay_neg,"means")
 ```
 
 ```
@@ -883,9 +853,8 @@ model.tables(TwoWay_neg, "means")
 Let's start by analyzing **skew** and **kurtosis**. Skew and kurtosis are one way to evaluate whether or not data are normally distributed. When we use the "type=1" argument, the skew and kurtosis indices in *psych:describe* (or *psych::describeBy*) can be interpreted according to Kline's [-@kline_data_2016] guidelines. Regarding skew, values greater than the absolute value of 3.0 are generally considered "severely skewed." Regarding kurtosis, "severely kurtotic" is argued to be anywhere greater the absolute values of 8 to 20. Kline recommended using a conservative threshold of the absolute value of 10.
 
 
-```r
-psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df,
-    digits = 3, type = 1)
+``` r
+psych::describeBy(Negative ~ Rater + Photo, mat = TRUE, data = Ramdhani_df, digits = 3, type = 1)
 ```
 
 ```
@@ -914,15 +883,15 @@ We can further investigate normality with the Shapiro-Wilk test. The assumption 
 Just a paragraph or two earlier, I ran the factorial ANOVA and saved the results in an object. Among the information contained in that object are *residuals*. Residuals are the unexplained variance in the outcome (or dependent) variable after accounting for the predictor (or independent) variable. In the code below we extract the residuals (i.e., that which is left-over/unexplained) from the model. We can examine their distribution with a plot.
 
 
-```r
-# creates object of residuals
-resid_neg <- residuals(TwoWay_neg)
+``` r
+#creates object of residuals
+resid_neg<- residuals(TwoWay_neg) 
 ```
 
 Next, we can take a "look" them with a couple of plots.
 
 
-```r
+``` r
 hist(resid_neg)
 ```
 
@@ -933,7 +902,7 @@ So far so good -- our distribution of *residuals* (i.e., what is leftover after 
 The Q-Q plot provides another view. The dots represent the residuals. When they are relatively close to the line they not only suggest good fit of the model, but we know they are small and evenly distributed around zero (i.e., normally distributed). 
 
 
-```r
+``` r
 qqnorm(resid_neg)
 ```
 
@@ -941,7 +910,7 @@ qqnorm(resid_neg)
 
 Additionally, we can formally test the distribution of the residuals with a Shapiro test. We want the associated *p* value to be greater than 0.05.
 
-```r
+``` r
 shapiro.test(resid_neg)
 ```
 
@@ -961,9 +930,9 @@ If our data pointed to significant violations of normality, we could consider id
 We can think of outlier identification in a couple of ways. First, we might look at dependent variable across the entire dataset. That is, without regard to the levels of the grouping variable. We can point *rstatix::identify_outliers()* to the data.
 
 
-```r
-Ramdhani_df %>%
-    rstatix::identify_outliers(Negative)
+``` r
+Ramdhani_df%>%
+  rstatix::identify_outliers(Negative)
 ```
 
 ```
@@ -978,10 +947,10 @@ Our results indicate that one case (ID = 73) had an outlier (TRUE), but it was n
 Let's re-run the code, this time requiring it to look within each of the grouping levels of the condition variable.
 
 
-```r
-Ramdhani_df %>%
-    group_by(Rater, Photo) %>%
-    rstatix::identify_outliers(Negative)
+``` r
+Ramdhani_df%>%
+  group_by(Rater, Photo)%>%
+  rstatix::identify_outliers(Negative)
 ```
 
 ```
@@ -997,8 +966,8 @@ This time there are three cases where there are outliers (TRUE), but they are no
 Let's say that, after very careful consideration, we decided to remove the case with ID = 18. We could use *dplyr::filter()* to do so. In this code, the *filter()* function locates all the cases where ID = 18. The exclamation point that precedes the equal sign indicates that the purpose is to remove the case. 
 
 
-```r
-# Ramdhani_df <- dplyr::filter(Ramdhani_df, ID != '18')
+``` r
+#Ramdhani_df <- dplyr::filter(Ramdhani_df, ID != "18")
 ```
 
 Once executed, we can see that this case is no longer in the dataframe. Although I demonstrated this in the accompanying lecture, I have hashtagged out the command because I would not delete the case. If you already deleted the case, you can return the hashtag and re-run all the code up to this point.
@@ -1012,8 +981,8 @@ Here's how I would summarize our data in terms of normality:
 We can evaluate the homogeneity of variance test with the Levene's test for the equality of error variances. Levene's requires a *fully saturated model.* This means that the prediction model requires an interaction effect (not just two, non-interacting predictors). We can use the *rstatix::levene_test()*. Within the function we point to the dataset, then specify the formula of the factorial ANOVA. That is, predicting Negative from the Rater and Photo factors. The asterisk indicates that they will also be added as an interaction term.
 
 
-```r
-rstatix::levene_test(Ramdhani_df, Negative ~ Rater * Photo)
+``` r
+rstatix::levene_test(Ramdhani_df, Negative ~ Rater*Photo)
 ```
 
 ```
@@ -1053,9 +1022,8 @@ It is possible that all effects will be significant, none will be significant, o
 In the code below, the *type* argument is used to specify the type of sums of squares that are used. Type II is the *rstatix::anova_test()*'s default and is what I will use in this demonstration. It will yield identical results as *type=1* when data are balanced (i.e., cell sizes are equal).  In specifying the ANOVA, order of entry matters if you choose *type=1*. In that case, if there are distinctions between independent variable and moderator, enter the independent variable first because it will claim the most variance. I provide more information on these options related to types of sums of squares calculations near the end of the chapter.
 
 
-```r
-omnibus2w <- rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo,
-    type = "2", detailed = TRUE)
+``` r
+omnibus2w <- rstatix::anova_test(Ramdhani_df, Negative ~ Rater*Photo, type="2", detailed=TRUE)
 omnibus2w
 ```
 
@@ -1114,7 +1082,7 @@ In the first option, the examination of the simple main effect of photo stimulus
 In the second option, the examination of the simple main effect of ethnicity of the rater within photo stimulus results in the potential comparison of six pairwise comparisons. If we used a traditional Bonferroni and divided .05/6, the *p* value for each comparison would need to be less than 0.008. Most would agree that this is too restrictive.
 
 
-```r
+``` r
 .05/6
 ```
 
@@ -1142,10 +1110,10 @@ Separate one-way ANOVAs are a traditional option for this evaluation. Using *dpl
 Note that in this method there is no option for controlling Type I error. Thus, we would need to do it manually. The traditional Bonferroni involves dividing family-wise error (traditionally $p < .05$) by the number of follow-up comparisons. In our case $.05/3 = .017$. 
 
 
-```r
-Ramdhani_df %>%
-    dplyr::group_by(Rater) %>%
-    rstatix::anova_test(Negative ~ Photo)
+``` r
+Ramdhani_df%>%
+  dplyr::group_by(Rater)%>%
+             rstatix::anova_test(Negative ~ Photo)
 ```
 
 ```
@@ -1166,7 +1134,7 @@ The *rstatix::emmeans_test()* offers an efficient alternative to this pairwise a
 In the script below, we will group the dependent variable by Rater and then conduct pairwise comparisons. Note that I have requested that that the traditional Bonferroni be used to manage Type I error. We can see these adjusted *p* values in the output.
 
 
-```r
+``` r
 library(tidyverse)
 pwPHwiETH <- Ramdhani_df%>%
   group_by(Rater)%>%
@@ -1191,16 +1159,12 @@ Not surprisingly, our results are quite similar. I would report them this way:
 
 Because we used the *rstatix* functions, we can easily integrate them into our *ggpubr::ggboxplot()*. Let's first re-run the version of the boxplot where "Rater" is on the x-axis (and, is therefore our grouping variable). Because I want the data to be as true-to-scale as possible, I have added the full range of the y axis through the *ylim* argument. In order to update the ggboxplot, we will need to save it as an option. My object name represents the "PHoto within Ethnicity" simple main effect. 
 
-```r
-boxPHwiETH <- ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative",
-    color = "Photo", xlab = "Ethnicity of Rater", ylab = "Negative Reaction",
-    add = "jitter", title = "Simple Main Effect of Photo Stimulus within Rater",
-    ylim = c(1, 7))
+``` r
+boxPHwiETH <- ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", color = "Photo",xlab = "Ethnicity of Rater", ylab = "Negative Reaction", add = "jitter", title = "Simple Main Effect of Photo Stimulus within Rater", ylim = c(1, 7))
 
-pwPHwiETH <- pwPHwiETH %>%
-    rstatix::add_xy_position(x = "Rater")  #x should be whatever the variable was used in the group_by argument 
-boxPHwiETH <- boxPHwiETH + ggpubr::stat_pvalue_manual(pwPHwiETH, label = "p.adj.signif",
-    tip.length = 0.02, hide.ns = TRUE, y.position = c(3.8, 5.1))
+pwPHwiETH <- pwPHwiETH %>% rstatix::add_xy_position(x = "Rater") #x should be whatever the variable was used in the group_by argument 
+boxPHwiETH <- boxPHwiETH +
+  ggpubr::stat_pvalue_manual(pwPHwiETH, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(3.8, 5.1))
 
 boxPHwiETH
 ```
@@ -1223,10 +1187,10 @@ Let's start with the one-way ANOVAs. Using *dplyr::group_by()* we can efficientl
 Note that in this method there is no option for controlling Type I error. Thus, we would need to do it manually. The traditional Bonferroni involves dividing family-wise error (traditionally $p < .05$) by the number of follow-up comparisons. In our case $.05/2 = .025$. 
 
 
-```r
-Ramdhani_df %>%
-    dplyr::group_by(Photo) %>%
-    rstatix::anova_test(Negative ~ Rater)
+``` r
+Ramdhani_df%>%
+  dplyr::group_by(Photo)%>%
+             rstatix::anova_test(Negative ~ Rater)
 ```
 
 ```
@@ -1246,10 +1210,10 @@ Results suggest that there are differences within the Dayaknese group, yet becau
 In the script below, we will group the dependent variable by Photo and then conduct pairwise comparisons. Note that I have requested that that the Holm's sequential Bonferroni be used to manage Type I error. We can see these adjusted *p* values in the output.
 
 
-```r
-pwETHwiPH <- Ramdhani_df %>%
-    dplyr::group_by(Photo) %>%
-    rstatix::emmeans_test(Negative ~ Rater, p.adjust.method = "holm")
+``` r
+pwETHwiPH <- Ramdhani_df%>%
+  dplyr::group_by(Photo)%>%
+  rstatix::emmeans_test(Negative ~ Rater, p.adjust.method = "holm")
 pwETHwiPH
 ```
 
@@ -1269,12 +1233,11 @@ Very consistent with the one-way ANOVAs, we see that there were significant rate
 For a quick demonstration of differences in managing Type I error, I wil replace "holm" with "bonferroni." Here, we will see the more restrictive result, where one of the previously significant comparisons drops out. Note that I am not saving this results as an object -- I don't want it to interfere with our subsequent analyses
 
 
-```r
-# demonstration of the more restrictive bonferroni approach to
-# managing Type I error
-Ramdhani_df %>%
-    dplyr::group_by(Photo) %>%
-    rstatix::emmeans_test(Negative ~ Rater, p.adjust.method = "bonferroni")
+``` r
+#demonstration of the more restrictive bonferroni approach to managing Type I error
+Ramdhani_df%>%
+  dplyr::group_by(Photo)%>%
+  rstatix::emmeans_test(Negative ~ Rater, p.adjust.method = "bonferroni")
 ```
 
 ```
@@ -1291,16 +1254,12 @@ Ramdhani_df %>%
 Let's create a figure that reflects the results of this simple main effect of rater ethnicity within photo stimulus. As before, we start with the corresponding figure where "Photo" is on the x-axis.
 
 
-```r
-boxETHwiPH <- ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative",
-    color = "Rater", xlab = "Rater Ethnicity Represented within Photo Stimulus",
-    ylab = "Negative Reaction", add = "jitter", title = "Simple Main Effect of Rater within Photo Stimulus",
-    ylim = c(1, 7))
+``` r
+boxETHwiPH <- ggpubr::ggboxplot(Ramdhani_df, x = "Photo", y = "Negative", color = "Rater",xlab = "Rater Ethnicity Represented within Photo Stimulus", ylab = "Negative Reaction", add = "jitter", title = "Simple Main Effect of Rater within Photo Stimulus", ylim = c(1, 7))
 
-pwETHwiPH <- pwETHwiPH %>%
-    rstatix::add_xy_position(x = "Photo")  #x should be whatever the variable was used in the group_by argument 
-boxETHwiPH <- boxETHwiPH + ggpubr::stat_pvalue_manual(pwETHwiPH, label = "p.adj.signif",
-    tip.length = 0.02, hide.ns = TRUE, y.position = c(5, 5.5, 6))
+pwETHwiPH <- pwETHwiPH %>% rstatix::add_xy_position(x = "Photo") #x should be whatever the variable was used in the group_by argument 
+boxETHwiPH <- boxETHwiPH +
+  ggpubr::stat_pvalue_manual(pwETHwiPH, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5, 5.5, 6))
 
 boxETHwiPH
 ```
@@ -1341,8 +1300,8 @@ If the main effect has only two levels (e.g., the ratings of the Dayaknese and M
 In the case of our specific research vignette, we learned from the omnibus test that the Photo main effect was statistically significant ($F[1, 105] = 19.346, p < 0.001, \eta ^{2} = 0.156$).This means that we know there are statistically significant differences between ratings of Dayaknese and Madurese photos overall. 
 
 
-```r
-psych::describeBy(Negative ~ Photo, data = Ramdhani_df, mat = TRUE)
+``` r
+psych::describeBy(Negative ~ Photo, data = Ramdhani_df, mat=TRUE)
 ```
 
 ```
@@ -1366,8 +1325,8 @@ From our omnibus evaluation, our rater main effect was $F[2, 105] = 8.098, p < .
 Here's what would happen if we simply ran a one-way ANOVA.
 
 
-```r
-rater_main <- rstatix::anova_test(Ramdhani_df, Negative ~ Rater, detailed = FALSE)
+``` r
+rater_main <- rstatix::anova_test(Ramdhani_df, Negative ~ Rater, detailed=FALSE)
 rater_main
 ```
 
@@ -1382,10 +1341,8 @@ Results of a one-way ANOVA evaluating negative reaction to photos of members of 
 A boxplot representing this main effect may help convey how the main effect of Rater (collapsed across Photo) is different than an interaction effect.
 
 
-```r
-box_RaterMain <- ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative",
-    xlab = "Ethnicity of Rater", ylab = "Negative Reaction", color = "Rater",
-    ylim = c(1, 7), title = "Boxplots of Rater Main Effect")
+``` r
+box_RaterMain <- ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", xlab = "Ethnicity of Rater", ylab = "Negative Reaction", color = "Rater", ylim = c(1, 7), title = "Boxplots of Rater Main Effect")
 box_RaterMain
 ```
 
@@ -1408,9 +1365,8 @@ By specifying the *formula* of the ANOVA, the *rstatix::t_test()* function will 
 We will request the traditional Bonferroni using the *p.adjust.method*. The *rstatix::t_test()* offers multiple options for adjusting the *p* values.
 
 
-```r
-RaterMain_ttest <- rstatix::t_test(Ramdhani_df, Negative ~ Rater, p.adjust.method = "bonferroni",
-    detailed = TRUE)
+``` r
+RaterMain_ttest <- rstatix::t_test(Ramdhani_df, Negative ~ Rater, p.adjust.method="bonferroni", detailed=TRUE)
 RaterMain_ttest
 ```
 
@@ -1436,11 +1392,10 @@ An APA style results section of this portion of follow-up might read like this:
 Below is an augmentation of the figure that appeared at the beginning of the chapter. We can use the objects from the omnibus tests (named, "omnibus2w") and post hoc pairwise comparisons ("RaterMain_ttest") to add the ANOVA string and significance bars to the figure. Although they may not be appropriate in every circumstance, such detail can assist the figure in conveying maximal amounts of information.
 
 
-```r
-RaterMain_ttest <- RaterMain_ttest %>%
-    rstatix::add_xy_position(x = "Rater")
-box_RaterMain + ggpubr::stat_pvalue_manual(RaterMain_ttest, label = "p.adj.signif",
-    tip.length = 0.02, hide.ns = TRUE, y.position = c(5, 6))
+``` r
+RaterMain_ttest <- RaterMain_ttest %>% rstatix::add_xy_position(x = "Rater") 
+box_RaterMain + 
+  ggpubr::stat_pvalue_manual(RaterMain_ttest, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5, 6)) 
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-58-1.png)<!-- -->
@@ -1468,7 +1423,7 @@ These are orthogonal because:
 I am not aware of *rstatix* functions or arguments that can complete these analyses. Therefore, we will use functions from base R.  It helps to know what the default contrast codes are; we can get that information with the *contrasts()* function.
 
 
-```r
+``` r
 contrasts(Ramdhani_df$Rater)
 ```
 
@@ -1485,18 +1440,18 @@ Next, we set up the contrast conditions. In the code below,
 * c2 indicates that the Dayaknese (-1) and Madurese (1) are compared; Javanese (0) is removed from the contrast.
 
 
-```r
+``` r
 # tell R which groups to compare
-c1 <- c(1, -2, 1)
-c2 <- c(-1, 0, 1)
-mat <- cbind(c1, c2)  #combine the above bits
-contrasts(Ramdhani_df$Rater) <- mat  # attach the contrasts to the variable
+c1 <- c(1, -2, 1) 
+c2 <- c(-1, 0, 1) 
+mat <- cbind(c1,c2) #combine the above bits
+contrasts(Ramdhani_df$Rater) <- mat # attach the contrasts to the variable
 ```
 
 This allows us to recheck the contrasts.
 
 
-```r
+``` r
 contrasts(Ramdhani_df$Rater)
 ```
 
@@ -1511,7 +1466,7 @@ With this output we can confirm that, in contrast 1 (the first column) we are co
 Then we run the contrast and extract the output.
 
 
-```r
+``` r
 mainPlanned <- aov(Negative ~ Rater, data = Ramdhani_df)
 summary.lm(mainPlanned)
 ```
@@ -1538,8 +1493,8 @@ summary.lm(mainPlanned)
 ## F-statistic: 6.426 on 2 and 108 DF,  p-value: 0.002307
 ```
 
-```r
-contrasts(Ramdhani_df$Rater) <- cbind(c(1, -2, 1), c(-1, 0, 1))
+``` r
+contrasts(Ramdhani_df$Rater)<-cbind(c(1,-2,1), c(-1,0,1))
 ```
 
 These planned contrasts show that when the Javanese raters are compared to the combined Dayaknese and Madurese raters, there was a non significant difference, $t(108) = -0.567, p = 0.572$. However, there were significant differences between Dayaknese and Javanese raters, $t(108) = 3.556, p < 0.001$. 
@@ -1551,10 +1506,8 @@ An mini APA style reporting of these results might look like this:
 I am not aware of script that would effectively display this in a figure. Therefore, I would use a simple boxplot for the rater main effect.
 
 
-```r
-box_RaterMain <- ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative",
-    xlab = "Ethnicity of Rater", ylab = "Negative Reaction", color = "Rater",
-    ylim = c(1, 7), title = "Boxplot of Rater Main Effect")
+``` r
+box_RaterMain <- ggpubr::ggboxplot(Ramdhani_df, x = "Rater", y = "Negative", xlab = "Ethnicity of Rater", ylab = "Negative Reaction", color = "Rater", ylim = c(1, 7), title = "Boxplot of Rater Main Effect")
 box_RaterMain
 ```
 
@@ -1570,7 +1523,7 @@ Because these three ethnic groups are not *ordered* in the same way as would an 
 The polynomial fits linear and curvilinear trends across levels of a factor based on how the variable is coded in R. The *contrasts()* function from base R will reveal ths ordering. Not surprisingly, this is the same order seen in our boxplots. In terms of the "story" of the vignette, the authors suggest that the Dayaknese are typically viewed as the ones who were victimized, the Javanese were not involved, and the Madurese have been viewed as aggressors.
 
 
-```r
+``` r
 contrasts(Ramdhani_df$Rater)
 ```
 
@@ -1587,9 +1540,9 @@ In a polynomial analysis, the statistical analysis looks across the ordered mean
 To the best of my knowledge, *rstatix* does not offer these contrasts. We can fairly easily make these calculations in base R by creating a set of polynomial contrasts. In the prior example we specified our contrasts through coding. Here we can the *contr.poly(3)* function. The "3" lets R know that there are three levels in Rater The *aov()* function will automatically test for quadratic (one hump) and linear (straight line) trends.
 
 
-```r
-contrasts(Ramdhani_df$Rater) <- contr.poly(3)
-mainTrend <- aov(Negative ~ Rater, data = Ramdhani_df)
+``` r
+contrasts(Ramdhani_df$Rater)<-contr.poly(3)
+mainTrend<-aov(Negative ~ Rater, data = Ramdhani_df)
 summary.lm(mainTrend)
 ```
 
@@ -1626,17 +1579,15 @@ Here's how I might prepare a statement for inclusion in an write-up of APA style
 A line plot might be a useful choice in conveying the linear trend. 
 
 
-```r
-ggpubr::ggline(Ramdhani_df, x = "Rater", y = "Negative", xlab = "Ethnicity of Rater",
-    linetype = "solid", ylab = "Negative Reaction", add = c("mean_sd",
-        "jitter"), title = "Linear Trend for Rater Main Effect")
+``` r
+ggpubr::ggline(Ramdhani_df, x = "Rater", y = "Negative",  xlab = "Ethnicity of Rater", linetype="solid",
+             ylab = "Negative Reaction", add = c("mean_sd", "jitter"), title = "Linear Trend for Rater Main Effect")
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-66-1.png)<!-- -->
 
-```r
-# add this for a different color palette: palette = c('#00AFBB',
-# '#E7B800')
+``` r
+#add this for a different color palette:  palette = c("#00AFBB", "#E7B800")
 ```
 
 
@@ -1656,15 +1607,14 @@ That is, I first tested the statistical assumptions and computed the omnibus ANO
 
 We can simply call the Figure we created before:
 
-```r
+``` r
 boxPHwiETH
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
 
-```r
-apaTables::apa.2way.table(iv1 = Rater, iv2 = Photo, dv = Negative, data = Ramdhani_df,
-    landscape = TRUE, table.number = 1, filename = "Table_1_MeansSDs.doc")
+``` r
+apaTables::apa.2way.table(iv1 = Rater, iv2 = Photo, dv = Negative, data = Ramdhani_df, landscape=TRUE, table.number = 1, filename="Table_1_MeansSDs.doc")
 ```
 
 ```
@@ -1685,9 +1635,8 @@ apaTables::apa.2way.table(iv1 = Rater, iv2 = Photo, dv = Negative, data = Ramdha
 ```
 
 
-```r
-apaTables::apa.aov.table(TwoWay_neg, filename = "Table_2_effects.doc",
-    table.number = 2, type = "II")
+``` r
+apaTables::apa.aov.table(TwoWay_neg, filename = "Table_2_effects.doc", table.number = 2, type = "II")
 ```
 
 ```
@@ -1710,7 +1659,7 @@ apaTables::apa.aov.table(TwoWay_neg, filename = "Table_2_effects.doc",
 While I have not located a package that will take *rstatix* output to make an APA style table with our pairwise comparisons, we can use the *MASS* package to write the pwc object to a .csv file, then manually make our own table.
 
 
-```r
+``` r
 MASS::write.matrix(pwPHwiETH, sep = ",", file = "pwPHwiETH.csv")
 ```
 
@@ -1756,9 +1705,8 @@ In this lesson I stuck with the *rstatix::anova_test()* default because
 For demonstration purposes, let's run the Type III alternative to see the differences: 
 
 
-```r
-rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "3",
-    detailed = TRUE)
+``` r
+rstatix::anova_test(Ramdhani_df, Negative ~ Rater*Photo, type="3", detailed=TRUE)
 ```
 
 ```
@@ -1778,9 +1726,8 @@ rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "3",
 For comparison, this was our earlier analysis:
 
 
-```r
-rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "2",
-    detailed = TRUE)
+``` r
+rstatix::anova_test(Ramdhani_df, Negative ~ Rater*Photo, type="2", detailed=TRUE)
 ```
 
 ```
@@ -1827,9 +1774,8 @@ Hints for calculating the *f.A* and *f.B* values:
 
 Let's quickly rerun our model to get both the df and calculate the *f* effect value
 
-```r
-rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "2",
-    detailed = TRUE)
+``` r
+rstatix::anova_test(Ramdhani_df, Negative ~ Rater*Photo, type="2", detailed=TRUE)
 ```
 
 ```
@@ -1843,16 +1789,16 @@ rstatix::anova_test(Ramdhani_df, Negative ~ Rater * Photo, type = "2",
 If we want to understand power in our analysis, we need to convert our effect size ($\eta^2$) for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
 
-```r
-effectsize::eta2_to_f(0.134)  #FactorA -- Rater
+``` r
+effectsize::eta2_to_f(0.134) #FactorA -- Rater
 ```
 
 ```
 ## [1] 0.393363
 ```
 
-```r
-effectsize::eta2_to_f(0.156)  #Factor B -- Photo
+``` r
+effectsize::eta2_to_f(0.156) #Factor B -- Photo
 ```
 
 ```
@@ -1869,9 +1815,8 @@ Now we calculate power for our existing model. We'll use the package *pwr2* and 
 * f.A: Effect size of Factor A
 * f.A.: Effect size of Factor B
 
-```r
-pwr2::pwr.2way(a = 3, b = 2, alpha = 0.05, size.A = 37, size.B = 55, f.A = 0.3935,
-    f.B = 0.43)
+``` r
+pwr2::pwr.2way(a=3, b=2, alpha = 0.05, size.A = 37, size.B = 55, f.A = .3935, f.B = .430)
 ```
 
 ```
@@ -1906,9 +1851,8 @@ In this specification:
 * B: iteration times, default number is 100
 
 
-```r
-pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.3935, f.B = 0.43,
-    B = 100)
+``` r
+pwr2::ss.2way(a = 3, b = 2, alpha = .05, beta = .8, f.A = .3935, f.B = .430, B= 100)
 ```
 
 ```
@@ -1928,9 +1872,8 @@ Curiously, 18 was just about the number that was in each of the six cells!
 Often times researchers will play around with the *f* values. Remember Cohen's indication of small (.10), medium (.25), and large (.40). Let's see what happens when we enter different values. Specifically, what if we only had a medium effect?
 
 
-```r
-pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.25, f.B = 0.25,
-    B = 100)  #if we expected a medium effect
+``` r
+pwr2::ss.2way(a = 3, b = 2, alpha = .05, beta = .80, f.A = .25, f.B = .25, B= 100) #if we expected a medium effect
 ```
 
 ```
@@ -1948,9 +1891,8 @@ pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.25, f.B = 0.25,
 
 And what would happen if we only had a small effect?
 
-```r
-pwr2::ss.2way(a = 3, b = 2, alpha = 0.05, beta = 0.8, f.A = 0.1, f.B = 0.1,
-    B = 100)  #if we expected a small effect
+``` r
+pwr2::ss.2way(a = 3, b = 2, alpha = .05, beta = .80, f.A = .10, f.B = .10, B= 100) #if we expected a small effect
 ```
 
 ```
@@ -2054,20 +1996,19 @@ I want to ask the question, do course evaluation ratings for the traditional ped
 #### Simulate (or import) and format data {-}
 
 
-```r
+``` r
 big <- readRDS("ReC.rds")
 ```
 
 Let's first create the "Stage" variable that represents the three levels of transition.  The ProgramYear variable contains the information I need, but the factor labels are not intuitive. Let me remap them.
 
-```r
-big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition",
-    "First"), to = c("Stable", "Transition", "Resettled"))
+``` r
+big$Stage <- plyr::mapvalues(big$ProgramYear, from = c("Second", "Transition", "First"), to = c("Stable", "Transition", "Resettled"))
 ```
 
 Let's check the structure:
 
-```r
+``` r
 str(big$Stage)
 ```
 
@@ -2078,52 +2019,46 @@ str(big$Stage)
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
-```r
-# Creates a list of the variables that belong to that scale
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
+``` r
+#This code was recently updated and likely differs from the screencasted lecture
 
-# Calculates a mean if at least 75% of the items are non-missing;
-# adjusts the calculating when there is missingness
-big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
-# If the above code doesn't work use the one below; the difference is
-# the two periods in front of the variable list big$TradPed <-
-# sjstats::mean_n(big[, ..TradPed_vars], .75)
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+big$TradPed <- datawizard::row_means(big, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 Each student in the dataset could contribute up to three course evaluations (i.e., one each for ANOVA, multivariate, psychometrics). Including all three would introduce *dependency* into the dataset and violate the assumption of independence. With our variables properly formatted let's create a subset with just the students who took ANOVA. 
 
-```r
-TwoWay_df <- subset(big, Course == "ANOVA")
+``` r
+TwoWay_df <- subset(big, Course == "ANOVA") 
 ```
 
 Next, let's trim it to just the variables we need.
 
-```r
-TwoWay_df <- (dplyr::select(TwoWay_df, Stage, Dept, TradPed))
+``` r
+TwoWay_df <-(dplyr::select(TwoWay_df, Stage, Dept, TradPed))
 ```
 
 Although we would handle missing data more carefully in a "real study," I will delete all cases with any missingness. This will prevent problems in the hand-calculations section, later (and keep the two sets of results more similar).
 
 
-```r
+``` r
 df <- na.omit(TwoWay_df)
 ```
 
 Before we continue, this data has a hiccup that makes it less than ideal for a 2 x 3 ANOVA. In 2017 everyone enrolled in the CPY section of the course. That is, there was no distinction between CPY and ORG students.  In this dataset I do not have another variable with three levels.  I will recode some data which MAKES THE STORY UNTRUE, but will allow me to demo 2-way ANOVA (sighhhh). For your homework, you are very welcome to engage in such practices (it's actually good for learning!) however, we would never do so in the analysis of real data. 
 
 
-```r
-TwoWay_df <- na.omit(TwoWay_df)  #the next operation required non-missing data
-TwoWay_df[TwoWay_df$Stage == "Stable" & TwoWay_df$TradPed < 4.3, "Dept"] <- "ORG"
+``` r
+TwoWay_df <- na.omit(TwoWay_df) #the next operation required non-missing data
+TwoWay_df[TwoWay_df$Stage == "Stable" & TwoWay_df$TradPed < 4.3, "Dept"]<- "ORG"
 ```
 
 Although the homework assignment doesn't require it, I think it's useful to create a figure that shows what I intend to do.
 
-```r
-Box2way <- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage",
-    xlab = "Academic Department", ylab = "Students' Evaluations of Traditional Pedagogy",
-    add = "jitter", title = "Course Evaluations as a Function of Department and Stage in Transition")
+``` r
+Box2way <- ggpubr::ggboxplot(TwoWay_df, x = "Dept", y = "TradPed", color = "Stage", xlab = "Academic Department",
+    ylab = "Students' Evaluations of Traditional Pedagogy", add = "jitter",
+    title = "Course Evaluations as a Function of Department and Stage in Transition")
 Box2way
 ```
 
@@ -2135,9 +2070,8 @@ Box2way
 
 I'll start with an inspection of skew and kurtosis for all combinations of the levels of the two grouping variables.
 
-```r
-psych::describeBy(TradPed ~ Stage + Dept, mat = TRUE, data = TwoWay_df,
-    digits = 3, type = 1)
+``` r
+psych::describeBy(TradPed ~ Stage + Dept, mat = TRUE, data = TwoWay_df, digits = 3, type = 1)
 ```
 
 ```
@@ -2161,7 +2095,7 @@ Following Kline's (2016) recommendations, skew for each combination of levels of
 
 The Shapiro-Wilk examines residuals from the ANOVA model. We can quickly/preliminarily run the two-way ANOVA. We do this to produce an object that holds the *model residuals.*
 
-```r
+``` r
 TwoWay_TradPed <- aov(TradPed ~ Stage * Dept, TwoWay_df)
 summary(TwoWay_TradPed)
 ```
@@ -2177,7 +2111,7 @@ summary(TwoWay_TradPed)
 ```
 The *residuals()* function serves to extract the residuals. We can apply the model-baesd *shapiro.test()* function from base R to see if the model residuals are non-normally distributed.
 
-```r
+``` r
 resid_TradPed <- residuals(TwoWay_TradPed)
 shapiro.test(resid_TradPed)
 ```
@@ -2194,14 +2128,14 @@ A statistically significant Shapiro-Wilks' test of normality suggests that we vi
 
 Let's plot the residuals
 
-```r
+``` r
 hist(resid_TradPed)
 ```
 
 ![](08-FactorialANOVA_files/figure-docx/unnamed-chunk-171-1.png)<!-- -->
 The histogram does look somewhat different (negatively skewed) from a normal distribution.
 
-```r
+``` r
 qqnorm(resid_TradPed)
 ```
 
@@ -2218,7 +2152,7 @@ Summary so far:
 Given the non-normality of the data, we can use the following procedure to see if there are outliers that could be transformed, truncated, or removed.
 
 
-```r
+``` r
 library(tidyverse)
 TwoWay_df %>%
     rstatix::identify_outliers(TradPed)
@@ -2239,7 +2173,7 @@ There are four outliers; none are extreme. Given that these are all on the low-s
 We can evaluate the homogeneity of variance test with Levene's test for the equality of error variances.
 
 
-```r
+``` r
 rstatix::levene_test(TwoWay_df, TradPed ~ Dept * Stage)
 ```
 
@@ -2262,9 +2196,8 @@ Do we have to stop?  If cell sizes are reasonably large (e.g., at least 15) and 
 
 We can use the *rstatix::anova_test()* function.
 
-```r
-omnibus2w <- rstatix::anova_test(TwoWay_df, TradPed ~ Dept * Stage, type = "2",
-    detailed = TRUE)
+``` r
+omnibus2w <- rstatix::anova_test(TwoWay_df, TradPed ~ Dept * Stage, type = "2", detailed = TRUE)
 omnibus2w
 ```
 
@@ -2298,10 +2231,10 @@ Functionally, this computes two one-way ANOVAs, comparing the three stages withi
 The *rstatix::anova_test* does not allow me to specify a control for Type I error. Therefore, if I wanted to do so, I would need to monitor it outside of the R package.  I *could* evaluate each of the *p* values for the two one-way ANOVAs at 0.025 (05/2). Rather than tracking Type I error at this level, I will wait and do so when I get to the pairwise comparisons that follow a statistically significant one-way ANOVA.
 
 
-```r
+``` r
 TwoWay_df %>%
-    dplyr::group_by(Dept) %>%
-    rstatix::anova_test(TradPed ~ Stage)
+  dplyr::group_by(Dept)%>%
+  rstatix::anova_test(TradPed ~ Stage)
 ```
 
 ```
@@ -2325,7 +2258,7 @@ Because there are three stages of transition, we need to followup with pairwise 
 Although, technically, we only needed to compare 3 pairwise tests, this test (and figure) will compute them all. The Holm's Sequential Bonferroni is a very reasonable approach (balancing Type I error with sensibility) and so I will use it to evaluate the six pairwise comparisons that will be produced.
 
 
-```r
+``` r
 pwTRwiDP <- TwoWay_df %>%
     dplyr::group_by(Dept) %>%
     rstatix::emmeans_test(TradPed ~ Stage, p.adjust.method = "holm")
@@ -2367,9 +2300,8 @@ I managed Type I error with the Holm's sequential Bonferroni. The Holm's is less
 #### APA style results with table(s) and figure {-}
 
 
-```r
-apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2Way.doc",
-    table.number = 1, show.marginal.means = TRUE, landscape = TRUE)
+``` r
+apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2Way.doc", table.number = 1, show.marginal.means = TRUE, landscape = TRUE)
 ```
 
 ```
@@ -2391,11 +2323,10 @@ apaTables::apa.2way.table(Dept, Stage, TradPed, data = TwoWay_df, filename = "2W
 ```
 
 
-```r
+``` r
 pwTRwiDP <- pwTRwiDP %>%
     rstatix::add_xy_position(x = "Dept")  #x should be whatever the variable was used in the group_by argument 
-Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif",
-    tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3, 5.5))
+Box2way <- Box2way + ggpubr::stat_pvalue_manual(pwTRwiDP, label = "p.adj.signif", tip.length = 0.02, hide.ns = TRUE, y.position = c(5.3, 5.5))
 Box2way
 ```
 
@@ -2415,24 +2346,24 @@ The *pwr.2way()* and *ss.2way()* functions require the following:
 We need to convert our effect size ($\eta^2$) for the *interaction* to $f$ effect size (this is not the same as the *F* test). The *effectsize* package has a series of converters. We can use the *eta2_to_f()* function. 
 
 
-```r
-effectsize::eta2_to_f(0.097)  #FactorA -- Dept
+``` r
+effectsize::eta2_to_f(0.097) #FactorA -- Dept
 ```
 
 ```
 ## [1] 0.3277495
 ```
 
-```r
-effectsize::eta2_to_f(0.16)  #Factor B -- Stage
+``` r
+effectsize::eta2_to_f(0.160) #Factor B -- Stage
 ```
 
 ```
 ## [1] 0.4364358
 ```
 
-```r
-effectsize::eta2_to_f(0.085)  #interaction
+``` r
+effectsize::eta2_to_f(0.085) #interaction
 ```
 
 ```
@@ -2441,7 +2372,7 @@ effectsize::eta2_to_f(0.085)  #interaction
 
 The size.A and size.B are the sample size per group within the factor. Because ours differ, i divided the N by the number of groups.
 
-```r
+``` r
 112/2
 ```
 
@@ -2449,7 +2380,7 @@ The size.A and size.B are the sample size per group within the factor. Because o
 ## [1] 56
 ```
 
-```r
+``` r
 112/3
 ```
 
@@ -2457,7 +2388,7 @@ The size.A and size.B are the sample size per group within the factor. Because o
 ## [1] 37.33333
 ```
 
-```r
+``` r
 112/6
 ```
 
@@ -2466,9 +2397,8 @@ The size.A and size.B are the sample size per group within the factor. Because o
 ```
 
 
-```r
-pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 56, size.B = 37, f.A = 0.3277495,
-    f.B = 0.4364358)
+``` r
+pwr2::pwr.2way(a = 2, b = 3, alpha = 0.05, size.A = 56, size.B = 37, f.A = 0.3277495, f.B = 0.4364358)
 ```
 
 ```
@@ -2494,9 +2424,8 @@ I will use a different function to estimate what sample size would be sufficient
 * B is the iteration times, the default is 100
 
 
-```r
-pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.3277495,
-    f.B = 0.4364358, B = 100)
+``` r
+pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.3277495, f.B = 0.4364358, B = 100)
 ```
 
 ```
@@ -2512,7 +2441,7 @@ pwr2::ss.2way(a = 2, b = 3, alpha = 0.05, beta = 0.8, f.A = 0.3277495,
 ## NOTE: n is number in each group, total sample = 18
 ```
 
-```r
+``` r
 18*3
 ```
 
@@ -2536,7 +2465,7 @@ Here is the formula I will use for calculating the sums of squares total:  $$SS_
 I will use *psych::describe()* to obtain the overall mean:
 
 
-```r
+``` r
 psych::describe(TwoWay_df)
 ```
 
@@ -2556,9 +2485,9 @@ The overall (grand) mean is 4.06.
 I will create a variable that represents the mean deviation:
 
 
-```r
+``` r
 TwoWay_df <- TwoWay_df %>%
-    dplyr::mutate(m_dev = TradPed - 4.06)
+  dplyr::mutate(m_dev = TradPed - 4.06)
 
 head(TwoWay_df)
 ```
@@ -2576,7 +2505,7 @@ head(TwoWay_df)
 Now I will square the mean deviation:
 
 
-```r
+``` r
 TwoWay_df <- TwoWay_df %>%
     mutate(m_devSQ = m_dev^2)
 head(TwoWay_df)
@@ -2595,8 +2524,8 @@ head(TwoWay_df)
 SST is the sum of the mean deviation squared values:
 
 
-```r
-SST <- sum(TwoWay_df$m_devSQ, na.rm = TRUE)
+``` r
+SST <- sum(TwoWay_df$m_devSQ, na.rm=TRUE)
 SST
 ```
 
@@ -2618,9 +2547,8 @@ The formula indicates that we need:
 
 I will obtain group means and $n$s with *psych::desribeBy*.
 
-```r
-psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df,
-    digits = 3)
+``` r
+psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df, digits = 3)
 ```
 
 ```
@@ -2643,9 +2571,9 @@ psych::describeBy(TradPed ~ Dept + Stage, mat = TRUE, data = TwoWay_df,
 To calculate it:
  
 
-```r
+``` r
 SSM <- 25 * (4.832 - 4.06)^2 + 25 * (3.864 - 4.06)^2 + 26 * (3.769 - 4.06)^2 +
-    15 * (3.56 - 4.06)^2 + 10 * (4.01 - 4.06)^2 + 11 * (4.145 - 4.06)^2
+    15 * (3.560 - 4.06)^2 + 10 * (4.010 - 4.06)^2 + 11 * (4.145 - 4.06)^2
 SSM
 ```
 
@@ -2664,10 +2592,8 @@ This requires:
 * group variance (I can square the standard deviation for each group)
 
 
-```r
-SSR <- ((0.236^2) * (25 - 1)) + ((0.582^2) * (25 - 1)) + ((0.878^2) * (26 -
-    1)) + ((1.338^2) * (15 - 1)) + ((0.578^2) * (10 - 1)) + ((0.658^2) *
-    (11 - 1))
+``` r
+SSR <- ((0.236^2)*(25-1))+ ((0.582^2)*(25-1)) + ((0.878^2)*(26-1)) + ((1.338^2)*(15-1)) + ((0.578^2)*(10-1)) + ((0.658^2)*(11-1))
 SSR
 ```
 
@@ -2685,8 +2611,8 @@ Reminder of the formula: $SS_{a:Dept}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{
 Earlier I learned the grand mean = 4.06
 
 
-```r
-psych::describeBy(TradPed ~ Dept, mat = TRUE, data = TwoWay_df, digits = 3)
+``` r
+psych::describeBy(TradPed ~ Dept, mat=TRUE, data = TwoWay_df, digits=3)
 ```
 
 ```
@@ -2698,7 +2624,7 @@ psych::describeBy(TradPed ~ Dept, mat = TRUE, data = TwoWay_df, digits = 3)
 ## TradPed2 -1.226    1.527 0.125
 ```
 
-```r
+``` r
 SSM_dept <- 61 * (4.244 - 4.06)^2 + 51 * (3.835 - 4.06)^2
 SSM_dept
 ```
@@ -2713,8 +2639,8 @@ Sums of squares model for the department factor is 4.647091.
 Reminder of the formula: $SS_{a:Stage}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$
 
 
-```r
-psych::describeBy(TradPed ~ Stage, mat = TRUE, data = TwoWay_df, digits = 3)
+``` r
+psych::describeBy(TradPed ~ Stage, mat=TRUE, data = TwoWay_df, digits=3)
 ```
 
 ```
@@ -2729,9 +2655,8 @@ psych::describeBy(TradPed ~ Stage, mat = TRUE, data = TwoWay_df, digits = 3)
 ```
 
 
-```r
-SSM_stage <- 50 * (4.348 - 4.06)^2 + 42 * (3.693 - 4.06)^2 + 32 * (4.081 -
-    4.06)^2
+``` r
+SSM_stage <- 50 * (4.348 - 4.06)^2 + 42 * (3.693 - 4.06)^2 + 32 * (4.081 - 4.06)^2
 SSM_stage
 ```
 
@@ -2746,7 +2671,7 @@ I can calculate the SSM for the interaction term with this formula:  $SS_{axb} =
 
 
 
-```r
+``` r
 SSM_int <- 21.91618 - (4.647091 + 9.81825)
 SSM_int
 ```
@@ -2779,7 +2704,7 @@ You may notice that these calculations don't exactly follow the rules of the lec
 
 Checking to see if my sums of squares a, b, and axb equal the SSM; and that SSM + SSR = SST.
 
-```r
+``` r
 21.916 + 61.138
 ```
 
@@ -2787,7 +2712,7 @@ Checking to see if my sums of squares a, b, and axb equal the SSM; and that SSM 
 ## [1] 83.054
 ```
 
-```r
+``` r
 (4.647 + 9.818 + 7.451) + 61.138
 ```
 
@@ -2795,7 +2720,7 @@ Checking to see if my sums of squares a, b, and axb equal the SSM; and that SSM 
 ## [1] 83.054
 ```
 
-```r
+``` r
 4.647 + 9.818 + 7.451
 ```
 
@@ -2804,7 +2729,7 @@ Checking to see if my sums of squares a, b, and axb equal the SSM; and that SSM 
 ```
 Below are the calculations for the mean square values:
 
-```r
+``` r
 21.916 /5
 ```
 
@@ -2812,7 +2737,7 @@ Below are the calculations for the mean square values:
 ## [1] 4.3832
 ```
 
-```r
+``` r
 4.647/1
 ```
 
@@ -2820,7 +2745,7 @@ Below are the calculations for the mean square values:
 ## [1] 4.647
 ```
 
-```r
+``` r
 9.818/2
 ```
 
@@ -2828,7 +2753,7 @@ Below are the calculations for the mean square values:
 ## [1] 4.909
 ```
 
-```r
+``` r
 7.451/2
 ```
 
@@ -2836,7 +2761,7 @@ Below are the calculations for the mean square values:
 ## [1] 3.7255
 ```
 
-```r
+``` r
 61.138/106
 ```
 
@@ -2846,7 +2771,7 @@ Below are the calculations for the mean square values:
 Below are the calculations for the *F* tests:
 
 
-```r
+``` r
 4.383/0.577
 ```
 
@@ -2854,7 +2779,7 @@ Below are the calculations for the *F* tests:
 ## [1] 7.596187
 ```
 
-```r
+``` r
 4.647/0.577
 ```
 
@@ -2862,7 +2787,7 @@ Below are the calculations for the *F* tests:
 ## [1] 8.053726
 ```
 
-```r
+``` r
 4.909/0.577
 ```
 
@@ -2870,7 +2795,7 @@ Below are the calculations for the *F* tests:
 ## [1] 8.507799
 ```
 
-```r
+``` r
 3.726/0.577
 ```
 
@@ -2880,7 +2805,7 @@ Below are the calculations for the *F* tests:
 Looking up the *F* critical values (requires alpha level and degrees of freedom for the numerator and denominator [model and residual]):
 
 
-```r
+``` r
 qf(0.05, 5, 106, lower.tail = FALSE)  #omnibus
 ```
 
@@ -2888,7 +2813,7 @@ qf(0.05, 5, 106, lower.tail = FALSE)  #omnibus
 ## [1] 2.300053
 ```
 
-```r
+``` r
 qf(0.05, 1, 106, lower.tail = FALSE)  #Dept main effect
 ```
 
@@ -2896,7 +2821,7 @@ qf(0.05, 1, 106, lower.tail = FALSE)  #Dept main effect
 ## [1] 3.930692
 ```
 
-```r
+``` r
 qf(0.05, 2, 106, lower.tail = FALSE)  #Stage main effect
 ```
 
@@ -2904,7 +2829,7 @@ qf(0.05, 2, 106, lower.tail = FALSE)  #Stage main effect
 ## [1] 3.082015
 ```
 
-```r
+``` r
 qf(0.05, 2, 106, lower.tail = FALSE)  #interaction term
 ```
 
@@ -2925,24 +2850,24 @@ $$\eta ^{2}=\frac{SS_{M}}{SS_{T}}$$
 The values of .01, .06, and .14 are considered small, medium, and large in ANOVA models.
 
 
-```r
-4.647/83.033  #eta squared for department main effect
+``` r
+4.647/83.033 #eta squared for department main effect
 ```
 
 ```
 ## [1] 0.0559657
 ```
 
-```r
-9.818/83.033  #eta squared for stage main effect
+``` r
+9.818/83.033 #eta squared for stage main effect
 ```
 
 ```
 ## [1] 0.1182421
 ```
 
-```r
-7.451/83.033  #eta squared for interaction effect
+``` r
+7.451/83.033 #eta squared for interaction effect
 ```
 
 ```

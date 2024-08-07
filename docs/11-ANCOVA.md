@@ -54,19 +54,21 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# used to convert data from long to wide
-# if(!require(reshape2)){install.packages('reshape2')}
-# if(!require(broom)){install.packages('broom')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(psych)){install.packages('psych')} easy plots
-# if(!require(ggpubr)){install.packages('ggpubr')} pipe-friendly R
-# functions if(!require(rstatix)){install.packages('rstatix')} export
-# objects for table making
-# if(!require(MASS)){install.packages('MASS')}
-# if(!require(knitr)){install.packages('knitr')}
-# if(!require(dplyr)){install.packages('dplyr')}
-# if(!require(apaTables)){install.packages('apaTables')}
+``` r
+#used to convert data from long to wide
+#if(!require(reshape2)){install.packages("reshape2")} 
+#if(!require(broom)){install.packages("broom")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#easy plots
+#if(!require(ggpubr)){install.packages("ggpubr")} 
+#pipe-friendly R functions
+#if(!require(rstatix)){install.packages("rstatix")} 
+#export objects for table making
+#if(!require(MASS)){install.packages("MASS")} 
+#if(!require(knitr)){install.packages("knitr")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(apaTables)){install.packages("apaTables")}
 ```
 
 ## Introducing Analysis of Covariance (ANCOVA)
@@ -147,45 +149,35 @@ With random assignment, nearly equal cell sizes, a condition with two levels (Fr
 Below is the code I have used to simulate the data. The simulation includes two dependent variables (AttWhite, AttArab), Wave (baseline, post1, post2), and COND (condition; Friends, Little_Mosque). There is also a caseID (repeated three times across the three waves) and rowID (giving each observation within each case an ID). You can use this simulation for two of the three practice suggestions.
 
 
-```r
+``` r
 library(tidyverse)
-# change this to any different number (and rerun the simulation) to
-# rework the chapter problem
+#change this to any different number (and rerun the simulation) to rework the chapter problem
 set.seed(210813)
-# sample size, M and SD for each cell; this will put it in a long
-# file
-AttWhite <- round(c(rnorm(98, mean = 76.79, sd = 18.55), rnorm(95, mean = 75.37,
-    sd = 18.99), rnorm(98, mean = 77.47, sd = 18.95), rnorm(95, mean = 75.81,
-    sd = 19.29), rnorm(98, mean = 77.79, sd = 17.25), rnorm(95, mean = 75.89,
-    sd = 19.44)), 3)
-# set upper bound for variable
-AttWhite[AttWhite > 100] <- 100
-# set lower bound for variable
-AttWhite[AttWhite < 0] <- 0
-AttArab <- round(c(rnorm(98, mean = 64.11, sd = 20.97), rnorm(95, mean = 64.37,
-    sd = 20.03), rnorm(98, mean = 64.16, sd = 21.64), rnorm(95, mean = 70.52,
-    sd = 18.55), rnorm(98, mean = 65.29, sd = 19.76), rnorm(95, mean = 70.3,
-    sd = 17.98)), 3)
-# set upper bound for variable
-AttArab[AttArab > 100] <- 100
-# set lower bound for variable
-AttArab[AttArab < 0] <- 0
-rowID <- factor(seq(1, 579))
-caseID <- rep((1:193), 3)
-Wave <- c(rep("Baseline", 193), rep("Post1", 193), rep("Post2", 193))
-COND <- c(rep("Friends", 98), rep("LittleMosque", 95), rep("Friends", 98),
-    rep("LittleMosque", 95), rep("Friends", 98), rep("LittleMosque", 95))
-# groups the 3 variables into a single df: ID#, DV, condition
-Murrar_df <- data.frame(rowID, caseID, Wave, COND, AttArab, AttWhite)
-# make caseID a factor
-Murrar_df[, "caseID"] <- as.factor(Murrar_df[, "caseID"])
-# make Wave an ordered factor
-Murrar_df$Wave <- factor(Murrar_df$Wave, levels = c("Baseline", "Post1",
-    "Post2"))
-# make COND an ordered factor
+#sample size, M and SD for each cell; this will put it in a long file
+AttWhite<-round(c(rnorm(98,mean=76.79,sd=18.55),rnorm(95,mean=75.37,sd=18.99),rnorm(98, mean=77.47, sd=18.95), rnorm(95, mean=75.81, sd=19.29), rnorm(98, mean=77.79, sd=17.25), rnorm(95, mean=75.89, sd=19.44)),3) 
+#set upper bound for variable
+AttWhite[AttWhite>100]<-100 
+#set lower bound for variable
+AttWhite[AttWhite<0]<-0 
+AttArab<-round(c(rnorm(98,mean=64.11,sd=20.97),rnorm(95,mean=64.37,sd=20.03),rnorm(98, mean=64.16, sd=21.64), rnorm(95, mean=70.52, sd=18.55), rnorm(98, mean=65.29, sd=19.76), rnorm(95, mean=70.30, sd=17.98)),3)
+#set upper bound for variable
+AttArab[AttArab>100]<-100 
+#set lower bound for variable
+AttArab[AttArab<0]<-0 
+rowID <- factor(seq(1,579))
+caseID <- rep((1:193),3)
+Wave <- c(rep("Baseline",193), rep("Post1", 193), rep ("Post2", 193))
+COND <- c(rep("Friends", 98), rep("LittleMosque", 95), rep("Friends", 98), rep("LittleMosque", 95), rep("Friends", 98), rep("LittleMosque", 95))
+#groups the 3 variables into a single df:  ID#, DV, condition
+Murrar_df<- data.frame(rowID, caseID, Wave, COND, AttArab, AttWhite) 
+#make caseID a factor
+Murrar_df[,'caseID'] <- as.factor(Murrar_df[,'caseID'])
+#make Wave an ordered factor
+Murrar_df$Wave <- factor(Murrar_df$Wave, levels = c("Baseline", "Post1", "Post2"))
+#make COND an ordered factor
 Murrar_df$COND <- factor(Murrar_df$COND, levels = c("Friends", "LittleMosque"))
-# creates the difference score
-Murrar_df$Diff <- Murrar_df$AttWhite - Murrar_df$AttArab
+#creates the difference score
+Murrar_df$Diff <- Murrar_df$AttWhite - Murrar_df$AttArab 
 ```
 
 Let's check the structure. We want 
@@ -195,7 +187,7 @@ Let's check the structure. We want
 * AttArab, AttWhite, and Diff to be numerical
 
 
-```r
+``` r
 str(Murrar_df)
 ```
 
@@ -215,20 +207,21 @@ If you want to export this data as a file to your computer, remove the hashtags 
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. This is what I would do. *Note: My students and I have discovered that the the psych::describeBy() function seems to not work with files in the .rds format, but does work when the data are imported with .csv.*
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(Murrar_df, 'Murrar_RDS.rds') bring back the simulated
-# dat from an .rds file Murrar_df <- readRDS('Murrar_RDS.rds')
+``` r
+#to save the df as an .rds (think "R object") file on your computer; 
+#it should save in the same file as the .rmd file you are working with
+#saveRDS(Murrar_df, "Murrar_RDS.rds")
+#bring back the simulated dat from an .rds file
+#Murrar_df <- readRDS("Murrar_RDS.rds")
 ```
 
 The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.
 
-```r
-# write the simulated data as a .csv write.table(Murrar_df,
-# file='DiffCSV.csv', sep=',', col.names=TRUE, row.names=FALSE) bring
-# back the simulated dat from a .csv file Murrar_df <- read.csv
-# ('DiffCSV.csv', header = TRUE)
+``` r
+#write the simulated data as a .csv
+#write.table(Murrar_df, file="DiffCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#Murrar_df <- read.csv ("DiffCSV.csv", header = TRUE)
 ```
 
 ## Working the ANCOVA -- Scenario #1: Controlling for the pretest
@@ -246,27 +239,23 @@ When the covariate in ANCOVA is a pretest, we need three variables:
 The form of our data matters. The simulation created a *long* form (formally called the *person-period* form) of data. That is, each observation for each person is listed in its own row. In this dataset where we have 193 people with 3 observation (baseline, post1, post2) each, we have 579 rows. In ANCOVA where we use the pre-test as a covariate, we need all the data to be on a single row.This is termed the *person level* form of data. We can restructure the data with the *data.table* and *reshape2*()* packages. 
 
 
-```r
-# Create a new df (Murrar_wide) Identify the original df In the
-# transition from long-to-wide it seems like you can only do one
-# time-varying variable at a time When there are multiple
-# time-varying and time-static variables, put all the time-static
-# variables on the left side of the tilde Put the name of the single
-# time-varying variable in the concatonated list
-Murrar1 <- reshape2::dcast(data = Murrar_df, formula = caseID + COND ~
-    Wave, value.var = "AttArab")
-# before restructuring a second variable, rename the first variable
-Murrar1 <- rename(Murrar1, AttArabB = "Baseline", AttArabP1 = "Post1",
-    AttArabP2 = "Post2")
-# repeat the process for additional variables; but give the new df
-# new names -- otherwise you'll overwrite your work
-Murrar2 <- reshape2::dcast(data = Murrar_df, formula = caseID ~ Wave, value.var = "AttWhite")
-Murrar2 <- rename(Murrar2, AttWhiteB = "Baseline", AttWhiteP1 = "Post1",
-    AttWhiteP2 = "Post2")
-# Now we join them
+``` r
+# Create a new df (Murrar_wide)
+# Identify the original df
+#In the transition from long-to-wide it seems like you can only do one time-varying variable at a time
+#When there are multiple time-varying and time-static variables, 
+#put all the time-static variables on the left side of the tilde
+#Put the name of the single time-varying variable in the concatonated list
+Murrar1 <- reshape2::dcast(data = Murrar_df, formula =caseID +COND ~ Wave, value.var = "AttArab")
+#before restructuring a second variable, rename the first variable
+Murrar1 <- rename(Murrar1, AttArabB = "Baseline", AttArabP1 = "Post1", AttArabP2 = "Post2")
+#repeat the process for additional variables; but give the new df new names -- otherwise you'll overwrite your work
+Murrar2 <- reshape2::dcast(data = Murrar_df, formula =caseID ~Wave, value.var = "AttWhite")
+Murrar2 <- rename(Murrar2, AttWhiteB = "Baseline", AttWhiteP1 = "Post1", AttWhiteP2 = "Post2")
+#Now we join them
 Murrar_wide <- dplyr::full_join(Murrar1, Murrar2, by = c("caseID"))
 
-str(Murrar_wide)
+str(Murrar_wide )
 ```
 
 ```
@@ -284,21 +273,21 @@ If you want to export this data as a file to your computer, remove the hashtags 
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. This is what I would do.
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(Murrar_wide, 'MurrarW_RDS.rds') bring back the
-# simulated dat from an .rds file Murrar_wide <-
-# readRDS('MurrarW_RDS.rds')
+``` r
+#to save the df as an .rds (think "R object") file on your computer; 
+#it should save in the same file as the .rmd file you are working with
+#saveRDS(Murrar_wide, "MurrarW_RDS.rds")
+#bring back the simulated dat from an .rds file
+#Murrar_wide <- readRDS("MurrarW_RDS.rds")
 ```
 
 The code for .csv will likely lose the formatting (i.e., stripping Wave and COND of their ordered factors), but it is easy to view in Excel.
 
-```r
-# write the simulated data as a .csv write.table(Murrar_wide,
-# file='MurrarW_CSV.csv', sep=',', col.names=TRUE, row.names=FALSE)
-# bring back the simulated dat from a .csv file Murrar_wide <-
-# read.csv ('MurrarW_CSV.csv', header = TRUE)
+``` r
+#write the simulated data as a .csv
+#write.table(Murrar_wide, file="MurrarW_CSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#Murrar_wide <- read.csv ("MurrarW_CSV.csv", header = TRUE)
 ```
 
 ### Evaluating the statistical assumptions
@@ -324,10 +313,14 @@ ANCOVA assumes that there is linearity between the covariate and outcome variabl
 We can create a scatterplot (with regression lines) between covariate (our pretest) and the outcome (post-test1).
 
 
-```r
-ggpubr::ggscatter(Murrar_wide, x = "AttArabB", y = "AttArabP1", color = "COND",
-    add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label..,
-    ..rr.label.., sep = "~~~~"), color = COND))
+``` r
+ggpubr::ggscatter (
+  Murrar_wide, x = "AttArabB", y = "AttArabP1",
+  color = "COND", add = "reg.line"
+)+
+  ggpubr::stat_regline_equation(
+    aes(label =  paste(..eq.label.., ..rr.label.., sep = "~~~~"), color = COND)
+    )
 ```
 
 ```
@@ -348,9 +341,8 @@ As in not surprising (because we tested a similar set of variables in the mixed 
 This assumption requires that the slopes of the regression lines formed by the covariate and the outcome variable are the same for each group. The assumption evaluates that there is no interaction between the outcome and covariate. The plotted regression lines should be parallel.
 
 
-```r
-Murrar_wide %>%
-    rstatix::anova_test(AttArabP1 ~ COND * AttArabB)
+``` r
+Murrar_wide %>% rstatix::anova_test(AttArabP1 ~ COND*AttArabB)
 ```
 
 ```
@@ -370,9 +362,9 @@ Our goal here is to specify a model and extract *residuals*: the difference betw
 Once we have saved the residuals, we can treat them as data and evaluate the shape of their distribution. We hope that the distribution is not statistically significantly different from a normal one. We first compute the model with *lm()* (lm stands for "linear model"). This is a linear regression.
 
 
-```r
-# Create a linear regression model predicting DV from COV & IV
-AttArabB_Mod <- lm(AttArabP1 ~ AttArabB + COND, data = Murrar_wide)
+``` r
+#Create a linear regression model predicting DV from COV & IV
+AttArabB_Mod <- lm (AttArabP1 ~ AttArabB + COND, data = Murrar_wide) 
 AttArabB_Mod
 ```
 
@@ -387,11 +379,11 @@ Coefficients:
 ```
 With the *broom::augment()* function we can augment our *lm()* model object to add fitted values and residuals. 
 
-```r
-# new model by augmenting the lm model
-AttArabB_Mod.metrics <- broom::augment(AttArabB_Mod)
-# shows the first three rows of the UEmodel.metrics
-head(AttArabB_Mod.metrics, 3)
+``` r
+#new model by augmenting the lm model
+AttArabB_Mod.metrics <- broom::augment(AttArabB_Mod) 
+#shows the first three rows of the UEmodel.metrics
+head(AttArabB_Mod.metrics,3)
 ```
 
 ```
@@ -406,8 +398,8 @@ head(AttArabB_Mod.metrics, 3)
 From this, we can assess the normality of the residuals using the Shapiro Wilk test
 
 
-```r
-# apply shapiro_test to that augmented model
+``` r
+#apply shapiro_test to that augmented model
 rstatix::shapiro_test(AttArabB_Mod.metrics$.resid)
 ```
 
@@ -423,9 +415,8 @@ The statistically significant Shapiro Wilk test has indicated a violation of the
 
 ANCOVA presumes that the variance of the residuals is equal for all groups. We can check this with the Levene's test.
 
-```r
-AttArabB_Mod.metrics %>%
-    rstatix::levene_test(.resid ~ COND)
+``` r
+AttArabB_Mod.metrics %>% rstatix::levene_test(.resid ~ COND) 
 ```
 
 ```
@@ -440,12 +431,12 @@ A non-significant Levene's test indicated no violation of the homogeneity of the
 
 We can identify outliers by examining the standardized (or studentized) residuals. This is the residual divided by its estimated standard error. Standardized residuals are interpreted as the number of standard errors away from the regression line.
 
-```r
-# from our model metrics show us any standardized residuals that are
-# >3
-AttArabB_Mod.metrics %>%
-    filter(abs(.std.resid) > 3) %>%
-    as.data.frame()
+``` r
+#from our model metrics
+#show us any standardized residuals that are >3
+AttArabB_Mod.metrics%>% 
+  filter(abs(.std.resid)>3)%>% 
+  as.data.frame()
 ```
 
 ```
@@ -481,10 +472,10 @@ The *ges* column provides the effect size, $\eta^2$. Conventionally, values of .
 You may see different values (.02, .13, .26) offered as small, medium, and large -- these values are used when multiple regression is used. A useful summary of effect sizes, guide to interpreting their magnitudes, and common usage can be found [here](https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize) [@watson_rules_2020]. 
 
 
-```r
+``` r
 MurrarB_ANCOVA <- Murrar_wide %>%
-    rstatix::anova_test(AttArabP1 ~ AttArabB + COND)
-rstatix::get_anova_table(MurrarB_ANCOVA)
+  rstatix::anova_test(AttArabP1 ~ AttArabB + COND)
+rstatix::get_anova_table(MurrarB_ANCOVA )
 ```
 
 ```
@@ -501,9 +492,12 @@ There was a non-significant effect of the baseline covariate on the post-test $(
 Just like in one-way ANOVA, we follow-up the significant effect of condition. We'll use all-possible pairwise comparisons. In our case, we only have two levels of the categorical factor, so this run wouldn't be necessary. I included it to provide the code for doing so. If there were three or more variables, we would see all possible comparisons.
 
 
-```r
+``` r
 pwc_B <- Murrar_wide %>%
-    rstatix::emmeans_test(AttArabP1 ~ COND, covariate = AttArabB, p.adjust.method = "none")
+  rstatix::emmeans_test(
+    AttArabP1 ~ COND, covariate = AttArabB,
+    p.adjust.method = "none"
+  )
 pwc_B
 ```
 
@@ -519,7 +513,7 @@ Not surprisingly (since this single pairwise comparison is redundant with the om
 With the script below we can obtain the covariate-adjusted marginal means. These are termed *estimated marginal means.* Take a look at these and compare them to what we would see in the regular descriptives. It is helpful to see the grand mean (AttArabB) and then the marginal means (emmean).
 
 
-```r
+``` r
 emmeans_B <- rstatix::get_emmeans(pwc_B)
 emmeans_B
 ```
@@ -534,9 +528,8 @@ emmeans_B
 
 Note that the *emmeans* process produces slightly different means than the raw means produced with the *psych* package's *describeBy()* function. Why? Because the *get_emmeans()* function uses the model that included the covariate. That is, the *estimated* means are covariate-adjusted. 
 
-```r
-descripts_P1 <- psych::describeBy(AttArabP1 ~ COND, data = Murrar_wide,
-    mat = TRUE)
+``` r
+descripts_P1 <- psych::describeBy(AttArabP1 ~ COND, data = Murrar_wide, mat = TRUE)
 descripts_P1
 ```
 
@@ -549,13 +542,8 @@ AttArabP11 23.67045 8.297 100 91.703 -0.0518848 -0.6252126 2.187005
 AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170
 ```
 
-```r
-# Note. Recently my students and I have been having intermittent
-# struggles with the describeBy function in the psych package. We
-# have noticed that it is problematic when using .rds files and when
-# using data directly imported from Qualtrics. If you are having
-# similar difficulties, try uploading the .csv file and making the
-# appropriate formatting changes.
+``` r
+#Note. Recently my students and I have been having intermittent struggles with the describeBy function in the psych package. We have noticed that it is problematic when using .rds files and when using data directly imported from Qualtrics. If you are having similar difficulties, try uploading the .csv file and making the appropriate formatting changes.
 ```
 
 $(M = 59.02, SD = 21.65)$
@@ -564,8 +552,8 @@ $(M = 73.92, SD = 18.51)$
 In our case the adjustments are very minor. Why? The effect of the attitudes toward Arabs baseline test on the attitudes toward Arabs post test was nonsignificant. We can see this in the bivariate correlations, below.
 
 
-```r
-MurP1_Rmat <- psych::corr.test(Murrar_wide[c("AttArabB", "AttArabP1")])
+``` r
+MurP1_Rmat <- psych::corr.test(Murrar_wide[c("AttArabB", "AttArabP1")]) 
 MurP1_Rmat
 ```
 
@@ -591,8 +579,8 @@ The correlation between attitudes toward Arabs at baseline and post test are nea
 As we assemble the elements for an APA style result sections, a table with the means, adjusted means, and correlations may be helpful. 
 
 
-```r
-apaTables::apa.cor.table(Murrar_wide[c("AttArabB", "AttArabP1")], table.number = 1)
+``` r
+apaTables::apa.cor.table(Murrar_wide[c("AttArabB", "AttArabP1")], table.number = 1 )
 ```
 
 ```
@@ -618,15 +606,14 @@ that could have caused the sample correlation (Cumming, 2014).
  
 ```
 
-```r
-# You can save this as a Microsoft word document by adding this
-# statement into the command: filename = 'your_filename.doc'
+``` r
+#You can save this as a Microsoft word document by adding this statement into the command: filename = "your_filename.doc" 
 ```
 
 Additionally, writing this output to excel files helped create the two tables that follow. The *MASS* package is useful to export the model objects into .csv files. They are easily opened in Excel where they can be manipulated into tables for presentations and manuscripts.
 
 
-```r
+``` r
 MASS::write.matrix(pwc_B, sep = ",", file = "pwc_B.csv")
 MASS::write.matrix(emmeans_B, sep = ",", file = "emmeans_B.csv")
 MASS::write.matrix(descripts_P1, sep = ",", file = "descripts_P1.csv")
@@ -648,13 +635,11 @@ Ultimately, I would want a table that included this information. Please refer to
 Unlike the figure we created when we were testing assumptions, this script creates a plot from the model (which identifies AttArabB in its role as covariate). Thus, the relationship between condition and AttArabP1 controls for the effect of the AttArabB covariate.
 
 
-```r
-pwc_B <- pwc_B %>%
-    rstatix::add_xy_position(x = "COND", fun = "mean_se")
+``` r
+pwc_B <- pwc_B %>% rstatix::add_xy_position(x = "COND", fun = "mean_se")
 ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = "COND", y = "emmean", title = "Figure 1. Post-test Attitudes by Condition, Controlling for Pre-test Attitudes") +
-    geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-    ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = 0.02,
-        y.position = c(80))
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = .02, y.position = c(80))
 ```
 
 ![](11-ANCOVA_files/figure-docx/unnamed-chunk-24-1.png)<!-- -->
@@ -703,10 +688,14 @@ ANCOVA assumes that there is linearity between the covariate and outcome variabl
 We can create a scatterplot (with regression lines) between the covariate (attitudes toward Whites) and the outcome (attitudes toward Arabs).
 
 
-```r
-ggpubr::ggscatter(Murrar_wide, x = "AttWhiteP1", y = "AttArabP1", color = "COND",
-    add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label..,
-    ..rr.label.., sep = "~~~~"), color = COND))
+``` r
+ggpubr::ggscatter (
+  Murrar_wide, x = "AttWhiteP1", y = "AttArabP1",
+  color = "COND", add = "reg.line"
+)+
+  ggpubr::stat_regline_equation(
+    aes(label =  paste(..eq.label.., ..rr.label.., sep = "~~~~"), color = COND)
+    )
 ```
 
 ![](11-ANCOVA_files/figure-docx/unnamed-chunk-25-1.png)<!-- -->
@@ -717,9 +706,8 @@ As we look at this scatterplot, we are trying to determine if there is an intera
 This assumption requires that the slopes of the regression lines formed by the covariate and the outcome variable are the same for each group. The assumption evaluates that there is no interaction between the outcome and covariate. The plotted regression lines should be parallel.
 
 
-```r
-Murrar_wide %>%
-    rstatix::anova_test(AttArabP1 ~ COND * AttWhiteP1)
+``` r
+Murrar_wide %>% rstatix::anova_test(AttArabP1 ~ COND*AttWhiteP1)
 ```
 
 ```
@@ -738,9 +726,9 @@ Assessing the normality of residuals means running the model, capturing the unex
 
 We first compute the model with *lm()*. The *lm()* function is actually testing what we want to test. However, at this early stage, we are just doing a "quick run and interpretation" to see if we are within the assumptions of ANCOVA.
 
-```r
-# Create a linear regression model predicting DV from COV & IV
-WhCov_mod <- lm(AttArabP1 ~ AttWhiteP1 + COND, data = Murrar_wide)
+``` r
+#Create a linear regression model predicting DV from COV & IV
+WhCov_mod <- lm (AttArabP1 ~ AttWhiteP1 + COND, data = Murrar_wide) 
 WhCov_mod
 ```
 
@@ -755,10 +743,10 @@ Coefficients:
 ```
 We can use the *augment(model)* function from the *broom* package to add fitted values and residuals. 
 
-```r
+``` r
 WhCov_mod.metrics <- broom::augment(WhCov_mod)
-# shows the first three rows of the UEcon_model.metrics
-head(WhCov_mod.metrics, 3)
+#shows the first three rows of the UEcon_model.metrics
+head(WhCov_mod.metrics,3) 
 ```
 
 ```
@@ -772,7 +760,7 @@ head(WhCov_mod.metrics, 3)
 Now we assess the normality of residuals using the Shapiro Wilk test. The script below captures the ".resid" column from the model.
 
 
-```r
+``` r
 rstatix::shapiro_test(WhCov_mod.metrics$.resid)
 ```
 
@@ -789,9 +777,8 @@ The statistically significant Shapiro Wilk test indicate a violation of the norm
 ANCOVA presumes that the variance of the residuals is equal for all groups. We can check this with the Levene's test.
 
 
-```r
-WhCov_mod.metrics %>%
-    rstatix::levene_test(.resid ~ COND)
+``` r
+WhCov_mod.metrics %>% rstatix::levene_test(.resid ~ COND)
 ```
 
 ```
@@ -807,10 +794,10 @@ Contributing more evidence that ANCOVA is not the best way to analyze this data,
 We can identify outliers by examining the standardized (or studentized) residual. This is the residual divided by its estimated standard error. Standardized residuals are interpreted as the number of standard errors away from the regression line.
 
 
-```r
+``` r
 WhCov_mod.metrics %>%
-    filter(abs(.std.resid) > 3) %>%
-    as.data.frame()
+  filter(abs(.std.resid)>3)%>%
+  as.data.frame()
 ```
 
 ```
@@ -840,9 +827,9 @@ In the code below we are predicting attitudes toward Arabs at post1 from attitud
 The *ges* column provides the effect size, $\eta^2$ where a general rule-of-thumb for interpretation is .01 (small), .06 (medium), and .14 (large) [@lakens_calculating_2013].
 
 
-```r
+``` r
 WhCov_ANCOVA <- Murrar_wide %>%
-    rstatix::anova_test(AttArabP1 ~ AttWhiteP1 + COND)
+  rstatix::anova_test(AttArabP1 ~ AttWhiteP1 + COND)
 rstatix::get_anova_table(WhCov_ANCOVA)
 ```
 
@@ -860,9 +847,12 @@ There was a non-significant effect of the attitudes toward Whites covariate on t
 
 With only two levels of sitcom condition (Friends, Little Mosque), we do not need to conduct post-hoc pairwise comparisons. However, because many research designs involve three or more levels, I will use code that would evaluates them here.
 
-```r
+``` r
 pwc_cond <- Murrar_wide %>%
-    rstatix::emmeans_test(AttArabP1 ~ COND, covariate = AttWhiteP1, p.adjust.method = "none")
+  rstatix::emmeans_test(
+    AttArabP1 ~ COND, covariate = AttWhiteP1,
+    p.adjust.method = "none"
+  )
 pwc_cond
 ```
 
@@ -877,7 +867,7 @@ Results suggest a statistically significant post-test difference between the Fri
 With the script below we can obtain the covariate-adjusted marginal means. These are termed *estimated marginal means.*
 
 
-```r
+``` r
 emmeans_cond <- rstatix::get_emmeans(pwc_cond)
 emmeans_cond
 ```
@@ -893,9 +883,8 @@ emmeans_cond
 As before, these means are usually different (even if only ever-so-slightly) than the raw means you would obtain from the descriptives.
 
 
-```r
-descripts_cond <- psych::describeBy(AttArabP1 ~ COND, data = Murrar_wide,
-    mat = TRUE)
+``` r
+descripts_cond <- psych::describeBy(AttArabP1 ~ COND, data = Murrar_wide, mat = TRUE)
 descripts_cond
 ```
 
@@ -914,8 +903,8 @@ AttArabP12 15.98984 6.137 100 93.863 -0.9798189  1.6335325 1.899170
 Tables with the means, adjusted means, and pairwise comparison output may be helpful. The *apa.cor.table()* function in the *apaTables* package is helpful for providing means, standarddeviations, and correlations.
 
 
-```r
-apaTables::apa.cor.table(Murrar_wide[c("AttArabP1", "AttWhiteP1")], table.number = 2)
+``` r
+apaTables::apa.cor.table(Murrar_wide[c("AttArabP1", "AttWhiteP1")], table.number = 2 )
 ```
 
 ```
@@ -941,15 +930,14 @@ that could have caused the sample correlation (Cumming, 2014).
  
 ```
 
-```r
-# You can save this as a Microsoft word document by adding this
-# statement into the command: filename = 'your_filename.doc'
+``` r
+#You can save this as a Microsoft word document by adding this statement into the command: filename = "your_filename.doc" 
 ```
 
 Writing this output to excel files helped create the two tables that follow.
 
 
-```r
+``` r
 MASS::write.matrix(pwc_cond, sep = ",", file = "pwc_con.csv")
 MASS::write.matrix(emmeans_cond, sep = ",", file = "emmeans_con.csv")
 MASS::write.matrix(descripts_cond, sep = ",", file = "descripts_con.csv")
@@ -972,13 +960,11 @@ Ultimately, I would want a table that included this information. Please refer to
 Unlike the figure we created when we were testing assumptions, this script creates a plot from the model (which identifies AttWhiteP1 in its role as covariate). Thus, the relationship between condition and AttArabP1 controls for the effect of the AttArabB covariate.
 
 
-```r
-pwc_cond <- pwc_cond %>%
-    rstatix::add_xy_position(x = "COND", fun = "mean_se")
+``` r
+pwc_cond <- pwc_cond %>% rstatix::add_xy_position(x = "COND", fun = "mean_se")
 ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = "COND", y = "emmean", title = "Figure 1 Attitudes toward Arabs by Condition, Controlling for Attitudes toward Whites") +
-    geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-    ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = 0.02,
-        y.position = c(80))
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = .02, y.position = c(80))
 ```
 
 ![](11-ANCOVA_files/figure-docx/unnamed-chunk-38-1.png)<!-- -->
@@ -1084,36 +1070,30 @@ I want to ask the question, what are the effects of intentional recentering on s
 
 First I import the larger dataset.
 
-```r
+``` r
 big <- readRDS("ReC.rds")
 ```
 
 The SRPed (socially responsive pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
-```r
-# Creates a list of the variables that belong to that scale
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
+``` r
+#This code was recently updated and likely differs from the screencasted lecture
 
-# Calculates a mean if at least 75% of the items are non-missing;
-# adjusts the calculating when there is missingness
-big$SRPed <- sjstats::mean_n(big[, SRPed_vars], 0.75)
-# If the above code doesn't work use the one below; the difference is
-# the two periods in front of the variable list big$SRPed <-
-# sjstats::mean_n(big[, ..SRPed_vars], .75)
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+big$SRPed <- datawizard::row_means(big, select = c('InclusvClassrm', 'EquitableEval','MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 Let's trim it to just the variables of interest.
 
-```r
-ANCOVA_df <- (dplyr::select(big, deID, Course, Centering, SRPed))
+``` r
+ANCOVA_df <- (dplyr::select (big, deID, Course, Centering, SRPed))
 ```
 
 And further filter so that there are just evaluations of ANOVA and multivariate courses.
 
-```r
-ANCOVA_df <- subset(ANCOVA_df, Course == "ANOVA" | Course == "Multivariate")  #multiple conditions
+``` r
+ANCOVA_df <- subset(ANCOVA_df, Course == "ANOVA" | Course == "Multivariate") #multiple conditions
 ```
 
 I want the course variable to be factor that is ordered by its sequence:  ANOVA, multivariate.
@@ -1121,7 +1101,7 @@ I want the course variable to be factor that is ordered by its sequence:  ANOVA,
 I want the centering variable to be ordered:  Pre, Re
 
 
-```r
+``` r
 str(ANCOVA_df)
 ```
 
@@ -1135,7 +1115,7 @@ Classes 'data.table' and 'data.frame':	198 obs. of  4 variables:
 Because R's default is to order alphabetically, the centering variable is correct. I just need to change the course variable.
 
 
-```r
+``` r
 ANCOVA_df$Course <- factor(ANCOVA_df$Course, levels = c("ANOVA", "Multivariate"))
 str(ANCOVA_df)
 ```
@@ -1151,9 +1131,8 @@ After checking the structure again, both are correct.
 
 My data is in the long (person-period) form. For this particular ANOVA I need it to be in the wide (person level) form.
 
-```r
-ANCOVA_wide <- reshape2::dcast(data = ANCOVA_df, formula = deID + Centering ~
-    Course, value.var = "SRPed")
+``` r
+ANCOVA_wide<- reshape2::dcast(data = ANCOVA_df, formula = deID + Centering ~ Course, value.var = "SRPed")
 # before restructuring a second variable, rename the first variable
 ANCOVA_wide <- dplyr::rename(ANCOVA_wide, SRPed_ANV = "ANOVA", SRPed_MLTV = "Multivariate")
 
@@ -1168,7 +1147,7 @@ str(ANCOVA_wide)
  $ SRPed_MLTV: num  NA NA NA NA NA NA NA NA NA NA ...
 ```
 
-```r
+``` r
 head(ANCOVA_wide)
 ```
 
@@ -1184,7 +1163,7 @@ head(ANCOVA_wide)
 The *head* function shows that the multivariate scores are missing. This design still has missingness for (a) some students who took ANOVA but haven't yet had multivariate and (b) others who may have skipped completing course evaluations. I'll take care of that next by requiring rows to have non-missing data. 
 
 
-```r
+``` r
 ANCOVA_wide <- na.omit(ANCOVA_wide)
 ```
 
@@ -1198,11 +1177,9 @@ This would mean that there is linearity between the evaluation in the first cour
 We can get a visual of this with a scatterplot (with regression lines) between the covariae and outcome.
 
 
-```r
+``` r
 library(ggplot2)
-ggpubr::ggscatter(ANCOVA_wide, x = "SRPed_ANV", y = "SRPed_MLTV", color = "Centering",
-    add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label..,
-    ..rr.label.., sep = "~~~~"), color = Centering))
+ggpubr::ggscatter(ANCOVA_wide, x = "SRPed_ANV", y = "SRPed_MLTV", color = "Centering", add = "reg.line") + ggpubr::stat_regline_equation(aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~~"), color = Centering))
 ```
 
 ![](11-ANCOVA_files/figure-docx/unnamed-chunk-89-1.png)<!-- -->
@@ -1214,10 +1191,10 @@ The plot looks a little funny. This is likely because there are no values below 
 This would mean that there is no interaction between the outcome and covariate.  We can test this with an ANOVA model that specifies an interaction.
 
 
-```r
+``` r
 library(tidyverse)
 ANCOVA_wide %>%
-    rstatix::anova_test(SRPed_MLTV ~ Centering * SRPed_ANV)
+  rstatix::anova_test(SRPed_MLTV ~Centering*SRPed_ANV)
 ```
 
 ```
@@ -1225,8 +1202,8 @@ ANOVA Table (type II tests)
 
                Effect DFn DFd      F            p p<.05   ges
 1           Centering   1  71 10.444 0.0020000000     * 0.128
-2           SRPed_ANV   1  71 40.234 0.0000000184     * 0.362
-3 Centering:SRPed_ANV   1  71  1.975 0.1640000000       0.027
+2           SRPed_ANV   1  71 40.189 0.0000000186     * 0.361
+3 Centering:SRPed_ANV   1  71  1.971 0.1650000000       0.027
 ```
 Curiously, the interaction term was not statistically significant $(F[1, 71] = 1.975, p = 0.164)$. This non-violation of the homogeneity of slopes assumption supports the use of ANCOVA.
 
@@ -1234,13 +1211,13 @@ Curiously, the interaction term was not statistically significant $(F[1, 71] = 1
 
 First, I create a linear regression model
 
-```r
-SRPed_mod <- lm(SRPed_MLTV ~ SRPed_ANV + Centering, data = ANCOVA_wide)
+``` r
+SRPed_mod <- lm(SRPed_MLTV ~ SRPed_ANV + Centering, data = ANCOVA_wide) 
 ```
 
 I will use *broom::augment()* to add fitted values and residuals to the model I just created.
 
-```r
+``` r
 SRPed_mod_metrics <- broom::augment(SRPed_mod)
 head(SRPed_mod_metrics)
 ```
@@ -1254,13 +1231,13 @@ head(SRPed_mod_metrics)
 3 13              5         4.75 Re           4.87  0.125  0.0382  0.460 1.03e-3
 4 14              5         4.25 Re           4.59  0.411  0.0382  0.457 1.11e-2
 5 15              4.75      4.5  Re           4.73  0.0179 0.0357  0.460 1.96e-5
-6 16              4.5       3.5  Re           4.16  0.339  0.0751  0.458 1.61e-2
+6 16              4.5       3.5  Re           4.16  0.338  0.0751  0.458 1.61e-2
 # ℹ 1 more variable: .std.resid <dbl>
 ```
 
 I can now assess the normality of residuals with the Shapiro-Wilk test.
 
-```r
+``` r
 rstatix::shapiro_test(SRPed_mod_metrics$.resid)
 ```
 
@@ -1268,15 +1245,15 @@ rstatix::shapiro_test(SRPed_mod_metrics$.resid)
 # A tibble: 1 × 3
   variable                 statistic p.value
   <chr>                        <dbl>   <dbl>
-1 SRPed_mod_metrics$.resid     0.972   0.101
+1 SRPed_mod_metrics$.resid     0.972   0.100
 ```
 
 The Shapiro-Wilk test suggested that our residuals are not statistically significantly different from a normal distribution $(W = 0.972, p = 0.101)$.
 
 ANCOVA further presumes that the variances of the residuals is equal for all groups. I can check this with the Levene's test.
 
-```r
-SRPed_mod_metrics %>%
+``` r
+SRPed_mod_metrics%>%
     rstatix::levene_test(.resid ~ Centering)
 ```
 
@@ -1284,7 +1261,7 @@ SRPed_mod_metrics %>%
 # A tibble: 1 × 4
     df1   df2 statistic     p
   <int> <int>     <dbl> <dbl>
-1     1    73      2.68 0.106
+1     1    73      2.69 0.105
 ```
 A non-significant Levene's test indicated no violation of the homogeneity of the residual variances for the groups $(F[1, 73] = 2.675, p = 0.106)$.
 
@@ -1294,7 +1271,7 @@ A non-significant Levene's test indicated no violation of the homogeneity of the
 I can identify outliers by examining the standardized (or studentized) residuals. These are interpreted as the number of standard errors away from the regression line.
 
 
-```r
+``` r
 SRPed_mod_metrics %>%
   filter(abs(.std.resid) > 3) %>%
            as.data.frame()
@@ -1318,7 +1295,7 @@ Here's write-up of what I've done so far:
 #### Conduct omnibus ANOVA (w effect size) {-}
 
 
-```r
+``` r
 ANCOVA_mod <- ANCOVA_wide %>%
     rstatix::anova_test(SRPed_MLTV ~ SRPed_ANV + Centering)
 rstatix::get_anova_table(ANCOVA_mod)
@@ -1328,8 +1305,8 @@ rstatix::get_anova_table(ANCOVA_mod)
 ANOVA Table (type II tests)
 
      Effect DFn DFd      F            p p<.05   ges
-1 SRPed_ANV   1  72 39.696 0.0000000209     * 0.355
-2 Centering   1  72 10.304 0.0020000000     * 0.125
+1 SRPed_ANV   1  72 39.654 0.0000000212     * 0.355
+2 Centering   1  72 10.305 0.0020000000     * 0.125
 ```
 >There was a significant effect of the evaluation of socially responsive pedagogy at the first course (ANOVA) on the same rating at the last course $(F [1,72] = 39.696, p < .001, \eta^2 = 0.355)$ as well as a statistically significant effect of recentering on evaluations of socially responsive pedagogy during the last class $(F [1,72]) = 10.304, p = 0.002, \eta^2 = 0.125)$. Considering that we interpret values $eta^2$ values  of .01, .06, and .14 to be small, medium, and large it appears that both the covariate and independent variable had substantial effects on the results.
 
@@ -1338,10 +1315,9 @@ ANOVA Table (type II tests)
 Because this design has only two levels (pre-centered, re-centered), follow-up tests will not tell us any more information. However, investigating the covariate-adjusted mean is useful.
 
 
-```r
-emmeans_MLTV <- ANCOVA_wide %>%
-    rstatix::emmeans_test(SRPed_MLTV ~ Centering, covariate = SRPed_ANV,
-        p.adjust.method = "none")
+``` r
+emmeans_MLTV <- ANCOVA_wide%>%
+  rstatix::emmeans_test(SRPed_MLTV ~ Centering, covariate = SRPed_ANV, p.adjust.method = "none")
 emmeans_MLTV
 ```
 
@@ -1356,7 +1332,7 @@ Not surprisingly (since this single pairwise comparison is redundant with the om
 With this script I can obtain the covariate-adjusted (i.e., estimated marginal) means.
 
 
-```r
+``` r
 emmeans_list <- rstatix::get_emmeans(emmeans_MLTV)
 emmeans_list
 ```
@@ -1371,19 +1347,18 @@ emmeans_list
 We can compare these to the  unadjusted means:
 
 
-```r
-descripts_means <- psych::describeBy(SRPed_MLTV ~ Centering, data = ANCOVA_wide,
-    mat = TRUE, digits = 6)
+``` r
+descripts_means <- psych::describeBy(SRPed_MLTV ~ Centering, data = ANCOVA_wide, mat=TRUE, digits=6)
 descripts_means
 ```
 
 ```
-            item group1 vars  n     mean       sd median  trimmed    mad  min
-SRPed_MLTV1    1    Pre    1 47 4.381277 0.632791    4.5 4.451026 0.7413 2.33
-SRPed_MLTV2    2     Re    1 28 4.732143 0.424529    5.0 4.802083 0.0000 3.25
-            max range      skew kurtosis       se
-SRPed_MLTV1   5  2.67 -0.870207  0.37849 0.092302
-SRPed_MLTV2   5  1.75 -1.730808  2.90925 0.080228
+            item group1 vars  n     mean       sd median  trimmed    mad
+SRPed_MLTV1    1    Pre    1 47 4.381206 0.632681    4.5 4.450855 0.7413
+SRPed_MLTV2    2     Re    1 28 4.732143 0.424529    5.0 4.802083 0.0000
+                 min max    range      skew kurtosis       se
+SRPed_MLTV1 2.333333   5 2.666667 -0.867724 0.366448 0.092286
+SRPed_MLTV2 3.250000   5 1.750000 -1.730808 2.909250 0.080228
 ```
 
 While the differences are minor, they do exist.
@@ -1419,14 +1394,12 @@ In the case of ANCOVA, a table that compares unadjusted and covariate-adjusted m
 And now a figure:
 
 
-```r
+``` r
 emmeans_MLTV <- emmeans_MLTV %>%
     rstatix::add_xy_position(x = "Centering", fun = "mean_se")
-ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = "Centering", y = "emmean",
-    title = "Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings") +
+ggpubr::ggline(rstatix::get_emmeans(emmeans_MLTV), x = "Centering", y = "emmean", title = "Figure 1. SRPed Ratings as a Function of Centering, Controlling for Earlier Ratings") +
     geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
-    ggpubr::stat_pvalue_manual(emmeans_MLTV, hide.ns = TRUE, tip.length = 0.02,
-        , y.position = c(5))
+    ggpubr::stat_pvalue_manual(emmeans_MLTV, hide.ns = TRUE, tip.length = 0.02, , y.position = c(5.0))
 ```
 
 ![](11-ANCOVA_files/figure-docx/unnamed-chunk-100-1.png)<!-- -->

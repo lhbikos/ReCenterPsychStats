@@ -48,23 +48,18 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(knitr)){install.packages('knitr')}
-# if(!require(tidyverse)){install.packages('tidyverse')} #manipulate
-# data if(!require(psych)){install.packages('psych')}
-# if(!require(ggpubr)){install.packages('ggpubr')} #easy plots
-# if(!require(rstatix)){install.packages('rstatix')} #pipe-friendly R
-# functions if(!require(data.table)){install.packages('data.table')}
-# #pipe-friendly R functions
-# if(!require(reshape2)){install.packages('reshape2')} #pipe-friendly
-# R functions
-# if(!require(effectsize)){install.packages('effectsize')} #converts
-# effect sizes for use in power analysis
-# if(!require(WebPower)){install.packages('WebPower')} #power
-# analysis tools for repeated measures
-# if(!require(MASS)){install.packages('MASS')} #power analysis tools
-# for repeated measures
+``` r
+#will install the package if not already installed
+#if(!require(knitr)){install.packages("knitr")}
+#if(!require(tidyverse)){install.packages("tidyverse")} #manipulate data
+#if(!require(psych)){install.packages("psych")} 
+#if(!require(ggpubr)){install.packages("ggpubr")} #easy plots
+#if(!require(rstatix)){install.packages("rstatix")} #pipe-friendly R functions
+#if(!require(data.table)){install.packages("data.table")} #pipe-friendly R functions
+#if(!require(reshape2)){install.packages("reshape2")} #pipe-friendly R functions
+#if(!require(effectsize)){install.packages("effectsize")} #converts effect sizes for use in power analysis
+#if(!require(WebPower)){install.packages("WebPower")} #power analysis tools for repeated measures
+#if(!require(MASS)){install.packages("MASS")} #power analysis tools for repeated measures
 ```
 
 ## Introducing One-way Repeated Measures ANOVA
@@ -122,22 +117,21 @@ The dependent variable (assessed at each wave) was a 14-item resilience scale [@
 
 Below is the code I used to simulate data. The following code assumes 8 participants who each participated in 3 waves (pre, post, followup).
 
-```r
+``` r
 set.seed(2022)
-# gives me 8 numbers, assigning each number 3 consecutive spots, in
-# sequence
-ID <- factor(c(rep(seq(1, 8), each = 3)))
-# gives me a column of 24 numbers with the specified Ms and SD
-Resilience <- rnorm(24, mean = c(5.7, 6.21, 6.26), sd = c(0.88, 0.79, 0.37))
-# repeats pre, post, follow-up once each, 8 times
-Wave <- rep(c("Pre", "Post", "FollowUp"), each = 1, 8)
-Amodeo_long <- data.frame(ID, Wave, Resilience)
+#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence
+ID<-factor(c(rep(seq(1,8),each=3)))
+#gives me a column of 24 numbers with the specified Ms and SD
+Resilience<-rnorm(24,mean=c(5.7,6.21,6.26),sd=c(.88,.79,.37)) 
+#repeats pre, post, follow-up once each, 8 times
+Wave<-rep(c("Pre","Post", "FollowUp"),each=1,8) 
+Amodeo_long<-data.frame(ID, Wave, Resilience)
 ```
 
 Let's take a look at the structure of our variables. We want ID to be a factor, Resilience to be numeric, and Wave to be an ordered factor (Pre, Post, FollowUp).
 
 
-```r
+``` r
 str(Amodeo_long)
 ```
 
@@ -150,14 +144,13 @@ str(Amodeo_long)
 We need to update Wave to be an ordered factor. Because R's default is to order factors alphabetically, we can use the levels command and identify our preferred order.
 
 
-```r
-Amodeo_long$Wave <- factor(Amodeo_long$Wave, levels = c("Pre", "Post",
-    "FollowUp"))
+``` r
+Amodeo_long$Wave <- factor(Amodeo_long$Wave, levels = c("Pre", "Post", "FollowUp"))
 ```
 
 We check the structure again.
 
-```r
+``` r
 str(Amodeo_long)
 ```
 
@@ -175,13 +168,12 @@ The form of our data matters. The simulation created a *long* form (formally cal
 However, for some of the calculations (particularly those we will do by hand), we need the data to be in its more familiar wide form (formally called the *person level* form). We can do this with the *data.table* and *reshape2*()* packages. 
 
 
-```r
-# Create a new df (Amodeo_wide) Identify the original df We are
-# telling it to connect the values of the Resilience variable its
-# respective Wave designation
-Amodeo_wide <- reshape2::dcast(data = Amodeo_long, formula = ID ~ Wave,
-    value.var = "Resilience")
-# doublecheck to see if they did what you think
+``` r
+# Create a new df (Amodeo_wide)
+# Identify the original df
+# We are telling it to connect the values of the Resilience variable its respective Wave designation
+Amodeo_wide <- reshape2::dcast(data = Amodeo_long, formula =ID~Wave, value.var = "Resilience")
+#doublecheck to see if they did what you think
 str(Amodeo_wide)
 ```
 
@@ -193,7 +185,7 @@ str(Amodeo_wide)
  $ FollowUp: num  5.93 5.19 6.54 6.19 6.24 ...
 ```
 
-```r
+``` r
 Amodeo_wide$ID <- factor(Amodeo_wide$ID)
 ```
 In this reshape script, I asked for a quick structure check. The format of the variables looks correct.
@@ -202,32 +194,32 @@ If you want to export these data as files to your computer, remove the hashtags 
 
 The code for the .rds file will retain the formatting of the variables, but is not easy to view outside of R. I would choose this option.
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(Amodeo_long, 'Amodeo_longRDS.rds')
-# saveRDS(Amodeo_wide, 'Amodeo_wideRDS.rds') bring back the simulated
-# dat from an .rds file Amodeo_long <- readRDS('Amodeo_longRDS.rds')
-# Amodeo_wide <- readRDS('Amodeo_wideRDS.rds')
+``` r
+#to save the df as an .rds (think "R object") file on your computer; 
+#it should save in the same file as the .rmd file you are working with
+#saveRDS(Amodeo_long, "Amodeo_longRDS.rds")
+#saveRDS(Amodeo_wide, "Amodeo_wideRDS.rds")
+#bring back the simulated dat from an .rds file
+#Amodeo_long <- readRDS("Amodeo_longRDS.rds")
+#Amodeo_wide <- readRDS("Amodeo_wideRDS.rds")
 ```
 
 Another option is to write them as .csv files. The code for .csv will likely lose any variable formatting, but the .csv file is easy to view and manipulate in Excel. If you choose this option, you will probably need to re-run the prior code to reformat Wave as an ordered factor
 
-```r
-# write the simulated data as a .csv write.table(Amodeo_long,
-# file='Amodeo_longCSV.csv', sep=',', col.names=TRUE,
-# row.names=FALSE) write.table(Amodeo_wide,
-# file='Amodeo_wideCSV.csv', sep=',', col.names=TRUE,
-# row.names=FALSE) bring back the simulated dat from a .csv file
-# Amodeo_long <- read.csv ('Amodeo_longCSV.csv', header = TRUE)
-# Amodeo_wide <- read.csv ('Amodeo_wideCSV.csv', header = TRUE)
+``` r
+#write the simulated data as a .csv
+#write.table(Amodeo_long, file="Amodeo_longCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#write.table(Amodeo_wide, file="Amodeo_wideCSV.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from a .csv file
+#Amodeo_long <- read.csv ("Amodeo_longCSV.csv", header = TRUE)
+#Amodeo_wide <- read.csv ("Amodeo_wideCSV.csv", header = TRUE)
 ```
 
 ### Quick peek at the data
 
 Before we get into the statistic let's inspect our data. As we work the problem we will switch between long and wide formats. We can start with the long form.
 
-```r
+``` r
 str(Amodeo_long)
 ```
 
@@ -240,9 +232,8 @@ str(Amodeo_long)
 In the following output, note the order of presentation of the grouping variable (i.e., FollowUp, Post, Pre). Even though we have ordered our factor so that "Pre" is first, the *describeBy()* function seems to be ordering them alphabetically.
 
 
-```r
-psych::describeBy(Amodeo_long$Resilience, Wave, mat = TRUE, data = Amodeo_long,
-    digits = 3)
+``` r
+psych::describeBy(Amodeo_long$Resilience, Wave, mat = TRUE, data = Amodeo_long, digits = 3)
 ```
 
 ```
@@ -256,19 +247,14 @@ X12 -0.231   -1.629 0.232
 X13 -0.144   -1.812 0.291
 ```
 
-```r
-# Note. Recently my students and I have been having intermittent
-# struggles with the describeBy function in the psych package. We
-# have noticed that it is problematic when using .rds files and when
-# using data directly imported from Qualtrics. If you are having
-# similar difficulties, try uploading the .csv file and making the
-# appropriate formatting changes.
+``` r
+#Note. Recently my students and I have been having intermittent struggles with the describeBy function in the psych package. We have noticed that it is problematic when using .rds files and when using data directly imported from Qualtrics. If you are having similar difficulties, try uploading the .csv file and making the appropriate formatting changes.
 ```
 
 Another view (if we use the wide file).
 
 
-```r
+``` r
 psych::describe(Amodeo_wide)
 ```
 
@@ -290,9 +276,8 @@ Let's also take a quick look at a boxplot of our data.
 
 
 
-```r
-ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "jitter",
-    color = "Wave", title = "Figure 9.1 Boxplots of Resilience Over Time")
+``` r
+ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "jitter", color = "Wave", title = "Figure 9.1 Boxplots of Resilience Over Time")
 ```
 
 ![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
@@ -325,7 +310,7 @@ Let's take a moment to *hand-calculate* $SS_{T}$ (but using R).
 
 Our grand (i.e., overall) mean is 
 
-```r
+``` r
 mean(Amodeo_long$Resilience)
 ```
 
@@ -335,7 +320,7 @@ mean(Amodeo_long$Resilience)
 
 Subtracting the grand mean from each resilience score yields a mean difference.
 
-```r
+``` r
 library(tidyverse)
 
 Amodeo_long <- Amodeo_long %>% 
@@ -356,7 +341,7 @@ head(Amodeo_long)
 **Pop quiz**: What's the sum of our new *m_dev* variable?
 
 
-```r
+``` r
 sum(Amodeo_long$m_dev)
 ```
 
@@ -366,7 +351,7 @@ sum(Amodeo_long$m_dev)
 
 If we square those mean deviations:
 
-```r
+``` r
 Amodeo_long <- Amodeo_long %>% 
   mutate(m_devSQ = m_dev^2)
 
@@ -385,7 +370,7 @@ head(Amodeo_long)
 
 If we sum the squared mean deviations:
 
-```r
+``` r
 sum(Amodeo_long$m_devSQ)
 ```
 
@@ -402,7 +387,7 @@ $$SS_W = s_{person1}^{2}(n_{1}-1)+s_{person2}^{2}(n_{2}-1)+s_{person3}^{2}(n_{3}
 The degrees of freedom (df) within is *N - k*; or the summation of the df for each of the persons.
 
 
-```r
+``` r
 psych::describeBy(Resilience ~ ID, data = Amodeo_long, mat = TRUE, digits = 3)
 ```
 
@@ -432,10 +417,8 @@ With 8 people, there will be 8 chunks of the analysis, in each:
 * multiplied by the number of observations less 1
 
 
-```r
-(0.605^2 * (3 - 1)) + (0.76^2 * (3 - 1)) + (0.992^2 * (3 - 1)) + (0.568^2 *
-    (3 - 1)) + (0.824^2 * (3 - 1)) + (0.146^2 * (3 - 1)) + (0.248^2 * (3 -
-    1)) + (0.553^2 * (3 - 1))
+``` r
+(.605^2*(3-1)) + (.760^2*(3-1)) + (.992^2*(3-1))+ (.568^2*(3-1))+ (.824^2*(3-1))+ (.146^2*(3-1))+ (.248^2*(3-1)) + (.553^2*(3-1))
 ```
 
 ```
@@ -450,7 +433,7 @@ $$SS_{M}= \sum n_{k}(\bar{x}_{k}-\bar{x}_{grand})^{2}$$
 The degrees of freedom will be *k* - 1 (number of levels, minus one).
 
 
-```r
+``` r
 psych::describe(Amodeo_wide)
 ```
 
@@ -472,7 +455,7 @@ The degrees of freedom (df) for $SS_M$ is *k* - 1
 
 Let's calculate grand mean; that is the resilience score for all participants across all waves.
 
-```r
+``` r
 mean(Amodeo_long$Resilience)
 ```
 
@@ -482,16 +465,16 @@ mean(Amodeo_long$Resilience)
 
 Now we can calculate the $SS_M$.
 
-```r
-(8 * (6.14 - 6.017)^2) + (8 * (6.33 - 6.017)^2) + (8 * (5.59 - 6.017)^2)
+``` r
+(8*(6.14 - 6.017)^2) + (8*(6.33 - 6.017)^2) + (8*(5.59 - 6.017)^2) 
 ```
 
 ```
 [1] 2.363416
 ```
 
-```r
-# df is 3-1 = 2
+``` r
+#df is 3-1 = 2
 ```
 
 ### Sums of Squares Residual
@@ -502,7 +485,7 @@ Because $SS_W = SS_M + SS_R$ we can caluclate $SS_R$ with simple subtraction:
 * $SS_M$ = 2.363
 
 
-```r
+``` r
 6.636 - 2.363
 ```
 
@@ -511,7 +494,7 @@ Because $SS_W = SS_M + SS_R$ we can caluclate $SS_R$ with simple subtraction:
 ```
 Correspondingly, the degrees of freedom (also taking the easy way out) is calculated by subtracting (the associated degrees of freedom) $SS_M$ from $SS_W$.
 
-```r
+``` r
 16-2
 ```
 
@@ -527,7 +510,7 @@ The $SS_B$ is not used in our calculations today, but also calculated easily. Gi
 * $SS_W$ = 6.64; *df* = 16
 
 
-```r
+``` r
 11.66 - 6.64
 ```
 
@@ -535,7 +518,7 @@ The $SS_B$ is not used in our calculations today, but also calculated easily. Gi
 [1] 5.02
 ```
 
-```r
+``` r
 23-16
 ```
 
@@ -554,7 +537,7 @@ Now that we have the Sums of Squares, we can calculate the mean squares (we need
 
 $$MS_M = \frac{SS_{M}}{df^{_{M}}}$$
 
-```r
+``` r
 #mean squares for the model
 2.36/2
 ```
@@ -569,7 +552,7 @@ $$MS_R = \frac{SS_{R}}{df^{_{R}}}$$
 Recall, degrees of freedom for the residual is $df_w - df_m$. In our case that is 16-2.
 
 
-```r
+``` r
 #mean squares for the residual
 4.27 / 14
 ```
@@ -584,7 +567,7 @@ The *F* ratio is calculated with $MS_M$ and $MS_R=$.
 
 $$F = \frac{MS_{M}}{MS_{R}}$$
 
-```r
+``` r
 1.18 / .305
 ```
 
@@ -594,7 +577,7 @@ $$F = \frac{MS_{M}}{MS_{R}}$$
 
 To find the $F_{CV}$ we can use an [F distribution table](https://www.statology.org/f-distribution-table/). Or use a look-up function in R, which follows this general form: qf(p, df1, df2. lower.tail=FALSE)
 
-```r
+``` r
 qf(.05, 2, 14, lower.tail=FALSE)
 ```
 
@@ -661,8 +644,8 @@ $$variance_{A-B} \approx variance_{A-C}\approx variance_{B-C}$$
 We can obtain skew and kurtosis values for each cell in our model with the *psych::describeBy()* function.
 
 
-```r
-psych::describeBy(Resilience ~ Wave, mat = TRUE, type = 1, data = Amodeo_long)
+``` r
+psych::describeBy(Resilience ~ Wave, mat=TRUE, type = 1, data = Amodeo_long)
 ```
 
 ```
@@ -684,10 +667,10 @@ Our skew and kurtosis values fall below the thresholds of concern [@kline_data_2
 The *Shapiro-Wilk* test evaluates the hypothesis that the distribution of the data deviates from a comparable normal distribution. If the test is non-significant (*p* >.05) the distribution of the sample is not significantly different from a normal distribution. If, however, the test is significant (*p* < .05), then the sample distribution is significantly different from a normal distribution. The *rstatix* package can conduct this test for us.
 
 
-```r
+``` r
 Amodeo_long %>%
-    group_by(Wave) %>%
-    rstatix::shapiro_test(Resilience)
+  group_by(Wave) %>%
+  rstatix::shapiro_test(Resilience)
 ```
 
 ```
@@ -708,7 +691,7 @@ Especially in the more simple "ANOVA's" I like this form of the Shapiro-Wilk tes
 Although that model (a regression model) has information about the results of our primary analysis, at this point we are only using it to investigate the assumption of normality. One product of the analysis is *residuals*. Residuals are the unexplained variance in the outcome (or dependent) variable after accounting for the predictor (or independent) variable. When we plot these "leftovers" against the values of x, we can visualize the fit of the model in a QQ plot. The dots represent the residuals. When they are relatively close to the line they not only suggest good fit of the model, but we know they are small and evenly distributed around zero (i.e., normally distributed). 
 
 
-```r
+``` r
 RMres_model <- lm(Resilience ~ Wave, data = Amodeo_long)
 ggpubr::ggqqplot(residuals(RMres_model))
 ```
@@ -718,7 +701,7 @@ ggpubr::ggqqplot(residuals(RMres_model))
 We can also use the model in a Shapiro-Wilk test. As before, we want a non-significant result.
 
 
-```r
+``` r
 rstatix::shapiro_test(residuals(RMres_model))
 ```
 
@@ -747,16 +730,15 @@ Extreme values occur when values fall outside these boundaries:
 Let's take another look at the boxplot.  Swapping "jitter" for "point" may help with the visual inspection.
 
 
-```r
-ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "point",
-    color = "Wave", title = "Figure 9.2 Identifying Outliers with Boxplots")
+``` r
+ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "point", color = "Wave", title = "Figure 9.2 Identifying Outliers with Boxplots")
 ```
 
 ![](09-OneWayRepeated_files/figure-docx/unnamed-chunk-35-1.png)<!-- -->
 
 The package *rstatix* has features that allow us to identify outliers.
 
-```r
+``` r
 Amodeo_long %>%
   group_by(Wave)%>%
   rstatix::identify_outliers(Resilience)
@@ -767,7 +749,7 @@ Amodeo_long %>%
 <0 rows> (or 0-length row.names)
 ```
 
-```r
+``` r
 #?identify_outliers
 ```
 
@@ -804,7 +786,7 @@ The repeated measures ANOVA must be run with a long form of the data. This means
 We can verify the format of our variables by examining the structure of our dataframe. Recall that we created the "m_dev" and "m_devSQ" variables earlier in the demonstration. We will not use them in this analysis; it does not harm anything for them to "ride along" in the dataframe.
 
 
-```r
+``` r
 str(Amodeo_long)
 ```
 
@@ -823,9 +805,8 @@ We can use the *rstatix::anova_test()* function to calculate the omnibus ANOVA. 
 * Wave is assigned to within
 
 
-```r
-RM_AOV <- rstatix::anova_test(data = Amodeo_long, dv = Resilience, wid = ID,
-    within = Wave)
+``` r
+RM_AOV <- rstatix::anova_test(data = Amodeo_long, dv = Resilience, wid = ID, within = Wave)
 RM_AOV
 ```
 
@@ -873,9 +854,9 @@ Given the simplicity of our design, it makes sense to me to follow-up with post 
 Note that the script used to produced the figure will pull the symbols from the column labeled, "p.adj.signif." The *rstatix::pairwise_t_test* default is the traditional Bonferroni. Therefore, if we want to use the LSD approach, we must "p.adjust.method" as "none."
 
 
-```r
+``` r
 pwc <- Amodeo_long %>%
-    rstatix::pairwise_t_test(Resilience ~ Wave, paired = TRUE, p.adjust.method = "none")
+  rstatix::pairwise_t_test(Resilience~Wave, paired = TRUE, p.adjust.method = "none")
 pwc
 ```
 
@@ -899,14 +880,15 @@ How would we manage Type I error? With only three possible post-omnibus comparis
 We can combine information from the object we created ("bxp") from an earlier boxplot with the object we saved from the posthoc pairwise comparisons ("pwc) to enhance our boxplot with the *F* string and indications of pairwise significant (or, in our case, non-significance). 
 
 
-```r
-RMbox <- ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "jitter",
-    color = "Wave", title = "Figure 9.3 Resilience as a Function of Wave")
-pwc <- pwc %>%
-    rstatix::add_xy_position(x = "Wave")
-RMbox <- RMbox + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif",
-    tip.length = 0.01, hide.ns = FALSE, step.increase = 0.05) + labs(subtitle = rstatix::get_test_label(RM_AOV,
-    detailed = TRUE), caption = rstatix::get_pwc_label(pwc))
+``` r
+RMbox <- ggpubr::ggboxplot(Amodeo_long, x = "Wave", y = "Resilience", add = "jitter", color = "Wave", title = "Figure 9.3 Resilience as a Function of Wave")
+pwc <- pwc %>% rstatix::add_xy_position(x = "Wave")
+RMbox <- RMbox+ 
+  ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.01, hide.ns = FALSE, step.increase = 0.05) +
+  labs(
+    subtitle = rstatix::get_test_label(RM_AOV, detailed = TRUE),
+    caption = rstatix:: get_pwc_label(pwc)
+  )
 RMbox
 ```
 
@@ -922,7 +904,7 @@ Unfortunately, the *apaTables* package does not work with the *rstatix* package,
 While I have not located a package that will take *rstatix* output to make an APA style table, we can use the *MASS* package to write the pwc object to a .csv file, then manually make our own table.
 
 
-```r
+``` r
 MASS::write.matrix(pwc, sep = ",", file = "PWC.csv")
 ```
 
@@ -935,7 +917,7 @@ In the published manuscript, the *F* string is presented in the Table 1 note ($F
 Table 1 also reports all of the post hoc, pairwise comparisons. There is no mention of control for Type I error. Had they used a traditional Bonferroni, they would have needed to reduce the alpha to (k*(k-1)/2) and then divide .05 by that number.
 
 
-```r
+``` r
 (3 * (3-1))/2
 ```
 
@@ -943,7 +925,7 @@ Table 1 also reports all of the post hoc, pairwise comparisons. There is no ment
 [1] 3
 ```
 
-```r
+``` r
 .05/3
 ```
 
@@ -981,7 +963,7 @@ In the *WebPower* package, we specify 6 of 7 interrelated elements; the package 
 I used *effectsize::eta2_to_f* packages convert our $\eta^2$ to Cohen's *f*.
 
 
-```r
+``` r
 effectsize::eta2_to_f(.203) 
 ```
 
@@ -992,9 +974,8 @@ effectsize::eta2_to_f(.203)
 Retrieving the information about our study, we add it to all the arguments except the one we wish to calculate. For power analysis, we write "power = NULL."
 
 
-```r
-WebPower::wp.rmanova(n = 8, ng = 1, nm = 3, f = 0.5047, nscor = 0.689,
-    alpha = 0.05, power = NULL, type = 1)
+``` r
+WebPower::wp.rmanova(n=8, ng=1, nm=3, f = .5047, nscor = .689, alpha = .05, power = NULL, type = 1)
 ```
 
 ```
@@ -1012,9 +993,8 @@ In reverse, setting *power* at .80 (the traditional value) and changing *n* to *
 In many cases we won't know some of the values in advance. We can make best guesses based on our review of the literature. 
 
 
-```r
-WebPower::wp.rmanova(n = NULL, ng = 1, nm = 3, f = 0.5047, nscor = 0.689,
-    alpha = 0.05, power = 0.8, type = 1)
+``` r
+WebPower::wp.rmanova(n=NULL, ng=1, nm=3, f = .5047, nscor = .689, alpha = .05, power = .80, type = 1)
 ```
 
 ```
@@ -1049,13 +1029,12 @@ If repeated measures ANOVA is new to you, perhaps change the random seed and fol
 Our analysis of the Amodeo et al. [@amodeo_empowering_2018] data failed to find significant increases in resilience from pre-to-post through follow-up. Our power analysis suggested that a sample size of 50 would be sufficient to garner statistical significance. The script below re-simulates the data by increasing the sample size to 50 (from 8). All else remains the same.
 
 
-```r
+``` r
 set.seed(2022)
-ID <- factor(c(rep(seq(1, 50), each = 3)))  #gives me 8 numbers, assigning each number 3 consecutive spots, in sequence
-Resilience <- rnorm(150, mean = c(5.7, 6.21, 6.26), sd = c(0.88, 0.79,
-    0.37))  #gives me a column of 24 numbers with the specified Ms and SD
-Wave <- rep(c("Pre", "Post", "FollowUp"), each = 1, 50)  #repeats pre, post, follow-up once each, 8 times
-Amodeo50_long <- data.frame(ID, Wave, Resilience)
+ID<-factor(c(rep(seq(1,50),each=3)))#gives me 8 numbers, assigning each number 3 consecutive spots, in sequence
+Resilience<-rnorm(150,mean=c(5.7,6.21,6.26),sd=c(.88,.79,.37)) #gives me a column of 24 numbers with the specified Ms and SD
+Wave<-rep(c("Pre","Post", "FollowUp"),each=1,50) #repeats pre, post, follow-up once each, 8 times
+Amodeo50_long<-data.frame(ID, Wave, Resilience)
 ```
 
 ### Problem #3: Try Something Entirely New
@@ -1114,30 +1093,24 @@ The dependent variable is the evaluation of traditional pedagogy. The independen
 #### Check and, if needed, format data {-}
 
 
-```r
+``` r
 big <- readRDS("ReC.rds")
 ```
 
 The TradPed (traditional pedagogy) variable is an average of the items on that scale. I will first create that variable.
 
 
-```r
-# Creates a list of the variables that belong to that scale
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
+``` r
+#This code was recently updated and likely differs from the screencasted lecture
 
-# Calculates a mean if at least 75% of the items are non-missing;
-# adjusts the calculating when there is missingness
-big$TradPed <- sjstats::mean_n(big[, TradPed_vars], 0.75)
-# If the above code doesn't work use the one below; the difference is
-# the two periods in front of the variable list big$TradPed <-
-# sjstats::mean_n(big[, ..TradPed_vars], .75)
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+big$TradPed <- datawizard::row_means(big, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 Let's trim to just the variables we need.
 
-```r
-rm1wLONG_df <- (dplyr::select(big, deID, Course, TradPed))
+``` r
+rm1wLONG_df <- (dplyr::select (big, deID, Course, TradPed))
 head(rm1wLONG_df)
 ```
 
@@ -1155,7 +1128,7 @@ head(rm1wLONG_df)
 * Dependent variable: numerical or integer
 
 
-```r
+``` r
 str(rm1wLONG_df)
 ```
 
@@ -1168,9 +1141,8 @@ Classes 'data.table' and 'data.frame':	310 obs. of  3 variables:
 ```
 
 
-```r
-rm1wLONG_df$Course <- factor(rm1wLONG_df$Course, levels = c("ANOVA", "Multivariate",
-    "Psychometrics"))
+``` r
+rm1wLONG_df$Course <- factor(rm1wLONG_df$Course, levels = c("ANOVA", "Multivariate", "Psychometrics"))
 str(rm1wLONG_df)
 ```
 
@@ -1183,9 +1155,9 @@ Classes 'data.table' and 'data.frame':	310 obs. of  3 variables:
 ```
 Let's update the df to have only complete cases.
 
-```r
+``` r
 rm1wLONG_df <- na.omit(rm1wLONG_df)
-nrow(rm1wLONG_df)  #counts number of rows (cases)
+nrow(rm1wLONG_df)#counts number of rows (cases)
 ```
 
 ```
@@ -1196,17 +1168,17 @@ This took us to 307 cases.
 These analyses require that students have completed evaluations for all three courses. In the lesson, I restructured the data from long, to wide, back to long again. While this was useful pedagogy in understanding the difference between the two data structures, there is also super quick code that will simply retain data that has at least three observations per student.
 
 
-```r
+``` r
 library(tidyverse)
-rm1wLONG_df <- rm1wLONG_df %>%
-    dplyr::group_by(deID) %>%
-    dplyr::filter(n() == 3)
+rm1wLONG_df <- rm1wLONG_df%>%
+  dplyr::group_by(deID)%>%
+  dplyr::filter(n()==3)
 ```
 
 This took the data to 210 observations. Since each student contributed 3 observations, we know  $N = 70$.
 
 
-```r
+``` r
 210/3
 ```
 
@@ -1216,10 +1188,9 @@ This took the data to 210 observations. Since each student contributed 3 observa
 Before we start, let's get a plot of what's happening:
 
 
-```r
-bxp <- ggpubr::ggboxplot(rm1wLONG_df, x = "Course", y = "TradPed", add = "point",
-    color = "Course", xlab = "Statistics Course", ylab = "Traditional Pedagogy Course Eval Ratings",
-    title = "Course Evaluations across Doctoral Statistics Courses")
+``` r
+bxp <- ggpubr::ggboxplot(rm1wLONG_df, x = "Course", y = "TradPed", add = "point", color = "Course",
+    xlab = "Statistics Course", ylab = "Traditional Pedagogy Course Eval Ratings", title = "Course Evaluations across Doctoral Statistics Courses")
 bxp
 ```
 
@@ -1234,9 +1205,8 @@ Given that this is a one-way repeated measures ANOVA model, the dependent variab
 We can examine skew and kurtosis in each of the levels of the TradPed variable with *psych::describeBy()*.
 
 
-```r
-# R wasn't recognizing the data, so I quickly applied the
-# as.data.frame function
+``` r
+#R wasn't recognizing the data, so I quickly applied the as.data.frame function
 rm1wLONG_df <- as.data.frame(rm1wLONG_df)
 psych::describeBy(TradPed ~ Course, mat = TRUE, type = 1, data = rm1wLONG_df)
 ```
@@ -1257,8 +1227,8 @@ Although we note some skew and kurtosis, particularly for the multivariate class
 I can formally test for normality with the Shapiro-Wilk test. If I use the residuals from an evaluated model, with one test, I can determine if TradPed is distributed normally within each of the courses.
 
 
-```r
-# running the model
+``` r
+#running the model
 RMres_TradPed <- lm(TradPed ~ Course, data = rm1wLONG_df)
 summary(RMres_TradPed)
 ```
@@ -1287,7 +1257,7 @@ F-statistic: 1.472 on 2 and 207 DF,  p-value: 0.2317
 We will ignore this for now, but use the residuals in the formal Shapiro-Wilk test.
 
 
-```r
+``` r
 rstatix::shapiro_test(residuals(RMres_TradPed))
 ```
 
@@ -1301,7 +1271,7 @@ The distribution of model residuals is statistically significantly different tha
 
 Creating a QQ plot can let us know how badly the distribution departs from a normal one.
 
-```r
+``` r
 ggpubr::ggqqplot(residuals(RMres_TradPed))
 ```
 
@@ -1310,11 +1280,11 @@ ggpubr::ggqqplot(residuals(RMres_TradPed))
 We can identify outliers and see if they are reasonable or should be removed.
 
 
-```r
+``` r
 library(tidyverse)
 rm1wLONG_df %>%
-    group_by(Course) %>%
-    rstatix::identify_outliers(TradPed)
+  group_by(Course)%>%
+  rstatix::identify_outliers(TradPed)
 ```
 
 ```
@@ -1343,9 +1313,8 @@ Here's how I would write up the evaluation of assumptions so far:
 #### Conduct omnibus ANOVA (w effect size) {-}
 
 
-```r
-rmAOV <- rstatix::anova_test(data = rm1wLONG_df, dv = TradPed, wid = deID,
-    within = Course)
+``` r
+rmAOV <- rstatix::anova_test(data = rm1wLONG_df, dv = TradPed, wid = deID, within = Course)
 rmAOV
 ```
 
@@ -1373,9 +1342,8 @@ While the ANOVA is non-significant, because this is a homework demonstration, I 
 I will follow up with a test of all possible pairwise comparisons and adjust with the bonferroni.
 
 
-```r
-pwc <- rstatix::pairwise_t_test(TradPed ~ Course, paired = TRUE, p.adjust.method = "bonf",
-    data = rm1wLONG_df)
+``` r
+pwc <- rstatix::pairwise_t_test(TradPed ~ Course, paired = TRUE, p.adjust.method = "bonf", data = rm1wLONG_df)
 pwc
 ```
 
@@ -1407,12 +1375,11 @@ I used a traditional Bonferroni for the three, follow-up, pairwise comparisons.
 I can update the figure to include star bars.
 
 
-```r
+``` r
 library(tidyverse)
 pwc <- pwc %>%
     rstatix::add_xy_position(x = "Course")
-bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.01,
-    hide.ns = FALSE, y.position = c(5.25, 5.5, 5.75))
+bxp <- bxp + ggpubr::stat_pvalue_manual(pwc, label = "p.adj.signif", tip.length = 0.01, hide.ns = FALSE, y.position = c(5.25, 5.5, 5.75)) 
 bxp
 ```
 
@@ -1435,7 +1402,7 @@ In the *WebPower* package, we specify 6 of 7 interrelated elements; the package 
 I used *effectsize::eta2_to_f* packages convert our $\eta^2$ to Cohen's *f*.
 
 
-```r
+``` r
 effectsize::eta2_to_f(.014) 
 ```
 
@@ -1446,9 +1413,8 @@ effectsize::eta2_to_f(.014)
 Retrieving the information about our study, we add it to all the arguments except the one we wish to calculate. For power analysis, we write "power = NULL."
 
 
-```r
-WebPower::wp.rmanova(n = 70, ng = 1, nm = 3, f = 0.1192, nscor = 0.891,
-    alpha = 0.05, power = NULL, type = 1)
+``` r
+WebPower::wp.rmanova(n=70, ng=1, nm=3, f = .1192, nscor = .891, alpha = .05, power = NULL, type = 1)
 ```
 
 ```
@@ -1465,9 +1431,8 @@ The study had a power of 13%. That is, we had a 13% probability of finding a sta
 In reverse, setting *power* at .80 (the traditional value) and changing *n* to *NULL* yields a recommended sample size.   
 
 
-```r
-WebPower::wp.rmanova(n = NULL, ng = 1, nm = 3, f = 0.1192, nscor = 0.891,
-    alpha = 0.05, power = 0.8, type = 1)
+``` r
+WebPower::wp.rmanova(n=NULL, ng=1, nm=3, f = .1192, nscor = .891, alpha = .05, power = .80, type = 1)
 ```
 
 ```
@@ -1496,7 +1461,7 @@ The formula for sums of squares total: $$SS_{T}= \sum (x_{i}-\bar{x}_{grand})^{2
 We can use the mean function from base R to calculate the grand mean:
 
 
-```r
+``` r
 mean(rm1wLONG_df$TradPed)
 ```
 
@@ -1506,9 +1471,9 @@ mean(rm1wLONG_df$TradPed)
 I will create a mean deviation variable by subtracting the mean from each score:
 
 
-```r
+``` r
 rm1wLONG_df$mDev <- rm1wLONG_df$TradPed - 4.319286
-head(rm1wLONG_df)  #shows first six rows of dataset
+head(rm1wLONG_df)#shows first six rows of dataset
 ```
 
 ```
@@ -1524,9 +1489,9 @@ head(rm1wLONG_df)  #shows first six rows of dataset
 Now I will square the mean deviation:
 
 
-```r
+``` r
 rm1wLONG_df$mDev2 <- rm1wLONG_df$mDev * rm1wLONG_df$mDev
-head(rm1wLONG_df)  #shows first six rows of dataset
+head(rm1wLONG_df)#shows first six rows of dataset
 ```
 
 ```
@@ -1542,7 +1507,7 @@ head(rm1wLONG_df)  #shows first six rows of dataset
 Sums of squares total is the sum of the mean deviation squared scores.
 
 
-```r
+``` r
 SST <- sum(rm1wLONG_df$mDev2)
 SST
 ```
@@ -1561,8 +1526,8 @@ $$SS_W = s_{person1}^{2}(n_{1}-1)+s_{person2}^{2}(n_{2}-1)+s_{person3}^{2}(n_{3}
 I can get the use the *psych::describeBy()* to obtain the standard deviations for each student's three ratings. I can square each of those for the variance to enter into the formula.
 
 
-```r
-psych::describeBy(TradPed ~ deID, mat = TRUE, type = 1, data = rm1wLONG_df)
+``` r
+psych::describeBy(TradPed ~ deID, mat=TRUE, type = 1, data = rm1wLONG_df)
 ```
 
 ```
@@ -1712,31 +1677,14 @@ TradPed70 4.8  0.60 -0.381801774160605     -1.5 0.17638342
 
 Someone who codes in R could probably write a quick formula to do this -- in this case, I will take the time (and space) to copy each student's standard deviation into a formula that squares it, multiplies it by $n-1$ and then sums all 70 of those calculations.
 
-```r
-SSW <- (0.8717798^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.6928203^2 *
-    (3 - 1)) + (0.4^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.4163332^2 *
-    (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.7023769^2 *
-    (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.1154701^2 *
-    (3 - 1)) + (0.305505^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.2220202^2 *
-    (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.90185^2 * (3 - 1)) + (0.5033223^2 *
-    (3 - 1)) + (0^2 * (3 - 1)) + (0.9451631^2 * (3 - 1)) + (1.0066446^2 *
-    (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.305505^2 * (3 - 1)) + (0.3464102^2 *
-    (3 - 1)) + (0.5484828^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.1154701^2 *
-    (3 - 1)) + (1.6165808^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.305505^2 *
-    (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.4163332^2 *
-    (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.6429101^2 *
-    (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.1154701^2 *
-    (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.9165151^2 *
-    (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.5291503^2 *
-    (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.1154701^2 *
-    (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0^2 *
-    (3 - 1)) + (0.2^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5033223^2 *
-    (3 - 1)) + (0.305505^2 * (3 - 1)) + (0^2 * (3 - 1)) + (0.2309401^2 *
-    (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.305505^2 *
-    (3 - 1)) + (0.4^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.8326664^2 *
-    (3 - 1)) + (0.5773503^2 * (3 - 1)) + (0^2 * (3 - 1)) + (0.2^2 * (3 -
-    1)) + (0.305505^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.4618802^2 *
-    (3 - 1)) + (0.305505^2 * (3 - 1))
+``` r
+SSW <- (0.8717798^2 * (3 - 1)) + (0.4163332	^2 * (3 - 1)) + (0.6928203	^2 * (3 - 1)) + (0.4000000	^2 * (3 - 1)) +   (0.4163332^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) +   (0.7023769^2 * (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.2220202^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.9018500^2 * (3 - 1)) + (0.5033223^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) + (0.9451631^2 * (3 - 1)) + 
+(1.0066446^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5484828^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (1.6165808^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.6429101^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + 
+(0.1154701^2 * (3 - 1)) + (0.9165151^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) +
+(0.5291503^2 * (3 - 1)) + (0.5291503^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) +
+(0.2309401^2 * (3 - 1)) + (0.2309401^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) + (0.2000000^2 * (3 - 1)) + (0.1154701^2 * (3 - 1)) + (0.5033223^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.0000000^2 * (3 - 1)) +  (0.2309401^2 * (3 - 1)) + (0.4618802^2 * (3 - 1)) + (0.4163332^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) +   (0.4000000^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) + (0.8326664^2 * (3 - 1)) + (0.5773503^2 * (3 - 1)) +
+(0.0000000^2 * (3 - 1)) + (0.2000000^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) + (0.3464102^2 * (3 - 1)) +
+(0.4618802^2 * (3 - 1)) + (0.3055050^2 * (3 - 1)) 
 
 SSW
 ```
@@ -1755,7 +1703,7 @@ Earlier we learned that the grand mean is 4.319286.
 I can obtain the means for each course with *psych::describeBy()*.
 
 
-```r
+``` r
 psych::describeBy(TradPed ~ Course, mat = TRUE, digits = 3, type = 1, data = rm1wLONG_df)
 ```
 
@@ -1773,9 +1721,8 @@ TradPed3   2.6 -1.315    1.306 0.080
 I can put it in the formula:
 
 
-```r
-(70 * (4.211 - 4.319286)^2) + (70 * (4.332 - 4.319286)^2) + (70 * (4.414 -
-    4.319286)^2)
+``` r
+(70 * (4.211 - 4.319286)^2) + (70 * (4.332 - 4.319286)^2) + (70 * (4.414 - 4.319286)^2)
 ```
 
 ```
@@ -1789,7 +1736,7 @@ Sums of squares model is 1.4601
 In repeated measures ANOVA $SS_W = SS_M + SS_R$.  Knowing SSW (34.255) and SSM (1.460), we can do simple arithmetic to obtain SSR.
 
 
-```r
+``` r
 SSR <- 36.895 - 1.460
 SSR
 ```
@@ -1804,7 +1751,7 @@ Sums of squares residual is 35.435.
 In repeated measures ANOVA $SS_T = SS_W + SS_B$.  Knowing SST (103.9144) and SSW (34.255), we can do simple arithmetic to obtain SSB.
 
 
-```r
+``` r
 SSB <- 103.9144 - 35.435
 SSB
 ```
@@ -1829,7 +1776,7 @@ Sums of squares between is 68.4794.
 |Total     |103.9144 |(cells-1) = 209   |       |       |       |
 
 
-```r
+``` r
 #calculating degrees of freedom for the residual
 67-2
 ```
@@ -1839,7 +1786,7 @@ Sums of squares between is 68.4794.
 ```
 Calculating mean square model and residual.
 
-```r
+``` r
 1.4601/2#MSM
 ```
 
@@ -1847,7 +1794,7 @@ Calculating mean square model and residual.
 [1] 0.73005
 ```
 
-```r
+``` r
 35.435/65#MSR
 ```
 
@@ -1856,7 +1803,7 @@ Calculating mean square model and residual.
 ```
 Calculating the F ratio
 
-```r
+``` r
 .7301/.5452
 ```
 
@@ -1867,7 +1814,7 @@ Calculating the F ratio
 Obtaining the F critical value: 
 
 
-```r
+``` r
 qf(.05, 2, 65, lower.tail = FALSE)
 ```
 

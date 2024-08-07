@@ -7,8 +7,8 @@
 
 
 
-```r
-options(scipen = 999)  #eliminates scientific notation
+``` r
+options(scipen=999)#eliminates scientific notation
 ```
 
 Researchers may wish to know if there are differences on a given outcome variable as a result of a dichotomous grouping variable. For example, during the COVID-19 pandemic, my research team asked if there were differences in the percentage of time that individuals wore facemasks as a result of 2020 Presidential voting trends (Republican or Democratic) of their county of residence. In these simple designs, the independent samples *t*-test could be used to test the researchers' hypotheses.
@@ -52,16 +52,16 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(psych)){install.packages('psych')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(dplyr)){install.packages('dplyr')}
-# if(!require(ggpubr)){install.packages('ggpubr')}
-# if(!require(pwr)){install.packages('pwr')}
-# if(!require(apaTables)){install.packages('apaTables')}
-# if(!require(knitr)){install.packages('knitr')}
-# if(!require(rstatix)){install.packages('rstatix')}
+``` r
+#will install the package if not already installed
+#if(!require(psych)){install.packages("psych")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(ggpubr)){install.packages("ggpubr")}
+#if(!require(pwr)){install.packages("pwr")}
+#if(!require(apaTables)){install.packages("apaTables")}
+#if(!require(knitr)){install.packages("knitr")}
+#if(!require(rstatix)){install.packages("rstatix")}
 ```
 
 ## Introducing the Independent Samples *t*-Test
@@ -116,34 +116,32 @@ Although their design was more sophisticated (and, therefore, required the paire
 In the data below, I have simulated the verbal and non-verbal communication variables using the means and standard deviations listed in the article. Further, I truncated them to fit within the assigned range. I created 33 sets each and assigned them to the Black or White level of the grouping variable.
 
 
-```r
+``` r
 set.seed(220815)
-# sample size, M, and SD for Black then White patients
-Verbal <- c(rnorm(33, mean = 8.37, sd = 3.36), rnorm(33, mean = 8.41, sd = 3.21))
-# set upper bound
-Verbal[Verbal > 27] <- 27
-# set lower bound
-Verbal[Verbal < 0] <- 0
-# sample size, M, and SD for Black then White patients
-Nonverbal <- c(rnorm(33, mean = 2.68, sd = 0.84), rnorm(33, mean = 2.93,
-    sd = 0.77))
-# set upper bound
-Nonverbal[Nonverbal > 5] <- 5
-# set lower bound
-Nonverbal[Nonverbal < 0] <- 0
+#sample size, M, and SD for Black then White patients
+Verbal <- c(rnorm(33, mean=8.37, sd=3.36), rnorm(33, mean = 8.41, sd=3.21))
+#set upper bound 
+Verbal[Verbal>27]<-27
+#set lower bound 
+Verbal[Verbal<0]<-0
+#sample size, M, and SD for Black then White patients
+Nonverbal <- c(rnorm(33, mean=2.68, sd=.84), rnorm(33, mean = 2.93, sd=.77))
+#set upper bound 
+Nonverbal[Nonverbal>5]<-5
+#set lower bound 
+Nonverbal[Nonverbal<0]<-0
 
-ID <- factor(seq(1, 66))
-# name factors and identify how many in each group; should be in same
-# order as first row of script
-PatientRace <- c(rep("Black", 33), rep("White", 33))
-# groups the 3 variables into a single df: ID#, DV, condition
-dfIndSamples <- data.frame(ID, PatientRace, Verbal, Nonverbal)
+ID<-factor(seq(1,66)) 
+#name factors and identify how many in each group; should be in same order as first row of script
+PatientRace<-c(rep("Black", 33), rep("White", 33))
+#groups the 3 variables into a single df:  ID#, DV, condition
+dfIndSamples <-data.frame(ID, PatientRace, Verbal, Nonverbal) 
 ```
 
 With our data in hand, let's inspect its structure (i.e., the measurement scales for the variables) to see if they are appropriate.
 
 
-```r
+``` r
 str(dfIndSamples)
 ```
 
@@ -157,15 +155,14 @@ str(dfIndSamples)
 The verbal and nonverbal variables are quasi-interval scale variables. Therefore, the numerical scale is correctly assigned by R.  In contrast, patient race is a nominal variable and should be a factor. In their article, Elliot et al. [-@elliott_differences_2016] assigned Black as the baseline variable and White as the comparison variable. Because R orders factors alphabetically, and "Black" precedes "White", this would happen automatically. Because creating ordered factors is a useful skill, I will write out the full code.
 
 
-```r
-dfIndSamples$PatientRace <- factor(dfIndSamples$PatientRace, levels = c("Black",
-    "White"))
+``` r
+dfIndSamples$PatientRace <- factor(dfIndSamples$PatientRace, levels = c("Black", "White"))
 ```
 
 Let's again check the formatting of the variables:
 
 
-```r
+``` r
 str(dfIndSamples)
 ```
 
@@ -182,20 +179,21 @@ Below is code for saving (and then importing) the data in .csv or .rds files. I 
 
 Here is code for saving the data as a .csv and then reading it back into R. I have hashtagged these out, so you will need to remove the hashtags if you wish to run any of these operations. If you have simulated the data (above), you do not need to save and then re-import the data.
 
-```r
-# writing the simulated data as a .csv write.table(dfIndSamples, file
-# = 'dfIndSamples.csv', sep = ',', col.names=TRUE, row.names=FALSE)
-# at this point you could clear your environment and then bring the
-# data back in as a .csv reading the data back in as a .csv file
-# dfIndSamples<- read.csv ('dfIndSamples.csv', header = TRUE)
+``` r
+#writing the simulated data as a .csv 
+#write.table(dfIndSamples, file = "dfIndSamples.csv", sep = ',', col.names=TRUE, row.names=FALSE) 
+#at this point you could clear your environment and then bring the data back in as a .csv
+#reading the data back in as a .csv file
+#dfIndSamples<- read.csv ('dfIndSamples.csv', header = TRUE)
 ```
 
 The .rds form of saving variables preserves any formatting (e.g., creating ordered factors) of the data. A limitation is that these files are not easily opened in Excel. Here is the hashtagged code (remove hashtags if you wish to do this) for writing (and then reading) this data as an .rds file.
 
 
-```r
-# saveRDS(dfIndSamples, 'dfIndSamples.rds') dfIndSamples <-
-# readRDS('dfIndSamples.rds') str(dfIndSamples)
+``` r
+#saveRDS(dfIndSamples, 'dfIndSamples.rds')
+#dfIndSamples <- readRDS('dfIndSamples.rds')
+#str(dfIndSamples)
 ```
 
 ### Quick Peek at the Data
@@ -207,9 +205,8 @@ In the code below I introduced the colors by identifying the grouping variable a
 I am also fond of plotting each case with the command, *add = "jitter"*. To increase your comfort and confidence in creating figures (and with other tools) try deleting and adding back in different commands. This is how to distinguish between the essential and the elective elements of the code.
 
 
-```r
-ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal", color = "PatientRace",
-    palette = c("#00AFBB", "#FC4E07"), add = "jitter")
+``` r
+ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal", color = "PatientRace", palette =c("#00AFBB", "#FC4E07"), add = "jitter")
 ```
 
 ![](05-tIndSample_files/figure-docx/unnamed-chunk-10-1.png)<!-- -->
@@ -253,7 +250,7 @@ Let's first calculate the SE -- the value of the denominator. For this, we need 
 
 The standard deviation of the verbal variable for the levels in the patient race group were 2.99 for Black patients and 3.20 for White patients; the *N* in both our groups is 33. We can do the denominator math right in an R chunk:
 
-```r
+``` r
 sqrt((2.985^2/33) + (3.203^2/33))
 ```
 
@@ -266,7 +263,7 @@ With the simplification of the denominator, we can easily calculate the independ
 
 $$t = \frac{\bar{X_{1}} -\bar{X_{2}}}{SE}$$
 
-```r
+``` r
 (7.615 - 8.891)/0.762
 ```
 
@@ -302,16 +299,16 @@ In the above linked table of critical values, when the degrees of freedom reache
 We can also use the *qt()* function in base R. In the script below, I have indicated an alpha of .05. The "2" that follows indicates I want a two-tailed test. The 64 represents my degrees of freedom ($N-2$). In a two-tailed test, the regions of rejection will be below the lowerbound (lower.tail=TRUE) and above the upperbound (lower.tail=FALSE).
 
 
-```r
-qt(0.05/2, 64, lower.tail = TRUE)
+``` r
+qt(.05/2, 64, lower.tail=TRUE)
 ```
 
 ```
 [1] -1.99773
 ```
 
-```r
-qt(0.05/2, 64, lower.tail = FALSE)
+``` r
+qt(.05/2, 64, lower.tail=FALSE)
 ```
 
 ```
@@ -333,16 +330,16 @@ Let's calculate it:
 First, let's get the proper *t* critical value. Even though these are identical to the one above, I am including them again. Why? Because if the original hypothesis had been one-tailed, we would need to calculate a two-tailed confidence interval; this is a placeholder to remind us.
 
 
-```r
-qt(0.05/2, 64, lower.tail = TRUE)
+``` r
+qt(.05/2, 64, lower.tail=TRUE)
 ```
 
 ```
 [1] -1.99773
 ```
 
-```r
-qt(0.05/2, 64, lower.tail = FALSE)
+``` r
+qt(.05/2, 64, lower.tail=FALSE)
 ```
 
 ```
@@ -351,16 +348,16 @@ qt(0.05/2, 64, lower.tail = FALSE)
 With this in hand, let's calculate the confidence intervals.
 
 
-```r
-(7.614 - 8.891) - (1.99773 * 0.762)
+``` r
+(7.614-8.891)- (1.99773*0.762)
 ```
 
 ```
 [1] -2.79927
 ```
 
-```r
-(7.614 - 8.891) + (1.99773 * 0.762)
+``` r
+(7.614-8.891)+(1.99773*0.762)
 ```
 
 ```
@@ -377,8 +374,8 @@ $$d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}$$
 With a *t* value of -1.675 and sample sizes at 33 each, we can easily calculate this. Small, medium, and large sizes for the *d* statistic are .2, .5, and .8, respectively (irrespective of sign).
 
 
-```r
--1.675 * (sqrt((33 + 33)/(33 * 33)))
+``` r
+-1.675*(sqrt((33+33)/(33*33)))
 ```
 
 ```
@@ -392,8 +389,8 @@ $$\eta^{2} =\frac{t^{2}}{t^{2}+(N_{1}+N_{2}-2)}$$
 Let's calculate it:
 
 
-```r
-(-1.6745 * -1.6745)/((-1.6745 * -1.6745) + (33 + 33 - 2))
+``` r
+(-1.6745*-1.6745)/((-1.6745*-1.6745)+(33 + 33 -2))
 ```
 
 ```
@@ -428,8 +425,8 @@ All statistical tests have some assumptions about the data. The independent-samp
 
 We can begin to evaluate the assumption of normality by obtaining the descriptive statistics with the *describe()* function from the *psych* package.
 
-```r
-psych::describe(dfIndSamples$Verbal, type = 1)  #type=1 produces the type of skew and kurtosis associated with Kline's interpretive guidelines
+``` r
+psych::describe(dfIndSamples$Verbal, type=1) #type=1 produces the type of skew and kurtosis associated with Kline's interpretive guidelines
 ```
 
 ```
@@ -444,8 +441,8 @@ Recall that one of the assumptions for independent samples *t*-test is that the 
 If we feed the function the entire df, it will give us results for each level of PatientRace for each variable, including variables for which such disaggregation is nonsensible (i.e., ID, PatientRace). If we had a large df, we might want to create a tiny df that only includes our variable(s) of interest. For now, it is not problematic to include all the variables.
 
 
-```r
-psych::describeBy(dfIndSamples ~ PatientRace, mat = TRUE, type = 1)
+``` r
+psych::describeBy(dfIndSamples ~ PatientRace, mat=TRUE, type=1)
 ```
 
 ```
@@ -482,24 +479,24 @@ In this analysis we are interested in the verbal variable. We see that patients 
 Beyond skew and kurtosis, we can formally test for deviations from normality with a Shapiro-Wilk. The script below first groups the data by PatientRace and then applies the *rstatix::shapiro_test()*. We want the results to be non-significant.
 
 
-```r
-library(tidyverse)  #opening this package so I can use the pipes
+``` r
+library(tidyverse)#opening this package so I can use the pipes
 ```
 
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 shapiro <- dfIndSamples %>%
     group_by(PatientRace) %>%
     rstatix::shapiro_test(Verbal)
@@ -524,8 +521,8 @@ One of the assumptions of the independent samples *t*-test is that the variances
 Using *rstatix::levene_test()*, we simply need to point to the data, provide a "formula" in the form of "dependent variable by grouping variable," and specify about how to center the data. The median is a commonly used because it provides a more robust test.
 
 
-```r
-rstatix::levene_test(dfIndSamples, Verbal ~ PatientRace, center = median)
+``` r
+rstatix::levene_test(dfIndSamples, Verbal ~ PatientRace, center=median)
 ```
 
 ```
@@ -568,8 +565,8 @@ In the script below:
 * specifying "detailed = TRUE" will produce the 95% confidence interval around the difference in the two means
 
 
-```r
-rstatix::t_test(dfIndSamples, Verbal ~ PatientRace, var.equal = TRUE, detailed = TRUE)
+``` r
+rstatix::t_test(dfIndSamples, Verbal~PatientRace, var.equal=TRUE, detailed=TRUE)
 ```
 
 ```
@@ -584,7 +581,7 @@ From this output we can start to draft our *t* string:  $t(64) = -1.675, p = 0.0
 
 Separately, we must request the effect size. Earlier in the lesson we calculated both Cohen's *d* and eta-squared. Unfortunately, the *rstatix* package only offers the Cohen's *d* for *t*-tests. If you wanted an eta-squared, it would be easy enough to hand-calculate (or obtain from another R package).
 
-```r
+``` r
 rstatix::cohens_d(dfIndSamples, Verbal ~ PatientRace, var.equal = TRUE)
 ```
 
@@ -603,9 +600,8 @@ What does this mean? Our result is not-significant. Our estimate of the differen
 Earlier we used the Levene's test to examine the homogeneity of variance assumption. If we had violated it, the Welch's formulation of the independent sample *t*-test is available to us. The *rstatix* package makes this easy. We simply change the *var.equal* to *FALSE*. This will produce the Welch's alternative, which takes into consideration violations of the homogeneity of variance assumption. Conveniently, "Student's" or "Welch's" will serve as the first row of the output.
 
 
-```r
-rstatix::t_test(dfIndSamples, Verbal ~ PatientRace, var.equal = FALSE,
-    detailed = TRUE)
+``` r
+rstatix::t_test(dfIndSamples, Verbal~PatientRace, var.equal=FALSE, detailed=TRUE)
 ```
 
 ```
@@ -629,7 +625,7 @@ Putting it altogether, here is an APA Style results section:
 >Results of the independent samples *t*-test was nonsignificant, $t(64) = -1.675, p = .099, d = 0.412$. The 95% confidence interval for the difference in means ranged from -2.799 to 0.246. Means and standard deviations are presented in Table 1; the results are illustrated in Figure 1.
 
 
-```r
+``` r
 apaTables::apa.1way.table(PatientRace, Verbal, dfIndSamples)
 ```
 
@@ -654,10 +650,9 @@ The figure we created earlier in the lesson would be sufficient for a journal ar
 We could have done this in the initial run (but I didn't want to make the test-statistic unnecessarily confusing).
 
 
-```r
-ind.test <- rstatix::t_test(dfIndSamples, Verbal ~ PatientRace, var.equal = TRUE,
-    detailed = TRUE) %>%
-    rstatix::add_significance()
+``` r
+ind.test <- rstatix::t_test(dfIndSamples, Verbal~PatientRace, var.equal=TRUE, detailed=TRUE) %>%
+  rstatix::add_significance()
 ind.test
 ```
 
@@ -673,15 +668,12 @@ ind.test
 Next, we update the earlier boxplot code with the results from our statistical analyses:
 
 
-```r
-ind.box <- ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal",
-    color = "PatientRace", palette = c("#00AFBB", "#FC4E07"), add = "jitter",
-    title = "Figure 1. Physician Verbal Engagement as a Function of Patient Race")
-ind.test <- ind.test %>%
-    rstatix::add_xy_position(x = "PatientRace")  #autocomputes p-value labels positions
-ind.box <- ind.box + ggpubr::stat_pvalue_manual(ind.test, label = "p.signif",
-    tip.length = 0.02, hide.ns = FALSE, y.position = c(18)) + labs(subtitle = rstatix::get_test_label(ind.test,
-    detailed = TRUE))  #adds t-test results
+``` r
+ind.box <- ggpubr::ggboxplot(dfIndSamples, x = "PatientRace", y = "Verbal", color = "PatientRace", palette=c("#00AFBB", "#FC4E07"), add = "jitter",  title = "Figure 1. Physician Verbal Engagement as a Function of Patient Race") 
+ind.test <- ind.test %>% rstatix::add_xy_position(x = "PatientRace") #autocomputes p-value labels positions
+ind.box <- ind.box +
+  ggpubr::stat_pvalue_manual(ind.test, label = "p.signif", tip.length=.02, hide.ns = FALSE, y.position = c(18)) + 
+  labs(subtitle = rstatix::get_test_label(ind.test, detailed=TRUE)) #adds t-test results
 
 ind.box
 ```
@@ -707,9 +699,8 @@ In this script, we must specify *all-but-one* parameter; the remaining parameter
 When we conduct a "power analysis" (i.e., the likelihood of a hypothesis test detecting an effect if there is one), we specify, "power=NULL". Using the data from our results, we learn from this first run, that our statistical power was 0.38. That is, given the value of the mean difference (1.276) we had a 38% chance of detecting a statistically significant effect if there was one. This is consistent with our non-significant result.
 
 
-```r
-pwr::pwr.t.test(d = -0.412, n = 33, power = NULL, sig.level = 0.05, type = "two.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d= -0.412,n = 33, power=NULL,sig.level=0.05,type="two.sample",alternative="two.sided")
 ```
 
 ```
@@ -728,9 +719,8 @@ Researchers frequently use these tools to estimate the sample size required to o
 
 
 
-```r
-pwr::pwr.t.test(d = -0.412, n = NULL, power = 0.8, sig.level = 0.05, type = "two.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d= -0.412,n = NULL, power=0.8,sig.level=0.05,type="two.sample",alternative="two.sided")
 ```
 
 ```
@@ -748,38 +738,33 @@ NOTE: n is number in *each* group
 Given that we had a non-significant result, this is not surprising. None-the-less, let's try it again. Below I will re-simulate the data for the verbal scores and change only the sample size:
 
 
-```r
+``` r
 set.seed(230525)
-# sample size, M, and SD for Black then White patients
-rVerbal <- c(rnorm(93, mean = 8.37, sd = 3.36), rnorm(93, mean = 8.41,
-    sd = 3.21))
-# set upper bound
-rVerbal[rVerbal > 27] <- 3
-# set lower bound
-rVerbal[rVerbal < 0] <- 0
-# sample size, M, and SD for Black then White patients
-rNonverbal <- c(rnorm(93, mean = 2.68, sd = 0.84), rnorm(93, mean = 2.93,
-    sd = 0.77))
-# set upper bound
-rNonverbal[rNonverbal > 5] <- 5
-# set lower bound
-rNonverbal[rNonverbal < 0] <- 0
+#sample size, M, and SD for Black then White patients
+rVerbal <- c(rnorm(93, mean=8.37, sd=3.36), rnorm(93, mean = 8.41, sd=3.21))
+#set upper bound 
+rVerbal[rVerbal>27]<-3
+#set lower bound 
+rVerbal[rVerbal<0]<-0
+#sample size, M, and SD for Black then White patients
+rNonverbal <- c(rnorm(93, mean=2.68, sd=.84), rnorm(93, mean = 2.93, sd=.77))
+#set upper bound 
+rNonverbal[rNonverbal>5]<-5
+#set lower bound 
+rNonverbal[rNonverbal<0]<-0
 
-rID <- factor(seq(1, 186))
-# name factors and identify how many in each group; should be in same
-# order as first row of script
-rPatientRace <- c(rep("Black", 93), rep("White", 93))
-# groups the 3 variables into a single df: ID#, DV, condition
-rdfIndSamples <- data.frame(rID, rPatientRace, rVerbal, rNonverbal)
+rID<-factor(seq(1,186)) 
+#name factors and identify how many in each group; should be in same order as first row of script
+rPatientRace<-c(rep("Black", 93), rep("White", 93))
+#groups the 3 variables into a single df:  ID#, DV, condition
+rdfIndSamples <-data.frame(rID, rPatientRace, rVerbal, rNonverbal) 
 
-rdfIndSamples$rPatientRace <- factor(rdfIndSamples$rPatientRace, levels = c("Black",
-    "White"))
+rdfIndSamples$rPatientRace <- factor(rdfIndSamples$rPatientRace, levels = c("Black", "White"))
 ```
 
 
-```r
-rstatix::t_test(rdfIndSamples, rVerbal ~ rPatientRace, var.equal = TRUE,
-    detailed = TRUE)
+``` r
+rstatix::t_test(rdfIndSamples, rVerbal~rPatientRace, var.equal=TRUE, detailed=TRUE)
 ```
 
 ```
@@ -791,8 +776,8 @@ rstatix::t_test(rdfIndSamples, rVerbal ~ rPatientRace, var.equal = TRUE,
 #   alternative <chr>
 ```
 
-```r
-rstatix::cohens_d(rdfIndSamples, rVerbal ~ rPatientRace, var.equal = TRUE)
+``` r
+rstatix::cohens_d(rdfIndSamples, rVerbal~rPatientRace, var.equal = TRUE)
 ```
 
 ```
@@ -884,42 +869,36 @@ My predictor variable will be department. It has two levels: CPY and ORG.
 First, bring in the dataset.
 
 
-```r
+``` r
 big <- readRDS("ReC.rds")
 ```
 
 To avoid "dependency" in the data, I will just use data from the ANOVA course.  Let's first trim it to just students who took ANOVA
 
 
-```r
-JustANOVA <- subset(big, Course == "ANOVA")
+``` r
+JustANOVA <- subset(big, Course == "ANOVA") 
 ```
 
 I will create a mean score of completed items from the traditional pedagogy scale.
 
 
-```r
-# Creates a list of the variables that belong to that scale
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
+``` r
+#This code was recently updated and likely differs from the screencasted lecture
 
-# Calculates a mean if at least 75% of the items are non-missing;
-# adjusts the calculating when there is missingness
-JustANOVA$TradPed <- sjstats::mean_n(JustANOVA[, TradPed_vars], 0.75)
-# If the above code doesn't work use the one below; the difference is
-# the two periods in front of the variable list JustANOVA$TradPed <-
-# sjstats::mean_n(JustANOVA[, ..TradPed_vars], .75)
+#Calculates a mean if at least 75% of the items are non-missing; adjusts the calculating when there is missingness
+JustANOVA$TradPed <- datawizard::row_means(JustANOVA, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 To make it easier for teaching, I will make a super tiny df with just the predictor and continuous variable.
 
-```r
-IndT_df <- (dplyr::select(JustANOVA, Dept, TradPed))
+``` r
+IndT_df <-(dplyr::select(JustANOVA, Dept, TradPed))
 ```
 
 And further trim to non-missing data
 
-```r
+``` r
 IndT_df <- na.omit(IndT_df)
 ```
 
@@ -929,7 +908,7 @@ Are the structures of the variables as follows:
 
 In our case we want Department to be a factor with two levels and the SCRPed variable to be integer or numerical.
 
-```r
+``` r
 str(IndT_df)
 ```
 
@@ -943,7 +922,7 @@ Classes 'data.table' and 'data.frame':	112 obs. of  2 variables:
 
 Since the Department is a character variable, we need to change it to be a factor.
 
-```r
+``` r
 IndT_df$Dept <- factor(IndT_df$Dept)
 str(IndT_df$Dept)
 ```
@@ -960,8 +939,8 @@ Without further coding, R will order the factors alphabetically.  This is fine. 
 * Evaluate and correctly interpret homogeneity of variance (if Levene's < .05; use Welch's formulation)
 
 
-```r
-psych::describeBy(IndT_df ~ Dept, type = 1, mat = TRUE)
+``` r
+psych::describeBy(IndT_df ~ Dept,  type =1, mat=TRUE)
 ```
 
 ```
@@ -985,9 +964,9 @@ Kurtosis = 0.156 (CPY) and 0.583 (ORG) falls below the |10.0| threshold of conce
 
 We can use the Shapiro Wilk test for a formal test of normality
 
-```r
-library(tidyverse)  #opening this package so I can use the pipes
-shapiro <- IndT_df %>%
+``` r
+library(tidyverse)#opening this package so I can use the pipes
+shapiro <- IndT_df%>%
     group_by(Dept) %>%
     rstatix::shapiro_test(TradPed)
 shapiro
@@ -1008,7 +987,7 @@ Should we be concerned? A general rule of thumb is that when cell sizes are larg
 For fun (not required), let's produce a pairs.panels.
 
 
-```r
+``` r
 psych::pairs.panels(IndT_df)
 ```
 
@@ -1019,8 +998,8 @@ We can see that we'll have more CPY students than ORG students. Although our kur
 And now for homogeneity of variance:
 
 
-```r
-rstatix::levene_test(IndT_df, TradPed ~ Dept, center = median)
+``` r
+rstatix::levene_test(IndT_df, TradPed ~ Dept, center=median)
 ```
 
 ```
@@ -1038,10 +1017,9 @@ Levene's test for homogeneity of variance indicated that we did not violate the 
 Conduct the independent samples *t*-test (with an effect size)
 
 
-```r
-indT.test <- rstatix::t_test(IndT_df, TradPed ~ Dept, var.equal = TRUE,
-    detailed = TRUE) %>%
-    rstatix::add_significance()
+``` r
+indT.test <- rstatix::t_test(IndT_df, TradPed~Dept, var.equal=TRUE, detailed=TRUE) %>%
+  rstatix::add_significance()
 indT.test
 ```
 
@@ -1058,7 +1036,7 @@ From this output we learn that the value of the *t*-test is 1.423 and is non-sig
 
 Calculating the Cohen's *d* as the effect size.
 
-```r
+``` r
 rstatix::cohens_d(IndT_df, TradPed ~ Dept, var.equal = TRUE)
 ```
 
@@ -1085,7 +1063,7 @@ The value of Cohen's *d* statistic (interpreted in standard deviation units) is 
 
 We can use the *apaTables* package to create a table of means and standard deviations. 
 
-```r
+``` r
 apaTables::apa.1way.table(Dept, TradPed, IndT_df)
 ```
 
@@ -1104,14 +1082,12 @@ Note. M and SD represent mean and standard deviation, respectively.
 And now a figure.
 
 
-```r
-indT.box <- ggpubr::ggboxplot(IndT_df, x = "Dept", y = "TradPed", color = "Dept",
-    palette = c("#00AFBB", "#FC4E07"), add = "jitter", title = "Figure 1. Traditional Pedagogy as a Function of Academic Department")
-ind.testT <- indT.test %>%
-    rstatix::add_xy_position(x = "Dept")  #autocomputes p-value labels positions
-indT.box <- indT.box + ggpubr::stat_pvalue_manual(ind.testT, label = "p.signif",
-    tip.length = 0.02, hide.ns = FALSE, y.position = c(5.5)) + labs(subtitle = rstatix::get_test_label(indT.test,
-    detailed = TRUE))  #adds t-test results
+``` r
+indT.box <- ggpubr::ggboxplot(IndT_df, x = "Dept", y = "TradPed", color = "Dept", palette=c("#00AFBB", "#FC4E07"), add = "jitter",  title = "Figure 1. Traditional Pedagogy as a Function of Academic Department") 
+ind.testT <- indT.test %>% rstatix::add_xy_position(x = "Dept") #autocomputes p-value labels positions
+indT.box <- indT.box +
+  ggpubr::stat_pvalue_manual(ind.testT, label = "p.signif", tip.length=.02, hide.ns = FALSE, y.position = c(5.5)) + 
+  labs(subtitle = rstatix::get_test_label(indT.test, detailed=TRUE)) #adds t-test results
 
 indT.box
 ```
@@ -1122,9 +1098,8 @@ indT.box
 
 We can use Cohen's d in this specification of *d*.
 
-```r
-pwr::pwr.t.test(d = 0.3, n = 112, power = NULL, sig.level = 0.05, type = "two.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d = 0.30, n = 112, power = NULL, sig.level = 0.05,type = "two.sample", alternative = "two.sided")
 ```
 
 ```
@@ -1143,9 +1118,8 @@ NOTE: n is number in *each* group
 We were at 61% power. That is, given the value of the mean difference (), we had a 61% chance of detecting a statistically significant effect if there was one. How big of a sample would it take?
 
 
-```r
-pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05, type = "two.sample",
-    alternative = "two.sided")
+``` r
+pwr::pwr.t.test(d = 0.3, n = NULL, power = 0.8, sig.level = 0.05, type = "two.sample", alternative = "two.sided")
 ```
 
 ```
@@ -1179,8 +1153,8 @@ $$H_A: \mu_1 \neq \mu_2$$
 #### Using an R package or functions in base R, calculate the means and standard deviations for both levels of the dependent variable {-}
 
 
-```r
-psych::describeBy(IndT_df ~ Dept, type = 1, mat = TRUE)
+``` r
+psych::describeBy(IndT_df ~ Dept, type =1, mat=TRUE)
 ```
 
 ```
@@ -1205,7 +1179,7 @@ Just as a reminder, the SE is the denominator in the *t*-test formula:
 
 $$t = \frac{\bar{X_{1}} -\bar{X_{2}}}{\sqrt{\frac{s_{1}^{2}}{N_{1}}+\frac{s_{2}^{2}}{N_{2}}}}$$
 
-```r
+``` r
 sqrt((0.7547259^2/81) + (1.0948953^2/31))
 ```
 
@@ -1217,8 +1191,8 @@ The *SE* = 0.214
 #### Calculate the independent samples *t*-test {-}
 
 
-```r
-(4.12963 - 3.870968)/0.2137828
+``` r
+(4.129630 - 3.870968)/0.2137828
 ```
 
 ```
@@ -1240,7 +1214,7 @@ For a two-tailed test, with alpha of 0.05, and a sample size of 120 (close enoug
 We could also obtain a *t* critical value with this code:
 
 
-```r
+``` r
 qt(0.05/2, 112, lower.tail = TRUE)
 ```
 
@@ -1248,7 +1222,7 @@ qt(0.05/2, 112, lower.tail = TRUE)
 [1] -1.981372
 ```
 
-```r
+``` r
 qt(0.05/2, 112, lower.tail = FALSE)
 ```
 
@@ -1269,7 +1243,7 @@ Calculating a confidence interval around the difference in sample means requires
 $$(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)$$
 
 
-```r
+``` r
 (4.129630 - 3.870968) - (1.209929 * 0.2137828)
 ```
 
@@ -1277,7 +1251,7 @@ $$(\bar{X_{1}} -\bar{X_{2})} \pm  t_{cv}(SE)$$
 [1] -0.0000000094212
 ```
 
-```r
+``` r
 (4.129630 - 3.870968) + (1.209929 * 0.2137828)
 ```
 
@@ -1293,7 +1267,7 @@ Here is the formula for Cohen's *d*:
 $$d = t\sqrt{\frac{N_{1}+N_{2}}{N_{1}N_{2}}}$$
 
 
-```r
+``` r
 1.209929 * (sqrt((81 + 31)/(81 * 31)))
 ```
 
